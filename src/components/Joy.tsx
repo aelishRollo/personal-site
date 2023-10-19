@@ -1,5 +1,6 @@
 import React, { useState, useEffect, FormEvent, ReactElement } from 'react';
 import '../App.css';
+import TodoTable from './TodoTable';
 
 type TodoType = {
     id: number;
@@ -11,6 +12,8 @@ type TodoType = {
 type TodoFormProps = {
     addTodo: (todo: TodoType) => void;
 }
+
+
 
 type TodoListProps = {
     todos: TodoType[];
@@ -45,7 +48,13 @@ export default function App() {
         }
     };
 
+    const sampleTodos = [
+        { id: 1, name: "Buy groceries", urgent: true, important: false },
+        { id: 2, name: "Finish homework", urgent: false, important: true },
 
+    ];
+
+    <TodoTable todos={sampleTodos} />
 
 
     type FilterType = 'all' | 'urgent' | 'important' | 'delete';
@@ -67,7 +76,7 @@ export default function App() {
         }
     };
 
-    //yo this is a sagfe space right here baby
+    
 
     
 

@@ -47,7 +47,7 @@ function HomePage() {
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
       <p>
-         Hi, this is the main page!......
+         Hi, this is page Ronson!......
       </p>
       <Lank />
     </header>
