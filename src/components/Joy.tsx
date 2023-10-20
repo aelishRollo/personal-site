@@ -54,8 +54,6 @@ export default function App() {
 
     ];
 
-    <TodoTable todos={sampleTodos} />
-
 
     type FilterType = 'all' | 'urgent' | 'important' | 'delete';
 
