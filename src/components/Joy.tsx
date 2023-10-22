@@ -48,12 +48,6 @@ export default function App() {
         }
     };
 
-    const sampleTodos = [
-        { id: 1, name: "Buy groceries", urgent: true, important: false },
-        { id: 2, name: "Finish homework", urgent: false, important: true },
-
-    ];
-
 
     type FilterType = 'all' | 'urgent' | 'important' | 'delete';
 
@@ -190,6 +184,7 @@ export default function App() {
             ) : (
                 <TodoForm addTodo={addTodo} />
             )}
+            <TodoTable />
         </div>
     );
     

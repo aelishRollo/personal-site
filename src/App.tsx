@@ -6,9 +6,8 @@ import Todo from './components/Todo';
 import Navbar from './components/Navbar';
 import Lank from './components/Lank';
 import Joy from './components/Joy'
-import TodoTable from './components/TodoTable';
+import HomePage from './components/Homepage';
 
-//does <Coco /> actually work though? Need to find out
 
 
 function App() {
@@ -38,23 +37,11 @@ function Coco() {
          <header className="App-header">
             <p>{greet("Derek Farthing Jr.")}</p>
             <Lank />
-            <TodoTable />
          </header>
       </div>
   )
 }
 
-function HomePage() {
-  return (
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-         Hi, this is page Ronson!......
-      </p>
-      <Lank />
-    </header>
-  );
-}
 
 
 

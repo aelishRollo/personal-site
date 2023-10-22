@@ -1,9 +1,23 @@
+import Lank from './Lank'
+
+
 export default function HomePage() {
     return (
-      <header className="App-background">
-        <img src={logo} className="App-logo" alt="logo" />
+      <header className='App-header'>
+        <h1> 
+          Alec Rollison
+        </h1>
+        <h3>
+          Me in 10 seconds
+        </h3>
         <p>
-          Edit <code>src/App.tsx</code> Hi, this is thewewefwuefwuefe! .
+          I'm a musician. I sing, play guitar, keys and drums. I also mix my own music. I'm a nerd for music theory,
+          but above all else, I love to improvise. 
+        </p>
+        <p>
+          I'm a web developer. I'm currently using node.js with typescript and React. I'm in favor of test driven development. 
+          Also, I think it's beautiful that with some basic programming knowledge, we have the power to create new tools for anything we 
+          dream up.
         </p>
         <Lank />
       </header>
