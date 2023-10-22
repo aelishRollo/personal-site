@@ -9,7 +9,7 @@ export default function Lank() {
           <Link to="/Todo"> Todo App </Link>
         </li>
         <li>
-          <Link to="/Coco"> Coco </Link>
+          <Link to="/Contact"> Contact </Link>
         </li>
         <li>
           <Link to="/Joy"> Joy </Link>
@@ -17,3 +17,5 @@ export default function Lank() {
       </ul>
     );
   }
+//this component renders an actual clickable link on the page with its url, and provides the text for the link
+//this specific component does it four times

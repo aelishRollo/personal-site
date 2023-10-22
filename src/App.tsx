@@ -18,7 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/Todo" element={<Todo />} />
-          <Route path="/Coco" element={<Coco />} />
+          <Route path="/Contact" element={<Contact />} />
           <Route path="/Joy" element={<Joy />} />
           
         </Routes>
@@ -26,12 +26,13 @@ function App() {
     </div>
   );
 }
+//the code block above associates the current path the component to be rendered when that page is visited
 
 function greet(name: string): string {
   return `This is a second, ${name}!`;
 }
 
-function Coco() {
+function Contact() {
   return (
     <div className="App">
          <header className="App-header">

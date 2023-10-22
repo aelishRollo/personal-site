@@ -7,7 +7,7 @@ export default function HomePage() {
         <h1> 
           Alec Rollison
         </h1>
-        <h3>
+        <h3 className='App-subheader'>
           Me in 10 seconds
         </h3>
         <p className='App-paragraph'>
@@ -20,6 +20,10 @@ export default function HomePage() {
           dream up.
         </p>
         <Lank />
+        <h3 className='App-subheader'>
+          Contact Me
+        </h3>
+        
       </header>
     );
   }
