@@ -25,6 +25,16 @@
   overflow: auto;
 }
 
+.App-paragraph {
+  background-color: #000000;
+  font-size: calc(10px + 2vmin);
+  color:white;
+  width: 60%;  
+  margin-left: 50%;
+  margin-right: 50%;
+
+}
+
 
 .App-link {
   color: #2a87a1;
