@@ -13,7 +13,7 @@ import HomePage from './components/Homepage';
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />

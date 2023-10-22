@@ -27,12 +27,20 @@
 
 .App-paragraph {
   background-color: #000000;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(5px + 2vmin);
   color:white;
   width: 60%;  
-  margin-left: 50%;
-  margin-right: 50%;
+  margin-left: 70%;
+  margin-right: 60%;
+  text-align:left;
+}
 
+.App-subheader {
+  background-color: #000000;
+  width: 60%;  
+  margin-left: 70%;
+  margin-right: 60%;
+  text-align:left;
 }
 
 
