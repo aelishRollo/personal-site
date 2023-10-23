@@ -1,4 +1,5 @@
 import Lank from './Lank'
+import { Routes, Route, BrowserRouter, Link } from 'react-router-dom';
 
 
 export default function HomePage() {
@@ -23,6 +24,9 @@ export default function HomePage() {
         <h3 className='App-subheader'>
           Contact Me
         </h3>
+        <p className='App-paragraph'>
+        I love meeting new people, and I reply to every email, so <Link to="/Contact"> say hello </Link>.
+        </p>
         
       </header>
     );
