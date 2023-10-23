@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Lank from './components/Lank';
 import Joy from './components/Joy'
 import HomePage from './components/Homepage';
+import Contact from './components/Contact';
 
 
 
@@ -27,24 +28,5 @@ function App() {
   );
 }
 //the code block above associates the current path the component to be rendered when that page is visited
-
-function greet(name: string): string {
-  return `This is a second, ${name}!`;
-}
-
-function Contact() {
-  return (
-    <div className="App">
-         <header className="App-header">
-            <p>{greet("Derek Farthing Jr.")}</p>
-            <Lank />
-         </header>
-      </div>
-  )
-}
-
-
-
-
 
 export default App;
