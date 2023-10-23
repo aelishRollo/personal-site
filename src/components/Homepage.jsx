@@ -12,7 +12,7 @@ export default function HomePage() {
           Me in 10 seconds
         </h3>
         <p className='App-paragraph'>
-          I'm a musician. I sing, play guitar, keys and drums. I also mix my own music. I'm a nerd for music theory,
+          I'm a <Link to="/Music"> musician </Link> I sing, play guitar, keys and drums. I also mix my own music. I'm a nerd for music theory,
           but above all else, I love to improvise. 
         </p>
         <p className='App-paragraph'>

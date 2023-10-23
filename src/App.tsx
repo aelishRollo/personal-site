@@ -8,6 +8,7 @@ import Lank from './components/Lank';
 import Joy from './components/Joy'
 import HomePage from './components/Homepage';
 import Contact from './components/Contact';
+import Music from './components/Music'
 
 
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/Todo" element={<Todo />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Joy" element={<Joy />} />
+          <Route path="/Music" element={<Music />} />
           
         </Routes>
       </BrowserRouter>
