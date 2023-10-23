@@ -12,13 +12,10 @@ export default function HomePage() {
           Me in 10 seconds
         </h3>
         <p className='App-paragraph'>
-          I'm a <Link to="/Music"> musician </Link> I sing, play guitar, keys and drums. I also mix my own music. I'm a nerd for music theory,
-          but above all else, I love to improvise. 
+          I'm a <Link to="/Music"> musician </Link>. I'm also a <Link to="/Webdev"> web developer </Link>
         </p>
         <p className='App-paragraph'>
-          I'm a web developer. I'm currently using node.js with typescript and React. I'm in favor of test driven development. 
-          Also, I think it's beautiful that with some basic programming knowledge, we have the power to create new tools for anything we 
-          dream up.
+          We will be the lightning that rides the storm.
         </p>
         <Lank />
         <h3 className='App-subheader'>

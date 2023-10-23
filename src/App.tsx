@@ -23,6 +23,7 @@ function App() {
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Joy" element={<Joy />} />
           <Route path="/Music" element={<Music />} />
+          <Route path="/Webdev" element={<Music />} />
           
         </Routes>
       </BrowserRouter>
