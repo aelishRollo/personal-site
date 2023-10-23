@@ -33,7 +33,7 @@ a {
 
 .App-paragraph {
   background-color: #000000;
-  font-size: calc(2px + 2vmin);
+  font-size: calc(4px + 2vmin);
   color:white;
   width: 60%;  
   margin-left: 70%;
