@@ -5,7 +5,7 @@ import { Routes, Route, BrowserRouter, Link } from 'react-router-dom';
 export default function HomePage() {
     return (
       <header className='App-header'>
-        <h1> 
+        <h1 className='App-subheader'>  
           Alec Rollison
         </h1>
         <h3 className='App-subheader'>
