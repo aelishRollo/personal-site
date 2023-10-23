@@ -28,6 +28,7 @@ a {
   font-size: calc(10px + 2vmin);
   color: rgb(29, 148, 24);
   overflow: auto;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .App-paragraph {
@@ -38,10 +39,11 @@ a {
   margin-left: 70%;
   margin-right: 60%;
   text-align:left;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .App-subheader {
-  
+  font-family: Arial, Helvetica, sans-serif;
   text-align:left;
   width: 60%;  
   margin-left: 70%;
