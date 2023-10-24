@@ -12,7 +12,7 @@ export default function HomePage() {
           Me in 10 seconds
         </h3>
         <p className='App-paragraph'>
-          I'm a <Link to="/Music"> musician </Link>. I'm also a <Link to="/Webdev"> web developer </Link>
+          I'm a <Link to="/Music"> musician</Link>. I'm also a <Link to="/Webdev">web</Link> <Link to="/Webdev">developer. </Link>
         </p>
         <p className='App-paragraph'>
           We will be the lightning that rides the storm.

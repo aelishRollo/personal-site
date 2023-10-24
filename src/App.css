@@ -1,5 +1,6 @@
 a { 
   color: #A797FF;
+  text-decoration: none;
 }
 
 
@@ -41,6 +42,8 @@ a {
   text-align:left;
   font-family: "Dejavu Sans";
 }
+
+
 
 .App-subheader {
   font-family: "Dejavu Sans";
