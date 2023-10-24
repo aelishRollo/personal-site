@@ -2,11 +2,11 @@ import Lank from './Lank'
 import { Routes, Route, BrowserRouter, Link } from 'react-router-dom';
 
 
-export default function HomePage() {
+export default function Projects() {
     return (
       <header className='App-header'>
         <h1 className='App-subheader'>  
-          Alec Rollison
+          This will highlight some of the projects I've worked on
         </h1>
         <h3 className='App-subheader'>
           Me in 10 seconds

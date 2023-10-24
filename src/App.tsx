@@ -1,14 +1,16 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Routes, Route, BrowserRouter, Link } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Todo from './components/Todo';
 import Navbar from './components/Navbar';
 import Lank from './components/Lank';
 import Joy from './components/Joy'
 import HomePage from './components/Homepage';
 import Contact from './components/Contact';
-import Music from './components/Music'
+import Music from './components/Music';
+import Webdev from './components/Webdev';
+import Projects from './components/Projects';
 
 
 
@@ -23,7 +25,8 @@ function App() {
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Joy" element={<Joy />} />
           <Route path="/Music" element={<Music />} />
-          <Route path="/Webdev" element={<Music />} />
+          <Route path="/Webdev" element={<Webdev />} />
+          <Route path="/Projects" element={<Projects />} />
           
         </Routes>
       </BrowserRouter>
