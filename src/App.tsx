@@ -10,6 +10,10 @@ import Music from './components/Music';
 import Webdev from './components/Webdev';
 import Projects from './components/Projects';
 
+const supabaseKey = process.env.REACT_APP_SUPABASE_API_KEY as string
+const supabaseURL = process.env.REACT_APP_SUPABASE_URL as string
+
+
 
 
 function App() {

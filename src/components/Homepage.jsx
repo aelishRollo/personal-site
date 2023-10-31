@@ -9,7 +9,7 @@ export default function HomePage() {
           Alec Rollison
         </h1>
         <h3 className='App-subheader'>
-          Me in 10 seconds
+          Me in 10 seconds 
         </h3>
         <p className='App-paragraph'>
           I'm a <Link to="/Music"> musician</Link>. I'm also a <Link to="/Webdev">web</Link> <Link to="/Webdev">developer. </Link>
