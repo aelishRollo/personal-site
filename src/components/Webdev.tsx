@@ -11,7 +11,7 @@ export default function Contact() {
                 <p>
                     I'm currently using node.js with typescript and React. I'm in favor of test driven development.
                     Also, I think it's beautiful that with some basic programming knowledge, we have the power to create new tools for anything we
-                    dream up.
+                    dream up. Happy Halloween
                 </p>
             
             <Lank />
