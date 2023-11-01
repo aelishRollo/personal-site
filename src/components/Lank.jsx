@@ -11,9 +11,6 @@ export default function Lank() {
         <li>
           <Link to="/Contact"> Contact </Link>
         </li>
-        <li>
-          <Link to="/Joy"> Joy </Link>
-        </li>
       </ul>
     );
   }

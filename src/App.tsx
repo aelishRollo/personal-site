@@ -3,12 +3,12 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Todo from './components/Todo';
 import Navbar from './components/Navbar';
 import Lank from './components/Lank';
-import Joy from './components/Joy'
 import HomePage from './components/Homepage';
 import Contact from './components/Contact';
 import Music from './components/Music';
 import Webdev from './components/Webdev';
 import Projects from './components/Projects';
+import supabase from './utils/supabaseClient';
 
 
 function App() {
@@ -20,7 +20,6 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/Todo" element={<Todo />} />
           <Route path="/Contact" element={<Contact />} />
-          <Route path="/Joy" element={<Joy />} />
           <Route path="/Music" element={<Music />} />
           <Route path="/Webdev" element={<Webdev />} />
           <Route path="/Projects" element={<Projects />} />
