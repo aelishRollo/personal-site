@@ -5,4 +5,7 @@ const supabaseURL = process.env.REACT_APP_SUPABASE_URL as string
 
 const supabase = createClient(supabaseKey, supabaseURL);
 
+console.log('Supabase Key:', supabaseKey);
+console.log('Supabase URL:', supabaseURL);
+
 export default supabase;

@@ -1,12 +1,23 @@
 import React, { useState, useEffect, FormEvent, ReactElement } from 'react';
 import '../App.css';
 import TodoTable from './TodoTable';
+import supabase from '../utils/supabaseClient';
 
-type TodoType = {
+supabase.functions 
+
+type TodoType = {   //will be deleted soon
     id: number;
     name: string;
     urgent: boolean;
     important: boolean;
+};
+
+
+type TodoInputType = {
+  name: string;
+  urgent?: boolean;
+  important?: boolean;
+  parent_id?: number;
 };
 
 type TodoFormProps = {
@@ -51,6 +62,9 @@ export default function App() {
 
     type FilterType = 'all' | 'urgent' | 'important' | 'delete';
 
+    
+
+
     const filterTodos = (type: FilterType) => {
         switch (type) {
             case 'urgent':
@@ -67,9 +81,6 @@ export default function App() {
                 break;
         }
     };
-
-    
-
     
 
 
