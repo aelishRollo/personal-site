@@ -40,7 +40,7 @@ export default function test() {
       }
       
       let sampleTodo: TodoType = {
-        name: "sample todo",
+        name: "simple sample todo",
         urgent: true,
         important: false
       }
@@ -52,9 +52,11 @@ export default function test() {
         <div className="App">
             <header className="App-header">
                 <p>
-                I love meeting new people, and I reply to every email, so get my database working please
+                I love meeting new people, and I reply to every email, so get my database working please.
+                This should have added "simple sample todo" 
                 </p>
-                <Lank />
+            
+            
             </header >
         </div>
                

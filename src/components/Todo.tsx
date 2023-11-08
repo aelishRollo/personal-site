@@ -2,8 +2,8 @@ import React, { useState, useEffect, FormEvent, ReactElement } from 'react';
 import '../App.css';
 import TodoTable from './TodoTable';
 import supabase from '../utils/supabaseClient';
+import ViewTodoList from './ViewList';
 
-supabase.functions 
 
 type TodoType = {   //will be deleted soon
     id: number;
@@ -172,6 +172,7 @@ export default function App() {
                         {todo.important && <span> (Important)</span>}
                     </li>
                 ))}
+                <ViewTodoList />
             </ul>
         );
     }

@@ -1,4 +1,5 @@
 import Lank from './Lank'
+import TestFile from './testFile'
 import { Routes, Route, BrowserRouter, Link } from 'react-router-dom';
 
 
@@ -18,6 +19,7 @@ export default function HomePage() {
         <p className='App-paragraph'>
           We will be the lightning that rides the storm.
         </p>
+        <TestFile />
         <Lank />
         <h3 className='App-subheader'>
           Contact Me
