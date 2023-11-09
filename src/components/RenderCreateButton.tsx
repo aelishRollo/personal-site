@@ -33,14 +33,7 @@ const ParentComponent: React.FC = () => {
   };
 
   return (
-    <div>
       <CreateButton onTodoCreated={addTodoToList} />
-      <div>
-        {todos.map((todo, index) => (
-          <div key={todo.id || index}>{todo.name}</div> // Use the todo ID or index as a key
-        ))}
-      </div>
-    </div>
   );
 };
 
