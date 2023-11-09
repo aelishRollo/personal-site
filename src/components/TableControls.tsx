@@ -1,4 +1,5 @@
 import React from 'react';
+import RenderCreateButton from './RenderCreateButton'
 
 const TableControls: React.FC = () => {
   // Define the CRUD function
@@ -21,7 +22,7 @@ const TableControls: React.FC = () => {
 
   return (
     <div className="button-container">
-      <button onClick={crudTodos}>Create</button>
+      <RenderCreateButton />
       <button onClick={editTodos}>Edit / Delete</button>
       <button onClick={filterTodos}>Filter</button>
     </div>
