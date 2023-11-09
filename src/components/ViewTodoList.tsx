@@ -35,13 +35,13 @@ const ViewTodoList: React.FC = () => {
   return (
     <div>
       <h1>Todo List</h1>
-      <ul style={{ listStyleType: 'none', padding: 0 }}>
+      <ul>
         {todos.map((todo) => (
-          <li key={todo.id} style={{ marginBottom: '0.5rem' }}>
-            <div style={{ fontWeight: todo.urgent ? 'bold' : 'normal' }}>
+          <li key={todo.id}>
+            <div>
               {todo.name}
             </div>
-            {todo.important && <div style={{ color: 'red' }}>Important</div>}
+            {todo.important && <div>Important</div>}
           </li>
         ))}
       </ul>

@@ -2,7 +2,7 @@ import React, { useState, useEffect, FormEvent, ReactElement } from 'react';
 import '../App.css';
 import TodoTable from './TodoTable';
 import supabase from '../utils/supabaseClient';
-import ViewTodoList from './ViewList';
+import ViewTodoList from './ViewTodoList';
 
 
 type TodoType = {   //will be deleted soon
@@ -172,7 +172,6 @@ export default function App() {
                         {todo.important && <span> (Important)</span>}
                     </li>
                 ))}
-                <ViewTodoList />
             </ul>
         );
     }
@@ -180,7 +179,7 @@ export default function App() {
 
     return (
         <div className="App-header">
-            {!showForm ? (
+            {/*!showForm ? (
                 <>
                     <button onClick={() => filterTodos('all')}>All</button>
                     <button onClick={() => filterTodos('urgent')}>Urgent</button>
@@ -195,8 +194,8 @@ export default function App() {
                 </>
             ) : (
                 <TodoForm addTodo={addTodo} />
-            )}
-            <TodoTable />
+            )*/}
+            <ViewTodoList />
         </div>
     );
     
