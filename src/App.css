@@ -19,6 +19,45 @@ a {
   }
 }
 
+.TodoTable {
+  width: 100%;
+  border-collapse: separate; /* Change to separate to allow spacing between cells */
+  border: 1px solid #b5b9bd;
+  margin-top: 20px;
+}
+
+.TodoTable th, 
+.TodoTable td {
+  padding: 18px; /* Increase padding as needed */
+  border-bottom: 1px solid #b5b9bd; /* Add a bottom border to header cells and data cells */
+}
+
+.TodoTable th {
+  border-right: 1px solid #b5b9bd; /* Add a right border to header cells for the line between columns */
+}
+
+.TodoTable td {
+  border-right: 1px solid #b5b9bd; /* Add a right border to data cells for the line between columns */
+}
+
+.TodoTable th:last-child,
+.TodoTable td:last-child {
+  border-right: none; /* Remove the right border for the last column */
+}
+
+.TodoTable tr:last-child td {
+  border-bottom: none; /* Remove the bottom border for the last row */
+}
+
+
+table {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 2px 2px;
+  text-indent: initial;
+  box-sizing: border-box;
+} 
+
 .App-header {
   background-color: #000000;
   min-height: 100vh;

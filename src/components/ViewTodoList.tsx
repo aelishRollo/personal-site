@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import supabase from '../utils/supabaseClient';
 
-
-
-
 type TodoType = {
   id: number;
   name: string;
@@ -13,38 +10,44 @@ type TodoType = {
 };
 
 const ViewTodoList: React.FC = () => {
-  // State to hold todos
   const [todos, setTodos] = useState<TodoType[]>([]);
 
-  // Function to fetch todos from the database
   const fetchTodos = async () => {
     let { data: todos, error } = await supabase
-      .from('todos') // your table name
+      .from('todos')
       .select('*');
 
     if (error) console.log('error', error);
     else setTodos(todos || []);
   };
 
-  // Fetch todos on component mount
   useEffect(() => {
     fetchTodos();
   }, []);
 
-  // Render the todos in a list
   return (
     <div>
       <h1>Todo List</h1>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            <div>
-              {todo.name}
-            </div>
-            {todo.important && <div>Important</div>}
-          </li>
-        ))}
-      </ul>
+      <table className="TodoTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Urgent</th>
+            <th>Important</th>
+            <th>Parent ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          {todos.map((todo) => (
+            <tr key={todo.id}>
+              <td>{todo.name}</td>
+              <td>{todo.urgent ? 'Yes' : 'No'}</td>
+              <td>{todo.important ? 'Yes' : 'No'}</td>
+              <td>{todo.parent_id}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
