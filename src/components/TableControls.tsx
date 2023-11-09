@@ -8,6 +8,12 @@ const TableControls: React.FC = () => {
   };
 
   // Define the Filter function
+  const editTodos = () => {
+    // Placeholder for actual edit / delete operation
+    console.log('Edit / delete operation executed');
+  };
+
+  // Define the Filter function
   const filterTodos = () => {
     // Placeholder for actual filter operation
     console.log('Filter operation executed');
@@ -15,7 +21,8 @@ const TableControls: React.FC = () => {
 
   return (
     <div className="button-container">
-      <button onClick={crudTodos}>CRUD</button>
+      <button onClick={crudTodos}>Create</button>
+      <button onClick={editTodos}>Edit / Delete</button>
       <button onClick={filterTodos}>Filter</button>
     </div>
   );
