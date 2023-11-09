@@ -3,6 +3,7 @@ import '../App.css';
 import TodoTable from './TodoTable';
 import supabase from '../utils/supabaseClient';
 import ViewTodoList from './ViewTodoList';
+import TableControls from './TableControls';
 
 
 type TodoType = {   //will be deleted soon
@@ -195,6 +196,7 @@ export default function App() {
             ) : (
                 <TodoForm addTodo={addTodo} />
             )*/}
+            <TableControls />
             <ViewTodoList />
         </div>
     );

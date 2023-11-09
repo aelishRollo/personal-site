@@ -49,6 +49,27 @@ a {
   border-bottom: none; /* Remove the bottom border for the last row */
 }
 
+.button-container {
+  display: flex;
+  justify-content: space-between; /* To distribute buttons evenly */
+  margin-bottom: 10px; /* Space above the buttons */
+}
+
+.button-container button {
+  flex-grow: 1; /* Buttons grow to fill the container */
+  margin: 0 5px; /* Spacing between buttons */
+  padding: 10px; /* Padding inside buttons */
+  cursor: pointer; /* Change cursor on hover */
+}
+
+.button-container button:first-child {
+  margin-left: 0; /* No margin on the left side for the first button */
+}
+
+.button-container button:last-child {
+  margin-right: 0; /* No margin on the right side for the last button */
+}
+
 
 table {
   display: table;
