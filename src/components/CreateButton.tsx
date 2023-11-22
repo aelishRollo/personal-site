@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import supabase from '../utils/supabaseClient';
 
-// Props type definition. CreateButtonProps has a method, which has a TodoType as an argument
 interface CreateButtonProps {
   onTodoCreated: (newTodo: TodoType) => void;
 }
 
-// Define the TodoType structure
 type TodoType = {
   id?: number;
   name: string;
@@ -16,12 +14,25 @@ type TodoType = {
 };
 
 const CreateButton: React.FC<CreateButtonProps> = ({ onTodoCreated }) => {
-  const [showForm, setShowForm] = useState(false);    //make showForm a boolean state variable
-  const [todo, setTodo] = useState<TodoType>({ name: '', urgent: false, important: false }); //make todo:toDoType a state variable
+  const [showForm, setShowForm] = useState(false);
+  const [todo, setTodo] = useState<TodoType>({
+    name: '',
+    urgent: false,
+    important: false,
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setTodo({
+      ...todo,
+      [name]: value,
+    });
+  };
 
   const handleSubmit = async () => {
     // Perform the insert into the database
     const { data, error } = await supabase.from('todos').insert([todo]);
+    setShowForm(false)
 
     if (error) {
       console.error('Error inserting data:', error);
@@ -36,8 +47,36 @@ const CreateButton: React.FC<CreateButtonProps> = ({ onTodoCreated }) => {
     <div>
       {showForm ? (
         <form onSubmit={(e) => e.preventDefault()}>
-          {/* Form fields for the todo here */}
-          {/* ... */}
+          <div>
+            <label htmlFor="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={todo.name}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="urgent">Urgent:</label>
+            <input
+              type="checkbox"
+              id="urgent"
+              name="urgent"
+              checked={todo.urgent}
+              onChange={() => setTodo({ ...todo, urgent: !todo.urgent })}
+            />
+          </div>
+          <div>
+            <label htmlFor="important">Important:</label>
+            <input
+              type="checkbox"
+              id="important"
+              name="important"
+              checked={todo.important}
+              onChange={() => setTodo({ ...todo, important: !todo.important })}
+            />
+          </div>
           <button onClick={handleSubmit}>Confirm</button>
         </form>
       ) : (
