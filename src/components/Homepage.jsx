@@ -1,6 +1,7 @@
 import Lank from './Lank'
 import TestFile from './testFile'
 import { Routes, Route, BrowserRouter, Link } from 'react-router-dom';
+import Counter from './Counter';
 
 
 export default function HomePage() {
@@ -27,6 +28,7 @@ export default function HomePage() {
         <p className='App-paragraph'>
         I love meeting new people, and I reply to every email, so <Link to="/Contact"> say hello </Link>.
         </p>
+        <Counter />
         
       </header>
     );
