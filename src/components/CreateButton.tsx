@@ -15,23 +15,27 @@ type TodoType = {
 
 const CreateButton: React.FC<CreateButtonProps> = ({ onTodoCreated }) => {
   const [showForm, setShowForm] = useState(false);
-  const [todo, setTodo] = useState<TodoType>({
+  const [oof, setOof] = useState<TodoType>({
     name: '',
     urgent: false,
     important: false,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setTodo({
-      ...todo,
-      [name]: value,
-    });
+    const { name, value, type } = e.target;
+  
+    if (type === 'checkbox') {
+      const checkbox = e.target as HTMLInputElement; // Type assertion
+      setOof({ ...oof, [name]: checkbox.checked });
+    } else {
+      setOof({ ...oof, [name]: value });
+    }
   };
+  
 
   const handleSubmit = async () => {
     // Perform the insert into the database
-    const { data, error } = await supabase.from('todos').insert([todo]);
+    const { data, error } = await supabase.from('todos').insert([oof]);
     setShowForm(false)
 
     if (error) {
@@ -53,7 +57,7 @@ const CreateButton: React.FC<CreateButtonProps> = ({ onTodoCreated }) => {
               type="text"
               id="name"
               name="name"
-              value={todo.name}
+              value={oof.name}
               onChange={handleChange}
             />
           </div>
@@ -63,8 +67,8 @@ const CreateButton: React.FC<CreateButtonProps> = ({ onTodoCreated }) => {
               type="checkbox"
               id="urgent"
               name="urgent"
-              checked={todo.urgent}
-              onChange={() => setTodo({ ...todo, urgent: !todo.urgent })}
+              checked={oof.urgent}
+              onChange={handleChange}
             />
           </div>
           <div>
@@ -73,8 +77,8 @@ const CreateButton: React.FC<CreateButtonProps> = ({ onTodoCreated }) => {
               type="checkbox"
               id="important"
               name="important"
-              checked={todo.important}
-              onChange={() => setTodo({ ...todo, important: !todo.important })}
+              checked={oof.important}
+              onChange={handleChange}
             />
           </div>
           <button onClick={handleSubmit}>Confirm</button>
@@ -82,6 +86,12 @@ const CreateButton: React.FC<CreateButtonProps> = ({ onTodoCreated }) => {
       ) : (
         <button onClick={() => setShowForm(true)}>Create</button>
       )}
+
+      {/* Render the 'oof' variable inside a <p> */}
+      <p>
+        'oof' variable:
+        <pre>{JSON.stringify(oof, null, 2)}</pre>
+      </p>
     </div>
   );
 };
