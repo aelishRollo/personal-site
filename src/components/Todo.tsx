@@ -180,22 +180,6 @@ export default function App() {
 
     return (
         <div className="App-header">
-            {/*!showForm ? (
-                <>
-                    <button onClick={() => filterTodos('all')}>All</button>
-                    <button onClick={() => filterTodos('urgent')}>Urgent</button>
-                    <button onClick={() => filterTodos('important')}>Important</button>
-                    <button onClick={() => setShowForm(true)}>Add Todo</button>
-                    <button onClick={() => filterTodos('delete')}>Show Marked for Deletion</button>
-                    {deleteMode && <button onClick={handleDeleteConfirmation}>Confirm Delete</button>}
-                    <button onClick={() => setDeleteMode(!deleteMode)}>
-                        {deleteMode ? "Cancel Delete" : "Mark as Done"}
-                    </button>
-                    <TodoList todos={displayTodos} deleteMode={deleteMode} toDelete={toDelete} toggleDelete={toggleDelete} />
-                </>
-            ) : (
-                <TodoForm addTodo={addTodo} />
-            )*/}
             <TableControls />
             <ViewTodoList />
         </div>
