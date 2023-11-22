@@ -36,21 +36,10 @@ const CreateButton: React.FC<CreateButtonProps> = ({ onTodoCreated }) => {
     <div>
       {showForm ? (
         <form onSubmit={(e) => e.preventDefault()}>
-        <div>
-          <label htmlFor="title">Title:</label>
-          <input type="text" id="title" name="title" />
-        </div>
-        <div>
-          <label htmlFor="description">Description:</label>
-          <textarea id="description" name="description"></textarea>
-        </div>
-        <div>
-          <label htmlFor="dueDate">Due Date:</label>
-          <input type="date" id="dueDate" name="dueDate" />
-        </div>
-        <button onClick={handleSubmit}>Confirm</button>
-      </form>
-      
+          {/* Form fields for the todo here */}
+          {/* ... */}
+          <button onClick={handleSubmit}>Confirm</button>
+        </form>
       ) : (
         <button onClick={() => setShowForm(true)}>Create</button>
       )}
