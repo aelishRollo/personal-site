@@ -36,7 +36,6 @@ const CreateButton: React.FC<CreateButtonProps> = ({ onTodoCreated }) => {
   const handleSubmit = async () => {
     // Perform the insert into the database
     const { data, error } = await supabase.from('todos').insert([oof]);
-    setShowForm(false)
 
     if (error) {
       console.error('Error inserting data:', error);
@@ -87,11 +86,9 @@ const CreateButton: React.FC<CreateButtonProps> = ({ onTodoCreated }) => {
         <button onClick={() => setShowForm(true)}>Create</button>
       )}
 
-      {/* Render the 'oof' variable inside a <p> */}
-      <p>
-        'oof' variable:
-        <pre>{JSON.stringify(oof, null, 2)}</pre>
-      </p>
+     <p>
+      wefweufweffhweufhwuefhwieufh
+     </p>
     </div>
   );
 };
