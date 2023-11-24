@@ -6,11 +6,11 @@ import ViewTodoList from './ViewTodoList';
 import TableControls from './TableControls';
 
 
-type TodoType = {   //will be deleted soon
+type TodoType = {   
     id: number;
     name: string;
-    urgent: boolean;
-    important: boolean;
+    urgent: boolean | null;
+    important: boolean | null;
 };
 
 

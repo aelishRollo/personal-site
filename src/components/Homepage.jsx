@@ -28,6 +28,7 @@ export default function HomePage() {
         <p className='App-paragraph'>
         I love meeting new people, and I reply to every email, so <Link to="/Contact"> say hello </Link>.
         </p>
+        <p>Willis and Billis are the best human beans in the universe</p>
         <Counter />
         
       </header>
