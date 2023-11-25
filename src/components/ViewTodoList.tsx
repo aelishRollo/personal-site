@@ -63,7 +63,11 @@ const ViewTodoList: React.FC = () => {
     return result;
   };
   
+  //right now foo returns a list of id's of the family tree of todos. 
 
+  //I want to have another function on top that will take that array, and for each one, get the
+  //name of that todo, and add it to an array.
+  //So through that process, the function will essentially convert an array of todo id's (numbers) to todo names (strings)
 
   const foo = () => {
     const todoId = 88; // Replace 1 with the actual ID you want to use
