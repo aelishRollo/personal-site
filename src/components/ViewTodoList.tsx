@@ -72,14 +72,19 @@ const ViewTodoList: React.FC = () => {
   const foo = () => {
     const todoId = 88; // Replace 1 with the actual ID you want to use
     const initTodo = getTodoById(todoId);
+    let result:string[] = []
   
     if (initTodo) {
-      console.log(getTodoParentsList(initTodo));
-      console.log(initTodo);
-      console.log("underwareter")
+      let a = getTodoParentsList(initTodo)
+      
+  
+      for (let i = 0; i < a.length; i++) {
+        result.push(getTodoNameById(a[i]))
+      };
     } else {
       console.log('Todo not found');
     }
+    console.log(result)
   };
   
 
