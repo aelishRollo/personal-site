@@ -63,11 +63,26 @@ const ViewTodoList: React.FC = () => {
     return result;
   };
   
-  //right now foo returns a list of id's of the family tree of todos. 
+  //Want to make this a seperate function, and have todoId be an argument
 
-  //I want to have another function on top that will take that array, and for each one, get the
-  //name of that todo, and add it to an array.
-  //So through that process, the function will essentially convert an array of todo id's (numbers) to todo names (strings)
+  const getTodoParentsStringList = (todoId:number) => {
+    const initTodo = getTodoById(todoId);
+    let result:string[] = []
+  
+    if (initTodo) {
+      let a = getTodoParentsList(initTodo)
+      
+  
+      for (let i = 0; i < a.length; i++) {
+        result.push(getTodoNameById(a[i]))
+      };
+    } else {
+      console.log('Todo not found');
+    }
+    console.log(result)
+  };
+
+
 
   const foo = () => {
     const todoId = 88; // Replace 1 with the actual ID you want to use
@@ -111,7 +126,7 @@ const ViewTodoList: React.FC = () => {
           ))}
         </tbody>
       </table>
-      <button onClick={foo}>Step 2 </button>
+      <button onClick={() => getTodoParentsStringList(88)}>Log todos to console </button>
     </div>
   );
 };
