@@ -25,9 +25,7 @@ const ViewTodoList: React.FC = () => {
     fetchTodos();
   }, []);
 
-  //todos is accessible here
-
-
+  
 
   const getTodoNameById = (id: number): string => {
     const todo = todos.find(todo => todo.id === id);
@@ -63,7 +61,7 @@ const ViewTodoList: React.FC = () => {
     return result;
   };
   
-  //Want to make this a seperate function, and have todoId be an argument
+
 
   const getTodoParentsStringList = (todoId:number) => {
     const initTodo = getTodoById(todoId);
@@ -83,8 +81,6 @@ const ViewTodoList: React.FC = () => {
   };
 
 
-
-
   return (
     <div>
       <h1>Todo List</h1>
@@ -99,7 +95,7 @@ const ViewTodoList: React.FC = () => {
         </thead>
         <tbody>
           {todos.map((todo) => (
-            <tr key={todo.id}>
+            <tr key={todo.id} onClick={() => {console.log("Stare into this onion")}}>
               <td>{todo.name}</td>
               <td>{todo.urgent ? 'Yes' : 'No'}</td>
               <td>{todo.important ? 'Yes' : 'No'}</td>

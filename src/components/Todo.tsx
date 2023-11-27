@@ -4,6 +4,9 @@ import TodoTable from './TodoTable';
 import supabase from '../utils/supabaseClient';
 import ViewTodoList from './ViewTodoList';
 import TableControls from './TableControls';
+import RenderCreateButton from './RenderCreateButton'
+import RenderSpecificTodo from './RenderSpecificTodo';
+import RenderSpecifcTodo from './RenderSpecificTodo';
 
 
 type TodoType = {   
@@ -180,7 +183,8 @@ export default function App() {
 
     return (
         <div className="App-header">
-            <TableControls />
+            <RenderCreateButton />
+            <RenderSpecifcTodo />
             <ViewTodoList />
         </div>
     );
