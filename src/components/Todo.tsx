@@ -5,8 +5,8 @@ import supabase from '../utils/supabaseClient';
 import ViewTodoList from './ViewTodoList';
 import TableControls from './TableControls';
 import RenderCreateButton from './RenderCreateButton'
+import Gonzo from './Gonzo'
 import RenderSpecificTodo from './RenderSpecificTodo';
-import RenderSpecifcTodo from './RenderSpecificTodo';
 
 
 type TodoType = {   
@@ -180,11 +180,16 @@ export default function App() {
         );
     }
     
+    let [isVisible,setIsVisible] = useState(false)
+    const handleButtonClick = () => {   
+        setIsVisible(!isVisible)    //change isVisible's value
+    }
 
     return (
         <div className="App-header">
             <RenderCreateButton />
-            <RenderSpecifcTodo />
+            <RenderSpecificTodo />
+            <Gonzo isVisible={isVisible} setIsVisible={setIsVisible} handleButtonClick={handleButtonClick}/>
             <ViewTodoList />
         </div>
     );
