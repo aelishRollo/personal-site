@@ -5,7 +5,6 @@ import supabase from '../utils/supabaseClient';
 import ViewTodoList from './ViewTodoList';
 import TableControls from './TableControls';
 import RenderCreateButton from './RenderCreateButton'
-import Gonzo from './Gonzo'
 import RenderSpecificTodo from './RenderSpecificTodo';
 
 
@@ -188,8 +187,7 @@ export default function App() {
     return (
         <div className="App-header">
             <RenderCreateButton />
-            <RenderSpecificTodo />
-            <Gonzo isVisible={isVisible} setIsVisible={setIsVisible} handleButtonClick={handleButtonClick}/>
+            <RenderSpecificTodo isVisible={isVisible} setIsVisible={setIsVisible} handleButtonClick={handleButtonClick}/>
             <ViewTodoList />
         </div>
     );
