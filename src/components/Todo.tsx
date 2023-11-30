@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import '../App.css';
 import ViewTodoList from './ViewTodoList';
-import RenderCreateButton from './RenderCreateButton'
+import RenderCreateButton from './RenderCreateButton';
 import RenderSpecificTodo from './RenderSpecificTodo';
 
 
 export default function App() {
 
     let [isVisible, setIsVisible] = useState(false)
+
     const handleButtonClick = () => {
         setIsVisible(!isVisible)    //change isVisible's value
     }
@@ -27,28 +28,25 @@ export default function App() {
         name: "goku",
     }
 
-    let handleTodoClick = () => {
-        console.log("Kvloth the bloodless")
-    }
 
     function SingleTodo() {
         let result = <> </>
-        let todoIsVisible = !isVisible
-        if (todoIsVisible) {
+        let todoIsVisible = isVisible
+        if (todoIsVisible) {            //if isVisible, render the table
             result = <div>
-            <h3> Todo Item you clicked on</h3>
-            <table className='TodoTable' onClick ={handleButtonClick} >
-                <tbody>
-                    <tr>
-                        <th>Name</th>
-                        <th>Urgent</th>
-                        <th>Important</th>
-                        <th>Parent ID</th>
-                    </tr>
+                <h3> Todo Item you clicked on</h3>
+                <table className='TodoTable' onClick={handleButtonClick} >
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <th>Urgent</th>
+                            <th>Important</th>
+                            <th>Parent ID</th>
+                        </tr>
 
-                </tbody>
-            </table>
-        </div>
+                    </tbody>
+                </table>
+            </div>
         }
         else {
             result = <> </>
@@ -59,13 +57,29 @@ export default function App() {
         )
     };
 
+    const IsVisibleController = () => {
+        let result = <SingleTodo />
+        if (isVisible) {
+            result = <SingleTodo />
+        } else {
+            result = <div>
+                <RenderCreateButton />
+                <RenderSpecificTodo isVisible={isVisible} setIsVisible={setIsVisible} handleButtonClick={handleButtonClick} />
+                <ViewTodoList />
+            </div>
+        }
+
+        return (
+            <div>
+                {result}
+            </div>
+        )
+    }
+
 
     return (
         <div className="App-header">
-            <RenderCreateButton />
-            <RenderSpecificTodo isVisible={isVisible} setIsVisible={setIsVisible} handleButtonClick={handleButtonClick} />
-            <ViewTodoList />
-            <SingleTodo />
+            <IsVisibleController />
         </div>
     );
 }

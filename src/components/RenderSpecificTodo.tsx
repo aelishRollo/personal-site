@@ -9,8 +9,6 @@ type RenderSpecificTodoProps = {
  const RenderSpecificTodo: React.FC<RenderSpecificTodoProps> = ({ isVisible, setIsVisible, handleButtonClick }) => {
     let result = <> </>
 
-
-
     if (isVisible) {
         result = <div> Hi I'm a div</div>
     };
