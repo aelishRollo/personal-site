@@ -104,7 +104,6 @@ const ViewTodoList: React.FC = () => {
           ))}
         </tbody>
       </table>
-      <button onClick={() => getTodoParentsStringList(88)}>Log todos to console </button>
     </div>
   );
 };
