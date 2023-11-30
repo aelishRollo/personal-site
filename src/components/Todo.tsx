@@ -1,6 +1,5 @@
 import React, { useState, useEffect, FormEvent, ReactElement } from 'react';
 import '../App.css';
-import TodoTable from './TodoTable';
 import supabase from '../utils/supabaseClient';
 import ViewTodoList from './ViewTodoList';
 import TableControls from './TableControls';
