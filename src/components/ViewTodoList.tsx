@@ -83,7 +83,7 @@ const ViewTodoList: React.FC = () => {
 
   return (
     <div>
-      <h1>Todo List</h1>
+      <h3>Todo List</h3>
       <table className="TodoTable">
         <thead>
           <tr>
