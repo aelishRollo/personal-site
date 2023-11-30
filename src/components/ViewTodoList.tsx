@@ -9,7 +9,13 @@ type TodoType = {
   parent_id?: number;
 };
 
-const ViewTodoList: React.FC = () => {
+type ViewToDoListProps = {
+  isVisible:boolean,
+  setIsVisible: (value:boolean) => void;      //I love this function signature
+  handleButtonClick: () => void
+}
+
+const ViewTodoList: React.FC<ViewToDoListProps> = ({ isVisible, setIsVisible, handleButtonClick }) => {
   const [todos, setTodos] = useState<TodoType[]>([]);
 
   const fetchTodos = async () => {

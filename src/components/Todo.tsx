@@ -23,10 +23,6 @@ export default function App() {
         parent_id?: number;
     };
 
-    let mockTodoObject: TodoType = {
-        id: 1337,
-        name: "goku",
-    }
 
 
     function SingleTodo() {
@@ -65,7 +61,7 @@ export default function App() {
             result = <div>
                 <RenderCreateButton />
                 <RenderSpecificTodo isVisible={isVisible} setIsVisible={setIsVisible} handleButtonClick={handleButtonClick} />
-                <ViewTodoList />
+                <ViewTodoList isVisible={isVisible} setIsVisible={setIsVisible} handleButtonClick={handleButtonClick}/>
             </div>
         }
 
