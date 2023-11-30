@@ -101,7 +101,7 @@ const ViewTodoList: React.FC<ViewToDoListProps> = ({ isVisible, setIsVisible, ha
         </thead>
         <tbody>
           {todos.map((todo) => (
-            <tr key={todo.id} onClick={() => {console.log("Stare into this onion")}}>
+            <tr key={todo.id} onClick={handleButtonClick}>
               <td>{todo.name}</td>
               <td>{todo.urgent ? 'Yes' : 'No'}</td>
               <td>{todo.important ? 'Yes' : 'No'}</td>
