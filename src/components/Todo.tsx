@@ -27,23 +27,35 @@ export default function App() {
         name: "goku",
     }
 
+    let handleTodoClick = () => {
+        console.log("Kvloth the bloodless")
+    }
+
     function SingleTodo() {
+        let result = <> </>
+        let todoIsVisible = !isVisible
+        if (todoIsVisible) {
+            result = <div>
+            <h3> Todo Item you clicked on</h3>
+            <table className='TodoTable' onClick ={handleButtonClick} >
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <th>Urgent</th>
+                        <th>Important</th>
+                        <th>Parent ID</th>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        }
+        else {
+            result = <> </>
+        }
 
         return (
-            <div>
-                <h3> Todo Item you clicked on</h3>
-                <table className='TodoTable'>
-                    <tbody>
-                        <tr>
-                            <th>Name</th>
-                            <th>Urgent</th>
-                            <th>Important</th>
-                            <th>Parent ID</th>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
+            result
         )
     };
 
