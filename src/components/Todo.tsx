@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import supabase from '../utils/supabaseClient';
 import '../App.css';
 import ViewTodoList from './ViewTodoList';
 import RenderCreateButton from './RenderCreateButton';
@@ -13,7 +14,10 @@ export default function App() {
         setIsVisible(!isVisible)    //change isVisible's value
     }
 
-    //Below is code to render a component the mockTodo thing in the same way I render ViewTodoList
+    const handleCellClick = (todo: TodoType) => {
+        console.log(todo);
+    };
+
 
     type TodoType = {
         id: number;
@@ -22,6 +26,22 @@ export default function App() {
         important?: boolean;
         parent_id?: number;
     };
+
+
+    const [todos, setTodos] = useState<TodoType[]>([]);
+
+    const fetchTodos = async () => {
+        let { data: todos, error } = await supabase
+            .from('todos')
+            .select('*');
+
+        if (error) console.log('error', error);
+        else setTodos(todos || []);
+    };
+
+    useEffect(() => {
+        fetchTodos();
+    }, []);
 
 
 
@@ -60,7 +80,7 @@ export default function App() {
         } else {
             result = <div>
                 <RenderCreateButton />
-                <ViewTodoList isVisible={isVisible} setIsVisible={setIsVisible} handleButtonClick={handleButtonClick}/>
+                <ViewTodoList isVisible={isVisible} setIsVisible={setIsVisible} handleButtonClick={handleButtonClick} todos={todos} />
             </div>
         }
 

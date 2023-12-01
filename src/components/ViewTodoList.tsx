@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import supabase from '../utils/supabaseClient';
+
+
 
 type TodoType = {
   id: number;
@@ -12,28 +13,14 @@ type TodoType = {
 type ViewToDoListProps = {
   isVisible:boolean,
   setIsVisible: (value:boolean) => void;      //I love this function signature
-  handleButtonClick: () => void
+  handleButtonClick: () => void;
+  todos: TodoType[]
 }
 
 
 
 
-const ViewTodoList: React.FC<ViewToDoListProps> = ({ isVisible, setIsVisible, handleButtonClick }) => {
-  const [todos, setTodos] = useState<TodoType[]>([]);
-
-  const fetchTodos = async () => {
-    let { data: todos, error } = await supabase
-      .from('todos')
-      .select('*');
-
-    if (error) console.log('error', error);
-    else setTodos(todos || []);
-  };
-
-  useEffect(() => {
-    fetchTodos();
-  }, []);
-
+const ViewTodoList: React.FC<ViewToDoListProps> = ({ isVisible, setIsVisible, handleButtonClick, todos }) => {
   
   const handleCellClick = (todo:TodoType) => {
     console.log(todo);
@@ -41,6 +28,11 @@ const ViewTodoList: React.FC<ViewToDoListProps> = ({ isVisible, setIsVisible, ha
   };
 
 
+
+  //May or may not keep the following functions.
+
+
+  /*
   const getTodoNameById = (id: number): string => {
     const todo = todos.find(todo => todo.id === id);
     return todo ? todo.name : 'Todo not found';
@@ -93,7 +85,7 @@ const ViewTodoList: React.FC<ViewToDoListProps> = ({ isVisible, setIsVisible, ha
     }
     console.log(result)
   };
-
+  */
 
   return (
     <div>
