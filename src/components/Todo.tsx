@@ -60,7 +60,6 @@ export default function App() {
         } else {
             result = <div>
                 <RenderCreateButton />
-                <RenderSpecificTodo isVisible={isVisible} setIsVisible={setIsVisible} handleButtonClick={handleButtonClick} />
                 <ViewTodoList isVisible={isVisible} setIsVisible={setIsVisible} handleButtonClick={handleButtonClick}/>
             </div>
         }
