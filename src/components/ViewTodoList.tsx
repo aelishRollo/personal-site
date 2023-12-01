@@ -16,9 +16,7 @@ type ViewToDoListProps = {
 }
 
 
-const handleBeanClick = (todo: TodoType) => {
-  console.log(todo);
-};
+
 
 const ViewTodoList: React.FC<ViewToDoListProps> = ({ isVisible, setIsVisible, handleButtonClick }) => {
   const [todos, setTodos] = useState<TodoType[]>([]);
@@ -37,6 +35,11 @@ const ViewTodoList: React.FC<ViewToDoListProps> = ({ isVisible, setIsVisible, ha
   }, []);
 
   
+  const handleCellClick = (todo:TodoType) => {
+    console.log(todo);
+    handleButtonClick()
+  };
+
 
   const getTodoNameById = (id: number): string => {
     const todo = todos.find(todo => todo.id === id);
@@ -106,7 +109,7 @@ const ViewTodoList: React.FC<ViewToDoListProps> = ({ isVisible, setIsVisible, ha
         </thead>
         <tbody>
           {todos.map((todo) => (
-            <tr key={todo.id} onClick={ () => handleBeanClick(todo)}>
+            <tr key={todo.id} onClick={ () => handleCellClick(todo)}>
               <td>{todo.name}</td>
               <td>{todo.urgent ? 'Yes' : 'No'}</td>
               <td>{todo.important ? 'Yes' : 'No'}</td>
