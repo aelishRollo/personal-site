@@ -14,17 +14,19 @@ type ViewToDoListProps = {
   isVisible:boolean,
   setIsVisible: (value:boolean) => void;      //I love this function signature
   handleButtonClick: () => void;
-  todos: TodoType[]
+  todos: TodoType[];
+  setCurrentTodo: (arg:TodoType) => void;
 }
 
 
 
 
-const ViewTodoList: React.FC<ViewToDoListProps> = ({ isVisible, setIsVisible, handleButtonClick, todos }) => {
+const ViewTodoList: React.FC<ViewToDoListProps> = ({ isVisible, setIsVisible, handleButtonClick, todos, setCurrentTodo }) => {
   
   const handleCellClick = (todo:TodoType) => {
     console.log(todo);
     handleButtonClick()
+    setCurrentTodo(todo)
   };
 
 

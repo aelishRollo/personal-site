@@ -43,6 +43,7 @@ export default function App() {
         fetchTodos();
     }, []);
 
+    let [currentTodo, setCurrentTodo] = useState(todos[3])      //arbitrary inital value to make compiler happy
 
 
     function SingleTodo() {
@@ -54,14 +55,15 @@ export default function App() {
                 <table className='TodoTable' onClick={handleButtonClick} >
                     <tbody>
                         <tr>
-                            <th>Name</th>
-                            <th>Urgent</th>
-                            <th>Important</th>
-                            <th>Parent ID</th>
+                            <th>{currentTodo.name}</th>
+                            <th>{currentTodo.urgent}</th>
+                            <th>{currentTodo.important}</th>
+                            <th>{currentTodo.parent_id}</th>
                         </tr>
 
                     </tbody>
                 </table>
+                <h1>{JSON.stringify(currentTodo)}</h1>
             </div>
         }
         else {
@@ -80,7 +82,8 @@ export default function App() {
         } else {
             result = <div>
                 <RenderCreateButton />
-                <ViewTodoList isVisible={isVisible} setIsVisible={setIsVisible} handleButtonClick={handleButtonClick} todos={todos} />
+                <ViewTodoList isVisible={isVisible} setIsVisible={setIsVisible} 
+                handleButtonClick={handleButtonClick} todos={todos} setCurrentTodo={setCurrentTodo} />
             </div>
         }
 
