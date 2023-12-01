@@ -14,10 +14,6 @@ export default function App() {
         setIsVisible(!isVisible)    //change isVisible's value
     }
 
-    const handleCellClick = (todo: TodoType) => {
-        console.log(todo);
-    };
-
 
     type TodoType = {
         id: number;
@@ -49,21 +45,29 @@ export default function App() {
     function SingleTodo() {
         let result = <> </>
         let todoIsVisible = isVisible
-        if (todoIsVisible) {            //if isVisible, render the table
+        if (todoIsVisible) {
             result = <div>
-                <h3> Todo Item you clicked on</h3>
+                <h3>Selected Todo Item:</h3>
                 <table className='TodoTable' onClick={handleButtonClick} >
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Urgent</th>
+                            <th>Important</th>
+                            <th>Parent ID</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         <tr>
-                            <th>{currentTodo.name}</th>
-                            <th>{currentTodo.urgent}</th>
-                            <th>{currentTodo.important}</th>
-                            <th>{currentTodo.parent_id}</th>
+                            <td>{currentTodo.name}</td>
+                            <td>{JSON.stringify(currentTodo.urgent)}</td>
+                            <td>{JSON.stringify(currentTodo.important)}</td>
+                            <td>{JSON.stringify(currentTodo.parent_id)}</td>
                         </tr>
 
                     </tbody>
                 </table>
-                <h1>{JSON.stringify(currentTodo)}</h1>
+                
             </div>
         }
         else {
@@ -82,8 +86,8 @@ export default function App() {
         } else {
             result = <div>
                 <RenderCreateButton />
-                <ViewTodoList isVisible={isVisible} setIsVisible={setIsVisible} 
-                handleButtonClick={handleButtonClick} todos={todos} setCurrentTodo={setCurrentTodo} />
+                <ViewTodoList isVisible={isVisible} setIsVisible={setIsVisible}
+                    handleButtonClick={handleButtonClick} todos={todos} setCurrentTodo={setCurrentTodo} />
             </div>
         }
 
