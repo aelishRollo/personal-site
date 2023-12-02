@@ -47,8 +47,9 @@ export default function App() {
         let todoIsVisible = isVisible
         if (todoIsVisible) {
             result = <div>
+                <button onClick={handleButtonClick}> Back</button>
                 <h3>Selected Todo Item:</h3>
-                <table className='TodoTable' onClick={handleButtonClick} >
+                <table className='TodoTable' >
                     <thead>
                         <tr>
                             <th>Name</th>
