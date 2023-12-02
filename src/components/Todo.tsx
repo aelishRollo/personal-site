@@ -48,6 +48,9 @@ export default function App() {
         if (todoIsVisible) {
             result = <div>
                 <button onClick={handleButtonClick}> Back</button>
+                <button onClick={handleButtonClick}> View Family Tree</button>  {/* need to complete */}
+                <button onClick={handleButtonClick}> Edit</button>  {/* need to complete */}
+                <button onClick={handleButtonClick}> Delete</button>  {/* need to complete */}
                 <h3>Selected Todo Item:</h3>
                 <table className='TodoTable' >
                     <thead>
