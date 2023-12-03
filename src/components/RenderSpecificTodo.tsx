@@ -1,27 +1,58 @@
+ 
+type TodoType = {
+  id: number;
+  name: string;
+  urgent?: boolean;
+  important?: boolean;
+  parent_id?: number;
+};
 
-type RenderSpecificTodoProps = {
-    isVisible:boolean,
-    setIsVisible: (value:boolean) => void;      //I love this function signature
-    handleButtonClick: () => void
-}
 
+ type RenderSpecificTodoProps = {
+  handleButtonClick: () => void;
+  isVisible: boolean;
+  currentTodo:TodoType;
+ }
 
- const RenderSpecificTodo: React.FC<RenderSpecificTodoProps> = ({ isVisible, setIsVisible, handleButtonClick }) => {
-    let result = <> </>
+ const RenderSpecificTodo: React.FC<RenderSpecificTodoProps> = ({handleButtonClick, isVisible, currentTodo}) => {
+        let result = <> </>
+        let todoIsVisible = isVisible
+        if (todoIsVisible) {
+            result = <div>
+                <button onClick={handleButtonClick}> Back</button>
+                <button onClick={handleButtonClick}> View Family Tree</button>  {/* need to complete */}
+                <button onClick={handleButtonClick}> Edit</button>  {/* need to complete */}
+                <button onClick={handleButtonClick}> Delete</button>  {/* need to complete */}
+                <h3>Selected Todo Item:</h3>
+                <table className='TodoTable' >
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Urgent</th>
+                            <th>Important</th>
+                            <th>Parent ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{currentTodo.name}</td>
+                            <td>{JSON.stringify(currentTodo.urgent)}</td>
+                            <td>{JSON.stringify(currentTodo.important)}</td>
+                            <td>{JSON.stringify(currentTodo.parent_id)}</td>
+                        </tr>
 
-    if (isVisible) {
-        result = <div> Hi I'm a div</div>
+                    </tbody>
+                </table>
+                
+            </div>
+        }
+        else {
+            result = <> </>
+        }
+
+        return (
+            result
+        )
     };
-    if (!isVisible) {
-        result = <> </>
-    }
 
-    return (
-      <>
-      <button onClick={handleButtonClick}> Hi I'm the button, friend</button> 
-      {result}
-      </>
-    );  
-  }
-
-  export default RenderSpecificTodo
+    export default RenderSpecificTodo

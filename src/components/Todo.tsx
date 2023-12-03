@@ -106,6 +106,7 @@ export default function App() {
     return (
         <div className="App-header">
             <IsVisibleController />
+            <RenderSpecificTodo handleButtonClick={handleButtonClick} isVisible ={isVisible} currentTodo={currentTodo}/>
         </div>
     );
 }
