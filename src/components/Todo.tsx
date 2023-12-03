@@ -84,9 +84,9 @@ export default function App() {
     };
 
     const IsVisibleController = () => {
-        let result = <SingleTodo />
+        let result =  <RenderSpecificTodo handleButtonClick={handleButtonClick} isVisible ={isVisible} currentTodo={currentTodo}/>
         if (isVisible) {
-            result = <SingleTodo />
+            result = <RenderSpecificTodo handleButtonClick={handleButtonClick} isVisible ={isVisible} currentTodo={currentTodo}/>
         } else {
             result = <div>
                 <RenderCreateButton />
@@ -106,7 +106,6 @@ export default function App() {
     return (
         <div className="App-header">
             <IsVisibleController />
-            <RenderSpecificTodo handleButtonClick={handleButtonClick} isVisible ={isVisible} currentTodo={currentTodo}/>
         </div>
     );
 }
