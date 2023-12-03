@@ -14,11 +14,12 @@ type RenderSpecificTodoProps = {
     handleButtonClick: () => void;
     isVisible: boolean;
     currentTodo: TodoType;
+    getTodoParentsStringList: (todoId:number) => string[];
 }
 
 
 
-const RenderSpecificTodo: React.FC<RenderSpecificTodoProps> = ({ handleButtonClick, isVisible, currentTodo, }) => {
+const RenderSpecificTodo: React.FC<RenderSpecificTodoProps> = ({ handleButtonClick, isVisible, currentTodo, getTodoParentsStringList }) => {
     let [viewFamilyTreeButtonClick, setViewFamilyTreeButtonClick] = useState(false)
 
     const handleViewFamilyTreeButtonClick = () => {     //toggles if family tree is visible
@@ -30,7 +31,7 @@ const RenderSpecificTodo: React.FC<RenderSpecificTodoProps> = ({ handleButtonCli
         let result = <> </>
 
         if (viewFamilyTreeButtonClick) {
-            result = <div> Family Tree rendered </div>
+            result = <div> {getTodoParentsStringList(88)} </div>
         }
         else result = <> </>
 

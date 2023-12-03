@@ -43,9 +43,9 @@ export default function App() {
 
 
     const IsVisibleController = () => {
-        let result =  <RenderSpecificTodo handleButtonClick={handleButtonClick} isVisible ={isVisible} currentTodo={currentTodo}/>
+        let result =  <RenderSpecificTodo handleButtonClick={handleButtonClick} isVisible ={isVisible} currentTodo={currentTodo} getTodoParentsStringList={getTodoParentsStringList}/>
         if (isVisible) {
-            result = <RenderSpecificTodo handleButtonClick={handleButtonClick} isVisible ={isVisible} currentTodo={currentTodo}/>
+            result = <RenderSpecificTodo handleButtonClick={handleButtonClick} isVisible ={isVisible} currentTodo={currentTodo} getTodoParentsStringList={getTodoParentsStringList}/>
         } else {
             result = <div>
                 <RenderCreateButton />
@@ -98,22 +98,24 @@ export default function App() {
       
     
     
-      const getTodoParentsStringList = (todoId:number) => {
+      const getTodoParentsStringList = (todoId: number): string[] => {
         const initTodo = getTodoById(todoId);
-        let result:string[] = []
+        let result: string[] = [];
       
         if (initTodo) {
-          let a = getTodoParentsList(initTodo)
-          
+          let parentIds = getTodoParentsList(initTodo);
       
-          for (let i = 0; i < a.length; i++) {
-            result.push(getTodoNameById(a[i]))
+          for (let i = 0; i < parentIds.length; i++) {
+            result.push(getTodoNameById(parentIds[i]));
           };
         } else {
           console.log('Todo not found');
+          return []; // Return an empty array if the todo is not found
         }
-        console.log(result)
+      
+        return result; // Return the result array
       };
+      
 
 
     return (
