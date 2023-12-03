@@ -84,7 +84,7 @@ const CreateButton: React.FC<CreateButtonProps> = ({ onTodoCreated }) => {
           <button onClick={handleSubmit}>Confirm</button>
         </form>
       ) : (
-        <button onClick={() => setShowForm(true)}>Create</button>
+        <button onClick={() => setShowForm(true)}>Create New Todo Item</button>
       )}
 
      
