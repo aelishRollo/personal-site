@@ -31,7 +31,16 @@ const RenderSpecificTodo: React.FC<RenderSpecificTodoProps> = ({ handleButtonCli
         let result = <> </>
 
         if (viewFamilyTreeButtonClick) {
-            result = <div> {getTodoParentsStringList(88)} </div>
+            result = (
+                <div>
+                  <ul>
+                    {getTodoParentsStringList(currentTodo.id).map((todoName, index) => (
+                      <li key={index}>{todoName}</li>
+                    ))}
+                  </ul>
+                </div>
+              );
+              
         }
         else result = <> </>
 
