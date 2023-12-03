@@ -41,7 +41,7 @@ export default function App() {
 
     let [currentTodo, setCurrentTodo] = useState(todos[3])      //arbitrary inital value to make compiler happy
 
-
+                                //uses isVisible and currentTodo useState variables
     function SingleTodo() {
         let result = <> </>
         let todoIsVisible = isVisible
