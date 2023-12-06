@@ -28,7 +28,7 @@ export default function App() {
 
     const fetchTodos = async () => {
         let { data: todos, error } = await supabase
-            .from('todo_test')
+            .from('todos_test')
             .select('*');
 
         if (error) console.log('error', error);
