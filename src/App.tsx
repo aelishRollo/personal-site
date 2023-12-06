@@ -8,7 +8,7 @@ import Contact from './components/Contact';
 import Music from './components/Music';
 import Webdev from './components/Webdev';
 import Projects from './components/Projects';
-import supabase from './utils/supabaseClient';
+import TodoTest from './components/TodoTest'
 
 
 function App() {
@@ -23,6 +23,7 @@ function App() {
           <Route path="/Music" element={<Music />} />
           <Route path="/Webdev" element={<Webdev />} />
           <Route path="/Projects" element={<Projects />} />
+          <Route path="/Todo-test" element={<TodoTest />} />
           
         </Routes>
       </BrowserRouter>

@@ -32,6 +32,10 @@ a {
   border-bottom: 1px solid #b5b9bd; /* Add a bottom border to header cells and data cells */
 }
 
+.TodoTable td:hover {
+  background-color: #333333; /* Hover effect for interactivity */
+}
+
 .TodoTable th {
   border-right: 1px solid #b5b9bd; /* Add a right border to header cells for the line between columns */
 }

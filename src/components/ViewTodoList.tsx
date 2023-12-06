@@ -48,6 +48,7 @@ const ViewTodoList: React.FC<ViewToDoListProps> = ({ isVisible, setIsVisible, ha
   const getTodoById = (id: number): TodoType | undefined => {
     return todos.find(todo => todo.id === id);
   };
+  
 
   const getTodoParentsList = (initialTodo: TodoType) => {
     let currentTodo: TodoType | undefined = initialTodo;
