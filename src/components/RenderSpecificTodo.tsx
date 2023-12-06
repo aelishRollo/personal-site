@@ -32,12 +32,13 @@ const RenderSpecificTodo: React.FC<RenderSpecificTodoProps> = ({ handleButtonCli
 
         if (viewFamilyTreeButtonClick) {
             result = (
-                <div>
+                <div className="view-family-tree">
                   <ul>
                     {getTodoParentsStringList(currentTodo.id).map((todoName, index) => (
                       <li key={index}>{todoName}</li>
                     ))}
                   </ul>
+                  <button onClick={handleViewFamilyTreeButtonClick}> Close</button>
                 </div>
               );
               

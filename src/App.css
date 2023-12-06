@@ -124,6 +124,36 @@ table {
   height: 700px;
 }
 
+/* Style for the ViewFamilyTree component */
+.view-family-tree {
+  background-color: #1a1a1a; /* Slightly lighter than the App-header for contrast */
+  color: rgb(29, 148, 24); /* Maintaining the color scheme */
+  font-family: "Dejavu Sans", sans-serif; /* Consistent font family */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Adding some depth */
+  max-width: 80%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.view-family-tree ul {
+  list-style: none; /* Removing default list style */
+  padding: 0;
+}
+
+.view-family-tree li {
+  background-color: #262626; /* Each list item slightly stands out */
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.view-family-tree li:hover {
+  background-color: #333333; /* Hover effect for interactivity */
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
