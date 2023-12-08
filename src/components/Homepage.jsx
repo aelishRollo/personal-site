@@ -1,6 +1,4 @@
 import { Routes, Route, BrowserRouter, Link } from 'react-router-dom';
-import Counter from './Counter';
-
 
 export default function HomePage() {
     return (
