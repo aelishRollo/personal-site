@@ -1,4 +1,3 @@
-import Lank from './Lank'
 import TestFile from './testFile'
 import { Routes, Route, BrowserRouter, Link } from 'react-router-dom';
 import Counter from './Counter';
@@ -20,16 +19,13 @@ export default function HomePage() {
         <p className='App-paragraph'>
           We will be the lightning that rides the storm.
         </p>
-        <TestFile />
-        <Lank />
         <h3 className='App-subheader'>
           Contact Me
         </h3>
         <p className='App-paragraph'>
         I love meeting new people, and I reply to every email, so <Link to="/Contact"> say hello </Link>.
         </p>
-        <p>Willis and Billis are the best human beans in the universe</p>
-        <Counter />
+        
         
       </header>
     );

@@ -1,5 +1,3 @@
-import React from 'react';
-import Lank from './Lank'
 import '../App.css';
 import { Routes, Route, BrowserRouter, Link } from 'react-router-dom';
 import supabase from '../utils/supabaseClient';

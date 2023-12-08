@@ -2,7 +2,6 @@ import './App.css';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Todo from './components/Todo';
 import Navbar from './components/Navbar';
-import Lank from './components/Lank';
 import HomePage from './components/Homepage';
 import Contact from './components/Contact';
 import Music from './components/Music';
