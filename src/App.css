@@ -166,3 +166,23 @@ table {
     transform: rotate(360deg);
   }
 }
+
+.home-button {
+  background-color: #333333; /* Dark gray background */
+  
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.home-button:hover {
+  background-color: #4CAF50; /* Green background on hover */
+  color: #333333; /* Dark gray text on hover */
+}
