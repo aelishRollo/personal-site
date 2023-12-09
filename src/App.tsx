@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import HomePage from './components/Homepage';
 import Contact from './components/Contact';
 import Music from './components/Music';
-import Webdev from './components/Webdev';
+import Webdev from './components/AboutDev';
 import Projects from './components/Projects';
 import TodoTest from './components/TodoTest'
 
@@ -20,7 +20,7 @@ function App() {
           <Route path="/Todo" element={<Todo />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Music" element={<Music />} />
-          <Route path="/Webdev" element={<Webdev />} />
+          <Route path="/AboutDev" element={<Webdev />} />
           <Route path="/Projects" element={<Projects />} />
           <Route path="/Todo-test" element={<TodoTest />} />
           
