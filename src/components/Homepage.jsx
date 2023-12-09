@@ -10,7 +10,7 @@ export default function HomePage() {
           Me in 10 seconds 
         </h3>
         <p className='App-paragraph'>
-          I'm a <Link to="/Music"> musician</Link>. I'm also a <Link to="/AboutDev">web</Link> <Link to="/AboutDev">developer. </Link>
+          I'm a <Link to="/AboutMusic"> musician</Link>. I'm also a <Link to="/AboutDev">web</Link> <Link to="/AboutDev">developer. </Link>
           Take a look at <Link to="/Projects">some of my projects</Link>
         </p>
         <p className='App-paragraph'>
