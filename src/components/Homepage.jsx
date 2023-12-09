@@ -1,11 +1,8 @@
 import { Link } from 'react-router-dom';
-import HomeButton from './HomeButton';
-
 
 export default function HomePage() {
     return (
       <header className='App-header'>
-        <HomeButton />
         <h1 className='App-subheader'>  
           Alec Rollison
         </h1>
