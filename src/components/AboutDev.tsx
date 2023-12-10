@@ -10,7 +10,7 @@ export default function Contact() {
                 <h4>My Current Technologies</h4>
                 <p className='App-paragraph'>
                     Right now I'm mainly using node.js with typescript and React. I've been using Supabase as a backend and having a good
-                    expereince with that.
+                    experience with that.
                 </p>
                 <h4>Personal Philosophies</h4>
                 <p className='App-paragraph'>
