@@ -11,7 +11,7 @@ export default function HomePage() {
         </h3>
         <p className='App-paragraph'>
           I'm a <Link to="/AboutMusic"> musician</Link>. I'm also a <Link to="/AboutDev">web</Link> <Link to="/AboutDev">developer. </Link>
-          Take a look at <Link to="/Projects">some of my projects</Link>
+          Take a look at <Link to="/Todo">some of my projects</Link>
         </p>
         <p className='App-paragraph'>
           We will be the lightning that rides the storm.

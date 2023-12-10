@@ -4,6 +4,7 @@ import '../App.css';
 import ViewTodoList from './ViewTodoList';
 import RenderCreateButton from './RenderCreateButton';
 import RenderSpecificTodo from './RenderSpecificTodo';
+import HomeButton from './HomeButton';
 
 
 export default function App() {
@@ -120,7 +121,10 @@ export default function App() {
 
     return (
         <div className="App-header">
+            <HomeButton />
+            <div className='buffered-div'>
             <IsVisibleController />
+            </div>
         </div>
     );
 }

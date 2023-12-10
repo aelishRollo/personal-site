@@ -186,3 +186,9 @@ table {
   background-color: #4CAF50; /* Green background on hover */
   color: #333333; /* Dark gray text on hover */
 }
+
+.buffered-div {     /* just used for Todo right now*/
+  padding: 25px; /* This adds space inside the div */
+  /* OR */
+  margin: 25px;  /* This adds space outside the div */
+}
