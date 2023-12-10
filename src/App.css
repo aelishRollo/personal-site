@@ -192,3 +192,36 @@ table {
   /* OR */
   margin: 25px;  /* This adds space outside the div */
 }
+
+.dark-mode {
+  background-color: #232323; /* Dark background */
+  color: #ffffff; /* Light text */
+  padding: 60px; /* Space around elements inside the div */
+  margin: 60px;
+  min-height: 400px;
+}
+
+.dark-mode input, 
+.dark-mode textarea, 
+.dark-mode button {
+  background-color: #333333; /* Darker elements background */
+  color: #ffffff; /* Light text */
+  border: 1px solid #444444; /* Slightly lighter border */
+  margin-bottom: 20px; /* More space between elements */
+  width: 100%; /* Full width */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  padding: 10px; /* Padding inside input, textarea, and button */
+}
+
+.dark-mode label {
+  color: #cccccc; /* Lighter label color */
+  display: block; /* Make label take up the full width */
+  margin-bottom: 5px; /* Space between label and input/textarea */
+}
+
+.dark-mode button {
+  background-color: #1a1a1a; /* Button background */
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+}
