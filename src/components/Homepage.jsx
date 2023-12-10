@@ -17,7 +17,7 @@ export default function HomePage() {
         I'm also a <Link to="/AboutDev">web</Link> <Link to="/AboutDev">developer. </Link>
         </p>
         <p className='App-paragraph'>
-        Take a look at <Link to="/Todo">one of my projects</Link>
+        Try out (demo) <Link to="/Todo-test">one of my projects</Link>
         </p>
         <h3 className='App-subheader'>
           Contact Me
