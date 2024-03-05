@@ -2011,6 +2011,12 @@ input, select, textarea {
 
 /* Icon */
 
+	.feature-icons span {
+		font-weight: bold;
+		color:#555;
+	}
+	
+
 	.icon {
 		text-decoration: none;
 		border-bottom: none;
