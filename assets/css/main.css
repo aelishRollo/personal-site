@@ -3320,3 +3320,12 @@ input, select, textarea {
 			}
 
 	}
+
+.inner span a {
+	font-weight: bold;
+	font-size: 1.5em;
+	border: 0.05em solid grey;
+	padding: 0.4em;
+	border-radius: 2px;
+	letter-spacing: 1px;
+}
