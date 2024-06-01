@@ -2833,7 +2833,7 @@ input[type="button"]:disabled,
 	-webkit-justify-content: space-between;
 	-ms-justify-content: space-between;
 	justify-content: space-between;
-	background: #243925;
+	background: #6a7f6b;
 	color: #d2f2e9;
 	height: 100%;
 	overflow-y: auto;
@@ -2932,7 +2932,7 @@ input[type="button"]:disabled,
 }
 
 #header>nav ul li {
-	border-top: solid 2px #5ccfb1;
+	border-top: solid 1px #2e2f37;
 	display: block;
 	padding: 0;
 }
