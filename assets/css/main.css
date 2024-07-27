@@ -2813,23 +2813,32 @@ section#three .container .features {
     display: flex;
     flex-wrap: wrap;
     gap: 2em; /* Adjust the gap as needed */
-    position: relative; /* Ensure the pseudo-element is positioned correctly */
-}
-
-section#three .container .features::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 2px; /* Adjust the width of the line */
-    background-color: #b7b7b7; /* Adjust the color of the line */
-    transform: translateX(-50%);
 }
 
 section#three .container .features article {
     width: calc(50% - 1em); /* Adjust the width as needed */
     box-sizing: border-box;
+    position: relative; /* Ensure the pseudo-element is positioned correctly */
+}
+
+section#three .container .features article:nth-child(odd)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: -1em; /* Adjust this value to match the gap */
+    width: 2px;
+    background-color: #b7b7b7;
+}
+
+section#three .container .features article:nth-child(even)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -1em; /* Adjust this value to match the gap */
+    width: 0.6px;
+    background-color: #b7b7b7;
 }
 
 section#three .container .features article .image {
@@ -2845,7 +2854,7 @@ section#three .container .features article .inner {
 }
 
 @media screen and (max-width: 1024px) {
-    section#three .container .features::before {
+    section#three .container .features article::after {
         display: none; /* Hide the vertical line on smaller screens */
     }
 
@@ -2853,6 +2862,7 @@ section#three .container .features article .inner {
         width: 100%; /* Full width on smaller screens */
     }
 }
+
 
 
 /* Header */
