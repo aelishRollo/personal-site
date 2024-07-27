@@ -2784,39 +2784,66 @@ input[type="button"]:disabled,
 }
 
 /* Features */
-
+/* Features Section */
 .features article {
-	border-top: solid 3px #f4f4f4;
-	margin-bottom: 2.25em;
-	padding-top: 2.25em;
+    border-top: solid 3px #f4f4f4;
+    margin-bottom: 2.25em;
+    padding-top: 2.25em;
 }
 
 .features article:first-child {
-	border-top: 0;
-	padding-top: 0;
+    border-top: 0;
+    padding-top: 0;
 }
 
 .features article .image {
-	display: inline-block;
-	padding-right: 2.5em;
-	vertical-align: middle;
-	width: 48%;
+    display: inline-block;
+    padding-right: 2.5em;
+    vertical-align: middle;
+    width: 48%;
 }
 
 .features article .image img {
-	display: block;
-	width: 100%;
+    display: block;
+    width: 100%;
 }
 
 .features article .inner {
-	display: inline-block;
-	vertical-align: middle;
-	width: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    width: 50%;
 }
 
-.features article .inner> :last-child {
-	margin-bottom: 0;
+/* Flexbox for Features Section */
+section#three .container .features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em; /* Adjust the gap as needed */
 }
+
+section#three .container .features article {
+    width: calc(50% - 1em); /* Adjust the width as needed */
+    box-sizing: border-box;
+}
+
+section#three .container .features article .image {
+    display: block !important; /* Add !important to override any inline-block rules */
+    margin: 0 0 2.25em 0;
+    padding-right: 0;
+    width: 100%;
+}
+
+section#three .container .features article .inner {
+    display: block !important; /* Add !important to override any inline-block rules */
+    width: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+    section#three .container .features article {
+        width: 100%; /* Full width on smaller screens */
+    }
+}
+
 
 /* Header */
 
@@ -3330,17 +3357,35 @@ input[type="button"]:disabled,
 
 	/* Features */
 
-	.features article .image {
-		display: block;
+	section#three .container .features {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2em; /* Adjust the gap as needed */
+	}
+	
+	section#three .container .features article {
+		width: calc(50% - 1em); /* Adjust the width as needed */
+		box-sizing: border-box;
+	}
+	
+	section#three .container .features article .image {
+		display: block !important; /* Add !important to override any inline-block rules */
 		margin: 0 0 2.25em 0;
 		padding-right: 0;
 		width: 100%;
 	}
-
-	.features article .inner {
-		display: block;
+	
+	section#three .container .features article .inner {
+		display: block !important; /* Add !important to override any inline-block rules */
 		width: 100%;
 	}
+	
+	@media screen and (max-width: 1024px) {
+		section#three .container .features article {
+			width: 100%; /* Full width on smaller screens */
+		}
+	}
+	
 
 	/* Header */
 
