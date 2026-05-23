@@ -3590,16 +3590,12 @@ section#three .container .features article .inner {
 }
 
 body {
-	background:
-		repeating-linear-gradient(
-			0deg,
-			rgba(36, 57, 37, 0.015) 0px,
-			rgba(36, 57, 37, 0.015) 1px,
-			transparent 1px,
-			transparent 6px
-		),
+	background-color: var(--paper);
+	background-image:
 		linear-gradient(150deg, rgba(76, 104, 87, 0.05), rgba(255, 255, 255, 0.5) 55%),
-		var(--paper);
+		url("../../images/paper-texture-tile.webp");
+	background-repeat: no-repeat, repeat;
+	background-size: auto, 250px 250px;
 	color: var(--ink);
 	line-height: 1.8;
 }
