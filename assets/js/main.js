@@ -94,6 +94,98 @@
 		saveTheme(currentTheme);
 	});
 
+	// Home splash text: load one adapted quote and allow quick dismissal.
+	var isHome = $body.hasClass('page-home');
+	var splash = document.getElementById('hero-splash');
+	var splashText = document.getElementById('hero-splash-text');
+	var splashFitRaf = null;
+
+	function fitSplashText() {
+		if (!splash || !splashText || splash.hidden) {
+			return;
+		}
+
+		var low = 9;
+		var high = 34;
+		var best = low;
+		var steps = 0;
+
+		splashText.style.fontSize = low + 'px';
+
+		while (low <= high && steps < 16) {
+			var mid = Math.floor((low + high) / 2);
+			splashText.style.fontSize = mid + 'px';
+
+			var fitsWidth = splashText.scrollWidth <= splashText.clientWidth;
+			var fitsHeight = splashText.scrollHeight <= splashText.clientHeight;
+
+			if (fitsWidth && fitsHeight) {
+				best = mid;
+				low = mid + 1;
+			} else {
+				high = mid - 1;
+			}
+
+			steps++;
+		}
+
+		splashText.style.fontSize = best + 'px';
+	}
+
+	function scheduleSplashFit() {
+		if (!splash || !splashText) {
+			return;
+		}
+
+		if (splashFitRaf !== null) {
+			window.cancelAnimationFrame(splashFitRaf);
+		}
+
+		splashFitRaf = window.requestAnimationFrame(function() {
+			splashFitRaf = null;
+			fitSplashText();
+		});
+	}
+
+	if (isHome && splash && splashText) {
+		fetch('assets/data/alec-splash-quotes.json')
+			.then(function(response) {
+				if (!response.ok) {
+					throw new Error('Failed to load splash quotes.');
+				}
+				return response.json();
+			})
+			.then(function(data) {
+				var quotes = data && Array.isArray(data.quotes) ? data.quotes : [];
+				if (!quotes.length) {
+					return;
+				}
+
+				var randomIndex = Math.floor(Math.random() * quotes.length);
+				splashText.textContent = quotes[randomIndex];
+				splash.hidden = false;
+				scheduleSplashFit();
+			})
+			.catch(function() {
+				// Fail silently: splash is decorative.
+			});
+
+		window.addEventListener('resize', scheduleSplashFit);
+
+		if (typeof ResizeObserver === 'function') {
+			var splashObserver = new ResizeObserver(function() {
+				scheduleSplashFit();
+			});
+
+			splashObserver.observe(splash);
+			splashObserver.observe(splashText);
+		}
+
+		$(splash).find('.hero-splash-close').on('click', function() {
+			splash.hidden = true;
+		});
+	}
+
 	// Mobile nav toggle.
 	var $toggle = $('.nav-toggle');
 	var $nav = $('#site-nav');

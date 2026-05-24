@@ -1,0 +1,30 @@
+{
+  "title": "Alec Splash Quotes",
+  "adaptedFrom": "https://github.com/LRitzdorf/TheJeffDeanFacts",
+  "quotes": [
+    "Alec Rollison compiles first, just to catch compiler bugs.",
+    "Unsatisfied with O(1), Alec Rollison ships O(1/n).",
+    "Alec Rollison has binary readability.",
+    "Alec Rollison has binary writability.",
+    "Alec Rollison can parse HTML with a regex. Correctly.",
+    "Compilers do not warn Alec Rollison. Alec Rollison warns compilers.",
+    "Alec Rollison does not do code analysis. He does code appreciation.",
+    "Alec Rollison once shifted a bit so hard it landed on another machine.",
+    "Alec Rollison wrote an O(n^2) algorithm once. It solved TSP.",
+    "Alec Rollison quicksorts his laundry.",
+    "Alec Rollison remembers one password. Everything else is SHA-256.",
+    "There is no Ctrl key on Alec Rollison's keyboard. He is always in control.",
+    "Alec Rollison says Hello World, and the world replies Hello Alec.",
+    "Alec Rollison can get 1s out of /dev/zero.",
+    "Alec Rollison invented MapReduce to sort fan mail.",
+    "Once Alec Rollison ordered a list, and the list obeyed.",
+    "Errors treat Alec Rollison as a warning.",
+    "Alec Rollison's watch shows seconds since January 1, 1970.",
+    "Alec Rollison can losslessly compress random data.",
+    "Alec Rollison mines bitcoin in his head.",
+    "Alec Rollison can instantiate abstract classes.",
+    "gcc -O4 sends your code to Alec Rollison for a rewrite.",
+    "Alec Rollison does not sleep(). He wait()s.",
+    "Web search is just Alec Rollison's unit test."
+  ]
+}

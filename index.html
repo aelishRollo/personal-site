@@ -50,6 +50,10 @@
 						</div>
 						<figure class="hero-media">
 							<img class="hero-headshot" src="images/avatar-512.webp" alt="A picture of Alec" width="512" height="669" loading="eager" decoding="async" fetchpriority="high" />
+							<figcaption class="hero-splash" id="hero-splash" hidden>
+								<button type="button" class="hero-splash-close" aria-label="Hide splash quote">&times;</button>
+								<div class="hero-splash-text" id="hero-splash-text"></div>
+							</figcaption>
 						</figure>
 					</div>
 				</section>
@@ -134,7 +138,10 @@
 
 			<footer class="site-footer">
 				<div class="site-shell footer-inner">
-					<p>&copy; Alec Rollison. All rights reserved.</p>
+					<div class="footer-meta">
+						<p>&copy; Alec Rollison. All rights reserved.</p>
+						<p class="splash-attribution">Splash quotes adapted from <a href="https://github.com/LRitzdorf/TheJeffDeanFacts">The Jeff Dean Facts</a>.</p>
+					</div>
 					<ul class="social-inline">
 						<li><a href="https://github.com/aelishRollo">GitHub</a></li>
 						<li><a href="https://x.com/RollisonDev">Twitter</a></li>
