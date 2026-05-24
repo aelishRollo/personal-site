@@ -6,100 +6,43 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
-	<body class="is-preload">
-		<section id="header">
-			<header>
-				<span class="image avatar"><img src="images/avatar-512.webp" alt="A picture of Alec" width="512" height="669" decoding="async" fetchpriority="high" /></span>
-				<h1 id="logo"><a href="index.html">Alec Rollison</a></h1>
-				<p>Software engineer, musician, and producer<br />based in Indianapolis</p>
-				<p>Professional developer. Creative collaborator.</p>
-				<a class="button primary small fit" href="mailto:hello@alecrollison.dev">Email Me</a>
-			</header>
-			<nav id="nav">
-				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="services.html">Services</a></li>
-					<li><a href="work.html">Work</a></li>
-					<li><a href="connect.html">Connect</a></li>
-					<li><a href="about.html" class="active">About</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
-			</nav>
-			<footer>
-				<ul class="icons">
-					<li><a href="https://x.com/RollisonDev" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="https://github.com/aelishRollo" class="icon brands fa-github"><span class="label">Github</span></a></li>
-					<li><a href="connect.html" class="icon solid fa-music"><span class="label">Music</span></a></li>
-				</ul>
-			</footer>
-		</section>
-
-		<div id="wrapper">
-			<div id="main">
-				<section>
-					<div class="container">
-						<p class="eyebrow">About</p>
-						<h2>I build with engineering discipline and creative instinct.</h2>
-						<p class="lead">I am an Indianapolis-based software engineer focused on web experiences that are clean, accessible, and genuinely useful.</p>
-					</div>
-				</section>
-
-				<section>
-					<div class="container">
-						<h3>My Path</h3>
-						<p>I started building things on the web early, and that same curiosity still drives my work today. I care about clear communication, reliable implementation, and delivering outcomes people can feel.</p>
-						<p>Outside software, I write and produce music. That practice influences how I shape digital products: composition, tension, release, and detail all matter.</p>
-					</div>
-				</section>
-
-				<section>
-					<div class="container">
-						<h3>How I Approach Work</h3>
-						<div class="info-grid">
-							<article class="panel-card">
-								<h4>Practical Architecture</h4>
-								<p>Choose tools that fit the problem, not trends.</p>
-							</article>
-							<article class="panel-card">
-								<h4>Clear Communication</h4>
-								<p>Frequent updates, plain language, and aligned expectations.</p>
-							</article>
-							<article class="panel-card">
-								<h4>Craft + Performance</h4>
-								<p>Strong UX is not optional. It is part of engineering quality.</p>
-							</article>
-						</div>
-					</div>
-				</section>
-
-				<section>
-					<div class="container">
-						<h3>Open to Networking</h3>
-						<p>I enjoy meeting developers, musicians, founders, and teams building interesting things. If you want to collaborate or trade ideas, I am happy to connect.</p>
-						<ul class="actions">
-							<li><a href="connect.html" class="button primary">Connect</a></li>
-							<li><a href="mailto:hello@alecrollison.dev" class="button">Email Me</a></li>
-						</ul>
-					</div>
-				</section>
-			</div>
-
-			<section id="footer">
-				<div class="container">
-					<ul class="copyright">
-						<li>&copy; Alec Rollison. All rights reserved.</li>
-						<li><a href="contact.html">Contact</a></li>
+	<body class="is-preload page-about">
+		<header class="site-header" role="banner">
+			<div class="site-shell">
+				<a class="brand" href="index.html"><span class="brand-mark">AR</span><span class="brand-text">Alec Rollison</span></a>
+				<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+				<nav id="site-nav" class="site-nav" aria-label="Primary">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="services.html">Services</a></li>
+						<li><a href="work.html">Work</a></li>
+						<li><a href="connect.html">Connect</a></li>
+						<li><a href="about.html" aria-current="page">About</a></li>
+						<li><a href="contact.html" class="nav-cta">Contact</a></li>
 					</ul>
-				</div>
-			</section>
+				</nav>
+			</div>
+		</header>
+		<div id="wrapper" class="site-main-wrap">
+			<main id="main" class="site-main">
+				<section class="page-hero">
+					<div class="site-shell">
+						<p class="eyebrow">About</p>
+						<h1>Professional developer. Curious collaborator.</h1>
+						<p class="lead">I build software with engineering discipline and creative instinct shaped by music production.</p>
+					</div>
+				</section>
+				<section class="page-section">
+					<div class="site-shell">
+						<h2>My Path</h2>
+						<p>I started building on the web early and still love solving messy product problems with clear systems. I care about communication, speed, and making software feel human.</p>
+						<p>Music and production influence how I design: rhythm, space, tension, release, and texture all matter in interface work too.</p>
+					</div>
+				</section>
+				<section class="page-section section-soft"><div class="site-shell info-grid"><article class="panel-card"><h3>Practical Architecture</h3><p>Choose tools for fit, not hype.</p></article><article class="panel-card"><h3>Clear Communication</h3><p>Frequent updates and no ambiguity.</p></article><article class="panel-card"><h3>Craft + Performance</h3><p>Fast and polished, never one or the other.</p></article></div></section>
+			</main>
+			<footer class="site-footer"><div class="site-shell footer-inner"><p>&copy; Alec Rollison. All rights reserved.</p><ul class="social-inline"><li><a href="https://github.com/aelishRollo">GitHub</a></li><li><a href="https://x.com/RollisonDev">Twitter</a></li></ul></div></footer>
 		</div>
-
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.scrollex.min.js"></script>
-		<script src="assets/js/jquery.scrolly.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
+		<script src="assets/js/jquery.min.js"></script><script src="assets/js/browser.min.js"></script><script src="assets/js/breakpoints.min.js"></script><script src="assets/js/util.js"></script><script src="assets/js/main.js"></script>
 	</body>
 </html>

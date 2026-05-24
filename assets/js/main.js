@@ -1,166 +1,62 @@
 /*
-	Read Only by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Portfolio navigation/runtime behavior
 */
 
 (function($) {
 
-	var $window = $(window),
-		$body = $('body'),
-		$header = $('#header'),
-		$titleBar = null,
-		$nav = $('#nav'),
-		$wrapper = $('#wrapper');
-
-	// Breakpoints.
-		breakpoints({
-			xlarge:   [ '1281px',  '1680px' ],
-			large:    [ '1025px',  '1280px' ],
-			medium:   [ '737px',   '1024px' ],
-			small:    [ '481px',   '736px'  ],
-			xsmall:   [ null,      '480px'  ],
-		});
+	var $window = $(window);
+	var $body = $('body');
 
 	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
+	$window.on('load', function() {
+		window.setTimeout(function() {
+			$body.removeClass('is-preload');
+		}, 100);
+	});
+
+	// Polyfill: object-fit.
+	if (!browser.canUse('object-fit')) {
+		$('.image[data-position]').each(function() {
+			var $this = $(this);
+			var $img = $this.children('img');
+
+			$this
+				.css('background-image', 'url("' + $img.attr('src') + '")')
+				.css('background-position', $this.data('position'))
+				.css('background-size', 'cover')
+				.css('background-repeat', 'no-repeat');
+
+			$img.css('opacity', '0');
 		});
+	}
 
-	// Tweaks/fixes.
+	// Ensure one current-page marker for nav accessibility.
+	var path = window.location.pathname.split('/').pop() || 'index.html';
+	var $navLinks = $('#site-nav a').not('.nav-cta');
 
-		// Polyfill: Object fit.
-			if (!browser.canUse('object-fit')) {
+	$navLinks.each(function() {
+		var $link = $(this);
+		var href = $link.attr('href');
 
-				$('.image[data-position]').each(function() {
+		if (href === path) {
+			$link.attr('aria-current', 'page');
+		}
+	});
 
-					var $this = $(this),
-						$img = $this.children('img');
+	// Mobile nav toggle.
+	var $toggle = $('.nav-toggle');
+	var $nav = $('#site-nav');
 
-					// Apply img as background.
-						$this
-							.css('background-image', 'url("' + $img.attr('src') + '")')
-							.css('background-position', $this.data('position'))
-							.css('background-size', 'cover')
-							.css('background-repeat', 'no-repeat');
+	$toggle.on('click', function() {
+		var isOpen = $body.hasClass('nav-open');
+		$body.toggleClass('nav-open', !isOpen);
+		$toggle.attr('aria-expanded', (!isOpen).toString());
+	});
 
-					// Hide img.
-						$img
-							.css('opacity', '0');
-
-				});
-
-			}
-
-	// Header Panel.
-
-		// Nav.
-			var $nav_a = $nav.find('a');
-
-			$nav_a
-				.on('click', function() {
-
-					var $this = $(this);
-
-					// External link? Bail.
-						if ($this.attr('href').charAt(0) != '#')
-							return;
-
-					// Deactivate all links.
-						$nav_a.removeClass('active');
-
-					// Activate link *and* lock it (so Scrollex doesn't try to activate other links as we're scrolling to this one's section).
-						$this
-							.addClass('active')
-							.addClass('active-locked');
-
-				})
-				.each(function() {
-
-					var	$this = $(this),
-						id = $this.attr('href'),
-						$section = $(id);
-
-					// No section for this link? Bail.
-						if ($section.length < 1)
-							return;
-
-					// Scrollex.
-						$section.scrollex({
-							mode: 'middle',
-							top: '5vh',
-							bottom: '5vh',
-							initialize: function() {
-
-								// Deactivate section.
-									$section.addClass('inactive');
-
-							},
-							enter: function() {
-
-								// Activate section.
-									$section.removeClass('inactive');
-
-								// No locked links? Deactivate all links and activate this section's one.
-									if ($nav_a.filter('.active-locked').length == 0) {
-
-										$nav_a.removeClass('active');
-										$this.addClass('active');
-
-									}
-
-								// Otherwise, if this section's link is the one that's locked, unlock it.
-									else if ($this.hasClass('active-locked'))
-										$this.removeClass('active-locked');
-
-							}
-						});
-
-				});
-
-			// Only hash links should receive smooth-scrolling behavior.
-				$nav_a.each(function() {
-					var $this = $(this);
-
-					if ($this.attr('href').charAt(0) == '#')
-						$this.addClass('scrolly');
-				});
-
-		// Title Bar.
-			$titleBar = $(
-				'<div id="titleBar">' +
-					'<a href="#header" class="toggle"></a>' +
-					'<span class="title">' + $('#logo').html() + '</span>' +
-				'</div>'
-			)
-				.appendTo($body);
-
-		// Panel.
-			$header
-				.panel({
-					delay: 500,
-					hideOnClick: true,
-					hideOnSwipe: true,
-					resetScroll: true,
-					resetForms: true,
-					side: 'right',
-					target: $body,
-					visibleClass: 'header-visible'
-				});
-
-	// Scrolly.
-		$('.scrolly').scrolly({
-			speed: 1000,
-			offset: function() {
-
-				if (breakpoints.active('<=medium'))
-					return $titleBar.height();
-
-				return 0;
-
-			}
-		});
+	// Close menu when user selects a destination.
+	$nav.find('a').on('click', function() {
+		$body.removeClass('nav-open');
+		$toggle.attr('aria-expanded', 'false');
+	});
 
 })(jQuery);

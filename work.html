@@ -6,124 +6,58 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
-	<body class="is-preload">
-		<section id="header">
-			<header>
-				<span class="image avatar"><img src="images/avatar-512.webp" alt="A picture of Alec" width="512" height="669" decoding="async" fetchpriority="high" /></span>
-				<h1 id="logo"><a href="index.html">Alec Rollison</a></h1>
-				<p>Software engineer, musician, and producer<br />based in Indianapolis</p>
-				<p>Professional developer. Creative collaborator.</p>
-				<a class="button primary small fit" href="mailto:hello@alecrollison.dev">Email Me</a>
-			</header>
-			<nav id="nav">
-				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="services.html">Services</a></li>
-					<li><a href="work.html" class="active">Work</a></li>
-					<li><a href="connect.html">Connect</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
-			</nav>
-			<footer>
-				<ul class="icons">
-					<li><a href="https://x.com/RollisonDev" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="https://github.com/aelishRollo" class="icon brands fa-github"><span class="label">Github</span></a></li>
-					<li><a href="connect.html" class="icon solid fa-music"><span class="label">Music</span></a></li>
-				</ul>
-			</footer>
-		</section>
-
-		<div id="wrapper">
-			<div id="main">
-				<section>
-					<div class="container">
+	<body class="is-preload page-work">
+		<header class="site-header" role="banner">
+			<div class="site-shell">
+				<a class="brand" href="index.html"><span class="brand-mark">AR</span><span class="brand-text">Alec Rollison</span></a>
+				<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+				<nav id="site-nav" class="site-nav" aria-label="Primary">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="services.html">Services</a></li>
+						<li><a href="work.html" aria-current="page">Work</a></li>
+						<li><a href="connect.html">Connect</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="contact.html" class="nav-cta">Contact</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<div id="wrapper" class="site-main-wrap">
+			<main id="main" class="site-main">
+				<section class="page-hero">
+					<div class="site-shell">
 						<p class="eyebrow">Work</p>
-						<h2>Recent software and creative web projects.</h2>
-						<p class="lead">A mix of open-source builds and client-facing experiences, with practical engineering and thoughtful UX.</p>
+						<h1>Recent software and creative web projects.</h1>
+						<p class="lead">A mix of open-source builds and client-focused experiences with practical outcomes.</p>
 					</div>
 				</section>
-
-				<section>
-					<div class="container">
+				<section class="page-section">
+					<div class="site-shell">
 						<div class="features">
 							<article>
 								<a href="https://github.com/aelishRollo/Prompt-Palette" class="image"><img src="images/preview-prompt-palette-900.webp" alt="Prompt Palette extension preview" width="900" height="937" loading="lazy" decoding="async" /></a>
-								<div class="inner">
-									<h4>Prompt Palette</h4>
-									<p><strong>Problem:</strong> Useful prompts were scattered and hard to reuse quickly.</p>
-									<p><strong>Outcome:</strong> A browser extension that centralizes prompt workflows.</p>
-									<span><a href="https://github.com/aelishRollo/Prompt-Palette">Visit Repo</a></span>
-								</div>
+								<div class="inner"><h3>Prompt Palette</h3><p><strong>Problem:</strong> prompt reuse was fragmented.</p><p><strong>Outcome:</strong> centralized browser workflow.</p><span><a href="https://github.com/aelishRollo/Prompt-Palette">Visit Repo</a></span></div>
 							</article>
 							<article>
 								<a href="https://github.com/aelishRollo/chord-function-api" class="image"><img src="images/preview-chord-api-900.webp" alt="Chord Function API app preview" width="900" height="954" loading="lazy" decoding="async" /></a>
-								<div class="inner">
-									<h4>Chord Function API</h4>
-									<p><strong>Problem:</strong> Harmonic analysis is difficult to automate cleanly.</p>
-									<p><strong>Outcome:</strong> A queryable API for mapping chords to function by key center.</p>
-									<span><a href="https://github.com/aelishRollo/chord-function-api">Visit Repo</a></span>
-								</div>
-							</article>
-							<article>
-								<a href="https://penelope-bennett-photography.netlify.app/" class="image"><img src="images/penelope-900.webp" alt="Photography portfolio preview" width="900" height="1091" loading="lazy" decoding="async" /></a>
-								<div class="inner">
-									<h4>Photographs by Penelope Bennett</h4>
-									<p><strong>Problem:</strong> A photographer needed a polished home for curated work.</p>
-									<p><strong>Outcome:</strong> A clean, responsive portfolio focused on image storytelling.</p>
-									<span><a href="https://penelope-bennett-photography.netlify.app/">Visit Site</a></span>
-								</div>
+								<div class="inner"><h3>Chord Function API</h3><p><strong>Problem:</strong> harmonic analysis is hard to automate.</p><p><strong>Outcome:</strong> queryable harmonic-function API.</p><span><a href="https://github.com/aelishRollo/chord-function-api">Visit Repo</a></span></div>
 							</article>
 							<article>
 								<a href="https://sage-and-cedar.netlify.app/" class="image"><img src="images/sage-900.webp" alt="Sage and Cedar salon website preview" width="900" height="1091" loading="lazy" decoding="async" /></a>
-								<div class="inner">
-									<h4>Sage &amp; Cedar</h4>
-									<p><strong>Problem:</strong> A salon needed a modern, trustworthy web presence.</p>
-									<p><strong>Outcome:</strong> A responsive site with improved clarity and visual identity.</p>
-									<span><a href="https://sage-and-cedar.netlify.app/">Visit Site</a></span>
-								</div>
+								<div class="inner"><h3>Sage &amp; Cedar</h3><p><strong>Problem:</strong> needed a modern digital presence.</p><p><strong>Outcome:</strong> responsive site with stronger trust signals.</p><span><a href="https://sage-and-cedar.netlify.app/">Visit Site</a></span></div>
 							</article>
 							<article>
 								<a href="https://flowers-by-leanne.netlify.app" class="image"><img src="images/leanne-thumbnail-900.webp" alt="Flowers by Leanne website preview" width="900" height="1098" loading="lazy" decoding="async" /></a>
-								<div class="inner">
-									<h4>Flowers by Leanne</h4>
-									<p><strong>Problem:</strong> A local business needed a simple web home for customers.</p>
-									<p><strong>Outcome:</strong> A lightweight informational site optimized for accessibility.</p>
-									<span><a href="https://flowers-by-leanne.netlify.app">Visit Site</a></span>
-								</div>
+								<div class="inner"><h3>Flowers by Leanne</h3><p><strong>Problem:</strong> a local business needed a simple web home.</p><p><strong>Outcome:</strong> lightweight site focused on clarity.</p><span><a href="https://flowers-by-leanne.netlify.app">Visit Site</a></span></div>
 							</article>
 						</div>
 					</div>
 				</section>
-
-				<section>
-					<div class="container">
-						<h3>Need something like this?</h3>
-						<p>I can help with strategy, implementation, and launch support for your next product or website.</p>
-						<ul class="actions">
-							<li><a href="mailto:hello@alecrollison.dev" class="button primary">Email Me</a></li>
-							<li><a href="services.html" class="button">View Services</a></li>
-						</ul>
-					</div>
-				</section>
-			</div>
-
-			<section id="footer">
-				<div class="container">
-					<ul class="copyright">
-						<li>&copy; Alec Rollison. All rights reserved.</li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
-				</div>
-			</section>
+				<section class="page-section section-cta"><div class="site-shell"><h2>Need something similar?</h2><ul class="actions"><li><a href="services.html" class="button">View Services</a></li><li><a href="contact.html" class="button primary">Contact Me</a></li></ul></div></section>
+			</main>
+			<footer class="site-footer"><div class="site-shell footer-inner"><p>&copy; Alec Rollison. All rights reserved.</p><ul class="social-inline"><li><a href="https://github.com/aelishRollo">GitHub</a></li><li><a href="https://x.com/RollisonDev">Twitter</a></li></ul></div></footer>
 		</div>
-
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.scrollex.min.js"></script>
-		<script src="assets/js/jquery.scrolly.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
+		<script src="assets/js/jquery.min.js"></script><script src="assets/js/browser.min.js"></script><script src="assets/js/breakpoints.min.js"></script><script src="assets/js/util.js"></script><script src="assets/js/main.js"></script>
 	</body>
 </html>
