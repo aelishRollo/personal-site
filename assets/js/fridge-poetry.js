@@ -8,13 +8,13 @@
 	var STORE_NAME = 'boards';
 	var dbPromise = null;
 
-	var DEFAULT_COLS = 28;
+	var DEFAULT_COLS = 64;
 	var DEFAULT_ROWS = 11;
 	var DEFAULT_CELL = 44;
-	var MIN_ZOOM = 0.6;
+	var MIN_ZOOM = 0.25;
 	var MAX_ZOOM = 2.0;
 	var MIN_COLS = 8;
-	var MAX_COLS = 160;
+	var MAX_COLS = 220;
 	var MIN_ROWS = 6;
 	var MAX_ROWS = 200;
 	var STORAGE_FALLBACK_KEY = 'fridge-poetry-state-v2';
@@ -421,6 +421,7 @@
 						display: grid;
 						gap: 0.16rem;
 						min-width: 0;
+						flex: 1 1 auto;
 					}
 					.category-title {
 						font-size: 0.78rem;
@@ -433,6 +434,7 @@
 						font-size: 0.72rem;
 						color: var(--fp-cat-text);
 						opacity: 0.78;
+						overflow-wrap: anywhere;
 					}
 					.category-body {
 						display: grid;
@@ -462,12 +464,16 @@
 						background: var(--fp-word-bg);
 						color: var(--fp-word-text);
 						cursor: pointer;
+						min-width: 0;
 					}
 					.word-option span:first-child {
 						letter-spacing: 0.01em;
-						white-space: nowrap;
+						min-width: 0;
+						white-space: normal;
 						overflow: hidden;
 						text-overflow: ellipsis;
+						overflow-wrap: anywhere;
+						line-height: 1.2;
 					}
 					.word-option[disabled] {
 						opacity: 0.48;
@@ -478,6 +484,7 @@
 						font-weight: 700;
 						color: var(--fp-word-text);
 						opacity: 0.72;
+						flex: 0 0 auto;
 					}
 					.word-bank-empty {
 						font-size: 0.75rem;
@@ -596,6 +603,7 @@
 						font-size: 0.9rem;
 						line-height: 1;
 						background: rgba(250, 253, 250, 0.88);
+						color: #101510;
 					}
 					.zoom-readout {
 						min-width: 1.7rem;
@@ -776,6 +784,7 @@
 
 				this.$viewport.addEventListener('pointerup', endPan);
 				this.$viewport.addEventListener('pointercancel', endPan);
+				this.$viewport.addEventListener('lostpointercapture', endPan);
 
 				this.$viewport.addEventListener('wheel', function(event) {
 					if (event.ctrlKey || event.metaKey) {
@@ -846,6 +855,7 @@
 
 				event.preventDefault();
 				magnetEl.setPointerCapture(event.pointerId);
+				var boardPoint = self.clientToBoard(event.clientX, event.clientY);
 				self._drag = {
 					id: id,
 					pointerId: event.pointerId,
@@ -853,6 +863,8 @@
 					startClientY: event.clientY,
 					originX: magnet.x,
 					originY: magnet.y,
+					grabOffsetX: boardPoint.x - (magnet.x * self._cell),
+					grabOffsetY: boardPoint.y - (magnet.y * self._cell),
 					candidateX: magnet.x,
 					candidateY: magnet.y,
 					moved: false
@@ -881,8 +893,9 @@
 					drag.moved = true;
 				}
 
-				var pxX = (drag.originX * self._cell) + dx;
-				var pxY = (drag.originY * self._cell) + dy;
+				var point = self.clientToBoard(event.clientX, event.clientY);
+				var pxX = point.x - drag.grabOffsetX;
+				var pxY = point.y - drag.grabOffsetY;
 				var slot = self.findNearestAvailableByPixel(pxX, pxY, magnet.w, magnet.h, drag.id, drag.originX, drag.originY);
 				drag.candidateX = slot.x;
 				drag.candidateY = slot.y;
@@ -901,6 +914,9 @@
 				var magnet = self.getMagnet(drag.id);
 				var magnetEl = self.$magnets.querySelector('[data-id="' + drag.id + '"]');
 				if (magnetEl) {
+					if (magnetEl.hasPointerCapture && magnetEl.hasPointerCapture(event.pointerId)) {
+						magnetEl.releasePointerCapture(event.pointerId);
+					}
 					magnetEl.dataset.dragging = 'false';
 				}
 
@@ -915,6 +931,7 @@
 
 			this.$magnets.addEventListener('pointerup', endDrag);
 			this.$magnets.addEventListener('pointercancel', endDrag);
+			this.$magnets.addEventListener('lostpointercapture', endDrag);
 
 			this.$magnets.addEventListener('keydown', function(event) {
 				if (self.readonly) {
@@ -1084,7 +1101,7 @@
 			});
 
 			var estimate = Math.ceil(Math.sqrt(totalCells * 1.35));
-			return clamp(Math.max(24, estimate), 12, MAX_COLS);
+			return clamp(Math.max(48, estimate), 12, MAX_COLS);
 		}
 
 		computeMinimumRowsFromSource() {
@@ -1374,7 +1391,9 @@
 			}
 
 			var viewportRect = this.$viewport.getBoundingClientRect();
-			this._baseCell = clamp(Math.floor(viewportRect.width / this._cols), 24, 56);
+			var responsiveBase = clamp(Math.floor(viewportRect.width / 10), 28, DEFAULT_CELL);
+			var widthLimitedBase = clamp(Math.floor(14000 / Math.max(1, this._cols)), 20, DEFAULT_CELL);
+			this._baseCell = Math.max(24, Math.min(responsiveBase, widthLimitedBase));
 			this._cell = clamp(Math.round(this._baseCell * this._zoom), 16, 96);
 
 			this.$board.style.setProperty('--cell-size', this._cell + 'px');
@@ -1384,6 +1403,17 @@
 			this._boardRect = this.$board.getBoundingClientRect();
 			this.syncZoomUi();
 			this.renderMagnets();
+		}
+
+		clientToBoard(clientX, clientY) {
+			if (!this.$board) {
+				return { x: 0, y: 0 };
+			}
+			var rect = this.$board.getBoundingClientRect();
+			return {
+				x: clientX - rect.left,
+				y: clientY - rect.top
+			};
 		}
 
 		getMagnet(id) {
@@ -1471,7 +1501,26 @@
 			var centerY = pxY + (this._cell / 2);
 			var gridX = Math.round((centerX / this._cell) - (w / 2));
 			var gridY = Math.round((centerY / this._cell) - 0.5);
+			this.ensureBoardCapacityForPlacement(gridX, gridY, w, h);
 			return this.findNearestAvailable(gridX, gridY, w, h, ignoreId, fallbackX, fallbackY);
+		}
+
+		ensureBoardCapacityForPlacement(x, y, w, h) {
+			var nextCols = this._cols;
+			var nextRows = this._rows;
+
+			if (x + w >= nextCols) {
+				nextCols = Math.min(MAX_COLS, Math.max(nextCols, (x + w) + 2));
+			}
+			if (y + h >= nextRows) {
+				nextRows = Math.min(MAX_ROWS, Math.max(nextRows, (y + h) + 2));
+			}
+
+			if (nextCols !== this._cols || nextRows !== this._rows) {
+				this._cols = nextCols;
+				this._rows = nextRows;
+				this.measureBoard();
+			}
 		}
 
 		compactMagnets() {
