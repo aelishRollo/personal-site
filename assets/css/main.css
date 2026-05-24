@@ -4525,28 +4525,103 @@ ul.feature-icons li {
 
 .theme-fab {
 	position: fixed;
-	top: 1rem;
-	right: 1rem;
+	top: 0.9rem;
+	right: 0.9rem;
 	z-index: 10030;
-	width: 2.65rem;
-	height: 2.65rem;
-	display: inline-grid;
-	place-items: center;
+	width: 65px;
+	height: 37px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 	border-radius: 999px;
-	border: 1px solid var(--line-1);
-	background: #101915;
-	color: #c9f2dc;
-	box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+	border: 0;
+	background: transparent;
+	padding: 0;
+	box-shadow: none;
 }
 
 .theme-fab:hover {
-	background: #1a2a22;
-	color: #effff5;
+	background: transparent;
+	color: inherit;
 }
 
-.theme-fab-icon {
-	font-size: 1.05rem;
+.theme-fab:focus-visible {
+	outline: 2px solid var(--accent-2);
+	outline-offset: 3px;
+}
+
+.theme-switch-track {
+	position: relative;
+	width: 60px;
+	height: 33px;
+	border-radius: 999px;
+	display: block;
+	background: linear-gradient(180deg, #1e2b23 0%, #131b16 100%);
+	border: 1px solid #2d3f34;
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.09),
+		inset 0 -4px 6px rgba(0, 0, 0, 0.45),
+		0 7px 16px rgba(0, 0, 0, 0.38);
+}
+
+.theme-switch-thumb {
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	width: 26px;
+	height: 26px;
+	border-radius: 999px;
+	background: linear-gradient(180deg, #ffffff 0%, #d7e2da 100%);
+	border: 1px solid rgba(29, 44, 36, 0.25);
+	box-shadow:
+		0 5px 10px rgba(0, 0, 0, 0.32),
+		inset 0 1px 2px rgba(255, 255, 255, 0.75);
+	transform: translateX(0);
+	transition: transform 220ms ease, background 220ms ease;
+}
+
+.theme-switch-icon {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 0.64rem;
 	line-height: 1;
+	opacity: 0.72;
+}
+
+.theme-switch-icon-sun {
+	left: 9px;
+	color: #f4c75f;
+}
+
+.theme-switch-icon-moon {
+	right: 8px;
+	color: #d4dbf8;
+}
+
+.theme-fab[data-theme-state="dark"] .theme-switch-thumb {
+	transform: translateX(29px);
+	background: linear-gradient(180deg, #f7fffb 0%, #ddeae4 100%);
+}
+
+.theme-fab[data-theme-state="light"] .theme-switch-track {
+	background: linear-gradient(180deg, #b9dfcc 0%, #90c3ab 100%);
+	border-color: #7cb296;
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.45),
+		inset 0 -3px 6px rgba(33, 66, 46, 0.2),
+		0 7px 14px rgba(23, 53, 35, 0.22);
+}
+
+.theme-fab[data-theme-state="light"] .theme-switch-thumb {
+	transform: translateX(0);
+	background: linear-gradient(180deg, #fffef8 0%, #f3efdc 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.theme-switch-thumb {
+		transition: none;
+	}
 }
 
 input[type="text"],
@@ -4987,4 +5062,14 @@ html[data-theme="light"] .site-nav a[aria-current="page"],
 html:not([data-theme]) .site-nav a[aria-current="page"] {
 	color: #000000 !important;
 	font-weight: 800;
+}
+
+/* Final switch guardrails: ensure legacy flat-button styles don't override 3D switch */
+html[data-theme="dark"] .theme-fab,
+html[data-theme="light"] .theme-fab,
+html:not([data-theme]) .theme-fab {
+	background: transparent !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	color: inherit !important;
 }

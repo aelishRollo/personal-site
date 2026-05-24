@@ -63,13 +63,22 @@
 	});
 
 	// Theme toggle button (accessible pressed state).
-	var $themeToggle = $('<button type="button" class="theme-fab" aria-pressed="true" aria-label="Switch to light theme"><span class="theme-fab-icon" aria-hidden="true">☀</span><span class="sr-only">Toggle theme</span></button>');
+	var $themeToggle = $(
+		'<button type="button" class="theme-fab" aria-pressed="true" aria-label="Switch to light theme">' +
+			'<span class="theme-switch-track" aria-hidden="true">' +
+				'<span class="theme-switch-icon theme-switch-icon-sun">☀</span>' +
+				'<span class="theme-switch-icon theme-switch-icon-moon">🌙</span>' +
+				'<span class="theme-switch-thumb"></span>' +
+			'</span>' +
+			'<span class="sr-only">Toggle theme</span>' +
+		'</button>'
+	);
 
 	function syncThemeButton(theme) {
 		var isDark = theme === 'dark';
 		$themeToggle.attr('aria-pressed', isDark ? 'true' : 'false');
 		$themeToggle.attr('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
-		$themeToggle.find('.theme-fab-icon').text(isDark ? '☀' : '🌙');
+		$themeToggle.attr('data-theme-state', theme);
 	}
 
 	$body.append($themeToggle);
