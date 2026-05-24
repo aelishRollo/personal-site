@@ -205,6 +205,7 @@
 			this._openCategories = new Set();
 			this._zoom = 1;
 			this._baseCell = DEFAULT_CELL;
+			this._magnetGap = 4;
 			this._minRowsFromSource = this._rows;
 			this._minColsFromSource = this._cols;
 		}
@@ -550,15 +551,15 @@
 						display: inline-flex;
 						align-items: center;
 						justify-content: center;
-						height: calc(var(--cell-size, 44px) - 8px);
-						padding: 0 0.5rem;
+						height: calc(var(--cell-size, 44px) - (var(--magnet-gap, 4px) * 2));
+						padding: 0 calc(var(--cell-size, 44px) * 0.12);
 						border-radius: 4px;
 						border: 1px solid var(--fp-magnet-edge);
 						background: linear-gradient(180deg, #ffffff, var(--fp-magnet-bg));
 						box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.2);
 						color: var(--fp-magnet-text);
 						font-family: "Lucida Console", "Courier New", monospace;
-						font-size: clamp(0.68rem, 1.4vw, 0.87rem);
+						font-size: calc((var(--cell-size, 44px) - (var(--magnet-gap, 4px) * 2)) * 0.42);
 						font-weight: 700;
 						letter-spacing: 0.04em;
 						text-transform: lowercase;
@@ -1395,8 +1396,10 @@
 			var widthLimitedBase = clamp(Math.floor(14000 / Math.max(1, this._cols)), 20, DEFAULT_CELL);
 			this._baseCell = Math.max(24, Math.min(responsiveBase, widthLimitedBase));
 			this._cell = clamp(Math.round(this._baseCell * this._zoom), 16, 96);
+			this._magnetGap = Math.max(2, Math.round(this._cell * 0.09));
 
 			this.$board.style.setProperty('--cell-size', this._cell + 'px');
+			this.$board.style.setProperty('--magnet-gap', this._magnetGap + 'px');
 			this.$board.style.width = (this._cols * this._cell) + 'px';
 			this.$board.style.height = (this._rows * this._cell) + 'px';
 
@@ -1611,8 +1614,8 @@
 				y = this._drag.candidateY;
 			}
 
-			el.style.width = ((magnet.w * this._cell) - 8) + 'px';
-			el.style.transform = 'translate(' + ((x * this._cell) + 4) + 'px,' + ((y * this._cell) + 4) + 'px)';
+			el.style.width = ((magnet.w * this._cell) - (this._magnetGap * 2)) + 'px';
+			el.style.transform = 'translate(' + ((x * this._cell) + this._magnetGap) + 'px,' + ((y * this._cell) + this._magnetGap) + 'px)';
 		}
 
 		renderMagnets() {
