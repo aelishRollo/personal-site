@@ -60,7 +60,6 @@
 			var $nav_a = $nav.find('a');
 
 			$nav_a
-				.addClass('scrolly')
 				.on('click', function() {
 
 					var $this = $(this);
@@ -119,6 +118,14 @@
 							}
 						});
 
+				});
+
+			// Only hash links should receive smooth-scrolling behavior.
+				$nav_a.each(function() {
+					var $this = $(this);
+
+					if ($this.attr('href').charAt(0) == '#')
+						$this.addClass('scrolly');
 				});
 
 		// Title Bar.
