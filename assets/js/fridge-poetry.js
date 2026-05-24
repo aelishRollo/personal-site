@@ -42,6 +42,15 @@
 		return String(value || '').trim().toLowerCase();
 	}
 
+	function escapeHtml(value) {
+		return String(value || '')
+			.replace(/&/g, '&amp;')
+			.replace(/</g, '&lt;')
+			.replace(/>/g, '&gt;')
+			.replace(/"/g, '&quot;')
+			.replace(/'/g, '&#39;');
+	}
+
 	function entryKey(category, word) {
 		return category + '::' + word;
 	}
@@ -202,7 +211,9 @@
 			this._selectedId = null;
 			this._drag = null;
 			this._pan = null;
-			this._openCategories = new Set();
+			this._activeCategory = 'all';
+			this._searchTerm = '';
+			this._showAvailableOnly = false;
 			this._zoom = 1;
 			this._baseCell = DEFAULT_CELL;
 			this._magnetGap = 4;
@@ -277,6 +288,7 @@
 				<style>
 					:host {
 						display: block;
+						width: 100%;
 						--fp-bg: #cad1d8;
 						--fp-bg2: #b6bec8;
 						--fp-line: rgba(38, 48, 59, 0.14);
@@ -392,73 +404,115 @@
 						background: rgba(255, 255, 255, 0.95);
 						border-color: rgba(0, 0, 0, 0.34);
 					}
+					.workspace {
+						display: grid;
+						grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+						gap: 0.95rem;
+						align-items: start;
+						margin-top: 0.8rem;
+					}
+					.word-panel {
+						position: sticky;
+						top: 0.6rem;
+						border: 1px solid var(--fp-cat-border);
+						background: var(--fp-cat-bg);
+						padding: 0.68rem;
+						display: grid;
+						gap: 0.62rem;
+						align-content: start;
+					}
+					.word-panel-head {
+						display: grid;
+						gap: 0.25rem;
+					}
+					.word-panel-title {
+						font-size: 0.85rem;
+						font-weight: 800;
+						letter-spacing: 0.04em;
+						text-transform: uppercase;
+						color: var(--fp-cat-text);
+					}
+					.word-panel-sub {
+						font-size: 0.74rem;
+						color: var(--fp-cat-text);
+						opacity: 0.84;
+					}
 					.pickers {
 						display: grid;
 						grid-template-columns: 1fr;
-						gap: 0.58rem;
-						margin: 0.82rem 0 0.95rem;
-					}
-					.category-card {
-						border: 1px solid var(--fp-cat-border);
-						border-radius: 11px;
-						background: var(--fp-cat-bg);
-						overflow: hidden;
-					}
-					.category-summary {
-						display: flex;
-						align-items: center;
-						justify-content: space-between;
 						gap: 0.6rem;
-						padding: 0.6rem 0.7rem;
-						cursor: pointer;
-						list-style: none;
-						background: var(--fp-cat-head);
 					}
-					.category-summary::-webkit-details-marker {
-						display: none;
-					}
-					.category-summary::after {
-						content: "▾";
-						font-size: 0.72rem;
-						opacity: 0.82;
-						transform: rotate(-90deg);
-						transition: transform 140ms ease;
-					}
-					.category-card[open] .category-summary::after {
-						transform: rotate(0deg);
-					}
-					.category-summary-main {
+					.word-controls {
 						display: grid;
-						gap: 0.16rem;
-						min-width: 0;
-						flex: 1 1 auto;
+						gap: 0.42rem;
 					}
-					.category-title {
-						font-size: 0.78rem;
+					.word-search {
+						width: 100%;
+						height: 2.15rem;
+						border: 1px solid var(--fp-word-border);
+						background: var(--fp-word-bg);
+						color: var(--fp-word-text);
+						padding: 0 0.56rem;
+						font: inherit;
+						font-size: 0.86rem;
+						font-weight: 700;
+					}
+					.category-chips {
+						display: flex;
+						flex-wrap: wrap;
+						gap: 0.34rem;
+					}
+					.category-chip {
+						border: 1px solid var(--fp-word-border);
+						background: var(--fp-word-bg);
+						color: var(--fp-word-text);
+						padding: 0.26rem 0.52rem;
+						font: inherit;
+						font-size: 0.74rem;
 						font-weight: 800;
-						letter-spacing: 0.04em;
+						letter-spacing: 0.03em;
 						text-transform: capitalize;
-						color: var(--fp-cat-text);
+						cursor: pointer;
 					}
-					.category-sub {
-						font-size: 0.72rem;
-						color: var(--fp-cat-text);
-						opacity: 0.78;
-						overflow-wrap: anywhere;
+					.category-chip[data-active="true"] {
+						background: var(--fp-focus);
+						border-color: var(--fp-focus);
+						color: #041109;
 					}
-					.category-body {
-						display: grid;
-						gap: 0.62rem;
-						padding: 0 0.68rem 0.68rem;
-						border-top: 1px solid rgba(0, 0, 0, 0.12);
+					.word-panel-actions {
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						gap: 0.4rem;
+					}
+					.word-filter-toggle {
+						border: 1px solid var(--fp-word-border);
+						background: var(--fp-word-bg);
+						color: var(--fp-word-text);
+						padding: 0.24rem 0.48rem;
+						font: inherit;
+						font-size: 0.71rem;
+						font-weight: 800;
+						text-transform: uppercase;
+						letter-spacing: 0.04em;
+						cursor: pointer;
+					}
+					.word-filter-toggle[data-pressed="true"] {
+						background: var(--fp-focus);
+						border-color: var(--fp-focus);
+						color: #041109;
+					}
+					.word-meta-summary {
+						font-size: 0.71rem;
+						color: var(--fp-subtle);
 					}
 					.word-bank {
 						display: grid;
-						grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+						grid-template-columns: 1fr;
 						gap: 0.4rem;
-						max-height: 14rem;
+						max-height: min(58vh, 560px);
 						overflow: auto;
-						padding-right: 0.15rem;
+						padding-right: 0.12rem;
 					}
 					.word-option {
 						display: flex;
@@ -466,7 +520,7 @@
 						gap: 0.45rem;
 						align-items: center;
 						border: 1px solid var(--fp-word-border);
-						border-radius: 8px;
+						border-radius: 0;
 						padding: 0.36rem 0.5rem;
 						font: inherit;
 						font-size: 0.85rem;
@@ -496,13 +550,27 @@
 						opacity: 0.72;
 						flex: 0 0 auto;
 					}
+					.word-option .word-cat {
+						display: inline-block;
+						margin-right: 0.38rem;
+						font-size: 0.62rem;
+						font-weight: 800;
+						letter-spacing: 0.04em;
+						text-transform: uppercase;
+						opacity: 0.66;
+						vertical-align: middle;
+					}
 					.word-bank-empty {
 						font-size: 0.75rem;
 						color: var(--fp-subtle);
 						padding: 0.25rem 0.1rem;
 					}
+					.canvas-panel {
+						display: grid;
+						gap: 0.55rem;
+					}
 					.hint {
-						margin: 0.2rem 0 0.75rem;
+						margin: 0.08rem 0 0.08rem;
 						font-size: 0.84rem;
 						line-height: 1.35;
 						color: var(--fp-subtle);
@@ -632,7 +700,7 @@
 						opacity: 0.85;
 					}
 					button.ctrl:focus-visible,
-					.category-summary:focus-visible,
+					.category-chip:focus-visible,
 					.word-option:focus-visible,
 					.magnet:focus-visible,
 					.board:focus-visible {
@@ -640,6 +708,12 @@
 						outline-offset: 2px;
 					}
 					@media (max-width: 760px) {
+						.workspace {
+							grid-template-columns: 1fr;
+						}
+						.word-panel {
+							position: static;
+						}
 						.actions-group {
 							width: 100%;
 						}
@@ -647,8 +721,7 @@
 							flex: 1;
 						}
 						.word-bank {
-							grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-							max-height: 10rem;
+							max-height: 13.5rem;
 						}
 						.zoom-tools {
 							right: 0.6rem;
@@ -664,26 +737,32 @@
 					<div class="toolbar">
 						<h3>Fridge Poetry</h3>
 						<div class="actions">
-							<div class="actions-group">
-								<button class="ctrl" type="button" data-action="expand-all" data-pressed="false" aria-pressed="false">Expand All</button>
-								<button class="ctrl" type="button" data-action="collapse-all" data-pressed="false" aria-pressed="false">Collapse All</button>
-							</div>
 							<button class="ctrl" type="button" data-action="clear">Clear Board</button>
 						</div>
 					</div>
-					<div class="pickers" aria-label="Word category pools"></div>
-					<p class="hint">Choose words from each category pool, place magnets on the fridge, then pan and pinch to compose lines anywhere on the board.</p>
-					<div class="board-frame">
-						<div class="board-viewport">
-							<div class="board" tabindex="0" aria-label="Interactive fridge poetry board">
-								<div class="magnets"></div>
+					<div class="workspace">
+						<aside class="word-panel" aria-label="Word bank controls">
+							<div class="word-panel-head">
+								<div class="word-panel-title">Word Bank</div>
+								<div class="word-panel-sub">Words stay visible here. Click any word to add a magnet.</div>
 							</div>
-						</div>
-						<div class="zoom-tools" role="group" aria-label="Board zoom controls">
-							<button class="ctrl" type="button" data-action="zoom-out" aria-label="Zoom out">-</button>
-							<button class="ctrl" type="button" data-action="zoom-in" aria-label="Zoom in">+</button>
-							<span class="zoom-readout" data-zoom-readout>100%</span>
-						</div>
+							<div class="pickers" aria-label="Word category pools"></div>
+						</aside>
+						<section class="canvas-panel">
+							<p class="hint">Pan by dragging empty fridge space. Pinch or ctrl/cmd+scroll to zoom.</p>
+							<div class="board-frame">
+								<div class="board-viewport">
+									<div class="board" tabindex="0" aria-label="Interactive fridge poetry board">
+										<div class="magnets"></div>
+									</div>
+								</div>
+								<div class="zoom-tools" role="group" aria-label="Board zoom controls">
+									<button class="ctrl" type="button" data-action="zoom-out" aria-label="Zoom out">-</button>
+									<button class="ctrl" type="button" data-action="zoom-in" aria-label="Zoom in">+</button>
+									<span class="zoom-readout" data-zoom-readout>100%</span>
+								</div>
+							</div>
+						</section>
 					</div>
 					<p class="status" aria-live="polite"></p>
 				</div>
@@ -844,10 +923,6 @@
 				var action = ctrl.getAttribute('data-action');
 				if (action === 'clear') {
 					self.clearBoard();
-				} else if (action === 'expand-all') {
-					self.expandAllCategories();
-				} else if (action === 'collapse-all') {
-					self.collapseAllCategories();
 				} else if (action === 'zoom-in') {
 					self.setZoom(self._zoom + 0.1, false);
 				} else if (action === 'zoom-out') {
@@ -856,12 +931,37 @@
 			});
 
 			this.$pickers.addEventListener('click', function(event) {
+				var categoryChip = event.target.closest('button[data-category-chip]');
+				if (categoryChip) {
+					event.preventDefault();
+					self._activeCategory = categoryChip.getAttribute('data-category-chip') || 'all';
+					self.renderPickers();
+					return;
+				}
+
+				var availabilityToggle = event.target.closest('button[data-word-filter]');
+				if (availabilityToggle) {
+					event.preventDefault();
+					self._showAvailableOnly = !self._showAvailableOnly;
+					self.renderPickers();
+					return;
+				}
+
 				var addEntryButton = event.target.closest('button[data-entry-key]');
 				if (!addEntryButton || self.readonly) {
 					return;
 				}
 				event.preventDefault();
 				self.addEntryByKey(addEntryButton.getAttribute('data-entry-key'));
+			});
+
+			this.$pickers.addEventListener('input', function(event) {
+				var searchInput = event.target.closest('input[data-word-search]');
+				if (!searchInput) {
+					return;
+				}
+				self._searchTerm = normalizeWord(searchInput.value || '');
+				self.renderPickers();
 			});
 
 			this.$magnets.addEventListener('pointerdown', function(event) {
@@ -1043,8 +1143,9 @@
 
 			var source = await this.fetchWordSource();
 			this.ingestSource(source);
-			this._openCategories.clear();
-
+			if (this._activeCategory !== 'all' && this._categoryOrder.indexOf(this._activeCategory) === -1) {
+				this._activeCategory = 'all';
+			}
 			this._magnets = [];
 			this._nextId = 1;
 			this._selectedId = null;
@@ -1059,7 +1160,7 @@
 			this.renderPickers();
 			this.measureBoard();
 			this.renderMagnets();
-			this.setStatus('Board ready. Choose words from the category pools.');
+			this.setStatus('Board ready. Choose words from the word bank.');
 		}
 
 		async fetchWordSource() {
@@ -1158,68 +1259,81 @@
 			}
 
 			var used = this.usedCounts();
-			var html = '';
-			for (var i = 0; i < this._categoryOrder.length; i++) {
-				var category = this._categoryOrder[i];
-				var entries = this._entriesByCategory.get(category) || [];
-				var words = '';
-				var total = 0;
-				var remainingTotal = 0;
-				for (var j = 0; j < entries.length; j++) {
-					var entry = entries[j];
-					var remain = this.remainingFor(entry, used);
-					var disabled = remain <= 0 ? ' disabled' : '';
-					total += entry.count;
-					remainingTotal += remain;
-					words += '<button type="button" class="word-option" data-entry-key="' + entry.key + '"' + disabled + '><span>' + entry.word + '</span><span class="word-meta">' + remain + '/' + entry.count + '</span></button>';
-				}
-				if (!words) {
-					words = '<div class="word-bank-empty">No words available.</div>';
-				}
+			var wordsHtml = '';
+			var totalEntries = 0;
+			var visibleEntries = this.getVisibleEntries(used);
 
-				var open = this._openCategories.has(category) ? ' open' : '';
-
-				html +=
-					'<details class="category-card" data-category-card="' + category + '"' + open + '>' +
-						'<summary class="category-summary" id="cat-summary-' + category + '">' +
-							'<span class="category-summary-main">' +
-								'<span class="category-title">' + category + '</span>' +
-								'<span class="category-sub">' + remainingTotal + ' of ' + total + ' remaining</span>' +
-							'</span>' +
-						'</summary>' +
-						'<div class="category-body" role="group" aria-labelledby="cat-summary-' + category + '">' +
-							'<div class="category-sub">Choose words from this pool and place them on the board.</div>' +
-							'<div class="word-bank">' + words + '</div>' +
-						'</div>' +
-					'</details>';
+			for (var i = 0; i < visibleEntries.length; i++) {
+				var entry = visibleEntries[i];
+				var remain = this.remainingFor(entry, used);
+				var disabled = remain <= 0 ? ' disabled' : '';
+				totalEntries += remain;
+				wordsHtml += '<button type="button" class="word-option" data-entry-key="' + escapeHtml(entry.key) + '"' + disabled + '><span><span class="word-cat">' + escapeHtml(entry.category) + '</span>' + escapeHtml(entry.word) + '</span><span class="word-meta">' + remain + '/' + entry.count + '</span></button>';
 			}
 
-			this.$pickers.innerHTML = html;
-			this.bindCategoryDetailsEvents();
-			this.syncCategoryControlState();
+			if (!wordsHtml) {
+				wordsHtml = '<div class="word-bank-empty">No words match the current filters.</div>';
+			}
+
+			var categoriesHtml = '<button type="button" class="category-chip" data-category-chip="all" data-active="' + (this._activeCategory === 'all' ? 'true' : 'false') + '">All</button>';
+			for (var j = 0; j < this._categoryOrder.length; j++) {
+				var category = this._categoryOrder[j];
+				var summary = this.categoryRemainingSummary(category, used);
+				categoriesHtml += '<button type="button" class="category-chip" data-category-chip="' + escapeHtml(category) + '" data-active="' + (this._activeCategory === category ? 'true' : 'false') + '">' + escapeHtml(category) + ' (' + summary.remaining + ')</button>';
+			}
+
+			var activeLabel = this._activeCategory === 'all' ? 'all categories' : this._activeCategory;
+			var searchValue = this._searchTerm ? escapeHtml(this._searchTerm) : '';
+
+			this.$pickers.innerHTML =
+				'<div class="word-controls">' +
+					'<input class="word-search" type="search" data-word-search placeholder="Search words..." value="' + searchValue + '" aria-label="Search words" />' +
+					'<div class="category-chips" role="tablist" aria-label="Word categories">' + categoriesHtml + '</div>' +
+					'<div class="word-panel-actions">' +
+						'<button type="button" class="word-filter-toggle" data-word-filter data-pressed="' + (this._showAvailableOnly ? 'true' : 'false') + '">Available only</button>' +
+						'<span class="word-meta-summary">' + totalEntries + ' available in ' + escapeHtml(activeLabel) + '</span>' +
+					'</div>' +
+				'</div>' +
+				'<div class="word-bank">' + wordsHtml + '</div>';
 		}
 
-		bindCategoryDetailsEvents() {
-			var self = this;
-			var cards = this.$pickers.querySelectorAll('details[data-category-card]');
-			for (var i = 0; i < cards.length; i++) {
-				(function(details) {
-					details.addEventListener('toggle', function() {
-						var category = details.getAttribute('data-category-card');
-						if (!category) {
-							return;
-						}
-
-						if (details.open) {
-							self._openCategories.add(category);
-						} else {
-							self._openCategories.delete(category);
-						}
-
-						self.syncCategoryControlState();
-					});
-				})(cards[i]);
+		categoryRemainingSummary(category, usedMap) {
+			var entries = this._entriesByCategory.get(category) || [];
+			var remaining = 0;
+			var total = 0;
+			for (var i = 0; i < entries.length; i++) {
+				var entry = entries[i];
+				total += entry.count;
+				remaining += this.remainingFor(entry, usedMap);
 			}
+			return { remaining: remaining, total: total };
+		}
+
+		getVisibleEntries(usedMap) {
+			var entries = [];
+			if (this._activeCategory === 'all') {
+				for (var i = 0; i < this._categoryOrder.length; i++) {
+					var category = this._categoryOrder[i];
+					var categoryEntries = this._entriesByCategory.get(category) || [];
+					for (var j = 0; j < categoryEntries.length; j++) {
+						entries.push(categoryEntries[j]);
+					}
+				}
+			} else {
+				entries = (this._entriesByCategory.get(this._activeCategory) || []).slice();
+			}
+
+			var search = this._searchTerm;
+			var showAvailableOnly = this._showAvailableOnly;
+			return entries.filter(function(entry) {
+				if (search && entry.word.indexOf(search) === -1) {
+					return false;
+				}
+				if (showAvailableOnly && ((usedMap.get(entry.key) || 0) >= entry.count)) {
+					return false;
+				}
+				return true;
+			});
 		}
 
 		addEntryByKey(entryKeyValue) {
@@ -1276,56 +1390,6 @@
 			}
 
 			return { x: 0, y: Math.max(0, this._rows - 1) };
-		}
-
-		expandAllCategories() {
-			for (var i = 0; i < this._categoryOrder.length; i++) {
-				this._openCategories.add(this._categoryOrder[i]);
-			}
-			this.applyCategoryOpenState();
-			this.syncCategoryControlState();
-			this.setStatus('All categories expanded.');
-		}
-
-		collapseAllCategories() {
-			this._openCategories.clear();
-			this.applyCategoryOpenState();
-			this.syncCategoryControlState();
-			this.setStatus('All categories collapsed.');
-		}
-
-		applyCategoryOpenState() {
-			if (!this.$pickers) {
-				return;
-			}
-
-			var cards = this.$pickers.querySelectorAll('details[data-category-card]');
-			for (var i = 0; i < cards.length; i++) {
-				var details = cards[i];
-				var category = details.getAttribute('data-category-card');
-				details.open = this._openCategories.has(category);
-			}
-		}
-
-		syncCategoryControlState() {
-			var expandBtn = this.shadowRoot.querySelector('button[data-action="expand-all"]');
-			var collapseBtn = this.shadowRoot.querySelector('button[data-action="collapse-all"]');
-			if (!expandBtn || !collapseBtn) {
-				return;
-			}
-
-			var total = this._categoryOrder.length;
-			var openCount = this._openCategories.size;
-			var allOpen = total > 0 && openCount === total;
-			var noneOpen = openCount === 0;
-
-			expandBtn.setAttribute('aria-pressed', allOpen ? 'true' : 'false');
-			expandBtn.setAttribute('data-pressed', allOpen ? 'true' : 'false');
-			expandBtn.disabled = allOpen;
-
-			collapseBtn.setAttribute('aria-pressed', noneOpen ? 'true' : 'false');
-			collapseBtn.setAttribute('data-pressed', noneOpen ? 'true' : 'false');
-			collapseBtn.disabled = noneOpen;
 		}
 
 		clearBoard() {

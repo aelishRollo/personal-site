@@ -4001,6 +4001,16 @@ input[type="button"].alt,
 	margin: 0 auto;
 }
 
+body.page-fridge .site-main .site-shell {
+	width: calc(100% - 1rem);
+	max-width: none;
+}
+
+body.page-fridge .page-section .site-shell {
+	width: calc(100% - 1rem);
+	max-width: none;
+}
+
 .site-header {
 	position: sticky;
 	top: 0;
