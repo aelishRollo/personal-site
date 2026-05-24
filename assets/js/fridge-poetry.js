@@ -188,7 +188,6 @@
 			this._themeObserver = null;
 			this._resizeObserver = null;
 			this._saveTimer = null;
-			this._selectionTimer = null;
 			this._rafMeasure = rafThrottle(this.measureBoard.bind(this));
 
 			this._storageKey = this.getAttribute('storage-key') || STORAGE_FALLBACK_KEY;
@@ -201,7 +200,6 @@
 			this._entryByKey = new Map();
 			this._magnets = [];
 			this._nextId = 1;
-			this._selectedId = null;
 			this._drag = null;
 			this._pan = null;
 			this._activeCategory = 'all';
@@ -242,10 +240,6 @@
 			if (this._saveTimer !== null) {
 				window.clearTimeout(this._saveTimer);
 				this._saveTimer = null;
-			}
-			if (this._selectionTimer !== null) {
-				window.clearTimeout(this._selectionTimer);
-				this._selectionTimer = null;
 			}
 		}
 
@@ -650,9 +644,6 @@
 						transition: box-shadow 120ms ease;
 					}
 					.magnet:active { cursor: grabbing; }
-					.magnet[data-selected="true"] {
-						box-shadow: 0 0 0 2px var(--fp-focus), 0 6px 12px rgba(0, 0, 0, 0.28);
-					}
 					.magnet[data-dragging="true"] {
 						box-shadow: 0 0 0 2px var(--fp-focus), 0 10px 20px rgba(0, 0, 0, 0.32);
 					}
@@ -992,7 +983,6 @@
 					moved: false
 				};
 
-				self.selectMagnet(id);
 				magnetEl.dataset.dragging = 'true';
 				self.setStatus('Dragging "' + magnet.word + '".');
 			});
@@ -1147,7 +1137,6 @@
 			}
 			this._magnets = [];
 			this._nextId = 1;
-			this._selectedId = null;
 
 			if (!skipSaved) {
 				await this.loadSavedState();
@@ -1357,7 +1346,7 @@
 				h: 1
 			};
 
-			var slot = this.findAvailableSlotWithGrowth(dims.w, dims.h);
+			var slot = this.findAvailableSlotInView(dims.w, dims.h) || this.findAvailableSlotWithGrowth(dims.w, dims.h);
 			var magnet = {
 				id: 'm' + this._nextId++,
 				category: entry.category,
@@ -1369,11 +1358,54 @@
 			};
 
 			this._magnets.push(magnet);
-			this.selectMagnet(magnet.id, 5000);
 			this.renderPickers();
 			this.renderMagnets();
+			this.ensureMagnetVisible(magnet);
 			this.setStatus('Added "' + magnet.word + '".');
 			this.scheduleSave();
+		}
+
+		findAvailableSlotInView(w, h) {
+			if (!this.$viewport || !this.$board || !this._cell) {
+				return null;
+			}
+
+			var visibleStartX = Math.floor(this.$viewport.scrollLeft / this._cell);
+			var visibleStartY = Math.floor(this.$viewport.scrollTop / this._cell);
+			var visibleEndX = Math.floor((this.$viewport.scrollLeft + this.$viewport.clientWidth - 1) / this._cell);
+			var visibleEndY = Math.floor((this.$viewport.scrollTop + this.$viewport.clientHeight - 1) / this._cell);
+
+			var minX = clamp(visibleStartX, 0, Math.max(0, this._cols - w));
+			var maxX = clamp(visibleEndX - w + 1, 0, Math.max(0, this._cols - w));
+			var minY = clamp(visibleStartY, 0, Math.max(0, this._rows - h));
+			var maxY = clamp(visibleEndY - h + 1, 0, Math.max(0, this._rows - h));
+
+			if (maxX < minX || maxY < minY) {
+				return null;
+			}
+
+			var cells = this.buildOccupancy(null);
+			var centerX = (minX + maxX) / 2;
+			var centerY = (minY + maxY) / 2;
+			var best = null;
+			var bestDist = Infinity;
+
+			for (var y = minY; y <= maxY; y++) {
+				for (var x = minX; x <= maxX; x++) {
+					if (!this.canPlace(cells, x, y, w, h)) {
+						continue;
+					}
+					var dx = x - centerX;
+					var dy = y - centerY;
+					var dist = (dx * dx) + (dy * dy);
+					if (dist < bestDist) {
+						bestDist = dist;
+						best = { x: x, y: y };
+					}
+				}
+			}
+
+			return best;
 		}
 
 		findAvailableSlotWithGrowth(w, h) {
@@ -1391,13 +1423,48 @@
 			return { x: 0, y: Math.max(0, this._rows - 1) };
 		}
 
+		ensureMagnetVisible(magnet) {
+			if (!magnet || !this.$viewport || !this.$board) {
+				return;
+			}
+
+			var cardLeft = (magnet.x * this._cell) + this._magnetGap;
+			var cardTop = (magnet.y * this._cell) + this._magnetGap;
+			var cardWidth = (magnet.w * this._cell) - (this._magnetGap * 2);
+			var cardHeight = this._cell - (this._magnetGap * 2);
+
+			var viewLeft = this.$viewport.scrollLeft;
+			var viewTop = this.$viewport.scrollTop;
+			var viewRight = viewLeft + this.$viewport.clientWidth;
+			var viewBottom = viewTop + this.$viewport.clientHeight;
+
+			var nextLeft = viewLeft;
+			var nextTop = viewTop;
+
+			if (cardLeft < viewLeft) {
+				nextLeft = cardLeft;
+			} else if (cardLeft + cardWidth > viewRight) {
+				nextLeft = (cardLeft + cardWidth) - this.$viewport.clientWidth;
+			}
+
+			if (cardTop < viewTop) {
+				nextTop = cardTop;
+			} else if (cardTop + cardHeight > viewBottom) {
+				nextTop = (cardTop + cardHeight) - this.$viewport.clientHeight;
+			}
+
+			var maxLeft = Math.max(0, this.$board.scrollWidth - this.$viewport.clientWidth);
+			var maxTop = Math.max(0, this.$board.scrollHeight - this.$viewport.clientHeight);
+			this.$viewport.scrollLeft = clamp(nextLeft, 0, maxLeft);
+			this.$viewport.scrollTop = clamp(nextTop, 0, maxTop);
+		}
+
 		clearBoard() {
 			if (this.readonly) {
 				return;
 			}
 			this._magnets = [];
 			this._nextId = 1;
-			this._selectedId = null;
 			this.renderPickers();
 			this.renderMagnets();
 			this.setStatus('Board cleared.');
@@ -1630,7 +1697,6 @@
 			var slot = this.findNearestAvailable(magnet.x + dx, magnet.y + dy, magnet.w, magnet.h, id, magnet.x, magnet.y);
 			magnet.x = slot.x;
 			magnet.y = slot.y;
-			this.selectMagnet(id);
 			this.renderMagnets();
 			this.scheduleSave();
 		}
@@ -1681,28 +1747,6 @@
 			}
 		}
 
-		selectMagnet(id, autoClearMs) {
-			if (this._selectionTimer !== null) {
-				window.clearTimeout(this._selectionTimer);
-				this._selectionTimer = null;
-			}
-
-			this._selectedId = id;
-			this.renderMagnets();
-
-			if (Number.isFinite(autoClearMs) && autoClearMs > 0) {
-				var self = this;
-				var selectedAtSet = id;
-				this._selectionTimer = window.setTimeout(function() {
-					self._selectionTimer = null;
-					if (self._selectedId === selectedAtSet) {
-						self._selectedId = null;
-						self.renderMagnets();
-					}
-				}, autoClearMs);
-			}
-		}
-
 		placeMagnetElement(magnet, draggingPreview) {
 			var el = this.$magnets.querySelector('[data-id="' + magnet.id + '"]');
 			if (!el) {
@@ -1745,7 +1789,6 @@
 					node.setAttribute('aria-label', 'Magnet word ' + magnet.word + ' from ' + magnet.category);
 				}
 
-				node.dataset.selected = this._selectedId === magnet.id ? 'true' : 'false';
 				node.dataset.dragging = this._drag && this._drag.id === magnet.id ? 'true' : 'false';
 
 				if (this.readonly) {
