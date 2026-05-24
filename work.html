@@ -4,6 +4,13 @@
 		<title>Work | Alec Rollison</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<script>
+			(function() {
+				var t = localStorage.getItem('site-theme-v2') || 'dark';
+				document.documentElement.setAttribute('data-theme', t);
+				document.documentElement.style.colorScheme = t;
+			})();
+		</script>
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body class="is-preload page-work">

@@ -4,6 +4,13 @@
 		<title>Alec Rollison | Software Engineer + Musician</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<script>
+			(function() {
+				var t = localStorage.getItem('site-theme-v2') || 'dark';
+				document.documentElement.setAttribute('data-theme', t);
+				document.documentElement.style.colorScheme = t;
+			})();
+		</script>
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body class="is-preload page-home">
@@ -41,8 +48,21 @@
 							</ul>
 						</div>
 						<figure class="hero-media">
-							<img src="images/banner1-1600.webp" alt="Textured green and white banner artwork" width="1600" height="1067" loading="eager" decoding="async" fetchpriority="high" />
+							<img class="hero-headshot" src="images/avatar-512.webp" alt="A picture of Alec" width="512" height="669" loading="eager" decoding="async" fetchpriority="high" />
 						</figure>
+					</div>
+				</section>
+
+				<section class="page-section section-portrait">
+					<div class="site-shell hero-grid">
+						<figure class="portrait-panel portrait-panel-large">
+							<img src="images/avatar-512.webp" alt="A picture of Alec" width="512" height="669" loading="eager" decoding="async" />
+						</figure>
+						<div>
+							<p class="eyebrow">Meet Alec</p>
+							<h2>Software engineer with an artist's ear for detail.</h2>
+							<p>I build software that is reliable in production and expressive in experience. My background in music and production shapes how I think about rhythm, tone, and emotional clarity in interfaces.</p>
+						</div>
 					</div>
 				</section>
 

@@ -4,6 +4,13 @@
 		<title>Connect | Alec Rollison</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<script>
+			(function() {
+				var t = localStorage.getItem('site-theme-v2') || 'dark';
+				document.documentElement.setAttribute('data-theme', t);
+				document.documentElement.style.colorScheme = t;
+			})();
+		</script>
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body class="is-preload page-connect">
@@ -26,10 +33,15 @@
 		<div id="wrapper" class="site-main-wrap">
 			<main id="main" class="site-main">
 				<section class="page-hero">
-					<div class="site-shell">
-						<p class="eyebrow">Connect</p>
-						<h1>Let's connect across tech, music, and creative work.</h1>
-						<p class="lead">Open to networking, collaboration, and service conversations.</p>
+					<div class="site-shell hero-grid">
+						<div>
+							<p class="eyebrow">Connect</p>
+							<h1>Let's connect across tech, music, and creative work.</h1>
+							<p class="lead">Open to networking, collaboration, and service conversations.</p>
+						</div>
+						<figure class="portrait-panel">
+							<img src="images/avatar-512.webp" alt="A picture of Alec" width="512" height="669" loading="eager" decoding="async" />
+						</figure>
 					</div>
 				</section>
 				<section class="page-section">

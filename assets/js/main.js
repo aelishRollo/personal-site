@@ -6,6 +6,25 @@
 
 	var $window = $(window);
 	var $body = $('body');
+	var themeKey = 'site-theme-v2';
+
+	function applyTheme(theme) {
+		document.documentElement.setAttribute('data-theme', theme);
+		document.documentElement.style.colorScheme = theme;
+	}
+
+	function loadTheme() {
+		var stored = localStorage.getItem(themeKey);
+		return stored === 'light' || stored === 'dark' ? stored : 'dark';
+	}
+
+	function saveTheme(theme) {
+		localStorage.setItem(themeKey, theme);
+	}
+
+	function nextTheme(current) {
+		return current === 'dark' ? 'light' : 'dark';
+	}
 
 	// Play initial animations on page load.
 	$window.on('load', function() {
@@ -41,6 +60,29 @@
 		if (href === path) {
 			$link.attr('aria-current', 'page');
 		}
+	});
+
+	// Theme toggle button (accessible pressed state).
+	var $themeToggle = $('<button type="button" class="theme-fab" aria-pressed="true" aria-label="Switch to light theme"><span class="theme-fab-icon" aria-hidden="true">☀</span><span class="sr-only">Toggle theme</span></button>');
+
+	function syncThemeButton(theme) {
+		var isDark = theme === 'dark';
+		$themeToggle.attr('aria-pressed', isDark ? 'true' : 'false');
+		$themeToggle.attr('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+		$themeToggle.find('.theme-fab-icon').text(isDark ? '☀' : '🌙');
+	}
+
+	$body.append($themeToggle);
+
+	var currentTheme = loadTheme();
+	applyTheme(currentTheme);
+	syncThemeButton(currentTheme);
+
+	$themeToggle.on('click', function() {
+		currentTheme = nextTheme(currentTheme);
+		applyTheme(currentTheme);
+		syncThemeButton(currentTheme);
+		saveTheme(currentTheme);
 	});
 
 	// Mobile nav toggle.
