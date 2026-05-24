@@ -1,6 +1,6 @@
 /*
 	Fridge Poetry board custom element.
-	Empty-start board + category dropdown word pickers + drag-and-drop.
+	Empty-start board + category word pools + drag-and-drop.
 */
 (function() {
 	var DB_NAME = 'fridge-poetry-db';
@@ -8,9 +8,15 @@
 	var STORE_NAME = 'boards';
 	var dbPromise = null;
 
-	var DEFAULT_COLS = 14;
+	var DEFAULT_COLS = 28;
 	var DEFAULT_ROWS = 11;
 	var DEFAULT_CELL = 44;
+	var MIN_ZOOM = 0.6;
+	var MAX_ZOOM = 2.0;
+	var MIN_COLS = 8;
+	var MAX_COLS = 160;
+	var MIN_ROWS = 6;
+	var MAX_ROWS = 200;
 	var STORAGE_FALLBACK_KEY = 'fridge-poetry-state-v2';
 
 	var DEFAULT_SOURCE = {
@@ -184,8 +190,8 @@
 			this._rafMeasure = rafThrottle(this.measureBoard.bind(this));
 
 			this._storageKey = this.getAttribute('storage-key') || STORAGE_FALLBACK_KEY;
-			this._cols = clamp(toInt(this.getAttribute('cols'), DEFAULT_COLS), 8, 120);
-			this._rows = clamp(toInt(this.getAttribute('rows'), DEFAULT_ROWS), 6, 120);
+			this._cols = clamp(toInt(this.getAttribute('cols'), DEFAULT_COLS), MIN_COLS, MAX_COLS);
+			this._rows = clamp(toInt(this.getAttribute('rows'), DEFAULT_ROWS), MIN_ROWS, MAX_ROWS);
 			this._cell = DEFAULT_CELL;
 
 			this._categoryOrder = [];
@@ -256,8 +262,8 @@
 			}
 
 			if (name === 'cols' || name === 'rows') {
-				this._cols = clamp(toInt(this.getAttribute('cols'), DEFAULT_COLS), 8, 120);
-				this._rows = clamp(toInt(this.getAttribute('rows'), DEFAULT_ROWS), 6, 120);
+				this._cols = clamp(toInt(this.getAttribute('cols'), DEFAULT_COLS), MIN_COLS, MAX_COLS);
+				this._rows = clamp(toInt(this.getAttribute('rows'), DEFAULT_ROWS), MIN_ROWS, MAX_ROWS);
 				this.compactMagnets();
 				this.measureBoard();
 				this.renderMagnets();
@@ -280,6 +286,13 @@
 						--fp-magnet-edge: #c5c7bf;
 						--fp-magnet-text: #1a1d1a;
 						--fp-focus: #2f7d53;
+						--fp-cat-bg: #eef5ef;
+						--fp-cat-head: #e1ece2;
+						--fp-cat-border: #b8c8ba;
+						--fp-cat-text: #122118;
+						--fp-word-bg: #fafffa;
+						--fp-word-text: #112015;
+						--fp-word-border: #9fb2a2;
 						color: var(--fp-text);
 						font-family: "Lato", "Segoe UI", sans-serif;
 					}
@@ -294,6 +307,13 @@
 						--fp-magnet-edge: #bec6bc;
 						--fp-magnet-text: #101510;
 						--fp-focus: #88dcae;
+						--fp-cat-bg: #16231c;
+						--fp-cat-head: #1d2d24;
+						--fp-cat-border: #365043;
+						--fp-cat-text: #ebf7ef;
+						--fp-word-bg: #24372b;
+						--fp-word-text: #f2fff6;
+						--fp-word-border: #5a7765;
 					}
 					@media (prefers-color-scheme: dark) {
 						:host(:not([data-theme="light"])) {
@@ -307,6 +327,13 @@
 							--fp-magnet-edge: #bec6bc;
 							--fp-magnet-text: #101510;
 							--fp-focus: #88dcae;
+							--fp-cat-bg: #16231c;
+							--fp-cat-head: #1d2d24;
+							--fp-cat-border: #365043;
+							--fp-cat-text: #ebf7ef;
+							--fp-word-bg: #24372b;
+							--fp-word-text: #f2fff6;
+							--fp-word-border: #5a7765;
 						}
 					}
 					.shell {
@@ -362,9 +389,9 @@
 						margin: 0.82rem 0 0.95rem;
 					}
 					.category-card {
-						border: 1px solid rgba(0, 0, 0, 0.18);
+						border: 1px solid var(--fp-cat-border);
 						border-radius: 11px;
-						background: rgba(255, 255, 255, 0.44);
+						background: var(--fp-cat-bg);
 						overflow: hidden;
 					}
 					.category-summary {
@@ -375,6 +402,7 @@
 						padding: 0.6rem 0.7rem;
 						cursor: pointer;
 						list-style: none;
+						background: var(--fp-cat-head);
 					}
 					.category-summary::-webkit-details-marker {
 						display: none;
@@ -395,14 +423,16 @@
 						min-width: 0;
 					}
 					.category-title {
-						font-size: 0.76rem;
+						font-size: 0.78rem;
 						font-weight: 800;
-						letter-spacing: 0.05em;
-						text-transform: uppercase;
+						letter-spacing: 0.04em;
+						text-transform: capitalize;
+						color: var(--fp-cat-text);
 					}
 					.category-sub {
 						font-size: 0.72rem;
-						color: var(--fp-subtle);
+						color: var(--fp-cat-text);
+						opacity: 0.78;
 					}
 					.category-body {
 						display: grid;
@@ -410,55 +440,11 @@
 						padding: 0 0.68rem 0.68rem;
 						border-top: 1px solid rgba(0, 0, 0, 0.12);
 					}
-					.picker {
-						display: grid;
-						grid-template-columns: 1fr auto;
-						gap: 0.45rem;
-						align-items: end;
-						padding-top: 0.6rem;
-					}
-					.picker label {
-						display: block;
-						font-size: 0.73rem;
-						font-weight: 700;
-						letter-spacing: 0.04em;
-						text-transform: uppercase;
-						margin-bottom: 0.32rem;
-					}
-					.picker select {
-						width: 100%;
-						height: 2rem;
-						border: 1px solid rgba(0, 0, 0, 0.22);
-						border-radius: 7px;
-						padding: 0 0.45rem;
-						font: inherit;
-						font-size: 0.92rem;
-						font-weight: 700;
-						line-height: 1.25;
-						background: rgba(255, 255, 255, 0.92);
-						color: #132218;
-					}
-					.picker select option {
-						color: #132218;
-					}
-					.picker button {
-						height: 2rem;
-						border: 1px solid rgba(0, 0, 0, 0.22);
-						border-radius: 7px;
-						padding: 0 0.65rem;
-						font: inherit;
-						font-size: 0.74rem;
-						font-weight: 700;
-						text-transform: uppercase;
-						letter-spacing: 0.05em;
-						background: rgba(255, 255, 255, 0.92);
-						cursor: pointer;
-					}
 					.word-bank {
 						display: grid;
 						grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 						gap: 0.4rem;
-						max-height: 11rem;
+						max-height: 14rem;
 						overflow: auto;
 						padding-right: 0.15rem;
 					}
@@ -467,22 +453,31 @@
 						justify-content: space-between;
 						gap: 0.45rem;
 						align-items: center;
-						border: 1px solid rgba(0, 0, 0, 0.2);
+						border: 1px solid var(--fp-word-border);
 						border-radius: 8px;
 						padding: 0.36rem 0.5rem;
 						font: inherit;
-						font-size: 0.77rem;
-						background: rgba(255, 255, 255, 0.85);
-						color: inherit;
+						font-size: 0.85rem;
+						font-weight: 700;
+						background: var(--fp-word-bg);
+						color: var(--fp-word-text);
 						cursor: pointer;
+					}
+					.word-option span:first-child {
+						letter-spacing: 0.01em;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
 					}
 					.word-option[disabled] {
 						opacity: 0.48;
 						cursor: not-allowed;
 					}
 					.word-option .word-meta {
-						font-size: 0.69rem;
-						color: var(--fp-subtle);
+						font-size: 0.71rem;
+						font-weight: 700;
+						color: var(--fp-word-text);
+						opacity: 0.72;
 					}
 					.word-bank-empty {
 						font-size: 0.75rem;
@@ -518,7 +513,7 @@
 						height: 100%;
 						min-width: 100%;
 						min-height: 100%;
-						touch-action: pan-x pan-y;
+						touch-action: none;
 						user-select: none;
 						-webkit-user-select: none;
 					}
@@ -580,41 +575,40 @@
 					}
 					.zoom-tools {
 						display: inline-flex;
+						flex-direction: column;
 						align-items: center;
-						gap: 0.42rem;
-						padding: 0.1rem 0.2rem;
-						border-radius: 12px;
-						background: rgba(255, 255, 255, 0.62);
-						border: 1px solid rgba(0, 0, 0, 0.18);
+						gap: 0.18rem;
+						padding: 0.22rem;
+						border-radius: 8px;
+						background: rgba(8, 14, 11, 0.34);
+						border: 1px solid rgba(255, 255, 255, 0.16);
 						position: absolute;
-						right: 1rem;
-						bottom: 1rem;
+						right: 0.8rem;
+						bottom: 0.8rem;
 						z-index: 8;
 						backdrop-filter: blur(1.5px);
 					}
 					.zoom-tools .ctrl {
-						min-width: 2rem;
-						height: 2rem;
+						min-width: 1.7rem;
+						height: 1.7rem;
 						padding: 0;
-						border-radius: 7px;
-						font-size: 0.95rem;
+						border-radius: 5px;
+						font-size: 0.9rem;
 						line-height: 1;
-					}
-					.zoom-tools input[type="range"] {
-						width: 7.25rem;
+						background: rgba(250, 253, 250, 0.88);
 					}
 					.zoom-readout {
-						min-width: 2.7rem;
-						text-align: right;
-						font-size: 0.74rem;
+						min-width: 1.7rem;
+						text-align: center;
+						font-size: 0.61rem;
 						font-weight: 700;
-						letter-spacing: 0.04em;
+						letter-spacing: 0.01em;
 						text-transform: uppercase;
+						color: #f3faf5;
+						opacity: 0.85;
 					}
 					button.ctrl:focus-visible,
 					.category-summary:focus-visible,
-					.picker select:focus-visible,
-					.picker button:focus-visible,
 					.word-option:focus-visible,
 					.magnet:focus-visible,
 					.board:focus-visible {
@@ -636,9 +630,6 @@
 							right: 0.6rem;
 							bottom: 0.6rem;
 						}
-						.zoom-tools input[type="range"] {
-							width: 5.8rem;
-						}
 						.board-viewport { height: 68vh; min-height: 360px; }
 					}
 					@media (prefers-reduced-motion: reduce) {
@@ -656,15 +647,14 @@
 							<button class="ctrl" type="button" data-action="clear">Clear Board</button>
 						</div>
 					</div>
-					<div class="pickers" aria-label="Word category pickers"></div>
-					<p class="hint">Choose words from category dropdowns, add them as magnets, and optionally expand all categories to browse every word set together.</p>
+					<div class="pickers" aria-label="Word category pools"></div>
+					<p class="hint">Choose words from each category pool, place magnets on the fridge, then pan and pinch to compose lines anywhere on the board.</p>
 					<div class="board-viewport">
 						<div class="board" tabindex="0" aria-label="Interactive fridge poetry board">
 							<div class="magnets"></div>
 						</div>
 						<div class="zoom-tools" role="group" aria-label="Board zoom controls">
 							<button class="ctrl" type="button" data-action="zoom-out" aria-label="Zoom out">-</button>
-							<input type="range" min="60" max="180" step="5" value="100" data-zoom-slider aria-label="Zoom percentage" />
 							<button class="ctrl" type="button" data-action="zoom-in" aria-label="Zoom in">+</button>
 							<span class="zoom-readout" data-zoom-readout>100%</span>
 						</div>
@@ -680,38 +670,83 @@
 			this.$board = this.shadowRoot.querySelector('.board');
 			this.$magnets = this.shadowRoot.querySelector('.magnets');
 			this.$status = this.shadowRoot.querySelector('.status');
-			this.$zoomSlider = this.shadowRoot.querySelector('[data-zoom-slider]');
 			this.$zoomReadout = this.shadowRoot.querySelector('[data-zoom-readout]');
 		}
 
 		bindEvents() {
 			var self = this;
 
-			if (this.$zoomSlider) {
-				this.$zoomSlider.addEventListener('input', function() {
-					self.setZoom((toInt(self.$zoomSlider.value, 100)) / 100, true);
-				});
-			}
-
 			if (this.$viewport) {
+				var pointerCache = new Map();
+
 				this.$viewport.addEventListener('pointerdown', function(event) {
-					if (event.button !== 0 || event.target.closest('.magnet') || event.target.closest('.zoom-tools')) {
+					if (event.target.closest('.magnet') || event.target.closest('.zoom-tools')) {
 						return;
 					}
 
-					self._pan = {
-						pointerId: event.pointerId,
-						startX: event.clientX,
-						startY: event.clientY,
-						startLeft: self.$viewport.scrollLeft,
-						startTop: self.$viewport.scrollTop
-					};
+					if (event.pointerType === 'mouse' && event.button !== 0) {
+						return;
+					}
 
-					self.$viewport.setAttribute('data-panning', 'true');
-					self.$viewport.setPointerCapture(event.pointerId);
+					pointerCache.set(event.pointerId, { x: event.clientX, y: event.clientY, type: event.pointerType });
+					try {
+						self.$viewport.setPointerCapture(event.pointerId);
+					} catch (err) {
+						// Ignore capture failures on unsupported devices.
+					}
+
+					if (pointerCache.size >= 2) {
+						var points = Array.from(pointerCache.values());
+						var p1 = points[0];
+						var p2 = points[1];
+						var dist = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+						var centerX = (p1.x + p2.x) / 2;
+						var centerY = (p1.y + p2.y) / 2;
+
+						self._pan = null;
+						self._pinch = {
+							startZoom: self._zoom,
+							startDist: Math.max(dist, 1),
+							centerX: centerX,
+							centerY: centerY
+						};
+						self.$viewport.setAttribute('data-panning', 'true');
+						return;
+					}
+
+					if (event.pointerType === 'mouse' || event.pointerType === 'touch' || event.pointerType === 'pen') {
+						self._pinch = null;
+
+						self._pan = {
+							pointerId: event.pointerId,
+							startX: event.clientX,
+							startY: event.clientY,
+							startLeft: self.$viewport.scrollLeft,
+							startTop: self.$viewport.scrollTop
+						};
+						self.$viewport.setAttribute('data-panning', 'true');
+					}
 				});
 
 				this.$viewport.addEventListener('pointermove', function(event) {
+					if (!pointerCache.has(event.pointerId)) {
+						return;
+					}
+					pointerCache.set(event.pointerId, { x: event.clientX, y: event.clientY, type: event.pointerType });
+
+					if (self._pinch && pointerCache.size >= 2) {
+						event.preventDefault();
+						var points = Array.from(pointerCache.values());
+						var a = points[0];
+						var b = points[1];
+						var currentDist = Math.max(1, Math.hypot(b.x - a.x, b.y - a.y));
+						var centerX = (a.x + b.x) / 2;
+						var centerY = (a.y + b.y) / 2;
+						var scaleFactor = currentDist / self._pinch.startDist;
+						self.setZoom(self._pinch.startZoom * scaleFactor, true, centerX, centerY);
+						return;
+					}
+
 					if (!self._pan || event.pointerId !== self._pan.pointerId) {
 						return;
 					}
@@ -724,15 +759,49 @@
 				});
 
 				var endPan = function(event) {
-					if (!self._pan || event.pointerId !== self._pan.pointerId) {
-						return;
+					pointerCache.delete(event.pointerId);
+
+					if (self._pan && event.pointerId === self._pan.pointerId) {
+						self._pan = null;
 					}
-					self._pan = null;
-					self.$viewport.removeAttribute('data-panning');
+
+					if (pointerCache.size < 2) {
+						self._pinch = null;
+					}
+
+					if (!self._pan && !self._pinch) {
+						self.$viewport.removeAttribute('data-panning');
+					}
 				};
 
 				this.$viewport.addEventListener('pointerup', endPan);
 				this.$viewport.addEventListener('pointercancel', endPan);
+
+				this.$viewport.addEventListener('wheel', function(event) {
+					if (event.ctrlKey || event.metaKey) {
+						event.preventDefault();
+						var factor = Math.exp((-event.deltaY || 0) / 320);
+						self.setZoom(self._zoom * factor, true, event.clientX, event.clientY);
+					}
+				}, { passive: false });
+
+				this.$viewport.addEventListener('gesturestart', function(event) {
+					self._gestureZoomStart = self._zoom;
+					event.preventDefault();
+				}, { passive: false });
+
+				this.$viewport.addEventListener('gesturechange', function(event) {
+					if (!Number.isFinite(self._gestureZoomStart)) {
+						self._gestureZoomStart = self._zoom;
+					}
+					event.preventDefault();
+					self.setZoom(self._gestureZoomStart * event.scale, true, event.clientX, event.clientY);
+				}, { passive: false });
+
+				this.$viewport.addEventListener('gestureend', function(event) {
+					event.preventDefault();
+					self._gestureZoomStart = null;
+				}, { passive: false });
 			}
 
 			this.shadowRoot.addEventListener('click', function(event) {
@@ -755,16 +824,6 @@
 			});
 
 			this.$pickers.addEventListener('click', function(event) {
-				var addCategoryButton = event.target.closest('button[data-category-add]');
-				if (addCategoryButton) {
-					if (self.readonly) {
-						return;
-					}
-					event.preventDefault();
-					self.addFromCategory(addCategoryButton.getAttribute('data-category-add'));
-					return;
-				}
-
 				var addEntryButton = event.target.closest('button[data-entry-key]');
 				if (!addEntryButton || self.readonly) {
 					return;
@@ -937,8 +996,8 @@
 		}
 
 		async initialize(skipSaved) {
-			var configuredCols = clamp(toInt(this.getAttribute('cols'), DEFAULT_COLS), 8, 120);
-			var configuredRows = clamp(toInt(this.getAttribute('rows'), DEFAULT_ROWS), 6, 80);
+			var configuredCols = clamp(toInt(this.getAttribute('cols'), DEFAULT_COLS), MIN_COLS, MAX_COLS);
+			var configuredRows = clamp(toInt(this.getAttribute('rows'), DEFAULT_ROWS), MIN_ROWS, MAX_ROWS);
 			this._cols = configuredCols;
 			this._rows = configuredRows;
 
@@ -960,7 +1019,7 @@
 			this.renderPickers();
 			this.measureBoard();
 			this.renderMagnets();
-			this.setStatus('Board ready. Choose words from the category pickers.');
+			this.setStatus('Board ready. Choose words from the category pools.');
 		}
 
 		async fetchWordSource() {
@@ -1025,7 +1084,7 @@
 			});
 
 			var estimate = Math.ceil(Math.sqrt(totalCells * 1.35));
-			return clamp(Math.max(24, estimate), 12, 80);
+			return clamp(Math.max(24, estimate), 12, MAX_COLS);
 		}
 
 		computeMinimumRowsFromSource() {
@@ -1035,7 +1094,7 @@
 			});
 
 			var estimate = Math.ceil(totalCells / this._cols) + 2;
-			return clamp(Math.max(DEFAULT_ROWS, estimate), DEFAULT_ROWS, 80);
+			return clamp(Math.max(DEFAULT_ROWS, estimate), DEFAULT_ROWS, MAX_ROWS);
 		}
 
 		usedCounts() {
@@ -1063,7 +1122,6 @@
 			for (var i = 0; i < this._categoryOrder.length; i++) {
 				var category = this._categoryOrder[i];
 				var entries = this._entriesByCategory.get(category) || [];
-				var options = '';
 				var words = '';
 				var total = 0;
 				var remainingTotal = 0;
@@ -1073,12 +1131,7 @@
 					var disabled = remain <= 0 ? ' disabled' : '';
 					total += entry.count;
 					remainingTotal += remain;
-					options += '<option value="' + entry.key + '"' + disabled + '>' + entry.word + ' (' + remain + '/' + entry.count + ')</option>';
 					words += '<button type="button" class="word-option" data-entry-key="' + entry.key + '"' + disabled + '><span>' + entry.word + '</span><span class="word-meta">' + remain + '/' + entry.count + '</span></button>';
-				}
-
-				if (!options) {
-					options = '<option value="">No words</option>';
 				}
 				if (!words) {
 					words = '<div class="word-bank-empty">No words available.</div>';
@@ -1095,13 +1148,7 @@
 							'</span>' +
 						'</summary>' +
 						'<div class="category-body" role="group" aria-labelledby="cat-summary-' + category + '">' +
-							'<div class="picker" data-picker="' + category + '">' +
-								'<div>' +
-									'<label for="pick-' + category + '">' + category + ' dropdown</label>' +
-									'<select id="pick-' + category + '" data-category-select="' + category + '">' + options + '</select>' +
-								'</div>' +
-								'<button type="button" data-category-add="' + category + '">Add</button>' +
-							'</div>' +
+							'<div class="category-sub">Choose words from this pool and place them on the board.</div>' +
 							'<div class="word-bank">' + words + '</div>' +
 						'</div>' +
 					'</details>';
@@ -1133,14 +1180,6 @@
 					});
 				})(cards[i]);
 			}
-		}
-
-		addFromCategory(category) {
-			var select = this.$pickers.querySelector('[data-category-select="' + category + '"]');
-			if (!select || !select.value) {
-				return;
-			}
-			this.addEntryByKey(select.value);
 		}
 
 		addEntryByKey(entryKeyValue) {
@@ -1276,16 +1315,16 @@
 
 			this._cols = Math.max(
 				this._cols,
-				clamp(toInt(saved.cols, this._cols), 8, 120),
+				clamp(toInt(saved.cols, this._cols), MIN_COLS, MAX_COLS),
 				this._minColsFromSource
 			);
 
 			this._rows = Math.max(
 				this._rows,
-				clamp(toInt(saved.rows, this._rows), 6, 120),
+				clamp(toInt(saved.rows, this._rows), MIN_ROWS, MAX_ROWS),
 				this._minRowsFromSource
 			);
-			this._zoom = clamp((toInt(saved.zoom, Math.round(this._zoom * 100))) / 100, 0.6, 1.8);
+			this._zoom = clamp((toInt(saved.zoom, Math.round(this._zoom * 100))) / 100, MIN_ZOOM, MAX_ZOOM);
 
 			var working = [];
 			var used = new Map();
@@ -1459,15 +1498,40 @@
 			this.scheduleSave();
 		}
 
-		setZoom(value, quietStatus) {
-			var next = clamp(value, 0.6, 1.8);
+		setZoom(value, quietStatus, clientX, clientY) {
+			var next = clamp(value, MIN_ZOOM, MAX_ZOOM);
 			if (Math.abs(next - this._zoom) < 0.001) {
 				this.syncZoomUi();
 				return;
 			}
 
+			var hadFocal = Number.isFinite(clientX) && Number.isFinite(clientY) && this.$viewport && this.$board;
+			var focalLocalX = 0;
+			var focalLocalY = 0;
+			var viewportRect = null;
+			var previousCell = this._cell;
+
+			if (hadFocal) {
+				viewportRect = this.$viewport.getBoundingClientRect();
+				focalLocalX = (clientX - viewportRect.left) + this.$viewport.scrollLeft;
+				focalLocalY = (clientY - viewportRect.top) + this.$viewport.scrollTop;
+			}
+
 			this._zoom = next;
 			this.measureBoard();
+
+			if (hadFocal && previousCell > 0 && this._cell > 0) {
+				var scale = this._cell / previousCell;
+				var targetLocalX = focalLocalX * scale;
+				var targetLocalY = focalLocalY * scale;
+				var targetLeft = targetLocalX - (clientX - viewportRect.left);
+				var targetTop = targetLocalY - (clientY - viewportRect.top);
+				var maxLeft = Math.max(0, this.$board.scrollWidth - this.$viewport.clientWidth);
+				var maxTop = Math.max(0, this.$board.scrollHeight - this.$viewport.clientHeight);
+				this.$viewport.scrollLeft = clamp(targetLeft, 0, maxLeft);
+				this.$viewport.scrollTop = clamp(targetTop, 0, maxTop);
+			}
+
 			if (!quietStatus) {
 				this.setStatus('Zoom set to ' + Math.round(this._zoom * 100) + '%.');
 			}
@@ -1475,9 +1539,6 @@
 		}
 
 		syncZoomUi() {
-			if (this.$zoomSlider) {
-				this.$zoomSlider.value = String(Math.round(this._zoom * 100));
-			}
 			if (this.$zoomReadout) {
 				this.$zoomReadout.textContent = Math.round(this._zoom * 100) + '%';
 			}
