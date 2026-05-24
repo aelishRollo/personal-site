@@ -1,23 +1,26 @@
 /*
 	Fridge Poetry board custom element.
-	Portable, embeddable, and theme-aware.
+	Empty-start board + category dropdown word pickers + drag-and-drop.
 */
 (function() {
 	var DB_NAME = 'fridge-poetry-db';
-	var DB_VERSION = 1;
+	var DB_VERSION = 2;
 	var STORE_NAME = 'boards';
 	var dbPromise = null;
+
 	var DEFAULT_COLS = 14;
 	var DEFAULT_ROWS = 11;
 	var DEFAULT_CELL = 44;
+	var STORAGE_FALLBACK_KEY = 'fridge-poetry-state-v2';
 
 	var DEFAULT_SOURCE = {
-		lines: [
-			'build with care and ship with confidence',
-			'music and code and coffee at midnight',
-			'make it simple make it quick make it kind',
-			'debugging is detective work with rhythm'
-		]
+		categories: {
+			nouns: ['code', 'music', 'systems', 'tests', 'workflow'],
+			adjectives: ['clear', 'quick', 'kind', 'curious', 'bold'],
+			verbs: ['build', 'ship', 'learn', 'debug', 'iterate'],
+			adverbs: ['carefully', 'quickly', 'calmly', 'intentionally', 'openly'],
+			connectors: ['and', 'with', 'for', 'to', 'from']
+		}
 	};
 
 	function clamp(value, min, max) {
@@ -29,37 +32,12 @@
 		return Number.isFinite(n) ? n : fallback;
 	}
 
-	function tokenizeText(text) {
-		if (!text) {
-			return [];
-		}
-
-		var matches = String(text).match(/[A-Za-z0-9][A-Za-z0-9'’-]*/g) || [];
-		return matches.map(function(word) {
-			return word.toLowerCase();
-		});
+	function normalizeWord(value) {
+		return String(value || '').trim().toLowerCase();
 	}
 
-	function buildWordList(source) {
-		if (!source) {
-			return [];
-		}
-
-		if (Array.isArray(source.words)) {
-			return source.words
-				.map(function(word) { return String(word || '').trim().toLowerCase(); })
-				.filter(Boolean);
-		}
-
-		if (Array.isArray(source.lines)) {
-			return tokenizeText(source.lines.join(' '));
-		}
-
-		if (typeof source.text === 'string') {
-			return tokenizeText(source.text);
-		}
-
-		return [];
+	function entryKey(category, word) {
+		return category + '::' + word;
 	}
 
 	function wordWidth(word) {
@@ -96,8 +74,8 @@
 
 		dbPromise = new Promise(function(resolve, reject) {
 			if (!window.indexedDB) {
-				reject(new Error('IndexedDB not supported'));
 				dbPromise = null;
+				reject(new Error('IndexedDB not supported'));
 				return;
 			}
 
@@ -162,10 +140,7 @@
 	function storageGetLocal(key) {
 		try {
 			var raw = localStorage.getItem(key);
-			if (!raw) {
-				return null;
-			}
-			return JSON.parse(raw);
+			return raw ? JSON.parse(raw) : null;
 		} catch (err) {
 			return null;
 		}
@@ -175,8 +150,21 @@
 		try {
 			localStorage.setItem(key, JSON.stringify(value));
 		} catch (err) {
-			// Ignore quota / private mode errors.
+			// Ignore quota/private-mode failures.
 		}
+	}
+
+	function normalizeSource(source) {
+		var src = source && typeof source === 'object' ? source : DEFAULT_SOURCE;
+		var categories = src.categories && typeof src.categories === 'object' ? src.categories : DEFAULT_SOURCE.categories;
+		var normalized = {};
+
+		Object.keys(categories).forEach(function(categoryName) {
+			var arr = Array.isArray(categories[categoryName]) ? categories[categoryName] : [];
+			normalized[categoryName] = arr.map(normalizeWord).filter(Boolean);
+		});
+
+		return normalized;
 	}
 
 	class FridgePoetryBoard extends HTMLElement {
@@ -193,18 +181,20 @@
 			this._themeObserver = null;
 			this._resizeObserver = null;
 			this._saveTimer = null;
-			this._rafRender = rafThrottle(this.renderMagnets.bind(this));
 			this._rafMeasure = rafThrottle(this.measureBoard.bind(this));
 
-			this._storageKey = this.getAttribute('storage-key') || 'fridge-poetry-state-v1';
-			this._wordList = [];
-			this._magnets = [];
-			this._selectedId = null;
-			this._drag = null;
+			this._storageKey = this.getAttribute('storage-key') || STORAGE_FALLBACK_KEY;
 			this._cols = clamp(toInt(this.getAttribute('cols'), DEFAULT_COLS), 8, 24);
 			this._rows = clamp(toInt(this.getAttribute('rows'), DEFAULT_ROWS), 6, 40);
 			this._cell = DEFAULT_CELL;
-			this._status = '';
+
+			this._categoryOrder = [];
+			this._entriesByCategory = new Map();
+			this._entryByKey = new Map();
+			this._magnets = [];
+			this._nextId = 1;
+			this._selectedId = null;
+			this._drag = null;
 		}
 
 		connectedCallback() {
@@ -220,7 +210,7 @@
 			this.watchTheme();
 			this.watchSize();
 
-			this.loadSourceAndState();
+			this.initialize();
 		}
 
 		disconnectedCallback() {
@@ -228,12 +218,10 @@
 				this._themeObserver.disconnect();
 				this._themeObserver = null;
 			}
-
 			if (this._resizeObserver) {
 				this._resizeObserver.disconnect();
 				this._resizeObserver = null;
 			}
-
 			if (this._saveTimer !== null) {
 				window.clearTimeout(this._saveTimer);
 				this._saveTimer = null;
@@ -251,20 +239,20 @@
 			}
 
 			if (name === 'storage-key') {
-				this._storageKey = this.getAttribute('storage-key') || 'fridge-poetry-state-v1';
-				this.loadSourceAndState();
+				this._storageKey = this.getAttribute('storage-key') || STORAGE_FALLBACK_KEY;
+				this.initialize();
 				return;
 			}
 
 			if (name === 'words-src') {
-				this.loadSourceAndState(true);
+				this.initialize(true);
 				return;
 			}
 
 			if (name === 'cols' || name === 'rows') {
 				this._cols = clamp(toInt(this.getAttribute('cols'), DEFAULT_COLS), 8, 24);
 				this._rows = clamp(toInt(this.getAttribute('rows'), DEFAULT_ROWS), 6, 40);
-				this.layoutAllMagnets(true);
+				this.compactMagnets();
 				this.measureBoard();
 				this.renderMagnets();
 				this.scheduleSave();
@@ -289,7 +277,6 @@
 						color: var(--fp-text);
 						font-family: "Lato", "Segoe UI", sans-serif;
 					}
-
 					:host([data-theme="dark"]) {
 						--fp-bg: #2f3842;
 						--fp-bg2: #252e37;
@@ -302,7 +289,6 @@
 						--fp-magnet-text: #101510;
 						--fp-focus: #88dcae;
 					}
-
 					@media (prefers-color-scheme: dark) {
 						:host(:not([data-theme="light"])) {
 							--fp-bg: #2f3842;
@@ -317,7 +303,6 @@
 							--fp-focus: #88dcae;
 						}
 					}
-
 					.shell {
 						border: 1px solid rgba(0, 0, 0, 0.16);
 						border-radius: 16px;
@@ -325,7 +310,6 @@
 						background: linear-gradient(165deg, var(--fp-panel), transparent 65%);
 						box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 					}
-
 					.toolbar {
 						display: flex;
 						justify-content: space-between;
@@ -333,20 +317,17 @@
 						align-items: center;
 						flex-wrap: wrap;
 					}
-
 					h3 {
 						margin: 0;
 						font-size: 1.02rem;
 						letter-spacing: 0.03em;
 						text-transform: uppercase;
 					}
-
 					.actions {
 						display: flex;
 						gap: 0.4rem;
 						flex-wrap: wrap;
 					}
-
 					button.ctrl {
 						border: 1px solid rgba(0, 0, 0, 0.2);
 						border-radius: 999px;
@@ -360,25 +341,65 @@
 						cursor: pointer;
 						color: inherit;
 					}
-
-					button.ctrl:hover {
-						filter: brightness(0.95);
+					.pickers {
+						display: grid;
+						grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+						gap: 0.65rem;
+						margin: 0.9rem 0;
 					}
-
-					button.ctrl:focus-visible,
-					.magnet:focus-visible,
-					.board:focus-visible {
-						outline: 2px solid var(--fp-focus);
-						outline-offset: 2px;
+					.picker {
+						display: grid;
+						grid-template-columns: 1fr auto;
+						gap: 0.45rem;
+						align-items: end;
+						padding: 0.52rem;
+						border: 1px solid rgba(0, 0, 0, 0.18);
+						border-radius: 10px;
+						background: rgba(255, 255, 255, 0.45);
 					}
-
+					.picker label {
+						display: block;
+						font-size: 0.73rem;
+						font-weight: 700;
+						letter-spacing: 0.04em;
+						text-transform: uppercase;
+						margin-bottom: 0.32rem;
+					}
+					.picker select {
+						width: 100%;
+						height: 2rem;
+						border: 1px solid rgba(0, 0, 0, 0.22);
+						border-radius: 7px;
+						padding: 0 0.45rem;
+						font: inherit;
+						font-size: 0.83rem;
+						background: rgba(255, 255, 255, 0.92);
+						color: inherit;
+					}
+					.picker button {
+						height: 2rem;
+						border: 1px solid rgba(0, 0, 0, 0.22);
+						border-radius: 7px;
+						padding: 0 0.65rem;
+						font: inherit;
+						font-size: 0.74rem;
+						font-weight: 700;
+						text-transform: uppercase;
+						letter-spacing: 0.05em;
+						background: rgba(255, 255, 255, 0.92);
+						cursor: pointer;
+					}
+					.picker .remain {
+						grid-column: 1 / -1;
+						font-size: 0.72rem;
+						color: var(--fp-subtle);
+					}
 					.hint {
-						margin: 0.72rem 0 0.82rem;
+						margin: 0.2rem 0 0.75rem;
 						font-size: 0.84rem;
 						line-height: 1.35;
 						color: var(--fp-subtle);
 					}
-
 					.board {
 						position: relative;
 						isolation: isolate;
@@ -395,7 +416,6 @@
 						user-select: none;
 						-webkit-user-select: none;
 					}
-
 					.board::before,
 					.board::after {
 						content: "";
@@ -403,7 +423,6 @@
 						inset: 0;
 						pointer-events: none;
 					}
-
 					.board::before {
 						background-image:
 							linear-gradient(90deg, transparent calc(var(--cell-size, 44px) - 1px), var(--fp-line) calc(var(--cell-size, 44px) - 1px)),
@@ -411,16 +430,13 @@
 						background-size: var(--cell-size, 44px) var(--cell-size, 44px);
 						opacity: 0.56;
 					}
-
 					.board::after {
 						box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), inset 0 -34px 50px rgba(0, 0, 0, 0.14);
 					}
-
 					.magnets {
 						position: absolute;
 						inset: 0;
 					}
-
 					.magnet {
 						position: absolute;
 						display: inline-flex;
@@ -443,52 +459,43 @@
 						will-change: transform;
 						transition: box-shadow 120ms ease;
 					}
-
-					.magnet:active {
-						cursor: grabbing;
-					}
-
+					.magnet:active { cursor: grabbing; }
 					.magnet[data-selected="true"] {
 						box-shadow: 0 0 0 2px var(--fp-focus), 0 6px 12px rgba(0, 0, 0, 0.28);
 					}
-
 					.magnet[data-dragging="true"] {
 						box-shadow: 0 0 0 2px var(--fp-focus), 0 10px 20px rgba(0, 0, 0, 0.32);
 					}
-
 					.status {
 						margin: 0.72rem 0 0;
 						font-size: 0.78rem;
 						color: var(--fp-subtle);
 						min-height: 1.1rem;
 					}
-
-					@media (max-width: 760px) {
-						.board {
-							height: 68vh;
-							min-height: 360px;
-						}
-
-						.magnet {
-							font-size: 0.72rem;
-						}
+					button.ctrl:focus-visible,
+					.picker select:focus-visible,
+					.picker button:focus-visible,
+					.magnet:focus-visible,
+					.board:focus-visible {
+						outline: 2px solid var(--fp-focus);
+						outline-offset: 2px;
 					}
-
+					@media (max-width: 760px) {
+						.board { height: 68vh; min-height: 360px; }
+					}
 					@media (prefers-reduced-motion: reduce) {
-						.magnet {
-							transition: none;
-						}
+						.magnet { transition: none; }
 					}
 				</style>
 				<div class="shell">
 					<div class="toolbar">
 						<h3>Fridge Poetry</h3>
 						<div class="actions">
-							<button class="ctrl" type="button" data-action="shuffle">Shuffle</button>
-							<button class="ctrl" type="button" data-action="reset">Reset</button>
+							<button class="ctrl" type="button" data-action="clear">Clear Board</button>
 						</div>
 					</div>
-					<p class="hint">Drag magnets, or click a magnet then tap an empty spot. Arrow keys move focused magnets one grid cell.</p>
+					<div class="pickers" aria-label="Word category pickers"></div>
+					<p class="hint">Choose words from category dropdowns, add them as magnets, then drag and drop to build lines.</p>
 					<div class="board" tabindex="0" aria-label="Interactive fridge poetry board">
 						<div class="magnets"></div>
 					</div>
@@ -498,6 +505,7 @@
 		}
 
 		cacheElements() {
+			this.$pickers = this.shadowRoot.querySelector('.pickers');
 			this.$board = this.shadowRoot.querySelector('.board');
 			this.$magnets = this.shadowRoot.querySelector('.magnets');
 			this.$status = this.shadowRoot.querySelector('.status');
@@ -511,48 +519,49 @@
 				if (!ctrl) {
 					return;
 				}
-
-				var action = ctrl.getAttribute('data-action');
-				if (action === 'shuffle') {
-					self.shuffleMagnets();
-				} else if (action === 'reset') {
-					self.layoutAllMagnets(true);
-					self.renderMagnets();
-					self.setStatus('Board reset.');
-					self.scheduleSave();
+				if (ctrl.getAttribute('data-action') === 'clear') {
+					self.clearBoard();
 				}
 			});
 
+			this.$pickers.addEventListener('click', function(event) {
+				var button = event.target.closest('button[data-category]');
+				if (!button || self.readonly) {
+					return;
+				}
+				event.preventDefault();
+				self.addFromCategory(button.getAttribute('data-category'));
+			});
+
 			this.$magnets.addEventListener('pointerdown', function(event) {
-				var magnet = event.target.closest('.magnet');
-				if (!magnet || self.readonly) {
+				var magnetEl = event.target.closest('.magnet');
+				if (!magnetEl || self.readonly) {
 					return;
 				}
 
-				var id = magnet.getAttribute('data-id');
-				var model = self.getMagnet(id);
-				if (!model) {
+				var id = magnetEl.getAttribute('data-id');
+				var magnet = self.getMagnet(id);
+				if (!magnet) {
 					return;
 				}
 
 				event.preventDefault();
-				magnet.setPointerCapture(event.pointerId);
-
+				magnetEl.setPointerCapture(event.pointerId);
 				self._drag = {
 					id: id,
 					pointerId: event.pointerId,
 					startClientX: event.clientX,
 					startClientY: event.clientY,
-					originX: model.x,
-					originY: model.y,
-					candidateX: model.x,
-					candidateY: model.y,
+					originX: magnet.x,
+					originY: magnet.y,
+					candidateX: magnet.x,
+					candidateY: magnet.y,
 					moved: false
 				};
 
 				self.selectMagnet(id);
-				magnet.dataset.dragging = 'true';
-				self.setStatus('Dragging "' + model.word + '".');
+				magnetEl.dataset.dragging = 'true';
+				self.setStatus('Dragging "' + magnet.word + '".');
 			});
 
 			this.$magnets.addEventListener('pointermove', function(event) {
@@ -562,8 +571,8 @@
 
 				event.preventDefault();
 				var drag = self._drag;
-				var model = self.getMagnet(drag.id);
-				if (!model) {
+				var magnet = self.getMagnet(drag.id);
+				if (!magnet) {
 					return;
 				}
 
@@ -573,16 +582,12 @@
 					drag.moved = true;
 				}
 
-				var pxX = drag.originX * self._cell + dx;
-				var pxY = drag.originY * self._cell + dy;
-				var target = self.findNearestAvailableByPixel(pxX, pxY, model.w, model.h, drag.id, drag.originX, drag.originY);
-				if (!target) {
-					return;
-				}
-
-				drag.candidateX = target.x;
-				drag.candidateY = target.y;
-				self.placeMagnetElement(model, true);
+				var pxX = (drag.originX * self._cell) + dx;
+				var pxY = (drag.originY * self._cell) + dy;
+				var slot = self.findNearestAvailableByPixel(pxX, pxY, magnet.w, magnet.h, drag.id, drag.originX, drag.originY);
+				drag.candidateX = slot.x;
+				drag.candidateY = slot.y;
+				self.placeMagnetElement(magnet, true);
 			});
 
 			var endDrag = function(event) {
@@ -594,86 +599,47 @@
 				var drag = self._drag;
 				self._drag = null;
 
-				var model = self.getMagnet(drag.id);
-				if (!model) {
-					return;
+				var magnet = self.getMagnet(drag.id);
+				var magnetEl = self.$magnets.querySelector('[data-id="' + drag.id + '"]');
+				if (magnetEl) {
+					magnetEl.dataset.dragging = 'false';
 				}
 
-				var magnet = self.$magnets.querySelector('[data-id="' + drag.id + '"]');
-				if (magnet) {
-					magnet.dataset.dragging = 'false';
+				if (magnet && drag.moved) {
+					magnet.x = drag.candidateX;
+					magnet.y = drag.candidateY;
+					self.setStatus('Placed "' + magnet.word + '".');
+					self.renderMagnets();
+					self.scheduleSave();
 				}
-
-				if (drag.moved) {
-					self.moveMagnet(drag.id, drag.candidateX, drag.candidateY);
-					self.setStatus('Placed "' + model.word + '".');
-				} else {
-					self.selectMagnet(drag.id);
-					self.setStatus('Selected "' + model.word + '". Tap an empty grid spot to place it.');
-				}
-
-				self.renderMagnets();
-				self.scheduleSave();
 			};
 
 			this.$magnets.addEventListener('pointerup', endDrag);
 			this.$magnets.addEventListener('pointercancel', endDrag);
 
-			this.$board.addEventListener('pointerdown', function(event) {
-				if (self.readonly || self._drag) {
-					return;
-				}
-
-				if (event.target.closest('.magnet')) {
-					return;
-				}
-
-				if (!self._selectedId) {
-					return;
-				}
-
-				event.preventDefault();
-				self.moveSelectedToClientPoint(event.clientX, event.clientY);
-			});
-
 			this.$magnets.addEventListener('keydown', function(event) {
-				var magnet = event.target.closest('.magnet');
-				if (!magnet) {
+				if (self.readonly) {
 					return;
 				}
-
-				var id = magnet.getAttribute('data-id');
-				var key = event.key;
-
-				if (key === 'Enter' || key === ' ') {
-					event.preventDefault();
-					self.selectMagnet(id);
+				var el = event.target.closest('.magnet');
+				if (!el) {
 					return;
 				}
-
-				if (key === 'Escape') {
-					event.preventDefault();
-					self.selectMagnet(null);
-					return;
-				}
-
+				var id = el.getAttribute('data-id');
 				var delta = null;
-				if (key === 'ArrowLeft') {
+				if (event.key === 'ArrowLeft') {
 					delta = { x: -1, y: 0 };
-				} else if (key === 'ArrowRight') {
+				} else if (event.key === 'ArrowRight') {
 					delta = { x: 1, y: 0 };
-				} else if (key === 'ArrowUp') {
+				} else if (event.key === 'ArrowUp') {
 					delta = { x: 0, y: -1 };
-				} else if (key === 'ArrowDown') {
+				} else if (event.key === 'ArrowDown') {
 					delta = { x: 0, y: 1 };
 				}
-
-				if (!delta || self.readonly) {
+				if (!delta) {
 					return;
 				}
-
 				event.preventDefault();
-				self.selectMagnet(id);
 				self.nudgeMagnet(id, delta.x, delta.y);
 			});
 		}
@@ -720,27 +686,31 @@
 				return;
 			}
 
-			var isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-			this.setAttribute('data-theme', isDark ? 'dark' : 'light');
+			var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+			this.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
 		}
 
 		get readonly() {
 			return this.hasAttribute('readonly') && this.getAttribute('readonly') !== 'false';
 		}
 
-		async loadSourceAndState(skipSavedState) {
+		async initialize(skipSaved) {
 			var source = await this.fetchWordSource();
-			this._wordList = buildWordList(source);
-			this.buildMagnetsFromWords();
+			this.ingestSource(source);
 
-			if (!skipSavedState) {
+			this._magnets = [];
+			this._nextId = 1;
+			this._selectedId = null;
+
+			if (!skipSaved) {
 				await this.loadSavedState();
 			}
 
-			this.layoutAllMagnets(false);
+			this.compactMagnets();
+			this.renderPickers();
 			this.measureBoard();
 			this.renderMagnets();
-			this.setStatus('Loaded ' + this._magnets.length + ' magnets.');
+			this.setStatus('Board ready. Choose words from the category pickers.');
 		}
 
 		async fetchWordSource() {
@@ -748,38 +718,155 @@
 			if (!src) {
 				return DEFAULT_SOURCE;
 			}
-
 			try {
 				var response = await fetch(src);
 				if (!response.ok) {
-					throw new Error('Failed to load words source.');
+					throw new Error('Unable to load words source.');
 				}
-
-				var contentType = response.headers.get('content-type') || '';
-				if (contentType.indexOf('application/json') !== -1 || src.toLowerCase().endsWith('.json')) {
-					return await response.json();
-				}
-
-				var text = await response.text();
-				return { text: text };
+				return await response.json();
 			} catch (err) {
-				this.setStatus('Could not load custom source. Using fallback words.');
+				this.setStatus('Could not load source. Using default categories.');
 				return DEFAULT_SOURCE;
 			}
 		}
 
-		buildMagnetsFromWords() {
-			this._magnets = this._wordList.map(function(word, index) {
-				return {
-					id: 'm' + index,
-					word: word,
-					w: wordWidth(word),
-					h: 1,
-					x: 0,
-					y: 0
-				};
-			});
+		ingestSource(source) {
+			this._categoryOrder = [];
+			this._entriesByCategory = new Map();
+			this._entryByKey = new Map();
+
+			var categories = normalizeSource(source);
+			Object.keys(categories).forEach(function(category) {
+				this._categoryOrder.push(category);
+				var counts = new Map();
+				categories[category].forEach(function(word) {
+					counts.set(word, (counts.get(word) || 0) + 1);
+				});
+
+				var entries = Array.from(counts.entries())
+					.map(function(pair) {
+						return {
+							category: category,
+							word: pair[0],
+							count: pair[1],
+							key: entryKey(category, pair[0])
+						};
+					})
+					.sort(function(a, b) {
+						return a.word.localeCompare(b.word);
+					});
+
+				this._entriesByCategory.set(category, entries);
+				for (var i = 0; i < entries.length; i++) {
+					this._entryByKey.set(entries[i].key, entries[i]);
+				}
+			}, this);
+		}
+
+		usedCounts() {
+			var used = new Map();
+			for (var i = 0; i < this._magnets.length; i++) {
+				var magnet = this._magnets[i];
+				var key = entryKey(magnet.category, magnet.word);
+				used.set(key, (used.get(key) || 0) + 1);
+			}
+			return used;
+		}
+
+		remainingFor(entry, usedMap) {
+			var used = (usedMap || this.usedCounts()).get(entry.key) || 0;
+			return Math.max(0, entry.count - used);
+		}
+
+		renderPickers() {
+			if (!this.$pickers) {
+				return;
+			}
+
+			var used = this.usedCounts();
+			var html = '';
+			for (var i = 0; i < this._categoryOrder.length; i++) {
+				var category = this._categoryOrder[i];
+				var entries = this._entriesByCategory.get(category) || [];
+				var options = '';
+				for (var j = 0; j < entries.length; j++) {
+					var entry = entries[j];
+					var remain = this.remainingFor(entry, used);
+					var disabled = remain <= 0 ? ' disabled' : '';
+					options += '<option value="' + entry.key + '"' + disabled + '>' + entry.word + ' (' + remain + '/' + entry.count + ')</option>';
+				}
+
+				if (!options) {
+					options = '<option value="">No words</option>';
+				}
+
+				html +=
+					'<div class="picker" data-picker="' + category + '">' +
+						'<div>' +
+							'<label for="pick-' + category + '">' + category + '</label>' +
+							'<select id="pick-' + category + '" data-category-select="' + category + '">' + options + '</select>' +
+						'</div>' +
+						'<button type="button" data-category="' + category + '">Add</button>' +
+						'<div class="remain">Choose one ' + category.slice(0, -1) + ' and add it as a magnet.</div>' +
+					'</div>';
+			}
+
+			this.$pickers.innerHTML = html;
+		}
+
+		addFromCategory(category) {
+			var select = this.$pickers.querySelector('[data-category-select="' + category + '"]');
+			if (!select || !select.value) {
+				return;
+			}
+
+			var entry = this._entryByKey.get(select.value);
+			if (!entry) {
+				return;
+			}
+
+			var used = this.usedCounts();
+			if (this.remainingFor(entry, used) <= 0) {
+				this.setStatus('No remaining "' + entry.word + '" magnets in ' + category + '.');
+				this.renderPickers();
+				return;
+			}
+
+			var dims = {
+				w: wordWidth(entry.word),
+				h: 1
+			};
+
+			var slot = this.findNearestAvailable(0, 0, dims.w, dims.h, null, 0, 0);
+			var magnet = {
+				id: 'm' + this._nextId++,
+				category: entry.category,
+				word: entry.word,
+				w: dims.w,
+				h: dims.h,
+				x: slot.x,
+				y: slot.y
+			};
+
+			this._magnets.push(magnet);
+			this.selectMagnet(magnet.id);
+			this.renderPickers();
+			this.renderMagnets();
+			this.setStatus('Added "' + magnet.word + '".');
+			this.scheduleSave();
+		}
+
+		clearBoard() {
+			if (this.readonly) {
+				return;
+			}
+			this._magnets = [];
+			this._nextId = 1;
 			this._selectedId = null;
+			this.renderPickers();
+			this.renderMagnets();
+			this.setStatus('Board cleared.');
+			this.scheduleSave();
 		}
 
 		async loadSavedState() {
@@ -794,15 +881,46 @@
 				return;
 			}
 
-			var byId = new Map(saved.magnets.map(function(m) { return [m.id, m]; }));
-			this._magnets.forEach(function(magnet) {
-				var persisted = byId.get(magnet.id);
-				if (!persisted) {
-					return;
+			var working = [];
+			var used = new Map();
+			for (var i = 0; i < saved.magnets.length; i++) {
+				var item = saved.magnets[i];
+				var category = normalizeWord(item.category);
+				var word = normalizeWord(item.word);
+				if (!category || !word) {
+					continue;
 				}
-				magnet.x = toInt(persisted.x, magnet.x);
-				magnet.y = toInt(persisted.y, magnet.y);
-			});
+				var key = entryKey(category, word);
+				var entry = this._entryByKey.get(key);
+				if (!entry) {
+					continue;
+				}
+
+				var usedNow = used.get(key) || 0;
+				if (usedNow >= entry.count) {
+					continue;
+				}
+				used.set(key, usedNow + 1);
+
+				working.push({
+					id: String(item.id || ('m' + (i + 1))),
+					category: category,
+					word: word,
+					w: wordWidth(word),
+					h: 1,
+					x: clamp(toInt(item.x, 0), 0, this._cols - 1),
+					y: clamp(toInt(item.y, 0), 0, this._rows - 1)
+				});
+			}
+
+			this._magnets = working;
+			this._nextId = this._magnets.reduce(function(max, magnet) {
+				var n = parseInt(String(magnet.id).replace(/^m/, ''), 10);
+				if (!Number.isFinite(n)) {
+					return max;
+				}
+				return Math.max(max, n + 1);
+			}, 1);
 		}
 
 		measureBoard() {
@@ -817,7 +935,6 @@
 			var byHeight = Math.floor(height / this._rows);
 			this._cell = clamp(Math.min(byWidth, byHeight), 16, 64);
 			this.$board.style.setProperty('--cell-size', this._cell + 'px');
-
 			this.renderMagnets();
 		}
 
@@ -838,18 +955,14 @@
 			var cells = new Array(this._cols * this._rows).fill(null);
 			for (var i = 0; i < this._magnets.length; i++) {
 				var magnet = this._magnets[i];
-				if (magnet.id === ignoreId) {
+				if (ignoreId && magnet.id === ignoreId) {
 					continue;
 				}
 				for (var y = magnet.y; y < magnet.y + magnet.h; y++) {
-					if (y < 0 || y >= this._rows) {
-						continue;
-					}
 					for (var x = magnet.x; x < magnet.x + magnet.w; x++) {
-						if (x < 0 || x >= this._cols) {
-							continue;
+						if (x >= 0 && y >= 0 && x < this._cols && y < this._rows) {
+							cells[this.cellIndex(x, y)] = magnet.id;
 						}
-						cells[this.cellIndex(x, y)] = magnet.id;
 					}
 				}
 			}
@@ -860,7 +973,6 @@
 			if (x < 0 || y < 0 || x + w > this._cols || y + h > this._rows) {
 				return false;
 			}
-
 			for (var yy = y; yy < y + h; yy++) {
 				for (var xx = x; xx < x + w; xx++) {
 					if (cells[this.cellIndex(xx, yy)] !== null) {
@@ -873,8 +985,8 @@
 
 		findNearestAvailable(startX, startY, w, h, ignoreId, fallbackX, fallbackY) {
 			var cells = this.buildOccupancy(ignoreId);
-			var sx = clamp(startX, 0, this._cols - w);
-			var sy = clamp(startY, 0, this._rows - h);
+			var sx = clamp(startX, 0, Math.max(0, this._cols - w));
+			var sy = clamp(startY, 0, Math.max(0, this._rows - h));
 
 			if (this.canPlace(cells, sx, sy, w, h)) {
 				return { x: sx, y: sy };
@@ -882,7 +994,6 @@
 
 			var best = null;
 			var bestDist = Infinity;
-
 			for (var y = 0; y <= this._rows - h; y++) {
 				for (var x = 0; x <= this._cols - w; x++) {
 					if (!this.canPlace(cells, x, y, w, h)) {
@@ -899,9 +1010,8 @@
 			}
 
 			if (!best) {
-				return { x: fallbackX, y: fallbackY };
+				return { x: fallbackX || 0, y: fallbackY || 0 };
 			}
-
 			return best;
 		}
 
@@ -913,62 +1023,15 @@
 			return this.findNearestAvailable(gridX, gridY, w, h, ignoreId, fallbackX, fallbackY);
 		}
 
-		layoutAllMagnets(force) {
-			var cells = new Array(this._cols * this._rows).fill(null);
-			var placed = 0;
-
-			while (placed < this._magnets.length) {
-				var magnet = this._magnets[placed];
-				var keep = !force && this.canPlace(cells, magnet.x, magnet.y, magnet.w, magnet.h);
-				if (!keep) {
-					var slot = this.firstFit(cells, magnet.w, magnet.h);
-					if (!slot) {
-						this._rows += 1;
-						cells = new Array(this._cols * this._rows).fill(null);
-						placed = 0;
-						continue;
-					}
-					magnet.x = slot.x;
-					magnet.y = slot.y;
-				}
-
-				for (var y = magnet.y; y < magnet.y + magnet.h; y++) {
-					for (var x = magnet.x; x < magnet.x + magnet.w; x++) {
-						cells[this.cellIndex(x, y)] = magnet.id;
-					}
-				}
-
-				placed++;
+		compactMagnets() {
+			for (var i = 0; i < this._magnets.length; i++) {
+				var magnet = this._magnets[i];
+				magnet.w = wordWidth(magnet.word);
+				magnet.h = 1;
+				var slot = this.findNearestAvailable(magnet.x, magnet.y, magnet.w, magnet.h, magnet.id, 0, 0);
+				magnet.x = slot.x;
+				magnet.y = slot.y;
 			}
-		}
-
-		firstFit(cells, w, h) {
-			for (var y = 0; y <= this._rows - h; y++) {
-				for (var x = 0; x <= this._cols - w; x++) {
-					var free = true;
-					for (var yy = y; yy < y + h && free; yy++) {
-						for (var xx = x; xx < x + w; xx++) {
-							if (cells[this.cellIndex(xx, yy)] !== null) {
-								free = false;
-								break;
-							}
-						}
-					}
-					if (free) {
-						return { x: x, y: y };
-					}
-				}
-			}
-			return null;
-		}
-
-		moveMagnet(id, x, y) {
-			var magnet = this.getMagnet(id);
-			if (!magnet) {
-				return;
-			}
-			magnet.x = x;
-			magnet.y = y;
 		}
 
 		nudgeMagnet(id, dx, dy) {
@@ -976,33 +1039,11 @@
 			if (!magnet) {
 				return;
 			}
-
-			var target = this.findNearestAvailable(magnet.x + dx, magnet.y + dy, magnet.w, magnet.h, id, magnet.x, magnet.y);
-			this.moveMagnet(id, target.x, target.y);
+			var slot = this.findNearestAvailable(magnet.x + dx, magnet.y + dy, magnet.w, magnet.h, id, magnet.x, magnet.y);
+			magnet.x = slot.x;
+			magnet.y = slot.y;
+			this.selectMagnet(id);
 			this.renderMagnets();
-			this.setStatus('Moved "' + magnet.word + '" to row ' + (target.y + 1) + ', column ' + (target.x + 1) + '.');
-			this.scheduleSave();
-		}
-
-		moveSelectedToClientPoint(clientX, clientY) {
-			if (!this._selectedId) {
-				return;
-			}
-			var magnet = this.getMagnet(this._selectedId);
-			if (!magnet) {
-				return;
-			}
-			if (!this._boardRect) {
-				this.measureBoard();
-			}
-
-			var localX = clientX - this._boardRect.left;
-			var localY = clientY - this._boardRect.top;
-			var target = this.findNearestAvailableByPixel(localX - ((magnet.w * this._cell) / 2), localY - (this._cell / 2), magnet.w, magnet.h, magnet.id, magnet.x, magnet.y);
-
-			this.moveMagnet(magnet.id, target.x, target.y);
-			this.renderMagnets();
-			this.setStatus('Placed "' + magnet.word + '" at row ' + (target.y + 1) + ', column ' + (target.x + 1) + '.');
 			this.scheduleSave();
 		}
 
@@ -1011,25 +1052,7 @@
 			this.renderMagnets();
 		}
 
-		shuffleMagnets() {
-			if (this.readonly) {
-				return;
-			}
-
-			for (var i = this._magnets.length - 1; i > 0; i--) {
-				var j = Math.floor(Math.random() * (i + 1));
-				var tmp = this._magnets[i];
-				this._magnets[i] = this._magnets[j];
-				this._magnets[j] = tmp;
-			}
-
-			this.layoutAllMagnets(true);
-			this.renderMagnets();
-			this.setStatus('Board shuffled.');
-			this.scheduleSave();
-		}
-
-		placeMagnetElement(magnet, dragging) {
+		placeMagnetElement(magnet, draggingPreview) {
 			var el = this.$magnets.querySelector('[data-id="' + magnet.id + '"]');
 			if (!el) {
 				return;
@@ -1037,7 +1060,7 @@
 
 			var x = magnet.x;
 			var y = magnet.y;
-			if (dragging && this._drag && this._drag.id === magnet.id) {
+			if (draggingPreview && this._drag && this._drag.id === magnet.id) {
 				x = this._drag.candidateX;
 				y = this._drag.candidateY;
 			}
@@ -1052,33 +1075,34 @@
 			}
 
 			var existing = new Map();
-			var nodes = this.$magnets.querySelectorAll('.magnet');
-			for (var n = 0; n < nodes.length; n++) {
-				existing.set(nodes[n].getAttribute('data-id'), nodes[n]);
-			}
+			this.$magnets.querySelectorAll('.magnet').forEach(function(node) {
+				existing.set(node.getAttribute('data-id'), node);
+			});
 
 			var fragment = document.createDocumentFragment();
 			for (var i = 0; i < this._magnets.length; i++) {
 				var magnet = this._magnets[i];
-				var el = existing.get(magnet.id);
-				if (!el) {
-					el = document.createElement('button');
-					el.type = 'button';
-					el.className = 'magnet';
-					el.setAttribute('data-id', magnet.id);
-					el.setAttribute('aria-label', 'Magnet word ' + magnet.word);
-					el.textContent = magnet.word;
+				var node = existing.get(magnet.id);
+				if (!node) {
+					node = document.createElement('button');
+					node.type = 'button';
+					node.className = 'magnet';
+					node.setAttribute('data-id', magnet.id);
+					node.textContent = magnet.word;
+					node.setAttribute('aria-label', 'Magnet word ' + magnet.word + ' from ' + magnet.category);
 				}
 
-				el.dataset.selected = this._selectedId === magnet.id ? 'true' : 'false';
+				node.dataset.selected = this._selectedId === magnet.id ? 'true' : 'false';
+				node.dataset.dragging = this._drag && this._drag.id === magnet.id ? 'true' : 'false';
+
 				if (this.readonly) {
-					el.setAttribute('disabled', 'disabled');
+					node.setAttribute('disabled', 'disabled');
 				} else {
-					el.removeAttribute('disabled');
+					node.removeAttribute('disabled');
 				}
 
 				existing.delete(magnet.id);
-				fragment.appendChild(el);
+				fragment.appendChild(node);
 			}
 
 			existing.forEach(function(node) {
@@ -1094,7 +1118,6 @@
 		}
 
 		setStatus(message) {
-			this._status = message;
 			if (this.$status) {
 				this.$status.textContent = message;
 			}
@@ -1103,15 +1126,19 @@
 		serializeState() {
 			return {
 				id: this._storageKey,
+				version: 2,
 				cols: this._cols,
 				rows: this._rows,
 				magnets: this._magnets.map(function(m) {
 					return {
 						id: m.id,
+						category: m.category,
+						word: m.word,
 						x: m.x,
 						y: m.y
 					};
 				}),
+				nextId: this._nextId,
 				updatedAt: new Date().toISOString()
 			};
 		}
@@ -1121,7 +1148,6 @@
 			if (this._saveTimer !== null) {
 				window.clearTimeout(this._saveTimer);
 			}
-
 			this._saveTimer = window.setTimeout(function() {
 				self._saveTimer = null;
 				self.persistState();
@@ -1131,7 +1157,6 @@
 		async persistState() {
 			var state = this.serializeState();
 			storageSetLocal(this._storageKey, state);
-
 			try {
 				await idbSet(state);
 			} catch (err) {
@@ -1141,9 +1166,7 @@
 			this.dispatchEvent(new CustomEvent('fridge-change', {
 				detail: {
 					storageKey: this._storageKey,
-					magnets: state.magnets,
-					cols: this._cols,
-					rows: this._rows
+					magnets: state.magnets
 				},
 				bubbles: true,
 				composed: true
