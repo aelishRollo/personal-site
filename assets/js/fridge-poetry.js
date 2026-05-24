@@ -184,8 +184,8 @@
 			this._rafMeasure = rafThrottle(this.measureBoard.bind(this));
 
 			this._storageKey = this.getAttribute('storage-key') || STORAGE_FALLBACK_KEY;
-			this._cols = clamp(toInt(this.getAttribute('cols'), DEFAULT_COLS), 8, 24);
-			this._rows = clamp(toInt(this.getAttribute('rows'), DEFAULT_ROWS), 6, 40);
+			this._cols = clamp(toInt(this.getAttribute('cols'), DEFAULT_COLS), 8, 120);
+			this._rows = clamp(toInt(this.getAttribute('rows'), DEFAULT_ROWS), 6, 120);
 			this._cell = DEFAULT_CELL;
 
 			this._categoryOrder = [];
@@ -195,6 +195,12 @@
 			this._nextId = 1;
 			this._selectedId = null;
 			this._drag = null;
+			this._pan = null;
+			this._openCategories = new Set();
+			this._zoom = 1;
+			this._baseCell = DEFAULT_CELL;
+			this._minRowsFromSource = this._rows;
+			this._minColsFromSource = this._cols;
 		}
 
 		connectedCallback() {
@@ -250,8 +256,8 @@
 			}
 
 			if (name === 'cols' || name === 'rows') {
-				this._cols = clamp(toInt(this.getAttribute('cols'), DEFAULT_COLS), 8, 24);
-				this._rows = clamp(toInt(this.getAttribute('rows'), DEFAULT_ROWS), 6, 40);
+				this._cols = clamp(toInt(this.getAttribute('cols'), DEFAULT_COLS), 8, 120);
+				this._rows = clamp(toInt(this.getAttribute('rows'), DEFAULT_ROWS), 6, 120);
 				this.compactMagnets();
 				this.measureBoard();
 				this.renderMagnets();
@@ -328,6 +334,10 @@
 						gap: 0.4rem;
 						flex-wrap: wrap;
 					}
+					.actions-group {
+						display: inline-flex;
+						gap: 0.35rem;
+					}
 					button.ctrl {
 						border: 1px solid rgba(0, 0, 0, 0.2);
 						border-radius: 999px;
@@ -341,21 +351,71 @@
 						cursor: pointer;
 						color: inherit;
 					}
+					button.ctrl[data-pressed="true"] {
+						background: rgba(255, 255, 255, 0.95);
+						border-color: rgba(0, 0, 0, 0.34);
+					}
 					.pickers {
 						display: grid;
-						grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-						gap: 0.65rem;
-						margin: 0.9rem 0;
+						grid-template-columns: 1fr;
+						gap: 0.58rem;
+						margin: 0.82rem 0 0.95rem;
+					}
+					.category-card {
+						border: 1px solid rgba(0, 0, 0, 0.18);
+						border-radius: 11px;
+						background: rgba(255, 255, 255, 0.44);
+						overflow: hidden;
+					}
+					.category-summary {
+						display: flex;
+						align-items: center;
+						justify-content: space-between;
+						gap: 0.6rem;
+						padding: 0.6rem 0.7rem;
+						cursor: pointer;
+						list-style: none;
+					}
+					.category-summary::-webkit-details-marker {
+						display: none;
+					}
+					.category-summary::after {
+						content: "▾";
+						font-size: 0.72rem;
+						opacity: 0.82;
+						transform: rotate(-90deg);
+						transition: transform 140ms ease;
+					}
+					.category-card[open] .category-summary::after {
+						transform: rotate(0deg);
+					}
+					.category-summary-main {
+						display: grid;
+						gap: 0.16rem;
+						min-width: 0;
+					}
+					.category-title {
+						font-size: 0.76rem;
+						font-weight: 800;
+						letter-spacing: 0.05em;
+						text-transform: uppercase;
+					}
+					.category-sub {
+						font-size: 0.72rem;
+						color: var(--fp-subtle);
+					}
+					.category-body {
+						display: grid;
+						gap: 0.62rem;
+						padding: 0 0.68rem 0.68rem;
+						border-top: 1px solid rgba(0, 0, 0, 0.12);
 					}
 					.picker {
 						display: grid;
 						grid-template-columns: 1fr auto;
 						gap: 0.45rem;
 						align-items: end;
-						padding: 0.52rem;
-						border: 1px solid rgba(0, 0, 0, 0.18);
-						border-radius: 10px;
-						background: rgba(255, 255, 255, 0.45);
+						padding-top: 0.6rem;
 					}
 					.picker label {
 						display: block;
@@ -372,9 +432,14 @@
 						border-radius: 7px;
 						padding: 0 0.45rem;
 						font: inherit;
-						font-size: 0.83rem;
+						font-size: 0.92rem;
+						font-weight: 700;
+						line-height: 1.25;
 						background: rgba(255, 255, 255, 0.92);
-						color: inherit;
+						color: #132218;
+					}
+					.picker select option {
+						color: #132218;
 					}
 					.picker button {
 						height: 2rem;
@@ -389,10 +454,40 @@
 						background: rgba(255, 255, 255, 0.92);
 						cursor: pointer;
 					}
-					.picker .remain {
-						grid-column: 1 / -1;
-						font-size: 0.72rem;
+					.word-bank {
+						display: grid;
+						grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+						gap: 0.4rem;
+						max-height: 11rem;
+						overflow: auto;
+						padding-right: 0.15rem;
+					}
+					.word-option {
+						display: flex;
+						justify-content: space-between;
+						gap: 0.45rem;
+						align-items: center;
+						border: 1px solid rgba(0, 0, 0, 0.2);
+						border-radius: 8px;
+						padding: 0.36rem 0.5rem;
+						font: inherit;
+						font-size: 0.77rem;
+						background: rgba(255, 255, 255, 0.85);
+						color: inherit;
+						cursor: pointer;
+					}
+					.word-option[disabled] {
+						opacity: 0.48;
+						cursor: not-allowed;
+					}
+					.word-option .word-meta {
+						font-size: 0.69rem;
 						color: var(--fp-subtle);
+					}
+					.word-bank-empty {
+						font-size: 0.75rem;
+						color: var(--fp-subtle);
+						padding: 0.25rem 0.1rem;
 					}
 					.hint {
 						margin: 0.2rem 0 0.75rem;
@@ -400,19 +495,30 @@
 						line-height: 1.35;
 						color: var(--fp-subtle);
 					}
-					.board {
+					.board-viewport {
 						position: relative;
-						isolation: isolate;
 						height: min(72vh, 680px);
 						min-height: 430px;
 						border-radius: 14px;
-						overflow: hidden;
+						overflow: auto;
 						border: 1px solid rgba(0, 0, 0, 0.22);
+						cursor: grab;
 						background:
 							radial-gradient(circle at 16% 12%, rgba(255, 255, 255, 0.32), transparent 36%),
 							radial-gradient(circle at 86% 88%, rgba(255, 255, 255, 0.15), transparent 38%),
 							linear-gradient(180deg, var(--fp-bg), var(--fp-bg2));
-						touch-action: none;
+					}
+					.board-viewport[data-panning="true"] {
+						cursor: grabbing;
+					}
+					.board {
+						position: relative;
+						isolation: isolate;
+						width: 100%;
+						height: 100%;
+						min-width: 100%;
+						min-height: 100%;
+						touch-action: pan-x pan-y;
 						user-select: none;
 						-webkit-user-select: none;
 					}
@@ -472,16 +578,68 @@
 						color: var(--fp-subtle);
 						min-height: 1.1rem;
 					}
+					.zoom-tools {
+						display: inline-flex;
+						align-items: center;
+						gap: 0.42rem;
+						padding: 0.1rem 0.2rem;
+						border-radius: 12px;
+						background: rgba(255, 255, 255, 0.62);
+						border: 1px solid rgba(0, 0, 0, 0.18);
+						position: absolute;
+						right: 1rem;
+						bottom: 1rem;
+						z-index: 8;
+						backdrop-filter: blur(1.5px);
+					}
+					.zoom-tools .ctrl {
+						min-width: 2rem;
+						height: 2rem;
+						padding: 0;
+						border-radius: 7px;
+						font-size: 0.95rem;
+						line-height: 1;
+					}
+					.zoom-tools input[type="range"] {
+						width: 7.25rem;
+					}
+					.zoom-readout {
+						min-width: 2.7rem;
+						text-align: right;
+						font-size: 0.74rem;
+						font-weight: 700;
+						letter-spacing: 0.04em;
+						text-transform: uppercase;
+					}
 					button.ctrl:focus-visible,
+					.category-summary:focus-visible,
 					.picker select:focus-visible,
 					.picker button:focus-visible,
+					.word-option:focus-visible,
 					.magnet:focus-visible,
 					.board:focus-visible {
 						outline: 2px solid var(--fp-focus);
 						outline-offset: 2px;
 					}
 					@media (max-width: 760px) {
-						.board { height: 68vh; min-height: 360px; }
+						.actions-group {
+							width: 100%;
+						}
+						button.ctrl {
+							flex: 1;
+						}
+						.word-bank {
+							grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+							max-height: 10rem;
+						}
+						.zoom-tools {
+							right: 0.6rem;
+							bottom: 0.6rem;
+						}
+						.zoom-tools input[type="range"] {
+							width: 5.8rem;
+						}
+						.board-viewport { height: 68vh; min-height: 360px; }
 					}
 					@media (prefers-reduced-motion: reduce) {
 						.magnet { transition: none; }
@@ -491,13 +649,25 @@
 					<div class="toolbar">
 						<h3>Fridge Poetry</h3>
 						<div class="actions">
+							<div class="actions-group">
+								<button class="ctrl" type="button" data-action="expand-all" data-pressed="false" aria-pressed="false">Expand All</button>
+								<button class="ctrl" type="button" data-action="collapse-all" data-pressed="false" aria-pressed="false">Collapse All</button>
+							</div>
 							<button class="ctrl" type="button" data-action="clear">Clear Board</button>
 						</div>
 					</div>
 					<div class="pickers" aria-label="Word category pickers"></div>
-					<p class="hint">Choose words from category dropdowns, add them as magnets, then drag and drop to build lines.</p>
-					<div class="board" tabindex="0" aria-label="Interactive fridge poetry board">
-						<div class="magnets"></div>
+					<p class="hint">Choose words from category dropdowns, add them as magnets, and optionally expand all categories to browse every word set together.</p>
+					<div class="board-viewport">
+						<div class="board" tabindex="0" aria-label="Interactive fridge poetry board">
+							<div class="magnets"></div>
+						</div>
+						<div class="zoom-tools" role="group" aria-label="Board zoom controls">
+							<button class="ctrl" type="button" data-action="zoom-out" aria-label="Zoom out">-</button>
+							<input type="range" min="60" max="180" step="5" value="100" data-zoom-slider aria-label="Zoom percentage" />
+							<button class="ctrl" type="button" data-action="zoom-in" aria-label="Zoom in">+</button>
+							<span class="zoom-readout" data-zoom-readout>100%</span>
+						</div>
 					</div>
 					<p class="status" aria-live="polite"></p>
 				</div>
@@ -506,31 +676,101 @@
 
 		cacheElements() {
 			this.$pickers = this.shadowRoot.querySelector('.pickers');
+			this.$viewport = this.shadowRoot.querySelector('.board-viewport');
 			this.$board = this.shadowRoot.querySelector('.board');
 			this.$magnets = this.shadowRoot.querySelector('.magnets');
 			this.$status = this.shadowRoot.querySelector('.status');
+			this.$zoomSlider = this.shadowRoot.querySelector('[data-zoom-slider]');
+			this.$zoomReadout = this.shadowRoot.querySelector('[data-zoom-readout]');
 		}
 
 		bindEvents() {
 			var self = this;
+
+			if (this.$zoomSlider) {
+				this.$zoomSlider.addEventListener('input', function() {
+					self.setZoom((toInt(self.$zoomSlider.value, 100)) / 100, true);
+				});
+			}
+
+			if (this.$viewport) {
+				this.$viewport.addEventListener('pointerdown', function(event) {
+					if (event.button !== 0 || event.target.closest('.magnet') || event.target.closest('.zoom-tools')) {
+						return;
+					}
+
+					self._pan = {
+						pointerId: event.pointerId,
+						startX: event.clientX,
+						startY: event.clientY,
+						startLeft: self.$viewport.scrollLeft,
+						startTop: self.$viewport.scrollTop
+					};
+
+					self.$viewport.setAttribute('data-panning', 'true');
+					self.$viewport.setPointerCapture(event.pointerId);
+				});
+
+				this.$viewport.addEventListener('pointermove', function(event) {
+					if (!self._pan || event.pointerId !== self._pan.pointerId) {
+						return;
+					}
+
+					event.preventDefault();
+					var dx = event.clientX - self._pan.startX;
+					var dy = event.clientY - self._pan.startY;
+					self.$viewport.scrollLeft = self._pan.startLeft - dx;
+					self.$viewport.scrollTop = self._pan.startTop - dy;
+				});
+
+				var endPan = function(event) {
+					if (!self._pan || event.pointerId !== self._pan.pointerId) {
+						return;
+					}
+					self._pan = null;
+					self.$viewport.removeAttribute('data-panning');
+				};
+
+				this.$viewport.addEventListener('pointerup', endPan);
+				this.$viewport.addEventListener('pointercancel', endPan);
+			}
 
 			this.shadowRoot.addEventListener('click', function(event) {
 				var ctrl = event.target.closest('button.ctrl');
 				if (!ctrl) {
 					return;
 				}
-				if (ctrl.getAttribute('data-action') === 'clear') {
+				var action = ctrl.getAttribute('data-action');
+				if (action === 'clear') {
 					self.clearBoard();
+				} else if (action === 'expand-all') {
+					self.expandAllCategories();
+				} else if (action === 'collapse-all') {
+					self.collapseAllCategories();
+				} else if (action === 'zoom-in') {
+					self.setZoom(self._zoom + 0.1, false);
+				} else if (action === 'zoom-out') {
+					self.setZoom(self._zoom - 0.1, false);
 				}
 			});
 
 			this.$pickers.addEventListener('click', function(event) {
-				var button = event.target.closest('button[data-category]');
-				if (!button || self.readonly) {
+				var addCategoryButton = event.target.closest('button[data-category-add]');
+				if (addCategoryButton) {
+					if (self.readonly) {
+						return;
+					}
+					event.preventDefault();
+					self.addFromCategory(addCategoryButton.getAttribute('data-category-add'));
+					return;
+				}
+
+				var addEntryButton = event.target.closest('button[data-entry-key]');
+				if (!addEntryButton || self.readonly) {
 					return;
 				}
 				event.preventDefault();
-				self.addFromCategory(button.getAttribute('data-category'));
+				self.addEntryByKey(addEntryButton.getAttribute('data-entry-key'));
 			});
 
 			this.$magnets.addEventListener('pointerdown', function(event) {
@@ -665,7 +905,9 @@
 				this._resizeObserver = new ResizeObserver(function() {
 					self._rafMeasure();
 				});
-				this._resizeObserver.observe(this.$board);
+				if (this.$viewport) {
+					this._resizeObserver.observe(this.$viewport);
+				}
 			} else {
 				window.addEventListener('resize', function() {
 					self._rafMeasure();
@@ -695,8 +937,14 @@
 		}
 
 		async initialize(skipSaved) {
+			var configuredCols = clamp(toInt(this.getAttribute('cols'), DEFAULT_COLS), 8, 120);
+			var configuredRows = clamp(toInt(this.getAttribute('rows'), DEFAULT_ROWS), 6, 80);
+			this._cols = configuredCols;
+			this._rows = configuredRows;
+
 			var source = await this.fetchWordSource();
 			this.ingestSource(source);
+			this._openCategories.clear();
 
 			this._magnets = [];
 			this._nextId = 1;
@@ -705,6 +953,8 @@
 			if (!skipSaved) {
 				await this.loadSavedState();
 			}
+
+			this._rows = Math.max(this._rows, this._minRowsFromSource);
 
 			this.compactMagnets();
 			this.renderPickers();
@@ -761,6 +1011,31 @@
 					this._entryByKey.set(entries[i].key, entries[i]);
 				}
 			}, this);
+
+			this._minColsFromSource = this.computeMinimumColsFromSource();
+			this._minRowsFromSource = this.computeMinimumRowsFromSource();
+			this._cols = Math.max(this._cols, this._minColsFromSource);
+			this._rows = Math.max(this._rows, this._minRowsFromSource);
+		}
+
+		computeMinimumColsFromSource() {
+			var totalCells = 0;
+			this._entryByKey.forEach(function(entry) {
+				totalCells += entry.count * wordWidth(entry.word);
+			});
+
+			var estimate = Math.ceil(Math.sqrt(totalCells * 1.35));
+			return clamp(Math.max(24, estimate), 12, 80);
+		}
+
+		computeMinimumRowsFromSource() {
+			var totalCells = 0;
+			this._entryByKey.forEach(function(entry) {
+				totalCells += entry.count * wordWidth(entry.word);
+			});
+
+			var estimate = Math.ceil(totalCells / this._cols) + 2;
+			return clamp(Math.max(DEFAULT_ROWS, estimate), DEFAULT_ROWS, 80);
 		}
 
 		usedCounts() {
@@ -789,29 +1064,75 @@
 				var category = this._categoryOrder[i];
 				var entries = this._entriesByCategory.get(category) || [];
 				var options = '';
+				var words = '';
+				var total = 0;
+				var remainingTotal = 0;
 				for (var j = 0; j < entries.length; j++) {
 					var entry = entries[j];
 					var remain = this.remainingFor(entry, used);
 					var disabled = remain <= 0 ? ' disabled' : '';
+					total += entry.count;
+					remainingTotal += remain;
 					options += '<option value="' + entry.key + '"' + disabled + '>' + entry.word + ' (' + remain + '/' + entry.count + ')</option>';
+					words += '<button type="button" class="word-option" data-entry-key="' + entry.key + '"' + disabled + '><span>' + entry.word + '</span><span class="word-meta">' + remain + '/' + entry.count + '</span></button>';
 				}
 
 				if (!options) {
 					options = '<option value="">No words</option>';
 				}
+				if (!words) {
+					words = '<div class="word-bank-empty">No words available.</div>';
+				}
+
+				var open = this._openCategories.has(category) ? ' open' : '';
 
 				html +=
-					'<div class="picker" data-picker="' + category + '">' +
-						'<div>' +
-							'<label for="pick-' + category + '">' + category + '</label>' +
-							'<select id="pick-' + category + '" data-category-select="' + category + '">' + options + '</select>' +
+					'<details class="category-card" data-category-card="' + category + '"' + open + '>' +
+						'<summary class="category-summary" id="cat-summary-' + category + '">' +
+							'<span class="category-summary-main">' +
+								'<span class="category-title">' + category + '</span>' +
+								'<span class="category-sub">' + remainingTotal + ' of ' + total + ' remaining</span>' +
+							'</span>' +
+						'</summary>' +
+						'<div class="category-body" role="group" aria-labelledby="cat-summary-' + category + '">' +
+							'<div class="picker" data-picker="' + category + '">' +
+								'<div>' +
+									'<label for="pick-' + category + '">' + category + ' dropdown</label>' +
+									'<select id="pick-' + category + '" data-category-select="' + category + '">' + options + '</select>' +
+								'</div>' +
+								'<button type="button" data-category-add="' + category + '">Add</button>' +
+							'</div>' +
+							'<div class="word-bank">' + words + '</div>' +
 						'</div>' +
-						'<button type="button" data-category="' + category + '">Add</button>' +
-						'<div class="remain">Choose one ' + category.slice(0, -1) + ' and add it as a magnet.</div>' +
-					'</div>';
+					'</details>';
 			}
 
 			this.$pickers.innerHTML = html;
+			this.bindCategoryDetailsEvents();
+			this.syncCategoryControlState();
+		}
+
+		bindCategoryDetailsEvents() {
+			var self = this;
+			var cards = this.$pickers.querySelectorAll('details[data-category-card]');
+			for (var i = 0; i < cards.length; i++) {
+				(function(details) {
+					details.addEventListener('toggle', function() {
+						var category = details.getAttribute('data-category-card');
+						if (!category) {
+							return;
+						}
+
+						if (details.open) {
+							self._openCategories.add(category);
+						} else {
+							self._openCategories.delete(category);
+						}
+
+						self.syncCategoryControlState();
+					});
+				})(cards[i]);
+			}
 		}
 
 		addFromCategory(category) {
@@ -819,15 +1140,22 @@
 			if (!select || !select.value) {
 				return;
 			}
+			this.addEntryByKey(select.value);
+		}
 
-			var entry = this._entryByKey.get(select.value);
+		addEntryByKey(entryKeyValue) {
+			if (!entryKeyValue) {
+				return;
+			}
+
+			var entry = this._entryByKey.get(entryKeyValue);
 			if (!entry) {
 				return;
 			}
 
 			var used = this.usedCounts();
 			if (this.remainingFor(entry, used) <= 0) {
-				this.setStatus('No remaining "' + entry.word + '" magnets in ' + category + '.');
+				this.setStatus('No remaining "' + entry.word + '" magnets in ' + entry.category + '.');
 				this.renderPickers();
 				return;
 			}
@@ -837,7 +1165,7 @@
 				h: 1
 			};
 
-			var slot = this.findNearestAvailable(0, 0, dims.w, dims.h, null, 0, 0);
+			var slot = this.findAvailableSlotWithGrowth(dims.w, dims.h);
 			var magnet = {
 				id: 'm' + this._nextId++,
 				category: entry.category,
@@ -854,6 +1182,71 @@
 			this.renderMagnets();
 			this.setStatus('Added "' + magnet.word + '".');
 			this.scheduleSave();
+		}
+
+		findAvailableSlotWithGrowth(w, h) {
+			var attempts = 0;
+			while (attempts < 120) {
+				var slot = this.findNearestAvailable(0, 0, w, h, null, -1, -1);
+				if (slot.x !== -1 && slot.y !== -1) {
+					return slot;
+				}
+
+				this._rows += 1;
+				attempts++;
+			}
+
+			return { x: 0, y: Math.max(0, this._rows - 1) };
+		}
+
+		expandAllCategories() {
+			for (var i = 0; i < this._categoryOrder.length; i++) {
+				this._openCategories.add(this._categoryOrder[i]);
+			}
+			this.applyCategoryOpenState();
+			this.syncCategoryControlState();
+			this.setStatus('All categories expanded.');
+		}
+
+		collapseAllCategories() {
+			this._openCategories.clear();
+			this.applyCategoryOpenState();
+			this.syncCategoryControlState();
+			this.setStatus('All categories collapsed.');
+		}
+
+		applyCategoryOpenState() {
+			if (!this.$pickers) {
+				return;
+			}
+
+			var cards = this.$pickers.querySelectorAll('details[data-category-card]');
+			for (var i = 0; i < cards.length; i++) {
+				var details = cards[i];
+				var category = details.getAttribute('data-category-card');
+				details.open = this._openCategories.has(category);
+			}
+		}
+
+		syncCategoryControlState() {
+			var expandBtn = this.shadowRoot.querySelector('button[data-action="expand-all"]');
+			var collapseBtn = this.shadowRoot.querySelector('button[data-action="collapse-all"]');
+			if (!expandBtn || !collapseBtn) {
+				return;
+			}
+
+			var total = this._categoryOrder.length;
+			var openCount = this._openCategories.size;
+			var allOpen = total > 0 && openCount === total;
+			var noneOpen = openCount === 0;
+
+			expandBtn.setAttribute('aria-pressed', allOpen ? 'true' : 'false');
+			expandBtn.setAttribute('data-pressed', allOpen ? 'true' : 'false');
+			expandBtn.disabled = allOpen;
+
+			collapseBtn.setAttribute('aria-pressed', noneOpen ? 'true' : 'false');
+			collapseBtn.setAttribute('data-pressed', noneOpen ? 'true' : 'false');
+			collapseBtn.disabled = noneOpen;
 		}
 
 		clearBoard() {
@@ -880,6 +1273,19 @@
 			if (!saved || !Array.isArray(saved.magnets)) {
 				return;
 			}
+
+			this._cols = Math.max(
+				this._cols,
+				clamp(toInt(saved.cols, this._cols), 8, 120),
+				this._minColsFromSource
+			);
+
+			this._rows = Math.max(
+				this._rows,
+				clamp(toInt(saved.rows, this._rows), 6, 120),
+				this._minRowsFromSource
+			);
+			this._zoom = clamp((toInt(saved.zoom, Math.round(this._zoom * 100))) / 100, 0.6, 1.8);
 
 			var working = [];
 			var used = new Map();
@@ -924,17 +1330,20 @@
 		}
 
 		measureBoard() {
-			if (!this.$board) {
+			if (!this.$board || !this.$viewport) {
 				return;
 			}
 
-			this._boardRect = this.$board.getBoundingClientRect();
-			var width = this._boardRect.width;
-			var height = this._boardRect.height;
-			var byWidth = Math.floor(width / this._cols);
-			var byHeight = Math.floor(height / this._rows);
-			this._cell = clamp(Math.min(byWidth, byHeight), 16, 64);
+			var viewportRect = this.$viewport.getBoundingClientRect();
+			this._baseCell = clamp(Math.floor(viewportRect.width / this._cols), 24, 56);
+			this._cell = clamp(Math.round(this._baseCell * this._zoom), 16, 96);
+
 			this.$board.style.setProperty('--cell-size', this._cell + 'px');
+			this.$board.style.width = (this._cols * this._cell) + 'px';
+			this.$board.style.height = (this._rows * this._cell) + 'px';
+
+			this._boardRect = this.$board.getBoundingClientRect();
+			this.syncZoomUi();
 			this.renderMagnets();
 		}
 
@@ -1010,7 +1419,10 @@
 			}
 
 			if (!best) {
-				return { x: fallbackX || 0, y: fallbackY || 0 };
+				return {
+					x: Number.isFinite(fallbackX) ? fallbackX : 0,
+					y: Number.isFinite(fallbackY) ? fallbackY : 0
+				};
 			}
 			return best;
 		}
@@ -1045,6 +1457,30 @@
 			this.selectMagnet(id);
 			this.renderMagnets();
 			this.scheduleSave();
+		}
+
+		setZoom(value, quietStatus) {
+			var next = clamp(value, 0.6, 1.8);
+			if (Math.abs(next - this._zoom) < 0.001) {
+				this.syncZoomUi();
+				return;
+			}
+
+			this._zoom = next;
+			this.measureBoard();
+			if (!quietStatus) {
+				this.setStatus('Zoom set to ' + Math.round(this._zoom * 100) + '%.');
+			}
+			this.scheduleSave();
+		}
+
+		syncZoomUi() {
+			if (this.$zoomSlider) {
+				this.$zoomSlider.value = String(Math.round(this._zoom * 100));
+			}
+			if (this.$zoomReadout) {
+				this.$zoomReadout.textContent = Math.round(this._zoom * 100) + '%';
+			}
 		}
 
 		selectMagnet(id) {
@@ -1129,6 +1565,7 @@
 				version: 2,
 				cols: this._cols,
 				rows: this._rows,
+				zoom: Math.round(this._zoom * 100),
 				magnets: this._magnets.map(function(m) {
 					return {
 						id: m.id,
