@@ -4289,6 +4289,19 @@ body.page-contact .page-hero {
 		grid-template-columns: 1fr;
 	}
 
+	.hero-grid--with-portrait {
+		grid-template-columns: 1fr;
+	}
+
+	.hero-grid--with-portrait .portrait-panel {
+		justify-self: start;
+	}
+
+	.portrait-panel-compact img {
+		width: 132px !important;
+		height: 132px !important;
+	}
+
 	.portrait-panel img,
 	.portrait-panel-large img {
 		max-width: 160px;
@@ -4447,6 +4460,26 @@ ul.feature-icons li {
 .portrait-panel-large img {
 	max-width: 220px;
 	aspect-ratio: 1 / 1;
+}
+
+.hero-grid--with-portrait {
+	grid-template-columns: 1.2fr auto;
+}
+
+.hero-grid--with-portrait .portrait-panel {
+	margin: 0;
+	justify-self: end;
+}
+
+.portrait-panel-compact img {
+	width: 156px !important;
+	height: 156px !important;
+	max-width: none !important;
+	aspect-ratio: auto !important;
+	border-radius: 14px;
+	display: block;
+	object-fit: cover;
+	object-position: center;
 }
 
 .profile-chip {
