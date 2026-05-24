@@ -541,16 +541,6 @@
 						opacity: 0.72;
 						flex: 0 0 auto;
 					}
-					.word-option .word-cat {
-						display: inline-block;
-						margin-right: 0.38rem;
-						font-size: 0.62rem;
-						font-weight: 800;
-						letter-spacing: 0.04em;
-						text-transform: uppercase;
-						opacity: 0.66;
-						vertical-align: middle;
-					}
 					.word-bank-empty {
 						font-size: 0.75rem;
 						color: var(--fp-subtle);
@@ -1256,7 +1246,7 @@
 				var remain = this.remainingFor(entry, used);
 				var disabled = remain <= 0 ? ' disabled' : '';
 				totalEntries += remain;
-				wordsHtml += '<button type="button" class="word-option" data-entry-key="' + escapeHtml(entry.key) + '"' + disabled + '><span><span class="word-cat">' + escapeHtml(entry.category) + '</span>' + escapeHtml(entry.word) + '</span><span class="word-meta">' + remain + '/' + entry.count + '</span></button>';
+				wordsHtml += '<button type="button" class="word-option" data-entry-key="' + escapeHtml(entry.key) + '"' + disabled + '><span>' + escapeHtml(entry.word) + '</span><span class="word-meta">' + remain + '/' + entry.count + '</span></button>';
 			}
 
 			if (!wordsHtml) {
