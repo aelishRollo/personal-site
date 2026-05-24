@@ -502,14 +502,18 @@
 						position: relative;
 						height: min(72vh, 680px);
 						min-height: 430px;
-						border-radius: 14px;
+						border-radius: 0;
 						overflow: auto;
-						border: 1px solid rgba(0, 0, 0, 0.22);
+						border: 2px solid rgba(7, 16, 11, 0.86);
+						box-shadow: inset 0 0 0 1px rgba(230, 245, 236, 0.28);
 						cursor: grab;
 						background:
 							radial-gradient(circle at 16% 12%, rgba(255, 255, 255, 0.32), transparent 36%),
 							radial-gradient(circle at 86% 88%, rgba(255, 255, 255, 0.15), transparent 38%),
 							linear-gradient(180deg, var(--fp-bg), var(--fp-bg2));
+					}
+					.board-frame {
+						position: relative;
 					}
 					.board-viewport[data-panning="true"] {
 						cursor: grabbing;
@@ -524,6 +528,8 @@
 						touch-action: none;
 						user-select: none;
 						-webkit-user-select: none;
+						outline: 1px solid rgba(7, 16, 11, 0.68);
+						outline-offset: -1px;
 					}
 					.board::before,
 					.board::after {
@@ -595,6 +601,7 @@
 						bottom: 0.8rem;
 						z-index: 8;
 						backdrop-filter: blur(1.5px);
+						pointer-events: auto;
 					}
 					.zoom-tools .ctrl {
 						min-width: 1.7rem;
@@ -658,9 +665,11 @@
 					</div>
 					<div class="pickers" aria-label="Word category pools"></div>
 					<p class="hint">Choose words from each category pool, place magnets on the fridge, then pan and pinch to compose lines anywhere on the board.</p>
-					<div class="board-viewport">
-						<div class="board" tabindex="0" aria-label="Interactive fridge poetry board">
-							<div class="magnets"></div>
+					<div class="board-frame">
+						<div class="board-viewport">
+							<div class="board" tabindex="0" aria-label="Interactive fridge poetry board">
+								<div class="magnets"></div>
+							</div>
 						</div>
 						<div class="zoom-tools" role="group" aria-label="Board zoom controls">
 							<button class="ctrl" type="button" data-action="zoom-out" aria-label="Zoom out">-</button>
@@ -788,11 +797,16 @@
 				this.$viewport.addEventListener('lostpointercapture', endPan);
 
 				this.$viewport.addEventListener('wheel', function(event) {
+					event.preventDefault();
+
 					if (event.ctrlKey || event.metaKey) {
-						event.preventDefault();
 						var factor = Math.exp((-event.deltaY || 0) / 320);
 						self.setZoom(self._zoom * factor, true, event.clientX, event.clientY);
+						return;
 					}
+
+					self.$viewport.scrollLeft += event.deltaX;
+					self.$viewport.scrollTop += event.deltaY;
 				}, { passive: false });
 
 				this.$viewport.addEventListener('gesturestart', function(event) {
@@ -1614,7 +1628,17 @@
 				y = this._drag.candidateY;
 			}
 
-			el.style.width = ((magnet.w * this._cell) - (this._magnetGap * 2)) + 'px';
+			var cardWidth = (magnet.w * this._cell) - (this._magnetGap * 2);
+			var cardHeight = this._cell - (this._magnetGap * 2);
+			var sidePad = this._cell * 0.24; // 2 * 0.12 cell padding (left + right)
+			var availableTextWidth = Math.max(8, cardWidth - sidePad);
+			var chars = Math.max(1, String(magnet.word || '').length);
+			var widthLimitedSize = availableTextWidth / (chars * 0.66);
+			var heightLimitedSize = cardHeight * 0.74;
+			var fontPx = Math.max(7, Math.min(widthLimitedSize, heightLimitedSize));
+
+			el.style.width = cardWidth + 'px';
+			el.style.fontSize = fontPx + 'px';
 			el.style.transform = 'translate(' + ((x * this._cell) + this._magnetGap) + 'px,' + ((y * this._cell) + this._magnetGap) + 'px)';
 		}
 
