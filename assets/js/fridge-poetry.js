@@ -294,6 +294,9 @@
 						--fp-word-bg: #fafffa;
 						--fp-word-text: #112015;
 						--fp-word-border: #9fb2a2;
+						--fp-fridge-border: rgba(27, 42, 33, 0.64);
+						--fp-fridge-inner: rgba(255, 255, 255, 0.24);
+						--fp-fridge-outer: rgba(0, 0, 0, 0.18);
 						color: var(--fp-text);
 						font-family: "Lato", "Segoe UI", sans-serif;
 					}
@@ -315,6 +318,9 @@
 						--fp-word-bg: #24372b;
 						--fp-word-text: #f2fff6;
 						--fp-word-border: #5a7765;
+						--fp-fridge-border: rgba(189, 213, 197, 0.66);
+						--fp-fridge-inner: rgba(227, 242, 231, 0.2);
+						--fp-fridge-outer: rgba(0, 0, 0, 0.5);
 					}
 					@media (prefers-color-scheme: dark) {
 						:host(:not([data-theme="light"])) {
@@ -335,6 +341,9 @@
 							--fp-word-bg: #24372b;
 							--fp-word-text: #f2fff6;
 							--fp-word-border: #5a7765;
+							--fp-fridge-border: rgba(189, 213, 197, 0.66);
+							--fp-fridge-inner: rgba(227, 242, 231, 0.2);
+							--fp-fridge-outer: rgba(0, 0, 0, 0.48);
 						}
 					}
 					.shell {
@@ -504,8 +513,8 @@
 						min-height: 430px;
 						border-radius: 0;
 						overflow: auto;
-						border: 2px solid rgba(7, 16, 11, 0.86);
-						box-shadow: inset 0 0 0 1px rgba(230, 245, 236, 0.28);
+						border: 1px solid var(--fp-fridge-outer);
+						box-shadow: inset 0 0 0 2px var(--fp-fridge-border), inset 0 1px 0 var(--fp-fridge-inner);
 						cursor: grab;
 						background:
 							radial-gradient(circle at 16% 12%, rgba(255, 255, 255, 0.32), transparent 36%),
@@ -528,8 +537,7 @@
 						touch-action: none;
 						user-select: none;
 						-webkit-user-select: none;
-						outline: 1px solid rgba(7, 16, 11, 0.68);
-						outline-offset: -1px;
+						outline: none;
 					}
 					.board::before,
 					.board::after {
@@ -559,7 +567,7 @@
 						justify-content: center;
 						height: calc(var(--cell-size, 44px) - (var(--magnet-gap, 4px) * 2));
 						padding: 0 calc(var(--cell-size, 44px) * 0.12);
-						border-radius: 4px;
+						border-radius: 0;
 						border: 1px solid var(--fp-magnet-edge);
 						background: linear-gradient(180deg, #ffffff, var(--fp-magnet-bg));
 						box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.2);
