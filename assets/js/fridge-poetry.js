@@ -57,16 +57,8 @@
 
 	function wordWidth(word) {
 		var len = String(word).length;
-		if (len <= 3) {
-			return 1;
-		}
-		if (len <= 7) {
-			return 2;
-		}
-		if (len <= 11) {
-			return 3;
-		}
-		return 4;
+		var cells = Math.ceil((len * 0.35) + 0.45);
+		return clamp(cells, 1, 14);
 	}
 
 	function rafThrottle(fn) {
@@ -196,6 +188,7 @@
 			this._themeObserver = null;
 			this._resizeObserver = null;
 			this._saveTimer = null;
+			this._selectionTimer = null;
 			this._rafMeasure = rafThrottle(this.measureBoard.bind(this));
 
 			this._storageKey = this.getAttribute('storage-key') || STORAGE_FALLBACK_KEY;
@@ -216,7 +209,7 @@
 			this._showAvailableOnly = false;
 			this._zoom = 1;
 			this._baseCell = DEFAULT_CELL;
-			this._magnetGap = 4;
+			this._magnetGap = 0;
 			this._minRowsFromSource = this._rows;
 			this._minColsFromSource = this._cols;
 		}
@@ -249,6 +242,10 @@
 			if (this._saveTimer !== null) {
 				window.clearTimeout(this._saveTimer);
 				this._saveTimer = null;
+			}
+			if (this._selectionTimer !== null) {
+				window.clearTimeout(this._selectionTimer);
+				this._selectionTimer = null;
 			}
 		}
 
@@ -633,17 +630,19 @@
 						display: inline-flex;
 						align-items: center;
 						justify-content: center;
+						box-sizing: border-box;
 						height: calc(var(--cell-size, 44px) - (var(--magnet-gap, 4px) * 2));
-						padding: 0 calc(var(--cell-size, 44px) * 0.12);
+						padding: 0 calc(var(--cell-size, 44px) * 0.03);
 						border-radius: 0;
 						border: 1px solid var(--fp-magnet-edge);
 						background: linear-gradient(180deg, #ffffff, var(--fp-magnet-bg));
 						box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.2);
 						color: var(--fp-magnet-text);
 						font-family: "Lucida Console", "Courier New", monospace;
-						font-size: calc((var(--cell-size, 44px) - (var(--magnet-gap, 4px) * 2)) * 0.42);
-						font-weight: 700;
-						letter-spacing: 0.04em;
+						font-size: calc((var(--cell-size, 44px) - (var(--magnet-gap, 4px) * 2)) * 0.62);
+						font-weight: 800;
+						letter-spacing: 0.01em;
+						line-height: 1;
 						text-transform: lowercase;
 						white-space: nowrap;
 						cursor: grab;
@@ -1370,7 +1369,7 @@
 			};
 
 			this._magnets.push(magnet);
-			this.selectMagnet(magnet.id);
+			this.selectMagnet(magnet.id, 5000);
 			this.renderPickers();
 			this.renderMagnets();
 			this.setStatus('Added "' + magnet.word + '".');
@@ -1482,7 +1481,7 @@
 			var widthLimitedBase = clamp(Math.floor(14000 / Math.max(1, this._cols)), 20, DEFAULT_CELL);
 			this._baseCell = Math.max(24, Math.min(responsiveBase, widthLimitedBase));
 			this._cell = clamp(Math.round(this._baseCell * this._zoom), 16, 96);
-			this._magnetGap = Math.max(2, Math.round(this._cell * 0.09));
+			this._magnetGap = 0;
 
 			this.$board.style.setProperty('--cell-size', this._cell + 'px');
 			this.$board.style.setProperty('--magnet-gap', this._magnetGap + 'px');
@@ -1682,9 +1681,26 @@
 			}
 		}
 
-		selectMagnet(id) {
+		selectMagnet(id, autoClearMs) {
+			if (this._selectionTimer !== null) {
+				window.clearTimeout(this._selectionTimer);
+				this._selectionTimer = null;
+			}
+
 			this._selectedId = id;
 			this.renderMagnets();
+
+			if (Number.isFinite(autoClearMs) && autoClearMs > 0) {
+				var self = this;
+				var selectedAtSet = id;
+				this._selectionTimer = window.setTimeout(function() {
+					self._selectionTimer = null;
+					if (self._selectedId === selectedAtSet) {
+						self._selectedId = null;
+						self.renderMagnets();
+					}
+				}, autoClearMs);
+			}
 		}
 
 		placeMagnetElement(magnet, draggingPreview) {
@@ -1701,16 +1717,8 @@
 			}
 
 			var cardWidth = (magnet.w * this._cell) - (this._magnetGap * 2);
-			var cardHeight = this._cell - (this._magnetGap * 2);
-			var sidePad = this._cell * 0.24; // 2 * 0.12 cell padding (left + right)
-			var availableTextWidth = Math.max(8, cardWidth - sidePad);
-			var chars = Math.max(1, String(magnet.word || '').length);
-			var widthLimitedSize = availableTextWidth / (chars * 0.66);
-			var heightLimitedSize = cardHeight * 0.74;
-			var fontPx = Math.max(7, Math.min(widthLimitedSize, heightLimitedSize));
-
 			el.style.width = cardWidth + 'px';
-			el.style.fontSize = fontPx + 'px';
+			el.style.fontSize = '';
 			el.style.transform = 'translate(' + ((x * this._cell) + this._magnetGap) + 'px,' + ((y * this._cell) + this._magnetGap) + 'px)';
 		}
 
