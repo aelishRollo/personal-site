@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Fridge Poetry Lab | Alec Rollison</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="color-scheme" content="dark light" />
+		<script>
+			(function() {
+				var t = localStorage.getItem('site-theme-v2') || 'dark';
+				document.documentElement.setAttribute('data-theme', t);
+				document.documentElement.style.colorScheme = t;
+			})();
+		</script>
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload page-work">
+		<header class="site-header" role="banner">
+			<div class="site-shell">
+				<a class="brand" href="index.html"><span class="brand-mark">AR</span><span class="brand-text">Alec Rollison</span></a>
+				<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+				<nav id="site-nav" class="site-nav" aria-label="Primary">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="work.html" aria-current="page">Work</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="connect.html">Connect</a></li>
+						<li><a href="services.html">Services</a></li>
+						<li><a href="contact.html" class="nav-cta">Contact</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<div id="wrapper" class="site-main-wrap">
+			<main id="main" class="site-main">
+				<section class="page-hero">
+					<div class="site-shell">
+						<p class="eyebrow">Interactive Lab</p>
+						<h1>Fridge Poetry: drag magnets, build lines, and keep your layout saved.</h1>
+						<p class="lead">Each word can only be used as many times as it appears in the source list. Magnet positions persist across sessions.</p>
+					</div>
+				</section>
+				<section class="page-section">
+					<div class="site-shell">
+						<fridge-poetry-board
+							words-src="assets/data/fridge-poetry-words.json"
+							storage-key="fridge-poetry-main-board-v1"
+							cols="14"
+							rows="11"></fridge-poetry-board>
+					</div>
+				</section>
+				<section class="page-section section-soft">
+					<div class="site-shell">
+						<h2>Embed This On Any Site</h2>
+						<p>Use this snippet to embed the board in another page. You can point <code>words-src</code> at your own JSON or text source.</p>
+						<pre><code>&lt;script src="https://rollison.dev/assets/js/fridge-poetry.js" defer&gt;&lt;/script&gt;
+
+&lt;fridge-poetry-board
+  words-src="https://rollison.dev/assets/data/fridge-poetry-words.json"
+  storage-key="my-fridge-board"
+  cols="14"
+  rows="11"&gt;&lt;/fridge-poetry-board&gt;</code></pre>
+					</div>
+				</section>
+			</main>
+			<footer class="site-footer"><div class="site-shell footer-inner"><p>&copy; Alec Rollison. All rights reserved.</p><ul class="social-inline"><li><a href="https://github.com/aelishRollo">GitHub</a></li><li><a href="https://x.com/RollisonDev">Twitter</a></li></ul></div></footer>
+		</div>
+		<script src="assets/js/jquery.min.js"></script><script src="assets/js/browser.min.js"></script><script src="assets/js/breakpoints.min.js"></script><script src="assets/js/util.js"></script><script src="assets/js/main.js"></script>
+		<script src="assets/js/fridge-poetry.js"></script>
+	</body>
+</html>
