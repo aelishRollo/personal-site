@@ -11,7 +11,7 @@
 				document.documentElement.style.colorScheme = t;
 			})();
 		</script>
-		<link rel="stylesheet" href="assets/css/main.css?v=layout-refresh" />
+		<link rel="stylesheet" href="assets/css/main.css?v=utility-toggle-refresh" />
 	</head>
 	<body class="is-preload page-contact">
 		<header class="site-header" role="banner">
@@ -35,21 +35,15 @@
 				<section class="page-hero">
 					<div class="site-shell">
 						<p class="eyebrow">Contact</p>
-						<h1>One form for collaboration, opportunities, or any conversation you want to start.</h1>
-						<p class="lead">I am open to software work, music collaboration, jam sessions, professional conversations, and general connection.</p>
+						<h1>Tell me what you are thinking about.</h1>
+						<p class="lead">Reach out about software work, music collaboration, jam sessions, professional opportunities, or anything else you want to start a conversation around.</p>
 					</div>
 				</section>
 				<section class="page-section">
 					<div class="site-shell contact-layout">
 						<div class="contact-intro">
-							<h2>Start With the Closest Lane</h2>
-							<p>If your message does not fit perfectly, choose the closest context and include details in your note.</p>
-							<ul class="tag-list contact-tags" aria-label="Common contact contexts">
-								<li>Software projects</li>
-								<li>Music collaboration</li>
-								<li>Professional opportunities</li>
-								<li>General conversation</li>
-							</ul>
+							<h2>Send a Note</h2>
+							<p>No need to fit your message into a category. A little context is helpful, but the important part is saying hello and telling me what is on your mind.</p>
 						</div>
 						<form name="contact-form" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thanks.html" class="contact-form-grid">
 							<input type="hidden" name="form-name" value="contact-form" />
@@ -60,9 +54,9 @@
 							<div class="row gtr-uniform">
 								<div class="col-6 col-12-small"><label for="name">Name</label><input type="text" name="name" id="name" required /></div>
 								<div class="col-6 col-12-small"><label for="email">Your Email</label><input type="email" name="email" id="email" required /></div>
-								<div class="col-12"><label for="context">Context</label><select name="context" id="context" required><option value="">Choose one</option><option value="software">Software Project or Product Work</option><option value="music-collab">Music Collaboration or Jam Session</option><option value="opportunity">Professional Opportunity</option><option value="general">General Conversation</option></select></div>
+								<div class="col-12"><label for="context">Topic <span class="optional-label">(optional)</span></label><input type="text" name="context" id="context" /></div>
 								<div class="col-12"><label for="message">Message</label><textarea name="message" id="message" rows="7" required></textarea></div>
-								<div class="col-12"><ul class="actions"><li><button type="submit" class="primary">Send Message</button></li><li><button type="reset">Reset</button></li></ul></div>
+								<div class="col-12"><ul class="actions contact-actions"><li><button type="submit" class="primary contact-submit">Send Message</button></li></ul></div>
 							</div>
 						</form>
 					</div>
@@ -70,6 +64,6 @@
 			</main>
 			<footer class="site-footer"><div class="site-shell footer-inner"><p>&copy; Alec Rollison. All rights reserved.</p><ul class="social-inline"><li><a href="https://github.com/aelishRollo">GitHub</a></li><li><a href="https://x.com/RollisonDev">Twitter</a></li></ul></div></footer>
 		</div>
-		<script src="assets/js/jquery.min.js"></script><script src="assets/js/browser.min.js"></script><script src="assets/js/breakpoints.min.js"></script><script src="assets/js/util.js"></script><script src="assets/js/main.js?v=layout-refresh"></script>
+		<script src="assets/js/jquery.min.js"></script><script src="assets/js/browser.min.js"></script><script src="assets/js/breakpoints.min.js"></script><script src="assets/js/util.js"></script><script src="assets/js/main.js?v=utility-toggle-refresh"></script>
 	</body>
 </html>
