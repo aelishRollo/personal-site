@@ -11,7 +11,7 @@
 				document.documentElement.style.colorScheme = t;
 			})();
 		</script>
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/main.css?v=layout-refresh" />
 	</head>
 	<body class="is-preload page-contact">
 		<header class="site-header" role="banner">
@@ -40,14 +40,17 @@
 					</div>
 				</section>
 				<section class="page-section">
-					<div class="site-shell">
-						<h2>Start With the Closest Lane</h2>
-						<div class="info-grid">
-							<article class="panel-card"><h3>Software</h3><p>Product ideas, builds, performance improvements, and UX-focused work.</p></article>
-							<article class="panel-card"><h3>Music</h3><p>Jams, songwriting, recording, producing, or other creative collaboration.</p></article>
-							<article class="panel-card"><h3>Opportunities + General</h3><p>Professional roles, contracts, intros, or any other conversation you want to start.</p></article>
+					<div class="site-shell contact-layout">
+						<div class="contact-intro">
+							<h2>Start With the Closest Lane</h2>
+							<p>If your message does not fit perfectly, choose the closest context and include details in your note.</p>
+							<ul class="tag-list contact-tags" aria-label="Common contact contexts">
+								<li>Software projects</li>
+								<li>Music collaboration</li>
+								<li>Professional opportunities</li>
+								<li>General conversation</li>
+							</ul>
 						</div>
-						<p>If your message does not fit a category perfectly, choose the closest one and include details in your note.</p>
 						<form name="contact-form" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thanks.html" class="contact-form-grid">
 							<input type="hidden" name="form-name" value="contact-form" />
 							<p class="hidden-field">
@@ -67,6 +70,6 @@
 			</main>
 			<footer class="site-footer"><div class="site-shell footer-inner"><p>&copy; Alec Rollison. All rights reserved.</p><ul class="social-inline"><li><a href="https://github.com/aelishRollo">GitHub</a></li><li><a href="https://x.com/RollisonDev">Twitter</a></li></ul></div></footer>
 		</div>
-		<script src="assets/js/jquery.min.js"></script><script src="assets/js/browser.min.js"></script><script src="assets/js/breakpoints.min.js"></script><script src="assets/js/util.js"></script><script src="assets/js/main.js"></script>
+		<script src="assets/js/jquery.min.js"></script><script src="assets/js/browser.min.js"></script><script src="assets/js/breakpoints.min.js"></script><script src="assets/js/util.js"></script><script src="assets/js/main.js?v=layout-refresh"></script>
 	</body>
 </html>

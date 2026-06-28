@@ -81,7 +81,7 @@
 		$themeToggle.attr('data-theme-state', theme);
 	}
 
-	$body.append($themeToggle);
+	$('.site-header .site-shell').append($themeToggle);
 
 	var currentTheme = loadTheme();
 	applyTheme(currentTheme);
