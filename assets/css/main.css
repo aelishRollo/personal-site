@@ -3921,6 +3921,32 @@ input[type="button"].alt,
 	width: 100% !important;
 }
 
+.features article .inner span {
+	display: inline-block;
+	margin-top: 0.4rem;
+}
+
+.features article .inner span a {
+	display: inline-flex;
+	align-items: center;
+	min-height: 2.25rem;
+	padding: 0.45rem 0.95rem;
+	border: 1px solid var(--accent-2, #2f7d53);
+	border-radius: 999px;
+	background: rgba(47, 125, 83, 0.1);
+	color: var(--accent-1, #256645) !important;
+	font-size: 0.78rem;
+	font-weight: 800;
+	line-height: 1.1;
+	text-transform: uppercase;
+}
+
+.features article .inner span a:hover {
+	background: var(--accent-2, #2f7d53);
+	color: #ffffff !important;
+	border-bottom-color: var(--accent-2, #2f7d53);
+}
+
 .features--showcase {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -5480,6 +5506,19 @@ html:not([data-theme]) .profile-chip {
 	box-shadow: 0 12px 26px rgba(0, 0, 0, 0.36) !important;
 }
 
+html[data-theme="dark"] .features article .inner span a,
+html:not([data-theme]) .features article .inner span a {
+	background: rgba(112, 217, 166, 0.16);
+	border-color: var(--accent-2) !important;
+	color: var(--accent-1) !important;
+}
+
+html[data-theme="dark"] .features article .inner span a:hover,
+html:not([data-theme]) .features article .inner span a:hover {
+	background: var(--accent-2) !important;
+	color: #102015 !important;
+}
+
 html[data-theme="dark"] .profile-note,
 html:not([data-theme]) .profile-note {
 	border-bottom-color: var(--line-1);
@@ -5494,6 +5533,17 @@ html[data-theme="light"] .profile-chip {
 	background: var(--surface-1) !important;
 	border-color: var(--line-1) !important;
 	box-shadow: 0 10px 22px rgba(33, 52, 38, 0.09) !important;
+}
+
+html[data-theme="light"] .features article .inner span a {
+	background: rgba(47, 125, 83, 0.1);
+	border-color: var(--accent-2) !important;
+	color: var(--accent-1) !important;
+}
+
+html[data-theme="light"] .features article .inner span a:hover {
+	background: var(--accent-2) !important;
+	color: #ffffff !important;
 }
 
 html[data-theme="light"] .profile-note {
