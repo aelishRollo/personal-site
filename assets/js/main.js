@@ -96,43 +96,12 @@
 
 	// Home splash text: load one adapted quote and allow quick dismissal.
 	var isHome = $body.hasClass('page-home');
-	var sillyTitle = document.getElementById('hero-silly-title');
 	var splash = document.getElementById('hero-splash');
 	var splashText = document.getElementById('hero-splash-text');
 	var splashFitRaf = null;
 
 	function pickRandom(items) {
 		return items[Math.floor(Math.random() * items.length)];
-	}
-
-	function wordCount(text) {
-		return text.trim().split(/\s+/).filter(Boolean).length;
-	}
-
-	function setSillyTitle(title) {
-		sillyTitle.classList.toggle('silly-title-long', wordCount(title) > 4);
-		sillyTitle.textContent = title + '.';
-	}
-
-	if (isHome && sillyTitle) {
-		fetch('assets/data/alec-silly-titles.json', { cache: 'no-store' })
-			.then(function(response) {
-				if (!response.ok) {
-					throw new Error('Failed to load silly titles.');
-				}
-				return response.json();
-			})
-			.then(function(data) {
-				var titles = data && Array.isArray(data.titles) ? data.titles : [];
-				if (!titles.length) {
-					return;
-				}
-
-				setSillyTitle(pickRandom(titles));
-			})
-			.catch(function() {
-				// Keep the fallback title if the decorative list fails to load.
-			});
 	}
 
 	function fitSplashText() {
