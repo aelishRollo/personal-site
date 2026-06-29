@@ -5264,11 +5264,11 @@ ul.feature-icons li {
 }
 
 .theme-fab[data-theme-state="light"] .theme-switch-track {
-	background: linear-gradient(180deg, #F7F4ED 0%, #9EDFD1 100%);
-	border-color: #007A78;
+	background: linear-gradient(180deg, #123B5D 0%, #0D2B44 100%);
+	border-color: #123B5D;
 	box-shadow:
-		inset 0 1px 0 rgba(255, 255, 255, 0.45),
-		inset 0 -3px 6px rgba(18, 59, 93, 0.16),
+		inset 0 1px 0 rgba(255, 255, 255, 0.35),
+		inset 0 -3px 6px rgba(18, 59, 93, 0.32),
 		0 7px 14px rgba(18, 59, 93, 0.22);
 }
 
