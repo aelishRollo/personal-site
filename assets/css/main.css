@@ -5267,6 +5267,11 @@ ul.feature-icons li {
 		0 7px 14px rgba(18, 59, 93, 0.22);
 }
 
+.theme-fab[data-theme-state="light"] .theme-switch-icon {
+	color: #123B5D;
+	opacity: 0.92;
+}
+
 .theme-fab[data-theme-state="light"] .theme-switch-thumb {
 	transform: translateX(0);
 	background: linear-gradient(180deg, #FF6B4A 0%, #D93636 100%);
