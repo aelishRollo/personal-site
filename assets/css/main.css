@@ -4421,6 +4421,24 @@ body.page-fridge .page-section .site-shell {
 	align-items: center;
 }
 
+.hero-copy {
+	display: grid;
+	grid-column: 1 / -1;
+	grid-template-columns: 1.2fr minmax(220px, 320px);
+	column-gap: 2rem;
+	align-items: center;
+}
+
+.hero-copy > :not(.hero-media) {
+	grid-column: 1;
+}
+
+.hero-copy .hero-media {
+	grid-column: 2;
+	grid-row: 1 / span 7;
+	align-self: center;
+}
+
 .hero-media {
 	margin: 0;
 	position: relative;
@@ -4697,6 +4715,10 @@ body.page-contact .page-hero {
 		grid-template-columns: 1fr;
 	}
 
+	.hero-copy {
+		display: block;
+	}
+
 	.page-hero h1 {
 		max-width: 12em;
 	}
@@ -4844,7 +4866,9 @@ body.page-contact .page-hero {
 	}
 
 	body.page-home .hero-media {
-		display: none;
+		display: block;
+		width: min(100%, 220px);
+		margin: 1.25rem auto 8.25rem auto;
 	}
 
 	.section-portrait .hero-grid {
