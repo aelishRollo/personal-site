@@ -4343,6 +4343,19 @@ body.page-fridge .page-section .site-shell {
 
 .hero-title-role {
 	display: block;
+	margin-bottom: 0.08em;
+}
+
+.hero-title-role:last-child {
+	margin-bottom: 0;
+}
+
+.hero-title-role:nth-of-type(odd)::first-letter {
+	color: var(--primary);
+}
+
+.hero-title-role:nth-of-type(even)::first-letter {
+	color: var(--secondary);
 }
 
 #hero-silly-title.silly-title-long {
@@ -4655,7 +4668,7 @@ body.page-home .page-hero {
 
 body.page-home .page-hero h1 {
 	max-width: 9.6em;
-	font-size: clamp(3.1rem, 5.2vw, 4.6rem);
+	font-size: clamp(2.65rem, 4.45vw, 3.9rem);
 	line-height: 0.98;
 }
 
@@ -4785,7 +4798,7 @@ body.page-contact .page-hero {
 	}
 
 	body.page-home .page-hero h1 {
-		font-size: clamp(2.15rem, 11vw, 2.75rem);
+		font-size: clamp(1.85rem, 9.5vw, 2.35rem);
 		line-height: 1;
 	}
 
