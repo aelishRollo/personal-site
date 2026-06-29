@@ -4424,7 +4424,7 @@ body.page-fridge .page-section .site-shell {
 .hero-copy {
 	display: grid;
 	grid-column: 1 / -1;
-	grid-template-columns: 1.2fr minmax(220px, 320px);
+	grid-template-columns: 1.2fr minmax(280px, 380px);
 	column-gap: 2rem;
 	align-items: center;
 }
@@ -4437,13 +4437,14 @@ body.page-fridge .page-section .site-shell {
 	grid-column: 2;
 	grid-row: 1 / span 7;
 	align-self: center;
+	transform: translateY(-12.5rem);
 }
 
 .hero-media {
 	margin: 0;
 	position: relative;
 	justify-self: end;
-	width: min(100%, 320px);
+	width: min(100%, 380px);
 	padding-bottom: 0;
 }
 
@@ -4457,7 +4458,7 @@ body.page-fridge .page-section .site-shell {
 }
 
 .hero-headshot {
-	max-width: 220px;
+	max-width: 300px;
 	aspect-ratio: 1 / 1;
 	object-fit: cover;
 	margin-left: auto;
@@ -4468,8 +4469,8 @@ body.page-fridge .page-section .site-shell {
 	position: absolute;
 	top: calc(100% + 0.9rem);
 	left: 50%;
-	width: min(220px, calc(100% - 0.25rem));
-	height: 120px;
+	width: min(300px, calc(100% - 0.25rem));
+	height: 150px;
 	transform: translateX(-50%);
 	transform-origin: 50% 100%;
 	pointer-events: none;
@@ -4484,7 +4485,7 @@ body.page-fridge .page-section .site-shell {
 .hero-splash-text {
 	margin: 0;
 	font-family: "Minecraft", "Press Start 2P", "Silkscreen", "VT323", "Lucida Console", Monaco, monospace;
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: 400;
 	line-height: 1.12;
 	letter-spacing: 0.055em;
@@ -4774,6 +4775,10 @@ body.page-contact .page-hero {
 		display: block;
 	}
 
+	.hero-copy .hero-media {
+		transform: none;
+	}
+
 	.page-hero h1 {
 		max-width: 12em;
 	}
@@ -4876,8 +4881,8 @@ body.page-contact .page-hero {
 	.hero-splash {
 		left: 50%;
 		top: calc(100% + 0.85rem);
-		width: min(220px, calc(100% - 0.3rem));
-		height: 112px;
+		width: min(280px, calc(100% - 0.3rem));
+		height: 142px;
 		transform: translateX(-50%);
 	}
 
@@ -4934,8 +4939,8 @@ body.page-contact .page-hero {
 
 	body.page-home .hero-media {
 		display: block;
-		width: min(100%, 220px);
-		margin: 1.25rem auto 8.25rem auto;
+		width: min(100%, 280px);
+		margin: 1.25rem auto 10.5rem auto;
 	}
 
 	.section-portrait .hero-grid {
