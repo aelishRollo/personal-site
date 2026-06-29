@@ -4565,10 +4565,7 @@ html:not([data-theme]) .hero-splash .hero-splash-text {
 }
 
 .work-overview {
-	display: grid;
-	grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr);
-	gap: 2.25rem;
-	align-items: start;
+	display: block;
 }
 
 .work-overview-copy > :last-child,
@@ -4576,8 +4573,12 @@ html:not([data-theme]) .hero-splash .hero-splash-text {
 	margin-bottom: 0;
 }
 
+.work-overview-copy {
+	max-width: 52rem;
+}
+
 .work-overview-tech {
-	padding-top: 0.3rem;
+	margin-top: 2.35rem;
 }
 
 .work-overview-tech h3 {
@@ -4586,23 +4587,29 @@ html:not([data-theme]) .hero-splash .hero-splash-text {
 
 .work-tech-list {
 	margin: 0;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	column-gap: 3.5rem;
 	border-top: 1px solid var(--border);
 }
 
 .work-tech-item {
-	display: grid;
-	grid-template-columns: minmax(10.5rem, 0.38fr) minmax(0, 1fr);
-	gap: 1rem;
+	display: block;
 	padding: 1rem 0;
 	border-bottom: 1px solid var(--border);
 }
 
 .work-tech-item dt {
-	color: var(--text-1);
+	margin-bottom: 0.35rem;
+	color: var(--primary);
 	font-size: 0.86rem;
 	font-weight: 800;
 	line-height: 1.25;
 	text-transform: uppercase;
+}
+
+html[data-theme="light"] .work-tech-item dt {
+	color: #123B5D;
 }
 
 .work-tech-item dd {
@@ -4840,13 +4847,15 @@ body.page-contact .page-hero {
 	}
 
 	.work-overview {
-		grid-template-columns: 1fr;
-		gap: 1.65rem;
+		display: block;
 	}
 
-	.work-tech-item {
+	.work-overview-tech {
+		margin-top: 1.65rem;
+	}
+
+	.work-tech-list {
 		grid-template-columns: 1fr;
-		gap: 0.35rem;
 	}
 
 	.hero-intents {
