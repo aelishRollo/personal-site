@@ -4341,6 +4341,15 @@ body.page-fridge .page-section .site-shell {
 	margin-bottom: 1rem;
 }
 
+.hero-title-role {
+	display: block;
+}
+
+#hero-silly-title.silly-title-long {
+	font-size: 0.72em;
+	line-height: 1.08;
+}
+
 .page-hero .lead {
 	max-width: 42rem;
 	font-size: 1.08rem;
