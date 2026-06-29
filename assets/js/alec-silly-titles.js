@@ -46,6 +46,11 @@
 		'Voice Of A Generation',
 		'20th Level Human Wizard',
 		'Eucalyptus Scented',
+		'New Father',
+		'Your Dad',
+		'Hardest Working Programmer Alive',
+		'Renaissance Man',
+		'Pine-Scented',
 		'100% Organic'
 	];
 
