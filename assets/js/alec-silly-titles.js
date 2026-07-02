@@ -51,6 +51,18 @@
 		'Hardest Working Programmer Alive',
 		'Renaissance Man',
 		'Pine-Scented',
+		'City Council Member',
+		'Miracle Worker',
+		'Hero of Kvatch',
+		'Assistant to the Regional Manager',
+		'Industry Plant',
+		'Natural Blonde',
+		'Piano Man',
+		'Your Father',
+		'Opens Pickle Jars Effortlessly',
+		'Triangle Player',
+		'Bob-It Champion',
+		'Organ Donor (Brain)',
 		'100% Organic'
 	];
 
