@@ -1,0 +1,118 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - development
+      - main
+  push:
+    branches:
+      - development
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  static-site:
+    name: Static site validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Verify required deploy files
+        shell: bash
+        run: |
+          set -euo pipefail
+          required_files=(
+            "index.html"
+            "assets/css/main.css"
+            "assets/js/main.js"
+            "assets/js/fridge-poetry.js"
+            "assets/data/alec-splash-quotes.json"
+            "assets/data/fridge-poetry-words.json"
+            "contact.html"
+            "thanks.html"
+          )
+
+          for file in "${required_files[@]}"; do
+            test -f "$file"
+          done
+
+      - name: Validate JSON data
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m json.tool assets/data/alec-splash-quotes.json > /dev/null
+          python3 -m json.tool assets/data/fridge-poetry-words.json > /dev/null
+
+      - name: Check local HTML and CSS references
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import unquote, urlparse
+          import re
+          import sys
+
+          ROOT = Path(".")
+          SKIP_SCHEMES = {"http", "https", "mailto", "tel", "data", "javascript"}
+          REF_ATTRS = {"href", "src", "action", "poster", "words-src"}
+
+          def is_local(value):
+              if not value or value.startswith("#"):
+                  return False
+              parsed = urlparse(value)
+              return parsed.scheme.lower() not in SKIP_SCHEMES and not parsed.netloc
+
+          def normalize(value, base):
+              parsed = urlparse(value)
+              path = unquote(parsed.path)
+              if not path:
+                  return None
+              if path.startswith("/"):
+                  return ROOT / path.lstrip("/")
+              return base.parent / path
+
+          class RefParser(HTMLParser):
+              def __init__(self, source):
+                  super().__init__()
+                  self.source = source
+                  self.refs = []
+
+              def handle_starttag(self, tag, attrs):
+                  for name, value in attrs:
+                      if name in REF_ATTRS and is_local(value):
+                          target = normalize(value, self.source)
+                          if target is not None:
+                              self.refs.append((value, target))
+
+          failures = []
+          html_files = sorted(ROOT.glob("*.html"))
+          for html_file in html_files:
+              parser = RefParser(html_file)
+              parser.feed(html_file.read_text(encoding="utf-8"))
+              for raw, target in parser.refs:
+                  if not target.exists():
+                      failures.append(f"{html_file}: missing {raw} -> {target}")
+
+          url_re = re.compile(r"url\((['\"]?)(.*?)\1\)")
+          for css_file in sorted((ROOT / "assets" / "css").glob("*.css")):
+              text = css_file.read_text(encoding="utf-8", errors="ignore")
+              for match in url_re.finditer(text):
+                  raw = match.group(2).strip()
+                  if is_local(raw):
+                      target = normalize(raw, css_file)
+                      if target is not None and not target.exists():
+                          failures.append(f"{css_file}: missing {raw} -> {target}")
+
+          if failures:
+              print("\n".join(failures), file=sys.stderr)
+              sys.exit(1)
+
+          print(f"Checked {len(html_files)} HTML files and CSS references.")
+          PY

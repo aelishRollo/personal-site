@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# Local environment and secrets
+.env
+.env.*
+
+# Dependencies
+node_modules/
+
+# Local Netlify state
+.netlify/
+
+# Common generated output
+dist/
+_site/
+.next/
+out/
+coverage/
+
+# Logs
+*.log
