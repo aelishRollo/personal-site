@@ -4498,7 +4498,7 @@ body.page-fridge .page-section .site-shell {
 		-1px 1px 0 #3a2c00,
 		1px 1px 0 #3a2c00,
 		0 2px 0 rgba(0, 0, 0, 0.7);
-	animation: splash-bob 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+	animation: splash-bob 0.75s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
 	display: flex;
 	height: 100%;
 	width: 100%;
