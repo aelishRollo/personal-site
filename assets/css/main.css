@@ -4404,6 +4404,10 @@ body.page-fridge .page-section .site-shell {
 	}
 }
 
+#hero-silly-title.metallic-pearl-text {
+	padding-bottom: 0.08em;
+}
+
 #hero-silly-title.silly-title-long {
 	font-size: 0.72em;
 	line-height: 1.08;
