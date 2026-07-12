@@ -151,7 +151,39 @@
 		});
 	}
 
+	function reloadPage() {
+		window.location.reload();
+	}
+
+	function reloadPageFromKey(event) {
+		if (event.key !== 'Enter' && event.key !== ' ') {
+			return;
+		}
+
+		event.preventDefault();
+		reloadPage();
+	}
+
+	function makeReloadTrigger(element, label) {
+		if (!element) {
+			return;
+		}
+
+		element.classList.add('hero-reload-trigger');
+		element.setAttribute('role', 'button');
+		element.setAttribute('tabindex', '0');
+		element.setAttribute('aria-label', label);
+
+		element.addEventListener('click', reloadPage);
+		element.addEventListener('keydown', reloadPageFromKey);
+	}
+
+	if (isHome) {
+		makeReloadTrigger(document.getElementById('hero-silly-title'), 'Reload for another silly hero title');
+	}
+
 	if (isHome && splash && splashText) {
+		makeReloadTrigger(splashText, 'Reload for another splash quote');
 		splash.hidden = false;
 		scheduleSplashFit();
 
