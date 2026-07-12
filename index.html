@@ -4,6 +4,7 @@
 		<title>Alec Rollison | Developer, Musician, Collaborator</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="icon" href="favicon.svg" type="image/svg+xml" />
 		<script>
 			(function() {
 				var t = localStorage.getItem('site-theme-v2') || 'dark';
@@ -11,8 +12,8 @@
 				document.documentElement.style.colorScheme = t;
 			})();
 		</script>
-		<link rel="stylesheet" href="assets/css/main.css?v=silly-title-stack" />
-		<script src="assets/js/alec-silly-titles.js?v=silly-title-randomized"></script>
+		<link rel="stylesheet" href="assets/css/main.css?v=splash-stack-raised-again" />
+		<script src="assets/js/alec-silly-titles.js?v=metallic-pearl-text"></script>
 	</head>
 	<body class="is-preload page-home">
 		<header class="site-header" role="banner">
@@ -45,16 +46,16 @@
 								<span class="hero-title-role">Developer.</span>
 								<span class="hero-title-role">Musician.</span>
 								<span class="hero-title-role">Collaborator.</span>
-								<script>document.write(window.renderAlecSillyTitle ? window.renderAlecSillyTitle() : '<span class="hero-title-role" id="hero-silly-title">100% Organic.</span>');</script>
-								<noscript><span class="hero-title-role" id="hero-silly-title">100% Organic.</span></noscript>
+								<script>document.write(window.renderAlecSillyTitle ? window.renderAlecSillyTitle() : '<span class="hero-title-role metallic-pearl-text" id="hero-silly-title">100% Organic.</span>');</script>
+								<noscript><span class="hero-title-role metallic-pearl-text" id="hero-silly-title">100% Organic.</span></noscript>
 							</h1>
 							<p class="hero-summary">Just kidding about that last one.<br /><br />I design high-performance software with thoughtful UX, and I love every part of creating music.</p>
 							<p class="lead">If you want to talk products, performance, UX, music, opportunities, or just connect as a fellow human, you are in the right place.</p>
 							<figure class="hero-media">
 								<img class="hero-headshot" src="images/avatar-512.webp" alt="A picture of Alec" width="512" height="669" loading="eager" decoding="async" fetchpriority="high" />
-								<figcaption class="hero-splash" id="hero-splash" hidden>
+								<figcaption class="hero-splash" id="hero-splash">
 									<button type="button" class="hero-splash-close" aria-label="Hide splash quote">&times;</button>
-									<div class="hero-splash-text" id="hero-splash-text"></div>
+									<div class="hero-splash-text" id="hero-splash-text">Alec Rollison can get 1s out of `/dev/zero`.</div>
 								</figcaption>
 							</figure>
 							<ul class="hero-intents" aria-label="Ways to connect with Alec">
@@ -196,6 +197,6 @@
 		<script src="assets/js/browser.min.js"></script>
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js?v=silly-title-random"></script>
+		<script src="assets/js/main.js?v=splash-quotes-visible"></script>
 	</body>
 </html>
