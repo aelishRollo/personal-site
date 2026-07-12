@@ -4358,6 +4358,52 @@ body.page-fridge .page-section .site-shell {
 	color: var(--secondary);
 }
 
+.metallic-pearl-text {
+	display: inline-block;
+
+	color: transparent;
+	-webkit-text-fill-color: transparent;
+
+	background: linear-gradient(
+		90deg,
+		#f8fafc,
+		#c4b5fd,
+		#a5f3fc,
+		#fbcfe8,
+		#fef3c7,
+		#f8fafc
+	);
+
+	background-size: 200% 100%;
+	background-position: left center;
+
+	background-clip: text;
+	-webkit-background-clip: text;
+
+	filter:
+		drop-shadow(0 0 8px rgb(167 139 250 / 35%))
+		drop-shadow(0 0 16px rgb(103 232 249 / 20%));
+
+	animation: metallic-pearl-flow 4.35s ease-in-out infinite alternate;
+}
+
+@keyframes metallic-pearl-flow {
+	from {
+		background-position: left center;
+	}
+
+	to {
+		background-position: right center;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.metallic-pearl-text {
+		animation: none;
+		background-position: center;
+	}
+}
+
 #hero-silly-title.silly-title-long {
 	font-size: 0.72em;
 	line-height: 1.08;
