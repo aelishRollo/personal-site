@@ -152,6 +152,9 @@
 	}
 
 	if (isHome && splash && splashText) {
+		splash.hidden = false;
+		scheduleSplashFit();
+
 		fetch('assets/data/alec-splash-quotes.json')
 			.then(function(response) {
 				if (!response.ok) {
@@ -170,7 +173,7 @@
 				scheduleSplashFit();
 			})
 			.catch(function() {
-				// Fail silently: splash is decorative.
+				scheduleSplashFit();
 			});
 
 		window.addEventListener('resize', scheduleSplashFit);
