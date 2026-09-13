@@ -4408,6 +4408,28 @@ body.page-fridge .page-section .site-shell {
 	padding-bottom: 0.08em;
 }
 
+#hero-silly-title.hero-reload-trigger {
+	cursor: pointer;
+	transition:
+		filter 160ms ease,
+		transform 160ms ease;
+}
+
+#hero-silly-title.hero-reload-trigger:hover,
+#hero-silly-title.hero-reload-trigger:focus-visible {
+	filter:
+		drop-shadow(0 0 10px rgb(167 139 250 / 42%))
+		drop-shadow(0 0 18px rgb(103 232 249 / 25%));
+	transform: translateY(-1px);
+	outline: none;
+}
+
+#hero-silly-title.hero-reload-trigger:focus-visible {
+	border-radius: 0.08em;
+	outline: 2px solid rgba(165, 243, 252, 0.48);
+	outline-offset: 0.1em;
+}
+
 #hero-silly-title.silly-title-long {
 	font-size: 0.72em;
 	line-height: 1.08;
@@ -4532,6 +4554,11 @@ body.page-fridge .page-section .site-shell {
 }
 
 .hero-splash-text {
+	--splash-rest-scale: 1;
+	--splash-peak-scale: 1.035;
+	--splash-rest-y: 0;
+	--splash-peak-y: -1px;
+
 	margin: 0;
 	font-family: "Minecraft", "Press Start 2P", "Silkscreen", "VT323", "Lucida Console", Monaco, monospace;
 	font-size: 16px;
@@ -4557,6 +4584,30 @@ body.page-fridge .page-section .site-shell {
 	padding: 0.45rem 0.58rem 0.38rem;
 	overflow-wrap: anywhere;
 	word-break: normal;
+}
+
+.hero-splash-text.hero-reload-trigger {
+	cursor: pointer;
+	pointer-events: auto;
+	transition:
+		filter 160ms ease,
+		text-shadow 160ms ease;
+}
+
+.hero-splash-text.hero-reload-trigger:hover,
+.hero-splash-text.hero-reload-trigger:focus-visible {
+	--splash-rest-scale: 1.01;
+	--splash-peak-scale: 1.045;
+	--splash-rest-y: -0.5px;
+	--splash-peak-y: -2px;
+
+	filter: brightness(1.07);
+	outline: none;
+}
+
+.hero-splash-text.hero-reload-trigger:focus-visible {
+	outline: 2px solid rgba(255, 255, 85, 0.45);
+	outline-offset: 0.12rem;
 }
 
 html[data-theme="dark"] .hero-splash .hero-splash-text,
@@ -4595,10 +4646,10 @@ html:not([data-theme]) .hero-splash .hero-splash-text {
 
 @keyframes splash-bob {
 	0% {
-		transform: scale(1) translateY(0);
+		transform: scale(var(--splash-rest-scale)) translateY(var(--splash-rest-y));
 	}
 	100% {
-		transform: scale(1.035) translateY(-1px);
+		transform: scale(var(--splash-peak-scale)) translateY(var(--splash-peak-y));
 	}
 }
 
