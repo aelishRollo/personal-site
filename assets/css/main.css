@@ -3912,6 +3912,58 @@ input[type="button"].alt,
 	margin-bottom: 0.45em;
 }
 
+.three-quests {
+	padding-top: 2.75rem;
+	padding-bottom: 2.75rem;
+}
+
+.three-quests h2 {
+	margin-bottom: 1.2rem;
+}
+
+.quest-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1rem;
+}
+
+.quest-card {
+	display: flex;
+	min-width: 0;
+	flex-direction: column;
+	padding: 1.35rem 1.4rem;
+}
+
+.quest-card h3 {
+	margin-bottom: 0.55rem;
+}
+
+.quest-card p {
+	margin-bottom: 1rem;
+	font-size: 0.96rem;
+	line-height: 1.62;
+}
+
+.quest-link {
+	align-self: flex-start;
+	margin-top: auto;
+	font-size: 0.88rem;
+	font-weight: 800;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+.quest-link span {
+	display: inline-block;
+	margin-left: 0.2em;
+	transition: transform 160ms ease;
+}
+
+.quest-link:hover span,
+.quest-link:focus-visible span {
+	transform: translateX(0.2em);
+}
+
 .features {
 	display: flex;
 	flex-wrap: wrap;
@@ -4183,6 +4235,15 @@ input[type="button"].alt,
 	}
 
 	.info-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.three-quests {
+		padding-top: 2.3rem;
+		padding-bottom: 2.3rem;
+	}
+
+	.quest-grid {
 		grid-template-columns: 1fr;
 	}
 
