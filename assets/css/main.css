@@ -3921,6 +3921,16 @@ input[type="button"].alt,
 	margin-bottom: 1.2rem;
 }
 
+.hero-quests {
+	margin-top: 0.6rem;
+	padding: 1.8rem 0 0 0;
+	border-top: 1px solid var(--line-1, rgba(67, 95, 68, 0.24));
+}
+
+.hero-quests h2 {
+	margin-bottom: 1rem;
+}
+
 .quest-grid {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3942,6 +3952,15 @@ input[type="button"].alt,
 	margin-bottom: 1rem;
 	font-size: 0.96rem;
 	line-height: 1.62;
+}
+
+.hero-quests .quest-card {
+	padding: 1.1rem 1.2rem;
+}
+
+.hero-quests .quest-card p {
+	font-size: 0.9rem;
+	line-height: 1.5;
 }
 
 .quest-link {
@@ -4241,6 +4260,11 @@ input[type="button"].alt,
 	.three-quests {
 		padding-top: 2.3rem;
 		padding-bottom: 2.3rem;
+	}
+
+	.hero-quests {
+		margin-top: 1.4rem;
+		padding: 1.5rem 0 0 0;
 	}
 
 	.quest-grid {
@@ -4564,6 +4588,10 @@ body.page-fridge .page-section .site-shell {
 
 .hero-copy > :not(.hero-media) {
 	grid-column: 1;
+}
+
+.hero-copy .hero-quests {
+	grid-column: 1 / -1;
 }
 
 .hero-copy .hero-media {
