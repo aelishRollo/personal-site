@@ -1,0 +1,428 @@
+/*
+	Acid Editorial
+	Derived from 01-acid-editorial.html. The source is self-contained and uses
+	only system fonts and CSS-generated artwork, so this skin has no asset or
+	network dependency.
+*/
+
+html[data-skin="acid-editorial"] {
+	--background: #f7f0df;
+	--foreground: #131313;
+	--muted-bg: #ffe23b;
+	--card-bg: #f7f0df;
+	--border: #131313;
+	--primary: #ff2b8b;
+	--primary-fg: #131313;
+	--secondary: #29e6ff;
+	--secondary-fg: #131313;
+	--accent: #734bff;
+	--accent-fg: #ffffff;
+	--link: #131313;
+	--warning: #ff2b8b;
+	--header-bg: rgba(247, 240, 223, 0.92);
+	--header-fg: #131313;
+	--footer-bg: #f7f0df;
+	--footer-fg: #131313;
+	--bg: var(--background);
+	--surface-1: #fffaf0;
+	--surface-2: var(--muted-bg);
+	--surface-3: var(--secondary);
+	--text-1: var(--foreground);
+	--text-2: var(--foreground);
+	--line-1: var(--border);
+	--accent-1: var(--primary);
+	--accent-2: var(--accent);
+}
+
+html[data-skin="acid-editorial"] body {
+	position: relative;
+	background: var(--background) !important;
+	color: var(--foreground) !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+	overflow-x: hidden;
+}
+
+html[data-skin="acid-editorial"] body::before,
+html[data-skin="acid-editorial"] body::after {
+	content: "";
+	position: fixed;
+	z-index: -1;
+	width: min(34rem, 48vw);
+	aspect-ratio: 1;
+	border-radius: 50%;
+	pointer-events: none;
+	mix-blend-mode: multiply;
+	filter: saturate(1.35);
+	animation: acid-float 5s ease-in-out infinite alternate;
+}
+
+html[data-skin="acid-editorial"] body::before {
+	top: 13vh;
+	right: -10vw;
+	background: #ff2b8b;
+	box-shadow: -16vw 28vh 0 #29e6ff;
+}
+
+html[data-skin="acid-editorial"] body::after {
+	right: 9vw;
+	bottom: -18vw;
+	width: min(26rem, 36vw);
+	background: #ffe23b;
+	animation-duration: 3.8s;
+	animation-direction: alternate-reverse;
+}
+
+@keyframes acid-float {
+	to { transform: translate(1.8rem, 1.2rem) scale(0.84); }
+}
+
+@keyframes acid-gradient-shift {
+	to { background-position: 300% 0; }
+}
+
+@keyframes acid-spin {
+	to { transform: rotate(360deg); }
+}
+
+html[data-skin="acid-editorial"] body,
+html[data-skin="acid-editorial"] p,
+html[data-skin="acid-editorial"] li,
+html[data-skin="acid-editorial"] label,
+html[data-skin="acid-editorial"] .lead,
+html[data-skin="acid-editorial"] .note,
+html[data-skin="acid-editorial"] .brand-text,
+html[data-skin="acid-editorial"] .site-nav a,
+html[data-skin="acid-editorial"] .footer-inner p,
+html[data-skin="acid-editorial"] .social-inline a {
+	color: var(--foreground) !important;
+}
+
+html[data-skin="acid-editorial"] h1,
+html[data-skin="acid-editorial"] h2,
+html[data-skin="acid-editorial"] h3,
+html[data-skin="acid-editorial"] h4,
+html[data-skin="acid-editorial"] h5,
+html[data-skin="acid-editorial"] h6,
+html[data-skin="acid-editorial"] strong {
+	color: var(--foreground) !important;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 900;
+	letter-spacing: -0.055em;
+}
+
+html[data-skin="acid-editorial"] a {
+	color: var(--foreground) !important;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.18em;
+}
+
+html[data-skin="acid-editorial"] a:hover {
+	color: #734bff !important;
+}
+
+html[data-skin="acid-editorial"] .site-header {
+	border-bottom: 2px solid #131313 !important;
+	background: rgba(247, 240, 223, 0.9) !important;
+	backdrop-filter: blur(12px);
+}
+
+html[data-skin="acid-editorial"] .brand-mark {
+	border: 2px solid #131313;
+	border-radius: 0;
+	background: #ff2b8b !important;
+	color: #131313 !important;
+	box-shadow: 3px 3px 0 #131313;
+	transform: rotate(-2deg);
+}
+
+html[data-skin="acid-editorial"] .brand-text {
+	font-weight: 900;
+	letter-spacing: -0.03em;
+	text-transform: uppercase;
+}
+
+html[data-skin="acid-editorial"] .site-nav a {
+	border-radius: 0;
+	font-weight: 900;
+	text-transform: uppercase;
+}
+
+html[data-skin="acid-editorial"] .site-nav a:hover {
+	background: #29e6ff !important;
+	color: #131313 !important;
+}
+
+html[data-skin="acid-editorial"] .site-nav a[aria-current="page"] {
+	background: #ffe23b !important;
+	color: #131313 !important;
+	box-shadow: 3px 3px 0 #131313;
+}
+
+html[data-skin="acid-editorial"] .site-nav .nav-cta,
+html[data-skin="acid-editorial"] .nav-toggle {
+	border: 2px solid #131313 !important;
+	border-radius: 0;
+	color: #131313 !important;
+}
+
+html[data-skin="acid-editorial"] .site-nav .nav-cta:hover {
+	background: #ff2b8b !important;
+	color: #131313 !important;
+}
+
+html[data-skin="acid-editorial"] .page-hero,
+html[data-skin="acid-editorial"] body.page-home .page-hero,
+html[data-skin="acid-editorial"] body.page-services .page-hero,
+html[data-skin="acid-editorial"] body.page-work .page-hero,
+html[data-skin="acid-editorial"] body.page-connect .page-hero,
+html[data-skin="acid-editorial"] body.page-about .page-hero,
+html[data-skin="acid-editorial"] body.page-contact .page-hero {
+	position: relative;
+	isolation: isolate;
+	border-bottom: 2px solid #131313 !important;
+	background: rgba(247, 240, 223, 0.78) !important;
+}
+
+html[data-skin="acid-editorial"] .page-hero::after {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	top: -35%;
+	right: -7%;
+	width: min(34rem, 48vw);
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: repeating-conic-gradient(#ff2b8b 0 8deg, #ffe23b 8deg 16deg, #29e6ff 16deg 24deg, #734bff 24deg 32deg);
+	opacity: 0.88;
+	animation: acid-spin 10s linear infinite;
+}
+
+html[data-skin="acid-editorial"] .page-hero h1,
+html[data-skin="acid-editorial"] body.page-home .page-hero h1 {
+	font-weight: 900;
+	letter-spacing: -0.055em;
+	text-transform: uppercase;
+	overflow-wrap: anywhere;
+}
+
+html[data-skin="acid-editorial"] .page-hero h1,
+html[data-skin="acid-editorial"] .hero-title-role {
+	background: linear-gradient(90deg, #ff2b8b, #ffe23b, #29e6ff, #734bff, #ff2b8b);
+	background-size: 300% 100%;
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent !important;
+	-webkit-text-fill-color: transparent;
+	animation: acid-gradient-shift 5s linear infinite;
+}
+
+html[data-skin="acid-editorial"] .hero-title-role::first-letter {
+	color: transparent !important;
+}
+
+html[data-skin="acid-editorial"] .hero-copy,
+html[data-skin="acid-editorial"] .hero-copy > :not(.hero-media),
+html[data-skin="acid-editorial"] .hero-media {
+	min-width: 0;
+}
+
+html[data-skin="acid-editorial"] .metallic-pearl-text {
+	filter: none;
+}
+
+html[data-skin="acid-editorial"] .eyebrow {
+	border: 2px solid #131313 !important;
+	border-radius: 0;
+	background: #ffe23b !important;
+	box-shadow: 3px 3px 0 #131313;
+	color: #131313 !important;
+	font-weight: 900;
+	transform: rotate(-1deg);
+}
+
+html[data-skin="acid-editorial"] .page-section:not(.section-cta):not(.section-soft):not(.section-portrait),
+html[data-skin="acid-editorial"] .section-soft,
+html[data-skin="acid-editorial"] .section-portrait {
+	background: rgba(247, 240, 223, 0.83) !important;
+}
+
+html[data-skin="acid-editorial"] .page-section {
+	border-bottom: 2px solid #131313;
+}
+
+html[data-skin="acid-editorial"] .panel-card,
+html[data-skin="acid-editorial"] .features article,
+html[data-skin="acid-editorial"] .contact-rail,
+html[data-skin="acid-editorial"] ul.feature-icons li,
+html[data-skin="acid-editorial"] .tag-list li,
+html[data-skin="acid-editorial"] .profile-chip {
+	position: relative;
+	isolation: isolate;
+	border: 2px solid #131313 !important;
+	border-radius: 1.75rem;
+	background: #f7f0df !important;
+	box-shadow: 7px 7px 0 #131313 !important;
+	overflow: hidden;
+}
+
+html[data-skin="acid-editorial"] .panel-card:nth-child(4n + 1),
+html[data-skin="acid-editorial"] .features article:nth-child(4n + 1),
+html[data-skin="acid-editorial"] ul.feature-icons li:nth-child(4n + 1) {
+	background: #ffe23b !important;
+}
+
+html[data-skin="acid-editorial"] .panel-card:nth-child(4n + 2),
+html[data-skin="acid-editorial"] .features article:nth-child(4n + 2),
+html[data-skin="acid-editorial"] ul.feature-icons li:nth-child(4n + 2) {
+	background: #131313 !important;
+}
+
+html[data-skin="acid-editorial"] .panel-card:nth-child(4n + 2) *,
+html[data-skin="acid-editorial"] .features article:nth-child(4n + 2) *,
+html[data-skin="acid-editorial"] ul.feature-icons li:nth-child(4n + 2) * {
+	color: #ffffff !important;
+}
+
+html[data-skin="acid-editorial"] .panel-card:nth-child(4n + 3),
+html[data-skin="acid-editorial"] .features article:nth-child(4n + 3),
+html[data-skin="acid-editorial"] ul.feature-icons li:nth-child(4n + 3) {
+	background: linear-gradient(135deg, #734bff, #29e6ff) !important;
+}
+
+html[data-skin="acid-editorial"] .panel-card:nth-child(4n + 1)::before,
+html[data-skin="acid-editorial"] .features article:nth-child(4n + 1)::before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	width: 18rem;
+	aspect-ratio: 1;
+	top: -9rem;
+	right: -7rem;
+	border-radius: 50%;
+	background: repeating-conic-gradient(#ff2b8b 0 8deg, #ffe23b 8deg 16deg, #29e6ff 16deg 24deg, #734bff 24deg 32deg);
+	animation: acid-spin 8s linear infinite;
+}
+
+html[data-skin="acid-editorial"] .features article .image {
+	border: 2px solid #131313;
+	border-radius: 1rem;
+}
+
+html[data-skin="acid-editorial"] .tag-list li,
+html[data-skin="acid-editorial"] .profile-chip {
+	border-radius: 999px;
+	background: #29e6ff !important;
+	box-shadow: 3px 3px 0 #131313 !important;
+	color: #131313 !important;
+}
+
+html[data-skin="acid-editorial"] input[type="text"],
+html[data-skin="acid-editorial"] input[type="password"],
+html[data-skin="acid-editorial"] input[type="email"],
+html[data-skin="acid-editorial"] select,
+html[data-skin="acid-editorial"] textarea {
+	border: 2px solid #131313 !important;
+	border-radius: 0.65rem;
+	background: #fffaf0 !important;
+	box-shadow: 4px 4px 0 #131313;
+	color: #131313 !important;
+}
+
+html[data-skin="acid-editorial"] input:focus,
+html[data-skin="acid-editorial"] select:focus,
+html[data-skin="acid-editorial"] textarea:focus {
+	border-color: #734bff !important;
+	box-shadow: 4px 4px 0 #734bff !important;
+}
+
+html[data-skin="acid-editorial"] input[type="submit"],
+html[data-skin="acid-editorial"] input[type="reset"],
+html[data-skin="acid-editorial"] input[type="button"],
+html[data-skin="acid-editorial"] button:not([class^="skin-picker"]),
+html[data-skin="acid-editorial"] .button {
+	border: 2px solid #131313 !important;
+	border-radius: 0 !important;
+	background: #29e6ff !important;
+	box-shadow: 5px 5px 0 #131313 !important;
+	color: #131313 !important;
+	font-weight: 900;
+}
+
+html[data-skin="acid-editorial"] input[type="submit"].primary,
+html[data-skin="acid-editorial"] input[type="button"].primary,
+html[data-skin="acid-editorial"] button.primary,
+html[data-skin="acid-editorial"] .button.primary,
+html[data-skin="acid-editorial"] .contact-submit {
+	background: #ffe23b !important;
+	color: #131313 !important;
+}
+
+html[data-skin="acid-editorial"] .section-cta {
+	border-block: 2px solid #131313;
+	background: #131313 !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="acid-editorial"] .section-cta h2,
+html[data-skin="acid-editorial"] .section-cta p {
+	color: #ffffff !important;
+}
+
+html[data-skin="acid-editorial"] .site-footer {
+	border-top: 2px solid #131313 !important;
+	background: rgba(247, 240, 223, 0.94) !important;
+	color: #131313 !important;
+}
+
+html[data-skin="acid-editorial"] .skin-picker {
+	--skin-ui-bg: #131313;
+	--skin-ui-panel: #f7f0df;
+	--skin-ui-text: #131313;
+	--skin-ui-muted: #383838;
+	--skin-ui-accent: #ff2b8b;
+	--skin-ui-border: #131313;
+}
+
+html[data-skin="acid-editorial"] .skin-picker-toggle {
+	color: #ffffff !important;
+}
+
+html[data-skin="acid-editorial"] .skin-picker-current {
+	color: #ffe23b !important;
+}
+
+html[data-skin="acid-editorial"] .skin-picker-actions button:not(.skin-picker-save) {
+	color: #ffffff !important;
+}
+
+@media (max-width: 736px) {
+	html[data-skin="acid-editorial"] body::before,
+	html[data-skin="acid-editorial"] body::after {
+		opacity: 0.58;
+	}
+
+	html[data-skin="acid-editorial"] .hero-title-role {
+		overflow-wrap: anywhere;
+	}
+
+	html[data-skin="acid-editorial"] .page-hero::after {
+		top: 2%;
+		right: -38%;
+		width: 80vw;
+		opacity: 0.42;
+	}
+
+	html[data-skin="acid-editorial"] body.nav-open .site-nav a {
+		border: 1px solid #131313;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-skin="acid-editorial"] *,
+	html[data-skin="acid-editorial"] *::before,
+	html[data-skin="acid-editorial"] *::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}
