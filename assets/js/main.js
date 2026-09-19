@@ -6,25 +6,6 @@
 
 	var $window = $(window);
 	var $body = $('body');
-	var themeKey = 'site-theme-v2';
-
-	function applyTheme(theme) {
-		document.documentElement.setAttribute('data-theme', theme);
-		document.documentElement.style.colorScheme = theme;
-	}
-
-	function loadTheme() {
-		var stored = localStorage.getItem(themeKey);
-		return stored === 'light' || stored === 'dark' ? stored : 'dark';
-	}
-
-	function saveTheme(theme) {
-		localStorage.setItem(themeKey, theme);
-	}
-
-	function nextTheme(current) {
-		return current === 'dark' ? 'light' : 'dark';
-	}
 
 	// Play initial animations on page load.
 	$window.on('load', function() {
@@ -62,37 +43,115 @@
 		}
 	});
 
-	// Theme toggle button (accessible pressed state).
-	var $themeToggle = $(
-		'<button type="button" class="theme-fab" aria-pressed="true" aria-label="Switch to light theme">' +
-			'<span class="theme-switch-track" aria-hidden="true">' +
-				'<span class="theme-switch-icon theme-switch-icon-sun">☀</span>' +
-				'<span class="theme-switch-icon theme-switch-icon-moon">🌙</span>' +
-				'<span class="theme-switch-thumb"></span>' +
-			'</span>' +
-			'<span class="sr-only">Toggle theme</span>' +
-		'</button>'
-	);
+	// Runtime skin picker. The head bootstrap owns selection and persistence so
+	// the correct skin is already active before this interaction layer loads.
+	var skinRuntime = window.SiteSkins;
 
-	function syncThemeButton(theme) {
-		var isDark = theme === 'dark';
-		$themeToggle.attr('aria-pressed', isDark ? 'true' : 'false');
-		$themeToggle.attr('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
-		$themeToggle.attr('data-theme-state', theme);
+	if (skinRuntime && skinRuntime.all && skinRuntime.all.length) {
+		var skinOptions = skinRuntime.all.map(function(skin) {
+			return '<option value="' + skin.id + '">' + skin.name + '</option>';
+		}).join('');
+		var $skinPicker = $(
+			'<aside class="skin-picker" data-skin-ui aria-label="Visual skin controls">' +
+				'<button type="button" class="skin-picker-toggle" aria-expanded="false" aria-controls="skin-picker-panel">' +
+					'<span>Skin</span><span class="skin-picker-current"></span>' +
+				'</button>' +
+				'<div class="skin-picker-panel" id="skin-picker-panel" role="dialog" aria-label="Choose a visual skin" hidden>' +
+					'<h2 class="skin-picker-heading">Change the site skin</h2>' +
+					'<p class="skin-picker-status" aria-live="polite"></p>' +
+					'<label for="site-skin-choice">Preview a skin</label>' +
+					'<select id="site-skin-choice">' + skinOptions + '</select>' +
+					'<div class="skin-picker-actions">' +
+						'<button type="button" class="skin-picker-surprise">Surprise me</button>' +
+						'<button type="button" class="skin-picker-save">Keep this skin</button>' +
+						'<button type="button" class="skin-picker-random-default">Use surprises by default</button>' +
+					'</div>' +
+				'</div>' +
+			'</aside>'
+		);
+		var $skinToggle = $skinPicker.find('.skin-picker-toggle');
+		var $skinPanel = $skinPicker.find('.skin-picker-panel');
+		var $skinChoice = $skinPicker.find('select');
+		var $skinCurrent = $skinPicker.find('.skin-picker-current');
+		var $skinStatus = $skinPicker.find('.skin-picker-status');
+
+		function skinName(id) {
+			var match = skinRuntime.all.filter(function(skin) {
+				return skin.id === id;
+			})[0];
+			return match ? match.name : id;
+		}
+
+		function syncSkinPicker() {
+			var activeId = skinRuntime.getActiveId();
+			var persistedId = skinRuntime.getPersistedId();
+			var mode = document.documentElement.getAttribute('data-skin-mode');
+			var status = 'Random for this browsing session.';
+
+			$skinChoice.val(activeId);
+			$skinCurrent.text(skinName(activeId));
+
+			if (mode === 'saved') {
+				status = 'Saved for future visits.';
+			} else if (mode === 'preview') {
+				status = persistedId ?
+					'Preview only. Your saved skin is ' + skinName(persistedId) + '.' :
+					'Previewing for this session; not saved.';
+			}
+
+			$skinStatus.text(skinName(activeId) + ' — ' + status);
+		}
+
+		function closeSkinPicker() {
+			$skinPanel.prop('hidden', true);
+			$skinToggle.attr('aria-expanded', 'false');
+		}
+
+		$('body').append($skinPicker);
+		syncSkinPicker();
+
+		$skinToggle.on('click', function() {
+			var willOpen = !$skinPanel.prop('hidden');
+			$skinPanel.prop('hidden', willOpen);
+			$skinToggle.attr('aria-expanded', willOpen ? 'false' : 'true');
+			if (!willOpen) {
+				$skinChoice.trigger('focus');
+			}
+		});
+
+		$skinChoice.on('change', function() {
+			skinRuntime.preview(this.value);
+			syncSkinPicker();
+		});
+
+		$skinPicker.find('.skin-picker-surprise').on('click', function() {
+			skinRuntime.surprise();
+			syncSkinPicker();
+		});
+
+		$skinPicker.find('.skin-picker-save').on('click', function() {
+			skinRuntime.save(skinRuntime.getActiveId());
+			syncSkinPicker();
+		});
+
+		$skinPicker.find('.skin-picker-random-default').on('click', function() {
+			skinRuntime.useRandomDefault();
+			syncSkinPicker();
+		});
+
+		$(document).on('keydown', function(event) {
+			if (event.key === 'Escape' && !$skinPanel.prop('hidden')) {
+				closeSkinPicker();
+				$skinToggle.trigger('focus');
+			}
+		});
+
+		$(document).on('click', function(event) {
+			if (!$skinPanel.prop('hidden') && !$.contains($skinPicker[0], event.target)) {
+				closeSkinPicker();
+			}
+		});
 	}
-
-	$('.site-header').append($themeToggle);
-
-	var currentTheme = loadTheme();
-	applyTheme(currentTheme);
-	syncThemeButton(currentTheme);
-
-	$themeToggle.on('click', function() {
-		currentTheme = nextTheme(currentTheme);
-		applyTheme(currentTheme);
-		syncThemeButton(currentTheme);
-		saveTheme(currentTheme);
-	});
 
 	// Home splash text: load one adapted quote and allow quick dismissal.
 	var isHome = $body.hasClass('page-home');
