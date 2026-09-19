@@ -54,12 +54,17 @@
 		var $skinPicker = $(
 			'<aside class="skin-picker" data-skin-ui aria-label="Visual skin controls">' +
 				'<button type="button" class="skin-picker-toggle" aria-expanded="false" aria-controls="skin-picker-panel">' +
-					'<span>Skin</span><span class="skin-picker-current"></span>' +
+					'<span class="skin-picker-toggle-text">' +
+						'<span class="skin-picker-toggle-label">Current skin</span>' +
+						'<span class="skin-picker-current"></span>' +
+					'</span>' +
+					'<span class="skin-picker-count" aria-hidden="true">' + skinRuntime.all.length + ' available</span>' +
 				'</button>' +
 				'<div class="skin-picker-panel" id="skin-picker-panel" role="dialog" aria-label="Choose a visual skin" hidden>' +
-					'<h2 class="skin-picker-heading">Change the site skin</h2>' +
+					'<h2 class="skin-picker-heading">Choose a site skin</h2>' +
+					'<p class="skin-picker-intro">' + skinRuntime.all.length + ' visual skins are available. Select one to preview a different design.</p>' +
 					'<p class="skin-picker-status" aria-live="polite"></p>' +
-					'<label for="site-skin-choice">Preview a skin</label>' +
+					'<label for="site-skin-choice">Available skins</label>' +
 					'<select id="site-skin-choice">' + skinOptions + '</select>' +
 					'<div class="skin-picker-actions">' +
 						'<button type="button" class="skin-picker-surprise">Surprise me</button>' +
@@ -90,6 +95,7 @@
 
 			$skinChoice.val(activeId);
 			$skinCurrent.text(skinName(activeId));
+			$skinToggle.attr('aria-label', 'Open skin selector. Current skin: ' + skinName(activeId) + '. ' + skinRuntime.all.length + ' skins available.');
 
 			if (mode === 'saved') {
 				status = 'Saved for future visits.';
@@ -99,7 +105,7 @@
 					'Previewing for this session; not saved.';
 			}
 
-			$skinStatus.text(skinName(activeId) + ' — ' + status);
+			$skinStatus.text('Currently using ' + skinName(activeId) + '. ' + status);
 		}
 
 		function closeSkinPicker() {
