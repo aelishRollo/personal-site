@@ -1,0 +1,493 @@
+/*
+	Liquid Dream
+	Derived from 04-liquid-dream.html. Organic gradients, soft serif type and
+	fluid CSS geometry are adapted without changing the portfolio's layout.
+*/
+
+html[data-skin="liquid-dream"] {
+	--background: #f8f1e7;
+	--foreground: #201928;
+	--muted-bg: #f4e8df;
+	--card-bg: #fff9f1;
+	--border: rgba(32, 25, 40, 0.18);
+	--primary: #ff6ab7;
+	--primary-fg: #201928;
+	--secondary: #47e6d1;
+	--secondary-fg: #201928;
+	--accent: #4e7cff;
+	--accent-fg: #ffffff;
+	--link: #315bd2;
+	--warning: #e64d9c;
+	--header-bg: #f8f1e7;
+	--header-fg: #201928;
+	--footer-bg: #f8f1e7;
+	--footer-fg: #201928;
+	--bg: var(--background);
+	--surface-1: #fff9f1;
+	--surface-2: #f4e8df;
+	--surface-3: #d9f5ef;
+	--text-1: #201928;
+	--text-2: #51465c;
+	--line-1: rgba(32, 25, 40, 0.18);
+	--accent-1: #315bd2;
+	--accent-2: #ff6ab7;
+}
+
+html[data-skin="liquid-dream"] body {
+	position: relative;
+	overflow-x: hidden;
+	background-color: var(--background) !important;
+	background-image:
+		radial-gradient(circle at 8% 15%, rgba(255, 228, 108, 0.23), transparent 26%),
+		radial-gradient(circle at 94% 7%, rgba(71, 230, 209, 0.16), transparent 24%),
+		linear-gradient(180deg, #f8f1e7, #fff8f0 48%, #f8f1e7) !important;
+	color: var(--foreground) !important;
+	font-family: Georgia, "Times New Roman", serif !important;
+}
+
+html[data-skin="liquid-dream"] body,
+html[data-skin="liquid-dream"] p,
+html[data-skin="liquid-dream"] li,
+html[data-skin="liquid-dream"] label,
+html[data-skin="liquid-dream"] .lead,
+html[data-skin="liquid-dream"] .note,
+html[data-skin="liquid-dream"] .footer-inner p,
+html[data-skin="liquid-dream"] .social-inline a {
+	color: var(--text-2) !important;
+}
+
+html[data-skin="liquid-dream"] h1,
+html[data-skin="liquid-dream"] h2,
+html[data-skin="liquid-dream"] h3,
+html[data-skin="liquid-dream"] h4,
+html[data-skin="liquid-dream"] h5,
+html[data-skin="liquid-dream"] h6,
+html[data-skin="liquid-dream"] strong {
+	color: var(--foreground) !important;
+	font-family: Georgia, "Times New Roman", serif;
+	font-weight: 700;
+	letter-spacing: -0.045em;
+}
+
+html[data-skin="liquid-dream"] a {
+	color: var(--link) !important;
+	text-decoration-color: rgba(49, 91, 210, 0.32);
+	text-underline-offset: 0.22em;
+}
+
+html[data-skin="liquid-dream"] a:hover {
+	color: #cc3b86 !important;
+	text-decoration-color: var(--primary);
+}
+
+html[data-skin="liquid-dream"] .site-header {
+	border-bottom: 1px solid rgba(32, 25, 40, 0.15) !important;
+	background: rgba(248, 241, 231, 0.85) !important;
+	backdrop-filter: blur(14px);
+}
+
+html[data-skin="liquid-dream"] .brand-mark {
+	border: 0;
+	border-radius: 48% 52% 60% 40% / 55% 40% 60% 45%;
+	background: linear-gradient(135deg, var(--primary), #ffe46c 50%, var(--secondary)) !important;
+	box-shadow: 0 8px 20px rgba(78, 124, 255, 0.2);
+	color: var(--foreground) !important;
+	animation: liquid-dream-morph 6s ease-in-out infinite alternate;
+}
+
+html[data-skin="liquid-dream"] .brand-text {
+	color: var(--foreground) !important;
+	font-family: Georgia, "Times New Roman", serif;
+	font-weight: 700;
+}
+
+html[data-skin="liquid-dream"] .site-nav a,
+html[data-skin="liquid-dream"] .nav-toggle {
+	color: var(--foreground) !important;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	font-size: 0.76rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+html[data-skin="liquid-dream"] .site-nav a {
+	border-radius: 999px;
+}
+
+html[data-skin="liquid-dream"] .site-nav a:hover {
+	background: rgba(255, 106, 183, 0.15) !important;
+	color: #9f2869 !important;
+}
+
+html[data-skin="liquid-dream"] .site-nav a[aria-current="page"] {
+	background: linear-gradient(110deg, rgba(255, 106, 183, 0.28), rgba(71, 230, 209, 0.28)) !important;
+	color: var(--foreground) !important;
+}
+
+html[data-skin="liquid-dream"] .site-nav .nav-cta,
+html[data-skin="liquid-dream"] .nav-toggle {
+	border: 1px solid rgba(78, 124, 255, 0.5) !important;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.42) !important;
+	box-shadow: 0 8px 18px rgba(78, 124, 255, 0.1);
+}
+
+html[data-skin="liquid-dream"] .page-hero,
+html[data-skin="liquid-dream"] .section-soft,
+html[data-skin="liquid-dream"] .section-portrait {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	border-color: rgba(32, 25, 40, 0.15) !important;
+	background: rgba(248, 241, 231, 0.72) !important;
+}
+
+html[data-skin="liquid-dream"] .page-section:not(.section-cta):not(.section-soft):not(.section-portrait) {
+	position: relative;
+	border-color: rgba(32, 25, 40, 0.15) !important;
+	background: rgba(255, 249, 241, 0.8) !important;
+}
+
+html[data-skin="liquid-dream"] .page-hero::before,
+html[data-skin="liquid-dream"] .page-hero::after {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	width: min(40vw, 29rem);
+	aspect-ratio: 1.15;
+	filter: saturate(1.12);
+	pointer-events: none;
+	animation: liquid-dream-morph 6s ease-in-out infinite alternate;
+}
+
+html[data-skin="liquid-dream"] .page-hero::before {
+	top: 4%;
+	left: -10%;
+	border-radius: 45% 55% 62% 38% / 55% 42% 58% 45%;
+	background:
+		radial-gradient(circle at 30% 30%, #ffe46c, transparent 28%),
+		radial-gradient(circle at 70% 35%, #ff6ab7, transparent 32%),
+		#4e7cff;
+	opacity: 0.78;
+}
+
+html[data-skin="liquid-dream"] .page-hero::after {
+	right: -8%;
+	bottom: 7%;
+	border-radius: 55% 45% 36% 64% / 42% 62% 38% 58%;
+	background:
+		radial-gradient(circle at 60% 30%, #47e6d1, transparent 35%),
+		radial-gradient(circle at 30% 70%, #ff6ab7, transparent 32%),
+		#8f65ff;
+	opacity: 0.72;
+	animation-delay: -2s;
+}
+
+@keyframes liquid-dream-morph {
+	to {
+		border-radius: 62% 38% 35% 65% / 40% 65% 35% 60%;
+		transform: rotate(10deg) scale(1.06);
+		filter: hue-rotate(35deg) saturate(1.12) blur(1px);
+	}
+}
+
+@keyframes liquid-dream-spin {
+	to { transform: rotate(360deg); }
+}
+
+html[data-skin="liquid-dream"] .page-hero .site-shell,
+html[data-skin="liquid-dream"] .hero-copy,
+html[data-skin="liquid-dream"] .hero-media {
+	position: relative;
+	z-index: 1;
+	min-width: 0;
+}
+
+html[data-skin="liquid-dream"] .page-hero h1,
+html[data-skin="liquid-dream"] body.page-home .page-hero h1 {
+	color: var(--foreground) !important;
+	letter-spacing: -0.065em;
+	text-shadow: 0 2px 0 rgba(255, 255, 255, 0.42);
+}
+
+html[data-skin="liquid-dream"] .hero-title-role:nth-of-type(even) {
+	color: #3d4fc4 !important;
+	font-style: italic;
+	font-weight: 400;
+}
+
+html[data-skin="liquid-dream"] .hero-title-role:nth-of-type(3n) {
+	color: #c8337f !important;
+}
+
+html[data-skin="liquid-dream"] .metallic-pearl-text {
+	color: var(--foreground);
+	-webkit-text-fill-color: currentColor;
+	background: none;
+	filter: none;
+}
+
+html[data-skin="liquid-dream"] .eyebrow {
+	border: 1px solid rgba(32, 25, 40, 0.16) !important;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.52) !important;
+	box-shadow: 0 8px 20px rgba(78, 124, 255, 0.1);
+	color: var(--foreground) !important;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+}
+
+html[data-skin="liquid-dream"] .panel-card,
+html[data-skin="liquid-dream"] .features article,
+html[data-skin="liquid-dream"] .contact-rail,
+html[data-skin="liquid-dream"] ul.feature-icons li,
+html[data-skin="liquid-dream"] .profile-chip {
+	position: relative;
+	isolation: isolate;
+	border: 1px solid rgba(32, 25, 40, 0.14) !important;
+	border-radius: 34px;
+	background: linear-gradient(135deg, #ffc6e2, #ffed8e 48%, #67dfd1) !important;
+	box-shadow: 0 22px 52px rgba(78, 64, 104, 0.14) !important;
+	overflow: hidden;
+}
+
+html[data-skin="liquid-dream"] .panel-card:nth-child(3n + 2),
+html[data-skin="liquid-dream"] .features article:nth-child(3n + 2),
+html[data-skin="liquid-dream"] ul.feature-icons li:nth-child(3n + 2) {
+	background: linear-gradient(135deg, #8172ff, #62d5ff 45%, #ff84bb) !important;
+}
+
+html[data-skin="liquid-dream"] .panel-card:nth-child(3n + 2) *,
+html[data-skin="liquid-dream"] .features article:nth-child(3n + 2) *,
+html[data-skin="liquid-dream"] ul.feature-icons li:nth-child(3n + 2) * {
+	color: #ffffff !important;
+}
+
+html[data-skin="liquid-dream"] .panel-card:nth-child(3n),
+html[data-skin="liquid-dream"] .features article:nth-child(3n),
+html[data-skin="liquid-dream"] ul.feature-icons li:nth-child(3n) {
+	background: linear-gradient(145deg, #fff8e8, #d8f8f2 52%, #ffd0e7) !important;
+}
+
+html[data-skin="liquid-dream"] .panel-card::after,
+html[data-skin="liquid-dream"] .features article::after,
+html[data-skin="liquid-dream"] ul.feature-icons li::after {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	top: -38%;
+	right: -24%;
+	width: 72%;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: repeating-radial-gradient(circle, rgba(255, 255, 255, 0.72) 0 5px, rgba(255, 255, 255, 0) 6px 15px);
+	opacity: 0.45;
+	animation: liquid-dream-spin 22s linear infinite;
+}
+
+html[data-skin="liquid-dream"] .panel-card:hover,
+html[data-skin="liquid-dream"] .features article:hover,
+html[data-skin="liquid-dream"] ul.feature-icons li:hover {
+	box-shadow: 0 28px 62px rgba(78, 64, 104, 0.22) !important;
+}
+
+html[data-skin="liquid-dream"] .features article .image,
+html[data-skin="liquid-dream"] .hero-media img,
+html[data-skin="liquid-dream"] .portrait-panel img {
+	border: 2px solid rgba(255, 255, 255, 0.72);
+	border-radius: 42% 58% 48% 52% / 52% 42% 58% 48%;
+	box-shadow: 0 24px 54px rgba(70, 50, 95, 0.22) !important;
+}
+
+html[data-skin="liquid-dream"] .features article .image {
+	overflow: hidden;
+}
+
+html[data-skin="liquid-dream"] .features article .image img {
+	filter: saturate(1.15) contrast(0.98);
+	transition: filter 280ms ease;
+}
+
+html[data-skin="liquid-dream"] .features article:hover .image img {
+	filter: saturate(1.38) contrast(1.02);
+}
+
+html[data-skin="liquid-dream"] .hero-media img,
+html[data-skin="liquid-dream"] .portrait-panel img,
+html[data-skin="liquid-dream"] .profile-chip img {
+	filter: none !important;
+}
+
+html[data-skin="liquid-dream"] .hero-splash .hero-splash-text {
+	color: var(--foreground) !important;
+	text-shadow: 0 2px 0 rgba(255, 255, 255, 0.86), 0 0 14px rgba(255, 255, 255, 0.72);
+}
+
+html[data-skin="liquid-dream"] .tag-list li,
+html[data-skin="liquid-dream"] .profile-chip {
+	border-color: rgba(32, 25, 40, 0.14) !important;
+	border-radius: 999px;
+	background: linear-gradient(110deg, #b9f5ed, #ffd1e8) !important;
+	color: var(--foreground) !important;
+}
+
+html[data-skin="liquid-dream"] input[type="text"],
+html[data-skin="liquid-dream"] input[type="password"],
+html[data-skin="liquid-dream"] input[type="email"],
+html[data-skin="liquid-dream"] select,
+html[data-skin="liquid-dream"] textarea {
+	border: 1px solid rgba(32, 25, 40, 0.18) !important;
+	border-radius: 18px;
+	background: rgba(255, 255, 255, 0.62) !important;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 12px 28px rgba(78, 64, 104, 0.08) !important;
+	color: var(--foreground) !important;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html[data-skin="liquid-dream"] input:focus,
+html[data-skin="liquid-dream"] select:focus,
+html[data-skin="liquid-dream"] textarea:focus {
+	border-color: var(--accent) !important;
+	box-shadow: 0 0 0 4px rgba(78, 124, 255, 0.15), 0 14px 32px rgba(78, 64, 104, 0.12) !important;
+}
+
+html[data-skin="liquid-dream"] input[type="submit"],
+html[data-skin="liquid-dream"] input[type="reset"],
+html[data-skin="liquid-dream"] input[type="button"],
+html[data-skin="liquid-dream"] button:not([class^="skin-picker"]),
+html[data-skin="liquid-dream"] .button {
+	border: 1px solid rgba(32, 25, 40, 0.16) !important;
+	border-radius: 999px !important;
+	background: rgba(255, 255, 255, 0.58) !important;
+	box-shadow: 0 12px 26px rgba(78, 64, 104, 0.12) !important;
+	color: var(--foreground) !important;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+html[data-skin="liquid-dream"] input[type="submit"].primary,
+html[data-skin="liquid-dream"] input[type="button"].primary,
+html[data-skin="liquid-dream"] button.primary,
+html[data-skin="liquid-dream"] .button.primary,
+html[data-skin="liquid-dream"] .contact-submit,
+html[data-skin="liquid-dream"] .features article .inner span a {
+	border-color: rgba(32, 25, 40, 0.13) !important;
+	background: linear-gradient(105deg, #ff8dc7, #ffe46c 52%, #63e1d1) !important;
+	color: var(--foreground) !important;
+}
+
+html[data-skin="liquid-dream"] input[type="submit"]:hover,
+html[data-skin="liquid-dream"] button:not([class^="skin-picker"]):hover,
+html[data-skin="liquid-dream"] .button:hover {
+	border-color: rgba(78, 124, 255, 0.42) !important;
+	background: linear-gradient(105deg, #7c70ff, #62d5ff 52%, #ff84bb) !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="liquid-dream"] .section-cta {
+	position: relative;
+	overflow: hidden;
+	border-block: 1px solid rgba(32, 25, 40, 0.14) !important;
+	background: linear-gradient(135deg, #8172ff, #62d5ff 45%, #ff84bb) !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="liquid-dream"] .section-cta::after {
+	content: "";
+	position: absolute;
+	inset: 12% 5% 12% auto;
+	width: min(32vw, 23rem);
+	border: 2px solid rgba(255, 255, 255, 0.58);
+	border-radius: 50% 20% 50% 20%;
+	pointer-events: none;
+	animation: liquid-dream-morph 5s ease-in-out infinite alternate;
+}
+
+html[data-skin="liquid-dream"] .section-cta .site-shell {
+	position: relative;
+	z-index: 1;
+}
+
+html[data-skin="liquid-dream"] .section-cta h2,
+html[data-skin="liquid-dream"] .section-cta p {
+	color: #ffffff !important;
+}
+
+html[data-skin="liquid-dream"] .section-cta .button {
+	border-color: rgba(255, 255, 255, 0.72) !important;
+	background: rgba(255, 255, 255, 0.82) !important;
+	color: var(--foreground) !important;
+}
+
+html[data-skin="liquid-dream"] .site-footer {
+	border-top: 1px solid rgba(32, 25, 40, 0.15) !important;
+	background: rgba(248, 241, 231, 0.92) !important;
+	color: var(--foreground) !important;
+}
+
+html[data-skin="liquid-dream"] .site-footer,
+html[data-skin="liquid-dream"] .site-footer p,
+html[data-skin="liquid-dream"] .site-footer a {
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	font-size: 0.8rem;
+}
+
+html[data-skin="liquid-dream"] .skin-picker {
+	--skin-ui-bg: #201928;
+	--skin-ui-panel: #fff9f1;
+	--skin-ui-text: #201928;
+	--skin-ui-muted: #62566d;
+	--skin-ui-accent: #4e7cff;
+	--skin-ui-border: #ff6ab7;
+}
+
+html[data-skin="liquid-dream"] .skin-picker-toggle {
+	background: linear-gradient(105deg, #201928, #493f66) !important;
+	box-shadow: 0 12px 30px rgba(78, 64, 104, 0.24);
+}
+
+html[data-skin="liquid-dream"] .skin-picker-toggle,
+html[data-skin="liquid-dream"] .skin-picker-current,
+html[data-skin="liquid-dream"] .skin-picker-actions button:not(.skin-picker-save) {
+	color: #ffffff !important;
+}
+
+html[data-skin="liquid-dream"] .skin-picker select {
+	background-color: #201928 !important;
+	color: #ffffff !important;
+}
+
+@media (max-width: 736px) {
+	html[data-skin="liquid-dream"] .page-hero::before,
+	html[data-skin="liquid-dream"] .page-hero::after {
+		width: 75vw;
+		opacity: 0.55;
+	}
+
+	html[data-skin="liquid-dream"] body.nav-open .site-nav {
+		background: rgba(248, 241, 231, 0.97) !important;
+	}
+
+	html[data-skin="liquid-dream"] body.nav-open .site-nav a {
+		border: 1px solid rgba(32, 25, 40, 0.14);
+	}
+
+	html[data-skin="liquid-dream"] .section-cta::after {
+		width: 62vw;
+		opacity: 0.42;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-skin="liquid-dream"] *,
+	html[data-skin="liquid-dream"] *::before,
+	html[data-skin="liquid-dream"] *::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}

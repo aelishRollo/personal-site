@@ -1,0 +1,550 @@
+/*
+	Op Art Monochrome
+	Derived from 02-op-art-monochrome.html. The source relies entirely on system
+	fonts and CSS-generated geometry, so this skin has no asset dependency.
+*/
+
+html[data-skin="op-art-monochrome"] {
+	--background: #f1f1ed;
+	--foreground: #20272b;
+	--muted-bg: #e1e6e3;
+	--card-bg: #f8f8f5;
+	--border: #596268;
+	--primary: #9b6258;
+	--primary-fg: #ffffff;
+	--secondary: #91aaa4;
+	--secondary-fg: #182022;
+	--accent: #526b7c;
+	--accent-fg: #ffffff;
+	--link: #496b6b;
+	--warning: #9b6258;
+	--header-bg: #f4f5f2;
+	--header-fg: #20272b;
+	--footer-bg: #e1e6e3;
+	--footer-fg: #20272b;
+	--bg: var(--background);
+	--surface-1: #f8f8f5;
+	--surface-2: #e1e6e3;
+	--surface-3: #303a40;
+	--text-1: #20272b;
+	--text-2: #3f484c;
+	--line-1: #596268;
+	--accent-1: #496b6b;
+	--accent-2: #9b6258;
+}
+
+html[data-skin="op-art-monochrome"] body {
+	position: relative;
+	background: var(--background) !important;
+	color: var(--foreground) !important;
+	font-family: Helvetica, Arial, sans-serif !important;
+}
+
+html[data-skin="op-art-monochrome"] body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	background: repeating-radial-gradient(circle at 88% 14%, rgba(82, 107, 124, 0.055) 0 2px, transparent 3px 18px);
+}
+
+html[data-skin="op-art-monochrome"] body,
+html[data-skin="op-art-monochrome"] p,
+html[data-skin="op-art-monochrome"] li,
+html[data-skin="op-art-monochrome"] label,
+html[data-skin="op-art-monochrome"] .lead,
+html[data-skin="op-art-monochrome"] .note,
+html[data-skin="op-art-monochrome"] .brand-text,
+html[data-skin="op-art-monochrome"] .site-nav a,
+html[data-skin="op-art-monochrome"] .footer-inner p,
+html[data-skin="op-art-monochrome"] .social-inline a {
+	color: var(--foreground) !important;
+}
+
+html[data-skin="op-art-monochrome"] h1,
+html[data-skin="op-art-monochrome"] h2,
+html[data-skin="op-art-monochrome"] h3,
+html[data-skin="op-art-monochrome"] h4,
+html[data-skin="op-art-monochrome"] h5,
+html[data-skin="op-art-monochrome"] h6,
+html[data-skin="op-art-monochrome"] strong {
+	color: var(--foreground) !important;
+	font-family: Helvetica, Arial, sans-serif;
+	font-weight: 800;
+	letter-spacing: -0.035em;
+}
+
+html[data-skin="op-art-monochrome"] a {
+	color: var(--link) !important;
+	text-decoration-color: var(--link);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2em;
+}
+
+html[data-skin="op-art-monochrome"] a:hover {
+	color: #555555 !important;
+}
+
+html[data-skin="op-art-monochrome"] .site-header {
+	border-bottom: 1px solid var(--border) !important;
+	background: rgba(244, 245, 242, 0.96) !important;
+	backdrop-filter: none;
+}
+
+html[data-skin="op-art-monochrome"] .brand-mark {
+	border: 1px solid #6f443e;
+	border-radius: 0;
+	background: var(--primary) !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="op-art-monochrome"] .brand-text,
+html[data-skin="op-art-monochrome"] .site-nav a,
+html[data-skin="op-art-monochrome"] .nav-toggle {
+	font-weight: 800;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+html[data-skin="op-art-monochrome"] .site-nav a {
+	border-radius: 0;
+}
+
+html[data-skin="op-art-monochrome"] .site-nav a:hover {
+	background: #dce4e0 !important;
+	color: var(--foreground) !important;
+}
+
+html[data-skin="op-art-monochrome"] .site-nav a[aria-current="page"] {
+	background: var(--accent) !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="op-art-monochrome"] .site-nav .nav-cta,
+html[data-skin="op-art-monochrome"] .nav-toggle {
+	border: 1px solid var(--accent) !important;
+	border-radius: 0;
+	color: var(--foreground) !important;
+}
+
+html[data-skin="op-art-monochrome"] .site-nav .nav-cta:hover {
+	background: var(--accent) !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="op-art-monochrome"] .page-hero,
+html[data-skin="op-art-monochrome"] body.page-home .page-hero,
+html[data-skin="op-art-monochrome"] body.page-services .page-hero,
+html[data-skin="op-art-monochrome"] body.page-work .page-hero,
+html[data-skin="op-art-monochrome"] body.page-connect .page-hero,
+html[data-skin="op-art-monochrome"] body.page-about .page-hero,
+html[data-skin="op-art-monochrome"] body.page-contact .page-hero {
+	position: relative;
+	isolation: isolate;
+	border-bottom: 1px solid var(--border) !important;
+	background: var(--background) !important;
+}
+
+html[data-skin="op-art-monochrome"] .page-hero::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: repeating-radial-gradient(circle at 82% 48%, rgba(48, 58, 64, 0.5) 0 6px, rgba(241, 241, 237, 0.35) 7px 16px);
+	opacity: 0.18;
+	animation: op-art-wave 4s ease-in-out infinite alternate;
+}
+
+@keyframes op-art-wave {
+	to { transform: skewX(3deg) scale(1.025); }
+}
+
+@keyframes op-art-slide {
+	to { background-position: 24px 0; }
+}
+
+@keyframes op-art-spin {
+	to { transform: rotate(360deg); }
+}
+
+html[data-skin="op-art-monochrome"] .page-hero .site-shell,
+html[data-skin="op-art-monochrome"] .hero-copy,
+html[data-skin="op-art-monochrome"] .hero-copy > :not(.hero-media),
+html[data-skin="op-art-monochrome"] .hero-media {
+	position: relative;
+	z-index: 1;
+	min-width: 0;
+}
+
+html[data-skin="op-art-monochrome"] .page-hero h1,
+html[data-skin="op-art-monochrome"] body.page-home .page-hero h1 {
+	font-weight: 800;
+	letter-spacing: -0.065em;
+	overflow-wrap: anywhere;
+}
+
+html[data-skin="op-art-monochrome"] .hero-title-role:nth-of-type(odd)::first-letter,
+html[data-skin="op-art-monochrome"] .hero-title-role:nth-of-type(even)::first-letter {
+	color: var(--foreground);
+}
+
+html[data-skin="op-art-monochrome"] .metallic-pearl-text {
+	color: var(--foreground);
+	-webkit-text-fill-color: var(--foreground);
+	background: none;
+	filter: none;
+	animation: none;
+}
+
+html[data-skin="op-art-monochrome"] .eyebrow {
+	border: 1px solid #46545b !important;
+	border-radius: 0;
+	background: #303a40 !important;
+	color: #ffffff !important;
+	font-weight: 800;
+	letter-spacing: 0.14em;
+}
+
+html[data-skin="op-art-monochrome"] .page-section:not(.section-cta):not(.section-soft):not(.section-portrait),
+html[data-skin="op-art-monochrome"] .section-soft,
+html[data-skin="op-art-monochrome"] .section-portrait {
+	border-bottom: 1px solid var(--border);
+	background: rgba(225, 230, 227, 0.92) !important;
+}
+
+html[data-skin="op-art-monochrome"] .panel-card,
+html[data-skin="op-art-monochrome"] .features article,
+html[data-skin="op-art-monochrome"] .contact-rail,
+html[data-skin="op-art-monochrome"] ul.feature-icons li,
+html[data-skin="op-art-monochrome"] .tag-list li,
+html[data-skin="op-art-monochrome"] .profile-chip {
+	position: relative;
+	isolation: isolate;
+	border: 1px solid var(--border) !important;
+	border-radius: 0;
+	background: var(--card-bg) !important;
+	box-shadow: none !important;
+	overflow: hidden;
+}
+
+html[data-skin="op-art-monochrome"] .panel-card:nth-child(even),
+html[data-skin="op-art-monochrome"] .features article:nth-child(even),
+html[data-skin="op-art-monochrome"] ul.feature-icons li:nth-child(even) {
+	background: #283137 !important;
+}
+
+html[data-skin="op-art-monochrome"] .panel-card:nth-child(even) *,
+html[data-skin="op-art-monochrome"] .features article:nth-child(even) *,
+html[data-skin="op-art-monochrome"] ul.feature-icons li:nth-child(even) * {
+	color: #ffffff !important;
+}
+
+html[data-skin="op-art-monochrome"] .panel-card:nth-child(3n + 1)::before,
+html[data-skin="op-art-monochrome"] .features article:nth-child(3n + 1)::before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	top: -7rem;
+	right: -7rem;
+	width: 15rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: repeating-conic-gradient(#526b7c 0 4deg, #d7ddda 4deg 11deg);
+	opacity: 0.16;
+	animation: op-art-spin 14s linear infinite;
+}
+
+html[data-skin="op-art-monochrome"] .features article .image {
+	border: 1px solid var(--border);
+	border-radius: 0;
+}
+
+html[data-skin="op-art-monochrome"] .features article .image img {
+	filter: grayscale(0.72) saturate(0.55) contrast(1.06);
+}
+
+html[data-skin="op-art-monochrome"] .hero-media img,
+html[data-skin="op-art-monochrome"] .portrait-panel img,
+html[data-skin="op-art-monochrome"] .profile-chip img {
+	filter: none !important;
+}
+
+html[data-skin="op-art-monochrome"] .hero-splash .hero-splash-text {
+	color: #ffffff !important;
+	text-shadow:
+		-1px -1px 0 #111111,
+		1px -1px 0 #111111,
+		-1px 1px 0 #111111,
+		1px 1px 0 #111111,
+		0 2px 0 #111111;
+}
+
+html[data-skin="op-art-monochrome"] .tag-list li,
+html[data-skin="op-art-monochrome"] .profile-chip {
+	border-radius: 0;
+	background: var(--secondary) !important;
+	color: var(--secondary-fg) !important;
+}
+
+html[data-skin="op-art-monochrome"] input[type="text"],
+html[data-skin="op-art-monochrome"] input[type="password"],
+html[data-skin="op-art-monochrome"] input[type="email"],
+html[data-skin="op-art-monochrome"] select,
+html[data-skin="op-art-monochrome"] textarea {
+	border: 1px solid var(--border) !important;
+	border-radius: 0;
+	background: var(--card-bg) !important;
+	box-shadow: none !important;
+	color: var(--foreground) !important;
+}
+
+html[data-skin="op-art-monochrome"] input:focus,
+html[data-skin="op-art-monochrome"] select:focus,
+html[data-skin="op-art-monochrome"] textarea:focus {
+	border-color: var(--accent) !important;
+	box-shadow: 0 0 0 3px var(--card-bg), 0 0 0 5px var(--accent) !important;
+}
+
+html[data-skin="op-art-monochrome"] input[type="submit"],
+html[data-skin="op-art-monochrome"] input[type="reset"],
+html[data-skin="op-art-monochrome"] input[type="button"],
+html[data-skin="op-art-monochrome"] button:not([class^="skin-picker"]),
+html[data-skin="op-art-monochrome"] .button {
+	border: 1px solid var(--border) !important;
+	border-radius: 0 !important;
+	background: var(--card-bg) !important;
+	box-shadow: none !important;
+	color: var(--foreground) !important;
+	font-weight: 800;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+html[data-skin="op-art-monochrome"] input[type="submit"].primary,
+html[data-skin="op-art-monochrome"] input[type="button"].primary,
+html[data-skin="op-art-monochrome"] button.primary,
+html[data-skin="op-art-monochrome"] .button.primary,
+html[data-skin="op-art-monochrome"] .contact-submit,
+html[data-skin="op-art-monochrome"] .features article .inner span a {
+	border-color: #6f443e !important;
+	background: var(--primary) !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="op-art-monochrome"] .section-cta {
+	border-block: 1px solid #303a40;
+	background: #303a40 !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="op-art-monochrome"] .section-cta h2,
+html[data-skin="op-art-monochrome"] .section-cta p {
+	color: #ffffff !important;
+}
+
+html[data-skin="op-art-monochrome"] .section-cta .button {
+	border-color: #ffffff !important;
+	background: #ffffff !important;
+	color: #20272b !important;
+}
+
+html[data-skin="op-art-monochrome"] .site-footer {
+	border-top: 1px solid var(--border) !important;
+	background: var(--footer-bg) !important;
+	color: var(--footer-fg) !important;
+}
+
+/* Reveal the portfolio's original palette section by section. */
+html[data-skin="op-art-monochrome"] .site-main > section,
+html[data-skin="op-art-monochrome"] .site-main > section::after,
+html[data-skin="op-art-monochrome"] .site-main > section .panel-card,
+html[data-skin="op-art-monochrome"] .site-main > section .features article,
+html[data-skin="op-art-monochrome"] .site-main > section ul.feature-icons li,
+html[data-skin="op-art-monochrome"] .site-main > section img,
+html[data-skin="op-art-monochrome"] .site-main > section .button,
+html[data-skin="op-art-monochrome"] .site-main > section .eyebrow {
+	transition:
+		background-color 320ms ease,
+		background-image 320ms ease,
+		border-color 320ms ease,
+		box-shadow 320ms ease,
+		color 240ms ease,
+		filter 320ms ease,
+		opacity 320ms ease;
+}
+
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) {
+	--background: #f7f4ed;
+	--foreground: #141414;
+	--muted-bg: #e5f5f1;
+	--card-bg: #fffcf7;
+	--border: #b7cac6;
+	--primary: #ff6b4a;
+	--primary-fg: #141414;
+	--secondary: #9edfd1;
+	--secondary-fg: #141414;
+	--accent: #007a78;
+	--accent-fg: #ffffff;
+	--link: #007a78;
+	--surface-1: #fffcf7;
+	--surface-2: #e5f5f1;
+	--surface-3: #d4efe8;
+	--text-1: #141414;
+	--text-2: #3d4b4c;
+	--line-1: #b7cac6;
+	--accent-1: #007a78;
+	--accent-2: #ff6b4a;
+	border-color: var(--border) !important;
+}
+
+html[data-skin="op-art-monochrome"] .site-main > .page-hero:is(:hover, :focus-within),
+html[data-skin="op-art-monochrome"] .site-main > .section-soft:is(:hover, :focus-within),
+html[data-skin="op-art-monochrome"] .site-main > .section-portrait:is(:hover, :focus-within) {
+	background: var(--muted-bg) !important;
+}
+
+html[data-skin="op-art-monochrome"] .site-main > .page-section:not(.section-cta):not(.section-soft):not(.section-portrait):is(:hover, :focus-within) {
+	background: var(--background) !important;
+}
+
+html[data-skin="op-art-monochrome"] .site-main > .page-hero:is(:hover, :focus-within)::after {
+	background:
+		radial-gradient(circle at 82% 48%, rgba(158, 223, 209, 0.72), transparent 31%),
+		radial-gradient(circle at 72% 34%, rgba(255, 107, 74, 0.22), transparent 25%),
+		repeating-radial-gradient(circle at 82% 48%, rgba(18, 59, 93, 0.1) 0 2px, transparent 3px 17px);
+	opacity: 1;
+}
+
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) h1,
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) h2,
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) h3,
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) h4,
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) h5,
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) h6,
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) strong {
+	color: var(--text-1) !important;
+}
+
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) p,
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) li,
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) label,
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) .lead,
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) .note {
+	color: var(--text-2) !important;
+}
+
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) a {
+	color: var(--link) !important;
+	text-decoration-color: var(--link);
+}
+
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) .eyebrow {
+	border-color: var(--accent) !important;
+	background: color-mix(in srgb, var(--secondary) 36%, transparent) !important;
+	color: var(--accent) !important;
+}
+
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) .panel-card,
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) .features article,
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) .contact-rail,
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) ul.feature-icons li,
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) .profile-chip {
+	border-color: var(--border) !important;
+	background: var(--card-bg) !important;
+	box-shadow: 0 10px 22px rgba(18, 59, 93, 0.09) !important;
+}
+
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) .panel-card:nth-child(even) *,
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) .features article:nth-child(even) *,
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) ul.feature-icons li:nth-child(even) * {
+	color: var(--text-1) !important;
+}
+
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) .tag-list li,
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) .profile-chip {
+	background: var(--secondary) !important;
+	color: var(--secondary-fg) !important;
+}
+
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) .features article .image img {
+	filter: none;
+}
+
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) .button.primary,
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) .contact-submit,
+html[data-skin="op-art-monochrome"] .site-main > section:is(:hover, :focus-within) .features article .inner span a {
+	border-color: var(--primary) !important;
+	background: var(--primary) !important;
+	color: var(--primary-fg) !important;
+}
+
+html[data-skin="op-art-monochrome"] .site-main > .section-cta:is(:hover, :focus-within) {
+	background: linear-gradient(145deg, #123b5d, #0d2b44) !important;
+	color: #f7f4ed !important;
+}
+
+html[data-skin="op-art-monochrome"] .site-main > .section-cta:is(:hover, :focus-within) h2,
+html[data-skin="op-art-monochrome"] .site-main > .section-cta:is(:hover, :focus-within) p {
+	color: #f7f4ed !important;
+}
+
+html[data-skin="op-art-monochrome"] .site-main > .section-cta:is(:hover, :focus-within) .button {
+	border-color: var(--secondary) !important;
+	background: var(--secondary) !important;
+	color: var(--secondary-fg) !important;
+}
+
+html[data-skin="op-art-monochrome"] .skin-picker {
+	--skin-ui-bg: #111111;
+	--skin-ui-panel: #ffffff;
+	--skin-ui-text: #111111;
+	--skin-ui-muted: #444444;
+	--skin-ui-accent: #111111;
+	--skin-ui-border: #111111;
+}
+
+html[data-skin="op-art-monochrome"] .skin-picker-toggle,
+html[data-skin="op-art-monochrome"] .skin-picker-actions button:not(.skin-picker-save) {
+	color: #ffffff !important;
+}
+
+html[data-skin="op-art-monochrome"] .skin-picker-toggle:hover,
+html[data-skin="op-art-monochrome"] .skin-picker-toggle:focus-visible {
+	background: #111111 !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="op-art-monochrome"] .skin-picker-current {
+	color: #ffffff !important;
+}
+
+html[data-skin="op-art-monochrome"] .skin-picker select,
+html[data-skin="op-art-monochrome"] .skin-picker-actions .skin-picker-save {
+	color: #ffffff !important;
+}
+
+html[data-skin="op-art-monochrome"] .skin-picker select {
+	background-color: #111111 !important;
+}
+
+@media (max-width: 736px) {
+	html[data-skin="op-art-monochrome"] .page-hero::after {
+		inset: 0;
+		opacity: 0.14;
+	}
+
+	html[data-skin="op-art-monochrome"] body.nav-open .site-nav a {
+		border: 1px solid var(--border);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-skin="op-art-monochrome"] *,
+	html[data-skin="op-art-monochrome"] *::before,
+	html[data-skin="op-art-monochrome"] *::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}
