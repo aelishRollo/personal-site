@@ -21,7 +21,8 @@
 		{ id: 'liquid-dream', name: 'Liquid Dream', scheme: 'light', css: 'assets/css/skins/liquid-dream.css' },
 		{ id: 'sacred-geometry', name: 'Sacred Geometry', scheme: 'dark', css: 'assets/css/skins/sacred-geometry.css' },
 		{ id: 'terminal-vision', name: 'Terminal Vision', scheme: 'dark', css: 'assets/css/skins/terminal-vision.css?v=terminal-vision-1' },
-		{ id: 'psychedelic-scrapbook', name: 'Psychedelic Scrapbook', scheme: 'light', css: 'assets/css/skins/psychedelic-scrapbook.css?v=psychedelic-scrapbook-2' }
+		{ id: 'psychedelic-scrapbook', name: 'Psychedelic Scrapbook', scheme: 'light', css: 'assets/css/skins/psychedelic-scrapbook.css?v=psychedelic-scrapbook-2' },
+		{ id: 'liquid-chrome-y2k', name: 'Liquid Chrome Y2K', scheme: 'light', css: 'assets/css/skins/liquid-chrome-y2k.css?v=liquid-chrome-y2k-3' }
 	];
 	var skinById = {};
 	var activeId = '';
