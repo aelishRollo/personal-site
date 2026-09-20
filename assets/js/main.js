@@ -48,37 +48,58 @@
 	var skinRuntime = window.SiteSkins;
 
 	if (skinRuntime && skinRuntime.all && skinRuntime.all.length) {
+		var randomOption = '<button type="button" class="skin-picker-option skin-picker-option-random" data-skin-random aria-pressed="false">' +
+			'<span class="skin-picker-option-mark" aria-hidden="true"></span>' +
+			'<span>Random Theme</span>' +
+		'</button>';
 		var skinOptions = skinRuntime.all.map(function(skin) {
-			return '<option value="' + skin.id + '">' + skin.name + '</option>';
+			return '<button type="button" class="skin-picker-option" data-skin-choice="' + skin.id + '" aria-pressed="false">' +
+				'<span class="skin-picker-option-mark" aria-hidden="true"></span>' +
+				'<span>' + skin.name + '</span>' +
+			'</button>';
 		}).join('');
 		var $skinPicker = $(
-			'<aside class="skin-picker" data-skin-ui aria-label="Visual skin controls">' +
+			'<aside class="skin-picker" data-skin-ui aria-label="Theme controls">' +
 				'<button type="button" class="skin-picker-toggle" aria-expanded="false" aria-controls="skin-picker-panel">' +
-					'<span class="skin-picker-toggle-text">' +
-						'<span class="skin-picker-toggle-label">Current skin</span>' +
-						'<span class="skin-picker-current"></span>' +
-					'</span>' +
-					'<span class="skin-picker-count" aria-hidden="true">' + skinRuntime.all.length + ' available</span>' +
+					'<span class="skin-picker-toggle-icon" aria-hidden="true">&#10022;</span>' +
+					'<span class="skin-picker-toggle-label">Theme</span>' +
+					'<span class="skin-picker-current"></span>' +
+					'<span class="skin-picker-chevron" aria-hidden="true"></span>' +
 				'</button>' +
-				'<div class="skin-picker-panel" id="skin-picker-panel" role="dialog" aria-label="Choose a visual skin" hidden>' +
-					'<h2 class="skin-picker-heading">Choose a site skin</h2>' +
-					'<p class="skin-picker-intro">' + skinRuntime.all.length + ' visual skins are available. Select one to preview a different design.</p>' +
-					'<p class="skin-picker-status" aria-live="polite"></p>' +
-					'<label for="site-skin-choice">Available skins</label>' +
-					'<select id="site-skin-choice">' + skinOptions + '</select>' +
-					'<div class="skin-picker-actions">' +
-						'<button type="button" class="skin-picker-surprise">Surprise me</button>' +
-						'<button type="button" class="skin-picker-save">Keep this skin</button>' +
-						'<button type="button" class="skin-picker-random-default">Use surprises by default</button>' +
+				'<div class="skin-picker-panel" id="skin-picker-panel" aria-labelledby="skin-picker-heading" hidden>' +
+					'<div class="skin-picker-header">' +
+						'<div>' +
+							'<h2 class="skin-picker-heading" id="skin-picker-heading">Choose a theme</h2>' +
+							'<p class="skin-picker-intro">Each time you visit, a random theme from below is displayed. Try some out!</p>' +
+						'</div>' +
+						'<button type="button" class="skin-picker-close" aria-label="Close theme picker">&times;</button>' +
 					'</div>' +
+					'<div class="skin-picker-scroll-shell">' +
+						'<button type="button" class="skin-picker-scroll-arrow skin-picker-scroll-up" aria-label="Scroll themes up" hidden>&uarr;</button>' +
+						'<div class="skin-picker-options" role="group" aria-label="Available themes">' + randomOption + skinOptions + '</div>' +
+						'<button type="button" class="skin-picker-scroll-arrow skin-picker-scroll-down" aria-label="Scroll themes down" hidden>&darr;</button>' +
+					'</div>' +
+					'<div class="skin-picker-persistence">' +
+						'<input type="checkbox" class="skin-picker-keep" id="skin-picker-keep" />' +
+						'<label for="skin-picker-keep">Keep using this theme every time you visit the site</label>' +
+					'</div>' +
+					'<p class="skin-picker-status" aria-live="polite"></p>' +
 				'</div>' +
 			'</aside>'
 		);
 		var $skinToggle = $skinPicker.find('.skin-picker-toggle');
 		var $skinPanel = $skinPicker.find('.skin-picker-panel');
-		var $skinChoice = $skinPicker.find('select');
+		var $skinChoices = $skinPicker.find('[data-skin-choice]');
+		var $skinRandom = $skinPicker.find('[data-skin-random]');
+		var $skinAllChoices = $skinChoices.add($skinRandom);
+		var $skinOptions = $skinPicker.find('.skin-picker-options');
+		var $skinScrollUp = $skinPicker.find('.skin-picker-scroll-up');
+		var $skinScrollDown = $skinPicker.find('.skin-picker-scroll-down');
 		var $skinCurrent = $skinPicker.find('.skin-picker-current');
+		var $skinKeep = $skinPicker.find('.skin-picker-keep');
 		var $skinStatus = $skinPicker.find('.skin-picker-status');
+		var skinScrollFrame = null;
+		var skinScrollTimestamp = null;
 
 		function skinName(id) {
 			var match = skinRuntime.all.filter(function(skin) {
@@ -87,30 +108,93 @@
 			return match ? match.name : id;
 		}
 
-		function syncSkinPicker() {
+		function syncSkinPicker(announcement) {
 			var activeId = skinRuntime.getActiveId();
-			var persistedId = skinRuntime.getPersistedId();
-			var mode = document.documentElement.getAttribute('data-skin-mode');
-			var status = 'Random for this browsing session.';
+			var activeName = skinName(activeId);
+			var isKept = skinRuntime.getPersistedId() === activeId;
+			var mode = skinRuntime.getMode ? skinRuntime.getMode() : (isKept ? 'saved' : 'random');
+			var modeDescription;
 
-			$skinChoice.val(activeId);
-			$skinCurrent.text(skinName(activeId));
-			$skinToggle.attr('aria-label', 'Open skin selector. Current skin: ' + skinName(activeId) + '. ' + skinRuntime.all.length + ' skins available.');
-
-			if (mode === 'saved') {
-				status = 'Saved for future visits.';
+			if (isKept) {
+				modeDescription = 'Kept for future visits.';
 			} else if (mode === 'preview') {
-				status = persistedId ?
-					'Preview only. Your saved skin is ' + skinName(persistedId) + '.' :
-					'Previewing for this session; not saved.';
+				modeDescription = 'Preview only — not saved.';
+			} else {
+				modeDescription = 'Random for this visit.';
 			}
 
-			$skinStatus.text('Currently using ' + skinName(activeId) + '. ' + status);
+			$skinAllChoices.attr('aria-pressed', 'false');
+			if (mode === 'random' && !isKept) {
+				$skinRandom.attr('aria-pressed', 'true');
+			} else {
+				$skinChoices.filter('[data-skin-choice="' + activeId + '"]').attr('aria-pressed', 'true');
+			}
+			$skinCurrent.text(activeName);
+			$skinKeep.prop('checked', isKept);
+			$skinToggle.attr('aria-label', 'Choose theme. Current theme: ' + activeName + '. ' + modeDescription);
+			$skinStatus.text(announcement || activeName + '. ' + modeDescription);
 		}
 
 		function closeSkinPicker() {
+			stopSkinAutoScroll();
 			$skinPanel.prop('hidden', true);
 			$skinToggle.attr('aria-expanded', 'false');
+		}
+
+		function updateSkinScrollArrows() {
+			var list = $skinOptions[0];
+
+			if (!list || $skinPanel.prop('hidden')) {
+				$skinScrollUp.prop('hidden', true);
+				$skinScrollDown.prop('hidden', true);
+				return;
+			}
+
+			var atTop = list.scrollTop <= 1;
+			var atBottom = list.scrollTop + list.clientHeight >= list.scrollHeight - 1;
+			var canScroll = list.scrollHeight > list.clientHeight + 1;
+
+			$skinScrollUp.prop('hidden', !canScroll || atTop);
+			$skinScrollDown.prop('hidden', !canScroll || atBottom);
+		}
+
+		function stopSkinAutoScroll() {
+			if (skinScrollFrame !== null) {
+				window.cancelAnimationFrame(skinScrollFrame);
+				skinScrollFrame = null;
+			}
+
+			skinScrollTimestamp = null;
+		}
+
+		function startSkinAutoScroll(direction) {
+			var list = $skinOptions[0];
+
+			if (!list) {
+				return;
+			}
+
+			stopSkinAutoScroll();
+
+			function step(timestamp) {
+				if (skinScrollTimestamp === null) {
+					skinScrollTimestamp = timestamp;
+				}
+
+				var elapsed = Math.min(timestamp - skinScrollTimestamp, 32);
+				skinScrollTimestamp = timestamp;
+				list.scrollTop += direction * Math.max(1, elapsed * 0.22);
+				updateSkinScrollArrows();
+
+				var atBoundary = direction < 0 ? list.scrollTop <= 1 : list.scrollTop + list.clientHeight >= list.scrollHeight - 1;
+				if (!atBoundary) {
+					skinScrollFrame = window.requestAnimationFrame(step);
+				} else {
+					stopSkinAutoScroll();
+				}
+			}
+
+			skinScrollFrame = window.requestAnimationFrame(step);
 		}
 
 		$('body').append($skinPicker);
@@ -121,28 +205,54 @@
 			$skinPanel.prop('hidden', willOpen);
 			$skinToggle.attr('aria-expanded', willOpen ? 'false' : 'true');
 			if (!willOpen) {
-				$skinChoice.trigger('focus');
+				$skinAllChoices.filter('[aria-pressed="true"]').trigger('focus');
+				window.requestAnimationFrame(updateSkinScrollArrows);
+			} else {
+				stopSkinAutoScroll();
 			}
 		});
 
-		$skinChoice.on('change', function() {
-			skinRuntime.preview(this.value);
-			syncSkinPicker();
+		$skinOptions.on('scroll', updateSkinScrollArrows);
+
+		$skinScrollUp.on('mouseenter', function() {
+			startSkinAutoScroll(-1);
+		}).on('mouseleave blur', stopSkinAutoScroll).on('click', function() {
+			$skinOptions[0].scrollTop -= $skinOptions[0].clientHeight * 0.75;
+			updateSkinScrollArrows();
 		});
 
-		$skinPicker.find('.skin-picker-surprise').on('click', function() {
-			skinRuntime.surprise();
-			syncSkinPicker();
+		$skinScrollDown.on('mouseenter', function() {
+			startSkinAutoScroll(1);
+		}).on('mouseleave blur', stopSkinAutoScroll).on('click', function() {
+			$skinOptions[0].scrollTop += $skinOptions[0].clientHeight * 0.75;
+			updateSkinScrollArrows();
 		});
 
-		$skinPicker.find('.skin-picker-save').on('click', function() {
-			skinRuntime.save(skinRuntime.getActiveId());
-			syncSkinPicker();
+		$(window).on('resize', updateSkinScrollArrows);
+
+		$skinChoices.on('click', function() {
+			skinRuntime.preview($(this).attr('data-skin-choice'));
+			syncSkinPicker('Previewing ' + skinName(skinRuntime.getActiveId()) + '.');
 		});
 
-		$skinPicker.find('.skin-picker-random-default').on('click', function() {
+		$skinRandom.on('click', function() {
 			skinRuntime.useRandomDefault();
-			syncSkinPicker();
+			syncSkinPicker('Random Theme selected. ' + skinName(skinRuntime.getActiveId()) + ' is displayed for this visit.');
+		});
+
+		$skinKeep.on('change', function() {
+			if (this.checked) {
+				skinRuntime.save(skinRuntime.getActiveId());
+				syncSkinPicker(skinName(skinRuntime.getActiveId()) + ' will be used on future visits.');
+			} else {
+				skinRuntime.clearSaved();
+				syncSkinPicker(skinName(skinRuntime.getActiveId()) + ' will only be used for this visit.');
+			}
+		});
+
+		$skinPicker.find('.skin-picker-close').on('click', function() {
+			closeSkinPicker();
+			$skinToggle.trigger('focus');
 		});
 
 		$(document).on('keydown', function(event) {

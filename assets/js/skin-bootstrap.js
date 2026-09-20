@@ -8,17 +8,20 @@
 (function() {
 	'use strict';
 
-	var preferenceKey = 'site-skin-v1';
-	var sessionKey = 'site-skin-session-v1';
-	var sessionModeKey = 'site-skin-session-mode-v1';
+	var preferenceKey = 'site-skin-v2';
+	var sessionKey = 'site-skin-session-v2';
+	var sessionModeKey = 'site-skin-session-mode-v2';
 	var root = document.documentElement;
 	var skins = [
 		{ id: 'portfolio-dark', name: 'Portfolio Dark', scheme: 'dark', css: '' },
 		{ id: 'portfolio-light', name: 'Portfolio Light', scheme: 'light', css: '' },
-		{ id: 'acid-editorial', name: 'Acid Editorial', scheme: 'light', css: 'assets/css/skins/acid-editorial.css' },
+		{ id: 'acid-editorial', name: 'Acid Editorial', scheme: 'light', css: 'assets/css/skins/acid-editorial.css?v=portrait-cluster-equilateral' },
 		{ id: 'op-art-monochrome', name: 'Op Art Monochrome', scheme: 'light', css: 'assets/css/skins/op-art-monochrome.css' },
 		{ id: 'neon-glitch', name: 'Neon Glitch', scheme: 'dark', css: 'assets/css/skins/neon-glitch.css' },
-		{ id: 'liquid-dream', name: 'Liquid Dream', scheme: 'light', css: 'assets/css/skins/liquid-dream.css' }
+		{ id: 'liquid-dream', name: 'Liquid Dream', scheme: 'light', css: 'assets/css/skins/liquid-dream.css' },
+		{ id: 'sacred-geometry', name: 'Sacred Geometry', scheme: 'dark', css: 'assets/css/skins/sacred-geometry.css' },
+		{ id: 'terminal-vision', name: 'Terminal Vision', scheme: 'dark', css: 'assets/css/skins/terminal-vision.css?v=terminal-vision-1' },
+		{ id: 'psychedelic-scrapbook', name: 'Psychedelic Scrapbook', scheme: 'light', css: 'assets/css/skins/psychedelic-scrapbook.css?v=psychedelic-scrapbook-2' }
 	];
 	var skinById = {};
 	var activeId = '';
@@ -144,6 +147,9 @@
 		getPersistedId: function() {
 			return persistedId;
 		},
+		getMode: function() {
+			return root.getAttribute('data-skin-mode') || 'random';
+		},
 		preview: function(id) {
 			if (!isValid(id)) {
 				return activeId;
@@ -175,6 +181,13 @@
 			write(window.sessionStorage, sessionKey, id);
 			write(window.sessionStorage, sessionModeKey, 'random');
 			return apply(id, 'random');
+		},
+		clearSaved: function() {
+			persistedId = '';
+			remove(window.localStorage, preferenceKey);
+			write(window.sessionStorage, sessionKey, activeId);
+			write(window.sessionStorage, sessionModeKey, 'preview');
+			return apply(activeId, 'preview');
 		}
 	};
 })();

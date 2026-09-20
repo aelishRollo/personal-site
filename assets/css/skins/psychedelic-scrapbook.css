@@ -1,0 +1,487 @@
+/*
+	Psychedelic Scrapbook
+	Derived from 07-psychedelic-scrapbook.html. The source uses system fonts and
+	CSS-generated paper, stickers, tape, and collage effects, so this skin has no
+	external asset or network dependency.
+*/
+
+html[data-skin="psychedelic-scrapbook"] {
+	--background: #f3d9b1;
+	--foreground: #20151b;
+	--muted-bg: #ffe66e;
+	--card-bg: #fffdf5;
+	--border: #20151b;
+	--primary: #ff4a9f;
+	--primary-fg: #ffffff;
+	--secondary: #6ce7c2;
+	--secondary-fg: #20151b;
+	--accent: #7f62ff;
+	--accent-fg: #ffffff;
+	--link: #20151b;
+	--warning: #ff4a9f;
+	--header-bg: #ffe66e;
+	--header-fg: #20151b;
+	--footer-bg: #20151b;
+	--footer-fg: #ffffff;
+	--bg: var(--background);
+	--surface-1: #fffdf5;
+	--surface-2: #ffe66e;
+	--surface-3: #6ce7c2;
+	--text-1: #20151b;
+	--text-2: #4e3b43;
+	--line-1: #20151b;
+	--accent-1: #ff4a9f;
+	--accent-2: #7f62ff;
+}
+
+html[data-skin="psychedelic-scrapbook"] body {
+	background-color: var(--background) !important;
+	background-image: radial-gradient(rgba(140, 108, 80, 0.72) 1px, transparent 1px) !important;
+	background-size: 18px 18px !important;
+	color: var(--foreground) !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+	overflow-x: hidden;
+}
+
+html[data-skin="psychedelic-scrapbook"] body,
+html[data-skin="psychedelic-scrapbook"] p,
+html[data-skin="psychedelic-scrapbook"] li,
+html[data-skin="psychedelic-scrapbook"] label,
+html[data-skin="psychedelic-scrapbook"] .lead,
+html[data-skin="psychedelic-scrapbook"] .note,
+html[data-skin="psychedelic-scrapbook"] .footer-inner p,
+html[data-skin="psychedelic-scrapbook"] .social-inline a {
+	color: var(--text-2) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] h1,
+html[data-skin="psychedelic-scrapbook"] h2,
+html[data-skin="psychedelic-scrapbook"] h3,
+html[data-skin="psychedelic-scrapbook"] h4,
+html[data-skin="psychedelic-scrapbook"] h5,
+html[data-skin="psychedelic-scrapbook"] h6,
+html[data-skin="psychedelic-scrapbook"] strong {
+	color: var(--foreground) !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-weight: 900;
+	letter-spacing: -0.045em;
+}
+
+html[data-skin="psychedelic-scrapbook"] a {
+	color: var(--link) !important;
+	text-decoration-color: var(--primary);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.2em;
+}
+
+html[data-skin="psychedelic-scrapbook"] a:hover {
+	color: var(--accent) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .site-header {
+	border-bottom: 3px solid var(--border) !important;
+	background: var(--header-bg) !important;
+	box-shadow: none;
+}
+
+html[data-skin="psychedelic-scrapbook"] .brand-mark {
+	border: 3px solid var(--border);
+	border-radius: 50%;
+	background: var(--primary) !important;
+	box-shadow: 3px 3px 0 var(--border);
+	color: #ffffff !important;
+	transform: rotate(-6deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .brand-text,
+html[data-skin="psychedelic-scrapbook"] .site-nav a,
+html[data-skin="psychedelic-scrapbook"] .nav-toggle {
+	color: var(--foreground) !important;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 900;
+	letter-spacing: 0.045em;
+	text-transform: uppercase;
+}
+
+html[data-skin="psychedelic-scrapbook"] .site-nav a {
+	border-radius: 0;
+}
+
+html[data-skin="psychedelic-scrapbook"] .site-nav a:hover,
+html[data-skin="psychedelic-scrapbook"] .site-nav a[aria-current="page"] {
+	background: var(--secondary) !important;
+	box-shadow: 3px 3px 0 var(--border);
+	color: var(--foreground) !important;
+	transform: rotate(-1deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .site-nav .nav-cta,
+html[data-skin="psychedelic-scrapbook"] .nav-toggle {
+	border: 3px solid var(--border) !important;
+	border-radius: 0 !important;
+	background: #ffffff !important;
+	box-shadow: 4px 4px 0 var(--border);
+	color: var(--foreground) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .page-hero,
+html[data-skin="psychedelic-scrapbook"] body.page-home .page-hero,
+html[data-skin="psychedelic-scrapbook"] body.page-services .page-hero,
+html[data-skin="psychedelic-scrapbook"] body.page-work .page-hero,
+html[data-skin="psychedelic-scrapbook"] body.page-connect .page-hero,
+html[data-skin="psychedelic-scrapbook"] body.page-about .page-hero,
+html[data-skin="psychedelic-scrapbook"] body.page-contact .page-hero {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	border-bottom: 3px solid var(--border) !important;
+	background: rgba(243, 217, 177, 0.82) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .page-hero::before,
+html[data-skin="psychedelic-scrapbook"] .page-hero::after {
+	position: absolute;
+	z-index: -1;
+	border: 3px solid var(--border);
+	box-shadow: 8px 8px 0 var(--border);
+	font-weight: 900;
+	pointer-events: none;
+}
+
+html[data-skin="psychedelic-scrapbook"] .page-hero::before {
+	content: "HELLO!";
+	top: 8%;
+	right: 7%;
+	padding: 1.7rem 2rem;
+	border-radius: 50%;
+	background: var(--secondary);
+	transform: rotate(12deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .page-hero::after {
+	content: "\2702  CUT / PASTE / REMIX";
+	right: 10%;
+	bottom: 6%;
+	padding: 0.75rem 1rem;
+	background: #ffffff;
+	transform: rotate(-5deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .page-hero .site-shell,
+html[data-skin="psychedelic-scrapbook"] .hero-copy,
+html[data-skin="psychedelic-scrapbook"] .hero-media {
+	position: relative;
+	z-index: 1;
+	min-width: 0;
+}
+
+html[data-skin="psychedelic-scrapbook"] .page-hero h1,
+html[data-skin="psychedelic-scrapbook"] body.page-home .page-hero h1 {
+	color: var(--foreground) !important;
+	letter-spacing: -0.07em;
+	text-transform: uppercase;
+	transform: rotate(-1deg);
+	transform-origin: left center;
+}
+
+html[data-skin="psychedelic-scrapbook"] .hero-title-role:nth-of-type(2),
+html[data-skin="psychedelic-scrapbook"] .hero-title-role:nth-of-type(4) {
+	width: fit-content;
+	padding: 0.01em 0.09em 0.04em;
+	background: var(--primary);
+	color: #ffffff !important;
+	transform: rotate(1.5deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .hero-title-role::first-letter {
+	color: inherit !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .metallic-pearl-text {
+	color: #ffffff;
+	-webkit-text-fill-color: #ffffff;
+	background: none;
+	filter: none;
+}
+
+html[data-skin="psychedelic-scrapbook"] .eyebrow {
+	border: 3px solid var(--border) !important;
+	border-radius: 0;
+	background: var(--muted-bg) !important;
+	box-shadow: 4px 4px 0 var(--border);
+	color: var(--foreground) !important;
+	font-weight: 900;
+	letter-spacing: 0.1em;
+	transform: rotate(-1deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .page-section,
+html[data-skin="psychedelic-scrapbook"] .section-soft,
+html[data-skin="psychedelic-scrapbook"] .section-portrait {
+	border-color: var(--border) !important;
+	background: rgba(243, 217, 177, 0.8) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .panel-card,
+html[data-skin="psychedelic-scrapbook"] .features article,
+html[data-skin="psychedelic-scrapbook"] .contact-rail,
+html[data-skin="psychedelic-scrapbook"] ul.feature-icons li,
+html[data-skin="psychedelic-scrapbook"] .work-overview,
+html[data-skin="psychedelic-scrapbook"] .work-tech-item {
+	position: relative;
+	border: 3px solid var(--border) !important;
+	border-radius: 0 !important;
+	background: #fffdf5 !important;
+	box-shadow: 9px 9px 0 var(--border) !important;
+	transform: rotate(-0.35deg);
+	transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+html[data-skin="psychedelic-scrapbook"] .panel-card:nth-child(even),
+html[data-skin="psychedelic-scrapbook"] .features article:nth-child(even),
+html[data-skin="psychedelic-scrapbook"] ul.feature-icons li:nth-child(even),
+html[data-skin="psychedelic-scrapbook"] .work-tech-item:nth-child(even) {
+	background: #ffe66e !important;
+	transform: rotate(0.45deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .panel-card::before,
+html[data-skin="psychedelic-scrapbook"] .features article::before,
+html[data-skin="psychedelic-scrapbook"] ul.feature-icons li::before,
+html[data-skin="psychedelic-scrapbook"] .work-tech-item::before {
+	content: "";
+	position: absolute;
+	top: -0.85rem;
+	left: 50%;
+	z-index: 3;
+	width: 5.5rem;
+	height: 1.7rem;
+	background: rgba(255, 255, 255, 0.58);
+	box-shadow: 0 0 1px rgba(32, 21, 27, 0.28);
+	transform: translateX(-50%) rotate(-3deg);
+	pointer-events: none;
+}
+
+html[data-skin="psychedelic-scrapbook"] .panel-card:hover,
+html[data-skin="psychedelic-scrapbook"] .features article:hover,
+html[data-skin="psychedelic-scrapbook"] ul.feature-icons li:hover {
+	box-shadow: 5px 5px 0 var(--border) !important;
+	transform: rotate(0) translateY(-3px);
+}
+
+html[data-skin="psychedelic-scrapbook"] .features article .image {
+	position: relative;
+	overflow: hidden;
+	border: 3px solid var(--border) !important;
+	border-radius: 0 !important;
+	background: linear-gradient(135deg, var(--primary), var(--muted-bg) 45%, var(--secondary));
+	box-shadow: none !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .features article .image::after {
+	content: "";
+	position: absolute;
+	top: -4rem;
+	right: -4rem;
+	width: 14rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: repeating-conic-gradient(rgba(127, 98, 255, 0.78) 0 10deg, transparent 10deg 20deg);
+	mix-blend-mode: screen;
+	pointer-events: none;
+	animation: scrapbook-spin 10s linear infinite;
+}
+
+@keyframes scrapbook-spin {
+	to { transform: rotate(1turn); }
+}
+
+html[data-skin="psychedelic-scrapbook"] .hero-media img,
+html[data-skin="psychedelic-scrapbook"] .portrait-panel img,
+html[data-skin="psychedelic-scrapbook"] .profile-chip img {
+	border: 3px solid var(--border) !important;
+	border-radius: 0 !important;
+	box-shadow: 8px 8px 0 var(--border) !important;
+	filter: none !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .hero-media {
+	transform: translateY(-6.325rem) rotate(1deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .hero-splash .hero-splash-text {
+	color: var(--foreground) !important;
+	text-shadow: 2px 2px 0 #ffffff;
+}
+
+html[data-skin="psychedelic-scrapbook"] .tag-list li,
+html[data-skin="psychedelic-scrapbook"] .profile-chip {
+	border: 2px solid var(--border) !important;
+	border-radius: 0 !important;
+	background: var(--accent) !important;
+	box-shadow: 3px 3px 0 var(--border);
+	color: #ffffff !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .tag-list li:nth-child(3n + 2) {
+	background: var(--primary) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .tag-list li:nth-child(3n) {
+	background: var(--secondary) !important;
+	color: var(--foreground) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .timeline li {
+	border-bottom: 2px dashed rgba(32, 21, 27, 0.55) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .timeline li::before {
+	background: var(--primary);
+	border: 2px solid var(--border);
+	box-shadow: 2px 2px 0 var(--border);
+}
+
+html[data-skin="psychedelic-scrapbook"] input[type="text"],
+html[data-skin="psychedelic-scrapbook"] input[type="password"],
+html[data-skin="psychedelic-scrapbook"] input[type="email"],
+html[data-skin="psychedelic-scrapbook"] select,
+html[data-skin="psychedelic-scrapbook"] textarea {
+	border: 3px solid var(--border) !important;
+	border-radius: 0 !important;
+	background: #fffdf5 !important;
+	box-shadow: 4px 4px 0 var(--border) !important;
+	color: var(--foreground) !important;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+html[data-skin="psychedelic-scrapbook"] input:focus,
+html[data-skin="psychedelic-scrapbook"] select:focus,
+html[data-skin="psychedelic-scrapbook"] textarea:focus {
+	border-color: var(--accent) !important;
+	box-shadow: 4px 4px 0 var(--accent) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] input[type="submit"],
+html[data-skin="psychedelic-scrapbook"] input[type="reset"],
+html[data-skin="psychedelic-scrapbook"] input[type="button"],
+html[data-skin="psychedelic-scrapbook"] button:not([class^="skin-picker"]),
+html[data-skin="psychedelic-scrapbook"] .button {
+	border: 3px solid var(--border) !important;
+	border-radius: 0 !important;
+	background: #ffffff !important;
+	box-shadow: 5px 5px 0 var(--border) !important;
+	color: var(--foreground) !important;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 900;
+	letter-spacing: 0.035em;
+	text-transform: uppercase;
+}
+
+html[data-skin="psychedelic-scrapbook"] input[type="submit"].primary,
+html[data-skin="psychedelic-scrapbook"] input[type="button"].primary,
+html[data-skin="psychedelic-scrapbook"] button.primary,
+html[data-skin="psychedelic-scrapbook"] .button.primary,
+html[data-skin="psychedelic-scrapbook"] .contact-submit,
+html[data-skin="psychedelic-scrapbook"] .features article .inner span a {
+	background: var(--primary) !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] input[type="submit"]:hover,
+html[data-skin="psychedelic-scrapbook"] button:not([class^="skin-picker"]):hover,
+html[data-skin="psychedelic-scrapbook"] .button:hover {
+	background: var(--secondary) !important;
+	color: var(--foreground) !important;
+	box-shadow: 2px 2px 0 var(--border) !important;
+	transform: translate(3px, 3px);
+}
+
+html[data-skin="psychedelic-scrapbook"] .section-cta {
+	border-block: 3px solid var(--border) !important;
+	background: var(--secondary) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .section-cta h2 {
+	display: inline;
+	background: var(--primary);
+	box-decoration-break: clone;
+	-webkit-box-decoration-break: clone;
+	color: #ffffff !important;
+	box-shadow: 0.12em 0 0 var(--primary), -0.12em 0 0 var(--primary);
+}
+
+html[data-skin="psychedelic-scrapbook"] .site-footer {
+	border-top: 3px solid var(--border) !important;
+	background: var(--footer-bg) !important;
+	color: var(--footer-fg) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .site-footer p,
+html[data-skin="psychedelic-scrapbook"] .site-footer a {
+	color: #ffffff !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .skin-picker {
+	--skin-ui-bg: #20151b;
+	--skin-ui-panel: #fffdf5;
+	--skin-ui-text: #20151b;
+	--skin-ui-muted: #5c4650;
+	--skin-ui-accent: #ff4a9f;
+	--skin-ui-border: #20151b;
+}
+
+html[data-skin="psychedelic-scrapbook"] .skin-picker-toggle {
+	border: 3px solid #20151b !important;
+	border-radius: 0 !important;
+	box-shadow: 5px 5px 0 #20151b !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .skin-picker-toggle,
+html[data-skin="psychedelic-scrapbook"] .skin-picker-current {
+	color: #ffffff !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .skin-picker-toggle:hover,
+html[data-skin="psychedelic-scrapbook"] .skin-picker-toggle:focus-visible {
+	background: #20151b !important;
+	color: #ffffff !important;
+}
+
+@media (max-width: 1120px) {
+	html[data-skin="psychedelic-scrapbook"] .hero-media {
+		transform: rotate(1deg);
+	}
+}
+
+@media (max-width: 736px) {
+	html[data-skin="psychedelic-scrapbook"] .page-hero::before {
+		top: 2%;
+		right: -5%;
+		padding: 1rem 1.25rem;
+		font-size: 0.8rem;
+	}
+
+	html[data-skin="psychedelic-scrapbook"] .page-hero::after {
+		right: -8%;
+		bottom: 2%;
+		font-size: 0.68rem;
+		opacity: 0.82;
+	}
+
+	html[data-skin="psychedelic-scrapbook"] body.nav-open .site-nav {
+		border: 3px solid var(--border);
+		background: var(--muted-bg) !important;
+		box-shadow: 5px 5px 0 var(--border);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-skin="psychedelic-scrapbook"] *,
+	html[data-skin="psychedelic-scrapbook"] *::before,
+	html[data-skin="psychedelic-scrapbook"] *::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}

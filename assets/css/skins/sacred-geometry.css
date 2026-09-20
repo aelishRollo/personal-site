@@ -1,0 +1,478 @@
+/*
+	Sacred Geometry
+	Derived from 05-sacred-geometry.html. The triangle tunnel and card geometry
+	are generated locally with CSS and an embedded SVG; no remote assets are used.
+*/
+
+html[data-skin="sacred-geometry"] {
+	--background: #0a0910;
+	--foreground: #f8f8fa;
+	--muted-bg: #0d0b13;
+	--card-bg: #0d0b13;
+	--border: #2d2939;
+	--primary: #d3ff3d;
+	--primary-fg: #0a0910;
+	--secondary: #2fe8ff;
+	--secondary-fg: #0a0910;
+	--accent: #7856ff;
+	--accent-fg: #ffffff;
+	--link: #d3ff3d;
+	--warning: #d3ff3d;
+	--header-bg: #0a0910;
+	--header-fg: #f8f8fa;
+	--footer-bg: #0a0910;
+	--footer-fg: #f8f8fa;
+	--bg: var(--background);
+	--surface-1: #0d0b13;
+	--surface-2: #12101a;
+	--surface-3: #181522;
+	--text-1: #f8f8fa;
+	--text-2: #9d97aa;
+	--line-1: #2d2939;
+	--accent-1: #d3ff3d;
+	--accent-2: #7856ff;
+}
+
+html[data-skin="sacred-geometry"] body {
+	position: relative;
+	overflow-x: hidden;
+	background-color: var(--background) !important;
+	background-image:
+		radial-gradient(circle at 50% 3%, rgba(120, 86, 255, 0.12), transparent 31%),
+		radial-gradient(circle at 92% 18%, rgba(47, 232, 255, 0.055), transparent 24%),
+		linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px) !important;
+	background-size: auto, auto, 32px 32px, 32px 32px !important;
+	color: var(--foreground) !important;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+html[data-skin="sacred-geometry"] body,
+html[data-skin="sacred-geometry"] p,
+html[data-skin="sacred-geometry"] li,
+html[data-skin="sacred-geometry"] label,
+html[data-skin="sacred-geometry"] .lead,
+html[data-skin="sacred-geometry"] .note,
+html[data-skin="sacred-geometry"] .footer-inner p,
+html[data-skin="sacred-geometry"] .social-inline a {
+	color: var(--text-2) !important;
+}
+
+html[data-skin="sacred-geometry"] h1,
+html[data-skin="sacred-geometry"] h2,
+html[data-skin="sacred-geometry"] h3,
+html[data-skin="sacred-geometry"] h4,
+html[data-skin="sacred-geometry"] h5,
+html[data-skin="sacred-geometry"] h6,
+html[data-skin="sacred-geometry"] strong {
+	color: var(--foreground) !important;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	font-weight: 850;
+	letter-spacing: -0.05em;
+}
+
+html[data-skin="sacred-geometry"] a {
+	color: var(--link) !important;
+	text-decoration-color: rgba(211, 255, 61, 0.44);
+	text-underline-offset: 0.22em;
+}
+
+html[data-skin="sacred-geometry"] a:hover {
+	color: var(--secondary) !important;
+	text-decoration-color: var(--secondary);
+	text-shadow: 0 0 12px rgba(47, 232, 255, 0.52);
+}
+
+html[data-skin="sacred-geometry"] .site-header {
+	border-bottom: 1px solid #282535 !important;
+	background: rgba(10, 9, 16, 0.88) !important;
+	backdrop-filter: blur(12px);
+}
+
+html[data-skin="sacred-geometry"] .brand-mark {
+	position: relative;
+	border: 1px solid var(--primary);
+	border-radius: 2px;
+	background: transparent !important;
+	box-shadow: 0 0 16px rgba(211, 255, 61, 0.28), inset 0 0 12px rgba(211, 255, 61, 0.08);
+	clip-path: polygon(50% 0, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+	color: var(--primary) !important;
+}
+
+html[data-skin="sacred-geometry"] .brand-text,
+html[data-skin="sacred-geometry"] .site-nav a,
+html[data-skin="sacred-geometry"] .nav-toggle {
+	color: var(--foreground) !important;
+	font-weight: 750;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+html[data-skin="sacred-geometry"] .brand-text {
+	font-size: 0.8rem;
+}
+
+html[data-skin="sacred-geometry"] .site-nav a {
+	border-radius: 3px;
+}
+
+html[data-skin="sacred-geometry"] .site-nav a:hover {
+	background: rgba(47, 232, 255, 0.08) !important;
+	color: var(--secondary) !important;
+}
+
+html[data-skin="sacred-geometry"] .site-nav a[aria-current="page"] {
+	background: rgba(211, 255, 61, 0.1) !important;
+	color: var(--primary) !important;
+	box-shadow: inset 0 -1px var(--primary);
+}
+
+html[data-skin="sacred-geometry"] .site-nav .nav-cta,
+html[data-skin="sacred-geometry"] .nav-toggle {
+	border: 1px solid var(--accent) !important;
+	background: rgba(120, 86, 255, 0.07) !important;
+	box-shadow: 0 0 16px rgba(120, 86, 255, 0.22);
+	color: var(--foreground) !important;
+}
+
+html[data-skin="sacred-geometry"] .page-hero,
+html[data-skin="sacred-geometry"] .section-soft,
+html[data-skin="sacred-geometry"] .section-portrait,
+html[data-skin="sacred-geometry"] .page-section:not(.section-cta):not(.section-soft):not(.section-portrait) {
+	position: relative;
+	isolation: isolate;
+	border-color: #282535 !important;
+	background: rgba(10, 9, 16, 0.9) !important;
+}
+
+html[data-skin="sacred-geometry"] .page-hero {
+	overflow: hidden;
+}
+
+html[data-skin="sacred-geometry"] .page-hero::before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	left: 50%;
+	top: 48%;
+	width: min(72vw, 46rem);
+	aspect-ratio: 1;
+	transform: translate(-50%, -50%);
+	background:
+		radial-gradient(circle, rgba(120, 86, 255, 0.12), transparent 42%),
+		repeating-radial-gradient(circle, transparent 0 30px, rgba(47, 232, 255, 0.06) 31px 32px, transparent 33px 58px);
+	border-radius: 50%;
+	filter: drop-shadow(0 0 18px rgba(47, 232, 255, 0.18));
+	pointer-events: none;
+}
+
+html[data-skin="sacred-geometry"] .page-hero::after {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	left: 50%;
+	top: 48%;
+	width: min(68vw, 43rem);
+	aspect-ratio: 1;
+	transform: translate(-50%, -50%);
+	background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 700'%3E%3Cg fill='none' stroke='%232fe8ff' stroke-width='2' opacity='.32'%3E%3Cpolygon points='350,28 655,565 45,565'/%3E%3Cpolygon points='350,95 598,532 102,532' stroke='%237856ff'/%3E%3Cpolygon points='350,160 542,497 158,497' stroke='%23d3ff3d'/%3E%3Cpolygon points='350,220 489,466 211,466'/%3E%3Cpolygon points='350,275 440,435 260,435' stroke='%237856ff'/%3E%3Cpolygon points='350,320 400,410 300,410' stroke='%23d3ff3d'/%3E%3C/g%3E%3C/svg%3E");
+	filter: drop-shadow(0 0 4px rgba(47, 232, 255, 0.65));
+	opacity: 0.78;
+	pointer-events: none;
+	animation: sacred-geometry-turn 18s linear infinite;
+}
+
+@keyframes sacred-geometry-turn {
+	to {
+		transform: translate(-50%, -50%) rotate(360deg);
+		filter: hue-rotate(360deg) drop-shadow(0 0 8px rgba(120, 86, 255, 0.72));
+	}
+}
+
+@keyframes sacred-geometry-spin {
+	to { transform: rotate(360deg); }
+}
+
+@keyframes sacred-geometry-breathe {
+	to { transform: scale(1.045); opacity: 0.78; }
+}
+
+html[data-skin="sacred-geometry"] .page-hero .site-shell,
+html[data-skin="sacred-geometry"] .hero-copy,
+html[data-skin="sacred-geometry"] .hero-media {
+	position: relative;
+	z-index: 1;
+	min-width: 0;
+}
+
+html[data-skin="sacred-geometry"] .page-hero h1,
+html[data-skin="sacred-geometry"] body.page-home .page-hero h1 {
+	color: #ffffff !important;
+	letter-spacing: -0.065em;
+	text-shadow: 0 0 28px rgba(10, 9, 16, 0.95);
+}
+
+html[data-skin="sacred-geometry"] .hero-title-role:nth-of-type(even),
+html[data-skin="sacred-geometry"] .hero-title-role:nth-of-type(3n)::first-letter {
+	color: var(--primary) !important;
+}
+
+html[data-skin="sacred-geometry"] .metallic-pearl-text {
+	color: var(--secondary);
+	-webkit-text-fill-color: currentColor;
+	background: none;
+	filter: none;
+}
+
+html[data-skin="sacred-geometry"] .eyebrow {
+	border: 1px solid rgba(211, 255, 61, 0.62) !important;
+	border-radius: 3px;
+	background: rgba(211, 255, 61, 0.08) !important;
+	box-shadow: 0 0 14px rgba(211, 255, 61, 0.14);
+	color: var(--primary) !important;
+	font-weight: 800;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+}
+
+html[data-skin="sacred-geometry"] .panel-card,
+html[data-skin="sacred-geometry"] .features article,
+html[data-skin="sacred-geometry"] .contact-rail,
+html[data-skin="sacred-geometry"] ul.feature-icons li,
+html[data-skin="sacred-geometry"] .profile-chip {
+	position: relative;
+	isolation: isolate;
+	border: 1px solid #2d2939 !important;
+	border-radius: 24px;
+	background: rgba(13, 11, 19, 0.96) !important;
+	box-shadow: 0 22px 50px rgba(0, 0, 0, 0.38) !important;
+	overflow: hidden;
+}
+
+html[data-skin="sacred-geometry"] .panel-card::before,
+html[data-skin="sacred-geometry"] .features article::before,
+html[data-skin="sacred-geometry"] ul.feature-icons li::before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	top: -7rem;
+	right: -6rem;
+	width: 22rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: repeating-radial-gradient(circle, transparent 0 13px, rgba(211, 255, 61, 0.62) 14px 17px, transparent 18px 31px);
+	opacity: 0.34;
+	animation: sacred-geometry-spin 14s linear infinite;
+}
+
+html[data-skin="sacred-geometry"] .panel-card:nth-child(even)::before,
+html[data-skin="sacred-geometry"] .features article:nth-child(even)::before,
+html[data-skin="sacred-geometry"] ul.feature-icons li:nth-child(even)::before {
+	background: repeating-conic-gradient(var(--accent) 0 7deg, #111018 7deg 14deg, var(--secondary) 14deg 21deg, #111018 21deg 28deg);
+	-webkit-mask: repeating-radial-gradient(circle, #000 0 9px, transparent 10px 18px);
+	mask: repeating-radial-gradient(circle, #000 0 9px, transparent 10px 18px);
+	opacity: 0.4;
+	animation-direction: reverse;
+}
+
+html[data-skin="sacred-geometry"] .panel-card:hover,
+html[data-skin="sacred-geometry"] .features article:hover,
+html[data-skin="sacred-geometry"] ul.feature-icons li:hover {
+	border-color: rgba(211, 255, 61, 0.58) !important;
+	box-shadow: 0 0 18px rgba(211, 255, 61, 0.11), 0 24px 54px rgba(0, 0, 0, 0.45) !important;
+}
+
+html[data-skin="sacred-geometry"] .features article .image {
+	border: 1px solid rgba(47, 232, 255, 0.4);
+	border-radius: 17px;
+	box-shadow: 0 0 20px rgba(47, 232, 255, 0.12);
+	overflow: hidden;
+}
+
+html[data-skin="sacred-geometry"] .features article .image img {
+	filter: saturate(0.88) contrast(1.1);
+	transition: filter 220ms ease;
+}
+
+html[data-skin="sacred-geometry"] .features article:hover .image img {
+	filter: saturate(1.2) contrast(1.08);
+}
+
+html[data-skin="sacred-geometry"] .hero-media img,
+html[data-skin="sacred-geometry"] .portrait-panel img {
+	border: 2px solid rgba(47, 232, 255, 0.68);
+	border-radius: 0;
+	clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0 50%);
+	box-shadow: 0 0 24px rgba(47, 232, 255, 0.22), 0 0 52px rgba(120, 86, 255, 0.14) !important;
+	filter: none !important;
+}
+
+html[data-skin="sacred-geometry"] .profile-chip img {
+	filter: none !important;
+}
+
+html[data-skin="sacred-geometry"] .hero-splash .hero-splash-text {
+	color: #ffffff !important;
+	text-shadow: 0 0 3px #0a0910, 0 0 18px var(--accent);
+}
+
+html[data-skin="sacred-geometry"] .tag-list li,
+html[data-skin="sacred-geometry"] .profile-chip {
+	border-color: rgba(211, 255, 61, 0.4) !important;
+	border-radius: 4px;
+	background: rgba(211, 255, 61, 0.09) !important;
+	color: var(--primary) !important;
+}
+
+html[data-skin="sacred-geometry"] input[type="text"],
+html[data-skin="sacred-geometry"] input[type="password"],
+html[data-skin="sacred-geometry"] input[type="email"],
+html[data-skin="sacred-geometry"] select,
+html[data-skin="sacred-geometry"] textarea {
+	border: 1px solid #2d2939 !important;
+	border-radius: 8px;
+	background: #0d0b13 !important;
+	box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.46) !important;
+	color: var(--foreground) !important;
+}
+
+html[data-skin="sacred-geometry"] input:focus,
+html[data-skin="sacred-geometry"] select:focus,
+html[data-skin="sacred-geometry"] textarea:focus {
+	border-color: var(--secondary) !important;
+	box-shadow: 0 0 0 2px rgba(47, 232, 255, 0.12), 0 0 20px rgba(47, 232, 255, 0.22) !important;
+}
+
+html[data-skin="sacred-geometry"] input[type="submit"],
+html[data-skin="sacred-geometry"] input[type="reset"],
+html[data-skin="sacred-geometry"] input[type="button"],
+html[data-skin="sacred-geometry"] button:not([class^="skin-picker"]),
+html[data-skin="sacred-geometry"] .button {
+	border: 1px solid var(--secondary) !important;
+	border-radius: 4px !important;
+	background: rgba(47, 232, 255, 0.06) !important;
+	box-shadow: 0 0 14px rgba(47, 232, 255, 0.13) !important;
+	color: var(--secondary) !important;
+	font-weight: 800;
+	letter-spacing: 0.11em;
+	text-transform: uppercase;
+}
+
+html[data-skin="sacred-geometry"] input[type="submit"].primary,
+html[data-skin="sacred-geometry"] input[type="button"].primary,
+html[data-skin="sacred-geometry"] button.primary,
+html[data-skin="sacred-geometry"] .button.primary,
+html[data-skin="sacred-geometry"] .contact-submit,
+html[data-skin="sacred-geometry"] .features article .inner span a {
+	border-color: var(--primary) !important;
+	background: rgba(211, 255, 61, 0.1) !important;
+	box-shadow: 0 0 16px rgba(211, 255, 61, 0.15) !important;
+	color: var(--primary) !important;
+}
+
+html[data-skin="sacred-geometry"] input[type="submit"]:hover,
+html[data-skin="sacred-geometry"] button:not([class^="skin-picker"]):hover,
+html[data-skin="sacred-geometry"] .button:hover {
+	background: var(--primary) !important;
+	color: var(--primary-fg) !important;
+	text-shadow: none;
+}
+
+html[data-skin="sacred-geometry"] .section-cta {
+	position: relative;
+	overflow: hidden;
+	border-block: 1px solid #282535 !important;
+	background:
+		radial-gradient(circle at 88% 50%, rgba(120, 86, 255, 0.26), transparent 28%),
+		linear-gradient(135deg, #0d0b13, #0a0910) !important;
+}
+
+html[data-skin="sacred-geometry"] .section-cta::after {
+	content: "";
+	position: absolute;
+	right: 5%;
+	top: 50%;
+	width: min(30vw, 22rem);
+	aspect-ratio: 1;
+	transform: translateY(-50%);
+	border-radius: 50%;
+	background: repeating-radial-gradient(circle, transparent 0 12px, rgba(211, 255, 61, 0.52) 13px 15px, transparent 16px 29px);
+	opacity: 0.32;
+	pointer-events: none;
+	animation: sacred-geometry-spin 14s linear infinite;
+}
+
+html[data-skin="sacred-geometry"] .section-cta .site-shell {
+	position: relative;
+	z-index: 1;
+}
+
+html[data-skin="sacred-geometry"] .section-cta h2 {
+	color: var(--primary) !important;
+}
+
+html[data-skin="sacred-geometry"] .section-cta p {
+	color: var(--text-2) !important;
+}
+
+html[data-skin="sacred-geometry"] .site-footer {
+	border-top: 1px solid #282535 !important;
+	background: var(--footer-bg) !important;
+	color: var(--footer-fg) !important;
+}
+
+html[data-skin="sacred-geometry"] .skin-picker {
+	--skin-ui-bg: #0a0910;
+	--skin-ui-panel: #12101a;
+	--skin-ui-text: #f8f8fa;
+	--skin-ui-muted: #aaa5b6;
+	--skin-ui-accent: #d3ff3d;
+	--skin-ui-border: #7856ff;
+}
+
+html[data-skin="sacred-geometry"] .skin-picker-toggle {
+	box-shadow: 0 0 20px rgba(120, 86, 255, 0.34), 0 0 32px rgba(211, 255, 61, 0.11);
+}
+
+html[data-skin="sacred-geometry"] .skin-picker-toggle,
+html[data-skin="sacred-geometry"] .skin-picker-current,
+html[data-skin="sacred-geometry"] .skin-picker-actions button:not(.skin-picker-save) {
+	color: #ffffff !important;
+}
+
+html[data-skin="sacred-geometry"] .skin-picker select {
+	background-color: #0a0910 !important;
+	color: #ffffff !important;
+}
+
+@media (max-width: 736px) {
+	html[data-skin="sacred-geometry"] .page-hero::before,
+	html[data-skin="sacred-geometry"] .page-hero::after {
+		width: 112vw;
+		opacity: 0.52;
+	}
+
+	html[data-skin="sacred-geometry"] body.nav-open .site-nav {
+		background: rgba(10, 9, 16, 0.97) !important;
+	}
+
+	html[data-skin="sacred-geometry"] body.nav-open .site-nav a {
+		border: 1px solid #2d2939;
+	}
+
+	html[data-skin="sacred-geometry"] .section-cta::after {
+		right: -18%;
+		width: 70vw;
+		opacity: 0.18;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-skin="sacred-geometry"] *,
+	html[data-skin="sacred-geometry"] *::before,
+	html[data-skin="sacred-geometry"] *::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}
