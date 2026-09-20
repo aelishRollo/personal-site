@@ -121,23 +121,19 @@
 		persistedId = '';
 	}
 
-	var sessionId = read(window.sessionStorage, sessionKey);
-	if (sessionId && !isValid(sessionId)) {
+	var previousSessionId = read(window.sessionStorage, sessionKey);
+	if (previousSessionId && !isValid(previousSessionId)) {
 		remove(window.sessionStorage, sessionKey);
 		remove(window.sessionStorage, sessionModeKey);
-		sessionId = '';
-	}
-	var sessionMode = read(window.sessionStorage, sessionModeKey);
-	if (sessionMode !== 'preview' && sessionMode !== 'random') {
-		sessionMode = 'random';
+		previousSessionId = '';
 	}
 
-	var initialId = persistedId || sessionId || randomId();
-	if (!persistedId && !sessionId) {
+	var initialId = persistedId || randomId(previousSessionId);
+	if (!persistedId) {
 		write(window.sessionStorage, sessionKey, initialId);
 		write(window.sessionStorage, sessionModeKey, 'random');
 	}
-	apply(initialId, persistedId ? 'saved' : sessionMode);
+	apply(initialId, persistedId ? 'saved' : 'random');
 
 	window.SiteSkins = {
 		all: skins.slice(),
@@ -185,9 +181,10 @@
 		clearSaved: function() {
 			persistedId = '';
 			remove(window.localStorage, preferenceKey);
-			write(window.sessionStorage, sessionKey, activeId);
-			write(window.sessionStorage, sessionModeKey, 'preview');
-			return apply(activeId, 'preview');
+			var id = randomId(activeId);
+			write(window.sessionStorage, sessionKey, id);
+			write(window.sessionStorage, sessionModeKey, 'random');
+			return apply(id, 'random');
 		}
 	};
 })();

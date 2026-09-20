@@ -202,14 +202,31 @@
 	border-radius: 0 !important;
 	background: transparent !important;
 	box-shadow: none !important;
-	color: var(--skin-ui-text) !important;
-	font: 700 1.3rem/1 Arial, Helvetica, sans-serif !important;
+	color: var(--skin-ui-accent) !important;
+	font-size: 0 !important;
 	letter-spacing: 0 !important;
-	opacity: 0.68;
+	opacity: 0.74;
 	text-transform: none !important;
 	cursor: ns-resize;
 	user-select: none;
 	-webkit-user-select: none;
+}
+
+.skin-picker .skin-picker-scroll-arrow::before {
+	content: "";
+	display: block;
+	width: 0.85rem;
+	height: 0.85rem;
+	border: solid currentColor;
+	border-width: 3px 3px 0 0;
+}
+
+.skin-picker .skin-picker-scroll-up::before {
+	transform: rotate(-45deg);
+}
+
+.skin-picker .skin-picker-scroll-down::before {
+	transform: rotate(135deg);
 }
 
 .skin-picker .skin-picker-scroll-arrow[hidden] {
