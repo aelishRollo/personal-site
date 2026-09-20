@@ -8,9 +8,9 @@
 (function() {
 	'use strict';
 
-	var preferenceKey = 'site-skin-v1';
-	var sessionKey = 'site-skin-session-v1';
-	var sessionModeKey = 'site-skin-session-mode-v1';
+	var preferenceKey = 'site-skin-v2';
+	var sessionKey = 'site-skin-session-v2';
+	var sessionModeKey = 'site-skin-session-mode-v2';
 	var root = document.documentElement;
 	var skins = [
 		{ id: 'portfolio-dark', name: 'Portfolio Dark', scheme: 'dark', css: '' },
@@ -146,6 +146,9 @@
 		getPersistedId: function() {
 			return persistedId;
 		},
+		getMode: function() {
+			return root.getAttribute('data-skin-mode') || 'random';
+		},
 		preview: function(id) {
 			if (!isValid(id)) {
 				return activeId;
@@ -177,6 +180,13 @@
 			write(window.sessionStorage, sessionKey, id);
 			write(window.sessionStorage, sessionModeKey, 'random');
 			return apply(id, 'random');
+		},
+		clearSaved: function() {
+			persistedId = '';
+			remove(window.localStorage, preferenceKey);
+			write(window.sessionStorage, sessionKey, activeId);
+			write(window.sessionStorage, sessionModeKey, 'preview');
+			return apply(activeId, 'preview');
 		}
 	};
 })();
