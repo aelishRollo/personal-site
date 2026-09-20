@@ -1,0 +1,454 @@
+/*
+	Terminal Vision
+	Derived from 06-terminal-vision.html. The source uses system monospace fonts
+	and CSS-generated scanlines, grids, glow, and motion, so this skin has no
+	external asset or network dependency.
+*/
+
+html[data-skin="terminal-vision"] {
+	--background: #06110b;
+	--foreground: #9dffb0;
+	--muted-bg: #091a11;
+	--card-bg: #091a11;
+	--border: #4f8a61;
+	--primary: #d7ff4e;
+	--primary-fg: #06110b;
+	--secondary: #9dffb0;
+	--secondary-fg: #06110b;
+	--accent: #d7ff4e;
+	--accent-fg: #06110b;
+	--link: #d7ff4e;
+	--warning: #d7ff4e;
+	--header-bg: rgba(6, 17, 11, 0.94);
+	--header-fg: #9dffb0;
+	--footer-bg: #06110b;
+	--footer-fg: #9dffb0;
+	--bg: var(--background);
+	--surface-1: #091a11;
+	--surface-2: #0b2116;
+	--surface-3: #102d1d;
+	--text-1: #9dffb0;
+	--text-2: #6fbc82;
+	--line-1: #4f8a61;
+	--accent-1: #d7ff4e;
+	--accent-2: #9dffb0;
+}
+
+html[data-skin="terminal-vision"] body {
+	position: relative;
+	background: var(--background) !important;
+	color: var(--foreground) !important;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace !important;
+}
+
+html[data-skin="terminal-vision"] body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: 50;
+	pointer-events: none;
+	background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 4px);
+	mix-blend-mode: screen;
+}
+
+html[data-skin="terminal-vision"] body,
+html[data-skin="terminal-vision"] p,
+html[data-skin="terminal-vision"] li,
+html[data-skin="terminal-vision"] label,
+html[data-skin="terminal-vision"] .lead,
+html[data-skin="terminal-vision"] .note,
+html[data-skin="terminal-vision"] .footer-inner p,
+html[data-skin="terminal-vision"] .social-inline a {
+	color: var(--text-2) !important;
+}
+
+html[data-skin="terminal-vision"] h1,
+html[data-skin="terminal-vision"] h2,
+html[data-skin="terminal-vision"] h3,
+html[data-skin="terminal-vision"] h4,
+html[data-skin="terminal-vision"] h5,
+html[data-skin="terminal-vision"] h6,
+html[data-skin="terminal-vision"] strong {
+	color: var(--foreground) !important;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace !important;
+	font-weight: 800;
+	letter-spacing: -0.045em;
+}
+
+html[data-skin="terminal-vision"] a {
+	color: var(--link) !important;
+	text-decoration-color: rgba(215, 255, 78, 0.5);
+	text-underline-offset: 0.24em;
+}
+
+html[data-skin="terminal-vision"] a:hover {
+	color: #efffb7 !important;
+	text-shadow: 0 0 9px rgba(215, 255, 78, 0.75);
+}
+
+html[data-skin="terminal-vision"] .site-header {
+	border-bottom: 1px solid var(--border) !important;
+	background: var(--header-bg) !important;
+	backdrop-filter: blur(7px);
+}
+
+html[data-skin="terminal-vision"] .brand-mark {
+	border: 1px solid var(--primary);
+	border-radius: 0;
+	background: transparent !important;
+	box-shadow: inset 0 0 12px rgba(215, 255, 78, 0.08), 0 0 12px rgba(215, 255, 78, 0.13);
+	color: var(--primary) !important;
+	text-shadow: 0 0 8px rgba(215, 255, 78, 0.62);
+}
+
+html[data-skin="terminal-vision"] .brand-text,
+html[data-skin="terminal-vision"] .site-nav a,
+html[data-skin="terminal-vision"] .nav-toggle {
+	color: var(--foreground) !important;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+html[data-skin="terminal-vision"] .site-nav a,
+html[data-skin="terminal-vision"] .site-nav .nav-cta,
+html[data-skin="terminal-vision"] .nav-toggle {
+	border-radius: 0 !important;
+}
+
+html[data-skin="terminal-vision"] .site-nav a:hover,
+html[data-skin="terminal-vision"] .site-nav a[aria-current="page"] {
+	background: rgba(157, 255, 176, 0.1) !important;
+	color: var(--primary) !important;
+	box-shadow: inset 0 -1px 0 var(--primary);
+	text-shadow: 0 0 9px rgba(215, 255, 78, 0.58);
+}
+
+html[data-skin="terminal-vision"] .site-nav .nav-cta,
+html[data-skin="terminal-vision"] .nav-toggle {
+	border: 1px solid var(--primary) !important;
+	background: transparent !important;
+	box-shadow: 0 0 12px rgba(215, 255, 78, 0.12);
+	color: var(--primary) !important;
+}
+
+html[data-skin="terminal-vision"] .page-hero,
+html[data-skin="terminal-vision"] body.page-home .page-hero,
+html[data-skin="terminal-vision"] body.page-services .page-hero,
+html[data-skin="terminal-vision"] body.page-work .page-hero,
+html[data-skin="terminal-vision"] body.page-connect .page-hero,
+html[data-skin="terminal-vision"] body.page-about .page-hero,
+html[data-skin="terminal-vision"] body.page-contact .page-hero {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	border-bottom: 1px solid var(--border) !important;
+	background: #06110b !important;
+}
+
+html[data-skin="terminal-vision"] .page-hero::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -2;
+	pointer-events: none;
+	background: radial-gradient(circle, rgba(157, 255, 176, 0.88) 0 1px, transparent 1.5px);
+	background-size: 18px 18px;
+	opacity: 0.13;
+	animation: terminal-drift 12s linear infinite;
+}
+
+html[data-skin="terminal-vision"] .page-hero::after {
+	content: "";
+	position: absolute;
+	right: 4%;
+	bottom: 8%;
+	z-index: -1;
+	width: min(18rem, 28vw);
+	aspect-ratio: 1;
+	border: 1px solid var(--primary);
+	border-radius: 50%;
+	box-shadow: 0 0 28px rgba(215, 255, 78, 0.35), inset 0 0 28px rgba(215, 255, 78, 0.05);
+	opacity: 0.65;
+	pointer-events: none;
+	animation: terminal-pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes terminal-drift {
+	to { background-position: 90px 180px; }
+}
+
+@keyframes terminal-pulse {
+	to {
+		transform: scale(1.3);
+		border-radius: 20%;
+	}
+}
+
+@keyframes terminal-blink {
+	50% { opacity: 0; }
+}
+
+html[data-skin="terminal-vision"] .page-hero .site-shell,
+html[data-skin="terminal-vision"] .hero-copy,
+html[data-skin="terminal-vision"] .hero-media {
+	position: relative;
+	z-index: 1;
+	min-width: 0;
+}
+
+html[data-skin="terminal-vision"] .page-hero h1,
+html[data-skin="terminal-vision"] body.page-home .page-hero h1 {
+	color: var(--foreground) !important;
+	letter-spacing: -0.065em;
+	text-transform: uppercase;
+	text-shadow: 0 0 12px rgba(157, 255, 176, 0.5);
+}
+
+html[data-skin="terminal-vision"] .page-hero h1::after {
+	content: "_";
+	display: inline-block;
+	margin-left: 0.12em;
+	color: var(--primary);
+	text-shadow: 0 0 12px rgba(215, 255, 78, 0.65);
+	animation: terminal-blink 0.8s steps(2, end) infinite;
+}
+
+html[data-skin="terminal-vision"] .hero-title-role::first-letter {
+	color: var(--primary) !important;
+}
+
+html[data-skin="terminal-vision"] .metallic-pearl-text {
+	color: var(--primary);
+	-webkit-text-fill-color: var(--primary);
+	background: none;
+	filter: drop-shadow(0 0 7px rgba(215, 255, 78, 0.5));
+}
+
+html[data-skin="terminal-vision"] .eyebrow {
+	border: 1px solid var(--border) !important;
+	border-radius: 0;
+	background: rgba(157, 255, 176, 0.055) !important;
+	color: var(--primary) !important;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-shadow: 0 0 8px rgba(215, 255, 78, 0.42);
+}
+
+html[data-skin="terminal-vision"] .page-section,
+html[data-skin="terminal-vision"] .section-soft,
+html[data-skin="terminal-vision"] .section-portrait {
+	border-color: var(--border) !important;
+	background: #06110b !important;
+}
+
+html[data-skin="terminal-vision"] .panel-card,
+html[data-skin="terminal-vision"] .features article,
+html[data-skin="terminal-vision"] .contact-rail,
+html[data-skin="terminal-vision"] ul.feature-icons li,
+html[data-skin="terminal-vision"] .work-overview,
+html[data-skin="terminal-vision"] .profile-chip,
+html[data-skin="terminal-vision"] .work-tech-item {
+	position: relative;
+	isolation: isolate;
+	border: 1px solid var(--border) !important;
+	border-radius: 0 !important;
+	background-color: rgba(9, 26, 17, 0.94) !important;
+	background-image:
+		repeating-linear-gradient(90deg, transparent 0 12px, rgba(157, 255, 176, 0.055) 12px 13px),
+		repeating-linear-gradient(0deg, transparent 0 12px, rgba(157, 255, 176, 0.04) 12px 13px) !important;
+	box-shadow: inset 0 0 26px rgba(0, 0, 0, 0.28), 0 0 18px rgba(157, 255, 176, 0.035) !important;
+}
+
+html[data-skin="terminal-vision"] .panel-card::after,
+html[data-skin="terminal-vision"] .features article::after,
+html[data-skin="terminal-vision"] ul.feature-icons li::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	width: 2.5rem;
+	height: 2.5rem;
+	border-top: 1px solid var(--primary);
+	border-left: 1px solid var(--primary);
+	pointer-events: none;
+}
+
+html[data-skin="terminal-vision"] .panel-card:hover,
+html[data-skin="terminal-vision"] .features article:hover,
+html[data-skin="terminal-vision"] ul.feature-icons li:hover {
+	border-color: var(--primary) !important;
+	box-shadow: inset 0 0 28px rgba(215, 255, 78, 0.04), 0 0 22px rgba(215, 255, 78, 0.14) !important;
+}
+
+html[data-skin="terminal-vision"] .hero-media img,
+html[data-skin="terminal-vision"] .portrait-panel img,
+html[data-skin="terminal-vision"] .features article .image {
+	border: 1px solid var(--primary) !important;
+	border-radius: 0 !important;
+	box-shadow: 0 0 18px rgba(215, 255, 78, 0.2) !important;
+}
+
+html[data-skin="terminal-vision"] .hero-media img,
+html[data-skin="terminal-vision"] .portrait-panel img,
+html[data-skin="terminal-vision"] .profile-chip img,
+html[data-skin="terminal-vision"] .features article .image img {
+	filter: none !important;
+}
+
+html[data-skin="terminal-vision"] .hero-splash .hero-splash-text {
+	color: var(--primary) !important;
+	text-shadow: 0 0 9px rgba(215, 255, 78, 0.52);
+}
+
+html[data-skin="terminal-vision"] .tag-list li,
+html[data-skin="terminal-vision"] .profile-chip {
+	border: 1px solid var(--border) !important;
+	border-radius: 0 !important;
+	background: #091a11 !important;
+	color: var(--foreground) !important;
+}
+
+html[data-skin="terminal-vision"] .timeline li {
+	border-bottom-color: var(--border) !important;
+}
+
+html[data-skin="terminal-vision"] .timeline li::before {
+	background: var(--primary);
+	box-shadow: 0 0 9px rgba(215, 255, 78, 0.62);
+}
+
+html[data-skin="terminal-vision"] input[type="text"],
+html[data-skin="terminal-vision"] input[type="password"],
+html[data-skin="terminal-vision"] input[type="email"],
+html[data-skin="terminal-vision"] select,
+html[data-skin="terminal-vision"] textarea {
+	border: 1px solid var(--border) !important;
+	border-radius: 0 !important;
+	background: #06110b !important;
+	box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.42) !important;
+	color: var(--foreground) !important;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+html[data-skin="terminal-vision"] input:focus,
+html[data-skin="terminal-vision"] select:focus,
+html[data-skin="terminal-vision"] textarea:focus {
+	border-color: var(--primary) !important;
+	box-shadow: 0 0 0 2px rgba(215, 255, 78, 0.12), inset 0 0 16px rgba(215, 255, 78, 0.035) !important;
+}
+
+html[data-skin="terminal-vision"] input[type="submit"],
+html[data-skin="terminal-vision"] input[type="reset"],
+html[data-skin="terminal-vision"] input[type="button"],
+html[data-skin="terminal-vision"] button:not([class^="skin-picker"]),
+html[data-skin="terminal-vision"] .button {
+	border: 1px solid var(--border) !important;
+	border-radius: 0 !important;
+	background: #091a11 !important;
+	box-shadow: none !important;
+	color: var(--foreground) !important;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	font-weight: 800;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
+}
+
+html[data-skin="terminal-vision"] input[type="submit"].primary,
+html[data-skin="terminal-vision"] input[type="button"].primary,
+html[data-skin="terminal-vision"] button.primary,
+html[data-skin="terminal-vision"] .button.primary,
+html[data-skin="terminal-vision"] .contact-submit,
+html[data-skin="terminal-vision"] .features article .inner span a {
+	border-color: var(--primary) !important;
+	background: rgba(215, 255, 78, 0.07) !important;
+	color: var(--primary) !important;
+	box-shadow: 0 0 14px rgba(215, 255, 78, 0.1) !important;
+}
+
+html[data-skin="terminal-vision"] input[type="submit"]:hover,
+html[data-skin="terminal-vision"] button:not([class^="skin-picker"]):hover,
+html[data-skin="terminal-vision"] .button:hover {
+	background: var(--primary) !important;
+	color: var(--primary-fg) !important;
+	text-shadow: none;
+}
+
+html[data-skin="terminal-vision"] .section-cta {
+	border-block: 1px solid var(--border) !important;
+	background:
+		radial-gradient(circle at 82% 50%, rgba(215, 255, 78, 0.08), transparent 26%),
+		repeating-linear-gradient(90deg, transparent 0 18px, rgba(157, 255, 176, 0.035) 18px 19px),
+		#091a11 !important;
+}
+
+html[data-skin="terminal-vision"] .section-cta h2 {
+	color: var(--primary) !important;
+	text-shadow: 0 0 12px rgba(215, 255, 78, 0.35);
+}
+
+html[data-skin="terminal-vision"] .site-footer {
+	border-top: 1px solid var(--border) !important;
+	background: var(--footer-bg) !important;
+	color: var(--footer-fg) !important;
+}
+
+html[data-skin="terminal-vision"] .skin-picker {
+	--skin-ui-bg: #06110b;
+	--skin-ui-panel: #091a11;
+	--skin-ui-text: #9dffb0;
+	--skin-ui-muted: #6fbc82;
+	--skin-ui-accent: #d7ff4e;
+	--skin-ui-border: #4f8a61;
+}
+
+html[data-skin="terminal-vision"] .skin-picker-toggle,
+html[data-skin="terminal-vision"] .skin-picker-dialog,
+html[data-skin="terminal-vision"] .skin-picker select {
+	border-radius: 0 !important;
+}
+
+html[data-skin="terminal-vision"] .skin-picker-toggle {
+	box-shadow: 0 0 18px rgba(215, 255, 78, 0.2);
+}
+
+html[data-skin="terminal-vision"] .skin-picker-toggle,
+html[data-skin="terminal-vision"] .skin-picker-current,
+html[data-skin="terminal-vision"] .skin-picker-actions button:not(.skin-picker-save) {
+	color: var(--foreground) !important;
+}
+
+html[data-skin="terminal-vision"] .skin-picker select {
+	background-color: #06110b !important;
+	color: var(--foreground) !important;
+}
+
+@media (max-width: 736px) {
+	html[data-skin="terminal-vision"] .page-hero::after {
+		right: -18%;
+		bottom: 10%;
+		width: 55vw;
+		opacity: 0.48;
+	}
+
+	html[data-skin="terminal-vision"] body.nav-open .site-nav {
+		background: rgba(6, 17, 11, 0.98) !important;
+	}
+
+	html[data-skin="terminal-vision"] body.nav-open .site-nav a {
+		border: 1px solid var(--border);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-skin="terminal-vision"] *,
+	html[data-skin="terminal-vision"] *::before,
+	html[data-skin="terminal-vision"] *::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}
