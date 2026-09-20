@@ -49,34 +49,36 @@
 
 	if (skinRuntime && skinRuntime.all && skinRuntime.all.length) {
 		var skinOptions = skinRuntime.all.map(function(skin) {
-			return '<option value="' + skin.id + '">' + skin.name + '</option>';
+			return '<button type="button" class="skin-picker-option" data-skin-choice="' + skin.id + '" aria-pressed="false">' +
+				'<span class="skin-picker-option-mark" aria-hidden="true"></span>' +
+				'<span>' + skin.name + '</span>' +
+			'</button>';
 		}).join('');
 		var $skinPicker = $(
-			'<aside class="skin-picker" data-skin-ui aria-label="Visual skin controls">' +
+			'<aside class="skin-picker" data-skin-ui aria-label="Theme controls">' +
 				'<button type="button" class="skin-picker-toggle" aria-expanded="false" aria-controls="skin-picker-panel">' +
-					'<span class="skin-picker-toggle-text">' +
-						'<span class="skin-picker-toggle-label">Current skin</span>' +
-						'<span class="skin-picker-current"></span>' +
-					'</span>' +
-					'<span class="skin-picker-count" aria-hidden="true">' + skinRuntime.all.length + ' available</span>' +
+					'<span class="skin-picker-toggle-icon" aria-hidden="true">&#10022;</span>' +
+					'<span class="skin-picker-toggle-label">Theme</span>' +
+					'<span class="skin-picker-current"></span>' +
+					'<span class="skin-picker-chevron" aria-hidden="true"></span>' +
 				'</button>' +
-				'<div class="skin-picker-panel" id="skin-picker-panel" role="dialog" aria-label="Choose a visual skin" hidden>' +
-					'<h2 class="skin-picker-heading">Choose a site skin</h2>' +
-					'<p class="skin-picker-intro">' + skinRuntime.all.length + ' visual skins are available. Select one to preview a different design.</p>' +
-					'<p class="skin-picker-status" aria-live="polite"></p>' +
-					'<label for="site-skin-choice">Available skins</label>' +
-					'<select id="site-skin-choice">' + skinOptions + '</select>' +
-					'<div class="skin-picker-actions">' +
-						'<button type="button" class="skin-picker-surprise">Surprise me</button>' +
-						'<button type="button" class="skin-picker-save">Keep this skin</button>' +
-						'<button type="button" class="skin-picker-random-default">Use surprises by default</button>' +
+				'<div class="skin-picker-panel" id="skin-picker-panel" aria-labelledby="skin-picker-heading" hidden>' +
+					'<div class="skin-picker-header">' +
+						'<div>' +
+							'<h2 class="skin-picker-heading" id="skin-picker-heading">Choose a theme</h2>' +
+							'<p class="skin-picker-intro">Your choice saves automatically.</p>' +
+						'</div>' +
+						'<button type="button" class="skin-picker-close" aria-label="Close theme picker">&times;</button>' +
 					'</div>' +
+					'<div class="skin-picker-options" role="group" aria-label="Available themes">' + skinOptions + '</div>' +
+					'<button type="button" class="skin-picker-surprise"><span aria-hidden="true">&#10022;</span> Surprise me</button>' +
+					'<p class="skin-picker-status" aria-live="polite"></p>' +
 				'</div>' +
 			'</aside>'
 		);
 		var $skinToggle = $skinPicker.find('.skin-picker-toggle');
 		var $skinPanel = $skinPicker.find('.skin-picker-panel');
-		var $skinChoice = $skinPicker.find('select');
+		var $skinChoices = $skinPicker.find('[data-skin-choice]');
 		var $skinCurrent = $skinPicker.find('.skin-picker-current');
 		var $skinStatus = $skinPicker.find('.skin-picker-status');
 
@@ -87,25 +89,15 @@
 			return match ? match.name : id;
 		}
 
-		function syncSkinPicker() {
+		function syncSkinPicker(announcement) {
 			var activeId = skinRuntime.getActiveId();
-			var persistedId = skinRuntime.getPersistedId();
-			var mode = document.documentElement.getAttribute('data-skin-mode');
-			var status = 'Random for this browsing session.';
+			var activeName = skinName(activeId);
 
-			$skinChoice.val(activeId);
+			$skinChoices.attr('aria-pressed', 'false');
+			$skinChoices.filter('[data-skin-choice="' + activeId + '"]').attr('aria-pressed', 'true');
 			$skinCurrent.text(skinName(activeId));
-			$skinToggle.attr('aria-label', 'Open skin selector. Current skin: ' + skinName(activeId) + '. ' + skinRuntime.all.length + ' skins available.');
-
-			if (mode === 'saved') {
-				status = 'Saved for future visits.';
-			} else if (mode === 'preview') {
-				status = persistedId ?
-					'Preview only. Your saved skin is ' + skinName(persistedId) + '.' :
-					'Previewing for this session; not saved.';
-			}
-
-			$skinStatus.text('Currently using ' + skinName(activeId) + '. ' + status);
+			$skinToggle.attr('aria-label', 'Choose theme. Current theme: ' + activeName + '.');
+			$skinStatus.text(announcement || activeName + ' is the current theme.');
 		}
 
 		function closeSkinPicker() {
@@ -121,28 +113,24 @@
 			$skinPanel.prop('hidden', willOpen);
 			$skinToggle.attr('aria-expanded', willOpen ? 'false' : 'true');
 			if (!willOpen) {
-				$skinChoice.trigger('focus');
+				$skinChoices.filter('[aria-pressed="true"]').trigger('focus');
 			}
 		});
 
-		$skinChoice.on('change', function() {
-			skinRuntime.preview(this.value);
-			syncSkinPicker();
+		$skinChoices.on('click', function() {
+			skinRuntime.save($(this).attr('data-skin-choice'));
+			syncSkinPicker(skinName(skinRuntime.getActiveId()) + ' selected and saved.');
 		});
 
 		$skinPicker.find('.skin-picker-surprise').on('click', function() {
 			skinRuntime.surprise();
-			syncSkinPicker();
-		});
-
-		$skinPicker.find('.skin-picker-save').on('click', function() {
 			skinRuntime.save(skinRuntime.getActiveId());
-			syncSkinPicker();
+			syncSkinPicker('Surprise! ' + skinName(skinRuntime.getActiveId()) + ' selected and saved.');
 		});
 
-		$skinPicker.find('.skin-picker-random-default').on('click', function() {
-			skinRuntime.useRandomDefault();
-			syncSkinPicker();
+		$skinPicker.find('.skin-picker-close').on('click', function() {
+			closeSkinPicker();
+			$skinToggle.trigger('focus');
 		});
 
 		$(document).on('keydown', function(event) {
