@@ -246,7 +246,7 @@
 				syncSkinPicker(skinName(skinRuntime.getActiveId()) + ' will be used on future visits.');
 			} else {
 				skinRuntime.clearSaved();
-				syncSkinPicker(skinName(skinRuntime.getActiveId()) + ' will only be used for this visit.');
+				syncSkinPicker('Random themes restored. ' + skinName(skinRuntime.getActiveId()) + ' is displayed for this visit.');
 			}
 		});
 

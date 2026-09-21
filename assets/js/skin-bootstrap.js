@@ -21,7 +21,12 @@
 		{ id: 'liquid-dream', name: 'Liquid Dream', scheme: 'light', css: 'assets/css/skins/liquid-dream.css' },
 		{ id: 'sacred-geometry', name: 'Sacred Geometry', scheme: 'dark', css: 'assets/css/skins/sacred-geometry.css' },
 		{ id: 'terminal-vision', name: 'Terminal Vision', scheme: 'dark', css: 'assets/css/skins/terminal-vision.css?v=terminal-vision-1' },
-		{ id: 'psychedelic-scrapbook', name: 'Psychedelic Scrapbook', scheme: 'light', css: 'assets/css/skins/psychedelic-scrapbook.css?v=psychedelic-scrapbook-2' }
+		{ id: 'psychedelic-scrapbook', name: 'Psychedelic Scrapbook', scheme: 'light', css: 'assets/css/skins/psychedelic-scrapbook.css?v=psychedelic-scrapbook-2' },
+		{ id: 'liquid-chrome-y2k', name: 'Liquid Chrome Y2K', scheme: 'light', css: 'assets/css/skins/liquid-chrome-y2k.css?v=liquid-chrome-y2k-3' },
+		{ id: 'acid-brutalist', name: 'Acid Brutalist', scheme: 'dark', css: 'assets/css/skins/acid-brutalist.css?v=acid-brutalist-1' },
+		{ id: 'botanical-dreamscape', name: 'Botanical Dreamscape', scheme: 'dark', css: 'assets/css/skins/botanical-dreamscape.css?v=botanical-dreamscape-4' },
+		{ id: 'cosmic-airbrush', name: 'Cosmic Airbrush', scheme: 'dark', css: 'assets/css/skins/cosmic-airbrush.css?v=cosmic-airbrush-1' },
+		{ id: 'riso-hallucination', name: 'Riso Hallucination', scheme: 'light', css: 'assets/css/skins/riso-hallucination.css?v=riso-hallucination-3' }
 	];
 	var skinById = {};
 	var activeId = '';
@@ -121,23 +126,19 @@
 		persistedId = '';
 	}
 
-	var sessionId = read(window.sessionStorage, sessionKey);
-	if (sessionId && !isValid(sessionId)) {
+	var previousSessionId = read(window.sessionStorage, sessionKey);
+	if (previousSessionId && !isValid(previousSessionId)) {
 		remove(window.sessionStorage, sessionKey);
 		remove(window.sessionStorage, sessionModeKey);
-		sessionId = '';
-	}
-	var sessionMode = read(window.sessionStorage, sessionModeKey);
-	if (sessionMode !== 'preview' && sessionMode !== 'random') {
-		sessionMode = 'random';
+		previousSessionId = '';
 	}
 
-	var initialId = persistedId || sessionId || randomId();
-	if (!persistedId && !sessionId) {
+	var initialId = persistedId || randomId(previousSessionId);
+	if (!persistedId) {
 		write(window.sessionStorage, sessionKey, initialId);
 		write(window.sessionStorage, sessionModeKey, 'random');
 	}
-	apply(initialId, persistedId ? 'saved' : sessionMode);
+	apply(initialId, persistedId ? 'saved' : 'random');
 
 	window.SiteSkins = {
 		all: skins.slice(),
@@ -185,9 +186,10 @@
 		clearSaved: function() {
 			persistedId = '';
 			remove(window.localStorage, preferenceKey);
-			write(window.sessionStorage, sessionKey, activeId);
-			write(window.sessionStorage, sessionModeKey, 'preview');
-			return apply(activeId, 'preview');
+			var id = randomId(activeId);
+			write(window.sessionStorage, sessionKey, id);
+			write(window.sessionStorage, sessionModeKey, 'random');
+			return apply(id, 'random');
 		}
 	};
 })();
