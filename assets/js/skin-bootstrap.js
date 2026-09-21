@@ -22,7 +22,9 @@
 		{ id: 'sacred-geometry', name: 'Sacred Geometry', scheme: 'dark', css: 'assets/css/skins/sacred-geometry.css' },
 		{ id: 'terminal-vision', name: 'Terminal Vision', scheme: 'dark', css: 'assets/css/skins/terminal-vision.css?v=terminal-vision-1' },
 		{ id: 'psychedelic-scrapbook', name: 'Psychedelic Scrapbook', scheme: 'light', css: 'assets/css/skins/psychedelic-scrapbook.css?v=psychedelic-scrapbook-2' },
-		{ id: 'liquid-chrome-y2k', name: 'Liquid Chrome Y2K', scheme: 'light', css: 'assets/css/skins/liquid-chrome-y2k.css?v=liquid-chrome-y2k-3' }
+		{ id: 'liquid-chrome-y2k', name: 'Liquid Chrome Y2K', scheme: 'light', css: 'assets/css/skins/liquid-chrome-y2k.css?v=liquid-chrome-y2k-3' },
+		{ id: 'acid-brutalist', name: 'Acid Brutalist', scheme: 'dark', css: 'assets/css/skins/acid-brutalist.css?v=acid-brutalist-1' },
+		{ id: 'botanical-dreamscape', name: 'Botanical Dreamscape', scheme: 'dark', css: 'assets/css/skins/botanical-dreamscape.css?v=botanical-dreamscape-4' }
 	];
 	var skinById = {};
 	var activeId = '';
