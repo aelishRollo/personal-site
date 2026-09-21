@@ -23,6 +23,13 @@
 	box-sizing: border-box;
 }
 
+.skin-picker-controls {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 0.4rem;
+}
+
 .skin-picker-toggle,
 .skin-picker button,
 .skin-picker select {
@@ -49,6 +56,36 @@
 	line-height: 1.1 !important;
 	text-transform: uppercase !important;
 	cursor: pointer;
+}
+
+.skin-picker .skin-picker-cycle {
+	display: none !important;
+	place-items: center;
+	width: 2.8rem !important;
+	height: 2.8rem !important;
+	min-width: 2.8rem !important;
+	min-height: 2.8rem !important;
+	margin: 0 !important;
+	padding: 0 0 0.12rem !important;
+	border: 1px solid var(--skin-ui-border) !important;
+	border-radius: 50% !important;
+	background: var(--skin-ui-bg) !important;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28) !important;
+	color: var(--skin-ui-accent) !important;
+	font: 400 2rem/1 Arial, Helvetica, sans-serif !important;
+	letter-spacing: 0 !important;
+	text-transform: none !important;
+	cursor: pointer;
+}
+
+.skin-picker .skin-picker-cycle:hover,
+.skin-picker .skin-picker-cycle:focus-visible {
+	background: var(--skin-ui-panel) !important;
+	color: var(--skin-ui-text) !important;
+}
+
+.skin-picker .skin-picker-cycle span {
+	color: inherit !important;
 }
 
 .skin-picker-toggle-icon {
@@ -353,6 +390,27 @@
 	.skin-picker {
 		right: 0.65rem;
 		bottom: 0.65rem;
+	}
+
+	.skin-picker-controls {
+		max-width: calc(100vw - 1.3rem);
+	}
+
+	.skin-picker .skin-picker-cycle {
+		display: grid !important;
+	}
+
+	.skin-picker-toggle {
+		min-width: 0;
+		max-width: calc(100vw - 7.7rem);
+	}
+
+	.skin-picker-toggle-label {
+		display: none;
+	}
+
+	.skin-picker-current {
+		min-width: 0;
 	}
 }
 
