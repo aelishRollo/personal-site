@@ -60,12 +60,20 @@
 		}).join('');
 		var $skinPicker = $(
 			'<aside class="skin-picker" data-skin-ui aria-label="Theme controls">' +
-				'<button type="button" class="skin-picker-toggle" aria-expanded="false" aria-controls="skin-picker-panel">' +
-					'<span class="skin-picker-toggle-icon" aria-hidden="true">&#10022;</span>' +
-					'<span class="skin-picker-toggle-label">Theme</span>' +
-					'<span class="skin-picker-current"></span>' +
-					'<span class="skin-picker-chevron" aria-hidden="true"></span>' +
-				'</button>' +
+				'<div class="skin-picker-controls">' +
+					'<button type="button" class="skin-picker-cycle skin-picker-cycle-previous" data-skin-cycle="-1" aria-label="Previous theme">' +
+						'<span aria-hidden="true">&#8249;</span>' +
+					'</button>' +
+					'<button type="button" class="skin-picker-toggle" aria-expanded="false" aria-controls="skin-picker-panel">' +
+						'<span class="skin-picker-toggle-icon" aria-hidden="true">&#10022;</span>' +
+						'<span class="skin-picker-toggle-label">Theme</span>' +
+						'<span class="skin-picker-current"></span>' +
+						'<span class="skin-picker-chevron" aria-hidden="true"></span>' +
+					'</button>' +
+					'<button type="button" class="skin-picker-cycle skin-picker-cycle-next" data-skin-cycle="1" aria-label="Next theme">' +
+						'<span aria-hidden="true">&#8250;</span>' +
+					'</button>' +
+				'</div>' +
 				'<div class="skin-picker-panel" id="skin-picker-panel" aria-labelledby="skin-picker-heading" hidden>' +
 					'<div class="skin-picker-header">' +
 						'<div>' +
@@ -83,8 +91,8 @@
 						'<input type="checkbox" class="skin-picker-keep" id="skin-picker-keep" />' +
 						'<label for="skin-picker-keep">Keep using this theme every time you visit the site</label>' +
 					'</div>' +
-					'<p class="skin-picker-status" aria-live="polite"></p>' +
 				'</div>' +
+				'<p class="skin-picker-status" aria-live="polite"></p>' +
 			'</aside>'
 		);
 		var $skinToggle = $skinPicker.find('.skin-picker-toggle');
@@ -96,6 +104,7 @@
 		var $skinScrollUp = $skinPicker.find('.skin-picker-scroll-up');
 		var $skinScrollDown = $skinPicker.find('.skin-picker-scroll-down');
 		var $skinCurrent = $skinPicker.find('.skin-picker-current');
+		var $skinCycleButtons = $skinPicker.find('[data-skin-cycle]');
 		var $skinKeep = $skinPicker.find('.skin-picker-keep');
 		var $skinStatus = $skinPicker.find('.skin-picker-status');
 		var skinScrollFrame = null;
@@ -106,6 +115,16 @@
 				return skin.id === id;
 			})[0];
 			return match ? match.name : id;
+		}
+
+		function skinIndex(id) {
+			for (var index = 0; index < skinRuntime.all.length; index++) {
+				if (skinRuntime.all[index].id === id) {
+					return index;
+				}
+			}
+
+			return 0;
 		}
 
 		function syncSkinPicker(announcement) {
@@ -130,6 +149,13 @@
 				$skinChoices.filter('[data-skin-choice="' + activeId + '"]').attr('aria-pressed', 'true');
 			}
 			$skinCurrent.text(activeName);
+			$skinCycleButtons.each(function() {
+				var direction = Number($(this).attr('data-skin-cycle'));
+				var activeIndex = skinIndex(activeId);
+				var nextIndex = (activeIndex + direction + skinRuntime.all.length) % skinRuntime.all.length;
+				var directionLabel = direction < 0 ? 'Previous' : 'Next';
+				$(this).attr('aria-label', directionLabel + ' theme: ' + skinRuntime.all[nextIndex].name);
+			});
 			$skinKeep.prop('checked', isKept);
 			$skinToggle.attr('aria-label', 'Choose theme. Current theme: ' + activeName + '. ' + modeDescription);
 			$skinStatus.text(announcement || activeName + '. ' + modeDescription);
@@ -213,6 +239,17 @@
 		});
 
 		$skinOptions.on('scroll', updateSkinScrollArrows);
+
+		$skinCycleButtons.on('click', function() {
+			var activeId = skinRuntime.getActiveId();
+			var activeIndex = skinIndex(activeId);
+			var direction = Number($(this).attr('data-skin-cycle'));
+			var nextIndex = (activeIndex + direction + skinRuntime.all.length) % skinRuntime.all.length;
+			var nextSkin = skinRuntime.all[nextIndex];
+
+			skinRuntime.preview(nextSkin.id);
+			syncSkinPicker('Previewing ' + nextSkin.name + '.');
+		});
 
 		$skinScrollUp.on('mouseenter', function() {
 			startSkinAutoScroll(-1);
