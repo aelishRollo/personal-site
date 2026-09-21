@@ -98,7 +98,9 @@
 	window.renderAlecSillyTitle = function() {
 		var title = selectedTitle;
 		var classes = 'hero-title-role metallic-pearl-text' + (wordCount(title) > 4 ? ' silly-title-long' : '');
+		var initial = escapeHtml(title.charAt(0));
+		var remainder = escapeHtml(title.slice(1));
 
-		return '<span class="' + classes + '" id="hero-silly-title">' + escapeHtml(title) + '.</span>';
+		return '<span class="' + classes + '" id="hero-silly-title"><span class="hero-title-initial">' + initial + '</span>' + remainder + '.</span>';
 	};
 })(window);

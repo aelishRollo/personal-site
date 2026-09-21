@@ -15,18 +15,18 @@
 	var skins = [
 		{ id: 'portfolio-dark', name: 'Portfolio Dark', scheme: 'dark', css: '' },
 		{ id: 'portfolio-light', name: 'Portfolio Light', scheme: 'light', css: '' },
-		{ id: 'acid-editorial', name: 'Acid Editorial', scheme: 'light', css: 'assets/css/skins/acid-editorial.css?v=portrait-cluster-equilateral' },
-		{ id: 'op-art-monochrome', name: 'Op Art Monochrome', scheme: 'light', css: 'assets/css/skins/op-art-monochrome.css' },
-		{ id: 'neon-glitch', name: 'Neon Glitch', scheme: 'dark', css: 'assets/css/skins/neon-glitch.css' },
-		{ id: 'liquid-dream', name: 'Liquid Dream', scheme: 'light', css: 'assets/css/skins/liquid-dream.css' },
-		{ id: 'sacred-geometry', name: 'Sacred Geometry', scheme: 'dark', css: 'assets/css/skins/sacred-geometry.css' },
-		{ id: 'terminal-vision', name: 'Terminal Vision', scheme: 'dark', css: 'assets/css/skins/terminal-vision.css?v=terminal-vision-1' },
-		{ id: 'psychedelic-scrapbook', name: 'Psychedelic Scrapbook', scheme: 'light', css: 'assets/css/skins/psychedelic-scrapbook.css?v=psychedelic-scrapbook-2' },
-		{ id: 'liquid-chrome-y2k', name: 'Liquid Chrome Y2K', scheme: 'light', css: 'assets/css/skins/liquid-chrome-y2k.css?v=liquid-chrome-y2k-3' },
-		{ id: 'acid-brutalist', name: 'Acid Brutalist', scheme: 'dark', css: 'assets/css/skins/acid-brutalist.css?v=acid-brutalist-1' },
-		{ id: 'botanical-dreamscape', name: 'Botanical Dreamscape', scheme: 'dark', css: 'assets/css/skins/botanical-dreamscape.css?v=botanical-dreamscape-4' },
-		{ id: 'cosmic-airbrush', name: 'Cosmic Airbrush', scheme: 'dark', css: 'assets/css/skins/cosmic-airbrush.css?v=cosmic-airbrush-1' },
-		{ id: 'riso-hallucination', name: 'Riso Hallucination', scheme: 'light', css: 'assets/css/skins/riso-hallucination.css?v=riso-hallucination-3' }
+		{ id: 'acid-editorial', name: 'Acid Editorial', scheme: 'light', css: 'assets/css/skins/acid-editorial.css?v=hero-initial-fix-1' },
+		{ id: 'op-art-monochrome', name: 'Op Art Monochrome', scheme: 'light', css: 'assets/css/skins/op-art-monochrome.css?v=hero-initial-fix-1' },
+		{ id: 'neon-glitch', name: 'Neon Glitch', scheme: 'dark', css: 'assets/css/skins/neon-glitch.css?v=hero-initial-fix-1' },
+		{ id: 'liquid-dream', name: 'Liquid Dream', scheme: 'light', css: 'assets/css/skins/liquid-dream.css?v=hero-initial-fix-1' },
+		{ id: 'sacred-geometry', name: 'Sacred Geometry', scheme: 'dark', css: 'assets/css/skins/sacred-geometry.css?v=hero-initial-fix-1' },
+		{ id: 'terminal-vision', name: 'Terminal Vision', scheme: 'dark', css: 'assets/css/skins/terminal-vision.css?v=hero-initial-fix-1' },
+		{ id: 'psychedelic-scrapbook', name: 'Psychedelic Scrapbook', scheme: 'light', css: 'assets/css/skins/psychedelic-scrapbook.css?v=hero-initial-fix-1' },
+		{ id: 'liquid-chrome-y2k', name: 'Liquid Chrome Y2K', scheme: 'light', css: 'assets/css/skins/liquid-chrome-y2k.css?v=hero-initial-fix-1' },
+		{ id: 'acid-brutalist', name: 'Acid Brutalist', scheme: 'dark', css: 'assets/css/skins/acid-brutalist.css?v=hero-initial-fix-1' },
+		{ id: 'botanical-dreamscape', name: 'Botanical Dreamscape', scheme: 'dark', css: 'assets/css/skins/botanical-dreamscape.css?v=hero-initial-fix-1' },
+		{ id: 'cosmic-airbrush', name: 'Cosmic Airbrush', scheme: 'dark', css: 'assets/css/skins/cosmic-airbrush.css?v=hero-initial-fix-1' },
+		{ id: 'riso-hallucination', name: 'Riso Hallucination', scheme: 'light', css: 'assets/css/skins/riso-hallucination.css?v=hero-initial-fix-1' }
 	];
 	var skinById = {};
 	var activeId = '';

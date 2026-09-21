@@ -206,7 +206,7 @@ html[data-skin="cosmic-airbrush"] .metallic-pearl-text {
 	filter: none;
 }
 
-html[data-skin="cosmic-airbrush"] .hero-title-role::first-letter {
+html[data-skin="cosmic-airbrush"] .hero-title-initial {
 	color: inherit !important;
 	-webkit-text-fill-color: inherit;
 }

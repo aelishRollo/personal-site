@@ -215,7 +215,7 @@ html[data-skin="terminal-vision"] .page-hero h1::after {
 	animation: terminal-blink 0.8s steps(2, end) infinite;
 }
 
-html[data-skin="terminal-vision"] .hero-title-role::first-letter {
+html[data-skin="terminal-vision"] .hero-title-initial {
 	color: var(--primary) !important;
 }
 
