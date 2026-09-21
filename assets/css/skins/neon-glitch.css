@@ -203,11 +203,11 @@ html[data-skin="neon-glitch"] body.page-home .page-hero h1 {
 	animation: neon-glitch-signal 3.4s steps(1, end) infinite;
 }
 
-html[data-skin="neon-glitch"] .hero-title-role:nth-of-type(odd)::first-letter {
+html[data-skin="neon-glitch"] .hero-title-role:nth-of-type(odd) .hero-title-initial {
 	color: var(--secondary);
 }
 
-html[data-skin="neon-glitch"] .hero-title-role:nth-of-type(even)::first-letter {
+html[data-skin="neon-glitch"] .hero-title-role:nth-of-type(even) .hero-title-initial {
 	color: var(--primary);
 }
 

@@ -59,7 +59,7 @@
 }
 
 .skin-picker .skin-picker-cycle {
-	display: none !important;
+	display: grid !important;
 	place-items: center;
 	width: 2.8rem !important;
 	height: 2.8rem !important;
@@ -71,17 +71,11 @@
 	border-radius: 50% !important;
 	background: var(--skin-ui-bg) !important;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28) !important;
-	color: var(--skin-ui-accent) !important;
+	color: #f7f7f3 !important;
 	font: 400 2rem/1 Arial, Helvetica, sans-serif !important;
 	letter-spacing: 0 !important;
 	text-transform: none !important;
 	cursor: pointer;
-}
-
-.skin-picker .skin-picker-cycle:hover,
-.skin-picker .skin-picker-cycle:focus-visible {
-	background: var(--skin-ui-panel) !important;
-	color: var(--skin-ui-text) !important;
 }
 
 .skin-picker .skin-picker-cycle span {
@@ -119,12 +113,7 @@
 }
 
 .skin-picker-current {
-	max-width: 8.5rem;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	color: var(--skin-ui-accent);
-	font-size: 0.72rem;
+	display: none;
 }
 
 .skin-picker-chevron {
@@ -396,21 +385,22 @@
 		max-width: calc(100vw - 1.3rem);
 	}
 
-	.skin-picker .skin-picker-cycle {
-		display: grid !important;
-	}
-
 	.skin-picker-toggle {
 		min-width: 0;
 		max-width: calc(100vw - 7.7rem);
 	}
 
 	.skin-picker-toggle-label {
-		display: none;
+		max-width: 9.5rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
+}
 
-	.skin-picker-current {
-		min-width: 0;
+@media (max-width: 360px) {
+	.skin-picker-toggle-icon {
+		display: none;
 	}
 }
 

@@ -218,7 +218,7 @@ html[data-skin="botanical-dreamscape"] .metallic-pearl-text {
 	filter: none;
 }
 
-html[data-skin="botanical-dreamscape"] .hero-title-role::first-letter {
+html[data-skin="botanical-dreamscape"] .hero-title-initial {
 	color: inherit !important;
 	-webkit-text-fill-color: inherit;
 }

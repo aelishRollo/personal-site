@@ -213,7 +213,7 @@ html[data-skin="sacred-geometry"] body.page-home .page-hero h1 {
 }
 
 html[data-skin="sacred-geometry"] .hero-title-role:nth-of-type(even),
-html[data-skin="sacred-geometry"] .hero-title-role:nth-of-type(3n)::first-letter {
+html[data-skin="sacred-geometry"] .hero-title-role:nth-of-type(3n) .hero-title-initial {
 	color: var(--primary) !important;
 }
 

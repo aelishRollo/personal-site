@@ -4435,11 +4435,11 @@ body.page-fridge .page-section .site-shell {
 	margin-bottom: 0;
 }
 
-.hero-title-role:nth-of-type(odd)::first-letter {
+.hero-title-role:nth-of-type(odd) .hero-title-initial {
 	color: var(--primary);
 }
 
-.hero-title-role:nth-of-type(even)::first-letter {
+.hero-title-role:nth-of-type(even) .hero-title-initial {
 	color: var(--secondary);
 }
 

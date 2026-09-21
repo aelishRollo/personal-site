@@ -209,7 +209,7 @@ html[data-skin="liquid-chrome-y2k"] .metallic-pearl-text {
 	letter-spacing: -0.065em;
 }
 
-html[data-skin="liquid-chrome-y2k"] .hero-title-role::first-letter {
+html[data-skin="liquid-chrome-y2k"] .hero-title-initial {
 	color: transparent !important;
 	-webkit-text-fill-color: transparent;
 }

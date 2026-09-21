@@ -268,7 +268,7 @@ html[data-skin="acid-editorial"] .hero-title-role {
 	animation: acid-gradient-shift 5s linear infinite;
 }
 
-html[data-skin="acid-editorial"] .hero-title-role::first-letter {
+html[data-skin="acid-editorial"] .hero-title-initial {
 	color: transparent !important;
 }
 

@@ -193,7 +193,7 @@ html[data-skin="psychedelic-scrapbook"] .hero-title-role:nth-of-type(4) {
 	transform: rotate(1.5deg);
 }
 
-html[data-skin="psychedelic-scrapbook"] .hero-title-role::first-letter {
+html[data-skin="psychedelic-scrapbook"] .hero-title-initial {
 	color: inherit !important;
 }
 

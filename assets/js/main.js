@@ -66,7 +66,7 @@
 					'</button>' +
 					'<button type="button" class="skin-picker-toggle" aria-expanded="false" aria-controls="skin-picker-panel">' +
 						'<span class="skin-picker-toggle-icon" aria-hidden="true">&#10022;</span>' +
-						'<span class="skin-picker-toggle-label">Theme</span>' +
+						'<span class="skin-picker-toggle-label">Try a different theme</span>' +
 						'<span class="skin-picker-current"></span>' +
 						'<span class="skin-picker-chevron" aria-hidden="true"></span>' +
 					'</button>' +

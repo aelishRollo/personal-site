@@ -202,7 +202,7 @@ html[data-skin="acid-brutalist"] .metallic-pearl-text {
 	filter: none;
 }
 
-html[data-skin="acid-brutalist"] .hero-title-role::first-letter {
+html[data-skin="acid-brutalist"] .hero-title-initial {
 	color: inherit !important;
 	-webkit-text-fill-color: inherit;
 }

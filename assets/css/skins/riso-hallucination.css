@@ -208,7 +208,7 @@ html[data-skin="riso-hallucination"] .metallic-pearl-text {
 	filter: none;
 }
 
-html[data-skin="riso-hallucination"] .hero-title-role::first-letter {
+html[data-skin="riso-hallucination"] .hero-title-initial {
 	color: inherit !important;
 	-webkit-text-fill-color: inherit;
 }
