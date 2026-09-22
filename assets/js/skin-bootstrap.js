@@ -35,6 +35,9 @@
 	var activeId = '';
 	var persistedId = '';
 	var stylesheet = null;
+	var themeAssets = [
+		{ href: 'assets/images/corkboard-texture.webp?v=corkboard-1', as: 'image', type: 'image/webp' }
+	];
 
 	skins.forEach(function(skin) {
 		skinById[skin.id] = skin;
@@ -80,6 +83,21 @@
 		return choices[Math.floor(Math.random() * choices.length)].id;
 	}
 
+	function isReloadNavigation() {
+		try {
+			if (window.performance && typeof window.performance.getEntriesByType === 'function') {
+				var navigationEntries = window.performance.getEntriesByType('navigation');
+				if (navigationEntries.length) {
+					return navigationEntries[0].type === 'reload';
+				}
+			}
+
+			return window.performance && window.performance.navigation && window.performance.navigation.type === 1;
+		} catch (error) {
+			return false;
+		}
+	}
+
 	function ensureStylesheet() {
 		if (!stylesheet) {
 			stylesheet = document.getElementById('active-skin-stylesheet');
@@ -93,6 +111,43 @@
 		}
 
 		return stylesheet;
+	}
+
+	function preloadThemeResources() {
+		var resources = [];
+		var seen = {};
+
+		skins.forEach(function(skin) {
+			if (skin.css) {
+				resources.push({ href: skin.css, as: 'style' });
+			}
+		});
+
+		resources = resources.concat(themeAssets);
+		resources.forEach(function(resource) {
+			if (!resource.href || seen[resource.href]) {
+				return;
+			}
+
+			seen[resource.href] = true;
+
+			// The active stylesheet is already being fetched at render-blocking
+			// priority. Preload every other theme so rapid cycling only swaps in
+			// resources that are already in the browser cache.
+			if (resource.as === 'style' && stylesheet && stylesheet.getAttribute('href') === resource.href) {
+				return;
+			}
+
+			var preload = document.createElement('link');
+			preload.rel = 'preload';
+			preload.as = resource.as;
+			preload.href = resource.href;
+			preload.setAttribute('data-skin-preload', '');
+			if (resource.type) {
+				preload.type = resource.type;
+			}
+			document.head.appendChild(preload);
+		});
 	}
 
 	function apply(id, mode) {
@@ -146,7 +201,15 @@
 	var initialId;
 	var initialMode;
 
-	if (previousSessionId) {
+	if (isReloadNavigation()) {
+		if (persistedId) {
+			initialId = persistedId;
+			initialMode = 'saved';
+		} else {
+			initialId = randomId(previousSessionId);
+			initialMode = 'random';
+		}
+	} else if (previousSessionId) {
 		initialId = previousSessionId;
 		initialMode = persistedId === previousSessionId ? 'saved' : (previousSessionMode === 'preview' ? 'preview' : 'random');
 	} else if (persistedId) {
@@ -160,6 +223,7 @@
 	write(window.sessionStorage, sessionKey, initialId);
 	write(window.sessionStorage, sessionModeKey, initialMode);
 	apply(initialId, initialMode);
+	preloadThemeResources();
 
 	window.SiteSkins = {
 		all: skins.slice(),
