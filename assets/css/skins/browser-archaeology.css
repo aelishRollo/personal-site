@@ -1,48 +1,43 @@
 /*
 	Browser Archaeology
-	Derived from 21-browser-archaeology.html. Desktop grids, recovered browser
-	windows, hard shadows, scan lines and offset glitch color are adapted without
-	changing the site's content or behavior.
+	A practical late-1990s desktop and browser skin: system chrome, compact title
+	bars, beveled controls, familiar link colors, and an unstyled-document feel.
 */
 
 html[data-skin="browser-archaeology"] {
-	--background: #bdbdb7;
-	--foreground: #101014;
-	--muted-bg: #d6d2c7;
-	--card-bg: #eee9dc;
-	--border: #111111;
-	--primary: #5b56ff;
+	--background: #008080;
+	--foreground: #000000;
+	--muted-bg: #c0c0c0;
+	--card-bg: #ffffff;
+	--border: #808080;
+	--primary: #000080;
 	--primary-fg: #ffffff;
-	--secondary: #31e5d0;
-	--secondary-fg: #101014;
-	--accent: #ff3f91;
-	--accent-fg: #101014;
-	--link: #3b36c7;
-	--warning: #ffef59;
-	--header-bg: #d6d2c7;
-	--header-fg: #101014;
-	--footer-bg: #111111;
-	--footer-fg: #eee9dc;
-	--bg: #bdbdb7;
-	--surface-1: #eee9dc;
-	--surface-2: #d6d2c7;
-	--surface-3: #ffef59;
-	--text-1: #101014;
-	--text-2: #3f3f46;
-	--line-1: #111111;
-	--accent-1: #5b56ff;
-	--accent-2: #ff3f91;
+	--secondary: #c0c0c0;
+	--secondary-fg: #000000;
+	--accent: #800000;
+	--accent-fg: #ffffff;
+	--link: #0000ee;
+	--warning: #ffffcc;
+	--header-bg: #c0c0c0;
+	--header-fg: #000000;
+	--footer-bg: #c0c0c0;
+	--footer-fg: #000000;
+	--bg: #008080;
+	--surface-1: #ffffff;
+	--surface-2: #c0c0c0;
+	--surface-3: #ffffcc;
+	--text-1: #000000;
+	--text-2: #404040;
+	--line-1: #808080;
+	--accent-1: #000080;
+	--accent-2: #800000;
 	overflow-x: clip;
 }
 
 html[data-skin="browser-archaeology"] body {
-	background:
-		linear-gradient(rgba(0, 0, 0, 0.07) 1px, transparent 1px),
-		linear-gradient(90deg, rgba(0, 0, 0, 0.07) 1px, transparent 1px),
-		#bdbdb7 !important;
-	background-size: 24px 24px !important;
-	color: #101014 !important;
-	font-family: Arial, Helvetica, sans-serif !important;
+	background: #008080 !important;
+	color: #000000 !important;
+	font-family: "Times New Roman", Times, serif !important;
 	overflow-x: hidden;
 }
 
@@ -54,7 +49,7 @@ html[data-skin="browser-archaeology"] .lead,
 html[data-skin="browser-archaeology"] .note,
 html[data-skin="browser-archaeology"] .footer-inner p,
 html[data-skin="browser-archaeology"] .social-inline a {
-	color: #26262d !important;
+	color: #000000 !important;
 }
 
 html[data-skin="browser-archaeology"] h1,
@@ -64,67 +59,82 @@ html[data-skin="browser-archaeology"] h4,
 html[data-skin="browser-archaeology"] h5,
 html[data-skin="browser-archaeology"] h6,
 html[data-skin="browser-archaeology"] strong {
-	color: #101014 !important;
+	color: #000000 !important;
 	font-family: Arial, Helvetica, sans-serif !important;
-	font-weight: 900;
-	letter-spacing: -0.045em;
+	font-weight: 700;
+	letter-spacing: normal;
 }
 
 html[data-skin="browser-archaeology"] a {
-	color: #3b36c7 !important;
-	text-decoration-color: #ff3f91;
-	text-decoration-thickness: 2px;
-	text-underline-offset: 0.2em;
+	color: #0000ee !important;
+	text-decoration: underline;
+	text-decoration-color: currentColor;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 1px;
 }
 
-html[data-skin="browser-archaeology"] a:hover {
-	color: #cf145f !important;
+html[data-skin="browser-archaeology"] a:visited {
+	color: #551a8b !important;
+}
+
+html[data-skin="browser-archaeology"] a:hover,
+html[data-skin="browser-archaeology"] a:focus-visible {
+	color: #ff0000 !important;
 }
 
 html[data-skin="browser-archaeology"] .site-header {
-	border-bottom: 2px solid #111111 !important;
-	background: #d6d2c7 !important;
-	box-shadow: 0 5px 0 rgba(17, 17, 17, 0.22) !important;
+	border: 0 !important;
+	border-bottom: 1px solid #000000 !important;
+	background: #c0c0c0 !important;
+	box-shadow: inset 0 1px #ffffff, inset 0 -2px #808080 !important;
 	backdrop-filter: none !important;
 }
 
 html[data-skin="browser-archaeology"] .brand-mark {
-	border: 2px solid #111111 !important;
+	border: 1px solid #000000 !important;
 	border-radius: 0 !important;
-	background: #ffef59 !important;
-	box-shadow: 4px 4px 0 #111111 !important;
-	color: #111111 !important;
-	font-family: "Courier New", monospace !important;
-	transform: rotate(-3deg);
+	background: #000080 !important;
+	box-shadow: inset 1px 1px #ffffff, inset -1px -1px #404040 !important;
+	color: #ffffff !important;
+	font: 700 0.72rem/1 Arial, Helvetica, sans-serif !important;
+	transform: none;
 }
 
 html[data-skin="browser-archaeology"] .brand-text,
 html[data-skin="browser-archaeology"] .site-nav a,
 html[data-skin="browser-archaeology"] .nav-toggle {
-	color: #101014 !important;
-	font-family: "Courier New", monospace !important;
-	font-weight: 900;
-	letter-spacing: 0.055em;
-	text-transform: uppercase;
+	color: #000000 !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-weight: 400;
+	letter-spacing: normal;
+	text-transform: none;
+}
+
+html[data-skin="browser-archaeology"] .brand-text {
+	font-weight: 700;
 }
 
 html[data-skin="browser-archaeology"] .site-nav a {
+	border: 1px solid transparent !important;
 	border-radius: 0 !important;
+	text-decoration: none;
 }
 
 html[data-skin="browser-archaeology"] .site-nav a:hover,
 html[data-skin="browser-archaeology"] .site-nav a[aria-current="page"] {
-	background: #ffef59 !important;
-	box-shadow: inset 0 -3px 0 #ff3f91;
-	color: #101014 !important;
+	border-color: #808080 #ffffff #ffffff #808080 !important;
+	background: #d4d0c8 !important;
+	box-shadow: none !important;
+	color: #000000 !important;
 }
 
 html[data-skin="browser-archaeology"] .site-nav .nav-cta,
 html[data-skin="browser-archaeology"] .nav-toggle {
-	border: 2px solid #111111 !important;
+	border: 2px solid !important;
+	border-color: #ffffff #404040 #404040 #ffffff !important;
 	border-radius: 0 !important;
-	background: #eee9dc !important;
-	box-shadow: 4px 4px 0 #5b56ff;
+	background: #c0c0c0 !important;
+	box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080 !important;
 }
 
 html[data-skin="browser-archaeology"] .page-hero,
@@ -137,48 +147,47 @@ html[data-skin="browser-archaeology"] body.page-contact .page-hero {
 	position: relative;
 	isolation: isolate;
 	overflow: hidden;
-	width: calc(100% - clamp(1.5rem, 5vw, 5rem));
+	width: calc(100% - clamp(1rem, 3vw, 2.5rem));
 	max-width: 92rem;
-	margin: clamp(1.2rem, 3vw, 2.5rem) auto clamp(2.5rem, 6vw, 5rem);
-	padding-top: clamp(5.8rem, 9vw, 8.5rem) !important;
-	border: 2px solid #111111 !important;
-	background: #eee9dc !important;
-	box-shadow: 9px 9px 0 #111111 !important;
-	color: #101014 !important;
-	transform: rotate(-0.35deg);
+	margin: clamp(0.65rem, 2vw, 1.5rem) auto clamp(1.5rem, 4vw, 3rem);
+	padding-top: clamp(6.8rem, 9vw, 8rem) !important;
+	border: 2px solid !important;
+	border-color: #ffffff #000000 #000000 #ffffff !important;
+	background: #ffffff !important;
+	box-shadow: 0 0 0 1px #808080, 4px 4px 0 rgba(0, 0, 0, 0.45) !important;
+	color: #000000 !important;
+	transform: none;
 }
 
 html[data-skin="browser-archaeology"] .page-hero::before {
 	content: "";
 	position: absolute;
-	inset: 0 0 auto;
+	inset: 2px 2px auto;
 	z-index: 3;
-	height: 2.25rem;
-	border-bottom: 2px solid #111111;
+	height: 1.45rem;
+	border-bottom: 1px solid #000000;
 	background:
-		radial-gradient(circle at calc(100% - 3.8rem) 50%, #31e5d0 0 0.28rem, #111 0.31rem 0.43rem, transparent 0.45rem),
-		radial-gradient(circle at calc(100% - 2.35rem) 50%, #ffef59 0 0.28rem, #111 0.31rem 0.43rem, transparent 0.45rem),
-		radial-gradient(circle at calc(100% - 0.9rem) 50%, #ff3f91 0 0.28rem, #111 0.31rem 0.43rem, transparent 0.45rem),
-		linear-gradient(#d6d2c7, #cbc7bc);
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='23'%3E%3Ctext x='7' y='16' font-family='Arial' font-size='12' font-weight='bold' fill='white'%3EAlec%20Rollison%20-%20Web%20Browser%3C/text%3E%3C/svg%3E") left center / auto 100% no-repeat,
+		linear-gradient(#c0c0c0, #c0c0c0) calc(100% - 3.62rem) 3px / 1rem 0.95rem no-repeat,
+		linear-gradient(#c0c0c0, #c0c0c0) calc(100% - 2.43rem) 3px / 1rem 0.95rem no-repeat,
+		linear-gradient(#c0c0c0, #c0c0c0) calc(100% - 1.24rem) 3px / 1rem 0.95rem no-repeat,
+		linear-gradient(90deg, #000080, #1084d0);
+	box-shadow: inset 0 1px rgba(255, 255, 255, 0.45), inset 0 -1px #000040;
 	pointer-events: none;
 }
 
 html[data-skin="browser-archaeology"] .page-hero::after {
 	content: "";
 	position: absolute;
-	right: 3%;
-	top: 15%;
-	z-index: -1;
-	width: min(36vw, 27rem);
-	height: 58%;
-	border: 2px solid #111111;
+	inset: 1.55rem 2px auto;
+	z-index: 0;
+	height: 3.8rem;
+	border-bottom: 1px solid #808080;
 	background:
-		repeating-linear-gradient(0deg, rgba(17, 17, 17, 0.92) 0 4px, rgba(238, 233, 220, 0.68) 4px 9px),
-		#eee9dc;
-	box-shadow: 6px 6px 0 #31e5d0;
-	opacity: 0.2;
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='61'%3E%3Ctext x='8' y='16' font-family='Arial' font-size='12' fill='black'%3EFile%20%20Edit%20%20View%20%20Go%20%20Favorites%20%20Help%3C/text%3E%3Cline x1='0' y1='23' x2='1000' y2='23' stroke='%23808080'/%3E%3Ctext x='8' y='47' font-family='Arial' font-size='12' fill='black'%3EAddress%3C/text%3E%3Crect x='58' y='28' width='925' height='23' fill='white' stroke='%23808080'/%3E%3Ctext x='65' y='45' font-family='Arial' font-size='12' fill='black'%3Ehttp://www.alecrollison.com/%3C/text%3E%3C/svg%3E") left top / auto 100% no-repeat,
+		linear-gradient(#d4d0c8, #c0c0c0);
+	box-shadow: inset 0 1px #ffffff, inset 0 -1px #404040;
 	pointer-events: none;
-	transform: rotate(4deg);
 }
 
 html[data-skin="browser-archaeology"] .page-hero .site-shell,
@@ -191,87 +200,83 @@ html[data-skin="browser-archaeology"] .hero-media {
 
 html[data-skin="browser-archaeology"] .page-hero h1,
 html[data-skin="browser-archaeology"] body.page-home .page-hero h1 {
-	max-width: 10ch;
-	font-size: clamp(3.4rem, 9vw, 8.4rem);
-	letter-spacing: -0.075em;
-	line-height: 0.78;
-	text-transform: uppercase;
+	max-width: 12ch;
+	font-size: clamp(2.75rem, 6.8vw, 6.25rem);
+	letter-spacing: -0.04em;
+	line-height: 0.94;
+	text-transform: none;
 }
 
 html[data-skin="browser-archaeology"] .hero-title-role {
 	display: block;
+	color: #000000 !important;
+	-webkit-text-stroke: 0 !important;
+	text-shadow: none !important;
+	animation: none !important;
 }
 
 html[data-skin="browser-archaeology"] .hero-title-role:nth-of-type(2n) {
-	color: #5b56ff !important;
-	text-shadow: 7px 0 #ff3f91, -7px 0 #31e5d0;
-	animation: browser-archaeology-glitch 1.4s steps(2, end) infinite;
+	color: #000080 !important;
 }
 
 html[data-skin="browser-archaeology"] .hero-title-role:nth-of-type(3n) {
-	-webkit-text-stroke: 2px #101014;
-	color: #ffef59 !important;
+	color: #000000 !important;
 }
 
 html[data-skin="browser-archaeology"] .metallic-pearl-text {
 	background: none;
-	color: #101014 !important;
+	color: #800000 !important;
 	-webkit-text-fill-color: currentColor;
 	filter: none;
-	text-shadow: 5px 0 #ff3f91, -5px 0 #31e5d0;
-}
-
-@keyframes browser-archaeology-glitch {
-	50% { transform: translateX(4px); filter: hue-rotate(60deg); }
+	text-shadow: none !important;
 }
 
 html[data-skin="browser-archaeology"] .page-hero .hero-summary,
 html[data-skin="browser-archaeology"] .page-hero .lead {
 	display: block;
-	width: fit-content;
+	width: auto;
 	max-width: 48rem;
 	padding: 0.6rem 0.75rem;
-	border: 2px solid #111111;
-	background: rgba(238, 233, 220, 0.96) !important;
-	box-shadow: 5px 5px 0 #111111;
-	color: #101014 !important;
+	border: 2px solid;
+	border-color: #808080 #ffffff #ffffff #808080;
+	background: #ffffff !important;
+	box-shadow: inset 1px 1px #404040, inset -1px -1px #dfdfdf;
+	color: #000000 !important;
 }
 
 html[data-skin="browser-archaeology"] .page-hero .lead {
-	box-shadow: 5px 5px 0 #31e5d0;
+	background: #ffffcc !important;
 }
 
 html[data-skin="browser-archaeology"] .eyebrow {
-	border: 2px solid #111111 !important;
+	border: 1px solid #808080 !important;
 	border-radius: 0 !important;
-	background: #ffef59 !important;
-	box-shadow: 5px 5px 0 #111111;
-	color: #101014 !important;
-	font-family: "Courier New", monospace !important;
-	font-weight: 900;
-	letter-spacing: 0.11em;
-	transform: rotate(1.5deg);
+	background: #d4d0c8 !important;
+	box-shadow: inset 1px 1px #ffffff, inset -1px -1px #404040;
+	color: #000000 !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-size: 0.72rem;
+	font-weight: 400;
+	letter-spacing: normal;
+	text-transform: none;
+	transform: none;
 }
 
 html[data-skin="browser-archaeology"] .page-section,
 html[data-theme][data-skin="browser-archaeology"] .page-section:not(.section-cta):not(.section-soft):not(.section-portrait) {
-	border-color: #111111 !important;
-	background:
-		linear-gradient(rgba(0, 0, 0, 0.045) 1px, transparent 1px),
-		linear-gradient(90deg, rgba(0, 0, 0, 0.045) 1px, transparent 1px),
-		#bdbdb7 !important;
-	background-size: 24px 24px !important;
+	border-color: #808080 !important;
+	background: #ffffff !important;
 }
 
 html[data-skin="browser-archaeology"] .section-soft,
 html[data-skin="browser-archaeology"] .section-portrait {
-	background: #d6d2c7 !important;
+	background: #d4d0c8 !important;
 }
 
 html[data-skin="browser-archaeology"] .page-section > .site-shell > h2,
 html[data-skin="browser-archaeology"] .section-heading h2 {
-	font-size: clamp(2.6rem, 6.4vw, 6.3rem);
-	line-height: 0.86;
+	font-size: clamp(2rem, 4.5vw, 4.5rem);
+	line-height: 0.96;
 }
 
 html[data-skin="browser-archaeology"] .panel-card,
@@ -283,12 +288,14 @@ html[data-skin="browser-archaeology"] .profile-chip {
 	position: relative;
 	isolation: isolate;
 	overflow: hidden;
-	padding-top: 3.8rem;
-	border: 2px solid #111111 !important;
+	padding-top: 3.15rem;
+	border: 2px solid !important;
+	border-color: #ffffff #404040 #404040 #ffffff !important;
 	border-radius: 0 !important;
-	background: #eee9dc !important;
-	box-shadow: 8px 8px 0 #111111 !important;
-	color: #101014 !important;
+	background: #d4d0c8 !important;
+	box-shadow: 0 0 0 1px #808080, 2px 2px 0 rgba(0, 0, 0, 0.35) !important;
+	color: #000000 !important;
+	transform: none !important;
 }
 
 html[data-skin="browser-archaeology"] .panel-card::before,
@@ -299,13 +306,15 @@ html[data-skin="browser-archaeology"] .work-overview::before,
 html[data-skin="browser-archaeology"] .profile-chip::before {
 	content: "";
 	position: absolute;
-	inset: 0 0 auto;
+	inset: 3px 3px auto;
 	z-index: 2;
-	height: 2rem;
-	border-bottom: 2px solid #111111;
+	height: 1.45rem;
+	border-bottom: 1px solid #000040;
 	background:
-		linear-gradient(90deg, transparent calc(100% - 3rem), #111 calc(100% - 3rem) calc(100% - 2.6rem), transparent calc(100% - 2.6rem) calc(100% - 1.7rem), #111 calc(100% - 1.7rem) calc(100% - 1.3rem), transparent calc(100% - 1.3rem)),
-		#d6d2c7;
+		linear-gradient(#c0c0c0, #c0c0c0) calc(100% - 2.28rem) 3px / 0.95rem 0.92rem no-repeat,
+		linear-gradient(#c0c0c0, #c0c0c0) calc(100% - 1.17rem) 3px / 0.95rem 0.92rem no-repeat,
+		linear-gradient(90deg, #000080, #1084d0);
+	box-shadow: inset 0 1px rgba(255, 255, 255, 0.4);
 	pointer-events: none;
 }
 
@@ -315,30 +324,7 @@ html[data-skin="browser-archaeology"] .contact-rail::after,
 html[data-skin="browser-archaeology"] ul.feature-icons li::after,
 html[data-skin="browser-archaeology"] .work-overview::after,
 html[data-skin="browser-archaeology"] .profile-chip::after {
-	content: "";
-	position: absolute;
-	right: -1.5rem;
-	bottom: -1rem;
-	z-index: -1;
-	width: 42%;
-	height: 58%;
-	background: repeating-linear-gradient(0deg, rgba(17, 17, 17, 0.12) 0 3px, transparent 3px 7px);
-	pointer-events: none;
-	transform: skewX(-8deg);
-}
-
-html[data-skin="browser-archaeology"] .panel-card:nth-child(even),
-html[data-skin="browser-archaeology"] .features article:nth-child(even),
-html[data-skin="browser-archaeology"] ul.feature-icons li:nth-child(even) {
-	box-shadow: 8px 8px 0 #5b56ff !important;
-	transform: rotate(0.55deg);
-}
-
-html[data-skin="browser-archaeology"] .panel-card:nth-child(3n),
-html[data-skin="browser-archaeology"] .features article:nth-child(3n),
-html[data-skin="browser-archaeology"] ul.feature-icons li:nth-child(3n) {
-	box-shadow: 8px 8px 0 #31e5d0 !important;
-	transform: rotate(-0.45deg);
+	content: none;
 }
 
 html[data-skin="browser-archaeology"] .panel-card *,
@@ -347,7 +333,7 @@ html[data-skin="browser-archaeology"] .contact-rail *,
 html[data-skin="browser-archaeology"] ul.feature-icons li *,
 html[data-skin="browser-archaeology"] .work-overview *,
 html[data-skin="browser-archaeology"] .profile-chip * {
-	color: #101014 !important;
+	color: #000000 !important;
 }
 
 html[data-skin="browser-archaeology"] .work-overview {
@@ -356,63 +342,56 @@ html[data-skin="browser-archaeology"] .work-overview {
 
 html[data-skin="browser-archaeology"] .work-tech-item {
 	position: relative;
-	border: 2px solid #111111 !important;
+	border: 2px solid !important;
+	border-color: #808080 #ffffff #ffffff #808080 !important;
 	border-radius: 0 !important;
-	background: #eee9dc !important;
-	box-shadow: 5px 5px 0 #111111 !important;
-	color: #101014 !important;
+	background: #ffffff !important;
+	box-shadow: inset 1px 1px #404040, inset -1px -1px #dfdfdf !important;
+	color: #000000 !important;
 }
 
-html[data-skin="browser-archaeology"] .work-tech-item:nth-child(3n + 2) {
-	background: #ffef59 !important;
-	box-shadow: 5px 5px 0 #ff3f91 !important;
-}
-
-html[data-skin="browser-archaeology"] .work-tech-item:nth-child(3n) {
-	background: #31e5d0 !important;
-	box-shadow: 5px 5px 0 #5b56ff !important;
+html[data-skin="browser-archaeology"] .work-tech-item:nth-child(n) {
+	background: #ffffff !important;
+	box-shadow: inset 1px 1px #404040, inset -1px -1px #dfdfdf !important;
 }
 
 html[data-skin="browser-archaeology"] .work-tech-item,
 html[data-skin="browser-archaeology"] .work-tech-item dt,
 html[data-skin="browser-archaeology"] .work-tech-item dd {
-	color: #101014 !important;
+	color: #000000 !important;
 }
 
 html[data-skin="browser-archaeology"] .features article .image,
 html[data-skin="browser-archaeology"] .hero-media img,
 html[data-skin="browser-archaeology"] .portrait-panel img,
 html[data-skin="browser-archaeology"] .profile-chip img {
-	border: 2px solid #111111 !important;
+	border: 3px solid !important;
+	border-color: #808080 #ffffff #ffffff #808080 !important;
 	border-radius: 0 !important;
-	box-shadow: 7px 7px 0 #111111 !important;
-	filter: saturate(0.72) contrast(1.06) !important;
+	box-shadow: inset 1px 1px #404040 !important;
+	filter: none !important;
 }
 
 html[data-skin="browser-archaeology"] .features article .image {
-	background:
-		repeating-linear-gradient(0deg, #111111 0 4px, #eee9dc 4px 9px) !important;
+	background: #000000 !important;
 }
 
 html[data-skin="browser-archaeology"] .hero-splash .hero-splash-text,
 html[data-skin="browser-archaeology"] .tag-list li,
 html[data-skin="browser-archaeology"] .profile-chip {
-	border: 2px solid #111111 !important;
+	border: 2px solid !important;
+	border-color: #ffffff #404040 #404040 #ffffff !important;
 	border-radius: 0 !important;
-	background: #ffef59 !important;
-	box-shadow: 5px 5px 0 #111111;
-	color: #101014 !important;
-	font-family: "Courier New", monospace !important;
-}
-
-html[data-skin="browser-archaeology"] .tag-list li:nth-child(even) {
-	background: #31e5d0 !important;
+	background: #c0c0c0 !important;
+	box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080;
+	color: #000000 !important;
+	font-family: Arial, Helvetica, sans-serif !important;
 }
 
 html[data-skin="browser-archaeology"] .timeline li::before {
-	border: 2px solid #111111;
-	background: #ff3f91 !important;
-	box-shadow: 3px 3px 0 #111111;
+	border: 1px solid #000000;
+	background: #000080 !important;
+	box-shadow: none;
 }
 
 html[data-skin="browser-archaeology"] input[type="text"],
@@ -420,19 +399,20 @@ html[data-skin="browser-archaeology"] input[type="password"],
 html[data-skin="browser-archaeology"] input[type="email"],
 html[data-skin="browser-archaeology"] select,
 html[data-skin="browser-archaeology"] textarea {
-	border: 2px solid #111111 !important;
+	border: 2px solid !important;
+	border-color: #808080 #ffffff #ffffff #808080 !important;
 	border-radius: 0 !important;
-	background: #eee9dc !important;
-	box-shadow: 5px 5px 0 #111111;
-	color: #101014 !important;
-	font-family: "Courier New", monospace !important;
+	background: #ffffff !important;
+	box-shadow: inset 1px 1px #000000, inset -1px -1px #dfdfdf;
+	color: #000000 !important;
+	font-family: "MS Sans Serif", Arial, sans-serif !important;
 }
 
 html[data-skin="browser-archaeology"] input:focus,
 html[data-skin="browser-archaeology"] select:focus,
 html[data-skin="browser-archaeology"] textarea:focus {
-	border-color: #5b56ff !important;
-	box-shadow: 5px 5px 0 #ff3f91 !important;
+	outline: 1px dotted #000000;
+	outline-offset: -4px;
 }
 
 html[data-skin="browser-archaeology"] input[type="submit"],
@@ -440,15 +420,16 @@ html[data-skin="browser-archaeology"] input[type="reset"],
 html[data-skin="browser-archaeology"] input[type="button"],
 html[data-skin="browser-archaeology"] button:not([class^="skin-picker"]),
 html[data-skin="browser-archaeology"] .button {
-	border: 2px solid #111111 !important;
+	border: 2px solid !important;
+	border-color: #ffffff #404040 #404040 #ffffff !important;
 	border-radius: 0 !important;
-	background: #ffef59 !important;
-	box-shadow: 5px 5px 0 #111111;
-	color: #101014 !important;
-	font-family: "Courier New", monospace !important;
-	font-weight: 900;
-	letter-spacing: 0.055em;
-	text-transform: uppercase;
+	background: #c0c0c0 !important;
+	box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080;
+	color: #000000 !important;
+	font-family: "MS Sans Serif", Arial, sans-serif !important;
+	font-weight: 400;
+	letter-spacing: normal;
+	text-transform: none;
 }
 
 html[data-skin="browser-archaeology"] input[type="submit"].primary,
@@ -457,23 +438,31 @@ html[data-skin="browser-archaeology"] button.primary,
 html[data-skin="browser-archaeology"] .button.primary,
 html[data-skin="browser-archaeology"] .contact-submit,
 html[data-skin="browser-archaeology"] .features article .inner span a {
-	background: #31e5d0 !important;
-	box-shadow: 5px 5px 0 #5b56ff;
-	color: #101014 !important;
+	background: #c0c0c0 !important;
+	box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080;
+	color: #000000 !important;
 }
 
 html[data-skin="browser-archaeology"] input[type="submit"]:hover,
 html[data-skin="browser-archaeology"] button:not([class^="skin-picker"]):hover,
 html[data-skin="browser-archaeology"] .button:hover {
-	background: #ff3f91 !important;
-	box-shadow: 3px 3px 0 #111111;
-	color: #101014 !important;
-	transform: translate(2px, 2px);
+	background: #d4d0c8 !important;
+	box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080;
+	color: #000000 !important;
+	transform: none;
+}
+
+html[data-skin="browser-archaeology"] input[type="submit"]:active,
+html[data-skin="browser-archaeology"] button:not([class^="skin-picker"]):active,
+html[data-skin="browser-archaeology"] .button:active {
+	border-color: #404040 #ffffff #ffffff #404040 !important;
+	box-shadow: inset 1px 1px #808080;
+	transform: translate(1px, 1px);
 }
 
 html[data-skin="browser-archaeology"] .section-cta {
-	border-block: 2px solid #111111 !important;
-	background: #5b56ff !important;
+	border-block: 2px solid #000000 !important;
+	background: #000080 !important;
 }
 
 html[data-skin="browser-archaeology"] .section-cta,
@@ -483,89 +472,85 @@ html[data-skin="browser-archaeology"] .section-cta p {
 }
 
 html[data-skin="browser-archaeology"] .section-cta h2 {
-	text-shadow: 5px 0 #ff3f91, -5px 0 #31e5d0;
+	text-shadow: none;
 }
 
 html[data-skin="browser-archaeology"] .site-footer {
-	border-top: 2px solid #111111 !important;
-	background: #111111 !important;
-	color: #eee9dc !important;
+	border-top: 2px solid !important;
+	border-color: #ffffff #404040 #404040 #ffffff !important;
+	background: #c0c0c0 !important;
+	box-shadow: inset 0 1px #dfdfdf !important;
+	color: #000000 !important;
 }
 
 html[data-skin="browser-archaeology"] .site-footer p,
 html[data-skin="browser-archaeology"] .site-footer a {
-	color: #eee9dc !important;
+	color: #000000 !important;
 }
 
 html[data-skin="browser-archaeology"] .skin-picker {
-	--skin-ui-bg: #111111;
-	--skin-ui-panel: #eee9dc;
-	--skin-ui-text: #101014;
-	--skin-ui-muted: #56565e;
-	--skin-ui-accent: #5b56ff;
-	--skin-ui-border: #111111;
+	--skin-ui-bg: #c0c0c0;
+	--skin-ui-panel: #d4d0c8;
+	--skin-ui-text: #000000;
+	--skin-ui-muted: #404040;
+	--skin-ui-accent: #000080;
+	--skin-ui-border: #404040;
 }
 
 html[data-skin="browser-archaeology"] .skin-picker-panel {
-	border: 2px solid #111111 !important;
+	border: 2px solid !important;
+	border-color: #ffffff #404040 #404040 #ffffff !important;
 	border-radius: 0 !important;
-	box-shadow: 8px 8px 0 #111111, 13px 13px 0 #31e5d0 !important;
+	box-shadow: 2px 2px 0 #000000 !important;
 }
 
 html[data-skin="browser-archaeology"] .skin-picker-toggle {
-	border: 2px solid #111111 !important;
+	border: 2px solid !important;
+	border-color: #ffffff #404040 #404040 #ffffff !important;
 	border-radius: 0 !important;
-	background: #ffef59 !important;
-	box-shadow: 5px 5px 0 #111111 !important;
+	background: #c0c0c0 !important;
+	box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080 !important;
 }
 
 html[data-skin="browser-archaeology"] .skin-picker-toggle-label,
 html[data-skin="browser-archaeology"] .skin-picker-current,
 html[data-skin="browser-archaeology"] .skin-picker-chevron {
-	color: #101014 !important;
+	color: #000000 !important;
 }
 
 html[data-skin="browser-archaeology"] .skin-picker .skin-picker-option {
 	border-radius: 0 !important;
 }
 
+html[data-skin="browser-archaeology"] .skin-picker .skin-picker-option[aria-pressed="true"] {
+	background: #000080 !important;
+	color: #ffffff !important;
+}
+
 html[data-skin="browser-archaeology"] .skin-picker-scroll-arrow {
-	color: #5b56ff !important;
-	text-shadow: 1px 0 currentColor, -1px 0 currentColor;
+	color: #000000 !important;
+	text-shadow: none;
 }
 
 @media (max-width: 736px) {
 	html[data-skin="browser-archaeology"] .page-hero,
 	html[data-skin="browser-archaeology"] body.page-home .page-hero {
-		width: calc(100% - 1.2rem);
-		margin-top: 0.85rem;
-		padding-top: 5rem !important;
-		box-shadow: 6px 6px 0 #111111 !important;
-		transform: none;
+		width: calc(100% - 0.75rem);
+		margin-top: 0.45rem;
+		padding-top: 6.6rem !important;
+		box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.45) !important;
 	}
 
 	html[data-skin="browser-archaeology"] .page-hero h1,
 	html[data-skin="browser-archaeology"] body.page-home .page-hero h1 {
 		max-width: none;
-		font-size: clamp(2.75rem, 12.2vw, 4.5rem);
-		line-height: 0.8;
+		font-size: clamp(2.5rem, 11vw, 4.25rem);
+		line-height: 0.92;
 	}
 
 	html[data-skin="browser-archaeology"] body:not(.page-home) .page-hero h1 {
-		font-size: clamp(2.35rem, 10vw, 4rem);
-		line-height: 0.86;
-	}
-
-	html[data-skin="browser-archaeology"] .hero-title-role:nth-of-type(2n) {
-		text-shadow: 4px 0 #ff3f91, -4px 0 #31e5d0;
-	}
-
-	html[data-skin="browser-archaeology"] .page-hero::after {
-		right: -3rem;
-		top: 22%;
-		width: 13rem;
-		height: 36%;
-		opacity: 0.11;
+		font-size: clamp(2.15rem, 9.4vw, 3.75rem);
+		line-height: 0.94;
 	}
 
 	html[data-skin="browser-archaeology"] .panel-card,
@@ -574,13 +559,6 @@ html[data-skin="browser-archaeology"] .skin-picker-scroll-arrow {
 	html[data-skin="browser-archaeology"] ul.feature-icons li,
 	html[data-skin="browser-archaeology"] .work-overview,
 	html[data-skin="browser-archaeology"] .profile-chip {
-		box-shadow: 5px 5px 0 #111111 !important;
-		transform: none !important;
-	}
-}
-
-@media (prefers-reduced-motion: reduce) {
-	html[data-skin="browser-archaeology"] .hero-title-role:nth-of-type(2n) {
-		animation: none;
+		box-shadow: 0 0 0 1px #808080, 2px 2px 0 rgba(0, 0, 0, 0.35) !important;
 	}
 }

@@ -69,7 +69,7 @@
 			'split-duality': 'Meet in the middle',
 			'card-deck-stack': 'Pick a card',
 			'type-sculpture': 'Shape an idea',
-			'browser-archaeology': 'Open recovered file'
+			'browser-archaeology': 'Send E-mail'
 		};
 		var randomOption = '<button type="button" class="skin-picker-option skin-picker-option-random" data-skin-random aria-pressed="false">' +
 			'<span class="skin-picker-option-mark" aria-hidden="true"></span>' +
