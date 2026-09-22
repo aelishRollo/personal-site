@@ -280,6 +280,32 @@ html[data-skin-id="card-deck-stack"] .skin-contact-charm::after {
 	transform: rotate(180deg);
 }
 
+html[data-skin-id="type-sculpture"] .skin-contact-charm {
+	--skin-contact-rotate: -2deg;
+	border: 1px solid #ffffff !important;
+	border-radius: 0;
+	background: #09090d !important;
+	box-shadow: 5px 5px 0 #ff2f87, 9px 9px 0 #00e7ff;
+	color: #ffffff !important;
+	font-weight: 900 !important;
+	letter-spacing: -0.025em !important;
+}
+
+html[data-skin-id="type-sculpture"] .skin-contact-charm::before {
+	content: "A";
+	position: absolute;
+	right: 0.15rem;
+	top: 50%;
+	z-index: -1;
+	background: repeating-radial-gradient(circle, #ffffff 0 2px, transparent 3px 6px);
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
+	font: 900 4rem/0.7 Arial, Helvetica, sans-serif;
+	opacity: 0.22;
+	transform: translateY(-50%);
+}
+
 @media (max-width: 736px) {
 	.skin-contact-charm {
 		top: 0.75rem;

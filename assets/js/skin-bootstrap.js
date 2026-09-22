@@ -31,7 +31,8 @@
 		{ id: 'crystal-prism', name: 'Crystal Prism', scheme: 'light', css: 'assets/css/skins/crystal-prism.css?v=crystal-prism-3' },
 		{ id: 'recursive-portal', name: 'Recursive Portal', scheme: 'dark', css: 'assets/css/skins/recursive-portal.css?v=recursive-portal-3' },
 		{ id: 'split-duality', name: 'Split Duality', scheme: 'dark', css: 'assets/css/skins/split-duality.css?v=split-duality-4' },
-		{ id: 'card-deck-stack', name: 'Card Deck Stack', scheme: 'light', css: 'assets/css/skins/card-deck-stack.css?v=card-deck-stack-4' }
+		{ id: 'card-deck-stack', name: 'Card Deck Stack', scheme: 'light', css: 'assets/css/skins/card-deck-stack.css?v=card-deck-stack-4' },
+		{ id: 'type-sculpture', name: 'Type Sculpture', scheme: 'dark', css: 'assets/css/skins/type-sculpture.css?v=type-sculpture-2' }
 	];
 	var skinById = {};
 	var activeId = '';
