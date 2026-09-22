@@ -308,7 +308,7 @@ html[data-skin-id="type-sculpture"] .skin-contact-charm::before {
 
 html[data-skin-id="browser-archaeology"] .skin-contact-charm {
 	--skin-contact-rotate: 0deg;
-	top: clamp(4.6rem, 7vw, 6.4rem);
+	top: clamp(7.35rem, 10vw, 8.75rem);
 	min-height: 1.9rem;
 	padding: 0.35rem 0.7rem;
 	border: 2px solid !important;
@@ -351,9 +351,9 @@ html[data-skin-id="browser-archaeology"] .skin-contact-charm:visited {
 	}
 
 	html[data-skin-id="browser-archaeology"] .skin-contact-charm {
-		top: 3.35rem;
+		top: 7.15rem;
 		right: 0.7rem;
-		max-width: 7.5rem;
+		max-width: 8.5rem;
 	}
 }
 
