@@ -377,7 +377,6 @@ html[data-skin="browser-archaeology"] .features article .image {
 	background: #000000 !important;
 }
 
-html[data-skin="browser-archaeology"] .hero-splash .hero-splash-text,
 html[data-skin="browser-archaeology"] .tag-list li,
 html[data-skin="browser-archaeology"] .profile-chip {
 	border: 2px solid !important;
@@ -387,6 +386,87 @@ html[data-skin="browser-archaeology"] .profile-chip {
 	box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080;
 	color: #000000 !important;
 	font-family: Arial, Helvetica, sans-serif !important;
+}
+
+html[data-skin="browser-archaeology"] .hero-splash {
+	position: relative;
+	overflow: hidden;
+	border: 2px solid !important;
+	border-color: #ffffff #404040 #404040 #ffffff !important;
+	background: #c0c0c0 !important;
+	box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080, 3px 3px 0 rgba(0, 0, 0, 0.45);
+}
+
+html[data-skin="browser-archaeology"] .hero-splash::before {
+	content: "";
+	position: absolute;
+	inset: 3px 3px auto;
+	z-index: 2;
+	height: 1.35rem;
+	background:
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='21'%3E%3Ctext x='6' y='15' font-family='Arial' font-size='12' font-weight='bold' fill='white'%3EError%3C/text%3E%3C/svg%3E") left center / auto 100% no-repeat,
+		linear-gradient(90deg, #000080, #1084d0);
+	box-shadow: inset 0 1px rgba(255, 255, 255, 0.4), inset 0 -1px #000040;
+}
+
+html[data-skin="browser-archaeology"] .hero-splash-error-icon {
+	position: absolute;
+	left: 0.85rem;
+	top: 3.45rem;
+	z-index: 2;
+	display: grid;
+	place-items: center;
+	width: 2.5rem;
+	height: 2.5rem;
+	border: 2px solid #800000;
+	border-radius: 50%;
+	background: #c40000;
+	box-shadow: inset 1px 1px rgba(255, 255, 255, 0.4), inset -1px -1px rgba(64, 0, 0, 0.55);
+	color: #ffffff !important;
+	font: 700 2.25rem/1 Arial, Helvetica, sans-serif !important;
+	text-shadow: 1px 1px #800000;
+}
+
+html[data-skin="browser-archaeology"] .hero-splash .hero-splash-text {
+	position: absolute;
+	inset: 1.7rem 0 0;
+	width: auto;
+	height: auto;
+	padding: 0.7rem 0.8rem 0.7rem 4.2rem;
+	border: 0 !important;
+	border-radius: 0 !important;
+	background: #c0c0c0 !important;
+	box-shadow: none;
+	color: #000000 !important;
+	font-family: "MS Sans Serif", Arial, sans-serif !important;
+	font-weight: 400;
+	letter-spacing: normal;
+	line-height: 1.25;
+	text-align: left;
+	text-shadow: none;
+	text-transform: none;
+	animation: none !important;
+	justify-content: flex-start;
+}
+
+html[data-skin="browser-archaeology"] .hero-splash .hero-splash-close {
+	top: 0.28rem;
+	right: 0.28rem;
+	z-index: 4;
+	width: 1rem !important;
+	height: 0.95rem !important;
+	min-width: 0 !important;
+	min-height: 0 !important;
+	padding: 0 !important;
+	transform: none;
+	border: 1px solid !important;
+	border-color: #ffffff #404040 #404040 #ffffff !important;
+	border-radius: 0 !important;
+	background: #c0c0c0 !important;
+	box-shadow: none;
+	color: #000000 !important;
+	font: 700 0.85rem/0.75 Arial, Helvetica, sans-serif !important;
+	opacity: 1;
 }
 
 html[data-skin="browser-archaeology"] .timeline li::before {
@@ -487,55 +567,6 @@ html[data-skin="browser-archaeology"] .site-footer {
 html[data-skin="browser-archaeology"] .site-footer p,
 html[data-skin="browser-archaeology"] .site-footer a {
 	color: #000000 !important;
-}
-
-html[data-skin="browser-archaeology"] .site-footer .splash-attribution {
-	position: relative;
-	display: grid;
-	grid-template-columns: 2.25rem minmax(0, 1fr);
-	align-items: center;
-	gap: 0.7rem;
-	max-width: 58rem;
-	min-height: 5.25rem;
-	padding: 2.35rem 0.8rem 0.75rem;
-	border: 2px solid !important;
-	border-color: #ffffff #404040 #404040 #ffffff !important;
-	background: #c0c0c0 !important;
-	box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080, 2px 2px 0 #000000;
-	color: #000000 !important;
-	font: 400 0.82rem/1.4 Arial, Helvetica, sans-serif !important;
-}
-
-html[data-skin="browser-archaeology"] .site-footer .splash-attribution::before {
-	content: "";
-	position: absolute;
-	inset: 3px 3px auto;
-	height: 1.35rem;
-	background:
-		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='21'%3E%3Ctext x='6' y='15' font-family='Arial' font-size='12' font-weight='bold' fill='white'%3EError%3C/text%3E%3C/svg%3E") left center / auto 100% no-repeat,
-		linear-gradient(90deg, #000080, #1084d0);
-	box-shadow: inset 0 1px rgba(255, 255, 255, 0.4), inset 0 -1px #000040;
-}
-
-html[data-skin="browser-archaeology"] .site-footer .splash-attribution-icon {
-	display: grid;
-	place-items: center;
-	width: 2.25rem;
-	height: 2.25rem;
-	border: 2px solid #800000;
-	border-radius: 50%;
-	background: #c40000;
-	box-shadow: inset 1px 1px rgba(255, 255, 255, 0.4), inset -1px -1px rgba(64, 0, 0, 0.55);
-	color: #ffffff !important;
-	font: 700 2rem/1 Arial, Helvetica, sans-serif !important;
-	text-shadow: 1px 1px #800000;
-}
-
-html[data-skin="browser-archaeology"] .site-footer .splash-attribution a,
-html[data-skin="browser-archaeology"] .site-footer .splash-attribution a:visited {
-	color: #0000ee !important;
-	font-weight: 700;
-	text-decoration: underline;
 }
 
 html[data-skin="browser-archaeology"] .skin-picker {
