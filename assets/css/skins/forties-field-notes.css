@@ -48,7 +48,7 @@ html[data-skin="forties-field-notes"] {
 html[data-skin="forties-field-notes"] body {
 	background:
 		linear-gradient(rgba(45, 31, 20, 0.2), rgba(45, 31, 20, 0.42)),
-		var(--field-desk-photo) center / cover fixed !important;
+		var(--field-desk-photo) center top / max(100vw, 64rem) auto repeat-y scroll !important;
 	color: #29251f !important;
 	font-family: "Courier New", Courier, monospace !important;
 	overflow-x: hidden;
@@ -154,14 +154,14 @@ html[data-skin="forties-field-notes"] .site-main-wrap {
 
 html[data-skin="forties-field-notes"] .site-main-wrap::before {
 	content: "";
-	position: fixed;
+	position: absolute;
 	left: -1.2rem;
-	top: 6.2rem;
+	top: 0;
+	bottom: 0;
 	z-index: 12;
 	width: clamp(2rem, 3.8vw, 3.1rem);
-	height: calc(100vh - 8rem);
+	height: auto;
 	background: radial-gradient(ellipse at center, transparent 0 31%, #b5aa94 33% 39%, #5d5548 41% 46%, transparent 48%) center top / 100% 5.4rem repeat-y;
-	filter: drop-shadow(2px 2px 1px rgba(29, 22, 15, 0.42));
 	pointer-events: none;
 }
 
@@ -177,9 +177,7 @@ html[data-skin="forties-field-notes"] body.page-contact .page-hero {
 	overflow: hidden;
 	border: 0 !important;
 	border-bottom: 1px solid #756955 !important;
-	background:
-		linear-gradient(rgba(45, 31, 20, 0.42), rgba(45, 31, 20, 0.56)),
-		var(--field-desk-photo) center / cover fixed !important;
+	background: rgba(45, 31, 20, 0.5) !important;
 	box-shadow: inset 0 0 3rem rgba(24, 16, 10, 0.2);
 	color: #29251f !important;
 }
@@ -321,9 +319,7 @@ html[data-skin="forties-field-notes"] .page-section:nth-of-type(3n)::after {
 
 html[data-skin="forties-field-notes"] .section-soft,
 html[data-skin="forties-field-notes"] .section-portrait {
-	background:
-		linear-gradient(rgba(45, 31, 20, 0.42), rgba(45, 31, 20, 0.56)),
-		var(--field-desk-photo) center / cover fixed !important;
+	background: rgba(45, 31, 20, 0.5) !important;
 }
 
 html[data-skin="forties-field-notes"] .section-soft > .site-shell,
@@ -545,9 +541,7 @@ html[data-skin="forties-field-notes"] .button:hover {
 
 html[data-skin="forties-field-notes"] .section-cta {
 	border: 0 !important;
-	background:
-		linear-gradient(rgba(45, 31, 20, 0.38), rgba(45, 31, 20, 0.54)),
-		var(--field-desk-photo) center / cover fixed !important;
+	background: rgba(45, 31, 20, 0.48) !important;
 	box-shadow: inset 0 0 3rem rgba(24, 16, 10, 0.2);
 }
 
@@ -623,7 +617,7 @@ html[data-skin="forties-field-notes"] .skin-picker-scroll-arrow {
 @media (max-width: 736px) {
 	html[data-skin="forties-field-notes"] .site-main-wrap::before {
 		left: -1.15rem;
-		top: 5.5rem;
+		top: 0;
 		width: 2rem;
 		background-size: 100% 4.4rem;
 		opacity: 0.82;
