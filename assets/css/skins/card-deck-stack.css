@@ -166,9 +166,12 @@ html[data-skin="card-deck-stack"] .page-hero::after {
 	aspect-ratio: 0.72;
 	border: 3px solid #17131a;
 	border-radius: 1.6rem;
-	background: #ff5aa5;
+	background:
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ctext x='60' y='52' text-anchor='middle' font-family='Georgia,serif' font-size='50' font-weight='700' fill='%23c51f6d'%3EK%3C/text%3E%3Ctext x='60' y='102' text-anchor='middle' font-family='Georgia,serif' font-size='46' fill='%23c51f6d'%3E%E2%99%A6%3C/text%3E%3C/svg%3E") center / 58% auto no-repeat,
+		linear-gradient(135deg, transparent 0 46%, rgba(255, 90, 165, 0.2) 46% 54%, transparent 54%),
+		#fffaf0;
 	box-shadow: 12px 13px 0 #17131a, 20px 22px 0 #ffe15b, 28px 31px 0 #17131a, 36px 40px 0 #72e4c5;
-	opacity: 0.22;
+	opacity: 0.3;
 	transform: rotate(5deg);
 	pointer-events: none;
 }
@@ -244,7 +247,22 @@ html[data-theme][data-skin="card-deck-stack"] .page-section:not(.section-cta):no
 }
 
 html[data-skin="card-deck-stack"] .section-soft {
-	background: #fff1a8 !important;
+	background-color: #3c2f73 !important;
+	background-image:
+		linear-gradient(45deg, transparent 42%, rgba(255, 255, 255, 0.11) 42% 58%, transparent 58%),
+		linear-gradient(-45deg, transparent 42%, rgba(255, 90, 165, 0.14) 42% 58%, transparent 58%) !important;
+	background-position: 0 0, 12px 12px !important;
+	background-size: 24px 24px !important;
+	color: #fffaf0 !important;
+}
+
+html[data-skin="card-deck-stack"] .section-soft h2,
+html[data-skin="card-deck-stack"] .section-soft h3,
+html[data-skin="card-deck-stack"] .section-soft p,
+html[data-skin="card-deck-stack"] .section-soft li,
+html[data-skin="card-deck-stack"] .section-soft strong,
+html[data-skin="card-deck-stack"] .section-soft .lead {
+	color: #fffaf0 !important;
 }
 
 html[data-skin="card-deck-stack"] .section-portrait {
@@ -258,40 +276,133 @@ html[data-skin="card-deck-stack"] ul.feature-icons li,
 html[data-skin="card-deck-stack"] .work-overview,
 html[data-skin="card-deck-stack"] .work-tech-item,
 html[data-skin="card-deck-stack"] .profile-chip {
+	--card-turn: -0.35deg;
 	position: relative;
 	overflow: hidden;
 	border: 3px solid #17131a !important;
 	border-radius: 1.35rem !important;
 	background: #ff5aa5 !important;
-	box-shadow: 8px 9px 0 #17131a, 13px 14px 0 rgba(120, 92, 255, 0.7) !important;
+	box-shadow: inset 0 0 0 4px rgba(255, 250, 240, 0.34), 8px 9px 0 #17131a, 13px 14px 0 rgba(120, 92, 255, 0.7) !important;
 	color: #17131a !important;
 	contain: paint;
 	transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+html[data-skin="card-deck-stack"] .panel-card,
+html[data-skin="card-deck-stack"] .features article {
+	transform: rotate(var(--card-turn));
 }
 
 html[data-skin="card-deck-stack"] .panel-card:nth-child(4n + 2),
 html[data-skin="card-deck-stack"] .features article:nth-child(4n + 2),
 html[data-skin="card-deck-stack"] ul.feature-icons li:nth-child(4n + 2),
 html[data-skin="card-deck-stack"] .work-tech-item:nth-child(4n + 2) {
+	--card-turn: 0.3deg;
 	background: #ffe15b !important;
-	box-shadow: 8px 9px 0 #17131a, 13px 14px 0 rgba(255, 90, 165, 0.72) !important;
+	box-shadow: inset 0 0 0 4px rgba(255, 250, 240, 0.34), 8px 9px 0 #17131a, 13px 14px 0 rgba(255, 90, 165, 0.72) !important;
 }
 
 html[data-skin="card-deck-stack"] .panel-card:nth-child(4n + 3),
 html[data-skin="card-deck-stack"] .features article:nth-child(4n + 3),
 html[data-skin="card-deck-stack"] ul.feature-icons li:nth-child(4n + 3),
 html[data-skin="card-deck-stack"] .work-tech-item:nth-child(4n + 3) {
+	--card-turn: -0.22deg;
 	background: #72e4c5 !important;
-	box-shadow: 8px 9px 0 #17131a, 13px 14px 0 rgba(255, 225, 91, 0.82) !important;
+	box-shadow: inset 0 0 0 4px rgba(255, 250, 240, 0.34), 8px 9px 0 #17131a, 13px 14px 0 rgba(255, 225, 91, 0.82) !important;
 }
 
 html[data-skin="card-deck-stack"] .panel-card:nth-child(4n),
 html[data-skin="card-deck-stack"] .features article:nth-child(4n),
 html[data-skin="card-deck-stack"] ul.feature-icons li:nth-child(4n),
 html[data-skin="card-deck-stack"] .work-tech-item:nth-child(4n) {
+	--card-turn: 0.38deg;
 	background: #785cff !important;
-	box-shadow: 8px 9px 0 #17131a, 13px 14px 0 rgba(114, 228, 197, 0.82) !important;
+	box-shadow: inset 0 0 0 4px rgba(255, 250, 240, 0.22), 8px 9px 0 #17131a, 13px 14px 0 rgba(114, 228, 197, 0.82) !important;
 	color: #ffffff !important;
+}
+
+html[data-skin="card-deck-stack"] .panel-card:nth-child(4n + 2),
+html[data-skin="card-deck-stack"] .features article:nth-child(4n + 2) {
+	--card-turn: 0.3deg;
+}
+
+html[data-skin="card-deck-stack"] .panel-card:nth-child(4n + 3),
+html[data-skin="card-deck-stack"] .features article:nth-child(4n + 3) {
+	--card-turn: -0.22deg;
+}
+
+html[data-skin="card-deck-stack"] .panel-card:nth-child(4n),
+html[data-skin="card-deck-stack"] .features article:nth-child(4n) {
+	--card-turn: 0.38deg;
+}
+
+html[data-skin="card-deck-stack"] .panel-card,
+html[data-skin="card-deck-stack"] .features article,
+html[data-skin="card-deck-stack"] .work-overview {
+	--card-corner-art: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='34' viewBox='0 0 28 34'%3E%3Crect x='1' y='1' width='26' height='32' rx='4' fill='%23fffaf0' stroke='%2317131a'/%3E%3Ctext x='14' y='15' text-anchor='middle' font-family='Georgia,serif' font-size='12' font-weight='700' fill='%23c51f6d'%3EA%3C/text%3E%3Ctext x='14' y='28' text-anchor='middle' font-family='Georgia,serif' font-size='12' fill='%23c51f6d'%3E%E2%99%A5%3C/text%3E%3C/svg%3E");
+	--card-watermark-art: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ctext x='50' y='76' text-anchor='middle' font-family='Georgia,serif' font-size='76' fill='%23c51f6d'%3E%E2%99%A5%3C/text%3E%3C/svg%3E");
+}
+
+html[data-skin="card-deck-stack"] .panel-card:nth-child(4n + 2),
+html[data-skin="card-deck-stack"] .features article:nth-child(4n + 2) {
+	--card-corner-art: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='34' viewBox='0 0 28 34'%3E%3Crect x='1' y='1' width='26' height='32' rx='4' fill='%23fffaf0' stroke='%2317131a'/%3E%3Ctext x='14' y='15' text-anchor='middle' font-family='Georgia,serif' font-size='12' font-weight='700' fill='%2317131a'%3EK%3C/text%3E%3Ctext x='14' y='28' text-anchor='middle' font-family='Georgia,serif' font-size='12' fill='%2317131a'%3E%E2%99%A0%3C/text%3E%3C/svg%3E");
+	--card-watermark-art: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ctext x='50' y='76' text-anchor='middle' font-family='Georgia,serif' font-size='76' fill='%2317131a'%3E%E2%99%A0%3C/text%3E%3C/svg%3E");
+}
+
+html[data-skin="card-deck-stack"] .panel-card:nth-child(4n + 3),
+html[data-skin="card-deck-stack"] .features article:nth-child(4n + 3) {
+	--card-corner-art: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='34' viewBox='0 0 28 34'%3E%3Crect x='1' y='1' width='26' height='32' rx='4' fill='%23fffaf0' stroke='%2317131a'/%3E%3Ctext x='14' y='15' text-anchor='middle' font-family='Georgia,serif' font-size='12' font-weight='700' fill='%23c51f6d'%3EQ%3C/text%3E%3Ctext x='14' y='28' text-anchor='middle' font-family='Georgia,serif' font-size='12' fill='%23c51f6d'%3E%E2%99%A6%3C/text%3E%3C/svg%3E");
+	--card-watermark-art: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ctext x='50' y='76' text-anchor='middle' font-family='Georgia,serif' font-size='76' fill='%23c51f6d'%3E%E2%99%A6%3C/text%3E%3C/svg%3E");
+}
+
+html[data-skin="card-deck-stack"] .panel-card:nth-child(4n),
+html[data-skin="card-deck-stack"] .features article:nth-child(4n) {
+	--card-corner-art: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='34' viewBox='0 0 28 34'%3E%3Crect x='1' y='1' width='26' height='32' rx='4' fill='%23fffaf0' stroke='%2317131a'/%3E%3Ctext x='14' y='15' text-anchor='middle' font-family='Georgia,serif' font-size='12' font-weight='700' fill='%2317131a'%3EJ%3C/text%3E%3Ctext x='14' y='28' text-anchor='middle' font-family='Georgia,serif' font-size='12' fill='%2317131a'%3E%E2%99%A3%3C/text%3E%3C/svg%3E");
+	--card-watermark-art: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ctext x='50' y='76' text-anchor='middle' font-family='Georgia,serif' font-size='76' fill='%2317131a'%3E%E2%99%A3%3C/text%3E%3C/svg%3E");
+}
+
+html[data-skin="card-deck-stack"] .panel-card::before,
+html[data-skin="card-deck-stack"] .panel-card::after,
+html[data-skin="card-deck-stack"] .features article::before,
+html[data-skin="card-deck-stack"] .features article::after,
+html[data-skin="card-deck-stack"] .work-overview::before,
+html[data-skin="card-deck-stack"] .work-overview::after {
+	content: "";
+	position: absolute;
+	z-index: 7;
+	width: 1.75rem;
+	height: 2.15rem;
+	background: var(--card-corner-art) center / 100% 100% no-repeat;
+	box-shadow: 2px 2px 0 rgba(23, 19, 26, 0.72);
+	pointer-events: none;
+}
+
+html[data-skin="card-deck-stack"] .panel-card::before,
+html[data-skin="card-deck-stack"] .features article::before,
+html[data-skin="card-deck-stack"] .work-overview::before {
+	top: 0.55rem;
+	right: 0.65rem;
+}
+
+html[data-skin="card-deck-stack"] .panel-card::after,
+html[data-skin="card-deck-stack"] .features article::after,
+html[data-skin="card-deck-stack"] .work-overview::after {
+	right: 1rem;
+	bottom: 0.7rem;
+	left: auto;
+	width: clamp(3.5rem, 8vw, 6rem);
+	height: clamp(3.5rem, 8vw, 6rem);
+	background: var(--card-watermark-art) center / contain no-repeat;
+	box-shadow: none;
+	opacity: 0.1;
+	transform: rotate(180deg);
+}
+
+html[data-skin="card-deck-stack"] .panel-card > *,
+html[data-skin="card-deck-stack"] .features article > *,
+html[data-skin="card-deck-stack"] .work-overview > * {
+	position: relative;
+	z-index: 1;
 }
 
 html[data-skin="card-deck-stack"] .panel-card *,
@@ -314,8 +425,8 @@ html[data-skin="card-deck-stack"] .work-tech-item:nth-child(4n) * {
 html[data-skin="card-deck-stack"] .panel-card:hover,
 html[data-skin="card-deck-stack"] .features article:hover,
 html[data-skin="card-deck-stack"] ul.feature-icons li:hover {
-	box-shadow: 11px 12px 0 #17131a, 16px 17px 0 rgba(120, 92, 255, 0.72) !important;
-	transform: translate(-2px, -3px);
+	box-shadow: inset 0 0 0 4px rgba(255, 250, 240, 0.38), 11px 12px 0 #17131a, 16px 17px 0 rgba(120, 92, 255, 0.72) !important;
+	transform: translate(-2px, -3px) rotate(var(--card-turn));
 }
 
 html[data-skin="card-deck-stack"] .work-overview {
@@ -386,6 +497,16 @@ html[data-skin="card-deck-stack"] .button {
 	font-weight: 900;
 	letter-spacing: 0.07em;
 	text-transform: uppercase;
+}
+
+html[data-skin="card-deck-stack"] .button::before {
+	content: "";
+	display: inline-block;
+	width: 0.45rem;
+	height: 0.45rem;
+	margin-right: 0.45rem;
+	background: #c51f6d;
+	transform: rotate(45deg);
 }
 
 html[data-skin="card-deck-stack"] input[type="submit"].primary,
