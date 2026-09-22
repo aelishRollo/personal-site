@@ -139,14 +139,15 @@ html[data-skin="type-sculpture"] body.page-contact .page-hero {
 html[data-skin="type-sculpture"] .page-hero::before {
 	content: "";
 	position: absolute;
-	right: clamp(-8rem, 1vw, 3rem);
+	right: -8rem;
 	top: 8%;
 	z-index: -2;
-	width: min(58vw, 44rem);
+	width: min(52vw, 39rem);
 	aspect-ratio: 1;
 	background: linear-gradient(135deg, #ff2f87, #ffdc43 43%, #00e7ff 70%, #7056ff);
 	clip-path: polygon(50% 0, 100% 40%, 74% 100%, 18% 84%, 0 25%);
-	filter: saturate(1.18);
+	filter: saturate(1.08) brightness(0.92);
+	opacity: 0.84;
 	pointer-events: none;
 	will-change: transform, filter;
 	animation: type-sculpture-rotate 12s linear infinite;
@@ -162,7 +163,7 @@ html[data-skin="type-sculpture"] .page-hero::after {
 	height: min(28vw, 19rem);
 	background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 300'%3E%3Ctext x='450' y='250' text-anchor='middle' fill='%23fff' font-family='Arial,sans-serif' font-size='290' font-weight='900' letter-spacing='-28'%3ETYPE%3C/text%3E%3C/svg%3E");
 	mix-blend-mode: difference;
-	opacity: 0.2;
+	opacity: 0.08;
 	pointer-events: none;
 	transform: translateY(-50%);
 }
@@ -170,7 +171,7 @@ html[data-skin="type-sculpture"] .page-hero::after {
 @keyframes type-sculpture-rotate {
 	to {
 		transform: rotate(360deg);
-		filter: saturate(1.18) hue-rotate(360deg);
+		filter: saturate(1.08) brightness(0.92) hue-rotate(360deg);
 	}
 }
 
@@ -190,7 +191,14 @@ html[data-skin="type-sculpture"] body.page-home .page-hero h1 {
 	letter-spacing: -0.095em;
 	line-height: 0.74;
 	text-transform: uppercase;
-	text-shadow: 0.035em 0.035em 0 #09090d;
+	text-shadow:
+		0.035em 0.035em 0 #09090d,
+		-0.012em -0.012em 0 #09090d;
+}
+
+html[data-skin="type-sculpture"] body:not(.page-home) .page-hero h1 {
+	-webkit-text-stroke: 1px #09090d;
+	text-shadow: 2px 2px 0 #09090d;
 }
 
 html[data-skin="type-sculpture"] .hero-title-role {
@@ -198,16 +206,20 @@ html[data-skin="type-sculpture"] .hero-title-role {
 }
 
 html[data-skin="type-sculpture"] .hero-title-role:nth-of-type(2n) {
+	color: #09090d !important;
 	-webkit-text-stroke: 2px #ffffff;
-	color: transparent !important;
+	text-shadow: 3px 3px 0 #09090d;
 }
 
 html[data-skin="type-sculpture"] .hero-title-role:nth-of-type(3n) {
 	background: linear-gradient(90deg, #ff2f87, #ffdc43 50%, #00e7ff);
 	background-clip: text;
 	-webkit-background-clip: text;
-	color: transparent !important;
+	color: #ff77ad !important;
 	-webkit-text-fill-color: transparent;
+	-webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.92);
+	filter: none;
+	text-shadow: 3px 3px 0 #09090d;
 }
 
 html[data-skin="type-sculpture"] .metallic-pearl-text {
@@ -216,7 +228,8 @@ html[data-skin="type-sculpture"] .metallic-pearl-text {
 	-webkit-background-clip: text;
 	color: transparent !important;
 	-webkit-text-fill-color: transparent;
-	filter: none;
+	-webkit-text-stroke: 1.2px #ffffff;
+	filter: drop-shadow(3px 3px 0 #09090d);
 }
 
 html[data-skin="type-sculpture"] .page-hero .hero-summary,
@@ -225,7 +238,7 @@ html[data-skin="type-sculpture"] .page-hero .lead {
 	width: fit-content;
 	max-width: 48rem;
 	padding: 0.55rem 0.7rem;
-	background: rgba(9, 9, 13, 0.9) !important;
+	background: rgba(9, 9, 13, 0.97) !important;
 	box-shadow: inset 4px 0 0 #ff2f87;
 	color: #f2f2f5 !important;
 }
@@ -299,7 +312,7 @@ html[data-skin="type-sculpture"] .work-tech-item::before {
 	width: clamp(8rem, 17vw, 17rem);
 	aspect-ratio: 1;
 	background: center / contain no-repeat var(--type-letter-art);
-	opacity: 0.18;
+	opacity: 0.09;
 	pointer-events: none;
 	transform: translateY(-50%);
 }
@@ -337,7 +350,7 @@ html[data-skin="type-sculpture"] .panel-card:nth-child(even)::before,
 html[data-skin="type-sculpture"] .features article:nth-child(even)::before,
 html[data-skin="type-sculpture"] ul.feature-icons li:nth-child(even)::before,
 html[data-skin="type-sculpture"] .work-tech-item:nth-child(even)::before {
-	opacity: 0.13;
+	opacity: 0.075;
 	filter: invert(1);
 }
 
@@ -547,22 +560,23 @@ html[data-skin="type-sculpture"] .skin-picker-scroll-arrow {
 
 @media (max-width: 736px) {
 	html[data-skin="type-sculpture"] .page-hero::before {
-		right: -7rem;
+		right: -9rem;
 		top: 12%;
-		width: 20rem;
-		opacity: 0.82;
+		width: 18rem;
+		opacity: 0.72;
 	}
 
 	html[data-skin="type-sculpture"] .page-hero::after {
 		right: -1.5rem;
 		width: 25rem;
 		height: 9rem;
-		opacity: 0.15;
+		opacity: 0.06;
 	}
 
 	html[data-skin="type-sculpture"] .page-hero h1,
 	html[data-skin="type-sculpture"] body.page-home .page-hero h1 {
-		font-size: clamp(3.35rem, 17vw, 5.3rem);
+		max-width: none;
+		font-size: clamp(2.75rem, 12.2vw, 4.5rem);
 		line-height: 0.78;
 	}
 
