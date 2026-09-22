@@ -333,6 +333,47 @@ html[data-skin-id="browser-archaeology"] .skin-contact-charm:visited {
 	color: #000000 !important;
 }
 
+html[data-skin-id="forties-field-notes"] .skin-contact-charm {
+	--skin-contact-rotate: 2deg;
+	top: clamp(5.8rem, 8vw, 7rem);
+	min-width: 9rem;
+	min-height: 4rem;
+	padding: 1rem 1rem 0.7rem;
+	border: 1px solid #6d604d !important;
+	border-radius: 0;
+	background:
+		repeating-linear-gradient(0deg, transparent 0 1.1rem, rgba(70, 91, 103, 0.12) 1.1rem 1.15rem),
+		#f4ebcf !important;
+	box-shadow: 3px 4px 0 rgba(55, 43, 29, 0.2), 0 10px 20px rgba(55, 43, 29, 0.16);
+	color: #244968 !important;
+	font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive !important;
+	font-size: 0.88rem !important;
+	font-weight: 700 !important;
+	letter-spacing: 0 !important;
+	text-transform: none !important;
+}
+
+html[data-skin-id="forties-field-notes"] .skin-contact-charm::before {
+	content: "P.S.";
+	position: absolute;
+	left: 0.5rem;
+	top: 0.28rem;
+	color: #8d3430;
+	font: 700 0.65rem/1 "Courier New", monospace;
+	letter-spacing: 0.08em;
+}
+
+html[data-skin-id="forties-field-notes"] .skin-contact-charm::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: -0.3rem;
+	width: 3.4rem;
+	height: 0.85rem;
+	background: rgba(210, 188, 133, 0.58);
+	transform: translateX(-50%) rotate(-2deg);
+}
+
 @media (max-width: 736px) {
 	.skin-contact-charm {
 		top: 0.75rem;
@@ -354,6 +395,15 @@ html[data-skin-id="browser-archaeology"] .skin-contact-charm:visited {
 		top: 7.15rem;
 		right: 0.7rem;
 		max-width: 8.5rem;
+	}
+
+	html[data-skin-id="forties-field-notes"] .skin-contact-charm {
+		top: 5.6rem;
+		right: 0.65rem;
+		max-width: 7.5rem;
+		min-width: 0;
+		min-height: 3.4rem;
+		padding: 0.85rem 0.7rem 0.55rem;
 	}
 }
 
