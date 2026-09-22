@@ -131,18 +131,35 @@
 	}
 
 	var previousSessionId = read(window.sessionStorage, sessionKey);
+	var previousSessionMode = read(window.sessionStorage, sessionModeKey);
 	if (previousSessionId && !isValid(previousSessionId)) {
 		remove(window.sessionStorage, sessionKey);
 		remove(window.sessionStorage, sessionModeKey);
 		previousSessionId = '';
+		previousSessionMode = '';
 	}
 
-	var initialId = persistedId || randomId(previousSessionId);
-	if (!persistedId) {
-		write(window.sessionStorage, sessionKey, initialId);
-		write(window.sessionStorage, sessionModeKey, 'random');
+	if (previousSessionMode !== 'random' && previousSessionMode !== 'preview' && previousSessionMode !== 'saved') {
+		previousSessionMode = '';
 	}
-	apply(initialId, persistedId ? 'saved' : 'random');
+
+	var initialId;
+	var initialMode;
+
+	if (previousSessionId) {
+		initialId = previousSessionId;
+		initialMode = persistedId === previousSessionId ? 'saved' : (previousSessionMode === 'preview' ? 'preview' : 'random');
+	} else if (persistedId) {
+		initialId = persistedId;
+		initialMode = 'saved';
+	} else {
+		initialId = randomId();
+		initialMode = 'random';
+	}
+
+	write(window.sessionStorage, sessionKey, initialId);
+	write(window.sessionStorage, sessionModeKey, initialMode);
+	apply(initialId, initialMode);
 
 	window.SiteSkins = {
 		all: skins.slice(),
@@ -170,7 +187,7 @@
 			persistedId = id;
 			write(window.localStorage, preferenceKey, id);
 			write(window.sessionStorage, sessionKey, id);
-			write(window.sessionStorage, sessionModeKey, 'preview');
+			write(window.sessionStorage, sessionModeKey, 'saved');
 			return apply(id, 'saved');
 		},
 		surprise: function() {
