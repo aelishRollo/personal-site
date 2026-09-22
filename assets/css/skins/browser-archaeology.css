@@ -488,6 +488,24 @@ html[data-skin="browser-archaeology"] .site-footer a {
 	color: #000000 !important;
 }
 
+html[data-skin="browser-archaeology"] .site-footer .splash-attribution {
+	max-width: 58rem;
+	padding: 0.35rem 0.5rem;
+	border: 2px solid;
+	border-color: #808080 #ffffff #ffffff #808080;
+	background: #ffffff !important;
+	box-shadow: inset 1px 1px #404040, inset -1px -1px #dfdfdf;
+	color: #000000 !important;
+	font: 400 0.82rem/1.4 Arial, Helvetica, sans-serif !important;
+}
+
+html[data-skin="browser-archaeology"] .site-footer .splash-attribution a,
+html[data-skin="browser-archaeology"] .site-footer .splash-attribution a:visited {
+	color: #0000ee !important;
+	font-weight: 700;
+	text-decoration: underline;
+}
+
 html[data-skin="browser-archaeology"] .skin-picker {
 	--skin-ui-bg: #c0c0c0;
 	--skin-ui-panel: #d4d0c8;

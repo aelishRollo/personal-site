@@ -333,6 +333,7 @@
 		$skinScrollUp.on('mouseenter', function() {
 			startSkinAutoScroll(-1);
 		}).on('mouseleave blur', stopSkinAutoScroll).on('click', function() {
+			stopSkinAutoScroll();
 			$skinOptions[0].scrollTop -= $skinOptions[0].clientHeight * 0.75;
 			updateSkinScrollArrows();
 		});
@@ -340,6 +341,7 @@
 		$skinScrollDown.on('mouseenter', function() {
 			startSkinAutoScroll(1);
 		}).on('mouseleave blur', stopSkinAutoScroll).on('click', function() {
+			stopSkinAutoScroll();
 			$skinOptions[0].scrollTop += $skinOptions[0].clientHeight * 0.75;
 			updateSkinScrollArrows();
 		});
