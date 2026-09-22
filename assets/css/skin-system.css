@@ -306,6 +306,33 @@ html[data-skin-id="type-sculpture"] .skin-contact-charm::before {
 	transform: translateY(-50%);
 }
 
+html[data-skin-id="browser-archaeology"] .skin-contact-charm {
+	--skin-contact-rotate: 0deg;
+	top: clamp(7.35rem, 10vw, 8.75rem);
+	min-height: 1.9rem;
+	padding: 0.35rem 0.7rem;
+	border: 2px solid !important;
+	border-color: #ffffff #404040 #404040 #ffffff !important;
+	border-radius: 0;
+	background: #c0c0c0 !important;
+	box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080, 2px 2px 0 rgba(0, 0, 0, 0.35);
+	color: #000000 !important;
+	font-family: "MS Sans Serif", Arial, sans-serif !important;
+	font-size: 0.68rem !important;
+	font-weight: 400;
+	letter-spacing: normal;
+	text-align: center;
+	text-transform: none;
+}
+
+html[data-skin-id="browser-archaeology"] .skin-contact-charm::before {
+	content: none;
+}
+
+html[data-skin-id="browser-archaeology"] .skin-contact-charm:visited {
+	color: #000000 !important;
+}
+
 @media (max-width: 736px) {
 	.skin-contact-charm {
 		top: 0.75rem;
@@ -321,6 +348,12 @@ html[data-skin-id="type-sculpture"] .skin-contact-charm::before {
 		width: 7.75rem;
 		min-height: 6.7rem;
 		padding: 1.7rem;
+	}
+
+	html[data-skin-id="browser-archaeology"] .skin-contact-charm {
+		top: 7.15rem;
+		right: 0.7rem;
+		max-width: 8.5rem;
 	}
 }
 
