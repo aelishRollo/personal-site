@@ -311,8 +311,9 @@ html[data-skin="browser-archaeology"] .profile-chip::before {
 	height: 1.45rem;
 	border-bottom: 1px solid #000040;
 	background:
-		linear-gradient(#c0c0c0, #c0c0c0) calc(100% - 2.28rem) 3px / 0.95rem 0.92rem no-repeat,
-		linear-gradient(#c0c0c0, #c0c0c0) calc(100% - 1.17rem) 3px / 0.95rem 0.92rem no-repeat,
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='15'%3E%3Crect x='.5' y='.5' width='15' height='14' fill='%23c0c0c0' stroke='%23ffffff'/%3E%3Cpath d='M15 1v13H1' fill='none' stroke='%23404040'/%3E%3Cpath d='M4 10h8' stroke='%23ffffff' stroke-width='2'/%3E%3Cpath d='M4 9h8' stroke='%23808080' stroke-width='2'/%3E%3C/svg%3E") calc(100% - 3.62rem) center / 1rem 0.95rem no-repeat,
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='15'%3E%3Crect x='.5' y='.5' width='15' height='14' fill='%23c0c0c0' stroke='%23ffffff'/%3E%3Cpath d='M15 1v13H1' fill='none' stroke='%23404040'/%3E%3Crect x='4' y='4' width='8' height='7' fill='none' stroke='%23ffffff'/%3E%3Cpath d='M4 5V4h8v7h-1' fill='none' stroke='%23808080' stroke-width='2'/%3E%3C/svg%3E") calc(100% - 2.43rem) center / 1rem 0.95rem no-repeat,
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='15'%3E%3Crect x='.5' y='.5' width='15' height='14' fill='%23c0c0c0' stroke='%23ffffff'/%3E%3Cpath d='M15 1v13H1' fill='none' stroke='%23404040'/%3E%3Cpath d='M5 5l7 7m0-7l-7 7' stroke='%23ffffff' stroke-width='2'/%3E%3Cpath d='M4 4l7 7m0-7l-7 7' stroke='%23808080' stroke-width='2'/%3E%3C/svg%3E") calc(100% - 1.24rem) center / 1rem 0.95rem no-repeat,
 		linear-gradient(90deg, #000080, #1084d0);
 	box-shadow: inset 0 1px rgba(255, 255, 255, 0.4);
 	pointer-events: none;
@@ -490,9 +491,13 @@ html[data-skin="browser-archaeology"] .site-footer a {
 
 html[data-skin="browser-archaeology"] .site-footer .splash-attribution {
 	position: relative;
+	display: grid;
+	grid-template-columns: 2.25rem minmax(0, 1fr);
+	align-items: center;
+	gap: 0.7rem;
 	max-width: 58rem;
-	min-height: 4.4rem;
-	padding: 2.15rem 0.75rem 0.65rem 3.25rem;
+	min-height: 5.25rem;
+	padding: 2.35rem 0.8rem 0.75rem;
 	border: 2px solid !important;
 	border-color: #ffffff #404040 #404040 #ffffff !important;
 	background: #c0c0c0 !important;
@@ -512,14 +517,18 @@ html[data-skin="browser-archaeology"] .site-footer .splash-attribution::before {
 	box-shadow: inset 0 1px rgba(255, 255, 255, 0.4), inset 0 -1px #000040;
 }
 
-html[data-skin="browser-archaeology"] .site-footer .splash-attribution::after {
-	content: "";
-	position: absolute;
-	left: 0.8rem;
-	top: 2.25rem;
-	width: 1.75rem;
-	height: 1.75rem;
-	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c40000' stroke='%23800000' stroke-width='2'/%3E%3Cpath d='M10 10l12 12m0-12L10 22' stroke='white' stroke-width='4'/%3E%3C/svg%3E") center / contain no-repeat;
+html[data-skin="browser-archaeology"] .site-footer .splash-attribution-icon {
+	display: grid;
+	place-items: center;
+	width: 2.25rem;
+	height: 2.25rem;
+	border: 2px solid #800000;
+	border-radius: 50%;
+	background: #c40000;
+	box-shadow: inset 1px 1px rgba(255, 255, 255, 0.4), inset -1px -1px rgba(64, 0, 0, 0.55);
+	color: #ffffff !important;
+	font: 700 2rem/1 Arial, Helvetica, sans-serif !important;
+	text-shadow: 1px 1px #800000;
 }
 
 html[data-skin="browser-archaeology"] .site-footer .splash-attribution a,

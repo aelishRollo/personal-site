@@ -33,7 +33,7 @@
 		{ id: 'split-duality', name: 'Split Duality', scheme: 'dark', css: 'assets/css/skins/split-duality.css?v=split-duality-4' },
 		{ id: 'card-deck-stack', name: 'Card Deck Stack', scheme: 'light', css: 'assets/css/skins/card-deck-stack.css?v=card-deck-stack-4' },
 		{ id: 'type-sculpture', name: 'Type Sculpture', scheme: 'dark', css: 'assets/css/skins/type-sculpture.css?v=type-sculpture-2' },
-		{ id: 'browser-archaeology', name: 'Browser Archaeology', scheme: 'light', css: 'assets/css/skins/browser-archaeology.css?v=browser-archaeology-5' }
+		{ id: 'browser-archaeology', name: 'Browser Archaeology', scheme: 'light', css: 'assets/css/skins/browser-archaeology.css?v=browser-archaeology-6' }
 	];
 	var skinById = {};
 	var activeId = '';
