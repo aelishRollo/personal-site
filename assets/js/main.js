@@ -69,7 +69,7 @@
 			'split-duality': 'Meet in the middle',
 			'card-deck-stack': 'Pick a card',
 			'type-sculpture': 'Shape an idea',
-			'browser-archaeology': 'Send E-mail'
+			'browser-archaeology': "I\u2019VE GOT MAIL!"
 		};
 		var randomOption = '<button type="button" class="skin-picker-option skin-picker-option-random" data-skin-random aria-pressed="false">' +
 			'<span class="skin-picker-option-mark" aria-hidden="true"></span>' +
@@ -333,7 +333,6 @@
 		$skinScrollUp.on('mouseenter', function() {
 			startSkinAutoScroll(-1);
 		}).on('mouseleave blur', stopSkinAutoScroll).on('click', function() {
-			stopSkinAutoScroll();
 			$skinOptions[0].scrollTop -= $skinOptions[0].clientHeight * 0.75;
 			updateSkinScrollArrows();
 		});
@@ -341,7 +340,6 @@
 		$skinScrollDown.on('mouseenter', function() {
 			startSkinAutoScroll(1);
 		}).on('mouseleave blur', stopSkinAutoScroll).on('click', function() {
-			stopSkinAutoScroll();
 			$skinOptions[0].scrollTop += $skinOptions[0].clientHeight * 0.75;
 			updateSkinScrollArrows();
 		});
