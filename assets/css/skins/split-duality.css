@@ -480,3 +480,251 @@ html[data-skin="split-duality"] .skin-picker-scroll-arrow {
 		animation: none;
 	}
 }
+
+/*
+	The second pass anchors every two-tone fill to the viewport instead of to
+	the element. A card, headline, button, or shape that crosses the center seam
+	therefore changes color at the same physical line as the page background.
+*/
+html[data-skin="split-duality"] {
+	--split-left: #ffd166;
+	--split-right: #073b4c;
+	--split-ink-left: #073b4c;
+	--split-ink-right: #fffaf0;
+	--split-cream: #fffaf0;
+	--split-coral: #ff7a90;
+	--split-mint: #06d6a0;
+	--split-violet: #c7b8ea;
+	--split-page: linear-gradient(90deg, var(--split-left) 0 50%, var(--split-right) 50% 100%);
+	--split-ink: linear-gradient(90deg, var(--split-ink-left) 0 50%, var(--split-ink-right) 50% 100%);
+	--split-surface: linear-gradient(90deg, var(--split-cream) 0 50%, var(--split-coral) 50% 100%);
+	--split-surface-alt: linear-gradient(90deg, var(--split-mint) 0 50%, var(--split-left) 50% 100%);
+	--split-surface-third: linear-gradient(90deg, var(--split-left) 0 50%, var(--split-violet) 50% 100%);
+	--split-accent: linear-gradient(90deg, var(--split-coral) 0 50%, var(--split-mint) 50% 100%);
+	--background: var(--split-right);
+	--foreground: var(--split-cream);
+	--muted-bg: #0b495c;
+	--card-bg: var(--split-cream);
+	--border: var(--split-ink-left);
+	--primary: var(--split-left);
+	--primary-fg: var(--split-ink-left);
+	--secondary: var(--split-violet);
+	--secondary-fg: var(--split-ink-left);
+	--accent: var(--split-coral);
+	--accent-fg: var(--split-ink-left);
+	--link: var(--split-mint);
+	--warning: var(--split-coral);
+	--accent-1: var(--split-mint);
+	--accent-2: var(--split-coral);
+	--bg: var(--split-right);
+	--text-1: var(--split-ink-right);
+	--text-2: #d8ede9;
+}
+
+html[data-skin="split-duality"] body,
+html[data-skin="split-duality"] .site-header,
+html[data-skin="split-duality"] .page-hero,
+html[data-skin="split-duality"] body.page-home .page-hero,
+html[data-skin="split-duality"] body.page-services .page-hero,
+html[data-skin="split-duality"] body.page-work .page-hero,
+html[data-skin="split-duality"] body.page-connect .page-hero,
+html[data-skin="split-duality"] body.page-about .page-hero,
+html[data-skin="split-duality"] body.page-contact .page-hero {
+	background: var(--split-page) fixed !important;
+}
+
+html[data-skin="split-duality"] .page-hero h1,
+html[data-skin="split-duality"] body.page-home .page-hero h1,
+html[data-skin="split-duality"] .page-hero h1 .hero-title-role,
+html[data-skin="split-duality"] .page-hero h1 .hero-title-initial,
+html[data-skin="split-duality"] .page-hero h1 .metallic-pearl-text {
+	background: var(--split-ink) fixed !important;
+	background-clip: text !important;
+	-webkit-background-clip: text !important;
+	color: transparent !important;
+	-webkit-text-fill-color: transparent !important;
+}
+
+html[data-skin="split-duality"] .page-hero .hero-quests > h2,
+html[data-skin="split-duality"] .site-nav a:not([aria-current="page"]):not(.nav-cta) {
+	background: var(--split-ink) fixed !important;
+	background-clip: text !important;
+	-webkit-background-clip: text !important;
+	color: transparent !important;
+	-webkit-text-fill-color: transparent !important;
+}
+
+html[data-skin="split-duality"] .page-hero::before {
+	background: var(--split-accent) fixed !important;
+}
+
+html[data-skin="split-duality"] .page-hero::after {
+	background: repeating-conic-gradient(
+		var(--split-mint) 0 10deg,
+		var(--split-violet) 10deg 20deg,
+		var(--split-right) 20deg 30deg
+	) !important;
+}
+
+html[data-skin="split-duality"] .page-hero .hero-summary,
+html[data-skin="split-duality"] .page-hero .lead,
+html[data-skin="split-duality"] .hero-splash .hero-splash-text,
+html[data-skin="split-duality"] .tag-list li,
+html[data-skin="split-duality"] .profile-chip {
+	background: var(--split-surface) fixed !important;
+	box-shadow: 5px 5px 0 var(--split-violet) !important;
+	color: var(--split-ink-left) !important;
+}
+
+html[data-skin="split-duality"] .eyebrow {
+	background: var(--split-accent) fixed !important;
+	box-shadow: 4px 4px 0 var(--split-violet) !important;
+	color: var(--split-ink-left) !important;
+}
+
+html[data-skin="split-duality"] .page-section {
+	background: linear-gradient(90deg, var(--split-cream) 0 50%, var(--split-mint) 50% 100%) fixed !important;
+}
+
+html[data-theme][data-skin="split-duality"] .page-section:not(.section-cta):not(.section-soft):not(.section-portrait) {
+	background: linear-gradient(90deg, var(--split-cream) 0 50%, var(--split-mint) 50% 100%) fixed !important;
+}
+
+html[data-skin="split-duality"] .section-soft,
+html[data-skin="split-duality"] .section-portrait {
+	background: linear-gradient(90deg, var(--split-violet) 0 50%, var(--split-cream) 50% 100%) fixed !important;
+}
+
+html[data-skin="split-duality"] .panel-card,
+html[data-skin="split-duality"] .features article,
+html[data-skin="split-duality"] .contact-rail,
+html[data-skin="split-duality"] ul.feature-icons li,
+html[data-skin="split-duality"] .work-overview,
+html[data-skin="split-duality"] .work-tech-item,
+html[data-skin="split-duality"] .profile-chip {
+	background: var(--split-surface) fixed !important;
+	box-shadow: 7px 7px 0 var(--split-right) !important;
+	color: var(--split-ink-left) !important;
+}
+
+html[data-skin="split-duality"] .panel-card:nth-child(even),
+html[data-skin="split-duality"] .features article:nth-child(even),
+html[data-skin="split-duality"] ul.feature-icons li:nth-child(even),
+html[data-skin="split-duality"] .work-tech-item:nth-child(even) {
+	background: var(--split-surface-alt) fixed !important;
+	box-shadow: 7px 7px 0 var(--split-coral) !important;
+}
+
+html[data-skin="split-duality"] .panel-card:nth-child(3n),
+html[data-skin="split-duality"] .features article:nth-child(3n),
+html[data-skin="split-duality"] ul.feature-icons li:nth-child(3n),
+html[data-skin="split-duality"] .work-tech-item:nth-child(3n) {
+	background: var(--split-surface-third) fixed !important;
+	box-shadow: 7px 7px 0 var(--split-coral) !important;
+}
+
+html[data-skin="split-duality"] .panel-card p,
+html[data-skin="split-duality"] .panel-card h3,
+html[data-skin="split-duality"] .features article p,
+html[data-skin="split-duality"] .features article h3,
+html[data-skin="split-duality"] .work-overview p,
+html[data-skin="split-duality"] .work-overview h2,
+html[data-skin="split-duality"] .work-overview h3,
+html[data-skin="split-duality"] .work-tech-item,
+html[data-skin="split-duality"] .work-tech-item dt,
+html[data-skin="split-duality"] .work-tech-item dd,
+html[data-skin="split-duality"] .page-section p,
+html[data-skin="split-duality"] .page-section li,
+html[data-skin="split-duality"] .page-section h2,
+html[data-skin="split-duality"] .page-section h3 {
+	color: var(--split-ink-left) !important;
+}
+
+html[data-skin="split-duality"] .page-section label,
+html[data-skin="split-duality"] .page-section .optional-label {
+	color: var(--split-ink-left) !important;
+}
+
+html[data-skin="split-duality"] input[type="text"],
+html[data-skin="split-duality"] input[type="password"],
+html[data-skin="split-duality"] input[type="email"],
+html[data-skin="split-duality"] select,
+html[data-skin="split-duality"] textarea,
+html[data-skin="split-duality"] input[type="submit"],
+html[data-skin="split-duality"] input[type="reset"],
+html[data-skin="split-duality"] input[type="button"],
+html[data-skin="split-duality"] button:not([class^="skin-picker"]),
+html[data-skin="split-duality"] .button {
+	background: var(--split-surface) fixed !important;
+	color: var(--split-ink-left) !important;
+}
+
+html[data-skin="split-duality"] input[type="submit"].primary,
+html[data-skin="split-duality"] input[type="button"].primary,
+html[data-skin="split-duality"] button.primary,
+html[data-skin="split-duality"] .button.primary,
+html[data-skin="split-duality"] .contact-submit,
+html[data-skin="split-duality"] .features article .inner span a {
+	background: var(--split-surface-alt) fixed !important;
+	box-shadow: 5px 5px 0 var(--split-coral) !important;
+}
+
+html[data-skin="split-duality"] .section-cta {
+	background: linear-gradient(90deg, var(--split-left) 0 50%, var(--split-coral) 50% 100%) fixed !important;
+}
+
+html[data-skin="split-duality"] .site-footer {
+	background: linear-gradient(90deg, var(--split-right) 0 50%, #4a315f 50% 100%) fixed !important;
+}
+
+html[data-skin="split-duality"] .brand-mark {
+	background: var(--split-accent) fixed !important;
+	box-shadow: 4px 4px 0 var(--split-right);
+}
+
+html[data-skin="split-duality"] .brand-text {
+	color: var(--split-ink-left) !important;
+}
+
+html[data-skin="split-duality"] .site-nav a:hover,
+html[data-skin="split-duality"] .site-nav a[aria-current="page"] {
+	background: var(--split-violet) !important;
+	color: var(--split-ink-left) !important;
+}
+
+html[data-skin="split-duality"] .site-nav .nav-cta,
+html[data-skin="split-duality"] .nav-toggle {
+	border-color: var(--split-mint) !important;
+	background: var(--split-right) !important;
+	box-shadow: 4px 4px 0 var(--split-coral);
+}
+
+html[data-skin="split-duality"] .features article .image,
+html[data-skin="split-duality"] .hero-media img,
+html[data-skin="split-duality"] .portrait-panel img,
+html[data-skin="split-duality"] .profile-chip img {
+	box-shadow: 7px 7px 0 var(--split-coral), -5px -5px 0 var(--split-mint);
+}
+
+html[data-skin="split-duality"] .skin-picker {
+	--skin-ui-bg: var(--split-right);
+	--skin-ui-panel: var(--split-cream);
+	--skin-ui-text: var(--split-ink-left);
+	--skin-ui-muted: #40565c;
+	--skin-ui-accent: var(--split-coral);
+	--skin-ui-border: var(--split-right);
+}
+
+html[data-skin="split-duality"] .skin-picker-panel {
+	box-shadow: 7px 7px 0 var(--split-coral) !important;
+}
+
+html[data-skin="split-duality"] .skin-picker-toggle {
+	border-color: var(--split-left) !important;
+	background: var(--split-right) !important;
+	box-shadow: 5px 5px 0 var(--split-mint) !important;
+}
+
+html[data-skin="split-duality"] .skin-picker-scroll-arrow {
+	color: var(--split-coral) !important;
+}

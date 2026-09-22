@@ -241,12 +241,12 @@ html[data-skin-id="recursive-portal"] .skin-contact-charm {
 
 html[data-skin-id="split-duality"] .skin-contact-charm {
 	--skin-contact-rotate: -2deg;
-	border: 2px solid #ff2f87 !important;
+	border: 2px solid #ff7a90 !important;
 	border-radius: 0;
-	background: linear-gradient(90deg, #ffef3d 0 50%, #111111 50%) !important;
-	box-shadow: 5px 5px 0 #00eaff;
-	color: #ffffff !important;
-	text-shadow: 1px 1px 0 #111111, -1px -1px 0 #111111;
+	background: linear-gradient(90deg, #ffd166 0 50%, #073b4c 50%) fixed !important;
+	box-shadow: 5px 5px 0 #06d6a0;
+	color: #fffaf0 !important;
+	text-shadow: 1px 1px 0 #073b4c, -1px -1px 0 #073b4c;
 }
 
 @media (max-width: 736px) {
