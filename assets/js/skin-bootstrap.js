@@ -29,7 +29,8 @@
 		{ id: 'cosmic-airbrush', name: 'Cosmic Airbrush', scheme: 'dark', css: 'assets/css/skins/cosmic-airbrush.css?v=hero-initial-fix-1' },
 		{ id: 'riso-hallucination', name: 'Riso Hallucination', scheme: 'light', css: 'assets/css/skins/riso-hallucination.css?v=hero-initial-fix-1' },
 		{ id: 'crystal-prism', name: 'Crystal Prism', scheme: 'light', css: 'assets/css/skins/crystal-prism.css?v=crystal-prism-3' },
-		{ id: 'recursive-portal', name: 'Recursive Portal', scheme: 'dark', css: 'assets/css/skins/recursive-portal.css?v=recursive-portal-3' }
+		{ id: 'recursive-portal', name: 'Recursive Portal', scheme: 'dark', css: 'assets/css/skins/recursive-portal.css?v=recursive-portal-3' },
+		{ id: 'split-duality', name: 'Split Duality', scheme: 'dark', css: 'assets/css/skins/split-duality.css?v=split-duality-1' }
 	];
 	var skinById = {};
 	var activeId = '';

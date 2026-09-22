@@ -239,6 +239,16 @@ html[data-skin-id="recursive-portal"] .skin-contact-charm {
 	color: #ffffff !important;
 }
 
+html[data-skin-id="split-duality"] .skin-contact-charm {
+	--skin-contact-rotate: -2deg;
+	border: 2px solid #ff2f87 !important;
+	border-radius: 0;
+	background: linear-gradient(90deg, #ffef3d 0 50%, #111111 50%) !important;
+	box-shadow: 5px 5px 0 #00eaff;
+	color: #ffffff !important;
+	text-shadow: 1px 1px 0 #111111, -1px -1px 0 #111111;
+}
+
 @media (max-width: 736px) {
 	.skin-contact-charm {
 		top: 0.75rem;

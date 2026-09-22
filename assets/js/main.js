@@ -65,7 +65,8 @@
 			'cosmic-airbrush': 'Send a signal',
 			'riso-hallucination': 'Print something wild',
 			'crystal-prism': 'Refract an idea',
-			'recursive-portal': 'Enter the conversation'
+			'recursive-portal': 'Enter the conversation',
+			'split-duality': 'Meet in the middle'
 		};
 		var randomOption = '<button type="button" class="skin-picker-option skin-picker-option-random" data-skin-random aria-pressed="false">' +
 			'<span class="skin-picker-option-mark" aria-hidden="true"></span>' +
