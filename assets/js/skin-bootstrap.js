@@ -34,14 +34,16 @@
 		{ id: 'card-deck-stack', name: 'Card Deck Stack', scheme: 'light', css: 'assets/css/skins/card-deck-stack.css?v=card-deck-stack-4' },
 		{ id: 'type-sculpture', name: 'Type Sculpture', scheme: 'dark', css: 'assets/css/skins/type-sculpture.css?v=type-sculpture-2' },
 		{ id: 'browser-archaeology', name: 'Browser Archaeology', scheme: 'light', css: 'assets/css/skins/browser-archaeology.css?v=browser-archaeology-8' },
-		{ id: 'forties-field-notes', name: '1940s Field Notes', scheme: 'light', css: 'assets/css/skins/forties-field-notes.css?v=forties-field-notes-1' }
+		{ id: 'forties-field-notes', name: '1940s Field Notes', scheme: 'light', css: 'assets/css/skins/forties-field-notes.css?v=forties-field-notes-3' }
 	];
 	var skinById = {};
 	var activeId = '';
 	var persistedId = '';
 	var stylesheet = null;
 	var themeAssets = [
-		{ href: 'assets/images/corkboard-texture.webp?v=corkboard-1', as: 'image', type: 'image/webp' }
+		{ href: 'assets/images/corkboard-texture.webp?v=corkboard-1', as: 'image', type: 'image/webp' },
+		{ href: 'assets/images/forties-writers-desk.webp?v=forties-writers-desk-1', as: 'image', type: 'image/webp' },
+		{ href: 'images/paper-texture-tile.webp?v=paper-texture-1', as: 'image', type: 'image/webp' }
 	];
 
 	skins.forEach(function(skin) {
