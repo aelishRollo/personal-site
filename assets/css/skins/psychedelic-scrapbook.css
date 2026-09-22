@@ -36,8 +36,10 @@ html[data-skin="psychedelic-scrapbook"] {
 
 html[data-skin="psychedelic-scrapbook"] body {
 	background-color: var(--background) !important;
-	background-image: radial-gradient(rgba(140, 108, 80, 0.72) 1px, transparent 1px) !important;
-	background-size: 18px 18px !important;
+	background-image: url("../../images/corkboard-texture.webp?v=corkboard-1") !important;
+	background-position: 0 0 !important;
+	background-repeat: repeat !important;
+	background-size: 720px 720px !important;
 	color: var(--foreground) !important;
 	font-family: Arial, Helvetica, sans-serif !important;
 	overflow-x: hidden;
@@ -135,7 +137,7 @@ html[data-skin="psychedelic-scrapbook"] body.page-contact .page-hero {
 	isolation: isolate;
 	overflow: hidden;
 	border-bottom: 3px solid var(--border) !important;
-	background: rgba(243, 217, 177, 0.82) !important;
+	background: transparent !important;
 }
 
 html[data-skin="psychedelic-scrapbook"] .page-hero::before,
@@ -179,9 +181,27 @@ html[data-skin="psychedelic-scrapbook"] .page-hero h1,
 html[data-skin="psychedelic-scrapbook"] body.page-home .page-hero h1 {
 	color: var(--foreground) !important;
 	letter-spacing: -0.07em;
+	text-shadow: 1px 1px 0 rgba(255, 253, 245, 0.72);
 	text-transform: uppercase;
 	transform: rotate(-1deg);
 	transform-origin: left center;
+}
+
+html[data-skin="psychedelic-scrapbook"] .page-hero .hero-summary,
+html[data-skin="psychedelic-scrapbook"] .page-hero .lead {
+	width: fit-content;
+	max-width: 100%;
+	padding: 0.8rem 1rem;
+	border: 2px solid var(--border);
+	background: rgba(255, 253, 245, 0.94) !important;
+	box-shadow: 5px 5px 0 rgba(32, 21, 27, 0.88);
+	color: var(--foreground) !important;
+	text-shadow: none;
+	transform: rotate(0.3deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .page-hero .lead {
+	transform: rotate(-0.25deg);
 }
 
 html[data-skin="psychedelic-scrapbook"] .hero-title-role:nth-of-type(2),
@@ -219,7 +239,7 @@ html[data-skin="psychedelic-scrapbook"] .page-section,
 html[data-skin="psychedelic-scrapbook"] .section-soft,
 html[data-skin="psychedelic-scrapbook"] .section-portrait {
 	border-color: var(--border) !important;
-	background: rgba(243, 217, 177, 0.8) !important;
+	background: transparent !important;
 }
 
 html[data-skin="psychedelic-scrapbook"] .panel-card,
@@ -310,8 +330,13 @@ html[data-skin="psychedelic-scrapbook"] .hero-media {
 }
 
 html[data-skin="psychedelic-scrapbook"] .hero-splash .hero-splash-text {
+	display: block;
+	padding: 0.55rem 0.7rem;
+	border: 2px solid var(--border);
+	background: rgba(255, 253, 245, 0.94);
+	box-shadow: 4px 4px 0 var(--border);
 	color: var(--foreground) !important;
-	text-shadow: 2px 2px 0 #ffffff;
+	text-shadow: none;
 }
 
 html[data-skin="psychedelic-scrapbook"] .tag-list li,
