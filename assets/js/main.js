@@ -66,7 +66,7 @@
 					'</button>' +
 					'<button type="button" class="skin-picker-toggle" aria-expanded="false" aria-controls="skin-picker-panel">' +
 						'<span class="skin-picker-toggle-icon" aria-hidden="true">&#10022;</span>' +
-						'<span class="skin-picker-toggle-label">Try a different theme</span>' +
+						'<span class="skin-picker-toggle-label">Try a different theme!!</span>' +
 						'<span class="skin-picker-current"></span>' +
 						'<span class="skin-picker-chevron" aria-hidden="true"></span>' +
 					'</button>' +
@@ -85,6 +85,7 @@
 					'<div class="skin-picker-scroll-shell">' +
 						'<button type="button" class="skin-picker-scroll-arrow skin-picker-scroll-up" aria-label="Scroll themes up" hidden>&uarr;</button>' +
 						'<div class="skin-picker-options" role="group" aria-label="Available themes">' + randomOption + skinOptions + '</div>' +
+						'<div class="skin-picker-scrollbar" aria-hidden="true"><span class="skin-picker-scrollbar-thumb"></span></div>' +
 						'<button type="button" class="skin-picker-scroll-arrow skin-picker-scroll-down" aria-label="Scroll themes down" hidden>&darr;</button>' +
 					'</div>' +
 					'<div class="skin-picker-persistence">' +
@@ -103,6 +104,8 @@
 		var $skinOptions = $skinPicker.find('.skin-picker-options');
 		var $skinScrollUp = $skinPicker.find('.skin-picker-scroll-up');
 		var $skinScrollDown = $skinPicker.find('.skin-picker-scroll-down');
+		var $skinScrollbar = $skinPicker.find('.skin-picker-scrollbar');
+		var $skinScrollbarThumb = $skinPicker.find('.skin-picker-scrollbar-thumb');
 		var $skinCurrent = $skinPicker.find('.skin-picker-current');
 		var $skinCycleButtons = $skinPicker.find('[data-skin-cycle]');
 		var $skinKeep = $skinPicker.find('.skin-picker-keep');
@@ -167,8 +170,30 @@
 			$skinToggle.attr('aria-expanded', 'false');
 		}
 
+		function updateSkinScrollbar() {
+			var list = $skinOptions[0];
+
+			if (!list || list.scrollHeight <= list.clientHeight + 1) {
+				$skinScrollbar.prop('hidden', true);
+				return;
+			}
+
+			var thumbHeight = Math.max(28, Math.round(list.clientHeight * list.clientHeight / list.scrollHeight));
+			var maxThumbTravel = Math.max(0, list.clientHeight - thumbHeight);
+			var maxScroll = Math.max(1, list.scrollHeight - list.clientHeight);
+			var thumbOffset = Math.round(maxThumbTravel * list.scrollTop / maxScroll);
+
+			$skinScrollbar.prop('hidden', false);
+			$skinScrollbarThumb.css({
+				height: thumbHeight + 'px',
+				transform: 'translateY(' + thumbOffset + 'px)'
+			});
+		}
+
 		function updateSkinScrollArrows() {
 			var list = $skinOptions[0];
+
+			updateSkinScrollbar();
 
 			if (!list || $skinPanel.prop('hidden')) {
 				$skinScrollUp.prop('hidden', true);
@@ -182,6 +207,28 @@
 
 			$skinScrollUp.prop('hidden', !canScroll || atTop);
 			$skinScrollDown.prop('hidden', !canScroll || atBottom);
+		}
+
+		function keepActiveSkinChoiceInView() {
+			var list = $skinOptions[0];
+			var activeId = skinRuntime.getActiveId();
+			var $activeChoice = $skinChoices.filter('[data-skin-choice="' + activeId + '"]');
+
+			if (!list || !$activeChoice.length) {
+				return;
+			}
+
+			var listRect = list.getBoundingClientRect();
+			var choiceRect = $activeChoice[0].getBoundingClientRect();
+			var edgePadding = 6;
+
+			if (choiceRect.top < listRect.top + edgePadding) {
+				list.scrollTop -= listRect.top + edgePadding - choiceRect.top;
+			} else if (choiceRect.bottom > listRect.bottom - edgePadding) {
+				list.scrollTop += choiceRect.bottom - listRect.bottom + edgePadding;
+			}
+
+			updateSkinScrollArrows();
 		}
 
 		function stopSkinAutoScroll() {
@@ -231,6 +278,7 @@
 			$skinPanel.prop('hidden', willOpen);
 			$skinToggle.attr('aria-expanded', willOpen ? 'false' : 'true');
 			if (!willOpen) {
+				keepActiveSkinChoiceInView();
 				$skinAllChoices.filter('[aria-pressed="true"]').trigger('focus');
 				window.requestAnimationFrame(updateSkinScrollArrows);
 			} else {
@@ -249,6 +297,7 @@
 
 			skinRuntime.preview(nextSkin.id);
 			syncSkinPicker('Previewing ' + nextSkin.name + '.');
+			keepActiveSkinChoiceInView();
 		});
 
 		$skinScrollUp.on('mouseenter', function() {

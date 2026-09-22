@@ -141,7 +141,10 @@
 }
 
 .skin-picker-panel[hidden] {
-	display: none !important;
+	display: block !important;
+	visibility: hidden !important;
+	opacity: 0 !important;
+	pointer-events: none !important;
 }
 
 .skin-picker-heading {
@@ -207,9 +210,60 @@
 	gap: 0.4rem;
 	max-height: min(20rem, 44vh);
 	margin-bottom: 0;
-	padding-right: 0.15rem;
+	padding-right: 0.45rem;
 	scroll-behavior: auto;
 	overflow-y: auto;
+	scrollbar-color: color-mix(in srgb, var(--skin-ui-accent) 72%, var(--skin-ui-muted)) color-mix(in srgb, var(--skin-ui-accent) 10%, transparent);
+	scrollbar-gutter: stable;
+	scrollbar-width: thin;
+}
+
+.skin-picker-options::-webkit-scrollbar {
+	width: 0.5rem;
+}
+
+.skin-picker-options::-webkit-scrollbar-track {
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--skin-ui-accent) 10%, transparent);
+}
+
+.skin-picker-options::-webkit-scrollbar-thumb {
+	border: 1px solid var(--skin-ui-panel);
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--skin-ui-accent) 72%, var(--skin-ui-muted));
+}
+
+.skin-picker-options::-webkit-scrollbar-thumb:hover {
+	background: var(--skin-ui-accent);
+}
+
+.skin-picker-scrollbar {
+	position: absolute;
+	top: 0;
+	right: 0.12rem;
+	bottom: 0;
+	z-index: 3;
+	width: 3px;
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--skin-ui-accent) 13%, transparent);
+	pointer-events: none;
+}
+
+.skin-picker-scrollbar[hidden] {
+	display: none !important;
+}
+
+.skin-picker-scrollbar-thumb {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 1.75rem;
+	border-radius: inherit;
+	background: color-mix(in srgb, var(--skin-ui-accent) 82%, var(--skin-ui-text));
+	box-shadow: 0 0 4px color-mix(in srgb, var(--skin-ui-accent) 32%, transparent);
+	opacity: 0.82;
+	will-change: transform;
 }
 
 .skin-picker .skin-picker-scroll-arrow {
