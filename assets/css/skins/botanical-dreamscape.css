@@ -1,0 +1,597 @@
+/*
+	Botanical Dreamscape
+	Derived from 10-botanical-dreamscape.html. Deep garden colors, cream serif
+	type, floral geometry and organic edges without changing the site layout.
+*/
+
+html[data-skin="botanical-dreamscape"] {
+	--background: #173e31;
+	--foreground: #f5edcf;
+	--muted-bg: #204f3f;
+	--card-bg: #1c493a;
+	--border: rgba(245, 237, 207, 0.28);
+	--primary: #ef7ca8;
+	--primary-fg: #173e31;
+	--secondary: #6ccfd1;
+	--secondary-fg: #173e31;
+	--accent: #c8e76b;
+	--accent-fg: #173e31;
+	--link: #c8e76b;
+	--warning: #ef7ca8;
+	--header-bg: #173e31;
+	--header-fg: #f5edcf;
+	--footer-bg: #102e24;
+	--footer-fg: #f5edcf;
+	--bg: #173e31;
+	--surface-1: #1c493a;
+	--surface-2: #204f3f;
+	--surface-3: #f5edcf;
+	--text-1: #f5edcf;
+	--text-2: #ded6ba;
+	--line-1: rgba(245, 237, 207, 0.28);
+	--accent-1: #ef7ca8;
+	--accent-2: #c8e76b;
+	--botanical-leaf-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23f5edcf' stroke-opacity='.055' stroke-width='1.5'%3E%3Cpath d='M20 160Q65 110 80 32'/%3E%3Cpath d='M45 128Q22 104 48 92Q60 112 45 128Z'/%3E%3Cpath d='M61 93Q89 72 94 98Q76 106 61 93Z'/%3E%3Cpath d='M70 65Q48 43 73 34Q85 51 70 65Z'/%3E%3C/g%3E%3C/svg%3E");
+	--botanical-leaf-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23173e31' stroke-opacity='.065' stroke-width='1.5'%3E%3Cpath d='M20 160Q65 110 80 32'/%3E%3Cpath d='M45 128Q22 104 48 92Q60 112 45 128Z'/%3E%3Cpath d='M61 93Q89 72 94 98Q76 106 61 93Z'/%3E%3Cpath d='M70 65Q48 43 73 34Q85 51 70 65Z'/%3E%3C/g%3E%3C/svg%3E");
+	--botanical-vine: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='180' viewBox='0 0 44 180'%3E%3Cg fill='none' stroke='%23c8e76b' stroke-opacity='.34' stroke-width='1.35'%3E%3Cpath d='M23-8C7 30 38 55 20 92S30 147 18 188'/%3E%3Cpath d='M22 34Q5 25 7 43Q16 48 22 34Z'/%3E%3Cpath d='M24 70Q40 58 41 77Q33 84 24 70Z'/%3E%3Cpath d='M20 116Q4 104 5 124Q13 131 20 116Z'/%3E%3Cpath d='M22 151Q39 140 39 159Q30 166 22 151Z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+html[data-skin="botanical-dreamscape"] body {
+	background:
+		radial-gradient(circle at 8% 18%, rgba(239, 124, 168, 0.1), transparent 24rem),
+		radial-gradient(circle at 92% 72%, rgba(108, 207, 209, 0.09), transparent 28rem),
+		var(--botanical-leaf-light),
+		#173e31 !important;
+	background-size: auto, auto, 180px 180px, auto !important;
+	color: #f5edcf !important;
+	font-family: Georgia, "Times New Roman", serif !important;
+	overflow-x: hidden;
+}
+
+html[data-skin="botanical-dreamscape"] body,
+html[data-skin="botanical-dreamscape"] p,
+html[data-skin="botanical-dreamscape"] li,
+html[data-skin="botanical-dreamscape"] label,
+html[data-skin="botanical-dreamscape"] .lead,
+html[data-skin="botanical-dreamscape"] .note,
+html[data-skin="botanical-dreamscape"] .footer-inner p,
+html[data-skin="botanical-dreamscape"] .social-inline a {
+	color: #ded6ba !important;
+}
+
+html[data-skin="botanical-dreamscape"] h1,
+html[data-skin="botanical-dreamscape"] h2,
+html[data-skin="botanical-dreamscape"] h3,
+html[data-skin="botanical-dreamscape"] h4,
+html[data-skin="botanical-dreamscape"] h5,
+html[data-skin="botanical-dreamscape"] h6,
+html[data-skin="botanical-dreamscape"] strong {
+	color: #f5edcf !important;
+	font-family: Georgia, "Times New Roman", serif !important;
+	font-weight: 700;
+	letter-spacing: -0.045em;
+}
+
+html[data-skin="botanical-dreamscape"] a {
+	color: #c8e76b !important;
+	text-decoration-color: rgba(239, 124, 168, 0.75);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.22em;
+}
+
+html[data-skin="botanical-dreamscape"] a:hover {
+	color: #ef7ca8 !important;
+}
+
+html[data-skin="botanical-dreamscape"] .site-header {
+	border-bottom: 1px solid rgba(245, 237, 207, 0.2) !important;
+	background: rgba(23, 62, 49, 0.96) !important;
+	box-shadow: 0 8px 30px rgba(5, 25, 18, 0.22) !important;
+	backdrop-filter: none !important;
+}
+
+html[data-skin="botanical-dreamscape"] .brand-mark {
+	border: 1px solid rgba(245, 237, 207, 0.48);
+	border-radius: 62% 38% 52% 48% / 45% 58% 42% 55%;
+	background: linear-gradient(145deg, #ef7ca8, #6ccfd1) !important;
+	box-shadow: 0 8px 22px rgba(5, 25, 18, 0.3);
+	color: #173e31 !important;
+}
+
+html[data-skin="botanical-dreamscape"] .brand-text {
+	color: #f5edcf !important;
+	font-family: Georgia, "Times New Roman", serif !important;
+	font-weight: 700;
+}
+
+html[data-skin="botanical-dreamscape"] .site-nav a,
+html[data-skin="botanical-dreamscape"] .nav-toggle {
+	color: #f5edcf !important;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+	font-size: 0.76rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+html[data-skin="botanical-dreamscape"] .site-nav a {
+	border-radius: 999px;
+}
+
+html[data-skin="botanical-dreamscape"] .site-nav a:hover,
+html[data-skin="botanical-dreamscape"] .site-nav a[aria-current="page"] {
+	background: rgba(200, 231, 107, 0.16) !important;
+	color: #c8e76b !important;
+}
+
+html[data-skin="botanical-dreamscape"] .site-nav .nav-cta,
+html[data-skin="botanical-dreamscape"] .nav-toggle {
+	border: 1px solid rgba(245, 237, 207, 0.42) !important;
+	border-radius: 999px !important;
+	background: rgba(245, 237, 207, 0.08) !important;
+}
+
+html[data-skin="botanical-dreamscape"] .page-hero,
+html[data-skin="botanical-dreamscape"] body.page-home .page-hero,
+html[data-skin="botanical-dreamscape"] body.page-services .page-hero,
+html[data-skin="botanical-dreamscape"] body.page-work .page-hero,
+html[data-skin="botanical-dreamscape"] body.page-connect .page-hero,
+html[data-skin="botanical-dreamscape"] body.page-about .page-hero,
+html[data-skin="botanical-dreamscape"] body.page-contact .page-hero {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	border-color: rgba(245, 237, 207, 0.2) !important;
+	background-color: #173e31 !important;
+	background-image: var(--botanical-leaf-light) !important;
+	background-size: 180px 180px !important;
+	color: #f5edcf !important;
+}
+
+html[data-skin="botanical-dreamscape"] .page-hero::before,
+html[data-skin="botanical-dreamscape"] .page-hero::after {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	width: min(42vw, 26rem);
+	aspect-ratio: 1;
+	border: clamp(0.8rem, 1.8vw, 1.4rem) solid rgba(245, 237, 207, 0.08);
+	border-radius: 50%;
+	background:
+		radial-gradient(circle, #c8e76b 0 10%, transparent 11% 24%, rgba(23, 62, 49, 0.78) 25% 31%, transparent 32%),
+		repeating-conic-gradient(from 0deg, #ef7ca8 0deg 17deg, #6ccfd1 18deg 34deg, transparent 35deg 60deg);
+	box-shadow: inset 0 0 0 2rem rgba(23, 62, 49, 0.22);
+	opacity: 0.74;
+	pointer-events: none;
+	will-change: transform;
+	animation: botanical-dreamscape-spin 22s linear infinite;
+}
+
+html[data-skin="botanical-dreamscape"] .page-hero::before {
+	left: -10rem;
+	top: 4rem;
+}
+
+html[data-skin="botanical-dreamscape"] .page-hero::after {
+	right: -9rem;
+	bottom: -7rem;
+	width: min(34vw, 21rem);
+	opacity: 0.55;
+	animation-direction: reverse;
+	animation-duration: 28s;
+}
+
+@keyframes botanical-dreamscape-spin {
+	to { transform: rotate(1turn); }
+}
+
+html[data-skin="botanical-dreamscape"] .page-hero .site-shell,
+html[data-skin="botanical-dreamscape"] .hero-copy,
+html[data-skin="botanical-dreamscape"] .hero-media {
+	position: relative;
+	z-index: 1;
+	min-width: 0;
+}
+
+html[data-skin="botanical-dreamscape"] .page-hero h1,
+html[data-skin="botanical-dreamscape"] body.page-home .page-hero h1 {
+	color: #f5edcf !important;
+	letter-spacing: -0.065em;
+	line-height: 0.9;
+	text-shadow: 0 3px 18px rgba(5, 25, 18, 0.24);
+}
+
+html[data-skin="botanical-dreamscape"] .hero-title-role:nth-of-type(even) {
+	color: #c8e76b !important;
+	font-style: italic;
+	font-weight: 400;
+}
+
+html[data-skin="botanical-dreamscape"] .hero-title-role:nth-of-type(3n) {
+	color: #ef7ca8 !important;
+}
+
+html[data-skin="botanical-dreamscape"] .metallic-pearl-text {
+	background: none;
+	color: #c8e76b !important;
+	-webkit-text-fill-color: currentColor;
+	filter: none;
+}
+
+html[data-skin="botanical-dreamscape"] .hero-title-initial {
+	color: inherit !important;
+	-webkit-text-fill-color: inherit;
+}
+
+html[data-skin="botanical-dreamscape"] .eyebrow {
+	border: 1px solid rgba(245, 237, 207, 0.34) !important;
+	border-radius: 999px;
+	background: rgba(245, 237, 207, 0.08) !important;
+	box-shadow: 0 8px 22px rgba(5, 25, 18, 0.2);
+	color: #c8e76b !important;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+	font-weight: 800;
+	letter-spacing: 0.11em;
+}
+
+html[data-skin="botanical-dreamscape"] .page-section {
+	position: relative;
+	isolation: isolate;
+	border-color: rgba(245, 237, 207, 0.18) !important;
+	background-color: #173e31 !important;
+	background-image: var(--botanical-leaf-light) !important;
+	background-size: 180px 180px !important;
+}
+
+html[data-skin="botanical-dreamscape"] .page-section:nth-of-type(2n) {
+	background-position: 52px 86px !important;
+	background-size: 205px 205px !important;
+}
+
+html[data-skin="botanical-dreamscape"] .page-section:nth-of-type(3n) {
+	background-position: -28px 34px !important;
+	background-size: 164px 164px !important;
+}
+
+html[data-skin="botanical-dreamscape"] .page-section:not(.section-cta)::before {
+	content: "";
+	position: absolute;
+	left: clamp(0.35rem, 1.4vw, 1.2rem);
+	top: 0;
+	bottom: 0;
+	z-index: 0;
+	width: 44px;
+	background: var(--botanical-vine) top center / 44px 180px repeat-y;
+	opacity: 0.55;
+	pointer-events: none;
+}
+
+html[data-skin="botanical-dreamscape"] .page-section > .site-shell {
+	position: relative;
+	z-index: 1;
+}
+
+html[data-skin="botanical-dreamscape"] .section-soft {
+	background-color: #204f3f !important;
+}
+
+html[data-skin="botanical-dreamscape"] .section-portrait {
+	background-color: #f5edcf !important;
+	background-image: var(--botanical-leaf-dark) !important;
+}
+
+html[data-skin="botanical-dreamscape"] .section-portrait,
+html[data-skin="botanical-dreamscape"] .section-portrait p,
+html[data-skin="botanical-dreamscape"] .section-portrait li,
+html[data-skin="botanical-dreamscape"] .section-portrait h2,
+html[data-skin="botanical-dreamscape"] .section-portrait h3,
+html[data-skin="botanical-dreamscape"] .section-portrait h4,
+html[data-skin="botanical-dreamscape"] .section-portrait strong {
+	color: #173e31 !important;
+}
+
+html[data-skin="botanical-dreamscape"] .panel-card,
+html[data-skin="botanical-dreamscape"] .features article,
+html[data-skin="botanical-dreamscape"] .contact-rail,
+html[data-skin="botanical-dreamscape"] ul.feature-icons li,
+html[data-skin="botanical-dreamscape"] .work-overview,
+html[data-skin="botanical-dreamscape"] .work-tech-item,
+html[data-skin="botanical-dreamscape"] .profile-chip {
+	position: relative;
+	overflow: hidden;
+	border: 1px solid rgba(245, 237, 207, 0.3) !important;
+	border-radius: 1.35rem 2rem 1.55rem 1rem !important;
+	background:
+		radial-gradient(circle at 102% -12%, transparent 0 2rem, rgba(200, 231, 107, 0.18) 2.1rem 2.3rem, transparent 2.4rem 4rem, rgba(108, 207, 209, 0.14) 4.1rem 4.3rem, transparent 4.4rem),
+		#1c493a !important;
+	box-shadow: 0 20px 42px rgba(5, 25, 18, 0.24) !important;
+	color: #f5edcf !important;
+	contain: paint;
+	transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+html[data-skin="botanical-dreamscape"] .features {
+	counter-reset: botanical-specimen;
+}
+
+html[data-skin="botanical-dreamscape"] .features article {
+	counter-increment: botanical-specimen;
+}
+
+html[data-skin="botanical-dreamscape"] .features article::before {
+	content: "SPECIMEN " counter(botanical-specimen, decimal-leading-zero);
+	position: absolute;
+	top: 0.72rem;
+	right: 0.78rem;
+	z-index: 4;
+	padding: 0.28rem 0.52rem;
+	border: 1px solid rgba(23, 62, 49, 0.28);
+	border-radius: 999px;
+	background: rgba(200, 231, 107, 0.92);
+	box-shadow: 0 4px 12px rgba(5, 25, 18, 0.16);
+	color: #173e31;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	font-size: 0.62rem;
+	font-weight: 850;
+	letter-spacing: 0.1em;
+	line-height: 1;
+	pointer-events: none;
+}
+
+html[data-skin="botanical-dreamscape"] .features article:nth-child(2n)::before {
+	background: rgba(239, 124, 168, 0.94);
+}
+
+html[data-skin="botanical-dreamscape"] .features article:nth-child(3n)::before {
+	background: rgba(245, 237, 207, 0.94);
+}
+
+html[data-skin="botanical-dreamscape"] .panel-card:nth-child(even),
+html[data-skin="botanical-dreamscape"] .features article:nth-child(even),
+html[data-skin="botanical-dreamscape"] ul.feature-icons li:nth-child(even),
+html[data-skin="botanical-dreamscape"] .work-tech-item:nth-child(even) {
+	border-color: rgba(23, 62, 49, 0.22) !important;
+	border-radius: 1.85rem 1.1rem 1.35rem 2.1rem !important;
+	background:
+		radial-gradient(circle at 102% -12%, transparent 0 2rem, rgba(239, 124, 168, 0.2) 2.1rem 2.3rem, transparent 2.4rem 4rem, rgba(23, 62, 49, 0.13) 4.1rem 4.3rem, transparent 4.4rem),
+		#f5edcf !important;
+	color: #173e31 !important;
+}
+
+html[data-skin="botanical-dreamscape"] .panel-card:nth-child(3n),
+html[data-skin="botanical-dreamscape"] .features article:nth-child(3n),
+html[data-skin="botanical-dreamscape"] ul.feature-icons li:nth-child(3n),
+html[data-skin="botanical-dreamscape"] .work-tech-item:nth-child(3n) {
+	background:
+		radial-gradient(circle at 102% -12%, transparent 0 2rem, rgba(200, 231, 107, 0.28) 2.1rem 2.3rem, transparent 2.4rem 4rem, rgba(23, 62, 49, 0.13) 4.1rem 4.3rem, transparent 4.4rem),
+		#6ccfd1 !important;
+	color: #173e31 !important;
+}
+
+html[data-skin="botanical-dreamscape"] .panel-card:nth-child(even) *,
+html[data-skin="botanical-dreamscape"] .features article:nth-child(even) *,
+html[data-skin="botanical-dreamscape"] ul.feature-icons li:nth-child(even) *,
+html[data-skin="botanical-dreamscape"] .work-tech-item:nth-child(even) *,
+html[data-skin="botanical-dreamscape"] .panel-card:nth-child(3n) *,
+html[data-skin="botanical-dreamscape"] .features article:nth-child(3n) *,
+html[data-skin="botanical-dreamscape"] ul.feature-icons li:nth-child(3n) *,
+html[data-skin="botanical-dreamscape"] .work-tech-item:nth-child(3n) * {
+	color: #173e31 !important;
+}
+
+html[data-skin="botanical-dreamscape"] .panel-card:hover,
+html[data-skin="botanical-dreamscape"] .features article:hover,
+html[data-skin="botanical-dreamscape"] ul.feature-icons li:hover {
+	box-shadow: 0 26px 52px rgba(5, 25, 18, 0.34) !important;
+	transform: translateY(-3px) scale(1.006);
+}
+
+/* This is a section-sized wrapper, so keep its contents out of the organic crop. */
+html[data-skin="botanical-dreamscape"] .work-overview {
+	overflow: visible;
+	border-radius: 1.65rem 1rem 1.45rem 1.2rem !important;
+	contain: none;
+}
+
+html[data-skin="botanical-dreamscape"] .features article .image,
+html[data-skin="botanical-dreamscape"] .hero-media img,
+html[data-skin="botanical-dreamscape"] .portrait-panel img,
+html[data-skin="botanical-dreamscape"] .profile-chip img {
+	border: 2px solid rgba(245, 237, 207, 0.5) !important;
+	border-radius: 1.5rem 2rem 1.35rem 1.8rem !important;
+	box-shadow: 0 22px 42px rgba(5, 25, 18, 0.32) !important;
+	filter: none !important;
+}
+
+html[data-skin="botanical-dreamscape"] .hero-splash .hero-splash-text {
+	color: #f5edcf !important;
+	text-shadow: 0 2px 12px rgba(5, 25, 18, 0.65);
+}
+
+html[data-skin="botanical-dreamscape"] .tag-list li,
+html[data-skin="botanical-dreamscape"] .profile-chip {
+	border: 1px solid rgba(23, 62, 49, 0.24) !important;
+	border-radius: 999px !important;
+	background: #c8e76b !important;
+	box-shadow: 0 7px 18px rgba(5, 25, 18, 0.16);
+	color: #173e31 !important;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+	font-weight: 800;
+}
+
+html[data-skin="botanical-dreamscape"] .timeline li {
+	border-color: rgba(245, 237, 207, 0.32) !important;
+}
+
+html[data-skin="botanical-dreamscape"] .timeline li::before {
+	border: 3px solid #173e31;
+	background: #ef7ca8;
+	box-shadow: 0 0 0 2px #c8e76b;
+}
+
+html[data-skin="botanical-dreamscape"] input[type="text"],
+html[data-skin="botanical-dreamscape"] input[type="password"],
+html[data-skin="botanical-dreamscape"] input[type="email"],
+html[data-skin="botanical-dreamscape"] select,
+html[data-skin="botanical-dreamscape"] textarea {
+	border: 1px solid rgba(245, 237, 207, 0.4) !important;
+	border-radius: 1.35rem !important;
+	background: rgba(245, 237, 207, 0.08) !important;
+	box-shadow: inset 0 1px 0 rgba(245, 237, 207, 0.08) !important;
+	color: #f5edcf !important;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+html[data-skin="botanical-dreamscape"] input:focus,
+html[data-skin="botanical-dreamscape"] select:focus,
+html[data-skin="botanical-dreamscape"] textarea:focus {
+	border-color: #c8e76b !important;
+	box-shadow: 0 0 0 3px rgba(200, 231, 107, 0.16) !important;
+}
+
+html[data-skin="botanical-dreamscape"] input[type="submit"],
+html[data-skin="botanical-dreamscape"] input[type="reset"],
+html[data-skin="botanical-dreamscape"] input[type="button"],
+html[data-skin="botanical-dreamscape"] button:not([class^="skin-picker"]),
+html[data-skin="botanical-dreamscape"] .button {
+	border: 1px solid rgba(23, 62, 49, 0.24) !important;
+	border-radius: 999px !important;
+	background: #c8e76b !important;
+	box-shadow: 0 10px 24px rgba(5, 25, 18, 0.2) !important;
+	color: #173e31 !important;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+	font-weight: 800;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+html[data-skin="botanical-dreamscape"] input[type="submit"].primary,
+html[data-skin="botanical-dreamscape"] input[type="button"].primary,
+html[data-skin="botanical-dreamscape"] button.primary,
+html[data-skin="botanical-dreamscape"] .button.primary,
+html[data-skin="botanical-dreamscape"] .contact-submit,
+html[data-skin="botanical-dreamscape"] .features article .inner span a {
+	background: #ef7ca8 !important;
+	color: #173e31 !important;
+}
+
+html[data-skin="botanical-dreamscape"] input[type="submit"]:hover,
+html[data-skin="botanical-dreamscape"] button:not([class^="skin-picker"]):hover,
+html[data-skin="botanical-dreamscape"] .button:hover {
+	background: #6ccfd1 !important;
+	box-shadow: 0 14px 28px rgba(5, 25, 18, 0.28) !important;
+	color: #173e31 !important;
+	transform: translateY(-2px);
+}
+
+html[data-skin="botanical-dreamscape"] .section-cta {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	border-block: 1px solid rgba(245, 237, 207, 0.22) !important;
+	background:
+		radial-gradient(circle at 90% 20%, rgba(239, 124, 168, 0.28), transparent 17rem),
+		#102e24 !important;
+	color: #f5edcf !important;
+}
+
+html[data-skin="botanical-dreamscape"] .section-cta::before {
+	content: "";
+	position: absolute;
+	right: -5rem;
+	top: -6rem;
+	z-index: -1;
+	width: min(28vw, 18rem);
+	aspect-ratio: 1;
+	border: 1.1rem double #c8e76b;
+	border-radius: 50%;
+	opacity: 0.36;
+	pointer-events: none;
+}
+
+html[data-skin="botanical-dreamscape"] .section-cta h2,
+html[data-skin="botanical-dreamscape"] .section-cta p {
+	color: #f5edcf !important;
+}
+
+html[data-skin="botanical-dreamscape"] .site-footer {
+	border-top: 1px solid rgba(245, 237, 207, 0.2) !important;
+	background: #102e24 !important;
+	color: #f5edcf !important;
+}
+
+html[data-skin="botanical-dreamscape"] .site-footer p,
+html[data-skin="botanical-dreamscape"] .site-footer a {
+	color: #f5edcf !important;
+}
+
+html[data-skin="botanical-dreamscape"] .skin-picker {
+	--skin-ui-bg: #173e31;
+	--skin-ui-panel: #f5edcf;
+	--skin-ui-text: #173e31;
+	--skin-ui-muted: #315d4e;
+	--skin-ui-accent: #ef7ca8;
+	--skin-ui-border: rgba(23, 62, 49, 0.32);
+}
+
+html[data-skin="botanical-dreamscape"] .skin-picker-panel {
+	border: 1px solid rgba(245, 237, 207, 0.4);
+	border-radius: 2rem 0.9rem 2.4rem 1.2rem;
+	box-shadow: 0 24px 56px rgba(5, 25, 18, 0.38);
+}
+
+html[data-skin="botanical-dreamscape"] .skin-picker-toggle {
+	border: 1px solid rgba(245, 237, 207, 0.34) !important;
+	border-radius: 999px !important;
+	background: #173e31 !important;
+	box-shadow: 0 10px 28px rgba(5, 25, 18, 0.34) !important;
+	color: #f5edcf !important;
+}
+
+html[data-skin="botanical-dreamscape"] .skin-picker-toggle-label,
+html[data-skin="botanical-dreamscape"] .skin-picker-current,
+html[data-skin="botanical-dreamscape"] .skin-picker-chevron {
+	color: #f5edcf !important;
+}
+
+html[data-skin="botanical-dreamscape"] .skin-picker .skin-picker-option {
+	border-radius: 999px !important;
+}
+
+@media (max-width: 736px) {
+	html[data-skin="botanical-dreamscape"] .page-section:not(.section-cta)::before {
+		left: 0.08rem;
+		opacity: 0.32;
+	}
+
+	html[data-skin="botanical-dreamscape"] .page-hero::before {
+		left: -9rem;
+		top: 5rem;
+		width: 20rem;
+		opacity: 0.44;
+	}
+
+	html[data-skin="botanical-dreamscape"] .page-hero::after {
+		right: -8rem;
+		bottom: -4rem;
+		width: 17rem;
+		opacity: 0.38;
+	}
+
+	html[data-skin="botanical-dreamscape"] body.nav-open .site-nav {
+		border: 1px solid rgba(245, 237, 207, 0.34);
+		border-radius: 1.5rem;
+		background: #173e31 !important;
+		box-shadow: 0 20px 42px rgba(5, 25, 18, 0.42);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-skin="botanical-dreamscape"] *,
+	html[data-skin="botanical-dreamscape"] *::before,
+	html[data-skin="botanical-dreamscape"] *::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}

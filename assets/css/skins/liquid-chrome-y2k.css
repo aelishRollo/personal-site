@@ -1,0 +1,463 @@
+/*
+	Liquid Chrome Y2K
+	Derived from 08-liquid-chrome-y2k.html. The source's translucent interface,
+	reflective type, pastel chrome and floating orbs are recreated entirely in CSS.
+*/
+
+html[data-skin="liquid-chrome-y2k"] {
+	--background: #eef5ff;
+	--foreground: #1d2340;
+	--muted-bg: rgba(255, 255, 255, 0.48);
+	--card-bg: rgba(255, 255, 255, 0.5);
+	--border: rgba(61, 76, 126, 0.2);
+	--primary: #7385ce;
+	--primary-fg: #ffffff;
+	--secondary: #8ff2ef;
+	--secondary-fg: #1d2340;
+	--accent: #ff8fd8;
+	--accent-fg: #1d2340;
+	--link: #4e61b2;
+	--warning: #db60b1;
+	--header-bg: rgba(238, 245, 255, 0.72);
+	--header-fg: #1d2340;
+	--footer-bg: rgba(238, 245, 255, 0.78);
+	--footer-fg: #1d2340;
+	--bg: var(--background);
+	--surface-1: rgba(255, 255, 255, 0.5);
+	--surface-2: rgba(231, 238, 255, 0.68);
+	--surface-3: rgba(241, 219, 244, 0.64);
+	--text-1: #1d2340;
+	--text-2: #505a7d;
+	--line-1: rgba(61, 76, 126, 0.2);
+	--accent-1: #7385ce;
+	--accent-2: #ff8fd8;
+}
+
+html[data-skin="liquid-chrome-y2k"] body {
+	position: relative;
+	overflow-x: hidden;
+	background-color: #eef5ff !important;
+	background-image:
+		radial-gradient(circle at 8% 18%, rgba(143, 242, 239, 0.34), transparent 24rem),
+		radial-gradient(circle at 93% 24%, rgba(255, 143, 216, 0.25), transparent 26rem),
+		linear-gradient(180deg, #eef5ff 0%, #fff5fb 58%, #edf5ff 100%) !important;
+	background-attachment: scroll !important;
+	color: var(--foreground) !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+}
+
+html[data-skin="liquid-chrome-y2k"] body,
+html[data-skin="liquid-chrome-y2k"] p,
+html[data-skin="liquid-chrome-y2k"] li,
+html[data-skin="liquid-chrome-y2k"] label,
+html[data-skin="liquid-chrome-y2k"] .lead,
+html[data-skin="liquid-chrome-y2k"] .note,
+html[data-skin="liquid-chrome-y2k"] .footer-inner p,
+html[data-skin="liquid-chrome-y2k"] .social-inline a {
+	color: var(--text-2) !important;
+}
+
+html[data-skin="liquid-chrome-y2k"] h1,
+html[data-skin="liquid-chrome-y2k"] h2,
+html[data-skin="liquid-chrome-y2k"] h3,
+html[data-skin="liquid-chrome-y2k"] h4,
+html[data-skin="liquid-chrome-y2k"] h5,
+html[data-skin="liquid-chrome-y2k"] h6,
+html[data-skin="liquid-chrome-y2k"] strong {
+	color: var(--foreground) !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-weight: 800;
+	letter-spacing: -0.045em;
+}
+
+html[data-skin="liquid-chrome-y2k"] a {
+	color: var(--link) !important;
+	text-decoration-color: rgba(115, 133, 206, 0.42);
+	text-underline-offset: 0.2em;
+}
+
+html[data-skin="liquid-chrome-y2k"] a:hover {
+	color: #bd4d9a !important;
+	text-decoration-color: #ff8fd8;
+}
+
+html[data-skin="liquid-chrome-y2k"] .site-header {
+	border-bottom: 1px solid rgba(40, 60, 100, 0.15) !important;
+	background: rgba(238, 245, 255, 0.94) !important;
+	box-shadow: 0 10px 38px rgba(85, 98, 155, 0.08);
+	backdrop-filter: none;
+}
+
+html[data-skin="liquid-chrome-y2k"] .brand-mark {
+	border: 1px solid rgba(255, 255, 255, 0.82);
+	border-radius: 50%;
+	background:
+		radial-gradient(circle at 28% 22%, #ffffff 0 8%, #a8f4ef 30%, #799bff 67%, #f6a9db 100%) !important;
+	box-shadow:
+		inset -8px -10px 16px rgba(70, 80, 160, 0.17),
+		inset 7px 7px 14px rgba(255, 255, 255, 0.9),
+		0 9px 18px rgba(85, 98, 155, 0.2);
+	color: #1d2340 !important;
+}
+
+html[data-skin="liquid-chrome-y2k"] .brand-text,
+html[data-skin="liquid-chrome-y2k"] .site-nav a,
+html[data-skin="liquid-chrome-y2k"] .nav-toggle {
+	color: var(--foreground) !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-weight: 800;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+html[data-skin="liquid-chrome-y2k"] .site-nav a {
+	border-radius: 999px;
+}
+
+html[data-skin="liquid-chrome-y2k"] .site-nav a:hover,
+html[data-skin="liquid-chrome-y2k"] .site-nav a[aria-current="page"] {
+	background: rgba(255, 255, 255, 0.56) !important;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 8px 20px rgba(85, 98, 155, 0.1);
+	color: #4e61b2 !important;
+}
+
+html[data-skin="liquid-chrome-y2k"] .site-nav .nav-cta,
+html[data-skin="liquid-chrome-y2k"] .nav-toggle {
+	border: 1px solid rgba(115, 133, 206, 0.34) !important;
+	border-radius: 999px !important;
+	background: rgba(255, 255, 255, 0.42) !important;
+	box-shadow: 0 10px 22px rgba(85, 98, 155, 0.12);
+}
+
+html[data-skin="liquid-chrome-y2k"] .page-hero,
+html[data-skin="liquid-chrome-y2k"] .section-soft,
+html[data-skin="liquid-chrome-y2k"] .section-portrait {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	border-color: rgba(40, 60, 100, 0.14) !important;
+	background: rgba(238, 245, 255, 0.34) !important;
+}
+
+html[data-skin="liquid-chrome-y2k"] .page-section:not(.section-cta):not(.section-soft):not(.section-portrait) {
+	position: relative;
+	border-color: rgba(40, 60, 100, 0.14) !important;
+	background: rgba(255, 255, 255, 0.24) !important;
+}
+
+html[data-skin="liquid-chrome-y2k"] .page-hero::before,
+html[data-skin="liquid-chrome-y2k"] .page-hero::after {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	border: 1px solid rgba(255, 255, 255, 0.7);
+	border-radius: 50%;
+	box-shadow:
+		inset -30px -40px 60px rgba(70, 80, 160, 0.15),
+		inset 25px 25px 45px rgba(255, 255, 255, 0.85),
+		0 18px 40px rgba(85, 98, 155, 0.18);
+	pointer-events: none;
+	will-change: transform;
+	animation: liquid-chrome-float 7s ease-in-out infinite alternate;
+}
+
+html[data-skin="liquid-chrome-y2k"] .page-hero::before {
+	top: 9%;
+	left: 5%;
+	width: min(23vw, 14rem);
+	aspect-ratio: 1;
+	background: radial-gradient(circle at 30% 25%, #ffffff, #a8f4ef 30%, #799bff 70%, #f6a9db);
+}
+
+html[data-skin="liquid-chrome-y2k"] .page-hero::after {
+	right: 7%;
+	bottom: 8%;
+	width: min(18vw, 10.5rem);
+	aspect-ratio: 1;
+	background: radial-gradient(circle at 30% 25%, #ffffff, #ffd2f0 30%, #8aa6ff 70%, #8ff2ef);
+	animation-delay: -2s;
+}
+
+@keyframes liquid-chrome-float {
+	to { transform: translate(1.6rem, -1.25rem) scale(0.92); }
+}
+
+@keyframes liquid-chrome-morph {
+	to {
+		transform: rotate(10deg) scale(1.035);
+	}
+}
+
+html[data-skin="liquid-chrome-y2k"] .page-hero .site-shell,
+html[data-skin="liquid-chrome-y2k"] .hero-copy,
+html[data-skin="liquid-chrome-y2k"] .hero-media {
+	position: relative;
+	z-index: 1;
+	min-width: 0;
+}
+
+html[data-skin="liquid-chrome-y2k"] .page-hero h1,
+html[data-skin="liquid-chrome-y2k"] body.page-home .page-hero h1,
+html[data-skin="liquid-chrome-y2k"] .metallic-pearl-text {
+	background: linear-gradient(180deg, #ffffff 0%, #c8d8ff 22%, #7385ce 46%, #f8c3ec 72%, #ffffff 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent !important;
+	-webkit-text-fill-color: transparent;
+	-webkit-text-stroke: 1px rgba(71, 86, 137, 0.24);
+	filter: drop-shadow(0 10px 10px rgba(75, 83, 140, 0.14));
+	letter-spacing: -0.065em;
+}
+
+html[data-skin="liquid-chrome-y2k"] .hero-title-initial {
+	color: transparent !important;
+	-webkit-text-fill-color: transparent;
+}
+
+html[data-skin="liquid-chrome-y2k"] .eyebrow {
+	border: 1px solid rgba(115, 133, 206, 0.3) !important;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.48) !important;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 10px 24px rgba(85, 98, 155, 0.11);
+	color: #4c5989 !important;
+	font-weight: 800;
+	letter-spacing: 0.12em;
+}
+
+html[data-skin="liquid-chrome-y2k"] .panel-card,
+html[data-skin="liquid-chrome-y2k"] .features article,
+html[data-skin="liquid-chrome-y2k"] .contact-rail,
+html[data-skin="liquid-chrome-y2k"] ul.feature-icons li,
+html[data-skin="liquid-chrome-y2k"] .work-overview,
+html[data-skin="liquid-chrome-y2k"] .work-tech-item,
+html[data-skin="liquid-chrome-y2k"] .profile-chip {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	border: 1px solid rgba(255, 255, 255, 0.78) !important;
+	border-radius: 32px;
+	background: rgba(255, 255, 255, 0.46) !important;
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.94),
+		0 30px 60px rgba(86, 99, 160, 0.12) !important;
+	contain: paint;
+}
+
+html[data-skin="liquid-chrome-y2k"] .panel-card:first-child::after,
+html[data-skin="liquid-chrome-y2k"] .features article:nth-child(odd)::after,
+html[data-skin="liquid-chrome-y2k"] ul.feature-icons li:nth-child(4n + 1)::after,
+html[data-skin="liquid-chrome-y2k"] .work-tech-item:nth-child(4n + 1)::after {
+	content: "";
+	position: absolute;
+	top: -8rem;
+	right: -7rem;
+	z-index: -1;
+	width: 16rem;
+	aspect-ratio: 1;
+	border-radius: 45% 55% 60% 40% / 55% 40% 60% 45%;
+	background: linear-gradient(145deg, #ffffff, #8ff2ef 25%, #7c8fff 45%, #ff9bd6 65%, #ffffff);
+	opacity: 0.66;
+	will-change: transform;
+	animation: liquid-chrome-morph 10s ease-in-out infinite alternate;
+}
+
+html[data-skin="liquid-chrome-y2k"] .features article:nth-child(4n + 3)::after,
+html[data-skin="liquid-chrome-y2k"] ul.feature-icons li:nth-child(8n + 5)::after,
+html[data-skin="liquid-chrome-y2k"] .work-tech-item:nth-child(8n + 5)::after {
+	background: linear-gradient(145deg, #ffffff, #ffd2f0 25%, #8aa6ff 48%, #8ff2ef 70%, #ffffff);
+	animation-delay: -5s;
+}
+
+html[data-skin="liquid-chrome-y2k"] .panel-card:hover,
+html[data-skin="liquid-chrome-y2k"] .features article:hover,
+html[data-skin="liquid-chrome-y2k"] ul.feature-icons li:hover {
+	border-color: rgba(255, 255, 255, 0.96) !important;
+	box-shadow: inset 0 1px 0 #ffffff, 0 34px 72px rgba(86, 99, 160, 0.19) !important;
+}
+
+html[data-skin="liquid-chrome-y2k"] .features article .image,
+html[data-skin="liquid-chrome-y2k"] .hero-media img,
+html[data-skin="liquid-chrome-y2k"] .portrait-panel img,
+html[data-skin="liquid-chrome-y2k"] .profile-chip img {
+	border: 1px solid rgba(255, 255, 255, 0.86) !important;
+	border-radius: 28px;
+	box-shadow: 0 20px 48px rgba(80, 91, 151, 0.2) !important;
+	filter: none !important;
+}
+
+html[data-skin="liquid-chrome-y2k"] .features article .image {
+	overflow: hidden;
+	background: linear-gradient(145deg, #ffffff, #c8d8ff 34%, #8ff2ef 62%, #ffb7e3) !important;
+}
+
+html[data-skin="liquid-chrome-y2k"] .features article .image img {
+	filter: saturate(1.08) contrast(0.98);
+}
+
+html[data-skin="liquid-chrome-y2k"] .hero-splash .hero-splash-text {
+	color: #34416e !important;
+	text-shadow: 0 2px 0 #ffffff, 0 0 18px rgba(255, 255, 255, 0.92);
+}
+
+html[data-skin="liquid-chrome-y2k"] .tag-list li,
+html[data-skin="liquid-chrome-y2k"] .profile-chip {
+	border: 1px solid rgba(115, 133, 206, 0.2) !important;
+	border-radius: 999px;
+	background: linear-gradient(110deg, rgba(255, 255, 255, 0.76), rgba(200, 216, 255, 0.72), rgba(255, 195, 236, 0.68)) !important;
+	box-shadow: inset 0 1px 0 #ffffff, 0 8px 18px rgba(86, 99, 160, 0.1);
+	color: #34416e !important;
+}
+
+html[data-skin="liquid-chrome-y2k"] .timeline li {
+	border-color: rgba(61, 76, 126, 0.18) !important;
+}
+
+html[data-skin="liquid-chrome-y2k"] .timeline li::before {
+	border: 1px solid rgba(255, 255, 255, 0.9);
+	background: radial-gradient(circle at 30% 25%, #ffffff, #8ff2ef 35%, #7385ce 72%, #ff8fd8);
+	box-shadow: 0 5px 12px rgba(85, 98, 155, 0.2);
+}
+
+html[data-skin="liquid-chrome-y2k"] input[type="text"],
+html[data-skin="liquid-chrome-y2k"] input[type="password"],
+html[data-skin="liquid-chrome-y2k"] input[type="email"],
+html[data-skin="liquid-chrome-y2k"] select,
+html[data-skin="liquid-chrome-y2k"] textarea {
+	border: 1px solid rgba(115, 133, 206, 0.24) !important;
+	border-radius: 18px;
+	background: rgba(255, 255, 255, 0.54) !important;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92), 0 12px 28px rgba(86, 99, 160, 0.08) !important;
+	color: var(--foreground) !important;
+}
+
+html[data-skin="liquid-chrome-y2k"] input:focus,
+html[data-skin="liquid-chrome-y2k"] select:focus,
+html[data-skin="liquid-chrome-y2k"] textarea:focus {
+	border-color: #7385ce !important;
+	box-shadow: 0 0 0 4px rgba(115, 133, 206, 0.16), 0 14px 32px rgba(86, 99, 160, 0.12) !important;
+}
+
+html[data-skin="liquid-chrome-y2k"] input[type="submit"],
+html[data-skin="liquid-chrome-y2k"] input[type="reset"],
+html[data-skin="liquid-chrome-y2k"] input[type="button"],
+html[data-skin="liquid-chrome-y2k"] button:not([class^="skin-picker"]),
+html[data-skin="liquid-chrome-y2k"] .button {
+	border: 1px solid rgba(115, 133, 206, 0.28) !important;
+	border-radius: 999px !important;
+	background: rgba(255, 255, 255, 0.56) !important;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.96), 0 12px 28px rgba(86, 99, 160, 0.12) !important;
+	color: #34416e !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-weight: 800;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
+}
+
+html[data-skin="liquid-chrome-y2k"] input[type="submit"].primary,
+html[data-skin="liquid-chrome-y2k"] input[type="button"].primary,
+html[data-skin="liquid-chrome-y2k"] button.primary,
+html[data-skin="liquid-chrome-y2k"] .button.primary,
+html[data-skin="liquid-chrome-y2k"] .contact-submit,
+html[data-skin="liquid-chrome-y2k"] .features article .inner span a {
+	background: linear-gradient(145deg, #ffffff 0%, #c8d8ff 24%, #7385ce 48%, #f8c3ec 74%, #ffffff 100%) !important;
+	color: #1d2340 !important;
+}
+
+html[data-skin="liquid-chrome-y2k"] input[type="submit"]:hover,
+html[data-skin="liquid-chrome-y2k"] button:not([class^="skin-picker"]):hover,
+html[data-skin="liquid-chrome-y2k"] .button:hover {
+	border-color: rgba(255, 143, 216, 0.58) !important;
+	background: linear-gradient(145deg, #ffffff, #8ff2ef 28%, #8aa6ff 55%, #ff8fd8) !important;
+	color: #1d2340 !important;
+}
+
+html[data-skin="liquid-chrome-y2k"] .section-cta {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	border-block: 1px solid rgba(255, 255, 255, 0.8) !important;
+	background: linear-gradient(125deg, #dbe7ff, #9cf1ef 30%, #8197e2 58%, #ffb4df 82%, #ffffff) !important;
+	box-shadow: inset 0 1px 0 #ffffff;
+}
+
+html[data-skin="liquid-chrome-y2k"] .section-cta::after {
+	content: "";
+	position: absolute;
+	right: -8%;
+	top: -65%;
+	z-index: -1;
+	width: min(34vw, 24rem);
+	aspect-ratio: 1;
+	border-radius: 45% 55% 60% 40% / 55% 40% 60% 45%;
+	background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), #8ff2ef 25%, #7c8fff 48%, #ff9bd6 72%, #ffffff);
+	opacity: 0.72;
+	will-change: transform;
+	animation: liquid-chrome-morph 10s ease-in-out infinite alternate;
+}
+
+html[data-skin="liquid-chrome-y2k"] .section-cta h2,
+html[data-skin="liquid-chrome-y2k"] .section-cta p {
+	color: #1d2340 !important;
+}
+
+html[data-skin="liquid-chrome-y2k"] .site-footer {
+	border-top: 1px solid rgba(40, 60, 100, 0.15) !important;
+	background: rgba(238, 245, 255, 0.78) !important;
+	color: var(--foreground) !important;
+}
+
+html[data-skin="liquid-chrome-y2k"] .skin-picker {
+	--skin-ui-bg: #26305a;
+	--skin-ui-panel: rgba(245, 249, 255, 0.94);
+	--skin-ui-text: #1d2340;
+	--skin-ui-muted: #596487;
+	--skin-ui-accent: #7385ce;
+	--skin-ui-border: rgba(115, 133, 206, 0.42);
+}
+
+html[data-skin="liquid-chrome-y2k"] .skin-picker-panel {
+	box-shadow: 0 24px 60px rgba(68, 80, 137, 0.23);
+	backdrop-filter: blur(22px) saturate(1.2);
+}
+
+html[data-skin="liquid-chrome-y2k"] .skin-picker-toggle {
+	background: linear-gradient(145deg, #26305a, #5669a8 52%, #9b6695) !important;
+	box-shadow: 0 14px 34px rgba(68, 80, 137, 0.28) !important;
+}
+
+html[data-skin="liquid-chrome-y2k"] .skin-picker-toggle,
+html[data-skin="liquid-chrome-y2k"] .skin-picker-current,
+html[data-skin="liquid-chrome-y2k"] .skin-picker-toggle-label {
+	color: #ffffff !important;
+}
+
+@media (max-width: 736px) {
+	html[data-skin="liquid-chrome-y2k"] .page-hero::before,
+	html[data-skin="liquid-chrome-y2k"] .page-hero::after {
+		width: 34vw;
+		opacity: 0.7;
+	}
+
+	html[data-skin="liquid-chrome-y2k"] body.nav-open .site-nav {
+		border: 1px solid rgba(115, 133, 206, 0.22);
+		background: rgba(238, 245, 255, 0.96) !important;
+		box-shadow: 0 20px 48px rgba(86, 99, 160, 0.18);
+	}
+
+	html[data-skin="liquid-chrome-y2k"] .panel-card:first-child::after,
+	html[data-skin="liquid-chrome-y2k"] .features article:nth-child(odd)::after,
+	html[data-skin="liquid-chrome-y2k"] ul.feature-icons li:nth-child(4n + 1)::after,
+	html[data-skin="liquid-chrome-y2k"] .work-tech-item:nth-child(4n + 1)::after {
+		opacity: 0.42;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-skin="liquid-chrome-y2k"] *,
+	html[data-skin="liquid-chrome-y2k"] *::before,
+	html[data-skin="liquid-chrome-y2k"] *::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}

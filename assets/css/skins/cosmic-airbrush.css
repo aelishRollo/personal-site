@@ -1,0 +1,453 @@
+/*
+	Cosmic Airbrush
+	Derived from 12-cosmic-airbrush.html. A violet star field, airbrushed planets,
+	cream type and restrained orbital details preserve the source atmosphere
+	without changing the portfolio layout.
+*/
+
+html[data-skin="cosmic-airbrush"] {
+	--background: #100626;
+	--foreground: #fff0d8;
+	--muted-bg: #180b35;
+	--card-bg: #1b0d3a;
+	--border: rgba(255, 240, 216, 0.22);
+	--primary: #ff75c8;
+	--primary-fg: #100626;
+	--secondary: #ffbd59;
+	--secondary-fg: #100626;
+	--accent: #7a68ff;
+	--accent-fg: #fff0d8;
+	--link: #ffbd59;
+	--warning: #ff75c8;
+	--header-bg: #100626;
+	--header-fg: #fff0d8;
+	--footer-bg: #0b031b;
+	--footer-fg: #fff0d8;
+	--bg: #100626;
+	--surface-1: #1b0d3a;
+	--surface-2: #180b35;
+	--surface-3: #25124d;
+	--text-1: #fff0d8;
+	--text-2: #d8cbe0;
+	--line-1: rgba(255, 240, 216, 0.22);
+	--accent-1: #ff75c8;
+	--accent-2: #ffbd59;
+}
+
+html[data-skin="cosmic-airbrush"] body {
+	background-color: #100626 !important;
+	background-image:
+		radial-gradient(circle at 18% 24%, rgba(255, 117, 200, 0.12), transparent 25rem),
+		radial-gradient(circle at 86% 74%, rgba(122, 104, 255, 0.14), transparent 30rem),
+		radial-gradient(circle, rgba(255, 240, 216, 0.42) 0 1px, transparent 1.4px) !important;
+	background-size: auto, auto, 34px 34px !important;
+	color: #fff0d8 !important;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+	overflow-x: hidden;
+}
+
+html[data-skin="cosmic-airbrush"] body,
+html[data-skin="cosmic-airbrush"] p,
+html[data-skin="cosmic-airbrush"] li,
+html[data-skin="cosmic-airbrush"] label,
+html[data-skin="cosmic-airbrush"] .lead,
+html[data-skin="cosmic-airbrush"] .note,
+html[data-skin="cosmic-airbrush"] .footer-inner p,
+html[data-skin="cosmic-airbrush"] .social-inline a {
+	color: #d8cbe0 !important;
+}
+
+html[data-skin="cosmic-airbrush"] h1,
+html[data-skin="cosmic-airbrush"] h2,
+html[data-skin="cosmic-airbrush"] h3,
+html[data-skin="cosmic-airbrush"] h4,
+html[data-skin="cosmic-airbrush"] h5,
+html[data-skin="cosmic-airbrush"] h6,
+html[data-skin="cosmic-airbrush"] strong {
+	color: #fff0d8 !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-weight: 900;
+	letter-spacing: -0.055em;
+}
+
+html[data-skin="cosmic-airbrush"] a {
+	color: #ffbd59 !important;
+	text-decoration-color: rgba(255, 117, 200, 0.68);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.2em;
+}
+
+html[data-skin="cosmic-airbrush"] a:hover {
+	color: #ff75c8 !important;
+}
+
+html[data-skin="cosmic-airbrush"] .site-header {
+	border-bottom: 1px solid rgba(255, 240, 216, 0.2) !important;
+	background: rgba(16, 6, 38, 0.97) !important;
+	box-shadow: 0 12px 34px rgba(4, 1, 12, 0.28) !important;
+	backdrop-filter: none !important;
+}
+
+html[data-skin="cosmic-airbrush"] .brand-mark {
+	border: 1px solid rgba(255, 240, 216, 0.55);
+	border-radius: 50%;
+	background: radial-gradient(circle at 34% 28%, #fff7cf 0 8%, #ffbd59 18%, #ff75c8 46%, #7a68ff 74%, #100626) !important;
+	box-shadow: 0 0 22px rgba(255, 117, 200, 0.35);
+	color: #100626 !important;
+}
+
+html[data-skin="cosmic-airbrush"] .brand-text,
+html[data-skin="cosmic-airbrush"] .site-nav a,
+html[data-skin="cosmic-airbrush"] .nav-toggle {
+	color: #fff0d8 !important;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+	font-weight: 800;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+html[data-skin="cosmic-airbrush"] .site-nav a {
+	border-radius: 999px;
+}
+
+html[data-skin="cosmic-airbrush"] .site-nav a:hover,
+html[data-skin="cosmic-airbrush"] .site-nav a[aria-current="page"] {
+	background: rgba(255, 117, 200, 0.14) !important;
+	color: #ff75c8 !important;
+}
+
+html[data-skin="cosmic-airbrush"] .site-nav .nav-cta,
+html[data-skin="cosmic-airbrush"] .nav-toggle {
+	border: 1px solid rgba(255, 189, 89, 0.58) !important;
+	border-radius: 999px !important;
+	background: rgba(255, 189, 89, 0.08) !important;
+}
+
+html[data-skin="cosmic-airbrush"] .page-hero,
+html[data-skin="cosmic-airbrush"] body.page-home .page-hero,
+html[data-skin="cosmic-airbrush"] body.page-services .page-hero,
+html[data-skin="cosmic-airbrush"] body.page-work .page-hero,
+html[data-skin="cosmic-airbrush"] body.page-connect .page-hero,
+html[data-skin="cosmic-airbrush"] body.page-about .page-hero,
+html[data-skin="cosmic-airbrush"] body.page-contact .page-hero {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	border-color: rgba(255, 240, 216, 0.2) !important;
+	background: #100626 !important;
+	color: #fff0d8 !important;
+}
+
+html[data-skin="cosmic-airbrush"] .page-hero::before {
+	content: "";
+	position: absolute;
+	right: -10vw;
+	top: clamp(4rem, 10vh, 8rem);
+	z-index: -1;
+	width: min(56vw, 38rem);
+	aspect-ratio: 1;
+	border: 1px solid rgba(255, 240, 216, 0.26);
+	border-radius: 50%;
+	background:
+		radial-gradient(circle at 35% 29%, #fff7cf 0 4%, #ffbd59 10%, #ff75c8 20%, #7a68ff 45%, #241047 62%, #100626 72%);
+	box-shadow: -5rem 5rem 7rem rgba(255, 189, 89, 0.18);
+	opacity: 0.9;
+	pointer-events: none;
+	will-change: transform;
+	animation: cosmic-airbrush-float 8s ease-in-out infinite alternate;
+}
+
+html[data-skin="cosmic-airbrush"] .page-hero::after {
+	content: "";
+	position: absolute;
+	left: -14rem;
+	bottom: -16rem;
+	z-index: -1;
+	width: 34rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: radial-gradient(circle, rgba(255, 117, 200, 0.28), rgba(122, 104, 255, 0.1) 42%, transparent 70%);
+	pointer-events: none;
+}
+
+@keyframes cosmic-airbrush-float {
+	to { transform: translate3d(1.5rem, 1rem, 0) rotate(7deg) scale(0.96); }
+}
+
+html[data-skin="cosmic-airbrush"] .page-hero .site-shell,
+html[data-skin="cosmic-airbrush"] .hero-copy,
+html[data-skin="cosmic-airbrush"] .hero-media {
+	position: relative;
+	z-index: 1;
+	min-width: 0;
+}
+
+html[data-skin="cosmic-airbrush"] .page-hero h1,
+html[data-skin="cosmic-airbrush"] body.page-home .page-hero h1 {
+	color: #fff0d8 !important;
+	letter-spacing: -0.075em;
+	line-height: 0.86;
+	text-transform: uppercase;
+	text-shadow: 0 5px 30px rgba(4, 1, 12, 0.38);
+}
+
+html[data-skin="cosmic-airbrush"] .hero-title-role:nth-of-type(even) {
+	color: #ff75c8 !important;
+}
+
+html[data-skin="cosmic-airbrush"] .hero-title-role:nth-of-type(3n) {
+	color: #ffbd59 !important;
+}
+
+html[data-skin="cosmic-airbrush"] .metallic-pearl-text {
+	background: none;
+	color: #7a68ff !important;
+	-webkit-text-fill-color: currentColor;
+	filter: none;
+}
+
+html[data-skin="cosmic-airbrush"] .hero-title-initial {
+	color: inherit !important;
+	-webkit-text-fill-color: inherit;
+}
+
+html[data-skin="cosmic-airbrush"] .eyebrow {
+	border: 1px solid rgba(255, 240, 216, 0.3) !important;
+	border-radius: 999px;
+	background: rgba(255, 240, 216, 0.07) !important;
+	box-shadow: 0 8px 24px rgba(4, 1, 12, 0.25);
+	color: #ffbd59 !important;
+	font-weight: 800;
+	letter-spacing: 0.12em;
+}
+
+html[data-skin="cosmic-airbrush"] .page-section {
+	border-color: rgba(255, 240, 216, 0.18) !important;
+	background-color: #100626 !important;
+	background-image: radial-gradient(circle, rgba(255, 240, 216, 0.22) 0 1px, transparent 1.4px) !important;
+	background-size: 34px 34px !important;
+}
+
+html[data-skin="cosmic-airbrush"] .section-soft {
+	background-color: #180b35 !important;
+}
+
+html[data-skin="cosmic-airbrush"] .section-portrait {
+	background-color: #25124d !important;
+}
+
+html[data-skin="cosmic-airbrush"] .panel-card,
+html[data-skin="cosmic-airbrush"] .features article,
+html[data-skin="cosmic-airbrush"] .contact-rail,
+html[data-skin="cosmic-airbrush"] ul.feature-icons li,
+html[data-skin="cosmic-airbrush"] .work-overview,
+html[data-skin="cosmic-airbrush"] .work-tech-item,
+html[data-skin="cosmic-airbrush"] .profile-chip {
+	position: relative;
+	overflow: hidden;
+	border: 1px solid rgba(255, 240, 216, 0.24) !important;
+	border-radius: 1.5rem !important;
+	background:
+		radial-gradient(circle at 106% -12%, #fff7cf 0 1.4rem, #ffbd59 1.5rem 2.7rem, #ff75c8 2.8rem 4.2rem, #7a68ff 4.3rem 6.8rem, transparent 6.9rem),
+		linear-gradient(145deg, rgba(255, 117, 200, 0.08), rgba(122, 104, 255, 0.08)),
+		#1b0d3a !important;
+	box-shadow: 0 22px 46px rgba(4, 1, 12, 0.3) !important;
+	color: #fff0d8 !important;
+	contain: paint;
+	transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+html[data-skin="cosmic-airbrush"] .panel-card:nth-child(even),
+html[data-skin="cosmic-airbrush"] .features article:nth-child(even),
+html[data-skin="cosmic-airbrush"] ul.feature-icons li:nth-child(even),
+html[data-skin="cosmic-airbrush"] .work-tech-item:nth-child(even) {
+	background:
+		radial-gradient(circle at 106% -12%, #fff7cf 0 1.4rem, #ff75c8 1.5rem 3rem, #7a68ff 3.1rem 5.4rem, transparent 5.5rem),
+		linear-gradient(145deg, rgba(122, 104, 255, 0.2), rgba(255, 117, 200, 0.08)),
+		#1b0d3a !important;
+}
+
+html[data-skin="cosmic-airbrush"] .panel-card:hover,
+html[data-skin="cosmic-airbrush"] .features article:hover,
+html[data-skin="cosmic-airbrush"] ul.feature-icons li:hover {
+	box-shadow: 0 28px 58px rgba(4, 1, 12, 0.42), 0 0 26px rgba(122, 104, 255, 0.14) !important;
+	transform: translateY(-3px);
+}
+
+html[data-skin="cosmic-airbrush"] .work-overview {
+	overflow: visible;
+	contain: none;
+}
+
+html[data-skin="cosmic-airbrush"] .features article .image,
+html[data-skin="cosmic-airbrush"] .hero-media img,
+html[data-skin="cosmic-airbrush"] .portrait-panel img,
+html[data-skin="cosmic-airbrush"] .profile-chip img {
+	border: 1px solid rgba(255, 240, 216, 0.42) !important;
+	border-radius: 1.25rem !important;
+	box-shadow: 0 20px 42px rgba(4, 1, 12, 0.36) !important;
+	filter: none !important;
+}
+
+html[data-skin="cosmic-airbrush"] .features article .image {
+	background: #100626 !important;
+}
+
+html[data-skin="cosmic-airbrush"] .hero-splash .hero-splash-text {
+	color: #fff0d8 !important;
+	text-shadow: 0 0 18px rgba(255, 117, 200, 0.44);
+}
+
+html[data-skin="cosmic-airbrush"] .tag-list li,
+html[data-skin="cosmic-airbrush"] .profile-chip {
+	border: 1px solid rgba(255, 240, 216, 0.26) !important;
+	border-radius: 999px !important;
+	background: rgba(122, 104, 255, 0.22) !important;
+	box-shadow: 0 8px 20px rgba(4, 1, 12, 0.22);
+	color: #fff0d8 !important;
+	font-weight: 800;
+}
+
+html[data-skin="cosmic-airbrush"] .timeline li {
+	border-color: rgba(255, 240, 216, 0.28) !important;
+}
+
+html[data-skin="cosmic-airbrush"] .timeline li::before {
+	border: 3px solid #100626;
+	background: #ff75c8;
+	box-shadow: 0 0 0 2px #ffbd59, 0 0 18px rgba(255, 117, 200, 0.38);
+}
+
+html[data-skin="cosmic-airbrush"] input[type="text"],
+html[data-skin="cosmic-airbrush"] input[type="password"],
+html[data-skin="cosmic-airbrush"] input[type="email"],
+html[data-skin="cosmic-airbrush"] select,
+html[data-skin="cosmic-airbrush"] textarea {
+	border: 1px solid rgba(255, 240, 216, 0.32) !important;
+	border-radius: 1rem !important;
+	background: rgba(255, 240, 216, 0.06) !important;
+	box-shadow: inset 0 1px 0 rgba(255, 240, 216, 0.07) !important;
+	color: #fff0d8 !important;
+}
+
+html[data-skin="cosmic-airbrush"] input:focus,
+html[data-skin="cosmic-airbrush"] select:focus,
+html[data-skin="cosmic-airbrush"] textarea:focus {
+	border-color: #ff75c8 !important;
+	box-shadow: 0 0 0 3px rgba(255, 117, 200, 0.14) !important;
+}
+
+html[data-skin="cosmic-airbrush"] input[type="submit"],
+html[data-skin="cosmic-airbrush"] input[type="reset"],
+html[data-skin="cosmic-airbrush"] input[type="button"],
+html[data-skin="cosmic-airbrush"] button:not([class^="skin-picker"]),
+html[data-skin="cosmic-airbrush"] .button {
+	border: 1px solid rgba(255, 240, 216, 0.28) !important;
+	border-radius: 999px !important;
+	background: #ffbd59 !important;
+	box-shadow: 0 10px 26px rgba(4, 1, 12, 0.28) !important;
+	color: #100626 !important;
+	font-weight: 850;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+html[data-skin="cosmic-airbrush"] input[type="submit"].primary,
+html[data-skin="cosmic-airbrush"] input[type="button"].primary,
+html[data-skin="cosmic-airbrush"] button.primary,
+html[data-skin="cosmic-airbrush"] .button.primary,
+html[data-skin="cosmic-airbrush"] .contact-submit,
+html[data-skin="cosmic-airbrush"] .features article .inner span a {
+	background: #ff75c8 !important;
+	color: #100626 !important;
+}
+
+html[data-skin="cosmic-airbrush"] input[type="submit"]:hover,
+html[data-skin="cosmic-airbrush"] button:not([class^="skin-picker"]):hover,
+html[data-skin="cosmic-airbrush"] .button:hover {
+	background: #7a68ff !important;
+	box-shadow: 0 14px 30px rgba(4, 1, 12, 0.38) !important;
+	color: #fff0d8 !important;
+	transform: translateY(-2px);
+}
+
+html[data-skin="cosmic-airbrush"] .section-cta {
+	position: relative;
+	overflow: hidden;
+	border-block: 1px solid rgba(255, 240, 216, 0.2) !important;
+	background:
+		radial-gradient(circle at 88% 20%, rgba(255, 117, 200, 0.28), transparent 18rem),
+		#0b031b !important;
+	color: #fff0d8 !important;
+}
+
+html[data-skin="cosmic-airbrush"] .section-cta h2,
+html[data-skin="cosmic-airbrush"] .section-cta p {
+	color: #fff0d8 !important;
+}
+
+html[data-skin="cosmic-airbrush"] .site-footer {
+	border-top: 1px solid rgba(255, 240, 216, 0.18) !important;
+	background: #0b031b !important;
+	color: #fff0d8 !important;
+}
+
+html[data-skin="cosmic-airbrush"] .site-footer p,
+html[data-skin="cosmic-airbrush"] .site-footer a {
+	color: #fff0d8 !important;
+}
+
+html[data-skin="cosmic-airbrush"] .skin-picker {
+	--skin-ui-bg: #100626;
+	--skin-ui-panel: #1b0d3a;
+	--skin-ui-text: #fff0d8;
+	--skin-ui-muted: #c4b5d2;
+	--skin-ui-accent: #ff75c8;
+	--skin-ui-border: rgba(255, 240, 216, 0.26);
+}
+
+html[data-skin="cosmic-airbrush"] .skin-picker-panel {
+	border: 1px solid rgba(255, 240, 216, 0.28);
+	border-radius: 1.25rem;
+	box-shadow: 0 24px 60px rgba(4, 1, 12, 0.48);
+}
+
+html[data-skin="cosmic-airbrush"] .skin-picker-toggle {
+	border: 1px solid rgba(255, 240, 216, 0.3) !important;
+	border-radius: 999px !important;
+	background: #100626 !important;
+	box-shadow: 0 12px 30px rgba(4, 1, 12, 0.42) !important;
+	color: #fff0d8 !important;
+}
+
+html[data-skin="cosmic-airbrush"] .skin-picker-toggle-label,
+html[data-skin="cosmic-airbrush"] .skin-picker-current,
+html[data-skin="cosmic-airbrush"] .skin-picker-chevron {
+	color: #fff0d8 !important;
+}
+
+@media (max-width: 736px) {
+	html[data-skin="cosmic-airbrush"] .page-hero::before {
+		right: -10rem;
+		top: 8rem;
+		width: 26rem;
+		opacity: 0.64;
+	}
+
+	html[data-skin="cosmic-airbrush"] body.nav-open .site-nav {
+		border: 1px solid rgba(255, 240, 216, 0.28);
+		border-radius: 1.25rem;
+		background: #100626 !important;
+		box-shadow: 0 20px 48px rgba(4, 1, 12, 0.5);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-skin="cosmic-airbrush"] *,
+	html[data-skin="cosmic-airbrush"] *::before,
+	html[data-skin="cosmic-airbrush"] *::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}

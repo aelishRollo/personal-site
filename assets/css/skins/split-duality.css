@@ -1,0 +1,730 @@
+/*
+	Split Duality
+	Derived from 17-split-duality.html. Hard light/dark divisions, organic pink
+	forms and rotating cyan-violet geometry are adapted without changing layout.
+*/
+
+html[data-skin="split-duality"] {
+	--background: #111111;
+	--foreground: #ffffff;
+	--muted-bg: #19191f;
+	--card-bg: #ffffff;
+	--border: #111111;
+	--primary: #ffef3d;
+	--primary-fg: #111111;
+	--secondary: #7a5cff;
+	--secondary-fg: #ffffff;
+	--accent: #ff2f87;
+	--accent-fg: #111111;
+	--link: #00d9ef;
+	--warning: #ff2f87;
+	--header-bg: #111111;
+	--header-fg: #ffffff;
+	--footer-bg: #111111;
+	--footer-fg: #ffffff;
+	--bg: #111111;
+	--surface-1: #ffffff;
+	--surface-2: #19191f;
+	--surface-3: #7a5cff;
+	--text-1: #ffffff;
+	--text-2: #d8d8e2;
+	--line-1: rgba(255, 255, 255, 0.24);
+	--accent-1: #00eaff;
+	--accent-2: #ff2f87;
+	overflow-x: clip;
+}
+
+html[data-skin="split-duality"] body {
+	background: linear-gradient(90deg, #ffef3d 0 50%, #111111 50%) fixed !important;
+	color: #ffffff !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+	overflow-x: hidden;
+}
+
+html[data-skin="split-duality"] body,
+html[data-skin="split-duality"] p,
+html[data-skin="split-duality"] li,
+html[data-skin="split-duality"] label,
+html[data-skin="split-duality"] .lead,
+html[data-skin="split-duality"] .note,
+html[data-skin="split-duality"] .footer-inner p,
+html[data-skin="split-duality"] .social-inline a {
+	color: #d8d8e2 !important;
+}
+
+html[data-skin="split-duality"] h1,
+html[data-skin="split-duality"] h2,
+html[data-skin="split-duality"] h3,
+html[data-skin="split-duality"] h4,
+html[data-skin="split-duality"] h5,
+html[data-skin="split-duality"] h6,
+html[data-skin="split-duality"] strong {
+	color: #ffffff !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-weight: 900;
+	letter-spacing: -0.055em;
+}
+
+html[data-skin="split-duality"] a {
+	color: #00d9ef !important;
+	text-decoration-color: #ff2f87;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.2em;
+}
+
+html[data-skin="split-duality"] a:hover {
+	color: #ffef3d !important;
+}
+
+html[data-skin="split-duality"] .site-header {
+	border-bottom: 2px solid #111111 !important;
+	background: linear-gradient(90deg, #ffef3d 0 50%, #111111 50%) !important;
+	box-shadow: none !important;
+	backdrop-filter: none !important;
+}
+
+html[data-skin="split-duality"] .brand-mark {
+	border: 2px solid #111111;
+	border-radius: 50% !important;
+	background: #ff2f87 !important;
+	box-shadow: 4px 4px 0 #111111;
+	color: #111111 !important;
+}
+
+html[data-skin="split-duality"] .brand-text {
+	color: #111111 !important;
+	font-weight: 900;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+html[data-skin="split-duality"] .site-nav a,
+html[data-skin="split-duality"] .nav-toggle {
+	color: #ffffff !important;
+	font-weight: 850;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+html[data-skin="split-duality"] .site-nav a {
+	border-radius: 0 !important;
+}
+
+html[data-skin="split-duality"] .site-nav a:hover,
+html[data-skin="split-duality"] .site-nav a[aria-current="page"] {
+	background: #7a5cff !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="split-duality"] .site-nav .nav-cta,
+html[data-skin="split-duality"] .nav-toggle {
+	border: 2px solid #00eaff !important;
+	border-radius: 0 !important;
+	background: #111111 !important;
+	box-shadow: 4px 4px 0 #ff2f87;
+}
+
+html[data-skin="split-duality"] .page-hero,
+html[data-skin="split-duality"] body.page-home .page-hero,
+html[data-skin="split-duality"] body.page-services .page-hero,
+html[data-skin="split-duality"] body.page-work .page-hero,
+html[data-skin="split-duality"] body.page-connect .page-hero,
+html[data-skin="split-duality"] body.page-about .page-hero,
+html[data-skin="split-duality"] body.page-contact .page-hero {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	border-color: #111111 !important;
+	background: linear-gradient(90deg, #ffef3d 0 50%, #111111 50%) !important;
+	color: #111111 !important;
+}
+
+html[data-skin="split-duality"] .page-hero::before {
+	content: "";
+	position: absolute;
+	left: calc(50% - 9rem);
+	bottom: 7%;
+	z-index: -1;
+	width: 18rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: #ff2f87;
+	opacity: 0.82;
+	pointer-events: none;
+	will-change: transform;
+	animation: split-duality-float 5s ease-in-out infinite alternate;
+}
+
+html[data-skin="split-duality"] .page-hero::after {
+	content: "";
+	position: absolute;
+	right: -5rem;
+	top: 12%;
+	z-index: -1;
+	width: min(34vw, 20rem);
+	aspect-ratio: 1;
+	border-radius: 18%;
+	background: repeating-conic-gradient(#00eaff 0 10deg, #7a5cff 10deg 20deg, #111111 20deg 30deg);
+	opacity: 0.78;
+	pointer-events: none;
+	will-change: transform;
+	animation: split-duality-rotate 12s linear infinite;
+}
+
+@keyframes split-duality-float {
+	to { transform: translate3d(-2.5rem, -1.8rem, 0) scale(0.76); }
+}
+
+@keyframes split-duality-rotate {
+	to { transform: rotate(360deg); }
+}
+
+html[data-skin="split-duality"] .page-hero .site-shell,
+html[data-skin="split-duality"] .hero-copy,
+html[data-skin="split-duality"] .hero-media {
+	position: relative;
+	z-index: 1;
+	min-width: 0;
+}
+
+html[data-skin="split-duality"] .page-hero h1,
+html[data-skin="split-duality"] body.page-home .page-hero h1 {
+	background: linear-gradient(90deg, #111111 0 49%, #ffffff 51% 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent !important;
+	-webkit-text-fill-color: transparent;
+	letter-spacing: -0.075em;
+	line-height: 0.86;
+	text-transform: uppercase;
+}
+
+html[data-skin="split-duality"] .hero-title-role,
+html[data-skin="split-duality"] .hero-title-role:nth-of-type(n),
+html[data-skin="split-duality"] .metallic-pearl-text,
+html[data-skin="split-duality"] .hero-title-initial,
+html[data-skin="split-duality"] .hero-title-role::first-letter {
+	background: inherit;
+	color: inherit !important;
+	-webkit-text-fill-color: inherit;
+	filter: none;
+}
+
+html[data-skin="split-duality"] .page-hero .hero-summary,
+html[data-skin="split-duality"] .page-hero .lead {
+	display: block;
+	width: fit-content;
+	max-width: 48rem;
+	padding: 0.35rem 0.5rem;
+	background: rgba(255, 255, 255, 0.92) !important;
+	box-shadow: 5px 5px 0 #7a5cff;
+	color: #111111 !important;
+}
+
+html[data-skin="split-duality"] .eyebrow {
+	border: 2px solid #111111 !important;
+	border-radius: 0 !important;
+	background: #111111 !important;
+	box-shadow: 4px 4px 0 #ff2f87;
+	color: #ffef3d !important;
+	font-weight: 900;
+	letter-spacing: 0.14em;
+}
+
+html[data-skin="split-duality"] .page-section {
+	border-color: #111111 !important;
+	background: linear-gradient(90deg, #ffffff 0 50%, #7a5cff 50%) !important;
+	color: #111111 !important;
+}
+
+html[data-skin="split-duality"] .page-section p,
+html[data-skin="split-duality"] .page-section li,
+html[data-skin="split-duality"] .page-section h2,
+html[data-skin="split-duality"] .page-section h3 {
+	color: #111111 !important;
+}
+
+html[data-skin="split-duality"] .section-soft,
+html[data-skin="split-duality"] .section-portrait {
+	background:
+		repeating-linear-gradient(90deg, transparent 0 22px, rgba(255, 239, 61, 0.18) 22px 44px),
+		#111111 !important;
+}
+
+html[data-skin="split-duality"] .panel-card,
+html[data-skin="split-duality"] .features article,
+html[data-skin="split-duality"] .contact-rail,
+html[data-skin="split-duality"] ul.feature-icons li,
+html[data-skin="split-duality"] .work-overview,
+html[data-skin="split-duality"] .work-tech-item,
+html[data-skin="split-duality"] .profile-chip {
+	position: relative;
+	border: 2px solid #111111 !important;
+	border-radius: 0 !important;
+	background: #ffffff !important;
+	box-shadow: 7px 7px 0 #111111 !important;
+	color: #111111 !important;
+}
+
+html[data-skin="split-duality"] .panel-card:nth-child(even),
+html[data-skin="split-duality"] .features article:nth-child(even),
+html[data-skin="split-duality"] ul.feature-icons li:nth-child(even),
+html[data-skin="split-duality"] .work-tech-item:nth-child(even) {
+	background: #7a5cff !important;
+	box-shadow: 7px 7px 0 #00eaff !important;
+}
+
+html[data-skin="split-duality"] .panel-card:nth-child(3n),
+html[data-skin="split-duality"] .features article:nth-child(3n),
+html[data-skin="split-duality"] ul.feature-icons li:nth-child(3n),
+html[data-skin="split-duality"] .work-tech-item:nth-child(3n) {
+	background: #ffef3d !important;
+	box-shadow: 7px 7px 0 #ff2f87 !important;
+}
+
+html[data-skin="split-duality"] .panel-card p,
+html[data-skin="split-duality"] .panel-card h3,
+html[data-skin="split-duality"] .features article p,
+html[data-skin="split-duality"] .features article h3,
+html[data-skin="split-duality"] .work-overview p,
+html[data-skin="split-duality"] .work-overview h2,
+html[data-skin="split-duality"] .work-overview h3,
+html[data-skin="split-duality"] .work-tech-item,
+html[data-skin="split-duality"] .work-tech-item dt,
+html[data-skin="split-duality"] .work-tech-item dd {
+	color: #111111 !important;
+}
+
+html[data-skin="split-duality"] .work-overview {
+	overflow: visible;
+}
+
+html[data-skin="split-duality"] .features article .image,
+html[data-skin="split-duality"] .hero-media img,
+html[data-skin="split-duality"] .portrait-panel img,
+html[data-skin="split-duality"] .profile-chip img {
+	border: 2px solid #111111;
+	border-radius: 0 !important;
+	box-shadow: 7px 7px 0 #ff2f87, -5px -5px 0 #00eaff;
+	filter: none !important;
+}
+
+html[data-skin="split-duality"] .features article .image {
+	background: #111111 !important;
+}
+
+html[data-skin="split-duality"] .hero-splash .hero-splash-text,
+html[data-skin="split-duality"] .tag-list li,
+html[data-skin="split-duality"] .profile-chip {
+	border: 2px solid #111111 !important;
+	border-radius: 0 !important;
+	background: #ffffff !important;
+	box-shadow: 4px 4px 0 #00eaff;
+	color: #111111 !important;
+}
+
+html[data-skin="split-duality"] .tag-list li:nth-child(even) {
+	background: #ffef3d !important;
+	box-shadow: 4px 4px 0 #ff2f87;
+}
+
+html[data-skin="split-duality"] .timeline li::before {
+	background: #ff2f87 !important;
+	box-shadow: 0 0 0 4px #ffef3d, 0 0 0 6px #111111;
+}
+
+html[data-skin="split-duality"] input[type="text"],
+html[data-skin="split-duality"] input[type="password"],
+html[data-skin="split-duality"] input[type="email"],
+html[data-skin="split-duality"] select,
+html[data-skin="split-duality"] textarea {
+	border: 2px solid #111111 !important;
+	border-radius: 0 !important;
+	background: #ffffff !important;
+	color: #111111 !important;
+	box-shadow: 5px 5px 0 #7a5cff;
+}
+
+html[data-skin="split-duality"] input:focus,
+html[data-skin="split-duality"] select:focus,
+html[data-skin="split-duality"] textarea:focus {
+	border-color: #00eaff !important;
+	box-shadow: 5px 5px 0 #ff2f87 !important;
+}
+
+html[data-skin="split-duality"] input[type="submit"],
+html[data-skin="split-duality"] input[type="reset"],
+html[data-skin="split-duality"] input[type="button"],
+html[data-skin="split-duality"] button:not([class^="skin-picker"]),
+html[data-skin="split-duality"] .button {
+	border: 2px solid #111111 !important;
+	border-radius: 0 !important;
+	background: #ffffff !important;
+	box-shadow: 5px 5px 0 #111111;
+	color: #111111 !important;
+	font-weight: 900;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+html[data-skin="split-duality"] input[type="submit"].primary,
+html[data-skin="split-duality"] input[type="button"].primary,
+html[data-skin="split-duality"] button.primary,
+html[data-skin="split-duality"] .button.primary,
+html[data-skin="split-duality"] .contact-submit,
+html[data-skin="split-duality"] .features article .inner span a {
+	border-color: #111111 !important;
+	background: #ffef3d !important;
+	box-shadow: 5px 5px 0 #ff2f87;
+	color: #111111 !important;
+}
+
+html[data-skin="split-duality"] input[type="submit"]:hover,
+html[data-skin="split-duality"] button:not([class^="skin-picker"]):hover,
+html[data-skin="split-duality"] .button:hover {
+	background: #00eaff !important;
+	color: #111111 !important;
+	transform: translate(2px, 2px);
+}
+
+html[data-skin="split-duality"] .section-cta {
+	border-block: 2px solid #111111 !important;
+	background: linear-gradient(90deg, #ffef3d 0 50%, #ff2f87 50%) !important;
+}
+
+html[data-skin="split-duality"] .section-cta h2,
+html[data-skin="split-duality"] .section-cta p {
+	color: #111111 !important;
+}
+
+html[data-skin="split-duality"] .site-footer {
+	border-top: 2px solid #111111 !important;
+	background: linear-gradient(90deg, #111111 0 50%, #7a5cff 50%) !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="split-duality"] .site-footer p,
+html[data-skin="split-duality"] .site-footer a {
+	color: #ffffff !important;
+}
+
+html[data-skin="split-duality"] .skin-picker {
+	--skin-ui-bg: #111111;
+	--skin-ui-panel: #ffffff;
+	--skin-ui-text: #111111;
+	--skin-ui-muted: #43434b;
+	--skin-ui-accent: #7a5cff;
+	--skin-ui-border: #111111;
+}
+
+html[data-skin="split-duality"] .skin-picker-panel {
+	border: 2px solid #111111 !important;
+	border-radius: 0 !important;
+	box-shadow: 7px 7px 0 #ff2f87 !important;
+}
+
+html[data-skin="split-duality"] .skin-picker-toggle {
+	border: 2px solid #ffef3d !important;
+	border-radius: 0 !important;
+	background: #111111 !important;
+	box-shadow: 5px 5px 0 #00eaff !important;
+}
+
+html[data-skin="split-duality"] .skin-picker-toggle-label,
+html[data-skin="split-duality"] .skin-picker-current,
+html[data-skin="split-duality"] .skin-picker-chevron {
+	color: #ffffff !important;
+}
+
+html[data-skin="split-duality"] .skin-picker .skin-picker-option {
+	border-radius: 0 !important;
+}
+
+html[data-skin="split-duality"] .skin-picker-scroll-arrow {
+	color: #7a5cff !important;
+}
+
+@media (max-width: 736px) {
+	html[data-skin="split-duality"] .site-header {
+		background: linear-gradient(90deg, #ffef3d 0 58%, #111111 58%) !important;
+	}
+
+	html[data-skin="split-duality"] .page-hero,
+	html[data-skin="split-duality"] body.page-home .page-hero,
+	html[data-skin="split-duality"] body.page-services .page-hero,
+	html[data-skin="split-duality"] body.page-work .page-hero,
+	html[data-skin="split-duality"] body.page-connect .page-hero,
+	html[data-skin="split-duality"] body.page-about .page-hero,
+	html[data-skin="split-duality"] body.page-contact .page-hero {
+		background: linear-gradient(90deg, #ffef3d 0 58%, #111111 58%) !important;
+	}
+
+	html[data-skin="split-duality"] .page-hero::before {
+		left: 34%;
+		bottom: 8%;
+		width: 11rem;
+		opacity: 0.62;
+	}
+
+	html[data-skin="split-duality"] .page-hero::after {
+		right: -5.5rem;
+		top: 16%;
+		width: 12rem;
+		opacity: 0.58;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-skin="split-duality"] .page-hero::before,
+	html[data-skin="split-duality"] .page-hero::after {
+		animation: none;
+	}
+}
+
+/*
+	The second pass anchors every two-tone fill to the viewport instead of to
+	the element. A card, headline, button, or shape that crosses the center seam
+	therefore changes color at the same physical line as the page background.
+*/
+html[data-skin="split-duality"] {
+	--split-left: #ffd166;
+	--split-right: #073b4c;
+	--split-ink-left: #073b4c;
+	--split-ink-right: #fffaf0;
+	--split-cream: #fffaf0;
+	--split-coral: #ff7a90;
+	--split-mint: #06d6a0;
+	--split-violet: #c7b8ea;
+	--split-page: linear-gradient(90deg, var(--split-left) 0 50%, var(--split-right) 50% 100%);
+	--split-ink: linear-gradient(90deg, var(--split-ink-left) 0 50%, var(--split-ink-right) 50% 100%);
+	--split-surface: linear-gradient(90deg, var(--split-cream) 0 50%, var(--split-coral) 50% 100%);
+	--split-surface-alt: linear-gradient(90deg, var(--split-mint) 0 50%, var(--split-left) 50% 100%);
+	--split-surface-third: linear-gradient(90deg, var(--split-left) 0 50%, var(--split-violet) 50% 100%);
+	--split-accent: linear-gradient(90deg, var(--split-coral) 0 50%, var(--split-mint) 50% 100%);
+	--background: var(--split-right);
+	--foreground: var(--split-cream);
+	--muted-bg: #0b495c;
+	--card-bg: var(--split-cream);
+	--border: var(--split-ink-left);
+	--primary: var(--split-left);
+	--primary-fg: var(--split-ink-left);
+	--secondary: var(--split-violet);
+	--secondary-fg: var(--split-ink-left);
+	--accent: var(--split-coral);
+	--accent-fg: var(--split-ink-left);
+	--link: var(--split-mint);
+	--warning: var(--split-coral);
+	--accent-1: var(--split-mint);
+	--accent-2: var(--split-coral);
+	--bg: var(--split-right);
+	--text-1: var(--split-ink-right);
+	--text-2: #d8ede9;
+}
+
+html[data-skin="split-duality"] body,
+html[data-skin="split-duality"] .site-header,
+html[data-skin="split-duality"] .page-hero,
+html[data-skin="split-duality"] body.page-home .page-hero,
+html[data-skin="split-duality"] body.page-services .page-hero,
+html[data-skin="split-duality"] body.page-work .page-hero,
+html[data-skin="split-duality"] body.page-connect .page-hero,
+html[data-skin="split-duality"] body.page-about .page-hero,
+html[data-skin="split-duality"] body.page-contact .page-hero {
+	background: var(--split-page) fixed !important;
+}
+
+html[data-skin="split-duality"] .page-hero h1,
+html[data-skin="split-duality"] body.page-home .page-hero h1,
+html[data-skin="split-duality"] .page-hero h1 .hero-title-role,
+html[data-skin="split-duality"] .page-hero h1 .hero-title-initial,
+html[data-skin="split-duality"] .page-hero h1 .metallic-pearl-text {
+	background: var(--split-ink) fixed !important;
+	background-clip: text !important;
+	-webkit-background-clip: text !important;
+	color: transparent !important;
+	-webkit-text-fill-color: transparent !important;
+}
+
+html[data-skin="split-duality"] .page-hero .hero-quests > h2,
+html[data-skin="split-duality"] .site-nav a:not([aria-current="page"]):not(.nav-cta) {
+	background: var(--split-ink) fixed !important;
+	background-clip: text !important;
+	-webkit-background-clip: text !important;
+	color: transparent !important;
+	-webkit-text-fill-color: transparent !important;
+}
+
+html[data-skin="split-duality"] .page-hero::before {
+	background: var(--split-accent) fixed !important;
+}
+
+html[data-skin="split-duality"] .page-hero::after {
+	background: repeating-conic-gradient(
+		var(--split-mint) 0 10deg,
+		var(--split-violet) 10deg 20deg,
+		var(--split-right) 20deg 30deg
+	) !important;
+}
+
+html[data-skin="split-duality"] .page-hero .hero-summary,
+html[data-skin="split-duality"] .page-hero .lead,
+html[data-skin="split-duality"] .hero-splash .hero-splash-text,
+html[data-skin="split-duality"] .tag-list li,
+html[data-skin="split-duality"] .profile-chip {
+	background: var(--split-surface) fixed !important;
+	box-shadow: 5px 5px 0 var(--split-violet) !important;
+	color: var(--split-ink-left) !important;
+}
+
+html[data-skin="split-duality"] .eyebrow {
+	background: var(--split-accent) fixed !important;
+	box-shadow: 4px 4px 0 var(--split-violet) !important;
+	color: var(--split-ink-left) !important;
+}
+
+html[data-skin="split-duality"] .page-section {
+	background: linear-gradient(90deg, var(--split-cream) 0 50%, var(--split-mint) 50% 100%) fixed !important;
+}
+
+html[data-theme][data-skin="split-duality"] .page-section:not(.section-cta):not(.section-soft):not(.section-portrait) {
+	background: linear-gradient(90deg, var(--split-cream) 0 50%, var(--split-mint) 50% 100%) fixed !important;
+}
+
+html[data-skin="split-duality"] .section-soft,
+html[data-skin="split-duality"] .section-portrait {
+	background: linear-gradient(90deg, var(--split-violet) 0 50%, var(--split-cream) 50% 100%) fixed !important;
+}
+
+html[data-skin="split-duality"] .panel-card,
+html[data-skin="split-duality"] .features article,
+html[data-skin="split-duality"] .contact-rail,
+html[data-skin="split-duality"] ul.feature-icons li,
+html[data-skin="split-duality"] .work-overview,
+html[data-skin="split-duality"] .work-tech-item,
+html[data-skin="split-duality"] .profile-chip {
+	background: var(--split-surface) fixed !important;
+	box-shadow: 7px 7px 0 var(--split-right) !important;
+	color: var(--split-ink-left) !important;
+}
+
+html[data-skin="split-duality"] .panel-card:nth-child(even),
+html[data-skin="split-duality"] .features article:nth-child(even),
+html[data-skin="split-duality"] ul.feature-icons li:nth-child(even),
+html[data-skin="split-duality"] .work-tech-item:nth-child(even) {
+	background: var(--split-surface-alt) fixed !important;
+	box-shadow: 7px 7px 0 var(--split-coral) !important;
+}
+
+html[data-skin="split-duality"] .panel-card:nth-child(3n),
+html[data-skin="split-duality"] .features article:nth-child(3n),
+html[data-skin="split-duality"] ul.feature-icons li:nth-child(3n),
+html[data-skin="split-duality"] .work-tech-item:nth-child(3n) {
+	background: var(--split-surface-third) fixed !important;
+	box-shadow: 7px 7px 0 var(--split-coral) !important;
+}
+
+html[data-skin="split-duality"] .panel-card p,
+html[data-skin="split-duality"] .panel-card h3,
+html[data-skin="split-duality"] .features article p,
+html[data-skin="split-duality"] .features article h3,
+html[data-skin="split-duality"] .work-overview p,
+html[data-skin="split-duality"] .work-overview h2,
+html[data-skin="split-duality"] .work-overview h3,
+html[data-skin="split-duality"] .work-tech-item,
+html[data-skin="split-duality"] .work-tech-item dt,
+html[data-skin="split-duality"] .work-tech-item dd,
+html[data-skin="split-duality"] .page-section p,
+html[data-skin="split-duality"] .page-section li,
+html[data-skin="split-duality"] .page-section h2,
+html[data-skin="split-duality"] .page-section h3 {
+	color: var(--split-ink-left) !important;
+}
+
+html[data-skin="split-duality"] .page-section label,
+html[data-skin="split-duality"] .page-section .optional-label {
+	color: var(--split-ink-left) !important;
+}
+
+html[data-skin="split-duality"] input[type="text"],
+html[data-skin="split-duality"] input[type="password"],
+html[data-skin="split-duality"] input[type="email"],
+html[data-skin="split-duality"] select,
+html[data-skin="split-duality"] textarea,
+html[data-skin="split-duality"] input[type="submit"],
+html[data-skin="split-duality"] input[type="reset"],
+html[data-skin="split-duality"] input[type="button"],
+html[data-skin="split-duality"] button:not([class^="skin-picker"]),
+html[data-skin="split-duality"] .button {
+	background: var(--split-surface) fixed !important;
+	color: var(--split-ink-left) !important;
+}
+
+html[data-skin="split-duality"] input[type="submit"].primary,
+html[data-skin="split-duality"] input[type="button"].primary,
+html[data-skin="split-duality"] button.primary,
+html[data-skin="split-duality"] .button.primary,
+html[data-skin="split-duality"] .contact-submit,
+html[data-skin="split-duality"] .features article .inner span a {
+	background: var(--split-surface-alt) fixed !important;
+	box-shadow: 5px 5px 0 var(--split-coral) !important;
+}
+
+html[data-skin="split-duality"] .section-cta {
+	background: linear-gradient(90deg, var(--split-left) 0 50%, var(--split-coral) 50% 100%) fixed !important;
+}
+
+html[data-skin="split-duality"] .site-footer {
+	background: linear-gradient(90deg, var(--split-right) 0 50%, #4a315f 50% 100%) fixed !important;
+}
+
+html[data-skin="split-duality"] .brand-mark {
+	background: var(--split-accent) fixed !important;
+	box-shadow: 4px 4px 0 var(--split-right);
+}
+
+html[data-skin="split-duality"] .brand-text {
+	color: var(--split-ink-left) !important;
+}
+
+html[data-skin="split-duality"] .site-nav a:hover,
+html[data-skin="split-duality"] .site-nav a[aria-current="page"] {
+	background: var(--split-violet) !important;
+	color: var(--split-ink-left) !important;
+}
+
+html[data-skin="split-duality"] .site-nav .nav-cta,
+html[data-skin="split-duality"] .nav-toggle {
+	border-color: var(--split-mint) !important;
+	background: var(--split-right) !important;
+	box-shadow: 4px 4px 0 var(--split-coral);
+}
+
+html[data-skin="split-duality"] .features article .image,
+html[data-skin="split-duality"] .hero-media img,
+html[data-skin="split-duality"] .portrait-panel img,
+html[data-skin="split-duality"] .profile-chip img {
+	box-shadow: 7px 7px 0 var(--split-coral), -5px -5px 0 var(--split-mint);
+}
+
+html[data-skin="split-duality"] .skin-picker {
+	--skin-ui-bg: var(--split-right);
+	--skin-ui-panel: var(--split-cream);
+	--skin-ui-text: var(--split-ink-left);
+	--skin-ui-muted: #40565c;
+	--skin-ui-accent: var(--split-coral);
+	--skin-ui-border: var(--split-right);
+}
+
+html[data-skin="split-duality"] .skin-picker-panel {
+	box-shadow: 7px 7px 0 var(--split-coral) !important;
+}
+
+html[data-skin="split-duality"] .skin-picker-toggle {
+	border-color: var(--split-left) !important;
+	background: var(--split-right) !important;
+	box-shadow: 5px 5px 0 var(--split-mint) !important;
+}
+
+html[data-skin="split-duality"] .skin-picker-scroll-arrow {
+	color: var(--split-coral) !important;
+}

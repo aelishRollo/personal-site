@@ -184,8 +184,8 @@ html[data-skin="op-art-monochrome"] body.page-home .page-hero h1 {
 	overflow-wrap: anywhere;
 }
 
-html[data-skin="op-art-monochrome"] .hero-title-role:nth-of-type(odd)::first-letter,
-html[data-skin="op-art-monochrome"] .hero-title-role:nth-of-type(even)::first-letter {
+html[data-skin="op-art-monochrome"] .hero-title-role:nth-of-type(odd) .hero-title-initial,
+html[data-skin="op-art-monochrome"] .hero-title-role:nth-of-type(even) .hero-title-initial {
 	color: var(--foreground);
 }
 

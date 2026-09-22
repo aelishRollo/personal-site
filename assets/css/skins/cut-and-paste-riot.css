@@ -1,0 +1,390 @@
+@import url("./psychedelic-scrapbook.css?v=psychedelic-scrapbook-corkboard-3");
+
+/* Cut-and-Paste Riot: punk zine, screen print, and paper collage. */
+html[data-skin="psychedelic-scrapbook"] {
+	--background: #f2dfbd;
+	--foreground: #171116;
+	--muted-bg: #ffdb1f;
+	--card-bg: #fff9e9;
+	--border: #171116;
+	--primary: #ff356f;
+	--primary-fg: #ffffff;
+	--secondary: #35e6bd;
+	--secondary-fg: #171116;
+	--accent: #5237e8;
+	--accent-fg: #ffffff;
+	--link: #171116;
+	--warning: #ff356f;
+	--header-bg: #ffdb1f;
+	--header-fg: #171116;
+	--footer-bg: #171116;
+	--footer-fg: #ffffff;
+	--surface-1: #fff9e9;
+	--surface-2: #ffdb1f;
+	--surface-3: #35e6bd;
+	--text-1: #171116;
+	--text-2: #392d36;
+	--line-1: #171116;
+	--accent-1: #ff356f;
+	--accent-2: #5237e8;
+}
+
+html[data-skin="psychedelic-scrapbook"] body {
+	background-color: var(--background) !important;
+	background-image:
+		radial-gradient(circle at 12% 8%, rgba(255, 53, 111, 0.34) 0 9rem, transparent 9.15rem),
+		radial-gradient(circle at 88% 24%, rgba(53, 230, 189, 0.36) 0 11rem, transparent 11.15rem),
+		radial-gradient(#171116 1.2px, transparent 1.4px) !important;
+	background-position: 0 0, 0 0, 0 0 !important;
+	background-size: auto, auto, 16px 16px !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .site-header {
+	border-bottom: 4px solid var(--border) !important;
+	background:
+		linear-gradient(101deg, var(--muted-bg) 0 56%, var(--secondary) 56% 73%, var(--primary) 73%) !important;
+	box-shadow: 0 6px 0 rgba(23, 17, 22, 0.18);
+}
+
+html[data-skin="psychedelic-scrapbook"] .brand-mark {
+	border-radius: 20% 50% 24% 46%;
+	background: var(--accent) !important;
+	box-shadow: 4px 4px 0 var(--border), -2px -2px 0 #ffffff;
+	transform: rotate(-9deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .page-hero,
+html[data-skin="psychedelic-scrapbook"] body.page-home .page-hero,
+html[data-skin="psychedelic-scrapbook"] body.page-services .page-hero,
+html[data-skin="psychedelic-scrapbook"] body.page-work .page-hero,
+html[data-skin="psychedelic-scrapbook"] body.page-connect .page-hero,
+html[data-skin="psychedelic-scrapbook"] body.page-about .page-hero,
+html[data-skin="psychedelic-scrapbook"] body.page-contact .page-hero {
+	border-bottom: 5px solid var(--border) !important;
+	background:
+		linear-gradient(112deg, transparent 0 61%, rgba(82, 55, 232, 0.14) 61% 63%, transparent 63%),
+		repeating-linear-gradient(-12deg, rgba(255, 249, 233, 0.82) 0 26px, rgba(255, 219, 31, 0.13) 26px 52px),
+		var(--background) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .page-hero::before {
+	content: "MAKE\A SOMETHING\A WEIRD";
+	top: 4.5rem;
+	right: -2.75rem;
+	display: grid;
+	place-items: center;
+	width: 18rem;
+	height: 18rem;
+	padding: 3.8rem;
+	border: 0;
+	border-radius: 0;
+	background: var(--secondary);
+	box-shadow: none;
+	clip-path: polygon(50% 0%, 61% 24%, 82% 9%, 78% 35%, 100% 39%, 78% 52%, 96% 70%, 69% 69%, 72% 98%, 52% 77%, 35% 100%, 34% 73%, 5% 82%, 25% 58%, 0 45%, 28% 38%, 16% 14%, 41% 25%);
+	color: var(--foreground);
+	filter: drop-shadow(10px 10px 0 var(--border));
+	font: 900 1.25rem/0.88 Arial, Helvetica, sans-serif;
+	letter-spacing: -0.05em;
+	text-align: center;
+	white-space: pre;
+	transform: rotate(9deg);
+	animation: scrapbook-wobble 5s ease-in-out infinite alternate;
+}
+
+html[data-skin="psychedelic-scrapbook"] .page-hero::after {
+	content: "\2702  NO RULES / GOOD IDEAS / LOUD COLORS";
+	right: 7%;
+	bottom: 2.25rem;
+	padding: 0.72rem 1rem 0.62rem;
+	border: 3px solid var(--border);
+	background: var(--foreground);
+	box-shadow: 6px 6px 0 var(--primary);
+	color: #ffffff;
+	font-size: 0.72rem;
+	letter-spacing: 0.09em;
+	transform: rotate(-3deg);
+}
+
+@keyframes scrapbook-wobble {
+	to { transform: rotate(12deg) scale(1.035); }
+}
+
+html[data-skin="psychedelic-scrapbook"] .page-hero h1,
+html[data-skin="psychedelic-scrapbook"] body.page-home .page-hero h1 {
+	display: grid;
+	justify-items: start;
+	gap: 0.13em;
+	width: fit-content;
+	max-width: min(100%, 11em);
+	color: var(--foreground) !important;
+	line-height: 0.9;
+	letter-spacing: -0.075em;
+	transform: none;
+}
+
+html[data-skin="psychedelic-scrapbook"] .hero-title-role,
+html[data-skin="psychedelic-scrapbook"] .hero-title-role:nth-of-type(2),
+html[data-skin="psychedelic-scrapbook"] .hero-title-role:nth-of-type(4) {
+	display: inline-block;
+	width: fit-content;
+	max-width: 100%;
+	margin: 0;
+	padding: 0.07em 0.15em 0.12em;
+	border: 3px solid var(--border);
+	background: #fff9e9;
+	box-shadow: 6px 6px 0 var(--border);
+	color: var(--foreground) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .hero-title-role:nth-of-type(1) {
+	background: #ffffff;
+	transform: rotate(-1.8deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .hero-title-role:nth-of-type(2) {
+	margin-left: 0.28em;
+	background: var(--primary);
+	color: #ffffff !important;
+	transform: rotate(1.2deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .hero-title-role:nth-of-type(3) {
+	margin-left: -0.08em;
+	background: var(--muted-bg);
+	transform: rotate(-0.65deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .hero-title-role:nth-of-type(4) {
+	margin-left: 0.12em;
+	background: var(--accent);
+	color: #ffffff !important;
+	transform: rotate(1.6deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .hero-title-role:nth-of-type(1) .hero-title-initial,
+html[data-skin="psychedelic-scrapbook"] .hero-title-role:nth-of-type(3) .hero-title-initial {
+	color: var(--primary) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .hero-summary {
+	position: relative;
+	width: min(100%, 38rem);
+	padding: 1.05rem 1.15rem;
+	border: 3px solid var(--border);
+	background: #fff9e9;
+	box-shadow: 8px 8px 0 var(--primary);
+	transform: rotate(0.45deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .page-hero .lead {
+	width: min(100%, 40rem);
+	padding: 0.9rem 1rem;
+	border-left: 9px solid var(--accent);
+	background: var(--muted-bg);
+	box-shadow: 5px 5px 0 var(--border);
+	transform: rotate(-0.35deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .hero-media {
+	isolation: isolate;
+	transform: translateY(-6.325rem) rotate(2.2deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .hero-media::before {
+	content: "ALEC / IN THE WILD";
+	position: absolute;
+	top: -0.8rem;
+	left: -0.85rem;
+	z-index: 5;
+	padding: 0.48rem 0.72rem;
+	border: 2px solid var(--border);
+	background: var(--muted-bg);
+	box-shadow: 3px 3px 0 var(--border);
+	color: var(--foreground);
+	font: 900 0.68rem/1 Arial, Helvetica, sans-serif;
+	letter-spacing: 0.08em;
+	transform: rotate(-7deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .hero-media img,
+html[data-skin="psychedelic-scrapbook"] .portrait-panel img,
+html[data-skin="psychedelic-scrapbook"] .profile-chip img {
+	border: 4px solid var(--border) !important;
+	box-shadow: 11px 11px 0 var(--primary), -7px -7px 0 var(--accent) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .hero-splash {
+	border: 3px solid var(--border);
+	background: var(--accent);
+	box-shadow: 7px 7px 0 var(--border);
+	transform: rotate(-1.5deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .hero-splash .hero-splash-text {
+	color: #ffffff !important;
+	text-shadow: 2px 2px 0 var(--foreground);
+}
+
+html[data-skin="psychedelic-scrapbook"] .eyebrow {
+	border-width: 3px !important;
+	background: var(--secondary) !important;
+	box-shadow: 5px 5px 0 var(--border);
+	transform: rotate(-2deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .quest-grid {
+	gap: 2rem;
+}
+
+html[data-skin="psychedelic-scrapbook"] .quest-card {
+	overflow: visible;
+	padding-top: 2.35rem;
+}
+
+html[data-skin="psychedelic-scrapbook"] .quest-card:nth-child(1) {
+	background: var(--secondary) !important;
+	transform: rotate(-1.1deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .quest-card:nth-child(2) {
+	background: var(--muted-bg) !important;
+	transform: rotate(0.85deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .quest-card:nth-child(3) {
+	background: #fff9e9 !important;
+	transform: rotate(-0.55deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .quest-card::after {
+	position: absolute;
+	top: -1.1rem;
+	right: 0.7rem;
+	z-index: 4;
+	padding: 0.25rem 0.5rem;
+	border: 3px solid var(--border);
+	background: var(--accent);
+	box-shadow: 3px 3px 0 var(--border);
+	color: #ffffff;
+	font: 900 1.3rem/1 Arial, Helvetica, sans-serif;
+	transform: rotate(5deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .quest-card:nth-child(1)::after { content: "01"; }
+html[data-skin="psychedelic-scrapbook"] .quest-card:nth-child(2)::after { content: "02"; background: var(--primary); }
+html[data-skin="psychedelic-scrapbook"] .quest-card:nth-child(3)::after { content: "03"; }
+
+html[data-skin="psychedelic-scrapbook"] .quest-card h3,
+html[data-skin="psychedelic-scrapbook"] .work-overview-tech h3 {
+	display: inline-block;
+	padding: 0.18em 0.35em;
+	background: var(--foreground);
+	color: #ffffff !important;
+	transform: rotate(-1deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .section-cta {
+	position: relative;
+	overflow: hidden;
+	border-block: 5px solid var(--border) !important;
+	background:
+		radial-gradient(circle, var(--foreground) 0 2px, transparent 2.5px) 0 0 / 18px 18px,
+		var(--primary) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .section-cta::before {
+	content: "COLLAB / CONNECT / CREATE";
+	position: absolute;
+	top: 1rem;
+	right: -2.5rem;
+	padding: 0.65rem 3rem;
+	border-block: 3px solid var(--border);
+	background: var(--muted-bg);
+	color: var(--foreground);
+	font: 900 0.72rem/1 Arial, Helvetica, sans-serif;
+	letter-spacing: 0.08em;
+	transform: rotate(7deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .section-cta h2 {
+	background: var(--accent);
+	box-shadow: 0.12em 0 0 var(--accent), -0.12em 0 0 var(--accent);
+}
+
+html[data-skin="psychedelic-scrapbook"] .section-soft {
+	background:
+		repeating-linear-gradient(90deg, rgba(53, 230, 189, 0.18) 0 38px, transparent 38px 76px),
+		var(--background) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .work-overview {
+	background: #fff9e9 !important;
+	box-shadow: 13px 13px 0 var(--accent) !important;
+	transform: rotate(0.25deg);
+}
+
+html[data-skin="psychedelic-scrapbook"] .work-tech-item:nth-child(3n + 1) {
+	background: #ffffff !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .work-tech-item:nth-child(3n + 2) {
+	background: var(--muted-bg) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .work-tech-item:nth-child(3n) {
+	background: var(--secondary) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .site-footer {
+	border-top: 5px solid var(--border) !important;
+	background:
+		repeating-linear-gradient(-45deg, rgba(82, 55, 232, 0.46) 0 16px, transparent 16px 32px),
+		var(--footer-bg) !important;
+}
+
+html[data-skin="psychedelic-scrapbook"] .skin-picker-toggle,
+html[data-skin="psychedelic-scrapbook"] .skin-picker-cycle {
+	border: 3px solid #171116 !important;
+	box-shadow: 5px 5px 0 #171116 !important;
+}
+
+@media (max-width: 1120px) {
+	html[data-skin="psychedelic-scrapbook"] .hero-media {
+		transform: rotate(1.4deg);
+	}
+}
+
+@media (max-width: 736px) {
+	html[data-skin="psychedelic-scrapbook"] .page-hero::before {
+		top: 5.5rem;
+		right: -5.75rem;
+		width: 14rem;
+		height: 14rem;
+		padding: 3.2rem;
+		font-size: 0.92rem;
+		opacity: 0.9;
+	}
+
+	html[data-skin="psychedelic-scrapbook"] .page-hero::after {
+		right: -2.5rem;
+		bottom: 1.25rem;
+		font-size: 0.58rem;
+	}
+
+	html[data-skin="psychedelic-scrapbook"] .hero-title-role,
+	html[data-skin="psychedelic-scrapbook"] .hero-title-role:nth-of-type(2),
+	html[data-skin="psychedelic-scrapbook"] .hero-title-role:nth-of-type(4) {
+		border-width: 2px;
+		box-shadow: 4px 4px 0 var(--border);
+	}
+
+	html[data-skin="psychedelic-scrapbook"] .hero-summary {
+		box-shadow: 6px 6px 0 var(--primary);
+	}
+
+	html[data-skin="psychedelic-scrapbook"] .section-cta::before {
+		top: 0.4rem;
+		right: -4.5rem;
+		opacity: 0.82;
+	}
+}

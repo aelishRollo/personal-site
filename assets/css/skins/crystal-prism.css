@@ -1,0 +1,994 @@
+/*
+	Crystal Prism
+	Derived from 15-crystal-prism.html. Faceted glass geometry, spectral color
+	splits and cool white type are adapted without changing the site layout or
+	using expensive animated backdrop blur.
+*/
+
+html[data-skin="crystal-prism"] {
+	--background: #080b18;
+	--foreground: #f4fbff;
+	--muted-bg: #0e1428;
+	--card-bg: #111932;
+	--border: rgba(244, 251, 255, 0.24);
+	--primary: #62eaff;
+	--primary-fg: #080b18;
+	--secondary: #9b68ff;
+	--secondary-fg: #f4fbff;
+	--accent: #ff79c9;
+	--accent-fg: #080b18;
+	--link: #62eaff;
+	--warning: #ff79c9;
+	--header-bg: #080b18;
+	--header-fg: #f4fbff;
+	--footer-bg: #050711;
+	--footer-fg: #f4fbff;
+	--bg: #080b18;
+	--surface-1: #111932;
+	--surface-2: #0e1428;
+	--surface-3: #182044;
+	--text-1: #f4fbff;
+	--text-2: #cbd6e7;
+	--line-1: rgba(244, 251, 255, 0.24);
+	--accent-1: #62eaff;
+	--accent-2: #ff79c9;
+	overflow-x: clip;
+}
+
+html[data-skin="crystal-prism"] body {
+	background:
+		radial-gradient(circle at 10% 18%, rgba(98, 234, 255, 0.1), transparent 25rem),
+		radial-gradient(circle at 88% 70%, rgba(255, 121, 201, 0.09), transparent 30rem),
+		linear-gradient(150deg, #080b18, #0b1022 46%, #080b18) !important;
+	color: #f4fbff !important;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+	overflow-x: hidden;
+}
+
+html[data-skin="crystal-prism"] body,
+html[data-skin="crystal-prism"] p,
+html[data-skin="crystal-prism"] li,
+html[data-skin="crystal-prism"] label,
+html[data-skin="crystal-prism"] .lead,
+html[data-skin="crystal-prism"] .note,
+html[data-skin="crystal-prism"] .footer-inner p,
+html[data-skin="crystal-prism"] .social-inline a {
+	color: #cbd6e7 !important;
+}
+
+html[data-skin="crystal-prism"] h1,
+html[data-skin="crystal-prism"] h2,
+html[data-skin="crystal-prism"] h3,
+html[data-skin="crystal-prism"] h4,
+html[data-skin="crystal-prism"] h5,
+html[data-skin="crystal-prism"] h6,
+html[data-skin="crystal-prism"] strong {
+	color: #f4fbff !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-weight: 900;
+	letter-spacing: -0.055em;
+}
+
+html[data-skin="crystal-prism"] a {
+	color: #62eaff !important;
+	text-decoration-color: rgba(255, 121, 201, 0.64);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.2em;
+}
+
+html[data-skin="crystal-prism"] a:hover {
+	color: #ff79c9 !important;
+}
+
+html[data-skin="crystal-prism"] .site-header {
+	border-bottom: 1px solid rgba(244, 251, 255, 0.2) !important;
+	background: rgba(8, 11, 24, 0.97) !important;
+	box-shadow: 0 12px 34px rgba(1, 2, 8, 0.36) !important;
+	backdrop-filter: none !important;
+}
+
+html[data-skin="crystal-prism"] .brand-mark {
+	border: 1px solid rgba(244, 251, 255, 0.68);
+	border-radius: 0.2rem;
+	background: conic-gradient(from 25deg, #62eaff, #f4fbff, #9b68ff, #ff79c9, #62eaff) !important;
+	box-shadow: 3px 0 0 rgba(98, 234, 255, 0.3), -3px 0 0 rgba(255, 121, 201, 0.28);
+	clip-path: polygon(50% 0, 100% 28%, 86% 100%, 18% 90%, 0 24%);
+	color: #080b18 !important;
+}
+
+html[data-skin="crystal-prism"] .brand-text,
+html[data-skin="crystal-prism"] .site-nav a,
+html[data-skin="crystal-prism"] .nav-toggle {
+	color: #f4fbff !important;
+	font-weight: 850;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+html[data-skin="crystal-prism"] .site-nav a {
+	border-radius: 0.3rem;
+}
+
+html[data-skin="crystal-prism"] .site-nav a:hover,
+html[data-skin="crystal-prism"] .site-nav a[aria-current="page"] {
+	background: linear-gradient(110deg, rgba(98, 234, 255, 0.14), rgba(155, 104, 255, 0.16), rgba(255, 121, 201, 0.12)) !important;
+	color: #f4fbff !important;
+}
+
+html[data-skin="crystal-prism"] .site-nav .nav-cta,
+html[data-skin="crystal-prism"] .nav-toggle {
+	border: 1px solid rgba(244, 251, 255, 0.42) !important;
+	border-radius: 0.35rem !important;
+	background: linear-gradient(135deg, rgba(98, 234, 255, 0.16), rgba(155, 104, 255, 0.18), rgba(255, 121, 201, 0.15)) !important;
+	box-shadow: 0 8px 20px rgba(1, 2, 8, 0.3);
+}
+
+html[data-skin="crystal-prism"] .page-hero,
+html[data-skin="crystal-prism"] body.page-home .page-hero,
+html[data-skin="crystal-prism"] body.page-services .page-hero,
+html[data-skin="crystal-prism"] body.page-work .page-hero,
+html[data-skin="crystal-prism"] body.page-connect .page-hero,
+html[data-skin="crystal-prism"] body.page-about .page-hero,
+html[data-skin="crystal-prism"] body.page-contact .page-hero {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	border-color: rgba(244, 251, 255, 0.2) !important;
+	background:
+		linear-gradient(125deg, rgba(98, 234, 255, 0.04), transparent 38%, rgba(255, 121, 201, 0.05)),
+		#080b18 !important;
+	color: #f4fbff !important;
+}
+
+html[data-skin="crystal-prism"] .page-hero::before {
+	content: "";
+	position: absolute;
+	right: -2vw;
+	top: 6%;
+	z-index: -1;
+	width: min(59vw, 39rem);
+	aspect-ratio: 1;
+	clip-path: polygon(50% 0, 90% 24%, 100% 69%, 56% 100%, 10% 80%, 0 30%);
+	background:
+		linear-gradient(135deg, rgba(98, 234, 255, 0.28), rgba(244, 251, 255, 0.62) 25%, rgba(155, 104, 255, 0.42) 50%, rgba(255, 121, 201, 0.52) 72%, rgba(98, 234, 255, 0.32));
+	box-shadow: inset 0 0 0 1px rgba(244, 251, 255, 0.55);
+	opacity: 0.85;
+	pointer-events: none;
+	will-change: transform;
+	animation: crystal-prism-drift 8s ease-in-out infinite alternate;
+}
+
+html[data-skin="crystal-prism"] .page-hero::after {
+	content: "";
+	position: absolute;
+	left: -10%;
+	bottom: -18%;
+	z-index: -1;
+	width: min(44vw, 29rem);
+	aspect-ratio: 1;
+	clip-path: polygon(50% 0, 100% 32%, 82% 100%, 20% 88%, 0 25%);
+	background: conic-gradient(from 20deg, rgba(98, 234, 255, 0.2), rgba(244, 251, 255, 0.26), rgba(155, 104, 255, 0.24), rgba(255, 121, 201, 0.24), rgba(98, 234, 255, 0.2));
+	opacity: 0.62;
+	pointer-events: none;
+}
+
+@keyframes crystal-prism-drift {
+	to { transform: rotate(12deg) scale(0.94) translate3d(1rem, 0.75rem, 0); }
+}
+
+html[data-skin="crystal-prism"] .page-hero .site-shell,
+html[data-skin="crystal-prism"] .hero-copy,
+html[data-skin="crystal-prism"] .hero-media {
+	position: relative;
+	z-index: 1;
+	min-width: 0;
+}
+
+html[data-skin="crystal-prism"] .page-hero h1,
+html[data-skin="crystal-prism"] body.page-home .page-hero h1 {
+	color: #f4fbff !important;
+	letter-spacing: -0.075em;
+	line-height: 0.86;
+	text-transform: uppercase;
+	text-shadow: 2px 0 0 rgba(98, 234, 255, 0.38), -2px 0 0 rgba(255, 121, 201, 0.3), 0 8px 26px rgba(1, 2, 8, 0.45);
+}
+
+html[data-skin="crystal-prism"] .hero-title-role:nth-of-type(even) {
+	color: #62eaff !important;
+}
+
+html[data-skin="crystal-prism"] .hero-title-role:nth-of-type(3n) {
+	color: #ff79c9 !important;
+}
+
+html[data-skin="crystal-prism"] .metallic-pearl-text {
+	background: none;
+	color: #9b68ff !important;
+	-webkit-text-fill-color: currentColor;
+	filter: none;
+}
+
+html[data-skin="crystal-prism"] .hero-title-role::first-letter {
+	color: inherit !important;
+	-webkit-text-fill-color: inherit;
+}
+
+html[data-skin="crystal-prism"] .eyebrow {
+	border: 1px solid rgba(244, 251, 255, 0.38) !important;
+	border-radius: 0.3rem;
+	background: linear-gradient(115deg, rgba(98, 234, 255, 0.16), rgba(155, 104, 255, 0.14), rgba(255, 121, 201, 0.16)) !important;
+	box-shadow: 0 8px 24px rgba(1, 2, 8, 0.3);
+	color: #f4fbff !important;
+	font-weight: 850;
+	letter-spacing: 0.12em;
+}
+
+html[data-skin="crystal-prism"] .page-section {
+	border-color: rgba(244, 251, 255, 0.18) !important;
+	background:
+		linear-gradient(135deg, rgba(98, 234, 255, 0.035), transparent 34%, rgba(155, 104, 255, 0.04) 66%, rgba(255, 121, 201, 0.035)),
+		#080b18 !important;
+}
+
+html[data-skin="crystal-prism"] .section-soft {
+	background-color: #0e1428 !important;
+}
+
+html[data-skin="crystal-prism"] .section-portrait {
+	background-color: #111932 !important;
+}
+
+html[data-skin="crystal-prism"] .panel-card,
+html[data-skin="crystal-prism"] .features article,
+html[data-skin="crystal-prism"] .contact-rail,
+html[data-skin="crystal-prism"] ul.feature-icons li,
+html[data-skin="crystal-prism"] .work-overview,
+html[data-skin="crystal-prism"] .work-tech-item,
+html[data-skin="crystal-prism"] .profile-chip {
+	position: relative;
+	overflow: hidden;
+	border: 1px solid rgba(244, 251, 255, 0.26) !important;
+	border-radius: 0.75rem !important;
+	background:
+		conic-gradient(from 28deg at 100% 0, rgba(98, 234, 255, 0.28), rgba(244, 251, 255, 0.15), rgba(155, 104, 255, 0.28), rgba(255, 121, 201, 0.24), transparent 54%),
+		linear-gradient(145deg, rgba(98, 234, 255, 0.05), rgba(155, 104, 255, 0.08) 52%, rgba(255, 121, 201, 0.04)),
+		#111932 !important;
+	box-shadow: 0 22px 46px rgba(1, 2, 8, 0.38) !important;
+	color: #f4fbff !important;
+	contain: paint;
+	transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+html[data-skin="crystal-prism"] .panel-card:nth-child(even),
+html[data-skin="crystal-prism"] .features article:nth-child(even),
+html[data-skin="crystal-prism"] ul.feature-icons li:nth-child(even),
+html[data-skin="crystal-prism"] .work-tech-item:nth-child(even) {
+	background:
+		conic-gradient(from 210deg at 100% 0, rgba(255, 121, 201, 0.26), rgba(244, 251, 255, 0.14), rgba(98, 234, 255, 0.26), rgba(155, 104, 255, 0.28), transparent 55%),
+		linear-gradient(145deg, rgba(155, 104, 255, 0.1), rgba(98, 234, 255, 0.05)),
+		#111932 !important;
+}
+
+html[data-skin="crystal-prism"] .panel-card:hover,
+html[data-skin="crystal-prism"] .features article:hover,
+html[data-skin="crystal-prism"] ul.feature-icons li:hover {
+	box-shadow: 0 28px 58px rgba(1, 2, 8, 0.5), 0 0 24px rgba(98, 234, 255, 0.12) !important;
+	transform: translateY(-3px);
+}
+
+html[data-skin="crystal-prism"] .work-overview {
+	overflow: visible;
+	contain: none;
+}
+
+html[data-skin="crystal-prism"] .features article .image,
+html[data-skin="crystal-prism"] .hero-media img,
+html[data-skin="crystal-prism"] .portrait-panel img,
+html[data-skin="crystal-prism"] .profile-chip img {
+	border: 1px solid rgba(244, 251, 255, 0.5) !important;
+	border-radius: 0.35rem !important;
+	box-shadow: 3px 0 0 rgba(98, 234, 255, 0.22), -3px 0 0 rgba(255, 121, 201, 0.2), 0 20px 42px rgba(1, 2, 8, 0.38) !important;
+	clip-path: polygon(3% 0, 100% 0, 100% 92%, 94% 100%, 0 100%, 0 8%);
+	filter: none !important;
+}
+
+html[data-skin="crystal-prism"] .features article .image {
+	background: conic-gradient(from 25deg, #62eaff, #f4fbff, #9b68ff, #ff79c9, #62eaff) !important;
+}
+
+html[data-skin="crystal-prism"] .hero-splash .hero-splash-text {
+	color: #f4fbff !important;
+	text-shadow: 2px 0 0 rgba(98, 234, 255, 0.3), -2px 0 0 rgba(255, 121, 201, 0.26), 0 4px 16px rgba(1, 2, 8, 0.5);
+}
+
+html[data-skin="crystal-prism"] .tag-list li,
+html[data-skin="crystal-prism"] .profile-chip {
+	border: 1px solid rgba(244, 251, 255, 0.3) !important;
+	border-radius: 0.25rem !important;
+	background: linear-gradient(120deg, rgba(98, 234, 255, 0.22), rgba(155, 104, 255, 0.24), rgba(255, 121, 201, 0.2)) !important;
+	box-shadow: 0 8px 20px rgba(1, 2, 8, 0.28);
+	color: #f4fbff !important;
+	font-weight: 850;
+	text-transform: uppercase;
+}
+
+html[data-skin="crystal-prism"] .timeline li {
+	border-color: rgba(244, 251, 255, 0.28) !important;
+}
+
+html[data-skin="crystal-prism"] .timeline li::before {
+	border: 2px solid #080b18;
+	background: conic-gradient(from 25deg, #62eaff, #f4fbff, #9b68ff, #ff79c9, #62eaff);
+	box-shadow: 0 0 0 2px rgba(244, 251, 255, 0.4);
+}
+
+html[data-skin="crystal-prism"] input[type="text"],
+html[data-skin="crystal-prism"] input[type="password"],
+html[data-skin="crystal-prism"] input[type="email"],
+html[data-skin="crystal-prism"] select,
+html[data-skin="crystal-prism"] textarea {
+	border: 1px solid rgba(244, 251, 255, 0.34) !important;
+	border-radius: 0.4rem !important;
+	background: rgba(244, 251, 255, 0.06) !important;
+	box-shadow: inset 0 1px 0 rgba(244, 251, 255, 0.08) !important;
+	color: #f4fbff !important;
+}
+
+html[data-skin="crystal-prism"] input:focus,
+html[data-skin="crystal-prism"] select:focus,
+html[data-skin="crystal-prism"] textarea:focus {
+	border-color: #62eaff !important;
+	box-shadow: 0 0 0 3px rgba(98, 234, 255, 0.14) !important;
+}
+
+html[data-skin="crystal-prism"] input[type="submit"],
+html[data-skin="crystal-prism"] input[type="reset"],
+html[data-skin="crystal-prism"] input[type="button"],
+html[data-skin="crystal-prism"] button:not([class^="skin-picker"]),
+html[data-skin="crystal-prism"] .button {
+	border: 1px solid rgba(244, 251, 255, 0.36) !important;
+	border-radius: 0.35rem !important;
+	background: linear-gradient(120deg, #62eaff, #9b68ff 55%, #ff79c9) !important;
+	box-shadow: 0 10px 26px rgba(1, 2, 8, 0.34) !important;
+	color: #080b18 !important;
+	font-weight: 900;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+html[data-skin="crystal-prism"] input[type="submit"].primary,
+html[data-skin="crystal-prism"] input[type="button"].primary,
+html[data-skin="crystal-prism"] button.primary,
+html[data-skin="crystal-prism"] .button.primary,
+html[data-skin="crystal-prism"] .contact-submit,
+html[data-skin="crystal-prism"] .features article .inner span a {
+	background: linear-gradient(115deg, #62eaff, #f4fbff 42%, #ff79c9) !important;
+	color: #080b18 !important;
+}
+
+html[data-skin="crystal-prism"] input[type="submit"]:hover,
+html[data-skin="crystal-prism"] button:not([class^="skin-picker"]):hover,
+html[data-skin="crystal-prism"] .button:hover {
+	box-shadow: 0 14px 32px rgba(1, 2, 8, 0.46), 0 0 20px rgba(98, 234, 255, 0.16) !important;
+	color: #080b18 !important;
+	transform: translateY(-2px);
+}
+
+html[data-skin="crystal-prism"] .section-cta {
+	border-block: 1px solid rgba(244, 251, 255, 0.22) !important;
+	background:
+		conic-gradient(from 120deg at 88% 22%, rgba(98, 234, 255, 0.15), rgba(155, 104, 255, 0.2), rgba(255, 121, 201, 0.16), transparent 48%),
+		#050711 !important;
+	color: #f4fbff !important;
+}
+
+html[data-skin="crystal-prism"] .section-cta h2,
+html[data-skin="crystal-prism"] .section-cta p {
+	color: #f4fbff !important;
+}
+
+html[data-skin="crystal-prism"] .site-footer {
+	border-top: 1px solid rgba(244, 251, 255, 0.2) !important;
+	background: #050711 !important;
+	color: #f4fbff !important;
+}
+
+html[data-skin="crystal-prism"] .site-footer p,
+html[data-skin="crystal-prism"] .site-footer a {
+	color: #f4fbff !important;
+}
+
+html[data-skin="crystal-prism"] .skin-picker {
+	--skin-ui-bg: #080b18;
+	--skin-ui-panel: #111932;
+	--skin-ui-text: #f4fbff;
+	--skin-ui-muted: #b9c5d8;
+	--skin-ui-accent: #62eaff;
+	--skin-ui-border: rgba(244, 251, 255, 0.28);
+}
+
+html[data-skin="crystal-prism"] .skin-picker-panel {
+	border: 1px solid rgba(244, 251, 255, 0.32);
+	border-radius: 0.65rem;
+	box-shadow: 0 24px 60px rgba(1, 2, 8, 0.52);
+}
+
+html[data-skin="crystal-prism"] .skin-picker-toggle {
+	border: 1px solid rgba(244, 251, 255, 0.34) !important;
+	border-radius: 0.45rem !important;
+	background: linear-gradient(120deg, #62eaff, #9b68ff 55%, #ff79c9) !important;
+	box-shadow: 0 12px 30px rgba(1, 2, 8, 0.48) !important;
+	color: #080b18 !important;
+}
+
+html[data-skin="crystal-prism"] .skin-picker-toggle-label,
+html[data-skin="crystal-prism"] .skin-picker-current,
+html[data-skin="crystal-prism"] .skin-picker-chevron {
+	color: #080b18 !important;
+}
+
+html[data-skin="crystal-prism"] .skin-picker .skin-picker-option {
+	border-radius: 0.3rem !important;
+}
+
+@media (max-width: 736px) {
+	html[data-skin="crystal-prism"] .page-hero::before {
+		right: -10rem;
+		top: 8rem;
+		width: 28rem;
+		opacity: 0.62;
+	}
+
+	html[data-skin="crystal-prism"] .page-hero::after {
+		left: -10rem;
+		bottom: -7rem;
+		width: 22rem;
+	}
+
+	html[data-skin="crystal-prism"] body.nav-open .site-nav {
+		border: 1px solid rgba(244, 251, 255, 0.3);
+		border-radius: 0.65rem;
+		background: #080b18 !important;
+		box-shadow: 0 20px 48px rgba(1, 2, 8, 0.54);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-skin="crystal-prism"] *,
+	html[data-skin="crystal-prism"] *::before,
+	html[data-skin="crystal-prism"] *::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/*
+	Crystal Prism v2
+	A high-key cut-glass art direction: hard spectral light, ink-black structure,
+	and offset color refractions replace the original dark-space treatment.
+*/
+
+html[data-skin="crystal-prism"] {
+	--background: #edf8ff;
+	--foreground: #111225;
+	--muted-bg: #ffffff;
+	--card-bg: rgba(255, 255, 255, 0.9);
+	--border: #111225;
+	--primary: #00dffc;
+	--primary-fg: #111225;
+	--secondary: #654cff;
+	--secondary-fg: #ffffff;
+	--accent: #ff3cac;
+	--accent-fg: #111225;
+	--link: #3d27d9;
+	--warning: #ff3cac;
+	--header-bg: rgba(248, 253, 255, 0.94);
+	--header-fg: #111225;
+	--footer-bg: #111225;
+	--footer-fg: #ffffff;
+	--bg: #edf8ff;
+	--surface-1: rgba(255, 255, 255, 0.9);
+	--surface-2: #dff8ff;
+	--surface-3: #f2eaff;
+	--text-1: #111225;
+	--text-2: #353951;
+	--line-1: #111225;
+	--accent-1: #00dffc;
+	--accent-2: #ff3cac;
+	color-scheme: light;
+}
+
+html[data-skin="crystal-prism"] body {
+	background-color: #edf8ff !important;
+	background-image:
+		linear-gradient(118deg, transparent 0 8%, rgba(0, 223, 252, 0.22) 8% 15%, rgba(93, 94, 255, 0.16) 15% 22%, rgba(255, 60, 172, 0.18) 22% 29%, rgba(255, 222, 82, 0.18) 29% 36%, transparent 36% 100%),
+		linear-gradient(62deg, transparent 0 76%, rgba(0, 223, 252, 0.12) 76% 82%, rgba(255, 60, 172, 0.11) 82% 88%, transparent 88%),
+		radial-gradient(circle at 70% 12%, #ffffff 0 7rem, transparent 22rem),
+		linear-gradient(145deg, #fafdff, #dcecff 52%, #f7eeff) !important;
+	background-size: 100% 82rem, 100% 64rem, auto, auto !important;
+	color: var(--foreground) !important;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+html[data-skin="crystal-prism"] body,
+html[data-skin="crystal-prism"] p,
+html[data-skin="crystal-prism"] li,
+html[data-skin="crystal-prism"] label,
+html[data-skin="crystal-prism"] .lead,
+html[data-skin="crystal-prism"] .note,
+html[data-skin="crystal-prism"] .footer-inner p,
+html[data-skin="crystal-prism"] .social-inline a {
+	color: var(--text-2) !important;
+}
+
+html[data-skin="crystal-prism"] h1,
+html[data-skin="crystal-prism"] h2,
+html[data-skin="crystal-prism"] h3,
+html[data-skin="crystal-prism"] h4,
+html[data-skin="crystal-prism"] h5,
+html[data-skin="crystal-prism"] h6,
+html[data-skin="crystal-prism"] strong {
+	color: var(--foreground) !important;
+	font-family: "Arial Black", Arial, Helvetica, sans-serif !important;
+	font-weight: 900;
+}
+
+html[data-skin="crystal-prism"] a {
+	color: var(--link) !important;
+	text-decoration-color: var(--accent);
+}
+
+html[data-skin="crystal-prism"] a:hover {
+	color: #e50083 !important;
+}
+
+html[data-skin="crystal-prism"] .site-header {
+	border-bottom: 3px solid var(--border) !important;
+	background: var(--header-bg) !important;
+	box-shadow: 0 5px 0 var(--primary), 0 9px 0 rgba(255, 60, 172, 0.72) !important;
+	backdrop-filter: blur(12px) saturate(160%) !important;
+}
+
+html[data-skin="crystal-prism"] .brand-mark {
+	border: 2px solid var(--border);
+	border-radius: 0;
+	background: conic-gradient(from 22deg, #ffffff, var(--primary), #4c5cff, var(--accent), #ffe552, #ffffff) !important;
+	box-shadow: 4px 2px 0 var(--primary), -4px -2px 0 var(--accent);
+	clip-path: polygon(50% 0, 100% 24%, 86% 100%, 15% 88%, 0 20%);
+	color: var(--foreground) !important;
+	transform: rotate(-7deg);
+}
+
+html[data-skin="crystal-prism"] .brand-text,
+html[data-skin="crystal-prism"] .site-nav a,
+html[data-skin="crystal-prism"] .nav-toggle {
+	color: var(--foreground) !important;
+	font-family: "Arial Black", Arial, Helvetica, sans-serif !important;
+	font-weight: 900;
+	letter-spacing: 0.08em;
+}
+
+html[data-skin="crystal-prism"] .site-nav a {
+	border-radius: 0;
+}
+
+html[data-skin="crystal-prism"] .site-nav a:hover,
+html[data-skin="crystal-prism"] .site-nav a[aria-current="page"] {
+	background: var(--foreground) !important;
+	box-shadow: 4px 4px 0 var(--primary), -3px -3px 0 var(--accent);
+	color: #ffffff !important;
+	transform: translate(-1px, -1px);
+}
+
+html[data-skin="crystal-prism"] .site-nav .nav-cta,
+html[data-skin="crystal-prism"] .nav-toggle {
+	border: 2px solid var(--border) !important;
+	border-radius: 0 !important;
+	background: #ffffff !important;
+	box-shadow: 4px 4px 0 var(--secondary);
+	color: var(--foreground) !important;
+}
+
+html[data-skin="crystal-prism"] .page-hero,
+html[data-skin="crystal-prism"] body.page-home .page-hero,
+html[data-skin="crystal-prism"] body.page-services .page-hero,
+html[data-skin="crystal-prism"] body.page-work .page-hero,
+html[data-skin="crystal-prism"] body.page-connect .page-hero,
+html[data-skin="crystal-prism"] body.page-about .page-hero,
+html[data-skin="crystal-prism"] body.page-contact .page-hero {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	border-bottom: 3px solid var(--border) !important;
+	background:
+		linear-gradient(109deg, rgba(255, 255, 255, 0.88) 0 46%, rgba(255, 255, 255, 0.28) 46% 100%),
+		linear-gradient(145deg, #f8fdff, #ddecff 58%, #f8edff) !important;
+	color: var(--foreground) !important;
+}
+
+html[data-skin="crystal-prism"] .page-hero::before {
+	content: "";
+	position: absolute;
+	top: clamp(4rem, 9vw, 7rem);
+	right: clamp(-11rem, -8vw, -4rem);
+	z-index: -1;
+	width: min(46vw, 34rem);
+	aspect-ratio: 1 / 1.08;
+	border: 3px solid var(--border);
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0 24%, rgba(0, 223, 252, 0.72) 24% 40%, rgba(101, 76, 255, 0.82) 40% 59%, rgba(255, 60, 172, 0.76) 59% 76%, rgba(255, 229, 82, 0.72) 76% 100%);
+	box-shadow: 18px 18px 0 rgba(0, 223, 252, 0.46), -12px -10px 0 rgba(255, 60, 172, 0.36);
+	clip-path: polygon(50% 0, 100% 100%, 0 100%);
+	opacity: 1;
+	transform: rotate(8deg);
+	pointer-events: none;
+	animation: crystal-prism-v2-float 7s ease-in-out infinite alternate;
+}
+
+html[data-skin="crystal-prism"] .page-hero::after {
+	content: "";
+	position: absolute;
+	left: 36%;
+	top: 35%;
+	z-index: -2;
+	width: 76%;
+	height: clamp(8rem, 18vw, 15rem);
+	background: linear-gradient(90deg, rgba(0, 223, 252, 0.74), rgba(87, 94, 255, 0.66) 28%, rgba(255, 60, 172, 0.68) 58%, rgba(255, 229, 82, 0.64) 82%, transparent);
+	clip-path: polygon(0 41%, 100% 0, 100% 100%, 0 58%);
+	mix-blend-mode: multiply;
+	opacity: 0.72;
+	transform: rotate(-8deg);
+	pointer-events: none;
+}
+
+@keyframes crystal-prism-v2-float {
+	to { transform: rotate(3deg) translate3d(-1rem, 0.6rem, 0); }
+}
+
+html[data-skin="crystal-prism"] .page-hero h1,
+html[data-skin="crystal-prism"] body.page-home .page-hero h1 {
+	color: var(--foreground) !important;
+	letter-spacing: -0.08em;
+	line-height: 0.85;
+	text-shadow: 3px 2px 0 rgba(0, 223, 252, 0.7), -3px -2px 0 rgba(255, 60, 172, 0.55);
+	text-transform: uppercase;
+}
+
+html[data-skin="crystal-prism"] .hero-title-role:nth-of-type(even) {
+	width: fit-content;
+	padding: 0 0.12em 0.05em;
+	background: var(--secondary);
+	box-shadow: 0.1em 0.08em 0 var(--primary), -0.07em -0.06em 0 var(--accent);
+	color: #ffffff !important;
+	text-shadow: none;
+	transform: skewX(-5deg);
+}
+
+html[data-skin="crystal-prism"] .hero-title-role:nth-of-type(3n) {
+	color: var(--foreground) !important;
+	text-shadow: 4px 2px 0 var(--primary), -3px -2px 0 rgba(255, 60, 172, 0.72);
+}
+
+html[data-skin="crystal-prism"] .metallic-pearl-text {
+	display: block;
+	width: fit-content;
+	padding: 0 0.12em 0.05em;
+	background: #ffdf45;
+	box-shadow: 0.1em 0.08em 0 var(--accent);
+	color: var(--foreground) !important;
+	-webkit-text-fill-color: currentColor;
+	filter: none;
+	transform: rotate(-1deg);
+}
+
+html[data-skin="crystal-prism"] .hero-title-initial,
+html[data-skin="crystal-prism"] .hero-title-role::first-letter {
+	color: inherit !important;
+	-webkit-text-fill-color: inherit;
+}
+
+html[data-skin="crystal-prism"] .page-hero .hero-summary,
+html[data-skin="crystal-prism"] .page-hero .lead {
+	width: fit-content;
+	max-width: 100%;
+	padding: 0.75rem 0.95rem;
+	border: 2px solid var(--border);
+	background: rgba(255, 255, 255, 0.9) !important;
+	box-shadow: 6px 6px 0 rgba(0, 223, 252, 0.72), -3px -3px 0 rgba(255, 60, 172, 0.66);
+	color: var(--foreground) !important;
+	transform: skewX(-1deg);
+}
+
+html[data-skin="crystal-prism"] .eyebrow {
+	border: 2px solid var(--border) !important;
+	border-radius: 0;
+	background: #ffdf45 !important;
+	box-shadow: 5px 5px 0 var(--primary);
+	color: var(--foreground) !important;
+	font-family: "Arial Black", Arial, Helvetica, sans-serif;
+	font-weight: 900;
+	letter-spacing: 0.12em;
+	transform: skewX(-5deg);
+}
+
+html[data-skin="crystal-prism"] .page-section {
+	border-color: var(--border) !important;
+	background:
+		linear-gradient(125deg, rgba(255, 255, 255, 0.84), rgba(221, 242, 255, 0.78) 52%, rgba(247, 232, 255, 0.78)) !important;
+}
+
+html[data-skin="crystal-prism"] .section-soft {
+	background:
+		linear-gradient(105deg, rgba(0, 223, 252, 0.1), transparent 38%, rgba(255, 60, 172, 0.12)),
+		#f7fcff !important;
+}
+
+html[data-skin="crystal-prism"] .section-portrait {
+	background:
+		linear-gradient(145deg, #ffffff, #e4f6ff 52%, #f6eaff) !important;
+}
+
+html[data-skin="crystal-prism"] .panel-card,
+html[data-skin="crystal-prism"] .features article,
+html[data-skin="crystal-prism"] .contact-rail,
+html[data-skin="crystal-prism"] ul.feature-icons li,
+html[data-skin="crystal-prism"] .work-overview,
+html[data-skin="crystal-prism"] .work-tech-item,
+html[data-skin="crystal-prism"] .profile-chip {
+	position: relative;
+	overflow: hidden;
+	border: 2px solid var(--border) !important;
+	border-radius: 0 !important;
+	background:
+		linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(228, 248, 255, 0.9) 58%, rgba(246, 232, 255, 0.9)) !important;
+	box-shadow: 10px 10px 0 var(--primary), -5px -5px 0 rgba(255, 60, 172, 0.82) !important;
+	color: var(--foreground) !important;
+	contain: paint;
+	transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+html[data-skin="crystal-prism"] .panel-card::after,
+html[data-skin="crystal-prism"] .features article::after,
+html[data-skin="crystal-prism"] ul.feature-icons li::after,
+html[data-skin="crystal-prism"] .work-tech-item::after {
+	content: "";
+	position: absolute;
+	right: -3.5rem;
+	top: -3.5rem;
+	width: 8rem;
+	aspect-ratio: 1;
+	background: conic-gradient(from 20deg, var(--primary), #ffffff, var(--secondary), var(--accent), #ffdf45, var(--primary));
+	clip-path: polygon(50% 0, 100% 100%, 0 72%);
+	opacity: 0.48;
+	pointer-events: none;
+}
+
+html[data-skin="crystal-prism"] .panel-card:nth-child(even),
+html[data-skin="crystal-prism"] .features article:nth-child(even),
+html[data-skin="crystal-prism"] ul.feature-icons li:nth-child(even),
+html[data-skin="crystal-prism"] .work-tech-item:nth-child(even) {
+	background: linear-gradient(145deg, #ffffff, #f1e9ff 55%, #ddfbff) !important;
+	box-shadow: 10px 10px 0 var(--accent), -5px -5px 0 rgba(0, 223, 252, 0.84) !important;
+}
+
+html[data-skin="crystal-prism"] .panel-card:hover,
+html[data-skin="crystal-prism"] .features article:hover,
+html[data-skin="crystal-prism"] ul.feature-icons li:hover {
+	box-shadow: 5px 5px 0 var(--secondary), -3px -3px 0 var(--accent) !important;
+	transform: translate(4px, 4px) rotate(-0.25deg);
+}
+
+html[data-skin="crystal-prism"] .features article .image,
+html[data-skin="crystal-prism"] .hero-media img,
+html[data-skin="crystal-prism"] .portrait-panel img,
+html[data-skin="crystal-prism"] .profile-chip img {
+	border: 3px solid var(--border) !important;
+	border-radius: 0 !important;
+	box-shadow: 10px 8px 0 var(--primary), -7px -6px 0 var(--accent) !important;
+	clip-path: polygon(5% 0, 100% 0, 100% 91%, 92% 100%, 0 100%, 0 8%);
+	filter: contrast(1.04) saturate(1.08) !important;
+}
+
+html[data-skin="crystal-prism"] .features article .image {
+	background: conic-gradient(from 20deg, #ffffff, var(--primary), var(--secondary), var(--accent), #ffdf45, #ffffff) !important;
+}
+
+html[data-skin="crystal-prism"] .hero-splash .hero-splash-text {
+	padding: 0.5rem 0.7rem;
+	border: 2px solid var(--border);
+	background: #ffffff;
+	box-shadow: 6px 6px 0 var(--primary), -3px -3px 0 var(--accent);
+	color: var(--foreground) !important;
+	text-shadow: none;
+}
+
+html[data-skin="crystal-prism"] .tag-list li,
+html[data-skin="crystal-prism"] .profile-chip {
+	border: 2px solid var(--border) !important;
+	border-radius: 0 !important;
+	background: var(--secondary) !important;
+	box-shadow: 4px 4px 0 var(--primary);
+	color: #ffffff !important;
+	font-weight: 900;
+}
+
+html[data-skin="crystal-prism"] .tag-list li:nth-child(3n + 2) {
+	background: var(--accent) !important;
+	color: var(--foreground) !important;
+}
+
+html[data-skin="crystal-prism"] .tag-list li:nth-child(3n) {
+	background: #ffdf45 !important;
+	color: var(--foreground) !important;
+}
+
+html[data-skin="crystal-prism"] .timeline li {
+	border-color: rgba(17, 18, 37, 0.38) !important;
+}
+
+html[data-skin="crystal-prism"] .timeline li::before {
+	border: 2px solid var(--border);
+	background: var(--primary);
+	box-shadow: 3px 3px 0 var(--accent);
+}
+
+html[data-skin="crystal-prism"] input[type="text"],
+html[data-skin="crystal-prism"] input[type="password"],
+html[data-skin="crystal-prism"] input[type="email"],
+html[data-skin="crystal-prism"] select,
+html[data-skin="crystal-prism"] textarea {
+	border: 2px solid var(--border) !important;
+	border-radius: 0 !important;
+	background: rgba(255, 255, 255, 0.92) !important;
+	box-shadow: 5px 5px 0 rgba(0, 223, 252, 0.74) !important;
+	color: var(--foreground) !important;
+}
+
+html[data-skin="crystal-prism"] input:focus,
+html[data-skin="crystal-prism"] select:focus,
+html[data-skin="crystal-prism"] textarea:focus {
+	border-color: var(--secondary) !important;
+	box-shadow: 6px 6px 0 var(--accent) !important;
+}
+
+html[data-skin="crystal-prism"] input[type="submit"],
+html[data-skin="crystal-prism"] input[type="reset"],
+html[data-skin="crystal-prism"] input[type="button"],
+html[data-skin="crystal-prism"] button:not([class^="skin-picker"]),
+html[data-skin="crystal-prism"] .button {
+	border: 2px solid var(--border) !important;
+	border-radius: 0 !important;
+	background: #ffffff !important;
+	box-shadow: 6px 6px 0 var(--primary), -3px -3px 0 var(--accent) !important;
+	color: var(--foreground) !important;
+	font-family: "Arial Black", Arial, Helvetica, sans-serif;
+	font-weight: 900;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+html[data-skin="crystal-prism"] input[type="submit"].primary,
+html[data-skin="crystal-prism"] input[type="button"].primary,
+html[data-skin="crystal-prism"] button.primary,
+html[data-skin="crystal-prism"] .button.primary,
+html[data-skin="crystal-prism"] .contact-submit,
+html[data-skin="crystal-prism"] .features article .inner span a {
+	background: var(--foreground) !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="crystal-prism"] input[type="submit"]:hover,
+html[data-skin="crystal-prism"] button:not([class^="skin-picker"]):hover,
+html[data-skin="crystal-prism"] .button:hover {
+	box-shadow: 3px 3px 0 var(--secondary), -2px -2px 0 var(--accent) !important;
+	color: var(--foreground) !important;
+	transform: translate(3px, 3px);
+}
+
+html[data-skin="crystal-prism"] .section-cta {
+	border-block: 3px solid var(--border) !important;
+	background:
+		linear-gradient(112deg, var(--primary), #baf9ff 22%, #ffffff 22% 46%, #c4bcff 46% 64%, var(--accent) 64% 82%, #ffdf45) !important;
+	color: var(--foreground) !important;
+}
+
+html[data-skin="crystal-prism"] .section-cta h2,
+html[data-skin="crystal-prism"] .section-cta p {
+	color: var(--foreground) !important;
+}
+
+html[data-skin="crystal-prism"] .section-cta h2 {
+	display: inline;
+	background: #ffffff;
+	box-decoration-break: clone;
+	-webkit-box-decoration-break: clone;
+	box-shadow: 0.14em 0 0 #ffffff, -0.14em 0 0 #ffffff;
+}
+
+html[data-skin="crystal-prism"] .site-footer {
+	border-top: 4px solid var(--primary) !important;
+	background: var(--footer-bg) !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="crystal-prism"] .site-footer p,
+html[data-skin="crystal-prism"] .site-footer a {
+	color: #ffffff !important;
+}
+
+html[data-skin="crystal-prism"] .skin-picker {
+	--skin-ui-bg: #111225;
+	--skin-ui-panel: #ffffff;
+	--skin-ui-text: #111225;
+	--skin-ui-muted: #4a506b;
+	--skin-ui-accent: #654cff;
+	--skin-ui-border: #111225;
+}
+
+html[data-skin="crystal-prism"] .skin-picker-panel {
+	border: 2px solid var(--border);
+	border-radius: 0;
+	box-shadow: 10px 10px 0 var(--primary), -5px -5px 0 var(--accent);
+}
+
+html[data-skin="crystal-prism"] .skin-picker-toggle {
+	border: 2px solid var(--border) !important;
+	border-radius: 0 !important;
+	background: #ffffff !important;
+	box-shadow: 6px 6px 0 var(--primary), -3px -3px 0 var(--accent) !important;
+	color: var(--foreground) !important;
+}
+
+html[data-skin="crystal-prism"] .skin-picker-toggle-label,
+html[data-skin="crystal-prism"] .skin-picker-current,
+html[data-skin="crystal-prism"] .skin-picker-chevron {
+	color: var(--foreground) !important;
+}
+
+html[data-skin="crystal-prism"] .skin-picker .skin-picker-option {
+	border-radius: 0 !important;
+}
+
+@media (max-width: 736px) {
+	html[data-skin="crystal-prism"] .brand-text {
+		font-size: 0.78rem;
+		letter-spacing: 0.035em;
+		white-space: nowrap;
+	}
+
+	html[data-skin="crystal-prism"] body {
+		background-size: 180% 68rem, 180% 54rem, auto, auto !important;
+	}
+
+	html[data-skin="crystal-prism"] .page-hero::before {
+		right: -15rem;
+		top: 10rem;
+		width: 28rem;
+		opacity: 0.86;
+	}
+
+	html[data-skin="crystal-prism"] .page-hero::after {
+		left: 20%;
+		top: 30%;
+		width: 120%;
+		opacity: 0.55;
+	}
+
+	html[data-skin="crystal-prism"] body.nav-open .site-nav {
+		border: 2px solid var(--border);
+		border-radius: 0;
+		background: #ffffff !important;
+		box-shadow: 8px 8px 0 var(--primary), -4px -4px 0 var(--accent);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-skin="crystal-prism"] *,
+	html[data-skin="crystal-prism"] *::before,
+	html[data-skin="crystal-prism"] *::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}
