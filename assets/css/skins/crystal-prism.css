@@ -1,0 +1,464 @@
+/*
+	Crystal Prism
+	Derived from 15-crystal-prism.html. Faceted glass geometry, spectral color
+	splits and cool white type are adapted without changing the site layout or
+	using expensive animated backdrop blur.
+*/
+
+html[data-skin="crystal-prism"] {
+	--background: #080b18;
+	--foreground: #f4fbff;
+	--muted-bg: #0e1428;
+	--card-bg: #111932;
+	--border: rgba(244, 251, 255, 0.24);
+	--primary: #62eaff;
+	--primary-fg: #080b18;
+	--secondary: #9b68ff;
+	--secondary-fg: #f4fbff;
+	--accent: #ff79c9;
+	--accent-fg: #080b18;
+	--link: #62eaff;
+	--warning: #ff79c9;
+	--header-bg: #080b18;
+	--header-fg: #f4fbff;
+	--footer-bg: #050711;
+	--footer-fg: #f4fbff;
+	--bg: #080b18;
+	--surface-1: #111932;
+	--surface-2: #0e1428;
+	--surface-3: #182044;
+	--text-1: #f4fbff;
+	--text-2: #cbd6e7;
+	--line-1: rgba(244, 251, 255, 0.24);
+	--accent-1: #62eaff;
+	--accent-2: #ff79c9;
+	overflow-x: clip;
+}
+
+html[data-skin="crystal-prism"] body {
+	background:
+		radial-gradient(circle at 10% 18%, rgba(98, 234, 255, 0.1), transparent 25rem),
+		radial-gradient(circle at 88% 70%, rgba(255, 121, 201, 0.09), transparent 30rem),
+		linear-gradient(150deg, #080b18, #0b1022 46%, #080b18) !important;
+	color: #f4fbff !important;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+	overflow-x: hidden;
+}
+
+html[data-skin="crystal-prism"] body,
+html[data-skin="crystal-prism"] p,
+html[data-skin="crystal-prism"] li,
+html[data-skin="crystal-prism"] label,
+html[data-skin="crystal-prism"] .lead,
+html[data-skin="crystal-prism"] .note,
+html[data-skin="crystal-prism"] .footer-inner p,
+html[data-skin="crystal-prism"] .social-inline a {
+	color: #cbd6e7 !important;
+}
+
+html[data-skin="crystal-prism"] h1,
+html[data-skin="crystal-prism"] h2,
+html[data-skin="crystal-prism"] h3,
+html[data-skin="crystal-prism"] h4,
+html[data-skin="crystal-prism"] h5,
+html[data-skin="crystal-prism"] h6,
+html[data-skin="crystal-prism"] strong {
+	color: #f4fbff !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-weight: 900;
+	letter-spacing: -0.055em;
+}
+
+html[data-skin="crystal-prism"] a {
+	color: #62eaff !important;
+	text-decoration-color: rgba(255, 121, 201, 0.64);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.2em;
+}
+
+html[data-skin="crystal-prism"] a:hover {
+	color: #ff79c9 !important;
+}
+
+html[data-skin="crystal-prism"] .site-header {
+	border-bottom: 1px solid rgba(244, 251, 255, 0.2) !important;
+	background: rgba(8, 11, 24, 0.97) !important;
+	box-shadow: 0 12px 34px rgba(1, 2, 8, 0.36) !important;
+	backdrop-filter: none !important;
+}
+
+html[data-skin="crystal-prism"] .brand-mark {
+	border: 1px solid rgba(244, 251, 255, 0.68);
+	border-radius: 0.2rem;
+	background: conic-gradient(from 25deg, #62eaff, #f4fbff, #9b68ff, #ff79c9, #62eaff) !important;
+	box-shadow: 3px 0 0 rgba(98, 234, 255, 0.3), -3px 0 0 rgba(255, 121, 201, 0.28);
+	clip-path: polygon(50% 0, 100% 28%, 86% 100%, 18% 90%, 0 24%);
+	color: #080b18 !important;
+}
+
+html[data-skin="crystal-prism"] .brand-text,
+html[data-skin="crystal-prism"] .site-nav a,
+html[data-skin="crystal-prism"] .nav-toggle {
+	color: #f4fbff !important;
+	font-weight: 850;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+html[data-skin="crystal-prism"] .site-nav a {
+	border-radius: 0.3rem;
+}
+
+html[data-skin="crystal-prism"] .site-nav a:hover,
+html[data-skin="crystal-prism"] .site-nav a[aria-current="page"] {
+	background: linear-gradient(110deg, rgba(98, 234, 255, 0.14), rgba(155, 104, 255, 0.16), rgba(255, 121, 201, 0.12)) !important;
+	color: #f4fbff !important;
+}
+
+html[data-skin="crystal-prism"] .site-nav .nav-cta,
+html[data-skin="crystal-prism"] .nav-toggle {
+	border: 1px solid rgba(244, 251, 255, 0.42) !important;
+	border-radius: 0.35rem !important;
+	background: linear-gradient(135deg, rgba(98, 234, 255, 0.16), rgba(155, 104, 255, 0.18), rgba(255, 121, 201, 0.15)) !important;
+	box-shadow: 0 8px 20px rgba(1, 2, 8, 0.3);
+}
+
+html[data-skin="crystal-prism"] .page-hero,
+html[data-skin="crystal-prism"] body.page-home .page-hero,
+html[data-skin="crystal-prism"] body.page-services .page-hero,
+html[data-skin="crystal-prism"] body.page-work .page-hero,
+html[data-skin="crystal-prism"] body.page-connect .page-hero,
+html[data-skin="crystal-prism"] body.page-about .page-hero,
+html[data-skin="crystal-prism"] body.page-contact .page-hero {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	border-color: rgba(244, 251, 255, 0.2) !important;
+	background:
+		linear-gradient(125deg, rgba(98, 234, 255, 0.04), transparent 38%, rgba(255, 121, 201, 0.05)),
+		#080b18 !important;
+	color: #f4fbff !important;
+}
+
+html[data-skin="crystal-prism"] .page-hero::before {
+	content: "";
+	position: absolute;
+	right: -2vw;
+	top: 6%;
+	z-index: -1;
+	width: min(59vw, 39rem);
+	aspect-ratio: 1;
+	clip-path: polygon(50% 0, 90% 24%, 100% 69%, 56% 100%, 10% 80%, 0 30%);
+	background:
+		linear-gradient(135deg, rgba(98, 234, 255, 0.28), rgba(244, 251, 255, 0.62) 25%, rgba(155, 104, 255, 0.42) 50%, rgba(255, 121, 201, 0.52) 72%, rgba(98, 234, 255, 0.32));
+	box-shadow: inset 0 0 0 1px rgba(244, 251, 255, 0.55);
+	opacity: 0.85;
+	pointer-events: none;
+	will-change: transform;
+	animation: crystal-prism-drift 8s ease-in-out infinite alternate;
+}
+
+html[data-skin="crystal-prism"] .page-hero::after {
+	content: "";
+	position: absolute;
+	left: -10%;
+	bottom: -18%;
+	z-index: -1;
+	width: min(44vw, 29rem);
+	aspect-ratio: 1;
+	clip-path: polygon(50% 0, 100% 32%, 82% 100%, 20% 88%, 0 25%);
+	background: conic-gradient(from 20deg, rgba(98, 234, 255, 0.2), rgba(244, 251, 255, 0.26), rgba(155, 104, 255, 0.24), rgba(255, 121, 201, 0.24), rgba(98, 234, 255, 0.2));
+	opacity: 0.62;
+	pointer-events: none;
+}
+
+@keyframes crystal-prism-drift {
+	to { transform: rotate(12deg) scale(0.94) translate3d(1rem, 0.75rem, 0); }
+}
+
+html[data-skin="crystal-prism"] .page-hero .site-shell,
+html[data-skin="crystal-prism"] .hero-copy,
+html[data-skin="crystal-prism"] .hero-media {
+	position: relative;
+	z-index: 1;
+	min-width: 0;
+}
+
+html[data-skin="crystal-prism"] .page-hero h1,
+html[data-skin="crystal-prism"] body.page-home .page-hero h1 {
+	color: #f4fbff !important;
+	letter-spacing: -0.075em;
+	line-height: 0.86;
+	text-transform: uppercase;
+	text-shadow: 2px 0 0 rgba(98, 234, 255, 0.38), -2px 0 0 rgba(255, 121, 201, 0.3), 0 8px 26px rgba(1, 2, 8, 0.45);
+}
+
+html[data-skin="crystal-prism"] .hero-title-role:nth-of-type(even) {
+	color: #62eaff !important;
+}
+
+html[data-skin="crystal-prism"] .hero-title-role:nth-of-type(3n) {
+	color: #ff79c9 !important;
+}
+
+html[data-skin="crystal-prism"] .metallic-pearl-text {
+	background: none;
+	color: #9b68ff !important;
+	-webkit-text-fill-color: currentColor;
+	filter: none;
+}
+
+html[data-skin="crystal-prism"] .hero-title-role::first-letter {
+	color: inherit !important;
+	-webkit-text-fill-color: inherit;
+}
+
+html[data-skin="crystal-prism"] .eyebrow {
+	border: 1px solid rgba(244, 251, 255, 0.38) !important;
+	border-radius: 0.3rem;
+	background: linear-gradient(115deg, rgba(98, 234, 255, 0.16), rgba(155, 104, 255, 0.14), rgba(255, 121, 201, 0.16)) !important;
+	box-shadow: 0 8px 24px rgba(1, 2, 8, 0.3);
+	color: #f4fbff !important;
+	font-weight: 850;
+	letter-spacing: 0.12em;
+}
+
+html[data-skin="crystal-prism"] .page-section {
+	border-color: rgba(244, 251, 255, 0.18) !important;
+	background:
+		linear-gradient(135deg, rgba(98, 234, 255, 0.035), transparent 34%, rgba(155, 104, 255, 0.04) 66%, rgba(255, 121, 201, 0.035)),
+		#080b18 !important;
+}
+
+html[data-skin="crystal-prism"] .section-soft {
+	background-color: #0e1428 !important;
+}
+
+html[data-skin="crystal-prism"] .section-portrait {
+	background-color: #111932 !important;
+}
+
+html[data-skin="crystal-prism"] .panel-card,
+html[data-skin="crystal-prism"] .features article,
+html[data-skin="crystal-prism"] .contact-rail,
+html[data-skin="crystal-prism"] ul.feature-icons li,
+html[data-skin="crystal-prism"] .work-overview,
+html[data-skin="crystal-prism"] .work-tech-item,
+html[data-skin="crystal-prism"] .profile-chip {
+	position: relative;
+	overflow: hidden;
+	border: 1px solid rgba(244, 251, 255, 0.26) !important;
+	border-radius: 0.75rem !important;
+	background:
+		conic-gradient(from 28deg at 100% 0, rgba(98, 234, 255, 0.28), rgba(244, 251, 255, 0.15), rgba(155, 104, 255, 0.28), rgba(255, 121, 201, 0.24), transparent 54%),
+		linear-gradient(145deg, rgba(98, 234, 255, 0.05), rgba(155, 104, 255, 0.08) 52%, rgba(255, 121, 201, 0.04)),
+		#111932 !important;
+	box-shadow: 0 22px 46px rgba(1, 2, 8, 0.38) !important;
+	color: #f4fbff !important;
+	contain: paint;
+	transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+html[data-skin="crystal-prism"] .panel-card:nth-child(even),
+html[data-skin="crystal-prism"] .features article:nth-child(even),
+html[data-skin="crystal-prism"] ul.feature-icons li:nth-child(even),
+html[data-skin="crystal-prism"] .work-tech-item:nth-child(even) {
+	background:
+		conic-gradient(from 210deg at 100% 0, rgba(255, 121, 201, 0.26), rgba(244, 251, 255, 0.14), rgba(98, 234, 255, 0.26), rgba(155, 104, 255, 0.28), transparent 55%),
+		linear-gradient(145deg, rgba(155, 104, 255, 0.1), rgba(98, 234, 255, 0.05)),
+		#111932 !important;
+}
+
+html[data-skin="crystal-prism"] .panel-card:hover,
+html[data-skin="crystal-prism"] .features article:hover,
+html[data-skin="crystal-prism"] ul.feature-icons li:hover {
+	box-shadow: 0 28px 58px rgba(1, 2, 8, 0.5), 0 0 24px rgba(98, 234, 255, 0.12) !important;
+	transform: translateY(-3px);
+}
+
+html[data-skin="crystal-prism"] .work-overview {
+	overflow: visible;
+	contain: none;
+}
+
+html[data-skin="crystal-prism"] .features article .image,
+html[data-skin="crystal-prism"] .hero-media img,
+html[data-skin="crystal-prism"] .portrait-panel img,
+html[data-skin="crystal-prism"] .profile-chip img {
+	border: 1px solid rgba(244, 251, 255, 0.5) !important;
+	border-radius: 0.35rem !important;
+	box-shadow: 3px 0 0 rgba(98, 234, 255, 0.22), -3px 0 0 rgba(255, 121, 201, 0.2), 0 20px 42px rgba(1, 2, 8, 0.38) !important;
+	clip-path: polygon(3% 0, 100% 0, 100% 92%, 94% 100%, 0 100%, 0 8%);
+	filter: none !important;
+}
+
+html[data-skin="crystal-prism"] .features article .image {
+	background: conic-gradient(from 25deg, #62eaff, #f4fbff, #9b68ff, #ff79c9, #62eaff) !important;
+}
+
+html[data-skin="crystal-prism"] .hero-splash .hero-splash-text {
+	color: #f4fbff !important;
+	text-shadow: 2px 0 0 rgba(98, 234, 255, 0.3), -2px 0 0 rgba(255, 121, 201, 0.26), 0 4px 16px rgba(1, 2, 8, 0.5);
+}
+
+html[data-skin="crystal-prism"] .tag-list li,
+html[data-skin="crystal-prism"] .profile-chip {
+	border: 1px solid rgba(244, 251, 255, 0.3) !important;
+	border-radius: 0.25rem !important;
+	background: linear-gradient(120deg, rgba(98, 234, 255, 0.22), rgba(155, 104, 255, 0.24), rgba(255, 121, 201, 0.2)) !important;
+	box-shadow: 0 8px 20px rgba(1, 2, 8, 0.28);
+	color: #f4fbff !important;
+	font-weight: 850;
+	text-transform: uppercase;
+}
+
+html[data-skin="crystal-prism"] .timeline li {
+	border-color: rgba(244, 251, 255, 0.28) !important;
+}
+
+html[data-skin="crystal-prism"] .timeline li::before {
+	border: 2px solid #080b18;
+	background: conic-gradient(from 25deg, #62eaff, #f4fbff, #9b68ff, #ff79c9, #62eaff);
+	box-shadow: 0 0 0 2px rgba(244, 251, 255, 0.4);
+}
+
+html[data-skin="crystal-prism"] input[type="text"],
+html[data-skin="crystal-prism"] input[type="password"],
+html[data-skin="crystal-prism"] input[type="email"],
+html[data-skin="crystal-prism"] select,
+html[data-skin="crystal-prism"] textarea {
+	border: 1px solid rgba(244, 251, 255, 0.34) !important;
+	border-radius: 0.4rem !important;
+	background: rgba(244, 251, 255, 0.06) !important;
+	box-shadow: inset 0 1px 0 rgba(244, 251, 255, 0.08) !important;
+	color: #f4fbff !important;
+}
+
+html[data-skin="crystal-prism"] input:focus,
+html[data-skin="crystal-prism"] select:focus,
+html[data-skin="crystal-prism"] textarea:focus {
+	border-color: #62eaff !important;
+	box-shadow: 0 0 0 3px rgba(98, 234, 255, 0.14) !important;
+}
+
+html[data-skin="crystal-prism"] input[type="submit"],
+html[data-skin="crystal-prism"] input[type="reset"],
+html[data-skin="crystal-prism"] input[type="button"],
+html[data-skin="crystal-prism"] button:not([class^="skin-picker"]),
+html[data-skin="crystal-prism"] .button {
+	border: 1px solid rgba(244, 251, 255, 0.36) !important;
+	border-radius: 0.35rem !important;
+	background: linear-gradient(120deg, #62eaff, #9b68ff 55%, #ff79c9) !important;
+	box-shadow: 0 10px 26px rgba(1, 2, 8, 0.34) !important;
+	color: #080b18 !important;
+	font-weight: 900;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+html[data-skin="crystal-prism"] input[type="submit"].primary,
+html[data-skin="crystal-prism"] input[type="button"].primary,
+html[data-skin="crystal-prism"] button.primary,
+html[data-skin="crystal-prism"] .button.primary,
+html[data-skin="crystal-prism"] .contact-submit,
+html[data-skin="crystal-prism"] .features article .inner span a {
+	background: linear-gradient(115deg, #62eaff, #f4fbff 42%, #ff79c9) !important;
+	color: #080b18 !important;
+}
+
+html[data-skin="crystal-prism"] input[type="submit"]:hover,
+html[data-skin="crystal-prism"] button:not([class^="skin-picker"]):hover,
+html[data-skin="crystal-prism"] .button:hover {
+	box-shadow: 0 14px 32px rgba(1, 2, 8, 0.46), 0 0 20px rgba(98, 234, 255, 0.16) !important;
+	color: #080b18 !important;
+	transform: translateY(-2px);
+}
+
+html[data-skin="crystal-prism"] .section-cta {
+	border-block: 1px solid rgba(244, 251, 255, 0.22) !important;
+	background:
+		conic-gradient(from 120deg at 88% 22%, rgba(98, 234, 255, 0.15), rgba(155, 104, 255, 0.2), rgba(255, 121, 201, 0.16), transparent 48%),
+		#050711 !important;
+	color: #f4fbff !important;
+}
+
+html[data-skin="crystal-prism"] .section-cta h2,
+html[data-skin="crystal-prism"] .section-cta p {
+	color: #f4fbff !important;
+}
+
+html[data-skin="crystal-prism"] .site-footer {
+	border-top: 1px solid rgba(244, 251, 255, 0.2) !important;
+	background: #050711 !important;
+	color: #f4fbff !important;
+}
+
+html[data-skin="crystal-prism"] .site-footer p,
+html[data-skin="crystal-prism"] .site-footer a {
+	color: #f4fbff !important;
+}
+
+html[data-skin="crystal-prism"] .skin-picker {
+	--skin-ui-bg: #080b18;
+	--skin-ui-panel: #111932;
+	--skin-ui-text: #f4fbff;
+	--skin-ui-muted: #b9c5d8;
+	--skin-ui-accent: #62eaff;
+	--skin-ui-border: rgba(244, 251, 255, 0.28);
+}
+
+html[data-skin="crystal-prism"] .skin-picker-panel {
+	border: 1px solid rgba(244, 251, 255, 0.32);
+	border-radius: 0.65rem;
+	box-shadow: 0 24px 60px rgba(1, 2, 8, 0.52);
+}
+
+html[data-skin="crystal-prism"] .skin-picker-toggle {
+	border: 1px solid rgba(244, 251, 255, 0.34) !important;
+	border-radius: 0.45rem !important;
+	background: linear-gradient(120deg, #62eaff, #9b68ff 55%, #ff79c9) !important;
+	box-shadow: 0 12px 30px rgba(1, 2, 8, 0.48) !important;
+	color: #080b18 !important;
+}
+
+html[data-skin="crystal-prism"] .skin-picker-toggle-label,
+html[data-skin="crystal-prism"] .skin-picker-current,
+html[data-skin="crystal-prism"] .skin-picker-chevron {
+	color: #080b18 !important;
+}
+
+html[data-skin="crystal-prism"] .skin-picker .skin-picker-option {
+	border-radius: 0.3rem !important;
+}
+
+@media (max-width: 736px) {
+	html[data-skin="crystal-prism"] .page-hero::before {
+		right: -10rem;
+		top: 8rem;
+		width: 28rem;
+		opacity: 0.62;
+	}
+
+	html[data-skin="crystal-prism"] .page-hero::after {
+		left: -10rem;
+		bottom: -7rem;
+		width: 22rem;
+	}
+
+	html[data-skin="crystal-prism"] body.nav-open .site-nav {
+		border: 1px solid rgba(244, 251, 255, 0.3);
+		border-radius: 0.65rem;
+		background: #080b18 !important;
+		box-shadow: 0 20px 48px rgba(1, 2, 8, 0.54);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-skin="crystal-prism"] *,
+	html[data-skin="crystal-prism"] *::before,
+	html[data-skin="crystal-prism"] *::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}
