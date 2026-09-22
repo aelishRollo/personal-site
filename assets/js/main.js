@@ -69,7 +69,8 @@
 			'split-duality': 'Meet in the middle',
 			'card-deck-stack': 'Pick a card',
 			'type-sculpture': 'Shape an idea',
-			'browser-archaeology': "I\u2019VE GOT MAIL!"
+			'browser-archaeology': "I\u2019VE GOT MAIL!",
+			'forties-field-notes': 'Drop me a line'
 		};
 		var randomOption = '<button type="button" class="skin-picker-option skin-picker-option-random" data-skin-random aria-pressed="false">' +
 			'<span class="skin-picker-option-mark" aria-hidden="true"></span>' +

@@ -1,0 +1,653 @@
+/*
+	1940s Field Notes
+	Warm paper, typewriter ink, handwritten annotations, coffee rings and binder
+	hardware. This skin changes presentation without changing the site layout.
+*/
+
+html[data-skin="forties-field-notes"] {
+	--background: #eadfbe;
+	--foreground: #29251f;
+	--muted-bg: #ded0aa;
+	--card-bg: #f4ebcf;
+	--border: #6d604d;
+	--primary: #284c6b;
+	--primary-fg: #f7efd7;
+	--secondary: #8d3430;
+	--secondary-fg: #f7efd7;
+	--accent: #b78c43;
+	--accent-fg: #29251f;
+	--link: #244968;
+	--warning: #8d3430;
+	--header-bg: #e8ddbd;
+	--header-fg: #29251f;
+	--footer-bg: #302a22;
+	--footer-fg: #eee2c1;
+	--bg: #eadfbe;
+	--surface-1: #f4ebcf;
+	--surface-2: #ded0aa;
+	--surface-3: #d5c395;
+	--text-1: #29251f;
+	--text-2: #51493d;
+	--line-1: rgba(73, 62, 47, 0.33);
+	--accent-1: #284c6b;
+	--accent-2: #8d3430;
+	--field-paper-photo: url("../../../images/paper-texture-tile.webp?v=paper-texture-1");
+	--field-desk-photo: url("../../images/forties-writers-desk.webp?v=forties-writers-desk-1");
+	--field-paper:
+		linear-gradient(90deg, transparent 0 4.2rem, rgba(145, 55, 50, 0.2) 4.2rem 4.28rem, transparent 4.28rem),
+		repeating-linear-gradient(0deg, transparent 0 1.72rem, rgba(70, 91, 103, 0.12) 1.72rem 1.78rem),
+		radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.42), transparent 23rem),
+		linear-gradient(rgba(238, 227, 197, 0.82), rgba(238, 227, 197, 0.82)),
+		var(--field-paper-photo) center / 500px 500px repeat;
+	--field-grain:
+		repeating-linear-gradient(93deg, rgba(52, 40, 28, 0.018) 0 1px, transparent 1px 5px),
+		repeating-linear-gradient(7deg, rgba(52, 40, 28, 0.014) 0 1px, transparent 1px 8px);
+	overflow-x: clip;
+}
+
+html[data-skin="forties-field-notes"] body {
+	background:
+		linear-gradient(rgba(45, 31, 20, 0.2), rgba(45, 31, 20, 0.42)),
+		var(--field-desk-photo) center top / max(100vw, 64rem) auto repeat-y scroll !important;
+	color: #29251f !important;
+	font-family: "Courier New", Courier, monospace !important;
+	overflow-x: hidden;
+}
+
+html[data-skin="forties-field-notes"] body,
+html[data-skin="forties-field-notes"] p,
+html[data-skin="forties-field-notes"] li,
+html[data-skin="forties-field-notes"] label,
+html[data-skin="forties-field-notes"] .lead,
+html[data-skin="forties-field-notes"] .note,
+html[data-skin="forties-field-notes"] .footer-inner p,
+html[data-skin="forties-field-notes"] .social-inline a {
+	color: #51493d !important;
+}
+
+html[data-skin="forties-field-notes"] h1,
+html[data-skin="forties-field-notes"] h2,
+html[data-skin="forties-field-notes"] h3,
+html[data-skin="forties-field-notes"] h4,
+html[data-skin="forties-field-notes"] h5,
+html[data-skin="forties-field-notes"] h6,
+html[data-skin="forties-field-notes"] strong {
+	color: #1d3950 !important;
+	font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive !important;
+	font-weight: 700;
+	letter-spacing: 0.005em;
+}
+
+html[data-skin="forties-field-notes"] a {
+	color: #244968 !important;
+	text-decoration-color: rgba(141, 52, 48, 0.72);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.18em;
+}
+
+html[data-skin="forties-field-notes"] a:hover {
+	color: #8d3430 !important;
+}
+
+html[data-skin="forties-field-notes"] .site-header {
+	border-bottom: 1px solid #6d604d !important;
+	background:
+		var(--field-grain),
+		linear-gradient(rgba(238, 227, 197, 0.97), rgba(225, 210, 174, 0.97)) !important;
+	box-shadow: 0 4px 12px rgba(29, 22, 15, 0.32) !important;
+	backdrop-filter: none !important;
+}
+
+html[data-skin="forties-field-notes"] .brand-mark {
+	border: 1px solid #284c6b;
+	border-radius: 50% !important;
+	background: transparent !important;
+	box-shadow: inset 0 0 0 3px #e8ddbd, inset 0 0 0 4px #284c6b;
+	color: #284c6b !important;
+	font-family: Georgia, "Times New Roman", serif !important;
+	transform: rotate(-5deg);
+}
+
+html[data-skin="forties-field-notes"] .brand-text {
+	color: #29251f !important;
+	font-family: "Courier New", Courier, monospace !important;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+}
+
+html[data-skin="forties-field-notes"] .site-nav a,
+html[data-skin="forties-field-notes"] .nav-toggle {
+	color: #29251f !important;
+	font-family: "Courier New", Courier, monospace !important;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+html[data-skin="forties-field-notes"] .site-nav a {
+	border-radius: 0 !important;
+}
+
+html[data-skin="forties-field-notes"] .site-nav a:hover,
+html[data-skin="forties-field-notes"] .site-nav a[aria-current="page"] {
+	background: transparent !important;
+	box-shadow: inset 0 -2px #8d3430;
+	color: #8d3430 !important;
+}
+
+html[data-skin="forties-field-notes"] .site-nav .nav-cta,
+html[data-skin="forties-field-notes"] .nav-toggle {
+	border: 2px solid #8d3430 !important;
+	border-radius: 0 !important;
+	background: rgba(247, 239, 215, 0.6) !important;
+	box-shadow: 2px 2px 0 rgba(141, 52, 48, 0.35) !important;
+	color: #8d3430 !important;
+	transform: rotate(-1deg);
+}
+
+html[data-skin="forties-field-notes"] .site-main-wrap {
+	position: relative;
+	isolation: isolate;
+	background: transparent;
+}
+
+html[data-skin="forties-field-notes"] .site-main-wrap::before {
+	content: "";
+	position: absolute;
+	left: -1.2rem;
+	top: 0;
+	bottom: 0;
+	z-index: 12;
+	width: clamp(2rem, 3.8vw, 3.1rem);
+	height: auto;
+	background: radial-gradient(ellipse at center, transparent 0 31%, #b5aa94 33% 39%, #5d5548 41% 46%, transparent 48%) center top / 100% 5.4rem repeat-y;
+	pointer-events: none;
+}
+
+html[data-skin="forties-field-notes"] .page-hero,
+html[data-skin="forties-field-notes"] body.page-home .page-hero,
+html[data-skin="forties-field-notes"] body.page-services .page-hero,
+html[data-skin="forties-field-notes"] body.page-work .page-hero,
+html[data-skin="forties-field-notes"] body.page-connect .page-hero,
+html[data-skin="forties-field-notes"] body.page-about .page-hero,
+html[data-skin="forties-field-notes"] body.page-contact .page-hero {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	border: 0 !important;
+	border-bottom: 1px solid #756955 !important;
+	background: rgba(45, 31, 20, 0.5) !important;
+	box-shadow: inset 0 0 3rem rgba(24, 16, 10, 0.2);
+	color: #29251f !important;
+}
+
+html[data-skin="forties-field-notes"] .page-hero > .site-shell {
+	position: relative;
+	z-index: 1;
+	padding: clamp(1.5rem, 4vw, 3rem);
+	border: 1px solid #867860;
+	background: var(--field-paper) !important;
+	box-shadow: 0 18px 35px rgba(24, 16, 10, 0.32), 4px 5px 0 rgba(24, 16, 10, 0.16);
+}
+
+html[data-skin="forties-field-notes"] .page-hero > .site-shell::before {
+	content: "CONFIDENTIAL  /  PERSONAL FILE";
+	position: absolute;
+	right: clamp(1rem, 7vw, 6rem);
+	top: clamp(11.5rem, 17vw, 14rem);
+	z-index: 0;
+	padding: 0.45rem 0.7rem 0.35rem;
+	border: 3px double rgba(141, 52, 48, 0.58);
+	color: rgba(141, 52, 48, 0.58);
+	font: 700 clamp(0.7rem, 1.15vw, 0.9rem)/1 "Courier New", monospace;
+	letter-spacing: 0.12em;
+	transform: rotate(7deg);
+	pointer-events: none;
+}
+
+html[data-skin="forties-field-notes"] .page-hero > .site-shell::after {
+	content: "";
+	position: absolute;
+	right: clamp(-3rem, 2vw, 2rem);
+	top: 38%;
+	z-index: 0;
+	width: clamp(8rem, 18vw, 13rem);
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background:
+		radial-gradient(circle, transparent 0 43%, rgba(108, 62, 30, 0.1) 44% 47%, rgba(108, 62, 30, 0.29) 48% 50%, transparent 51% 55%, rgba(108, 62, 30, 0.13) 56% 58%, transparent 59%),
+		radial-gradient(ellipse at 64% 72%, rgba(108, 62, 30, 0.12), transparent 38%);
+	opacity: 0.85;
+	transform: rotate(-17deg) scaleY(0.92);
+	pointer-events: none;
+}
+
+html[data-skin="forties-field-notes"] .page-hero .site-shell,
+html[data-skin="forties-field-notes"] .hero-copy,
+html[data-skin="forties-field-notes"] .hero-media {
+	position: relative;
+	z-index: 1;
+	min-width: 0;
+}
+
+html[data-skin="forties-field-notes"] .page-hero h1,
+html[data-skin="forties-field-notes"] body.page-home .page-hero h1 {
+	max-width: 56rem;
+	color: #1d3950 !important;
+	font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive !important;
+	font-size: clamp(3.2rem, 8.4vw, 7.8rem);
+	font-weight: 700;
+	letter-spacing: -0.055em;
+	line-height: 0.86;
+	text-shadow: 0.02em 0.02em rgba(40, 76, 107, 0.16);
+	transform: rotate(-1deg);
+}
+
+html[data-skin="forties-field-notes"] .hero-title-role:nth-of-type(2),
+html[data-skin="forties-field-notes"] .hero-title-role:nth-of-type(4) {
+	color: #8d3430 !important;
+}
+
+html[data-skin="forties-field-notes"] .metallic-pearl-text {
+	background: none;
+	color: #8d3430 !important;
+	-webkit-text-fill-color: currentColor;
+	filter: none;
+}
+
+html[data-skin="forties-field-notes"] .hero-title-initial {
+	color: inherit !important;
+	-webkit-text-fill-color: inherit;
+}
+
+html[data-skin="forties-field-notes"] .page-hero .hero-summary,
+html[data-skin="forties-field-notes"] .page-hero .lead {
+	display: block;
+	width: fit-content;
+	max-width: 48rem;
+	padding: 0.65rem 1rem;
+	border: 0 !important;
+	border-left: 2px solid rgba(141, 52, 48, 0.6) !important;
+	background: rgba(247, 239, 215, 0.5) !important;
+	box-shadow: none !important;
+	color: #383229 !important;
+	font-family: "Courier New", Courier, monospace !important;
+	line-height: 1.55;
+}
+
+html[data-skin="forties-field-notes"] .eyebrow {
+	width: fit-content;
+	padding: 0.35rem 0.65rem;
+	border: 1px solid rgba(36, 73, 104, 0.55) !important;
+	border-radius: 0 !important;
+	background: rgba(244, 235, 207, 0.72) !important;
+	box-shadow: 2px 2px 0 rgba(36, 73, 104, 0.18);
+	color: #244968 !important;
+	font-family: "Courier New", Courier, monospace !important;
+	font-weight: 700;
+	letter-spacing: 0.11em;
+	transform: rotate(-1.4deg);
+}
+
+html[data-skin="forties-field-notes"] .page-section,
+html[data-theme][data-skin="forties-field-notes"] .page-section:not(.section-cta):not(.section-soft):not(.section-portrait) {
+	position: relative;
+	isolation: isolate;
+	border-color: #756955 !important;
+	background: var(--field-paper) !important;
+	box-shadow: inset 0 0 4rem rgba(104, 80, 43, 0.1);
+}
+
+html[data-skin="forties-field-notes"] .page-section:nth-of-type(2n) {
+	background-position: 0, 0 9px, 0, 0 !important;
+}
+
+html[data-skin="forties-field-notes"] .page-section:nth-of-type(3n)::after {
+	content: "";
+	position: absolute;
+	right: 7%;
+	bottom: 8%;
+	z-index: -1;
+	width: 8.5rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: radial-gradient(circle, transparent 0 44%, rgba(109, 60, 29, 0.12) 45% 49%, transparent 50% 54%, rgba(109, 60, 29, 0.08) 55% 58%, transparent 59%);
+	transform: rotate(15deg) scaleY(0.88);
+	pointer-events: none;
+}
+
+html[data-skin="forties-field-notes"] .section-soft,
+html[data-skin="forties-field-notes"] .section-portrait {
+	background: rgba(45, 31, 20, 0.5) !important;
+}
+
+html[data-skin="forties-field-notes"] .section-soft > .site-shell,
+html[data-skin="forties-field-notes"] .section-portrait > .site-shell {
+	position: relative;
+	z-index: 1;
+	padding: clamp(1.5rem, 4vw, 3rem);
+	border: 1px solid #867860;
+	background: var(--field-paper) !important;
+	box-shadow: 0 18px 35px rgba(24, 16, 10, 0.32), 4px 5px 0 rgba(24, 16, 10, 0.16);
+}
+
+html[data-skin="forties-field-notes"] .panel-card,
+html[data-skin="forties-field-notes"] .features article,
+html[data-skin="forties-field-notes"] .contact-rail,
+html[data-skin="forties-field-notes"] ul.feature-icons li,
+html[data-skin="forties-field-notes"] .work-overview,
+html[data-skin="forties-field-notes"] .work-tech-item,
+html[data-skin="forties-field-notes"] .profile-chip {
+	--note-turn: -0.45deg;
+	position: relative;
+	overflow: hidden;
+	border: 1px solid #867860 !important;
+	border-radius: 0 !important;
+	background:
+		var(--field-grain),
+		linear-gradient(90deg, transparent 0 2.6rem, rgba(141, 52, 48, 0.16) 2.6rem 2.66rem, transparent 2.66rem),
+		repeating-linear-gradient(0deg, transparent 0 1.58rem, rgba(70, 91, 103, 0.11) 1.58rem 1.64rem),
+		#f4ebcf !important;
+	box-shadow: 3px 4px 0 rgba(55, 43, 29, 0.13), 0 12px 24px rgba(55, 43, 29, 0.16) !important;
+	color: #29251f !important;
+	transform: rotate(var(--note-turn));
+	transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+html[data-skin="forties-field-notes"] .panel-card:nth-child(3n + 2),
+html[data-skin="forties-field-notes"] .features article:nth-child(3n + 2),
+html[data-skin="forties-field-notes"] .work-tech-item:nth-child(3n + 2) {
+	--note-turn: 0.35deg;
+	background-color: #ede0bd !important;
+}
+
+html[data-skin="forties-field-notes"] .panel-card:nth-child(3n),
+html[data-skin="forties-field-notes"] .features article:nth-child(3n),
+html[data-skin="forties-field-notes"] .work-tech-item:nth-child(3n) {
+	--note-turn: -0.15deg;
+	background-color: #f7efd7 !important;
+}
+
+html[data-skin="forties-field-notes"] .panel-card::before,
+html[data-skin="forties-field-notes"] .features article::before,
+html[data-skin="forties-field-notes"] .contact-rail::before {
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: -0.35rem;
+	z-index: 3;
+	width: 4.7rem;
+	height: 1.25rem;
+	background: rgba(210, 188, 133, 0.54);
+	box-shadow: inset 0 0 0 1px rgba(90, 71, 42, 0.08);
+	transform: translateX(-50%) rotate(-2deg);
+	pointer-events: none;
+}
+
+html[data-skin="forties-field-notes"] .panel-card:nth-child(3n + 2)::after,
+html[data-skin="forties-field-notes"] .features article:nth-child(3n + 2)::after {
+	content: "";
+	position: absolute;
+	right: -1.25rem;
+	bottom: -1rem;
+	width: 6.2rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: radial-gradient(circle, transparent 0 43%, rgba(104, 59, 28, 0.1) 44% 48%, transparent 49% 54%, rgba(104, 59, 28, 0.07) 55% 58%, transparent 59%);
+	pointer-events: none;
+}
+
+html[data-skin="forties-field-notes"] .panel-card > *,
+html[data-skin="forties-field-notes"] .features article > *,
+html[data-skin="forties-field-notes"] .contact-rail > *,
+html[data-skin="forties-field-notes"] .work-overview > * {
+	position: relative;
+	z-index: 1;
+}
+
+html[data-skin="forties-field-notes"] .panel-card:hover,
+html[data-skin="forties-field-notes"] .features article:hover,
+html[data-skin="forties-field-notes"] ul.feature-icons li:hover {
+	box-shadow: 5px 7px 0 rgba(55, 43, 29, 0.15), 0 16px 28px rgba(55, 43, 29, 0.18) !important;
+	transform: translateY(-2px) rotate(var(--note-turn));
+}
+
+html[data-skin="forties-field-notes"] .work-overview {
+	overflow: visible;
+}
+
+html[data-skin="forties-field-notes"] .features article .image,
+html[data-skin="forties-field-notes"] .hero-media img,
+html[data-skin="forties-field-notes"] .portrait-panel img,
+html[data-skin="forties-field-notes"] .profile-chip img {
+	border: 0.55rem solid #f7efd7 !important;
+	border-bottom-width: 1.25rem !important;
+	border-radius: 0 !important;
+	background: #f7efd7;
+	box-shadow: 2px 3px 0 rgba(56, 43, 29, 0.22), 0 12px 24px rgba(56, 43, 29, 0.22) !important;
+	filter: sepia(0.32) contrast(0.92) saturate(0.75) !important;
+	transform: rotate(0.6deg);
+}
+
+html[data-skin="forties-field-notes"] .hero-splash .hero-splash-text,
+html[data-skin="forties-field-notes"] .tag-list li,
+html[data-skin="forties-field-notes"] .profile-chip {
+	border: 1px solid rgba(82, 70, 53, 0.46) !important;
+	border-radius: 0 !important;
+	background: #e8dcae !important;
+	box-shadow: 2px 3px 0 rgba(56, 43, 29, 0.15);
+	color: #1d3950 !important;
+	font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive !important;
+	font-weight: 700;
+	transform: rotate(-1deg);
+}
+
+html[data-skin="forties-field-notes"] .hero-splash-notice-icon {
+	display: none;
+}
+
+html[data-skin="forties-field-notes"] .hero-splash-close {
+	color: #8d3430 !important;
+}
+
+html[data-skin="forties-field-notes"] .tag-list li:nth-child(2n) {
+	background: #dce0cf !important;
+	transform: rotate(0.7deg);
+}
+
+html[data-skin="forties-field-notes"] .timeline li::before {
+	border: 1px solid #284c6b;
+	background: #f4ebcf !important;
+	box-shadow: inset 0 0 0 3px #e0d2ac;
+}
+
+html[data-skin="forties-field-notes"] input[type="text"],
+html[data-skin="forties-field-notes"] input[type="password"],
+html[data-skin="forties-field-notes"] input[type="email"],
+html[data-skin="forties-field-notes"] select,
+html[data-skin="forties-field-notes"] textarea {
+	border: 0 !important;
+	border-bottom: 1px solid #6d604d !important;
+	border-radius: 0 !important;
+	background:
+		repeating-linear-gradient(0deg, transparent 0 1.6rem, rgba(70, 91, 103, 0.12) 1.6rem 1.65rem),
+		#f7efd7 !important;
+	box-shadow: inset 0 0 1.5rem rgba(104, 80, 43, 0.08);
+	color: #29251f !important;
+	font-family: "Courier New", Courier, monospace !important;
+}
+
+html[data-skin="forties-field-notes"] input:focus,
+html[data-skin="forties-field-notes"] select:focus,
+html[data-skin="forties-field-notes"] textarea:focus {
+	border-color: #284c6b !important;
+	box-shadow: inset 3px 0 #284c6b !important;
+}
+
+html[data-skin="forties-field-notes"] input[type="submit"],
+html[data-skin="forties-field-notes"] input[type="reset"],
+html[data-skin="forties-field-notes"] input[type="button"],
+html[data-skin="forties-field-notes"] button:not([class^="skin-picker"]),
+html[data-skin="forties-field-notes"] .button {
+	border: 2px solid #284c6b !important;
+	border-radius: 0 !important;
+	background: rgba(244, 235, 207, 0.82) !important;
+	box-shadow: 2px 3px 0 rgba(40, 76, 107, 0.22);
+	color: #284c6b !important;
+	font-family: "Courier New", Courier, monospace !important;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+html[data-skin="forties-field-notes"] input[type="submit"].primary,
+html[data-skin="forties-field-notes"] input[type="button"].primary,
+html[data-skin="forties-field-notes"] button.primary,
+html[data-skin="forties-field-notes"] .button.primary,
+html[data-skin="forties-field-notes"] .contact-submit,
+html[data-skin="forties-field-notes"] .features article .inner span a {
+	border-color: #8d3430 !important;
+	color: #8d3430 !important;
+}
+
+html[data-skin="forties-field-notes"] .features article .inner span a {
+	padding: 0.55rem 0.8rem !important;
+	border: 2px solid #8d3430 !important;
+	border-radius: 0 !important;
+	background: #f4ebcf !important;
+	box-shadow: 2px 3px 0 rgba(141, 52, 48, 0.2) !important;
+	color: #8d3430 !important;
+	font-family: "Courier New", Courier, monospace !important;
+	font-size: 0.7rem !important;
+	font-weight: 700 !important;
+	letter-spacing: 0.06em !important;
+	text-transform: uppercase;
+}
+
+html[data-skin="forties-field-notes"] .features article .inner span a:hover {
+	background: #ded0aa !important;
+	color: #244968 !important;
+}
+
+html[data-skin="forties-field-notes"] input[type="submit"]:hover,
+html[data-skin="forties-field-notes"] button:not([class^="skin-picker"]):hover,
+html[data-skin="forties-field-notes"] .button:hover {
+	background: #ded0aa !important;
+	color: #8d3430 !important;
+	transform: translate(1px, 1px) rotate(-0.5deg);
+	box-shadow: 1px 1px 0 rgba(40, 76, 107, 0.22);
+}
+
+html[data-skin="forties-field-notes"] .section-cta {
+	border: 0 !important;
+	background: rgba(45, 31, 20, 0.48) !important;
+	box-shadow: inset 0 0 3rem rgba(24, 16, 10, 0.2);
+}
+
+	html[data-skin="forties-field-notes"] .section-cta > .site-shell {
+	padding: clamp(1.5rem, 4vw, 3rem);
+	border: 0.6rem solid transparent;
+	background:
+		linear-gradient(rgba(238, 227, 197, 0.96), rgba(238, 227, 197, 0.96)) padding-box,
+		repeating-linear-gradient(135deg, #8d3430 0 9px, #eee3c5 9px 18px, #284c6b 18px 27px, #eee3c5 27px 36px) border-box,
+		var(--field-paper-photo) center / 500px 500px repeat padding-box !important;
+	box-shadow: 0 18px 35px rgba(24, 16, 10, 0.32), 4px 5px 0 rgba(24, 16, 10, 0.16);
+}
+
+html[data-skin="forties-field-notes"] .section-cta h2 {
+	color: #1d3950 !important;
+	transform: rotate(-0.7deg);
+}
+
+html[data-skin="forties-field-notes"] .section-cta p {
+	color: #51493d !important;
+}
+
+html[data-skin="forties-field-notes"] .site-footer {
+	border-top: 1px solid #1d1914 !important;
+	background: var(--field-grain), #302a22 !important;
+	color: #eee2c1 !important;
+}
+
+html[data-skin="forties-field-notes"] .site-footer p,
+html[data-skin="forties-field-notes"] .site-footer a {
+	color: #eee2c1 !important;
+}
+
+html[data-skin="forties-field-notes"] .skin-picker {
+	--skin-ui-bg: #302a22;
+	--skin-ui-panel: #f4ebcf;
+	--skin-ui-text: #29251f;
+	--skin-ui-muted: #665c4c;
+	--skin-ui-accent: #8d3430;
+	--skin-ui-border: #6d604d;
+}
+
+html[data-skin="forties-field-notes"] .skin-picker-panel {
+	border: 1px solid #6d604d !important;
+	border-radius: 0 !important;
+	background: var(--field-grain), #f4ebcf !important;
+	box-shadow: 4px 5px 0 rgba(48, 42, 34, 0.34), 0 14px 28px rgba(48, 42, 34, 0.25) !important;
+}
+
+html[data-skin="forties-field-notes"] .skin-picker-toggle {
+	border: 1px solid #6d604d !important;
+	border-radius: 0 !important;
+	background: #e8ddbd !important;
+	box-shadow: 3px 3px 0 rgba(48, 42, 34, 0.28) !important;
+}
+
+html[data-skin="forties-field-notes"] .skin-picker-toggle-label,
+html[data-skin="forties-field-notes"] .skin-picker-current,
+html[data-skin="forties-field-notes"] .skin-picker-chevron {
+	color: #29251f !important;
+	font-family: "Courier New", Courier, monospace !important;
+}
+
+html[data-skin="forties-field-notes"] .skin-picker .skin-picker-option {
+	border-radius: 0 !important;
+	font-family: "Courier New", Courier, monospace !important;
+}
+
+html[data-skin="forties-field-notes"] .skin-picker-scroll-arrow {
+	color: #8d3430 !important;
+}
+
+@media (max-width: 736px) {
+	html[data-skin="forties-field-notes"] .site-main-wrap::before {
+		left: -1.15rem;
+		top: 0;
+		width: 2rem;
+		background-size: 100% 4.4rem;
+		opacity: 0.82;
+	}
+
+	html[data-skin="forties-field-notes"] .page-hero > .site-shell::before {
+		display: none;
+	}
+
+	html[data-skin="forties-field-notes"] .page-hero > .site-shell::after {
+		right: -4rem;
+		top: 46%;
+		width: 9rem;
+	}
+
+	html[data-skin="forties-field-notes"] .panel-card,
+	html[data-skin="forties-field-notes"] .features article,
+	html[data-skin="forties-field-notes"] .contact-rail,
+	html[data-skin="forties-field-notes"] ul.feature-icons li,
+	html[data-skin="forties-field-notes"] .work-overview,
+	html[data-skin="forties-field-notes"] .work-tech-item,
+	html[data-skin="forties-field-notes"] .profile-chip {
+		transform: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-skin="forties-field-notes"] *,
+	html[data-skin="forties-field-notes"] *::before,
+	html[data-skin="forties-field-notes"] *::after {
+		transition-duration: 0.01ms !important;
+	}
+}
