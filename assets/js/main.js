@@ -48,6 +48,25 @@
 	var skinRuntime = window.SiteSkins;
 
 	if (skinRuntime && skinRuntime.all && skinRuntime.all.length) {
+		var skinContactMessages = {
+			'portfolio-dark': 'Let\'s build something',
+			'portfolio-light': 'Say hello',
+			'acid-editorial': 'Start a conversation',
+			'op-art-monochrome': 'Step into the idea',
+			'neon-glitch': 'Ping me //',
+			'liquid-dream': 'Dive into an idea',
+			'sacred-geometry': 'Align & connect',
+			'terminal-vision': '> OPEN_CHANNEL',
+			'psychedelic-scrapbook': 'HELLO!',
+			'cut-and-paste-riot': 'MAKE SOMETHING WEIRD',
+			'liquid-chrome-y2k': 'CONNECT.EXE',
+			'acid-brutalist': 'TALK TO ME',
+			'botanical-dreamscape': 'Grow an idea',
+			'cosmic-airbrush': 'Send a signal',
+			'riso-hallucination': 'Print something wild',
+			'crystal-prism': 'Refract an idea',
+			'recursive-portal': 'Enter the conversation'
+		};
 		var randomOption = '<button type="button" class="skin-picker-option skin-picker-option-random" data-skin-random aria-pressed="false">' +
 			'<span class="skin-picker-option-mark" aria-hidden="true"></span>' +
 			'<span>Random Theme</span>' +
@@ -96,6 +115,7 @@
 				'<p class="skin-picker-status" aria-live="polite"></p>' +
 			'</aside>'
 		);
+		var $skinContactCharm = $('<a class="skin-contact-charm" href="contact.html"><span></span></a>');
 		var $skinToggle = $skinPicker.find('.skin-picker-toggle');
 		var $skinPanel = $skinPicker.find('.skin-picker-panel');
 		var $skinChoices = $skinPicker.find('[data-skin-choice]');
@@ -133,6 +153,7 @@
 		function syncSkinPicker(announcement) {
 			var activeId = skinRuntime.getActiveId();
 			var activeName = skinName(activeId);
+			var contactMessage = skinContactMessages[activeId] || 'Say hello';
 			var isKept = skinRuntime.getPersistedId() === activeId;
 			var mode = skinRuntime.getMode ? skinRuntime.getMode() : (isKept ? 'saved' : 'random');
 			var modeDescription;
@@ -162,6 +183,10 @@
 			$skinKeep.prop('checked', isKept);
 			$skinToggle.attr('aria-label', 'Choose theme. Current theme: ' + activeName + '. ' + modeDescription);
 			$skinStatus.text(announcement || activeName + '. ' + modeDescription);
+			$skinContactCharm
+				.attr('data-skin-contact-for', activeId)
+				.attr('aria-label', contactMessage + ' — contact Alec')
+				.find('span').text(contactMessage);
 		}
 
 		function closeSkinPicker() {
@@ -270,6 +295,7 @@
 			skinScrollFrame = window.requestAnimationFrame(step);
 		}
 
+		$('.page-hero').first().append($skinContactCharm);
 		$('body').append($skinPicker);
 		syncSkinPicker();
 

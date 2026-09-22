@@ -23,6 +23,240 @@
 	box-sizing: border-box;
 }
 
+/* Theme-aware contact charm. The text is supplied by main.js for each skin. */
+html[data-skin-id="portfolio-dark"] .page-hero,
+html[data-skin-id="portfolio-light"] .page-hero {
+	position: relative;
+}
+
+.skin-contact-charm {
+	--skin-contact-rotate: -2deg;
+
+	position: absolute;
+	top: clamp(1rem, 3vw, 2.5rem);
+	right: clamp(0.8rem, 3vw, 3rem);
+	z-index: 8;
+	display: inline-grid;
+	place-items: center;
+	max-width: 11rem;
+	min-height: 3.25rem;
+	padding: 0.7rem 1rem;
+	border: 2px solid var(--foreground, #141414) !important;
+	border-radius: 999px;
+	background: var(--primary, #ff6b4a) !important;
+	box-shadow: 5px 5px 0 var(--foreground, #141414);
+	color: var(--primary-fg, #141414) !important;
+	font: 900 0.76rem/1.05 Arial, Helvetica, sans-serif !important;
+	letter-spacing: 0.055em !important;
+	text-align: center;
+	text-decoration: none !important;
+	text-transform: uppercase !important;
+	transform: rotate(var(--skin-contact-rotate));
+	transform-origin: center;
+	transition: transform 150ms ease, box-shadow 150ms ease;
+	white-space: normal;
+}
+
+.skin-contact-charm:hover {
+	color: var(--primary-fg, #141414) !important;
+	transform: translateY(-2px) rotate(var(--skin-contact-rotate)) scale(1.04);
+}
+
+.skin-contact-charm:focus-visible {
+	outline: 3px solid var(--accent, var(--primary, #ff6b4a));
+	outline-offset: 4px;
+}
+
+html[data-skin-id="portfolio-dark"] .skin-contact-charm {
+	--skin-contact-rotate: -3deg;
+	border-color: #f7f4ed !important;
+	background: #ff6b4a !important;
+	box-shadow: 5px 5px 0 #f7f4ed;
+	color: #141414 !important;
+}
+
+html[data-skin-id="portfolio-light"] .skin-contact-charm {
+	--skin-contact-rotate: 2deg;
+	border-color: #141414 !important;
+	background: #ff6b4a !important;
+	box-shadow: 5px 5px 0 #141414;
+	color: #141414 !important;
+}
+
+html[data-skin-id="acid-editorial"] .skin-contact-charm {
+	--skin-contact-rotate: 5deg;
+	border: 3px solid #141414 !important;
+	border-radius: 0;
+	background: #d7ff21 !important;
+	box-shadow: 7px 7px 0 #ff4a9f;
+	color: #141414 !important;
+}
+
+html[data-skin-id="op-art-monochrome"] .skin-contact-charm {
+	--skin-contact-rotate: -1deg;
+	border: 3px solid #ffffff !important;
+	border-radius: 0;
+	background: repeating-linear-gradient(135deg, #000 0 6px, #fff 6px 12px) !important;
+	box-shadow: 6px 6px 0 #ffffff;
+	color: #ffffff !important;
+	text-shadow: 2px 2px 0 #000, -2px -2px 0 #000;
+}
+
+html[data-skin-id="neon-glitch"] .skin-contact-charm {
+	--skin-contact-rotate: 0deg;
+	border: 1px solid #27e5ff !important;
+	border-radius: 0;
+	background: #080810 !important;
+	box-shadow: 4px 0 0 #ff2aa1, -4px 0 0 #27e5ff, 0 0 18px rgba(39, 229, 255, 0.55);
+	color: #27e5ff !important;
+	font-family: "Source Code Pro", monospace !important;
+}
+
+html[data-skin-id="liquid-dream"] .skin-contact-charm {
+	--skin-contact-rotate: -4deg;
+	border: 2px solid rgba(255, 255, 255, 0.82) !important;
+	border-radius: 48% 52% 38% 62% / 58% 38% 62% 42%;
+	background: linear-gradient(135deg, #8a6cff, #ff78c8 58%, #79e8ff) !important;
+	box-shadow: 0 10px 28px rgba(108, 76, 210, 0.4);
+	color: #ffffff !important;
+}
+
+html[data-skin-id="sacred-geometry"] .skin-contact-charm {
+	--skin-contact-rotate: 0deg;
+	padding-inline: 1.3rem;
+	border: 1px solid #e8c96a !important;
+	border-radius: 0;
+	background: #10131d !important;
+	box-shadow: inset 0 0 0 4px #10131d, inset 0 0 0 5px rgba(232, 201, 106, 0.48), 0 0 22px rgba(232, 201, 106, 0.24);
+	clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%);
+	color: #e8c96a !important;
+}
+
+html[data-skin-id="terminal-vision"] .skin-contact-charm {
+	--skin-contact-rotate: 0deg;
+	border: 1px solid #54ff7b !important;
+	border-radius: 0;
+	background: #020b05 !important;
+	box-shadow: 0 0 0 3px #07160b, 0 0 18px rgba(84, 255, 123, 0.32);
+	color: #54ff7b !important;
+	font-family: "Source Code Pro", monospace !important;
+	text-align: left;
+}
+
+html[data-skin][data-skin-id="psychedelic-scrapbook"] body .page-hero::before,
+html[data-skin][data-skin-id="cut-and-paste-riot"] body .page-hero::before {
+	display: none !important;
+	content: none !important;
+}
+
+html[data-skin-id="psychedelic-scrapbook"] .skin-contact-charm {
+	--skin-contact-rotate: 11deg;
+	border: 3px solid #20151b !important;
+	border-radius: 50%;
+	background: #ffd91f !important;
+	box-shadow: 7px 7px 0 #20151b;
+	color: #20151b !important;
+}
+
+html[data-skin-id="cut-and-paste-riot"] .skin-contact-charm {
+	--skin-contact-rotate: 8deg;
+	width: 10.5rem;
+	min-height: 8.5rem;
+	padding: 2.2rem;
+	border: 0 !important;
+	border-radius: 0;
+	background: #35e6bd !important;
+	box-shadow: none;
+	clip-path: polygon(50% 0%, 61% 24%, 82% 9%, 78% 35%, 100% 39%, 78% 52%, 96% 70%, 69% 69%, 72% 98%, 52% 77%, 35% 100%, 34% 73%, 5% 82%, 25% 58%, 0 45%, 28% 38%, 16% 14%, 41% 25%);
+	color: #171116 !important;
+	filter: drop-shadow(7px 7px 0 #171116);
+}
+
+html[data-skin-id="liquid-chrome-y2k"] .skin-contact-charm {
+	--skin-contact-rotate: 2deg;
+	border: 2px solid #ffffff !important;
+	background: linear-gradient(155deg, #ffffff, #92a8bf 38%, #f9ffff 54%, #70839b 76%, #dffaff) !important;
+	box-shadow: inset 0 0 0 2px rgba(23, 39, 61, 0.35), 0 8px 22px rgba(35, 74, 128, 0.35);
+	color: #10213d !important;
+	text-shadow: 0 1px 0 #ffffff;
+}
+
+html[data-skin-id="acid-brutalist"] .skin-contact-charm {
+	--skin-contact-rotate: -3deg;
+	border: 4px solid #090909 !important;
+	border-radius: 0;
+	background: #e9ff35 !important;
+	box-shadow: 8px 8px 0 #ff3c98;
+	color: #090909 !important;
+	font-size: 0.86rem !important;
+}
+
+html[data-skin-id="botanical-dreamscape"] .skin-contact-charm {
+	--skin-contact-rotate: -2deg;
+	border: 1px solid #a7c9a8 !important;
+	border-radius: 65% 35% 62% 38% / 42% 62% 38% 58%;
+	background: #e7f0dd !important;
+	box-shadow: 0 9px 22px rgba(13, 47, 34, 0.25);
+	color: #173f30 !important;
+	font-family: Georgia, serif !important;
+	text-transform: none !important;
+}
+
+html[data-skin-id="cosmic-airbrush"] .skin-contact-charm {
+	--skin-contact-rotate: 2deg;
+	border: 1px solid rgba(255, 255, 255, 0.8) !important;
+	background: linear-gradient(135deg, #6947ff, #ff65bf 52%, #49d9ff) !important;
+	box-shadow: 0 0 24px rgba(126, 94, 255, 0.68), 0 0 48px rgba(255, 101, 191, 0.24);
+	color: #ffffff !important;
+}
+
+html[data-skin-id="riso-hallucination"] .skin-contact-charm {
+	--skin-contact-rotate: -4deg;
+	border: 2px solid #152e44 !important;
+	border-radius: 0;
+	background: #f6efdc !important;
+	box-shadow: 4px 0 0 rgba(255, 70, 94, 0.72), -4px 0 0 rgba(27, 161, 190, 0.72);
+	color: #152e44 !important;
+}
+
+html[data-skin-id="crystal-prism"] .skin-contact-charm {
+	--skin-contact-rotate: 3deg;
+	padding-inline: 1.25rem;
+	border: 1px solid rgba(244, 251, 255, 0.72) !important;
+	border-radius: 0;
+	background: linear-gradient(135deg, #62eaff, #9b68ff 48%, #ff79c9) !important;
+	box-shadow: 0 10px 28px rgba(1, 2, 8, 0.42);
+	clip-path: polygon(8% 15%, 82% 0, 100% 50%, 86% 100%, 12% 88%, 0 42%);
+	color: #080b18 !important;
+}
+
+html[data-skin-id="recursive-portal"] .skin-contact-charm {
+	--skin-contact-rotate: 4deg;
+	border: 1px solid #27e5ff !important;
+	border-radius: 0;
+	background: #0d0d13 !important;
+	box-shadow: 0 0 0 5px #0d0d13, 0 0 0 6px #6c53ff, 0 0 0 11px #0d0d13, 0 0 0 12px #ff45b5;
+	color: #ffffff !important;
+}
+
+@media (max-width: 736px) {
+	.skin-contact-charm {
+		top: 0.75rem;
+		right: 0.65rem;
+		max-width: 7.5rem;
+		min-height: 2.65rem;
+		padding: 0.55rem 0.72rem;
+		font-size: 0.64rem !important;
+		opacity: 0.94;
+	}
+
+	html[data-skin-id="cut-and-paste-riot"] .skin-contact-charm {
+		width: 7.75rem;
+		min-height: 6.7rem;
+		padding: 1.7rem;
+	}
+}
+
 .skin-picker-controls {
 	display: flex;
 	align-items: center;
