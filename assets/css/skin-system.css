@@ -249,6 +249,37 @@ html[data-skin-id="split-duality"] .skin-contact-charm {
 	text-shadow: 1px 1px 0 #073b4c, -1px -1px 0 #073b4c;
 }
 
+html[data-skin-id="card-deck-stack"] .skin-contact-charm {
+	--skin-contact-rotate: 4deg;
+	min-width: 7rem;
+	min-height: 4.4rem;
+	border: 2px solid #17131a !important;
+	border-radius: 0.8rem;
+	background: #fffaf0 !important;
+	box-shadow: 6px 7px 0 #17131a, 10px 11px 0 #ff5aa5;
+	color: #17131a !important;
+}
+
+html[data-skin-id="card-deck-stack"] .skin-contact-charm::before,
+html[data-skin-id="card-deck-stack"] .skin-contact-charm::after {
+	position: absolute;
+	color: #ff2e82;
+	font: 900 0.82rem/1 Arial, Helvetica, sans-serif;
+}
+
+html[data-skin-id="card-deck-stack"] .skin-contact-charm::before {
+	content: "◆";
+	top: 0.38rem;
+	left: 0.45rem;
+}
+
+html[data-skin-id="card-deck-stack"] .skin-contact-charm::after {
+	content: "◆";
+	right: 0.45rem;
+	bottom: 0.38rem;
+	transform: rotate(180deg);
+}
+
 @media (max-width: 736px) {
 	.skin-contact-charm {
 		top: 0.75rem;
