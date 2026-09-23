@@ -203,10 +203,6 @@ html[data-skin="nutrition-facts"] body.page-home .page-hero h1 {
 	text-transform: none;
 }
 
-html[data-skin="nutrition-facts"] body:not(.page-home) .page-hero > .site-shell > h1 {
-	max-width: calc(100% - 12.5rem);
-}
-
 html[data-skin="nutrition-facts"] .hero-title-role {
 	margin: 0;
 	padding: 0.08em 0 0.12em;
@@ -215,6 +211,45 @@ html[data-skin="nutrition-facts"] .hero-title-role {
 
 html[data-skin="nutrition-facts"] .hero-title-role:last-child {
 	border-bottom-width: 0.7rem;
+}
+
+html[data-skin="nutrition-facts"] body.page-home .page-hero h1 {
+	margin-bottom: 0.8rem;
+	font-size: clamp(1.85rem, 4.25vw, 3.35rem);
+	letter-spacing: -0.055em;
+	line-height: 0.98;
+}
+
+html[data-skin="nutrition-facts"] body.page-home .page-hero h1::before {
+	content: "Creative profile";
+	display: block;
+	padding: 0.32rem 0 0.2rem;
+	border-top: 0.7rem solid #050505;
+	border-bottom: 1px solid #050505;
+	font: 800 0.68rem/1 Arial, Helvetica, sans-serif;
+	letter-spacing: 0;
+	text-transform: none;
+}
+
+html[data-skin="nutrition-facts"] body.page-home .hero-title-role {
+	display: flex;
+	align-items: baseline;
+	gap: 0;
+	padding: 0.16em 0 0.13em;
+}
+
+html[data-skin="nutrition-facts"] body.page-home .hero-title-role::after {
+	content: "100%";
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.28em;
+	font-weight: 900;
+	letter-spacing: 0;
+	margin-left: auto;
+	padding-left: 1rem;
+}
+
+html[data-skin="nutrition-facts"] body.page-home #hero-silly-title::after {
+	content: "0%";
 }
 
 html[data-skin="nutrition-facts"] .hero-title-initial,
@@ -273,6 +308,21 @@ html[data-skin="nutrition-facts"] .page-hero .lead {
 	line-height: 1.45;
 }
 
+html[data-skin="nutrition-facts"] body.page-home .page-hero .hero-summary {
+	max-width: none;
+	padding-top: 1.45rem;
+	font-size: 1.02rem;
+	font-weight: 700;
+	line-height: 1.35;
+}
+
+html[data-skin="nutrition-facts"] body.page-home .page-hero .lead {
+	max-width: none;
+	margin-bottom: 0;
+	font-size: 0.92rem;
+	line-height: 1.45;
+}
+
 html[data-skin="nutrition-facts"] .hero-copy .hero-media {
 	transform: none;
 }
@@ -293,12 +343,18 @@ html[data-skin="nutrition-facts"] .hero-media::before {
 
 html[data-skin="nutrition-facts"] .hero-media img,
 html[data-skin="nutrition-facts"] .portrait-panel img,
-html[data-skin="nutrition-facts"] .profile-chip img,
+html[data-skin="nutrition-facts"] .profile-chip img {
+	border: 3px solid #050505 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	filter: none !important;
+}
+
 html[data-skin="nutrition-facts"] .features article .image img {
 	border: 3px solid #050505 !important;
 	border-radius: 0 !important;
 	box-shadow: none !important;
-	filter: grayscale(1) contrast(1.18) !important;
+	filter: grayscale(1) contrast(1.12) !important;
 }
 
 html[data-skin="nutrition-facts"] .hero-splash {
@@ -311,13 +367,14 @@ html[data-skin="nutrition-facts"] .hero-splash {
 
 html[data-skin="nutrition-facts"] .hero-splash-text,
 html[data-theme][data-skin="nutrition-facts"] .hero-splash .hero-splash-text {
+	display: block;
 	height: auto;
 	min-height: 5.3rem;
 	padding: 1.15rem 1rem;
 	background: #ffffff !important;
 	color: #050505 !important;
 	font-family: Arial, Helvetica, sans-serif !important;
-	font-size: 0.82rem;
+	font-size: 0.82rem !important;
 	font-weight: 800;
 	line-height: 1.25;
 	letter-spacing: 0;
@@ -346,6 +403,85 @@ html[data-skin="nutrition-facts"] .hero-splash-close {
 	right: 0.2rem;
 	transform: none;
 	color: #050505 !important;
+}
+
+html[data-skin="nutrition-facts"] body.page-home .hero-quests {
+	position: relative;
+	margin-top: 2rem;
+	padding-top: 1.8rem;
+	border-top: 0.85rem solid #050505;
+}
+
+html[data-skin="nutrition-facts"] body.page-home .hero-quests::before {
+	content: "% Daily Value*";
+	position: absolute;
+	right: 0;
+	top: 0.45rem;
+	font: 900 0.65rem/1 Arial, Helvetica, sans-serif;
+}
+
+html[data-skin="nutrition-facts"] body.page-home .hero-quests > .eyebrow {
+	margin-bottom: 0.45rem;
+	padding: 0;
+	background: transparent !important;
+	color: #050505 !important;
+}
+
+html[data-skin="nutrition-facts"] body.page-home .hero-quests > h2 {
+	margin-bottom: 0;
+	padding-bottom: 0.35rem;
+	border-bottom: 0.45rem solid #050505;
+	font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+	line-height: 0.96;
+}
+
+html[data-skin="nutrition-facts"] body.page-home .hero-quests .quest-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 0;
+}
+
+html[data-skin="nutrition-facts"] body.page-home .hero-quests .quest-card {
+	min-height: 0;
+	padding: 0.85rem 4.5rem 0.85rem 0 !important;
+	border: 0 !important;
+	border-bottom: 1px solid #050505 !important;
+	background: #ffffff !important;
+}
+
+html[data-skin="nutrition-facts"] body.page-home .hero-quests .quest-card:nth-child(3) {
+	border-bottom-width: 0.65rem !important;
+}
+
+html[data-skin="nutrition-facts"] body.page-home .hero-quests .quest-card::before {
+	content: none;
+}
+
+html[data-skin="nutrition-facts"] body.page-home .hero-quests .quest-card::after {
+	right: 0;
+	top: 1.05rem;
+}
+
+html[data-skin="nutrition-facts"] body.page-home .hero-quests .quest-card h3 {
+	margin-bottom: 0.35rem;
+	padding: 0 3.5rem 0.25rem 0;
+	border-bottom: 3px solid #050505;
+	font-size: 1.2rem;
+	letter-spacing: -0.035em;
+}
+
+html[data-skin="nutrition-facts"] body.page-home .hero-quests .quest-card p {
+	max-width: 56rem;
+	margin-bottom: 0.7rem;
+	font-size: 0.9rem;
+	line-height: 1.48;
+}
+
+html[data-skin="nutrition-facts"] body.page-home .hero-quests .quest-link {
+	font-size: 0.72rem;
+	font-weight: 900;
+	letter-spacing: 0.035em;
+	text-transform: uppercase;
 }
 
 html[data-skin="nutrition-facts"] .page-section {
@@ -692,6 +828,37 @@ html[data-skin-id="nutrition-facts"] .skin-contact-charm::before {
 	text-align: left;
 }
 
+@media (min-width: 800px) {
+	html[data-skin="nutrition-facts"] body.page-home .hero-copy {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem);
+		column-gap: clamp(1.5rem, 4vw, 3rem);
+		align-items: start;
+	}
+
+	html[data-skin="nutrition-facts"] body.page-home .hero-copy .hero-media {
+		grid-column: 2;
+		grid-row: 1 / span 4;
+		align-self: start;
+		width: 100%;
+		margin: 0;
+	}
+
+	html[data-skin="nutrition-facts"] body.page-home .hero-copy .hero-quests {
+		grid-column: 1 / -1;
+	}
+}
+
+@media (min-width: 737px) {
+	html[data-skin="nutrition-facts"] .page-hero > .site-shell::before {
+		right: 13.5rem;
+	}
+
+	html[data-skin-id="nutrition-facts"] .skin-contact-charm {
+		top: 4.75rem;
+	}
+}
+
 @media (max-width: 736px) {
 	html[data-skin="nutrition-facts"] .site-header {
 		border-bottom-width: 0.45rem !important;
@@ -721,8 +888,16 @@ html[data-skin-id="nutrition-facts"] .skin-contact-charm::before {
 		font-size: clamp(2.25rem, 12vw, 3.6rem);
 	}
 
-	html[data-skin="nutrition-facts"] body:not(.page-home) .page-hero > .site-shell > h1 {
-		max-width: 100%;
+	html[data-skin="nutrition-facts"] body.page-home .page-hero h1 {
+		font-size: clamp(1.75rem, 9vw, 2.5rem);
+	}
+
+	html[data-skin="nutrition-facts"] body.page-home .hero-quests .quest-card {
+		padding-right: 3.5rem !important;
+	}
+
+	html[data-skin="nutrition-facts"] body.page-home .hero-quests .quest-card p {
+		font-size: 0.88rem;
 	}
 
 	html[data-skin="nutrition-facts"] .page-section > .site-shell {
