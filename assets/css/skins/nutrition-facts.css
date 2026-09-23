@@ -1,0 +1,767 @@
+/*
+	Nutrition Facts
+	A high-contrast packaging-label skin built from strict rules, compressed type,
+	daily-value columns, ingredient copy and barcode details.
+*/
+
+html[data-skin="nutrition-facts"] {
+	--background: #e7e7e2;
+	--foreground: #050505;
+	--muted-bg: #d5d5d0;
+	--card-bg: #ffffff;
+	--border: #050505;
+	--primary: #050505;
+	--primary-fg: #ffffff;
+	--secondary: #ffffff;
+	--secondary-fg: #050505;
+	--accent: #050505;
+	--accent-fg: #ffffff;
+	--link: #050505;
+	--warning: #050505;
+	--header-bg: #ffffff;
+	--header-fg: #050505;
+	--footer-bg: #050505;
+	--footer-fg: #ffffff;
+	--bg: #e7e7e2;
+	--surface-1: #ffffff;
+	--surface-2: #eeeeea;
+	--surface-3: #d5d5d0;
+	--text-1: #050505;
+	--text-2: #222222;
+	--line-1: #050505;
+	--accent-1: #050505;
+	--accent-2: #050505;
+	overflow-x: clip;
+}
+
+html[data-skin="nutrition-facts"] body {
+	background:
+		repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.025) 0 1px, transparent 1px 5px),
+		#e7e7e2 !important;
+	color: #050505 !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-variant-numeric: tabular-nums lining-nums;
+}
+
+html[data-skin="nutrition-facts"] body,
+html[data-skin="nutrition-facts"] p,
+html[data-skin="nutrition-facts"] li,
+html[data-skin="nutrition-facts"] label,
+html[data-skin="nutrition-facts"] .lead,
+html[data-skin="nutrition-facts"] .note,
+html[data-skin="nutrition-facts"] .footer-inner p,
+html[data-skin="nutrition-facts"] .social-inline a {
+	color: #151515 !important;
+}
+
+html[data-skin="nutrition-facts"] h1,
+html[data-skin="nutrition-facts"] h2,
+html[data-skin="nutrition-facts"] h3,
+html[data-skin="nutrition-facts"] h4,
+html[data-skin="nutrition-facts"] h5,
+html[data-skin="nutrition-facts"] h6,
+html[data-skin="nutrition-facts"] strong {
+	color: #050505 !important;
+	font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif !important;
+	font-stretch: condensed;
+	font-weight: 900;
+	letter-spacing: -0.045em;
+}
+
+html[data-skin="nutrition-facts"] a {
+	color: #050505 !important;
+	text-decoration-color: #050505;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.14em;
+}
+
+html[data-skin="nutrition-facts"] a:focus-visible,
+html[data-skin="nutrition-facts"] button:focus-visible,
+html[data-skin="nutrition-facts"] input:focus-visible,
+html[data-skin="nutrition-facts"] textarea:focus-visible,
+html[data-skin="nutrition-facts"] select:focus-visible {
+	outline: 3px solid #050505 !important;
+	outline-offset: 3px;
+}
+
+html[data-skin="nutrition-facts"] .site-header {
+	border-bottom: 0.7rem solid #050505 !important;
+	background: #ffffff !important;
+	box-shadow: none !important;
+	backdrop-filter: none !important;
+}
+
+html[data-skin="nutrition-facts"] .site-header .site-shell {
+	min-height: 5.15rem;
+}
+
+html[data-skin="nutrition-facts"] .brand-mark {
+	width: 2.4rem;
+	height: 2.4rem;
+	border: 3px solid #050505;
+	border-radius: 0 !important;
+	background: #ffffff !important;
+	color: #050505 !important;
+	font-family: "Arial Black", Arial, sans-serif !important;
+	font-size: 0.72rem;
+	letter-spacing: -0.05em;
+}
+
+html[data-skin="nutrition-facts"] .brand-text {
+	color: #050505 !important;
+	font-family: "Arial Narrow", Arial, sans-serif !important;
+	font-size: 1.05rem;
+	font-weight: 900;
+	letter-spacing: -0.035em;
+	text-transform: uppercase;
+}
+
+html[data-skin="nutrition-facts"] .site-nav ul {
+	gap: 0;
+	border: 2px solid #050505;
+}
+
+html[data-skin="nutrition-facts"] .site-nav li + li {
+	border-left: 1px solid #050505;
+}
+
+html[data-skin="nutrition-facts"] .site-nav a,
+html[data-skin="nutrition-facts"] .nav-toggle {
+	border: 0 !important;
+	border-radius: 0 !important;
+	background: #ffffff !important;
+	color: #050505 !important;
+	font-family: "Arial Narrow", Arial, sans-serif !important;
+	font-size: 0.72rem;
+	font-weight: 900;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+html[data-skin="nutrition-facts"] .site-nav a:hover,
+html[data-skin="nutrition-facts"] .site-nav a[aria-current="page"],
+html[data-skin="nutrition-facts"] .site-nav .nav-cta:hover {
+	background: #050505 !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="nutrition-facts"] .nav-toggle {
+	border: 2px solid #050505 !important;
+}
+
+html[data-skin="nutrition-facts"] .page-hero {
+	position: relative;
+	overflow: hidden;
+	border: 0 !important;
+	background: transparent !important;
+}
+
+html[data-skin="nutrition-facts"] .page-hero > .site-shell {
+	position: relative;
+	padding: clamp(7.25rem, 10vw, 9.25rem) clamp(1.35rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+	border: 4px solid #050505;
+	background: #ffffff !important;
+	box-shadow: 0.8rem 0.8rem 0 #050505;
+}
+
+html[data-skin="nutrition-facts"] .page-hero > .site-shell::before {
+	content: "PORTFOLIO FACTS";
+	position: absolute;
+	left: clamp(1.35rem, 4vw, 3rem);
+	right: clamp(1.35rem, 4vw, 3rem);
+	top: 0.8rem;
+	padding-bottom: 0.15rem;
+	border-bottom: 0.8rem solid #050505;
+	color: #050505;
+	font: 900 clamp(2.75rem, 7vw, 5.8rem)/0.88 "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+	letter-spacing: -0.08em;
+	white-space: nowrap;
+	pointer-events: none;
+}
+
+html[data-skin="nutrition-facts"] .page-hero > .site-shell::after {
+	content: "About 1 creative human per serving";
+	position: absolute;
+	left: clamp(1.35rem, 4vw, 3rem);
+	top: clamp(6.1rem, 9.5vw, 7.85rem);
+	color: #050505;
+	font: 700 0.78rem/1.2 Arial, Helvetica, sans-serif;
+	letter-spacing: 0.01em;
+	pointer-events: none;
+}
+
+html[data-skin="nutrition-facts"] .page-hero h1,
+html[data-skin="nutrition-facts"] body.page-home .page-hero h1 {
+	max-width: 62rem;
+	margin-bottom: 1rem;
+	color: #050505 !important;
+	font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif !important;
+	font-size: clamp(2.7rem, 7vw, 6.4rem);
+	font-weight: 900;
+	letter-spacing: -0.075em;
+	line-height: 0.86;
+	text-transform: none;
+}
+
+html[data-skin="nutrition-facts"] body:not(.page-home) .page-hero > .site-shell > h1 {
+	max-width: calc(100% - 12.5rem);
+}
+
+html[data-skin="nutrition-facts"] .hero-title-role {
+	margin: 0;
+	padding: 0.08em 0 0.12em;
+	border-bottom: 1px solid #050505;
+}
+
+html[data-skin="nutrition-facts"] .hero-title-role:last-child {
+	border-bottom-width: 0.7rem;
+}
+
+html[data-skin="nutrition-facts"] .hero-title-initial,
+html[data-skin="nutrition-facts"] .metallic-pearl-text {
+	background: none !important;
+	color: #050505 !important;
+	-webkit-text-fill-color: currentColor !important;
+	filter: none !important;
+	animation: none !important;
+}
+
+html[data-skin="nutrition-facts"] .eyebrow {
+	display: inline-block;
+	width: fit-content;
+	margin-bottom: 0.65rem;
+	padding: 0.28rem 0.48rem;
+	border: 0 !important;
+	border-radius: 0 !important;
+	background: #050505 !important;
+	color: #ffffff !important;
+	font-family: "Arial Narrow", Arial, sans-serif !important;
+	font-size: 0.68rem;
+	font-weight: 900;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+html[data-skin="nutrition-facts"] .page-hero .hero-summary {
+	position: relative;
+	max-width: 48rem;
+	margin: 0 0 0.65rem;
+	padding: 1.65rem 0 0.65rem;
+	border-top: 0.75rem solid #050505;
+	border-bottom: 4px solid #050505;
+	color: #050505 !important;
+	font-size: clamp(1.15rem, 2vw, 1.7rem);
+	line-height: 1.2;
+}
+
+html[data-skin="nutrition-facts"] .page-hero .hero-summary::before {
+	content: "Amount per serving";
+	position: absolute;
+	left: 0;
+	top: 0.35rem;
+	font: 700 0.68rem/1 Arial, Helvetica, sans-serif;
+	letter-spacing: 0;
+}
+
+html[data-skin="nutrition-facts"] .page-hero .lead {
+	max-width: 48rem;
+	margin-bottom: 1.2rem;
+	padding: 0.7rem 0;
+	border-bottom: 1px solid #050505;
+	color: #151515 !important;
+	font-size: 1rem;
+	line-height: 1.45;
+}
+
+html[data-skin="nutrition-facts"] .hero-copy .hero-media {
+	transform: none;
+}
+
+html[data-skin="nutrition-facts"] .hero-media {
+	padding: 2rem 0 0;
+	border-top: 0.7rem solid #050505;
+}
+
+html[data-skin="nutrition-facts"] .hero-media::before {
+	content: "Portrait • 1 serving";
+	position: absolute;
+	left: 0;
+	top: 0.45rem;
+	font: 800 0.68rem/1 Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+}
+
+html[data-skin="nutrition-facts"] .hero-media img,
+html[data-skin="nutrition-facts"] .portrait-panel img,
+html[data-skin="nutrition-facts"] .profile-chip img,
+html[data-skin="nutrition-facts"] .features article .image img {
+	border: 3px solid #050505 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	filter: grayscale(1) contrast(1.18) !important;
+}
+
+html[data-skin="nutrition-facts"] .hero-splash {
+	height: auto;
+	min-height: 5.5rem;
+	margin-top: 0.6rem;
+	border: 2px solid #050505;
+	background: #ffffff;
+}
+
+html[data-skin="nutrition-facts"] .hero-splash-text,
+html[data-theme][data-skin="nutrition-facts"] .hero-splash .hero-splash-text {
+	height: auto;
+	min-height: 5.3rem;
+	padding: 1.15rem 1rem;
+	background: #ffffff !important;
+	color: #050505 !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-size: 0.82rem;
+	font-weight: 800;
+	line-height: 1.25;
+	letter-spacing: 0;
+	text-align: left;
+	text-shadow: none !important;
+	text-transform: none;
+	animation: none !important;
+}
+
+html[data-skin="nutrition-facts"] .hero-splash-text::before {
+	content: "* Daily Value";
+	display: block;
+	margin-bottom: 0.45rem;
+	padding-bottom: 0.3rem;
+	border-bottom: 1px solid #050505;
+	font-size: 0.64rem;
+	text-transform: uppercase;
+}
+
+html[data-skin="nutrition-facts"] .hero-splash-notice-icon {
+	display: none;
+}
+
+html[data-skin="nutrition-facts"] .hero-splash-close {
+	top: 0.2rem;
+	right: 0.2rem;
+	transform: none;
+	color: #050505 !important;
+}
+
+html[data-skin="nutrition-facts"] .page-section {
+	border: 0 !important;
+	background: transparent !important;
+}
+
+html[data-skin="nutrition-facts"] .page-section > .site-shell {
+	position: relative;
+	padding: clamp(1.35rem, 4vw, 3rem);
+	border: 3px solid #050505;
+	background: #ffffff !important;
+	box-shadow: 0.65rem 0.65rem 0 #050505;
+}
+
+html[data-skin="nutrition-facts"] .page-section h2 {
+	margin-bottom: 1rem;
+	padding-bottom: 0.35rem;
+	border-bottom: 0.65rem solid #050505;
+	font-size: clamp(2rem, 4vw, 3.5rem);
+	line-height: 0.95;
+}
+
+html[data-skin="nutrition-facts"] .page-section h3 {
+	margin-bottom: 0.65rem;
+	padding-bottom: 0.25rem;
+	border-bottom: 3px solid #050505;
+	font-size: clamp(1.25rem, 2vw, 1.7rem);
+	line-height: 1;
+}
+
+html[data-skin="nutrition-facts"] .panel-card,
+html[data-skin="nutrition-facts"] .quest-card,
+html[data-skin="nutrition-facts"] .features article,
+html[data-skin="nutrition-facts"] .contact-rail,
+html[data-skin="nutrition-facts"] .profile-note,
+html[data-skin="nutrition-facts"] .profile-chip,
+html[data-skin="nutrition-facts"] ul.feature-icons li {
+	position: relative;
+	border: 2px solid #050505 !important;
+	border-radius: 0 !important;
+	background: #ffffff !important;
+	box-shadow: none !important;
+	color: #050505 !important;
+}
+
+html[data-skin="nutrition-facts"] .panel-card,
+html[data-skin="nutrition-facts"] .quest-card,
+html[data-skin="nutrition-facts"] .features article,
+html[data-skin="nutrition-facts"] .contact-rail,
+html[data-skin="nutrition-facts"] .profile-note {
+	padding-top: 2.15rem !important;
+}
+
+html[data-skin="nutrition-facts"] .panel-card::before,
+html[data-skin="nutrition-facts"] .quest-card::before,
+html[data-skin="nutrition-facts"] .features article::before,
+html[data-skin="nutrition-facts"] .contact-rail::before,
+html[data-skin="nutrition-facts"] .profile-note::before {
+	content: "% DAILY VALUE*";
+	position: absolute;
+	left: 0.9rem;
+	right: 0.9rem;
+	top: 0.55rem;
+	padding-bottom: 0.25rem;
+	border-bottom: 1px solid #050505;
+	color: #050505;
+	font: 900 0.62rem/1 Arial, Helvetica, sans-serif;
+	letter-spacing: 0.04em;
+	text-align: right;
+}
+
+html[data-skin="nutrition-facts"] .panel-card::after,
+html[data-skin="nutrition-facts"] .quest-card::after,
+html[data-skin="nutrition-facts"] .features article::after {
+	content: "100%";
+	position: absolute;
+	right: 0.9rem;
+	top: 2.25rem;
+	color: #050505;
+	font: 900 0.82rem/1 Arial, Helvetica, sans-serif;
+}
+
+html[data-skin="nutrition-facts"] .panel-card h3,
+html[data-skin="nutrition-facts"] .panel-card h4,
+html[data-skin="nutrition-facts"] .quest-card h3,
+html[data-skin="nutrition-facts"] .features article h3,
+html[data-skin="nutrition-facts"] .profile-note h3 {
+	padding-right: 3.5rem;
+}
+
+html[data-skin="nutrition-facts"] .work-tech-list {
+	grid-template-columns: 1fr;
+	column-gap: 0;
+	border-top: 0.7rem solid #050505;
+}
+
+html[data-skin="nutrition-facts"] .work-tech-list::before {
+	content: "% Daily Value*";
+	display: block;
+	padding: 0.35rem 0 0.25rem;
+	border-bottom: 1px solid #050505;
+	font-size: 0.68rem;
+	font-weight: 900;
+	text-align: right;
+}
+
+html[data-skin="nutrition-facts"] .work-tech-item {
+	display: grid;
+	grid-template-columns: minmax(8rem, 0.42fr) 1fr;
+	gap: 1rem;
+	padding: 0.65rem 0;
+	border-bottom: 1px solid #050505;
+}
+
+html[data-skin="nutrition-facts"] .work-tech-item:nth-child(3n) {
+	border-bottom-width: 0.45rem;
+}
+
+html[data-skin="nutrition-facts"] .work-tech-item dt {
+	margin: 0;
+	color: #050505 !important;
+	font-family: "Arial Narrow", Arial, sans-serif;
+	font-size: 0.86rem;
+	font-weight: 900;
+	letter-spacing: 0;
+	text-transform: none;
+}
+
+html[data-skin="nutrition-facts"] .work-tech-item dt::after {
+	content: "100%";
+	float: right;
+	margin-left: 0.5rem;
+}
+
+html[data-skin="nutrition-facts"] .work-tech-item:nth-child(3n + 2) dt::after {
+	content: "80%";
+}
+
+html[data-skin="nutrition-facts"] .work-tech-item:nth-child(3n) dt::after {
+	content: "60%";
+}
+
+html[data-skin="nutrition-facts"] .work-tech-item dd {
+	color: #222222 !important;
+	font-size: 0.9rem;
+	line-height: 1.35;
+}
+
+html[data-skin="nutrition-facts"] .tag-list li {
+	border: 2px solid #050505 !important;
+	border-radius: 0 !important;
+	background: #ffffff !important;
+	box-shadow: none !important;
+	color: #050505 !important;
+	font-size: 0.72rem;
+	font-weight: 900;
+	text-transform: uppercase;
+}
+
+html[data-skin="nutrition-facts"] .timeline {
+	border-top: 0.65rem solid #050505;
+}
+
+html[data-skin="nutrition-facts"] .timeline li {
+	padding: 0.65rem 0 0.65rem 1.2rem;
+	border-bottom: 1px solid #050505;
+}
+
+html[data-skin="nutrition-facts"] .timeline li::before {
+	left: 0;
+	top: 1.05rem;
+	width: 0.55rem;
+	height: 0.55rem;
+	border: 0;
+	border-radius: 0;
+	background: #050505 !important;
+	box-shadow: none;
+}
+
+html[data-skin="nutrition-facts"] .section-cta {
+	background: transparent !important;
+	color: #050505 !important;
+}
+
+html[data-skin="nutrition-facts"] .section-cta > .site-shell {
+	border-width: 4px;
+}
+
+html[data-skin="nutrition-facts"] .section-cta h2,
+html[data-skin="nutrition-facts"] .section-cta p {
+	color: #050505 !important;
+}
+
+html[data-skin="nutrition-facts"] input[type="text"],
+html[data-skin="nutrition-facts"] input[type="password"],
+html[data-skin="nutrition-facts"] input[type="email"],
+html[data-skin="nutrition-facts"] select,
+html[data-skin="nutrition-facts"] textarea {
+	border: 2px solid #050505 !important;
+	border-radius: 0 !important;
+	background: #ffffff !important;
+	box-shadow: inset 0 -1px #050505;
+	color: #050505 !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+}
+
+html[data-skin="nutrition-facts"] input[type="text"]:focus,
+html[data-skin="nutrition-facts"] input[type="password"]:focus,
+html[data-skin="nutrition-facts"] input[type="email"]:focus,
+html[data-skin="nutrition-facts"] select:focus,
+html[data-skin="nutrition-facts"] textarea:focus {
+	border-color: #050505 !important;
+	box-shadow: inset 0 0 0 2px #050505 !important;
+}
+
+html[data-skin="nutrition-facts"] input[type="submit"],
+html[data-skin="nutrition-facts"] input[type="reset"],
+html[data-skin="nutrition-facts"] input[type="button"],
+html[data-skin="nutrition-facts"] button:not([class^="skin-picker"]),
+html[data-skin="nutrition-facts"] .button,
+html[data-skin="nutrition-facts"] .features article .inner span a {
+	border: 2px solid #050505 !important;
+	border-radius: 0 !important;
+	background: #ffffff !important;
+	box-shadow: 0.25rem 0.25rem 0 #050505 !important;
+	color: #050505 !important;
+	font-family: "Arial Narrow", Arial, sans-serif !important;
+	font-size: 0.74rem !important;
+	font-weight: 900 !important;
+	letter-spacing: 0.05em !important;
+	text-transform: uppercase;
+}
+
+html[data-skin="nutrition-facts"] input[type="submit"].primary,
+html[data-skin="nutrition-facts"] input[type="button"].primary,
+html[data-skin="nutrition-facts"] button.primary,
+html[data-skin="nutrition-facts"] .button.primary,
+html[data-skin="nutrition-facts"] .contact-submit {
+	background: #050505 !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="nutrition-facts"] input[type="submit"]:hover,
+html[data-skin="nutrition-facts"] button:not([class^="skin-picker"]):hover,
+html[data-skin="nutrition-facts"] .button:hover,
+html[data-skin="nutrition-facts"] .features article .inner span a:hover {
+	background: #050505 !important;
+	color: #ffffff !important;
+	transform: translate(0.2rem, 0.2rem);
+	box-shadow: none !important;
+}
+
+html[data-skin="nutrition-facts"] .site-footer {
+	border-top: 0.7rem solid #050505 !important;
+	background: #050505 !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="nutrition-facts"] .site-footer p,
+html[data-skin="nutrition-facts"] .site-footer a {
+	color: #ffffff !important;
+}
+
+html[data-skin="nutrition-facts"] .site-footer .site-shell {
+	position: relative;
+}
+
+html[data-skin="nutrition-facts"] .site-footer .site-shell::after {
+	content: "";
+	display: block;
+	width: min(15rem, 42vw);
+	height: 2.2rem;
+	margin-left: auto;
+	background: repeating-linear-gradient(90deg, #ffffff 0 2px, transparent 2px 4px, #ffffff 4px 5px, transparent 5px 9px, #ffffff 9px 13px, transparent 13px 15px);
+	opacity: 0.88;
+}
+
+html[data-skin="nutrition-facts"] .skin-picker {
+	--skin-ui-bg: #050505;
+	--skin-ui-panel: #ffffff;
+	--skin-ui-text: #050505;
+	--skin-ui-muted: #3a3a3a;
+	--skin-ui-accent: #050505;
+	--skin-ui-border: #050505;
+}
+
+html[data-skin="nutrition-facts"] .skin-picker-panel,
+html[data-skin="nutrition-facts"] .skin-picker-toggle {
+	border: 2px solid #050505 !important;
+	border-radius: 0 !important;
+	background: #ffffff !important;
+	box-shadow: 0.3rem 0.3rem 0 #050505 !important;
+}
+
+html[data-skin="nutrition-facts"] .skin-picker-toggle-label,
+html[data-skin="nutrition-facts"] .skin-picker-current,
+html[data-skin="nutrition-facts"] .skin-picker-chevron,
+html[data-skin="nutrition-facts"] .skin-picker .skin-picker-option {
+	color: #050505 !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+}
+
+html[data-skin="nutrition-facts"] .skin-picker .skin-picker-option {
+	border-radius: 0 !important;
+}
+
+html[data-skin="nutrition-facts"] .skin-picker .skin-picker-option[aria-pressed="true"] {
+	background: #050505 !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="nutrition-facts"] .skin-picker-scroll-arrow {
+	color: #050505 !important;
+}
+
+html[data-skin-id="nutrition-facts"] .skin-contact-charm {
+	--skin-contact-rotate: 0deg;
+	top: clamp(10.65rem, 14vw, 12rem);
+	min-width: 10.5rem;
+	min-height: 4.2rem;
+	padding: 1.45rem 0.75rem 0.55rem;
+	border: 3px solid #050505 !important;
+	border-radius: 0 !important;
+	background: #ffffff !important;
+	box-shadow: 0.35rem 0.35rem 0 #050505;
+	color: #050505 !important;
+	font-family: "Arial Narrow", Arial, sans-serif !important;
+	font-size: 0.72rem !important;
+	font-weight: 900 !important;
+	letter-spacing: 0.02em !important;
+	text-transform: uppercase !important;
+}
+
+html[data-skin-id="nutrition-facts"] .skin-contact-charm::before {
+	content: "QUESTIONS?";
+	position: absolute;
+	left: 0.55rem;
+	right: 0.55rem;
+	top: 0.35rem;
+	padding-bottom: 0.2rem;
+	border-bottom: 0.35rem solid #050505;
+	font: 900 0.64rem/1 Arial, Helvetica, sans-serif;
+	text-align: left;
+}
+
+@media (max-width: 736px) {
+	html[data-skin="nutrition-facts"] .site-header {
+		border-bottom-width: 0.45rem !important;
+	}
+
+	html[data-skin="nutrition-facts"] .page-hero {
+		padding-top: 1.5rem;
+	}
+
+	html[data-skin="nutrition-facts"] .page-hero > .site-shell {
+		padding-top: 6.5rem;
+		box-shadow: 0.45rem 0.45rem 0 #050505;
+	}
+
+	html[data-skin="nutrition-facts"] .page-hero > .site-shell::before {
+		font-size: clamp(2.2rem, 11vw, 3.2rem);
+		white-space: normal;
+	}
+
+	html[data-skin="nutrition-facts"] .page-hero > .site-shell::after {
+		top: 4.95rem;
+		font-size: 0.67rem;
+	}
+
+	html[data-skin="nutrition-facts"] .page-hero h1,
+	html[data-skin="nutrition-facts"] body.page-home .page-hero h1 {
+		font-size: clamp(2.25rem, 12vw, 3.6rem);
+	}
+
+	html[data-skin="nutrition-facts"] body:not(.page-home) .page-hero > .site-shell > h1 {
+		max-width: 100%;
+	}
+
+	html[data-skin="nutrition-facts"] .page-section > .site-shell {
+		box-shadow: 0.45rem 0.45rem 0 #050505;
+	}
+
+	html[data-skin="nutrition-facts"] .work-tech-item {
+		grid-template-columns: 1fr;
+		gap: 0.25rem;
+	}
+
+	html[data-skin="nutrition-facts"] .hero-grid--with-portrait {
+		grid-template-columns: 1fr;
+	}
+
+	html[data-skin="nutrition-facts"] .hero-grid--with-portrait .portrait-panel {
+		justify-self: start;
+		margin-top: 0.85rem;
+	}
+
+	html[data-skin="nutrition-facts"] .site-footer .site-shell::after {
+		display: none;
+	}
+
+	html[data-skin-id="nutrition-facts"] .skin-contact-charm {
+		top: 5.2rem;
+		right: 0.65rem;
+		min-width: 0;
+		max-width: 7.25rem;
+		min-height: 3.1rem;
+		padding: 1.15rem 0.5rem 0.35rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-skin="nutrition-facts"] *,
+	html[data-skin="nutrition-facts"] *::before,
+	html[data-skin="nutrition-facts"] *::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}
