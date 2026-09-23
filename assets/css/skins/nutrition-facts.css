@@ -873,17 +873,19 @@ html[data-skin-id="nutrition-facts"] .skin-contact-charm::before {
 	}
 
 	html[data-skin="nutrition-facts"] .page-hero > .site-shell {
-		padding-top: 8rem;
+		padding-top: 13.25rem;
 		box-shadow: 0.45rem 0.45rem 0 #050505;
 	}
 
 	html[data-skin="nutrition-facts"] .page-hero > .site-shell::before {
-		font-size: clamp(2.2rem, 11vw, 3.2rem);
-		white-space: normal;
+		content: "NUTRITION\A FACTS";
+		font-size: clamp(2.2rem, 11vw, 2.75rem);
+		line-height: 0.82;
+		white-space: pre;
 	}
 
 	html[data-skin="nutrition-facts"] .page-hero > .site-shell::after {
-		top: 5.15rem;
+		top: 6.55rem;
 		font-size: 0.67rem;
 	}
 
@@ -927,13 +929,23 @@ html[data-skin-id="nutrition-facts"] .skin-contact-charm::before {
 	}
 
 	html[data-skin-id="nutrition-facts"] .skin-contact-charm {
-		top: 6rem;
-		right: 1.35rem;
+		left: 2.35rem;
+		top: 9.5rem;
+		right: 2.35rem;
+		width: auto;
 		min-width: 0;
-		max-width: 6.75rem;
-		min-height: 2.85rem;
-		padding: 1.1rem 0.45rem 0.3rem;
+		max-width: none;
+		min-height: 3.3rem;
+		padding: 1.7rem 0.65rem 0.45rem;
 		box-shadow: 0.22rem 0.22rem 0 #050505;
+	}
+
+	html[data-skin-id="nutrition-facts"] .skin-contact-charm::before {
+		left: 0.65rem;
+		right: 0.65rem;
+		top: 0.4rem;
+		padding-bottom: 0.25rem;
+		border-bottom-width: 0.25rem;
 	}
 }
 
