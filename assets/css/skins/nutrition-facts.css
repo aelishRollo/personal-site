@@ -165,7 +165,7 @@ html[data-skin="nutrition-facts"] .page-hero > .site-shell {
 }
 
 html[data-skin="nutrition-facts"] .page-hero > .site-shell::before {
-	content: "PORTFOLIO FACTS";
+	content: "NUTRITION FACTS";
 	position: absolute;
 	left: clamp(1.35rem, 4vw, 3rem);
 	right: clamp(1.35rem, 4vw, 3rem);
@@ -180,7 +180,7 @@ html[data-skin="nutrition-facts"] .page-hero > .site-shell::before {
 }
 
 html[data-skin="nutrition-facts"] .page-hero > .site-shell::after {
-	content: "About 1 creative human per serving";
+	content: "1 creative human bean per serving";
 	position: absolute;
 	left: clamp(1.35rem, 4vw, 3rem);
 	top: clamp(6.1rem, 9.5vw, 7.85rem);
@@ -221,7 +221,7 @@ html[data-skin="nutrition-facts"] body.page-home .page-hero h1 {
 }
 
 html[data-skin="nutrition-facts"] body.page-home .page-hero h1::before {
-	content: "Creative profile";
+	content: "Amount per serving";
 	display: block;
 	padding: 0.32rem 0 0.2rem;
 	border-top: 0.7rem solid #050505;
@@ -314,6 +314,10 @@ html[data-skin="nutrition-facts"] body.page-home .page-hero .hero-summary {
 	font-size: 1.02rem;
 	font-weight: 700;
 	line-height: 1.35;
+}
+
+html[data-skin="nutrition-facts"] body.page-home .page-hero .hero-summary::before {
+	content: "Profile notes";
 }
 
 html[data-skin="nutrition-facts"] body.page-home .page-hero .lead {
@@ -869,7 +873,7 @@ html[data-skin-id="nutrition-facts"] .skin-contact-charm::before {
 	}
 
 	html[data-skin="nutrition-facts"] .page-hero > .site-shell {
-		padding-top: 6.5rem;
+		padding-top: 8rem;
 		box-shadow: 0.45rem 0.45rem 0 #050505;
 	}
 
@@ -879,7 +883,7 @@ html[data-skin-id="nutrition-facts"] .skin-contact-charm::before {
 	}
 
 	html[data-skin="nutrition-facts"] .page-hero > .site-shell::after {
-		top: 4.95rem;
+		top: 5.15rem;
 		font-size: 0.67rem;
 	}
 
@@ -923,12 +927,13 @@ html[data-skin-id="nutrition-facts"] .skin-contact-charm::before {
 	}
 
 	html[data-skin-id="nutrition-facts"] .skin-contact-charm {
-		top: 5.2rem;
-		right: 0.65rem;
+		top: 6rem;
+		right: 1.35rem;
 		min-width: 0;
-		max-width: 7.25rem;
-		min-height: 3.1rem;
-		padding: 1.15rem 0.5rem 0.35rem;
+		max-width: 6.75rem;
+		min-height: 2.85rem;
+		padding: 1.1rem 0.45rem 0.3rem;
+		box-shadow: 0.22rem 0.22rem 0 #050505;
 	}
 }
 
