@@ -92,27 +92,13 @@ html[data-skin="hello-kitty"] .brand-mark {
 	position: relative;
 	border: 2px solid var(--kitty-ink);
 	border-radius: 48% 48% 44% 44%;
-	background:
-		radial-gradient(circle at 32% 46%, var(--kitty-ink) 0 2px, transparent 3px),
-		radial-gradient(circle at 68% 46%, var(--kitty-ink) 0 2px, transparent 3px),
-		radial-gradient(ellipse at 50% 60%, var(--kitty-yellow) 0 5px, transparent 5.5px),
-		#ffffff !important;
+	background: #ffffff url("../../images/hello-kitty-mascot.svg?v=hello-kitty-mascot-1") 50% 10% / 170% auto no-repeat !important;
 	box-shadow: 0 0 0 4px var(--kitty-blush), 3px 4px 0 var(--kitty-hot);
 	color: transparent !important;
 }
 
 html[data-skin="hello-kitty"] .brand-mark::after {
-	content: "";
-	position: absolute;
-	top: -0.35rem;
-	right: -0.45rem;
-	width: 1.15rem;
-	height: 0.8rem;
-	background:
-		radial-gradient(ellipse at 20% 50%, var(--kitty-red) 0 38%, transparent 41%),
-		radial-gradient(ellipse at 80% 50%, var(--kitty-red) 0 38%, transparent 41%),
-		radial-gradient(circle at 50% 50%, #ff769e 0 25%, var(--kitty-red) 27% 45%, transparent 47%);
-	transform: rotate(-12deg);
+	display: none;
 }
 
 html[data-skin="hello-kitty"] .brand-text,
@@ -162,39 +148,17 @@ html[data-skin="hello-kitty"] .page-hero::before {
 	top: 50%;
 	right: clamp(-4rem, 4vw, 5rem);
 	z-index: -1;
-	width: clamp(16rem, 30vw, 25rem);
-	aspect-ratio: 1.28;
-	border: 3px solid var(--kitty-ink);
-	border-radius: 48% 48% 44% 44%;
-	background:
-		linear-gradient(18deg, transparent 0 48%, rgba(45, 36, 48, 0.72) 49% 50%, transparent 51%) 4% 48% / 28% 25% no-repeat,
-		linear-gradient(-18deg, transparent 0 48%, rgba(45, 36, 48, 0.72) 49% 50%, transparent 51%) 96% 48% / 28% 25% no-repeat,
-		radial-gradient(circle at 31% 47%, var(--kitty-ink) 0 5px, transparent 6px),
-		radial-gradient(circle at 69% 47%, var(--kitty-ink) 0 5px, transparent 6px),
-		radial-gradient(ellipse at 50% 61%, var(--kitty-yellow) 0 9px, var(--kitty-ink) 10px 11px, transparent 12px),
-		#ffffff;
-	box-shadow: 10px 12px 0 rgba(242, 138, 181, 0.48), 16px 20px 0 rgba(116, 201, 235, 0.22);
-	opacity: 0.94;
+	width: clamp(18rem, 34vw, 30rem);
+	aspect-ratio: 600 / 760;
+	background: url("../../images/hello-kitty-mascot.svg?v=hello-kitty-mascot-1") center / contain no-repeat;
+	filter: drop-shadow(10px 14px 0 rgba(242, 138, 181, 0.36)) drop-shadow(18px 23px 0 rgba(116, 201, 235, 0.2));
+	opacity: 1;
 	pointer-events: none;
-	transform: translateY(-50%) rotate(2deg);
+	transform: translateY(-50%) rotate(1deg);
 }
 
 html[data-skin="hello-kitty"] .page-hero::after {
-	content: "";
-	position: absolute;
-	top: clamp(4rem, 10vw, 7rem);
-	right: clamp(1rem, 5vw, 7rem);
-	z-index: -1;
-	width: clamp(6rem, 11vw, 9rem);
-	aspect-ratio: 1.45;
-	background:
-		radial-gradient(ellipse at 18% 50%, var(--kitty-red) 0 37%, transparent 39%),
-		radial-gradient(ellipse at 82% 50%, var(--kitty-red) 0 37%, transparent 39%),
-		radial-gradient(circle at 50% 50%, #ff7da7 0 21%, var(--kitty-red) 23% 37%, transparent 39%);
-	filter: drop-shadow(4px 5px 0 rgba(116, 201, 235, 0.4));
-	pointer-events: none;
-	transform: rotate(-11deg);
-	animation: hello-kitty-bow-bob 3.8s ease-in-out infinite alternate;
+	display: none;
 }
 
 html[data-skin="hello-kitty"] .page-hero > .site-shell,
@@ -537,24 +501,12 @@ html[data-skin="hello-kitty"] .skin-picker-toggle-label {
 	color: #b8144b !important;
 }
 
-@keyframes hello-kitty-bow-bob {
-	from { transform: rotate(-11deg) translateY(-3px); }
-	to { transform: rotate(-6deg) translateY(5px); }
-}
-
 @media (max-width: 736px) {
 	html[data-skin="hello-kitty"] .page-hero::before {
-		top: 30%;
-		right: -8.5rem;
-		width: 18rem;
-		opacity: 0.36;
-	}
-
-	html[data-skin="hello-kitty"] .page-hero::after {
-		top: 7rem;
-		right: -0.5rem;
-		width: 5.5rem;
-		opacity: 0.65;
+		top: 31%;
+		right: -6rem;
+		width: 19rem;
+		opacity: 0.3;
 	}
 
 	html[data-skin="hello-kitty"] .page-hero h1,
@@ -575,11 +527,5 @@ html[data-skin="hello-kitty"] .skin-picker-toggle-label {
 		left: 0.35rem;
 		width: 1.5rem;
 		height: 1rem;
-	}
-}
-
-@media (prefers-reduced-motion: reduce) {
-	html[data-skin="hello-kitty"] .page-hero::after {
-		animation: none !important;
 	}
 }
