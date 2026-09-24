@@ -892,3 +892,6 @@ html[data-skin-id="forties-field-notes"] .skin-contact-charm::after {
 		transition: none !important;
 	}
 }
+.msdos-page-image {
+	display: none;
+}
