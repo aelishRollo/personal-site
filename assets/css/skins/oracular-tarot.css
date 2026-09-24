@@ -1,0 +1,557 @@
+/*
+	Oracular Tarot
+	Celestial divination translated into a readable, layout-safe portfolio skin.
+*/
+
+html[data-skin="oracular-tarot"] {
+	--background: #090713;
+	--foreground: #fff1d5;
+	--muted-bg: #120d21;
+	--card-bg: #161028;
+	--border: rgba(239, 213, 138, 0.58);
+	--primary: #efd58a;
+	--primary-fg: #090713;
+	--secondary: #7b5bea;
+	--secondary-fg: #fff1d5;
+	--accent: #d8528e;
+	--accent-fg: #fff1d5;
+	--link: #f2d98f;
+	--warning: #ff86bb;
+	--header-bg: rgba(9, 7, 19, 0.94);
+	--header-fg: #fff1d5;
+	--footer-bg: #07050f;
+	--footer-fg: #efd58a;
+	--oracle-bg: #090713;
+	--oracle-panel: #161028;
+	--oracle-cream: #fff1d5;
+	--oracle-gold: #efd58a;
+	--oracle-pink: #d8528e;
+	--oracle-violet: #7b5bea;
+	--oracle-line: rgba(239, 213, 138, 0.58);
+	color-scheme: dark;
+	overflow-x: clip;
+}
+
+html[data-skin="oracular-tarot"] body {
+	background-color: var(--oracle-bg) !important;
+	background-image:
+		radial-gradient(circle at 17% 13%, rgba(255, 241, 213, 0.7) 0 1px, transparent 1.4px),
+		radial-gradient(circle at 77% 31%, rgba(239, 213, 138, 0.5) 0 1px, transparent 1.35px),
+		radial-gradient(circle at 48% 78%, rgba(123, 91, 234, 0.4) 0 1px, transparent 1.5px),
+		linear-gradient(145deg, #090713 0%, #100a1d 48%, #07050f 100%) !important;
+	background-attachment: fixed;
+	background-position: 0 0, 13px 17px, 7px 29px, 0 0;
+	background-size: 41px 41px, 67px 67px, 89px 89px, auto;
+	color: var(--oracle-cream) !important;
+	font-family: Georgia, "Times New Roman", serif !important;
+	overflow-x: hidden;
+}
+
+html[data-skin="oracular-tarot"] body,
+html[data-skin="oracular-tarot"] p,
+html[data-skin="oracular-tarot"] li,
+html[data-skin="oracular-tarot"] label,
+html[data-skin="oracular-tarot"] .lead,
+html[data-skin="oracular-tarot"] .note,
+html[data-skin="oracular-tarot"] .footer-inner p {
+	color: rgba(255, 241, 213, 0.84) !important;
+}
+
+html[data-skin="oracular-tarot"] h1,
+html[data-skin="oracular-tarot"] h2,
+html[data-skin="oracular-tarot"] h3,
+html[data-skin="oracular-tarot"] h4,
+html[data-skin="oracular-tarot"] h5,
+html[data-skin="oracular-tarot"] h6,
+html[data-skin="oracular-tarot"] strong {
+	color: var(--oracle-cream) !important;
+	font-family: Georgia, "Times New Roman", serif !important;
+}
+
+html[data-skin="oracular-tarot"] a {
+	color: var(--oracle-gold) !important;
+	text-decoration-color: rgba(216, 82, 142, 0.72);
+	text-underline-offset: 0.2em;
+}
+
+html[data-skin="oracular-tarot"] a:hover {
+	color: #ff91c2 !important;
+}
+
+html[data-skin="oracular-tarot"] .site-header {
+	border-bottom: 1px solid rgba(239, 213, 138, 0.42) !important;
+	background: rgba(9, 7, 19, 0.94) !important;
+	box-shadow: 0 10px 34px rgba(0, 0, 0, 0.36) !important;
+	-webkit-backdrop-filter: blur(12px);
+	backdrop-filter: blur(12px);
+}
+
+html[data-skin="oracular-tarot"] .brand-mark {
+	border: 1px solid var(--oracle-gold);
+	border-radius: 50%;
+	background: radial-gradient(circle, var(--oracle-pink) 0 16%, var(--oracle-violet) 17% 31%, #100b20 32% 100%) !important;
+	box-shadow: 0 0 0 3px #090713, 0 0 0 4px rgba(239, 213, 138, 0.5), 0 0 22px rgba(216, 82, 142, 0.34);
+	color: var(--oracle-cream) !important;
+}
+
+html[data-skin="oracular-tarot"] .brand-text,
+html[data-skin="oracular-tarot"] .site-nav a,
+html[data-skin="oracular-tarot"] .nav-toggle {
+	color: var(--oracle-cream) !important;
+	font-family: Georgia, "Times New Roman", serif !important;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+html[data-skin="oracular-tarot"] .site-nav a {
+	border-bottom: 1px solid transparent;
+}
+
+html[data-skin="oracular-tarot"] .site-nav a:hover,
+html[data-skin="oracular-tarot"] .site-nav a[aria-current="page"] {
+	border-bottom-color: var(--oracle-pink);
+	background: transparent !important;
+	color: var(--oracle-gold) !important;
+}
+
+html[data-skin="oracular-tarot"] .site-nav .nav-cta,
+html[data-skin="oracular-tarot"] .nav-toggle {
+	border: 1px solid var(--oracle-gold) !important;
+	border-radius: 999px !important;
+	background: linear-gradient(145deg, rgba(123, 91, 234, 0.2), rgba(216, 82, 142, 0.14)) !important;
+	box-shadow: inset 0 0 0 1px rgba(255, 241, 213, 0.08), 0 0 18px rgba(123, 91, 234, 0.16);
+}
+
+html[data-skin="oracular-tarot"] .page-hero {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	border-bottom: 1px solid rgba(239, 213, 138, 0.38) !important;
+	background:
+		radial-gradient(circle at 78% 43%, rgba(123, 91, 234, 0.16), transparent 34%),
+		linear-gradient(145deg, rgba(22, 16, 40, 0.8), rgba(9, 7, 19, 0.92)) !important;
+}
+
+html[data-skin="oracular-tarot"] .page-hero::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: clamp(-12rem, -7vw, -3rem);
+	z-index: -1;
+	width: clamp(24rem, 54vw, 46rem);
+	aspect-ratio: 1;
+	border: 1px solid rgba(239, 213, 138, 0.6);
+	border-radius: 50%;
+	background:
+		repeating-conic-gradient(from 0deg, rgba(239, 213, 138, 0.42) 0 0.35deg, transparent 0.35deg 15deg),
+		radial-gradient(circle, transparent 0 24%, rgba(123, 91, 234, 0.42) 24.2% 24.5%, transparent 24.7% 42%, rgba(216, 82, 142, 0.44) 42.2% 42.5%, transparent 42.7% 61%, rgba(239, 213, 138, 0.35) 61.2% 61.5%, transparent 61.7%);
+	box-shadow: 0 0 70px rgba(123, 91, 234, 0.14), inset 0 0 56px rgba(216, 82, 142, 0.08);
+	opacity: 0.7;
+	pointer-events: none;
+	transform: translateY(-50%);
+	animation: oracular-tarot-orbit 28s linear infinite;
+}
+
+html[data-skin="oracular-tarot"] .page-hero::after {
+	content: "✦";
+	position: absolute;
+	top: 50%;
+	right: clamp(4.3rem, 17vw, 18.5rem);
+	z-index: -1;
+	color: var(--oracle-pink);
+	font-size: clamp(8rem, 19vw, 16rem);
+	line-height: 1;
+	text-shadow: 0 0 35px rgba(123, 91, 234, 0.74), 0 0 78px rgba(216, 82, 142, 0.24);
+	opacity: 0.62;
+	pointer-events: none;
+	transform: translate(50%, -50%);
+	animation: oracular-tarot-pulse 4.5s ease-in-out infinite alternate;
+}
+
+html[data-skin="oracular-tarot"] .page-hero > .site-shell,
+html[data-skin="oracular-tarot"] .hero-copy,
+html[data-skin="oracular-tarot"] .hero-grid--with-portrait {
+	position: relative;
+	z-index: 1;
+}
+
+html[data-skin="oracular-tarot"] .page-hero h1,
+html[data-skin="oracular-tarot"] body.page-home .page-hero h1 {
+	max-width: 14ch;
+	color: var(--oracle-cream) !important;
+	font-size: clamp(3.5rem, 9vw, 8rem);
+	font-weight: 700;
+	letter-spacing: -0.065em;
+	line-height: 0.82;
+	text-shadow: 0 10px 44px rgba(0, 0, 0, 0.58);
+}
+
+html[data-skin="oracular-tarot"] body.page-home .page-hero h1 {
+	font-size: clamp(3.2rem, 7vw, 6.8rem);
+}
+
+html[data-skin="oracular-tarot"] .hero-title-role {
+	color: inherit !important;
+}
+
+html[data-skin="oracular-tarot"] .hero-title-role:nth-child(2n),
+html[data-skin="oracular-tarot"] .metallic-pearl-text,
+html[data-skin="oracular-tarot"] #hero-silly-title {
+	color: var(--oracle-pink) !important;
+	-webkit-text-fill-color: var(--oracle-pink) !important;
+	text-shadow: 0 0 30px rgba(123, 91, 234, 0.45);
+}
+
+html[data-skin="oracular-tarot"] .eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.55rem;
+	border: 0 !important;
+	background: transparent !important;
+	color: var(--oracle-gold) !important;
+	font-family: Georgia, "Times New Roman", serif !important;
+	font-style: italic;
+	font-weight: 400;
+	letter-spacing: 0.16em;
+}
+
+html[data-skin="oracular-tarot"] .eyebrow::before,
+html[data-skin="oracular-tarot"] .eyebrow::after {
+	content: "✦";
+	color: var(--oracle-pink);
+	font-style: normal;
+	font-size: 0.72em;
+}
+
+html[data-skin="oracular-tarot"] .hero-summary,
+html[data-skin="oracular-tarot"] .page-hero .lead {
+	max-width: 46rem;
+	color: rgba(255, 241, 213, 0.9) !important;
+}
+
+html[data-skin="oracular-tarot"] .hero-summary {
+	font-style: italic;
+}
+
+html[data-skin="oracular-tarot"] .page-section {
+	position: relative;
+	border-color: rgba(239, 213, 138, 0.22) !important;
+	background: rgba(9, 7, 19, 0.86) !important;
+}
+
+html[data-skin="oracular-tarot"] .section-soft,
+html[data-skin="oracular-tarot"] .section-portrait,
+html[data-skin="oracular-tarot"] .profile-section {
+	background: linear-gradient(145deg, rgba(22, 16, 40, 0.88), rgba(10, 7, 18, 0.9)) !important;
+}
+
+html[data-skin="oracular-tarot"] .section-cta {
+	background:
+		radial-gradient(circle at 50% 50%, rgba(216, 82, 142, 0.16), transparent 45%),
+		linear-gradient(145deg, rgba(18, 12, 34, 0.94), rgba(9, 7, 19, 0.96)) !important;
+	text-align: center;
+}
+
+html[data-skin="oracular-tarot"] .section-cta .site-shell::before {
+	content: "THE READING";
+	display: block;
+	margin-bottom: 1rem;
+	color: var(--oracle-gold);
+	font-size: 0.72rem;
+	letter-spacing: 0.24em;
+}
+
+html[data-skin="oracular-tarot"] .section-cta h2 {
+	max-width: 19ch;
+	margin-inline: auto;
+	font-size: clamp(2.4rem, 6vw, 5.6rem);
+	line-height: 0.98;
+}
+
+html[data-skin="oracular-tarot"] .section-cta p,
+html[data-skin="oracular-tarot"] .section-cta .actions {
+	max-width: 56rem;
+	margin-inline: auto;
+}
+
+html[data-skin="oracular-tarot"] .panel-card,
+html[data-skin="oracular-tarot"] .features article,
+html[data-skin="oracular-tarot"] .contact-rail,
+html[data-skin="oracular-tarot"] .service-card,
+html[data-skin="oracular-tarot"] .project-card,
+html[data-skin="oracular-tarot"] .portrait-panel,
+html[data-skin="oracular-tarot"] .contact-form,
+html[data-skin="oracular-tarot"] .fridge-panel,
+html[data-skin="oracular-tarot"] .work-overview-tech {
+	position: relative;
+	overflow: hidden;
+	border: 1px solid var(--oracle-line) !important;
+	border-radius: 1.1rem !important;
+	background: linear-gradient(160deg, rgba(26, 18, 47, 0.97), rgba(11, 8, 22, 0.98)) !important;
+	box-shadow: inset 0 0 0 3px rgba(9, 7, 19, 0.84), inset 0 0 0 4px rgba(239, 213, 138, 0.18), 0 20px 50px rgba(0, 0, 0, 0.4) !important;
+}
+
+html[data-skin="oracular-tarot"] .panel-card::after,
+html[data-skin="oracular-tarot"] .features article::after,
+html[data-skin="oracular-tarot"] .service-card::after,
+html[data-skin="oracular-tarot"] .project-card::after {
+	content: "✦";
+	position: absolute;
+	top: 0.6rem;
+	right: 0.8rem;
+	color: rgba(216, 82, 142, 0.6);
+	font-size: 1.15rem;
+	pointer-events: none;
+}
+
+html[data-skin="oracular-tarot"] .quest-grid {
+	align-items: stretch;
+}
+
+html[data-skin="oracular-tarot"] .quest-card {
+	display: flex;
+	flex-direction: column;
+	min-height: 31rem;
+	padding-top: 4.8rem !important;
+}
+
+html[data-skin="oracular-tarot"] .quest-card::before {
+	position: absolute;
+	top: 1.1rem;
+	left: 50%;
+	color: var(--oracle-gold);
+	font-size: 0.65rem;
+	letter-spacing: 0.2em;
+	white-space: nowrap;
+	transform: translateX(-50%);
+}
+
+html[data-skin="oracular-tarot"] .quest-card:nth-child(1)::before { content: "I · THE SIGNAL"; }
+html[data-skin="oracular-tarot"] .quest-card:nth-child(2)::before { content: "II · THE MIRROR"; }
+html[data-skin="oracular-tarot"] .quest-card:nth-child(3)::before { content: "III · THE PORTAL"; }
+
+html[data-skin="oracular-tarot"] .quest-card::after {
+	top: 2.05rem;
+	right: auto;
+	left: 50%;
+	color: var(--oracle-pink);
+	font-size: 2rem;
+	text-shadow: 0 0 22px var(--oracle-violet);
+	transform: translateX(-50%);
+}
+
+html[data-skin="oracular-tarot"] .quest-card h3 { text-align: center; }
+html[data-skin="oracular-tarot"] .quest-card .quest-link { margin-top: auto; }
+
+html[data-skin="oracular-tarot"] .feature-icon,
+html[data-skin="oracular-tarot"] .service-icon {
+	border: 1px solid var(--oracle-gold) !important;
+	border-radius: 50% !important;
+	background: radial-gradient(circle, rgba(216, 82, 142, 0.55), rgba(123, 91, 234, 0.24) 48%, rgba(9, 7, 19, 0.9) 50%) !important;
+	color: var(--oracle-cream) !important;
+	box-shadow: 0 0 24px rgba(123, 91, 234, 0.22);
+}
+
+html[data-skin="oracular-tarot"] .hero-media,
+html[data-skin="oracular-tarot"] .portrait-panel,
+html[data-skin="oracular-tarot"] .project-card .image,
+html[data-skin="oracular-tarot"] .image.fit {
+	border-color: var(--oracle-line) !important;
+	border-radius: 1.1rem !important;
+}
+
+html[data-skin="oracular-tarot"] .hero-headshot,
+html[data-skin="oracular-tarot"] .portrait-panel img,
+html[data-skin="oracular-tarot"] .profile-photo {
+	filter: saturate(0.88) contrast(1.04) sepia(0.08);
+}
+
+html[data-skin="oracular-tarot"] .hero-splash {
+	border: 1px solid var(--oracle-gold) !important;
+	border-radius: 0.75rem !important;
+	background: rgba(9, 7, 19, 0.94) !important;
+	box-shadow: 0 12px 34px rgba(0, 0, 0, 0.5) !important;
+	color: var(--oracle-cream) !important;
+	font-family: Georgia, "Times New Roman", serif !important;
+}
+
+html[data-skin="oracular-tarot"] .button,
+html[data-skin="oracular-tarot"] button,
+html[data-skin="oracular-tarot"] input[type="submit"],
+html[data-skin="oracular-tarot"] input[type="reset"] {
+	border: 1px solid var(--oracle-gold) !important;
+	border-radius: 999px !important;
+	background: rgba(14, 9, 25, 0.9) !important;
+	box-shadow: inset 0 0 0 1px rgba(255, 241, 213, 0.06), 0 8px 24px rgba(0, 0, 0, 0.26) !important;
+	color: var(--oracle-gold) !important;
+	font-family: Georgia, "Times New Roman", serif !important;
+	letter-spacing: 0.07em !important;
+}
+
+html[data-skin="oracular-tarot"] .button:hover,
+html[data-skin="oracular-tarot"] button:hover,
+html[data-skin="oracular-tarot"] input[type="submit"]:hover,
+html[data-skin="oracular-tarot"] input[type="reset"]:hover,
+html[data-skin="oracular-tarot"] .button.primary {
+	border-color: #ff83ba !important;
+	background: linear-gradient(135deg, var(--oracle-pink), #8b58e9) !important;
+	color: #fff8ea !important;
+}
+
+html[data-skin="oracular-tarot"] input[type="text"],
+html[data-skin="oracular-tarot"] input[type="email"],
+html[data-skin="oracular-tarot"] input[type="tel"],
+html[data-skin="oracular-tarot"] textarea,
+html[data-skin="oracular-tarot"] select {
+	border: 1px solid rgba(239, 213, 138, 0.56) !important;
+	border-radius: 0.8rem !important;
+	background: rgba(8, 5, 15, 0.88) !important;
+	color: var(--oracle-cream) !important;
+	font-family: Georgia, "Times New Roman", serif !important;
+}
+
+html[data-skin="oracular-tarot"] input:focus,
+html[data-skin="oracular-tarot"] textarea:focus,
+html[data-skin="oracular-tarot"] select:focus {
+	border-color: var(--oracle-pink) !important;
+	box-shadow: 0 0 0 3px rgba(216, 82, 142, 0.2) !important;
+}
+
+html[data-skin="oracular-tarot"] .work-tech-item,
+html[data-skin="oracular-tarot"] .fact-list li,
+html[data-skin="oracular-tarot"] .contact-list li {
+	border-color: rgba(239, 213, 138, 0.22) !important;
+}
+
+html[data-skin="oracular-tarot"] .work-tech-item dt,
+html[data-skin="oracular-tarot"] .fact-list strong {
+	color: var(--oracle-gold) !important;
+}
+
+html[data-skin="oracular-tarot"] .site-footer {
+	border-top: 1px solid rgba(239, 213, 138, 0.4) !important;
+	background: rgba(7, 5, 15, 0.98) !important;
+	color: var(--oracle-gold) !important;
+}
+
+html[data-skin="oracular-tarot"] .site-footer::before {
+	content: "☾  ·  ✦  ·  ☽";
+	display: block;
+	padding-top: 1.5rem;
+	color: var(--oracle-gold);
+	font-size: 1rem;
+	letter-spacing: 0.7em;
+	text-align: center;
+}
+
+html[data-skin="oracular-tarot"] .skin-contact-charm {
+	--skin-contact-rotate: 2deg;
+	top: 0.85rem;
+	max-width: 9rem;
+	min-height: 4.5rem;
+	padding: 1.2rem 0.85rem;
+	border: 1px solid var(--oracle-gold) !important;
+	border-radius: 0.75rem !important;
+	background: linear-gradient(155deg, #19102c, #0b0715) !important;
+	box-shadow: inset 0 0 0 3px #090713, inset 0 0 0 4px rgba(239, 213, 138, 0.24), 5px 6px 0 rgba(216, 82, 142, 0.36);
+	color: var(--oracle-cream) !important;
+	font-family: Georgia, "Times New Roman", serif !important;
+	font-size: 0.68rem !important;
+	letter-spacing: 0.08em !important;
+}
+
+html[data-skin="oracular-tarot"] .skin-contact-charm::before {
+	content: "✦";
+	display: block;
+	margin-right: 0.35rem;
+	color: var(--oracle-pink);
+	font-size: 1.1rem;
+	text-shadow: 0 0 14px var(--oracle-violet);
+}
+
+html[data-skin="oracular-tarot"] .skin-picker {
+	--skin-ui-bg: #0c0817;
+	--skin-ui-panel: #171027;
+	--skin-ui-text: #fff1d5;
+	--skin-ui-muted: #d5c6ad;
+	--skin-ui-accent: #efd58a;
+	--skin-ui-border: rgba(239, 213, 138, 0.5);
+}
+
+html[data-skin="oracular-tarot"] .skin-picker-toggle,
+html[data-skin="oracular-tarot"] .skin-picker-panel,
+html[data-skin="oracular-tarot"] .skin-picker .skin-picker-cycle {
+	border-color: rgba(239, 213, 138, 0.5) !important;
+	background: #0c0817 !important;
+	box-shadow: 0 10px 28px rgba(0, 0, 0, 0.46) !important;
+}
+
+html[data-skin="oracular-tarot"] .skin-picker-option[aria-pressed="true"] {
+	background: linear-gradient(135deg, rgba(216, 82, 142, 0.34), rgba(123, 91, 234, 0.34)) !important;
+	color: var(--oracle-cream) !important;
+}
+
+html[data-skin="oracular-tarot"] .skin-picker-scroll-arrow,
+html[data-skin="oracular-tarot"] .skin-picker-chevron,
+html[data-skin="oracular-tarot"] .skin-picker-current {
+	color: var(--oracle-gold) !important;
+}
+
+@keyframes oracular-tarot-orbit {
+	from { transform: translateY(-50%) rotate(0deg); }
+	to { transform: translateY(-50%) rotate(360deg); }
+}
+
+@keyframes oracular-tarot-pulse {
+	from { color: var(--oracle-pink); transform: translate(50%, -50%) rotate(0deg) scale(0.84); }
+	to { color: var(--oracle-gold); transform: translate(50%, -50%) rotate(35deg) scale(1); }
+}
+
+@media (min-width: 900px) {
+	html[data-skin="oracular-tarot"] .quest-grid {
+		padding-bottom: 2.25rem;
+	}
+
+	html[data-skin="oracular-tarot"] .quest-card:nth-child(2) {
+		transform: translateY(2.25rem);
+	}
+}
+
+@media (max-width: 736px) {
+	html[data-skin="oracular-tarot"] .page-hero::before {
+		right: -12rem;
+		width: 28rem;
+		opacity: 0.48;
+	}
+
+	html[data-skin="oracular-tarot"] .page-hero::after {
+		right: 2.5rem;
+		font-size: 8rem;
+		opacity: 0.42;
+	}
+
+	html[data-skin="oracular-tarot"] .page-hero h1,
+	html[data-skin="oracular-tarot"] body.page-home .page-hero h1 {
+		font-size: clamp(2.75rem, 15vw, 4.6rem);
+	}
+
+	html[data-skin="oracular-tarot"] .quest-card { min-height: 0; }
+
+	html[data-skin="oracular-tarot"] .skin-contact-charm {
+		top: 0.75rem;
+		right: 0.65rem;
+		max-width: 7.5rem;
+		min-height: 3rem;
+		padding: 0.65rem;
+		font-size: 0.59rem !important;
+	}
+
+	html[data-skin="oracular-tarot"] .skin-contact-charm::before { font-size: 0.85rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-skin="oracular-tarot"] .page-hero::before,
+	html[data-skin="oracular-tarot"] .page-hero::after {
+		animation: none !important;
+	}
+}
