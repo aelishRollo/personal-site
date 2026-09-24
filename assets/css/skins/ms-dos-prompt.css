@@ -417,18 +417,100 @@ html[data-skin="ms-dos-prompt"] .eyebrow::before {
 
 html[data-skin="ms-dos-prompt"] .hero-media {
 	display: block;
-	width: auto;
-	margin: 0;
+	width: min(32rem, 100%);
+	margin: 2.7rem 0 1.35rem;
 	padding: 0;
 	transform: none;
 }
 
+html[data-skin="ms-dos-prompt"] .hero-media::before,
+html[data-skin="ms-dos-prompt"] .portrait-panel::before {
+	content: "C:\\PORTFOLIO> LOADIMG AVATAR.BMP\A Loading image... OK";
+	display: block;
+	margin: 0 0 0.65rem;
+	color: #aaaaaa;
+	font: 400 1rem/1.35 "Courier New", Courier, ui-monospace, monospace;
+	white-space: pre-wrap;
+}
+
 html[data-skin="ms-dos-prompt"] .hero-media img,
 html[data-skin="ms-dos-prompt"] .portrait-panel img,
-html[data-skin="ms-dos-prompt"] .profile-chip img,
-html[data-skin="ms-dos-prompt"] .features article .image,
+html[data-skin="ms-dos-prompt"] .profile-chip img {
+	display: block !important;
+	width: min(24rem, 100%) !important;
+	height: auto !important;
+	margin: 0 !important;
+	border: 1px solid #aaaaaa !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	filter: grayscale(1) contrast(1.15);
+	object-fit: cover;
+}
+
+html[data-skin="ms-dos-prompt"] .portrait-panel,
+html[data-skin="ms-dos-prompt"] .portrait-panel-compact {
+	display: block !important;
+	width: min(32rem, 100%) !important;
+	margin: 2.7rem 0 1.35rem !important;
+	padding: 0 !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	transform: none !important;
+}
+
+html[data-skin="ms-dos-prompt"] .features article .image {
+	--dos-image-file: "PREVIEW.BMP";
+	display: block !important;
+	width: min(32rem, calc(100% - 2ch)) !important;
+	margin: 0 0 1.35rem 2ch !important;
+	padding: 0 !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	color: #aaaaaa !important;
+	font: 400 1rem/1.35 "Courier New", Courier, ui-monospace, monospace !important;
+	text-decoration: none !important;
+}
+
+html[data-skin="ms-dos-prompt"] .features article:nth-child(1) .image { --dos-image-file: "PROMPT.BMP"; }
+html[data-skin="ms-dos-prompt"] .features article:nth-child(2) .image { --dos-image-file: "SAGE.BMP"; }
+html[data-skin="ms-dos-prompt"] .features article:nth-child(3) .image { --dos-image-file: "LEANNE.BMP"; }
+html[data-skin="ms-dos-prompt"] .features article:nth-child(4) .image { --dos-image-file: "FRIDGE.BMP"; }
+html[data-skin="ms-dos-prompt"] .features article:nth-child(5) .image { --dos-image-file: "CHORDAPI.BMP"; }
+
+html[data-skin="ms-dos-prompt"] .features article .image::before {
+	content: "C:\\PROJECTS> LOADIMG " var(--dos-image-file) "\A Loading preview... OK";
+	display: block;
+	margin: 0 0 0.65rem;
+	white-space: pre-wrap;
+}
+
+html[data-skin="ms-dos-prompt"] .features article .image::after {
+	content: "[ IMAGE LINK — ENTER=OPEN ]";
+	display: inline-block;
+	margin-top: 0.35rem;
+	color: #ffffff;
+}
+
 html[data-skin="ms-dos-prompt"] .features article .image img {
-	display: none !important;
+	display: block !important;
+	width: 100% !important;
+	height: auto !important;
+	margin: 0 !important;
+	border: 1px solid #aaaaaa !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	filter: grayscale(1) contrast(1.15);
+	object-fit: cover;
+}
+
+html[data-skin="ms-dos-prompt"] .features article .image:hover::after,
+html[data-skin="ms-dos-prompt"] .features article .image:focus-visible::after {
+	background: #aaaaaa;
+	color: #000000;
 }
 
 html[data-skin="ms-dos-prompt"] .hero-splash {
