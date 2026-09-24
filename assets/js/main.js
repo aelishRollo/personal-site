@@ -73,6 +73,7 @@
 			'type-sculpture': 'Shape an idea',
 			'browser-archaeology': "I\u2019VE GOT MAIL!",
 			'oracular-tarot': 'Ask the oracle',
+			'hello-kitty': 'Say hello!',
 			'forties-field-notes': 'Drop me a line',
 			'nutrition-facts': 'Contact Alec'
 		};
