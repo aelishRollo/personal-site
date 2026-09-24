@@ -433,6 +433,10 @@ html[data-skin="ms-dos-prompt"] .portrait-panel::before {
 	white-space: pre-wrap;
 }
 
+html[data-skin="ms-dos-prompt"] .msdos-page-image::before {
+	content: "C:\\PORTFOLIO> LOADIMG " attr(data-dos-filename) "\A Loading image... OK";
+}
+
 html[data-skin="ms-dos-prompt"] .hero-media img,
 html[data-skin="ms-dos-prompt"] .portrait-panel img,
 html[data-skin="ms-dos-prompt"] .profile-chip img {
@@ -443,7 +447,7 @@ html[data-skin="ms-dos-prompt"] .profile-chip img {
 	border: 1px solid #aaaaaa !important;
 	border-radius: 0 !important;
 	box-shadow: none !important;
-	filter: grayscale(1) contrast(1.15);
+	filter: none !important;
 	object-fit: cover;
 }
 
@@ -503,7 +507,7 @@ html[data-skin="ms-dos-prompt"] .features article .image img {
 	border: 1px solid #aaaaaa !important;
 	border-radius: 0 !important;
 	box-shadow: none !important;
-	filter: grayscale(1) contrast(1.15);
+	filter: none !important;
 	object-fit: cover;
 }
 
