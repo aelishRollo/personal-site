@@ -65,6 +65,7 @@
 			'cosmic-airbrush': 'Send a signal',
 			'riso-hallucination': 'Print something wild',
 			'crystal-prism': 'Refract an idea',
+			'midnight-aurora-glass': 'Catch the spectrum',
 			'recursive-portal': 'Enter the conversation',
 			'split-duality': 'Meet in the middle',
 			'card-deck-stack': 'Pick a card',
