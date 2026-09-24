@@ -57,6 +57,7 @@
 			'liquid-dream': 'Dive into an idea',
 			'sacred-geometry': 'Align & connect',
 			'terminal-vision': '> OPEN_CHANNEL',
+			'ms-dos-prompt': 'RUN CONTACT.EXE',
 			'psychedelic-scrapbook': 'HELLO!',
 			'cut-and-paste-riot': 'MAKE SOMETHING WEIRD',
 			'liquid-chrome-y2k': 'CONNECT.EXE',
