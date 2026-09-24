@@ -4,18 +4,6 @@
 	spectral highlights move across reflective edges. The page beneath stays dark.
 */
 
-@property --midnight-aurora-x {
-	syntax: "<percentage>";
-	inherits: false;
-	initial-value: 36%;
-}
-
-@property --midnight-aurora-y {
-	syntax: "<percentage>";
-	inherits: false;
-	initial-value: 46%;
-}
-
 html[data-skin="midnight-aurora-glass"] {
 	--background: #030407;
 	--foreground: #f7fbff;
@@ -50,13 +38,32 @@ html[data-skin="midnight-aurora-glass"] {
 }
 
 html[data-skin="midnight-aurora-glass"] body {
-	background:
-		radial-gradient(circle at 15% 4%, rgba(68, 247, 255, 0.08), transparent 28rem),
-		radial-gradient(circle at 88% 38%, rgba(200, 92, 255, 0.07), transparent 34rem),
-		linear-gradient(145deg, #020306 0%, #06080d 48%, #020306 100%) !important;
+	position: relative;
+	isolation: isolate;
+	background: #020306 !important;
 	color: #f7fbff !important;
 	font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
 	overflow-x: hidden;
+}
+
+/* One composited layer moves behind the whole interface. Glass surfaces reveal
+   it through their tint without asking every card to repaint on every frame. */
+html[data-skin="midnight-aurora-glass"] body::before {
+	content: "";
+	position: fixed;
+	inset: -16vh -16vw;
+	z-index: -1;
+	background:
+		radial-gradient(circle at 18% 28%, rgba(68, 247, 255, 0.24), transparent 31%),
+		radial-gradient(circle at 78% 32%, rgba(255, 79, 184, 0.2), transparent 29%),
+		radial-gradient(circle at 54% 78%, rgba(132, 90, 255, 0.2), transparent 33%),
+		var(--aurora-image) center / cover no-repeat;
+	opacity: 0.78;
+	pointer-events: none;
+	transform: translate3d(-4%, -3%, 0) scale(1.12);
+	transform-origin: center;
+	will-change: transform;
+	animation: midnight-aurora-field-drift 12s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
 html[data-skin="midnight-aurora-glass"] body,
@@ -96,16 +103,13 @@ html[data-skin="midnight-aurora-glass"] a:hover {
 
 html[data-skin="midnight-aurora-glass"] .site-header {
 	border-bottom: 1px solid rgba(202, 236, 255, 0.2) !important;
-	background:
-		linear-gradient(110deg, rgba(3, 5, 9, 0.91), rgba(8, 12, 19, 0.77), rgba(3, 5, 9, 0.92)),
-		var(--aurora-image) var(--midnight-aurora-x) var(--midnight-aurora-y) / cover fixed !important;
+	background: linear-gradient(110deg, rgba(3, 5, 9, 0.82), rgba(8, 12, 19, 0.58), rgba(3, 5, 9, 0.84)) !important;
 	box-shadow:
 		inset 0 1px 0 rgba(255, 255, 255, 0.1),
 		0 14px 38px rgba(0, 0, 0, 0.48),
 		0 1px 18px rgba(68, 247, 255, 0.06) !important;
-	-webkit-backdrop-filter: blur(20px) saturate(145%);
-	backdrop-filter: blur(20px) saturate(145%);
-	animation: midnight-aurora-glass-drift-2 26s ease-in-out infinite;
+	-webkit-backdrop-filter: blur(10px) saturate(135%);
+	backdrop-filter: blur(10px) saturate(135%);
 }
 
 html[data-skin="midnight-aurora-glass"] .brand-mark {
@@ -153,9 +157,7 @@ html[data-skin="midnight-aurora-glass"] .nav-toggle {
 html[data-skin="midnight-aurora-glass"] .skin-contact-charm {
 	--skin-contact-rotate: -2deg;
 	border: 1px solid rgba(225, 248, 255, 0.58) !important;
-	background:
-		linear-gradient(120deg, rgba(3, 6, 11, 0.9), rgba(13, 18, 27, 0.7)),
-		var(--aurora-image) var(--midnight-aurora-x) var(--midnight-aurora-y) / cover fixed !important;
+	background: linear-gradient(120deg, rgba(3, 6, 11, 0.75), rgba(13, 18, 27, 0.48)) !important;
 	box-shadow:
 		inset 0 1px 0 rgba(255, 255, 255, 0.18),
 		0 0 20px rgba(68, 247, 255, 0.16),
@@ -163,9 +165,8 @@ html[data-skin="midnight-aurora-glass"] .skin-contact-charm {
 		0 12px 28px rgba(0, 0, 0, 0.4);
 	color: #f7fbff !important;
 	text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
-	-webkit-backdrop-filter: blur(18px) saturate(155%);
-	backdrop-filter: blur(18px) saturate(155%);
-	animation: midnight-aurora-glass-drift-2 26s ease-in-out infinite;
+	-webkit-backdrop-filter: blur(8px) saturate(135%);
+	backdrop-filter: blur(8px) saturate(135%);
 }
 
 html[data-skin="midnight-aurora-glass"] .skin-contact-charm:hover {
@@ -183,28 +184,13 @@ html[data-skin="midnight-aurora-glass"] body.page-contact .page-hero {
 	isolation: isolate;
 	overflow: hidden;
 	border-color: rgba(202, 236, 255, 0.18) !important;
-	background:
-		linear-gradient(110deg, rgba(3, 5, 9, 0.92) 5%, rgba(5, 8, 13, 0.68) 54%, rgba(4, 6, 10, 0.88)),
-		var(--aurora-image) var(--midnight-aurora-x) var(--midnight-aurora-y) / cover fixed !important;
+	background: linear-gradient(110deg, rgba(3, 5, 9, 0.8) 5%, rgba(5, 8, 13, 0.38) 54%, rgba(4, 6, 10, 0.74)) !important;
 	box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 	color: #f7fbff !important;
-	animation: midnight-aurora-glass-drift-2 26s ease-in-out infinite;
 }
 
 html[data-skin="midnight-aurora-glass"] .page-hero::before {
-	content: "";
-	position: absolute;
-	right: -13rem;
-	top: -15rem;
-	z-index: -1;
-	width: min(62vw, 47rem);
-	aspect-ratio: 1;
-	border-radius: 50%;
-	background: conic-gradient(from 25deg, rgba(68, 247, 255, 0.46), rgba(116, 117, 255, 0.3), rgba(200, 92, 255, 0.43), rgba(255, 79, 184, 0.36), rgba(255, 217, 92, 0.28), rgba(112, 255, 155, 0.38), rgba(68, 247, 255, 0.46));
-	filter: blur(78px) saturate(145%);
-	opacity: 0.48;
-	pointer-events: none;
-	animation: midnight-aurora-orbit 14s linear infinite;
+	display: none;
 }
 
 html[data-skin="midnight-aurora-glass"] .page-hero::after {
@@ -213,10 +199,10 @@ html[data-skin="midnight-aurora-glass"] .page-hero::after {
 	inset: 0;
 	z-index: -1;
 	background: linear-gradient(112deg, transparent 25%, rgba(255, 255, 255, 0.08) 42%, rgba(68, 247, 255, 0.1) 46%, rgba(255, 79, 200, 0.09) 50%, transparent 66%);
-	background-size: 260% 100%;
+	background-position: 52% 50%;
+	background-size: 220% 100%;
 	mix-blend-mode: screen;
 	pointer-events: none;
-	animation: midnight-aurora-sheen 10s ease-in-out infinite;
 }
 
 html[data-skin="midnight-aurora-glass"] .page-hero .site-shell,
@@ -254,33 +240,25 @@ html[data-skin="midnight-aurora-glass"] .metallic-pearl-text {
 html[data-skin="midnight-aurora-glass"] .eyebrow {
 	border: 1px solid rgba(200, 237, 255, 0.34) !important;
 	border-radius: 999px !important;
-	background:
-		linear-gradient(115deg, rgba(4, 7, 11, 0.76), rgba(13, 18, 27, 0.63)),
-		var(--aurora-image) var(--midnight-aurora-x) var(--midnight-aurora-y) / cover fixed !important;
+	background: linear-gradient(115deg, rgba(4, 7, 11, 0.68), rgba(13, 18, 27, 0.42)) !important;
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.13), 0 9px 24px rgba(0, 0, 0, 0.28);
 	color: #eaffff !important;
 	font-weight: 800;
 	letter-spacing: 0.13em;
-	-webkit-backdrop-filter: blur(16px) saturate(145%);
-	backdrop-filter: blur(16px) saturate(145%);
-	animation: midnight-aurora-glass-drift-2 26s ease-in-out infinite;
+	-webkit-backdrop-filter: blur(7px) saturate(130%);
+	backdrop-filter: blur(7px) saturate(130%);
 }
 
 html[data-skin="midnight-aurora-glass"] .page-section {
 	border-color: rgba(202, 236, 255, 0.14) !important;
-	background: #030407 !important;
+	background: rgba(3, 4, 7, 0.78) !important;
 }
 
 html[data-skin="midnight-aurora-glass"] .section-soft,
 html[data-skin="midnight-aurora-glass"] .section-portrait,
 html[data-skin="midnight-aurora-glass"] .profile-section {
-	background:
-		linear-gradient(125deg, rgba(3, 5, 9, 0.91), rgba(8, 12, 18, 0.72), rgba(3, 5, 9, 0.92)),
-		var(--aurora-image) var(--midnight-aurora-x) var(--midnight-aurora-y) / cover fixed !important;
+	background: linear-gradient(125deg, rgba(3, 5, 9, 0.76), rgba(8, 12, 18, 0.42), rgba(3, 5, 9, 0.78)) !important;
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 rgba(255, 255, 255, 0.05);
-	-webkit-backdrop-filter: blur(20px) saturate(135%);
-	backdrop-filter: blur(20px) saturate(135%);
-	animation: midnight-aurora-glass-drift-2 26s ease-in-out infinite;
 }
 
 html[data-skin="midnight-aurora-glass"] .panel-card,
@@ -299,17 +277,15 @@ html[data-skin="midnight-aurora-glass"] .contact-panel {
 	border-radius: 1.25rem !important;
 	background:
 		linear-gradient(135deg, rgba(255, 255, 255, 0.09), transparent 24%, rgba(68, 247, 255, 0.035) 46%, rgba(255, 79, 200, 0.045) 72%, transparent),
-		linear-gradient(130deg, rgba(7, 11, 18, 0.7), rgba(10, 15, 23, 0.36) 50%, rgba(4, 7, 12, 0.7)),
-		var(--aurora-image) var(--midnight-aurora-x) var(--midnight-aurora-y) / 104rem auto fixed !important;
+		linear-gradient(130deg, rgba(7, 11, 18, 0.64), rgba(10, 15, 23, 0.3) 50%, rgba(4, 7, 12, 0.64)) !important;
 	box-shadow:
 		inset 0 1px 0 rgba(255, 255, 255, 0.24),
 		inset 1px 0 0 rgba(255, 255, 255, 0.07),
 		inset 0 -1px 0 rgba(68, 247, 255, 0.06),
 		0 1.35rem 3.15rem rgba(0, 0, 0, 0.46),
 		0 0 26px rgba(68, 247, 255, 0.055) !important;
-	-webkit-backdrop-filter: blur(28px) saturate(165%);
-	backdrop-filter: blur(28px) saturate(165%);
-	animation: midnight-aurora-glass-drift-3 26s ease-in-out infinite;
+	-webkit-backdrop-filter: blur(8px) saturate(135%) brightness(1.08);
+	backdrop-filter: blur(8px) saturate(135%) brightness(1.08);
 }
 
 html[data-skin="midnight-aurora-glass"] .panel-card::after,
@@ -323,20 +299,11 @@ html[data-skin="midnight-aurora-glass"] .profile-note::after {
 	z-index: 2;
 	border-radius: inherit;
 	background: linear-gradient(112deg, transparent 17%, rgba(255, 255, 255, 0.055) 31%, rgba(68, 247, 255, 0.16) 40%, rgba(200, 92, 255, 0.19) 47%, rgba(255, 79, 184, 0.15) 54%, transparent 73%);
-	background-position: 120% 50%;
-	background-size: 260% 100%;
+	background-position: 52% 50%;
+	background-size: 220% 100%;
 	mix-blend-mode: screen;
-	opacity: 0.52;
-	filter: blur(0.7px) saturate(180%);
+	opacity: 0.38;
 	pointer-events: none;
-	animation: midnight-aurora-sheen 12s ease-in-out infinite;
-}
-
-html[data-skin="midnight-aurora-glass"] .panel-card:nth-child(2n)::after,
-html[data-skin="midnight-aurora-glass"] .features article:nth-child(2n)::after,
-html[data-skin="midnight-aurora-glass"] ul.feature-icons li:nth-child(2n)::after,
-html[data-skin="midnight-aurora-glass"] .work-tech-item:nth-child(2n)::after {
-	animation-delay: -4s;
 }
 
 html[data-skin="midnight-aurora-glass"] .panel-card:nth-child(3n),
@@ -373,14 +340,9 @@ html[data-skin="midnight-aurora-glass"] .tag-list li,
 html[data-skin="midnight-aurora-glass"] .profile-chip {
 	border: 1px solid rgba(210, 241, 255, 0.3) !important;
 	border-radius: 999px !important;
-	background:
-		linear-gradient(120deg, rgba(7, 11, 18, 0.78), rgba(13, 18, 27, 0.56)),
-		var(--aurora-image) var(--midnight-aurora-x) var(--midnight-aurora-y) / cover fixed !important;
+	background: linear-gradient(120deg, rgba(7, 11, 18, 0.72), rgba(13, 18, 27, 0.42)) !important;
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.19), inset 0 -1px 0 rgba(68, 247, 255, 0.045), 0 8px 22px rgba(0, 0, 0, 0.3);
 	color: #f7fbff !important;
-	-webkit-backdrop-filter: blur(20px) saturate(155%);
-	backdrop-filter: blur(20px) saturate(155%);
-	animation: midnight-aurora-glass-drift-2 26s ease-in-out infinite;
 }
 
 html[data-skin="midnight-aurora-glass"] .tag-list li:nth-child(3n + 2) {
@@ -404,14 +366,11 @@ html[data-skin="midnight-aurora-glass"] select,
 html[data-skin="midnight-aurora-glass"] textarea {
 	border: 1px solid rgba(210, 241, 255, 0.29) !important;
 	border-radius: 0.85rem !important;
-	background:
-		linear-gradient(120deg, rgba(4, 7, 12, 0.86), rgba(11, 16, 24, 0.66)),
-		var(--aurora-image) var(--midnight-aurora-x) var(--midnight-aurora-y) / cover fixed !important;
+	background: linear-gradient(120deg, rgba(4, 7, 12, 0.78), rgba(11, 16, 24, 0.48)) !important;
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), inset 0 -1px 0 rgba(68, 247, 255, 0.045), 0 10px 26px rgba(0, 0, 0, 0.25);
 	color: #ffffff !important;
-	-webkit-backdrop-filter: blur(20px) saturate(145%);
-	backdrop-filter: blur(20px) saturate(145%);
-	animation: midnight-aurora-glass-drift-2 26s ease-in-out infinite;
+	-webkit-backdrop-filter: blur(6px) saturate(125%);
+	backdrop-filter: blur(6px) saturate(125%);
 }
 
 html[data-skin="midnight-aurora-glass"] input:focus,
@@ -428,17 +387,12 @@ html[data-skin="midnight-aurora-glass"] button:not([class^="skin-picker"]),
 html[data-skin="midnight-aurora-glass"] .button {
 	border: 1px solid rgba(210, 241, 255, 0.34) !important;
 	border-radius: 999px !important;
-	background:
-		linear-gradient(120deg, rgba(7, 11, 18, 0.78), rgba(13, 18, 27, 0.55)),
-		var(--aurora-image) var(--midnight-aurora-x) var(--midnight-aurora-y) / cover fixed !important;
+	background: linear-gradient(120deg, rgba(7, 11, 18, 0.72), rgba(13, 18, 27, 0.4)) !important;
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.21), inset 0 -1px 0 rgba(68, 247, 255, 0.05), 0 9px 24px rgba(0, 0, 0, 0.31);
 	color: #f7fbff !important;
 	font-weight: 800;
 	letter-spacing: 0.06em;
 	text-transform: uppercase;
-	-webkit-backdrop-filter: blur(18px) saturate(155%);
-	backdrop-filter: blur(18px) saturate(155%);
-	animation: midnight-aurora-glass-drift-2 26s ease-in-out infinite;
 }
 
 html[data-skin="midnight-aurora-glass"] input[type="submit"].primary,
@@ -465,11 +419,8 @@ html[data-skin="midnight-aurora-glass"] .button:hover {
 html[data-skin="midnight-aurora-glass"] .section-cta {
 	position: relative;
 	overflow: hidden;
-	background:
-		linear-gradient(115deg, rgba(3, 5, 9, 0.9), rgba(9, 14, 22, 0.6), rgba(3, 5, 9, 0.9)),
-		var(--aurora-image) var(--midnight-aurora-x) var(--midnight-aurora-y) / cover fixed !important;
+	background: linear-gradient(115deg, rgba(3, 5, 9, 0.8), rgba(9, 14, 22, 0.4), rgba(3, 5, 9, 0.8)) !important;
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.13), inset 0 -1px 0 rgba(255, 255, 255, 0.06);
-	animation: midnight-aurora-glass-drift-2 26s ease-in-out infinite;
 }
 
 html[data-skin="midnight-aurora-glass"] .section-cta h2,
@@ -501,13 +452,10 @@ html[data-skin="midnight-aurora-glass"] .skin-picker-panel,
 html[data-skin="midnight-aurora-glass"] .skin-picker-toggle,
 html[data-skin="midnight-aurora-glass"] .skin-picker .skin-picker-cycle {
 	border-color: rgba(210, 241, 255, 0.34) !important;
-	background:
-		linear-gradient(120deg, rgba(4, 7, 12, 0.84), rgba(12, 17, 25, 0.64)),
-		var(--aurora-image) var(--midnight-aurora-x) var(--midnight-aurora-y) / cover fixed !important;
+	background: linear-gradient(120deg, rgba(4, 7, 12, 0.8), rgba(12, 17, 25, 0.5)) !important;
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.19), inset 0 -1px 0 rgba(68, 247, 255, 0.045), 0 12px 34px rgba(0, 0, 0, 0.48), 0 0 24px rgba(68, 247, 255, 0.07) !important;
-	-webkit-backdrop-filter: blur(24px) saturate(160%);
-	backdrop-filter: blur(24px) saturate(160%);
-	animation: midnight-aurora-glass-drift-2 26s ease-in-out infinite;
+	-webkit-backdrop-filter: blur(10px) saturate(135%);
+	backdrop-filter: blur(10px) saturate(135%);
 }
 
 html[data-skin="midnight-aurora-glass"] .skin-picker-panel {
@@ -540,16 +488,10 @@ html[data-skin="midnight-aurora-glass"] .skin-picker-scroll-arrow {
 	filter: drop-shadow(0 0 5px rgba(96, 247, 255, 0.55));
 }
 
-/* Keep one aurora field aligned behind every pane so each surface reads as a
-   tinted window into the same moving light rather than a separate texture. */
-@keyframes midnight-aurora-glass-drift-2 {
-	0%, 100% { --midnight-aurora-x: 36%; --midnight-aurora-y: 46%; }
-	50% { --midnight-aurora-x: 64%; --midnight-aurora-y: 54%; }
-}
-
-@keyframes midnight-aurora-glass-drift-3 {
-	0%, 100% { --midnight-aurora-x: 36%; --midnight-aurora-y: 46%; }
-	50% { --midnight-aurora-x: 64%; --midnight-aurora-y: 54%; }
+@keyframes midnight-aurora-field-drift {
+	0%, 100% { transform: translate3d(-5%, -3%, 0) scale(1.15); }
+	33% { transform: translate3d(5%, -1%, 0) scale(1.18); }
+	66% { transform: translate3d(1%, 4%, 0) scale(1.14); }
 }
 
 @keyframes midnight-aurora-spectrum {
@@ -557,43 +499,8 @@ html[data-skin="midnight-aurora-glass"] .skin-picker-scroll-arrow {
 	50% { background-position: 100% 50%; }
 }
 
-@keyframes midnight-aurora-sheen {
-	0%, 18% { background-position: 135% 50%; }
-	62%, 100% { background-position: -85% 50%; }
-}
-
-@keyframes midnight-aurora-orbit {
-	to { transform: rotate(360deg) scale(1.08); filter: blur(78px) saturate(175%) hue-rotate(70deg); }
-}
-
-@media (max-width: 736px) {
-	html[data-skin="midnight-aurora-glass"] .site-header,
-	html[data-skin="midnight-aurora-glass"] .page-hero,
-	html[data-skin="midnight-aurora-glass"] .section-soft,
-	html[data-skin="midnight-aurora-glass"] .section-portrait,
-	html[data-skin="midnight-aurora-glass"] .profile-section,
-	html[data-skin="midnight-aurora-glass"] .panel-card,
-	html[data-skin="midnight-aurora-glass"] .features article,
-	html[data-skin="midnight-aurora-glass"] .contact-rail,
-	html[data-skin="midnight-aurora-glass"] ul.feature-icons li,
-	html[data-skin="midnight-aurora-glass"] .work-overview,
-	html[data-skin="midnight-aurora-glass"] .work-tech-item,
-	html[data-skin="midnight-aurora-glass"] .profile-chip,
-	html[data-skin="midnight-aurora-glass"] .profile-note,
-	html[data-skin="midnight-aurora-glass"] .contact-panel,
-	html[data-skin="midnight-aurora-glass"] .section-cta {
-		background-attachment: scroll !important;
-	}
-
-	html[data-skin="midnight-aurora-glass"] .page-hero::before {
-		right: -12rem;
-		top: -7rem;
-		width: 27rem;
-		opacity: 0.36;
-	}
-}
-
 @media (prefers-reduced-motion: reduce) {
+	html[data-skin="midnight-aurora-glass"] body::before,
 	html[data-skin="midnight-aurora-glass"] .brand-mark,
 	html[data-skin="midnight-aurora-glass"] .site-header,
 	html[data-skin="midnight-aurora-glass"] .skin-contact-charm,
