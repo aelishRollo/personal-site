@@ -665,6 +665,155 @@ html[data-skin="ms-dos-prompt"] .features article .inner span a:hover {
 	color: #000000 !important;
 }
 
+/* DOS interaction vocabulary: commands, filenames, inverse video, and keys. */
+html[data-skin="ms-dos-prompt"] a,
+html[data-skin="ms-dos-prompt"] button,
+html[data-skin="ms-dos-prompt"] input[type="submit"],
+html[data-skin="ms-dos-prompt"] input[type="button"],
+html[data-skin="ms-dos-prompt"] input[type="reset"] {
+	cursor: pointer;
+}
+
+html[data-skin="ms-dos-prompt"] .page-section p,
+html[data-skin="ms-dos-prompt"] .panel-card p,
+html[data-skin="ms-dos-prompt"] .features article p,
+html[data-skin="ms-dos-prompt"] .work-tech-item dd,
+html[data-skin="ms-dos-prompt"] .contact-intro p {
+	padding-left: 2ch;
+}
+
+html[data-skin="ms-dos-prompt"] .panel-card h3::before {
+	content: "C:\\QUESTS> TYPE ";
+	color: #aaaaaa;
+}
+
+html[data-skin="ms-dos-prompt"] .features article h3::before {
+	content: "C:\\PROJECTS> TYPE ";
+	color: #aaaaaa;
+}
+
+html[data-skin="ms-dos-prompt"] .features article h3::after {
+	content: ".TXT";
+	color: #aaaaaa;
+}
+
+html[data-skin="ms-dos-prompt"] .quest-link {
+	display: inline-block;
+	margin-left: 2ch;
+	color: #ffffff !important;
+}
+
+html[data-skin="ms-dos-prompt"] .quest-link::before {
+	content: "[ OPEN ";
+}
+
+html[data-skin="ms-dos-prompt"] .quest-link::after {
+	content: " ]";
+}
+
+html[data-skin="ms-dos-prompt"] .quest-link span {
+	display: none !important;
+}
+
+html[data-skin="ms-dos-prompt"] .page-section p a:not(.button)::before,
+html[data-skin="ms-dos-prompt"] .footer-meta a::before {
+	content: "<";
+}
+
+html[data-skin="ms-dos-prompt"] .page-section p a:not(.button)::after,
+html[data-skin="ms-dos-prompt"] .footer-meta a::after {
+	content: ">";
+}
+
+html[data-skin="ms-dos-prompt"] .actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.35rem 2ch;
+	margin-left: 0;
+	padding-left: 2ch;
+}
+
+html[data-skin="ms-dos-prompt"] .actions::before {
+	content: "ENTER=RUN  TAB=NEXT";
+	display: block;
+	flex: 0 0 100%;
+	color: #aaaaaa;
+	font: 400 0.88rem/1.35 "Courier New", Courier, ui-monospace, monospace;
+}
+
+html[data-skin="ms-dos-prompt"] .actions li {
+	margin: 0;
+	padding: 0;
+}
+
+html[data-skin="ms-dos-prompt"][data-theme] .section-cta .button,
+html[data-skin="ms-dos-prompt"][data-theme] .section-cta .button.primary {
+	border: 0 !important;
+	background: transparent !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="ms-dos-prompt"][data-theme] .section-cta .button:hover,
+html[data-skin="ms-dos-prompt"][data-theme] .section-cta .button:focus-visible,
+html[data-skin="ms-dos-prompt"][data-theme] .section-cta .button.primary:hover,
+html[data-skin="ms-dos-prompt"][data-theme] .section-cta .button.primary:focus-visible {
+	background: #aaaaaa !important;
+	color: #000000 !important;
+}
+
+html[data-skin="ms-dos-prompt"] .contact-submit::before {
+	content: "[ EXEC ";
+}
+
+html[data-skin="ms-dos-prompt"] .contact-submit::after {
+	content: " ]";
+}
+
+html[data-skin="ms-dos-prompt"] .social-inline a::before {
+	content: "[ ";
+}
+
+html[data-skin="ms-dos-prompt"] .social-inline a::after {
+	content: " ]";
+}
+
+html[data-skin="ms-dos-prompt"] .skin-picker-option-mark {
+	width: 3ch;
+	height: auto;
+	border: 0 !important;
+	border-radius: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	color: #ffffff;
+	font: 400 0.82rem/1 "Courier New", Courier, ui-monospace, monospace;
+}
+
+html[data-skin="ms-dos-prompt"] .skin-picker-option-mark::before {
+	content: "[ ]";
+}
+
+html[data-skin="ms-dos-prompt"] .skin-picker-option[aria-pressed="true"] .skin-picker-option-mark::before {
+	content: "[X]";
+}
+
+html[data-skin="ms-dos-prompt"] .skin-picker .skin-picker-keep + label::before {
+	width: 3ch;
+	height: auto;
+	border: 0 !important;
+	border-radius: 0 !important;
+	background: transparent !important;
+	color: #ffffff;
+	content: "[ ]";
+	font: 400 0.76rem/1 "Courier New", Courier, ui-monospace, monospace;
+}
+
+html[data-skin="ms-dos-prompt"] .skin-picker .skin-picker-keep:checked + label::before {
+	background: transparent !important;
+	background-image: none !important;
+	color: #ffffff;
+	content: "[X]";
+}
+
 html[data-skin="ms-dos-prompt"] .section-cta h2,
 html[data-skin="ms-dos-prompt"] .section-cta p {
 	color: #aaaaaa !important;
