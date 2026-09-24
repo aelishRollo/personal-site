@@ -181,10 +181,11 @@ html[data-skin="ms-dos-prompt"] .site-nav {
 }
 
 html[data-skin="ms-dos-prompt"] .site-nav::before {
-	content: "C:\\PORTFOLIO> DIR /W";
+	content: "C:\\PORTFOLIO> MENU\A Choose a command:  TAB=SELECT  ENTER=RUN";
 	display: block;
-	margin-bottom: 0.35rem;
+	margin-bottom: 0.65rem;
 	color: #aaaaaa;
+	white-space: pre-wrap;
 }
 
 html[data-skin="ms-dos-prompt"] .site-nav ul {
@@ -203,22 +204,26 @@ html[data-skin="ms-dos-prompt"] .site-nav li {
 
 html[data-skin="ms-dos-prompt"] .site-nav a,
 html[data-skin="ms-dos-prompt"] .site-nav .nav-cta {
-	display: inline;
-	padding: 0 !important;
+	display: inline-block;
+	padding: 0 0.5ch !important;
 	border: 0 !important;
 	background: transparent !important;
-	color: #aaaaaa !important;
+	color: #ffffff !important;
 	font: 400 1rem/1.35 "Courier New", Courier, ui-monospace, monospace !important;
 	letter-spacing: 0;
 	text-transform: uppercase;
 }
 
+html[data-skin="ms-dos-prompt"] .site-nav a::before {
+	content: "[ ";
+}
+
 html[data-skin="ms-dos-prompt"] .site-nav a::after {
-	content: ".BAT";
+	content: ".BAT ]";
 }
 
 html[data-skin="ms-dos-prompt"] .site-nav .nav-cta::after {
-	content: ".EXE";
+	content: ".EXE ]";
 }
 
 html[data-skin="ms-dos-prompt"] .site-nav a:hover,
@@ -474,6 +479,12 @@ html[data-skin="ms-dos-prompt"] .section-cta {
 	background: #000000 !important;
 	box-shadow: none !important;
 	color: #aaaaaa !important;
+}
+
+html[data-skin="ms-dos-prompt"] .site-main > .page-section {
+	margin-top: 3.5rem !important;
+	padding-top: 2.25rem !important;
+	border-top: 1px dashed #aaaaaa !important;
 }
 
 html[data-skin="ms-dos-prompt"] .hero-quests {
@@ -953,7 +964,12 @@ html[data-skin-id="ms-dos-prompt"] .skin-contact-charm:hover {
 	}
 
 	html[data-skin="ms-dos-prompt"] .site-nav ul {
-		gap: 0 1.5ch;
+		gap: 0.35rem 1ch;
+	}
+
+	html[data-skin="ms-dos-prompt"] .site-main > .page-section {
+		margin-top: 2.75rem !important;
+		padding-top: 1.75rem !important;
 	}
 
 	html[data-skin="ms-dos-prompt"] .site-nav a,
