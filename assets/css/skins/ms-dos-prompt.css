@@ -1,65 +1,63 @@
 /*
 	MS-DOS Prompt
-	A code-native DOS console skin built from the classic 16-color VGA palette,
-	square terminal windows, command-line labels, and an animated block cursor.
+	Literal text-mode presentation: an 80-column black console, fixed-width text,
+	inverse selections, command prompts, and a blinking block cursor.
 */
 
 html[data-skin="ms-dos-prompt"] {
 	--background: #000000;
-	--foreground: #c0c0c0;
-	--muted-bg: #00002a;
+	--foreground: #aaaaaa;
+	--muted-bg: #000000;
 	--card-bg: #000000;
-	--border: #00aaaa;
-	--primary: #ffff55;
+	--border: #aaaaaa;
+	--primary: #ffffff;
 	--primary-fg: #000000;
-	--secondary: #55ffff;
-	--secondary-fg: #000000;
-	--accent: #ff55ff;
+	--secondary: #0000aa;
+	--secondary-fg: #ffffff;
+	--accent: #ffffff;
 	--accent-fg: #000000;
-	--link: #55ffff;
-	--warning: #ffff55;
-	--header-bg: #0000aa;
-	--header-fg: #ffffff;
+	--link: #ffffff;
+	--warning: #ffffff;
+	--header-bg: #000000;
+	--header-fg: #aaaaaa;
 	--footer-bg: #000000;
-	--footer-fg: #c0c0c0;
+	--footer-fg: #aaaaaa;
 	--bg: #000000;
 	--surface-1: #000000;
-	--surface-2: #00002a;
+	--surface-2: #000000;
 	--surface-3: #0000aa;
 	--text-1: #ffffff;
-	--text-2: #c0c0c0;
-	--line-1: #00aaaa;
-	--accent-1: #ffff55;
-	--accent-2: #55ffff;
+	--text-2: #aaaaaa;
+	--line-1: #aaaaaa;
+	--accent-1: #ffffff;
+	--accent-2: #aaaaaa;
 	overflow-x: clip;
 }
 
 html[data-skin="ms-dos-prompt"] body {
-	position: relative;
-	background:
-		linear-gradient(rgba(0, 0, 170, 0.08) 1px, transparent 1px),
-		linear-gradient(90deg, rgba(0, 170, 170, 0.055) 1px, transparent 1px),
-		#000000 !important;
-	background-size: 16px 16px !important;
-	color: var(--foreground) !important;
-	font-family: "Lucida Console", "Courier New", Courier, monospace !important;
-	font-size: 0.98rem;
-	image-rendering: pixelated;
+	background: #000000 !important;
+	color: #aaaaaa !important;
+	font-family: "Courier New", Courier, ui-monospace, monospace !important;
+	font-size: 16px;
+	font-weight: 400;
+	font-synthesis: none;
+	line-height: 1.35;
+	letter-spacing: 0;
+	text-rendering: geometricPrecision;
 }
 
-html[data-skin="ms-dos-prompt"] body::before {
-	content: "MS-DOS 6.22   MEM: 640K   MODE: PORTFOLIO";
-	position: fixed;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 48;
-	padding: 0.28rem 0.7rem;
-	background: #c0c0c0;
-	color: #000000;
-	font: 700 0.68rem/1.25 "Lucida Console", "Courier New", monospace;
-	letter-spacing: 0;
-	pointer-events: none;
+html[data-skin="ms-dos-prompt"] body::before,
+html[data-skin="ms-dos-prompt"] body::after {
+	content: none !important;
+	display: none !important;
+}
+
+html[data-skin="ms-dos-prompt"] .site-shell,
+html[data-skin="ms-dos-prompt"] body.page-fridge .site-main .site-shell,
+html[data-skin="ms-dos-prompt"] body.page-fridge .page-section .site-shell {
+	width: min(80ch, calc(100% - 2rem)) !important;
+	max-width: 80ch !important;
+	margin-inline: 1rem auto;
 }
 
 html[data-skin="ms-dos-prompt"] body,
@@ -69,8 +67,10 @@ html[data-skin="ms-dos-prompt"] label,
 html[data-skin="ms-dos-prompt"] .lead,
 html[data-skin="ms-dos-prompt"] .note,
 html[data-skin="ms-dos-prompt"] .footer-inner p,
-html[data-skin="ms-dos-prompt"] .social-inline a {
-	color: var(--foreground) !important;
+html[data-skin="ms-dos-prompt"] .social-inline a,
+html[data-skin="ms-dos-prompt"] dd {
+	color: #aaaaaa !important;
+	font-family: inherit !important;
 }
 
 html[data-skin="ms-dos-prompt"] h1,
@@ -82,114 +82,154 @@ html[data-skin="ms-dos-prompt"] h6,
 html[data-skin="ms-dos-prompt"] strong,
 html[data-skin="ms-dos-prompt"] dt {
 	color: #ffffff !important;
-	font-family: "Lucida Console", "Courier New", Courier, monospace !important;
-	font-weight: 700;
+	font-family: inherit !important;
+	font-size: 1rem;
+	font-weight: 400;
 	letter-spacing: 0;
+	line-height: 1.35;
+	text-transform: none;
+	text-shadow: none !important;
 }
 
 html[data-skin="ms-dos-prompt"] h2::before,
 html[data-skin="ms-dos-prompt"] h3::before {
-	content: "> ";
-	color: #55ffff;
+	content: "C:\\PORTFOLIO> ";
+	color: #aaaaaa;
 }
 
 html[data-skin="ms-dos-prompt"] a {
-	color: var(--link) !important;
-	text-decoration: underline;
-	text-decoration-style: solid;
-	text-decoration-thickness: 1px;
-	text-underline-offset: 0.18em;
+	border: 0 !important;
+	border-radius: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	color: #ffffff !important;
+	font-family: inherit !important;
+	text-decoration: none;
+	text-shadow: none !important;
 }
 
 html[data-skin="ms-dos-prompt"] a:hover,
 html[data-skin="ms-dos-prompt"] a:focus-visible {
-	background: #55ffff !important;
+	background: #aaaaaa !important;
 	color: #000000 !important;
 	text-decoration: none;
 	text-shadow: none !important;
 }
 
 html[data-skin="ms-dos-prompt"] :focus-visible {
-	outline: 2px solid #ffff55 !important;
-	outline-offset: 3px;
+	outline: 1px solid #ffffff !important;
+	outline-offset: 2px;
 }
 
 html[data-skin="ms-dos-prompt"] .site-header {
+	position: relative;
+	top: auto;
+	padding: 1rem 0 0;
 	border: 0 !important;
-	border-bottom: 2px solid #55ffff !important;
-	background: #0000aa !important;
-	box-shadow: 0 2px 0 #000000, 0 4px 0 #0000aa !important;
+	background: #000000 !important;
+	box-shadow: none !important;
 	backdrop-filter: none !important;
 }
 
-html[data-skin="ms-dos-prompt"] .brand,
+html[data-skin="ms-dos-prompt"] .site-header .site-shell {
+	display: block;
+	min-height: 0;
+	padding: 0;
+}
+
+html[data-skin="ms-dos-prompt"] .brand {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
 html[data-skin="ms-dos-prompt"] .brand:hover,
 html[data-skin="ms-dos-prompt"] .brand:focus-visible {
 	background: transparent !important;
-	text-decoration: none;
+	color: #aaaaaa !important;
 }
 
 html[data-skin="ms-dos-prompt"] .brand-mark {
-	border: 2px solid #ffffff !important;
-	border-radius: 0 !important;
-	background: #000000 !important;
-	box-shadow: 2px 2px 0 #00aaaa !important;
-	color: #ffff55 !important;
-	font: 700 0.72rem/1 "Lucida Console", "Courier New", monospace !important;
+	display: none !important;
 }
 
-html[data-skin="ms-dos-prompt"] .brand-text,
+html[data-skin="ms-dos-prompt"] .brand-text {
+	display: block;
+	color: transparent !important;
+	font: 0/0 "Courier New", Courier, monospace !important;
+	letter-spacing: 0;
+}
+
+html[data-skin="ms-dos-prompt"] .brand-text::before {
+	content: "Microsoft(R) MS-DOS(R) Version 6.22\A(C)Copyright Microsoft Corp 1981-1994.";
+	display: block;
+	color: #aaaaaa;
+	font: 400 1rem/1.35 "Courier New", Courier, ui-monospace, monospace;
+	white-space: pre-wrap;
+}
+
+html[data-skin="ms-dos-prompt"] .site-nav {
+	display: block !important;
+	position: static !important;
+	width: auto !important;
+	margin: 1.35rem 0 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+	background: #000000 !important;
+	box-shadow: none !important;
+	transform: none !important;
+}
+
+html[data-skin="ms-dos-prompt"] .site-nav::before {
+	content: "C:\\PORTFOLIO> DIR /W";
+	display: block;
+	margin-bottom: 0.35rem;
+	color: #aaaaaa;
+}
+
+html[data-skin="ms-dos-prompt"] .site-nav ul {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0 2ch;
+	margin: 0;
+	padding: 0;
+}
+
+html[data-skin="ms-dos-prompt"] .site-nav li {
+	margin: 0;
+	padding: 0;
+}
+
 html[data-skin="ms-dos-prompt"] .site-nav a,
-html[data-skin="ms-dos-prompt"] .nav-toggle {
-	color: #ffffff !important;
-	font-family: "Lucida Console", "Courier New", monospace !important;
-	font-weight: 700;
+html[data-skin="ms-dos-prompt"] .site-nav .nav-cta {
+	display: inline;
+	padding: 0 !important;
+	border: 0 !important;
+	background: transparent !important;
+	color: #aaaaaa !important;
+	font: 400 1rem/1.35 "Courier New", Courier, ui-monospace, monospace !important;
 	letter-spacing: 0;
 	text-transform: uppercase;
 }
 
-html[data-skin="ms-dos-prompt"] .brand-text::before {
-	content: "C:\\> ";
-	color: #55ffff;
-}
-
-html[data-skin="ms-dos-prompt"] .site-nav a,
-html[data-skin="ms-dos-prompt"] .site-nav .nav-cta,
-html[data-skin="ms-dos-prompt"] .nav-toggle {
-	border: 0 !important;
-	border-radius: 0 !important;
-	background: transparent !important;
-	box-shadow: none !important;
-	text-decoration: none;
-}
-
-html[data-skin="ms-dos-prompt"] .site-nav a::before {
-	content: "[";
-	color: #00aaaa;
-}
-
 html[data-skin="ms-dos-prompt"] .site-nav a::after {
-	content: "]";
-	color: #00aaaa;
+	content: ".BAT";
+}
+
+html[data-skin="ms-dos-prompt"] .site-nav .nav-cta::after {
+	content: ".EXE";
 }
 
 html[data-skin="ms-dos-prompt"] .site-nav a:hover,
+html[data-skin="ms-dos-prompt"] .site-nav a:focus-visible,
 html[data-skin="ms-dos-prompt"] .site-nav a[aria-current="page"] {
-	background: #c0c0c0 !important;
+	background: #aaaaaa !important;
 	color: #000000 !important;
-	box-shadow: none !important;
 }
 
-html[data-skin="ms-dos-prompt"] .site-nav a[aria-current="page"]::before,
-html[data-skin="ms-dos-prompt"] .site-nav a[aria-current="page"]::after,
-html[data-skin="ms-dos-prompt"] .site-nav a:hover::before,
-html[data-skin="ms-dos-prompt"] .site-nav a:hover::after {
-	color: #aa0000;
-}
-
-html[data-skin="ms-dos-prompt"] .site-nav .nav-cta,
 html[data-skin="ms-dos-prompt"] .nav-toggle {
-	color: #ffff55 !important;
+	display: none !important;
 }
 
 html[data-skin="ms-dos-prompt"] .page-hero,
@@ -200,88 +240,104 @@ html[data-skin="ms-dos-prompt"] body.page-connect .page-hero,
 html[data-skin="ms-dos-prompt"] body.page-about .page-hero,
 html[data-skin="ms-dos-prompt"] body.page-contact .page-hero {
 	position: relative;
-	isolation: isolate;
-	overflow: hidden;
-	width: calc(100% - clamp(1rem, 4vw, 3rem));
-	max-width: 92rem;
-	margin: clamp(1rem, 3vw, 2rem) auto clamp(1.5rem, 4vw, 3rem);
-	padding-top: clamp(8.6rem, 13vw, 11rem) !important;
-	border: 2px solid #55ffff !important;
+	overflow: visible;
+	width: 100%;
+	max-width: none;
+	margin: 0;
+	padding: 1.35rem 0 !important;
+	border: 0 !important;
 	background: #000000 !important;
-	box-shadow: 8px 8px 0 #0000aa !important;
-	color: #c0c0c0 !important;
+	box-shadow: none !important;
+	color: #aaaaaa !important;
 }
 
 html[data-skin="ms-dos-prompt"] .page-hero::before {
-	content: "C:\\PORTFOLIO\\ALEC.EXE";
-	position: absolute;
-	inset: 0 0 auto;
-	z-index: 0;
-	height: 2rem;
-	padding: 0.42rem 0.75rem;
-	border-bottom: 2px solid #55ffff;
-	background: #0000aa;
-	color: #ffffff;
-	font: 700 0.78rem/1 "Lucida Console", "Courier New", monospace;
-	text-align: center;
-	pointer-events: none;
+	content: "C:\\PORTFOLIO> TYPE PROFILE.TXT";
+	display: block;
+	position: static;
+	width: min(80ch, calc(100% - 2rem));
+	max-width: 80ch;
+	height: auto;
+	margin: 0 auto 1.35rem 1rem;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: #aaaaaa;
+	font: 400 1rem/1.35 "Courier New", Courier, ui-monospace, monospace;
+	text-align: left;
 }
 
 html[data-skin="ms-dos-prompt"] .page-hero::after {
-	content: "F1 HELP   F3 OPEN   F5 REFRESH   ESC QUIT";
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 0;
-	padding: 0.35rem 0.75rem;
-	background: #00aaaa;
-	color: #000000;
-	font: 700 0.68rem/1.2 "Lucida Console", "Courier New", monospace;
-	text-align: center;
-	word-spacing: 0.4rem;
-	pointer-events: none;
+	content: "C:\\PORTFOLIO> _";
+	display: block;
+	position: static;
+	width: min(80ch, calc(100% - 2rem));
+	max-width: 80ch;
+	height: auto;
+	margin: 1.35rem auto 0 1rem;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: #aaaaaa;
+	font: 400 1rem/1.35 "Courier New", Courier, ui-monospace, monospace;
+	text-align: left;
+	animation: msdos-prompt-blink 1s steps(2, end) infinite;
+}
+
+@keyframes msdos-prompt-blink {
+	50% { opacity: 0.35; }
 }
 
 html[data-skin="ms-dos-prompt"] .page-hero .site-shell,
 html[data-skin="ms-dos-prompt"] .hero-copy,
 html[data-skin="ms-dos-prompt"] .hero-media {
-	position: relative;
-	z-index: 1;
+	position: static;
+	z-index: auto;
 	min-width: 0;
+}
+
+html[data-skin="ms-dos-prompt"] .hero-grid,
+html[data-skin="ms-dos-prompt"] .hero-copy {
+	display: block;
+	grid-template-columns: none;
+	column-gap: 0;
+}
+
+html[data-skin="ms-dos-prompt"] .hero-copy > :not(.hero-media),
+html[data-skin="ms-dos-prompt"] .hero-copy .hero-quests,
+html[data-skin="ms-dos-prompt"] .hero-copy .hero-media {
+	grid-column: auto;
+	grid-row: auto;
 }
 
 html[data-skin="ms-dos-prompt"] .page-hero h1,
 html[data-skin="ms-dos-prompt"] body.page-home .page-hero h1 {
-	max-width: 18ch;
+	max-width: none;
+	margin: 0 0 1.35rem;
 	color: #ffffff !important;
-	font-size: clamp(2.1rem, 6.2vw, 5.7rem);
-	line-height: 0.98;
-	letter-spacing: -0.055em;
-	text-transform: uppercase;
-	text-shadow: 3px 3px 0 #0000aa;
+	font: 400 1rem/1.35 "Courier New", Courier, ui-monospace, monospace !important;
+	letter-spacing: 0;
+	text-transform: none;
+	text-shadow: none !important;
 }
 
 html[data-skin="ms-dos-prompt"] .page-hero h1::before {
-	content: "C:\\ALEC> TYPE PROFILE.TXT";
+	content: "NAME: ALEC ROLLISON";
 	display: block;
-	margin-bottom: 1rem;
-	color: #55ffff;
-	font-size: clamp(0.68rem, 1.4vw, 0.92rem);
-	line-height: 1.4;
-	letter-spacing: 0;
-	text-shadow: none;
-	white-space: normal;
+	margin: 0 0 0.35rem;
+	color: #aaaaaa;
+	font: inherit;
+	white-space: pre-wrap;
 }
 
 html[data-skin="ms-dos-prompt"] .page-hero h1::after {
-	content: " ";
+	content: "";
 	display: inline-block;
-	width: 0.64em;
-	height: 0.88em;
-	margin-left: 0.14em;
-	background: #c0c0c0;
-	vertical-align: -0.05em;
+	width: 0.62em;
+	height: 1em;
+	margin-left: 0.15em;
+	background: #aaaaaa;
+	vertical-align: -0.16em;
 	animation: msdos-cursor 1s steps(2, end) infinite;
 }
 
@@ -289,65 +345,153 @@ html[data-skin="ms-dos-prompt"] .page-hero h1::after {
 	50% { opacity: 0; }
 }
 
-html[data-skin="ms-dos-prompt"] .hero-title-role {
+html[data-skin="ms-dos-prompt"] .hero-title-role,
+html[data-skin="ms-dos-prompt"] .hero-title-role:nth-of-type(2n),
+html[data-skin="ms-dos-prompt"] .metallic-pearl-text,
+html[data-skin="ms-dos-prompt"] .hero-title-initial {
 	display: block;
+	margin: 0;
+	padding: 0;
 	color: #ffffff !important;
-	-webkit-text-fill-color: currentColor !important;
+	-webkit-text-fill-color: #ffffff !important;
 	-webkit-text-stroke: 0 !important;
 	background: none !important;
 	filter: none !important;
-	text-shadow: 3px 3px 0 #0000aa !important;
+	font: inherit !important;
+	text-shadow: none !important;
+	transform: none !important;
 	animation: none !important;
 }
 
-html[data-skin="ms-dos-prompt"] .hero-title-role:nth-of-type(2n) {
-	color: #55ffff !important;
+html[data-skin="ms-dos-prompt"] .hero-title-role::before {
+	content: "  - ";
+	color: #aaaaaa;
+}
+
+html[data-skin="ms-dos-prompt"] .hero-title-role:first-of-type::before {
+	content: "ATTRIBUTES:\A  - ";
+	white-space: pre-wrap;
 }
 
 html[data-skin="ms-dos-prompt"] .hero-title-initial {
-	color: #ffff55 !important;
-	-webkit-text-fill-color: #ffff55 !important;
+	display: inline !important;
 }
 
-html[data-skin="ms-dos-prompt"] .metallic-pearl-text {
-	color: #ff55ff !important;
-	-webkit-text-fill-color: #ff55ff !important;
-	background: none !important;
-	filter: none !important;
+html[data-skin="ms-dos-prompt"] .hero-summary,
+html[data-skin="ms-dos-prompt"] .page-hero .lead {
+	max-width: none;
+	margin: 0 0 1.35rem;
+	color: #aaaaaa !important;
+	font: 400 1rem/1.35 "Courier New", Courier, ui-monospace, monospace !important;
 }
 
 html[data-skin="ms-dos-prompt"] .hero-summary::before,
-html[data-skin="ms-dos-prompt"] .lead::before {
-	content: ":: ";
-	color: #00aaaa;
+html[data-skin="ms-dos-prompt"] .page-hero .lead::before {
+	content: "REM ";
+	color: #aaaaaa;
 }
 
 html[data-skin="ms-dos-prompt"] .eyebrow {
+	display: block;
+	width: auto;
+	margin: 0 0 0.35rem;
+	padding: 0;
 	border: 0 !important;
 	border-radius: 0 !important;
-	background: #c0c0c0 !important;
-	box-shadow: 4px 4px 0 #0000aa;
-	color: #000000 !important;
-	font: 700 0.74rem/1.2 "Lucida Console", "Courier New", monospace !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	color: #aaaaaa !important;
+	font: 400 1rem/1.35 "Courier New", Courier, ui-monospace, monospace !important;
 	letter-spacing: 0;
-	text-transform: uppercase;
+	text-transform: none;
 }
 
 html[data-skin="ms-dos-prompt"] .eyebrow::before {
-	content: "[ ";
-	color: #aa0000;
+	content: "LABEL: ";
 }
 
-html[data-skin="ms-dos-prompt"] .eyebrow::after {
-	content: " ]";
-	color: #aa0000;
+html[data-skin="ms-dos-prompt"] .hero-media {
+	display: block;
+	width: auto;
+	margin: 0;
+	padding: 0;
+	transform: none;
+}
+
+html[data-skin="ms-dos-prompt"] .hero-media img,
+html[data-skin="ms-dos-prompt"] .portrait-panel img,
+html[data-skin="ms-dos-prompt"] .profile-chip img,
+html[data-skin="ms-dos-prompt"] .features article .image,
+html[data-skin="ms-dos-prompt"] .features article .image img {
+	display: none !important;
+}
+
+html[data-skin="ms-dos-prompt"] .hero-splash {
+	display: block;
+	position: static;
+	width: auto;
+	height: auto;
+	margin: 0 0 1.35rem;
+	padding: 0;
+	border: 0 !important;
+	border-radius: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	color: #aaaaaa !important;
+	text-align: left !important;
+	transform: none;
+	pointer-events: auto;
+}
+
+html[data-skin="ms-dos-prompt"] .hero-splash::before {
+	content: "REM ";
+	color: #aaaaaa;
+}
+
+html[data-skin="ms-dos-prompt"] .hero-splash-close,
+html[data-skin="ms-dos-prompt"] .hero-splash-notice-icon {
+	display: none !important;
+}
+
+html[data-skin="ms-dos-prompt"] .hero-splash .hero-splash-text {
+	display: inline;
+	width: auto;
+	height: auto;
+	padding: 0;
+	background: transparent !important;
+	color: #aaaaaa !important;
+	font: 400 1rem/1.35 "Courier New", Courier, ui-monospace, monospace !important;
+	text-align: left !important;
+	text-shadow: none !important;
 }
 
 html[data-skin="ms-dos-prompt"] .page-section,
 html[data-skin="ms-dos-prompt"] .section-soft,
-html[data-skin="ms-dos-prompt"] .section-portrait {
-	border-color: #0000aa !important;
+html[data-skin="ms-dos-prompt"] .section-portrait,
+html[data-skin="ms-dos-prompt"] .section-cta {
+	padding: 1.35rem 0 !important;
+	border: 0 !important;
 	background: #000000 !important;
+	box-shadow: none !important;
+	color: #aaaaaa !important;
+}
+
+html[data-skin="ms-dos-prompt"] .hero-quests {
+	margin: 1.35rem 0 0;
+	padding: 1.35rem 0 0;
+	border-top: 1px dashed #aaaaaa !important;
+}
+
+html[data-skin="ms-dos-prompt"] .quest-grid,
+html[data-skin="ms-dos-prompt"] .features,
+html[data-skin="ms-dos-prompt"] .features--showcase,
+html[data-skin="ms-dos-prompt"] .features--showcase .featured-project,
+html[data-skin="ms-dos-prompt"] .work-tech-list,
+html[data-skin="ms-dos-prompt"] .contact-layout {
+	display: block !important;
+	grid-template-columns: none !important;
+	gap: 0 !important;
+	border: 0 !important;
 }
 
 html[data-skin="ms-dos-prompt"] .panel-card,
@@ -358,107 +502,103 @@ html[data-skin="ms-dos-prompt"] .work-overview,
 html[data-skin="ms-dos-prompt"] .profile-chip,
 html[data-skin="ms-dos-prompt"] .work-tech-item,
 html[data-skin="ms-dos-prompt"] .contact-form-grid {
-	position: relative;
-	isolation: isolate;
-	border: 2px solid #00aaaa !important;
+	display: block;
+	position: static;
+	width: 100% !important;
+	margin: 0 0 1.35rem;
+	padding: 0 !important;
+	border: 0 !important;
 	border-radius: 0 !important;
 	background: #000000 !important;
-	box-shadow: 4px 4px 0 #0000aa !important;
+	box-shadow: none !important;
+	transform: none !important;
 }
 
 html[data-skin="ms-dos-prompt"] .panel-card::before,
+html[data-skin="ms-dos-prompt"] .panel-card::after,
 html[data-skin="ms-dos-prompt"] .features article::before,
+html[data-skin="ms-dos-prompt"] .features article::after,
 html[data-skin="ms-dos-prompt"] ul.feature-icons li::before,
-html[data-skin="ms-dos-prompt"] .work-tech-item::before {
-	content: "DIR";
-	position: absolute;
-	top: -0.7rem;
-	left: 0.7rem;
-	z-index: 2;
-	padding: 0 0.35rem;
-	background: #000000;
-	color: #ffff55;
-	font: 700 0.67rem/1.25 "Lucida Console", "Courier New", monospace;
-}
-
-html[data-skin="ms-dos-prompt"] .panel-card:hover,
-html[data-skin="ms-dos-prompt"] .features article:hover,
-html[data-skin="ms-dos-prompt"] ul.feature-icons li:hover,
-html[data-skin="ms-dos-prompt"] .work-tech-item:hover {
-	border-color: #ffff55 !important;
-	box-shadow: 4px 4px 0 #aaaa00 !important;
-	transform: translate(-1px, -1px);
+html[data-skin="ms-dos-prompt"] ul.feature-icons li::after,
+html[data-skin="ms-dos-prompt"] .work-tech-item::before,
+html[data-skin="ms-dos-prompt"] .work-tech-item::after {
+	content: none !important;
+	display: none !important;
 }
 
 html[data-skin="ms-dos-prompt"] .panel-card h3,
 html[data-skin="ms-dos-prompt"] .features article h3,
 html[data-skin="ms-dos-prompt"] .work-tech-item dt {
-	color: #ffff55 !important;
-	text-transform: uppercase;
-}
-
-html[data-skin="ms-dos-prompt"] .hero-media img,
-html[data-skin="ms-dos-prompt"] .portrait-panel img,
-html[data-skin="ms-dos-prompt"] .profile-chip img,
-html[data-skin="ms-dos-prompt"] .features article .image,
-html[data-skin="ms-dos-prompt"] .features article .image img {
-	border-radius: 0 !important;
-}
-
-html[data-skin="ms-dos-prompt"] .hero-media img,
-html[data-skin="ms-dos-prompt"] .portrait-panel img,
-html[data-skin="ms-dos-prompt"] .features article .image {
-	border: 2px solid #55ffff !important;
-	box-shadow: 5px 5px 0 #0000aa !important;
-}
-
-html[data-skin="ms-dos-prompt"] .hero-media img,
-html[data-skin="ms-dos-prompt"] .portrait-panel img,
-html[data-skin="ms-dos-prompt"] .profile-chip img,
-html[data-skin="ms-dos-prompt"] .features article .image img {
-	filter: contrast(1.08) saturate(0.78) !important;
-	image-rendering: auto;
-}
-
-html[data-skin="ms-dos-prompt"] .hero-splash {
-	border-radius: 0 !important;
-	background: #0000aa !important;
-	box-shadow: 4px 4px 0 #000000 !important;
-}
-
-html[data-skin="ms-dos-prompt"] .hero-splash .hero-splash-text {
+	margin-bottom: 0.35rem;
 	color: #ffffff !important;
-	font-family: "Lucida Console", "Courier New", monospace !important;
-	text-shadow: none !important;
+	font-size: 1rem !important;
+	text-transform: none;
+}
+
+html[data-skin="ms-dos-prompt"] .features article {
+	margin-bottom: 2.7rem;
+}
+
+html[data-skin="ms-dos-prompt"] .features article .inner,
+html[data-skin="ms-dos-prompt"] .features--showcase .featured-project .inner {
+	display: block !important;
+	width: 100% !important;
+}
+
+html[data-skin="ms-dos-prompt"] .features article p,
+html[data-skin="ms-dos-prompt"] .panel-card p {
+	font-size: 1rem;
+	line-height: 1.35;
 }
 
 html[data-skin="ms-dos-prompt"] .tag-list li,
 html[data-skin="ms-dos-prompt"] .profile-chip {
-	border: 1px solid #00aaaa !important;
+	display: inline;
+	margin-right: 1ch;
+	padding: 0;
+	border: 0 !important;
 	border-radius: 0 !important;
-	background: #00002a !important;
-	color: #55ffff !important;
+	background: transparent !important;
+	color: #aaaaaa !important;
+}
+
+html[data-skin="ms-dos-prompt"] .tag-list li::before {
+	content: "[";
+}
+
+html[data-skin="ms-dos-prompt"] .tag-list li::after {
+	content: "]";
 }
 
 html[data-skin="ms-dos-prompt"] .timeline li {
-	border-bottom-color: #0000aa !important;
+	border-bottom: 1px dashed #555555 !important;
 }
 
 html[data-skin="ms-dos-prompt"] .timeline li::before {
 	border-radius: 0;
-	background: #ffff55;
+	background: #aaaaaa;
 	box-shadow: none;
 }
 
+html[data-skin="ms-dos-prompt"] .work-tech-item {
+	padding: 0.65rem 0 !important;
+	border-bottom: 1px dashed #555555 !important;
+}
+
+html[data-skin="ms-dos-prompt"] .work-tech-item dd {
+	font-size: 1rem;
+	line-height: 1.35;
+}
+
 html[data-skin="ms-dos-prompt"] label {
-	color: #55ffff !important;
-	font-family: "Lucida Console", "Courier New", monospace !important;
-	text-transform: uppercase;
+	color: #aaaaaa !important;
+	font: 400 1rem/1.35 "Courier New", Courier, ui-monospace, monospace !important;
+	text-transform: none;
 }
 
 html[data-skin="ms-dos-prompt"] .contact-form-grid label::before {
 	content: "C:\\INPUT> ";
-	color: #ffff55;
+	color: #aaaaaa;
 }
 
 html[data-skin="ms-dos-prompt"] input[type="text"],
@@ -467,101 +607,105 @@ html[data-skin="ms-dos-prompt"] input[type="email"],
 html[data-skin="ms-dos-prompt"] select,
 html[data-skin="ms-dos-prompt"] textarea {
 	border: 0 !important;
-	border-bottom: 2px solid #c0c0c0 !important;
+	border-bottom: 1px solid #aaaaaa !important;
 	border-radius: 0 !important;
 	background: #000000 !important;
 	box-shadow: none !important;
 	color: #ffffff !important;
-	font-family: "Lucida Console", "Courier New", monospace !important;
-	caret-color: #ffff55;
+	font: 400 1rem/1.35 "Courier New", Courier, ui-monospace, monospace !important;
+	caret-color: #aaaaaa;
 }
 
 html[data-skin="ms-dos-prompt"] input:focus,
 html[data-skin="ms-dos-prompt"] select:focus,
 html[data-skin="ms-dos-prompt"] textarea:focus {
-	border-bottom-color: #ffff55 !important;
-	background: #00002a !important;
-	box-shadow: inset 0 -2px 0 #ffff55 !important;
+	border-color: #ffffff !important;
+	background: #000000 !important;
+	box-shadow: none !important;
 }
 
 html[data-skin="ms-dos-prompt"] input[type="submit"],
 html[data-skin="ms-dos-prompt"] input[type="reset"],
 html[data-skin="ms-dos-prompt"] input[type="button"],
 html[data-skin="ms-dos-prompt"] button:not([class^="skin-picker"]),
-html[data-skin="ms-dos-prompt"] .button {
-	border: 2px solid #c0c0c0 !important;
+html[data-skin="ms-dos-prompt"] .button,
+html[data-skin="ms-dos-prompt"] .features article .inner span a {
+	display: inline;
+	min-width: 0;
+	height: auto;
+	min-height: 0;
+	padding: 0 !important;
+	border: 0 !important;
 	border-radius: 0 !important;
-	background: #000000 !important;
-	box-shadow: 3px 3px 0 #0000aa !important;
+	background: transparent !important;
+	box-shadow: none !important;
 	color: #ffffff !important;
-	font-family: "Lucida Console", "Courier New", monospace !important;
-	font-weight: 700;
+	font: 400 1rem/1.35 "Courier New", Courier, ui-monospace, monospace !important;
 	letter-spacing: 0;
-	text-transform: uppercase;
+	text-transform: none;
 	text-decoration: none;
+	transform: none !important;
 }
 
-html[data-skin="ms-dos-prompt"] input[type="submit"].primary,
-html[data-skin="ms-dos-prompt"] input[type="button"].primary,
-html[data-skin="ms-dos-prompt"] button.primary,
-html[data-skin="ms-dos-prompt"] .button.primary,
-html[data-skin="ms-dos-prompt"] .contact-submit,
-html[data-skin="ms-dos-prompt"] .features article .inner span a {
-	border-color: #ffff55 !important;
-	background: #0000aa !important;
-	color: #ffff55 !important;
-	box-shadow: 3px 3px 0 #00aaaa !important;
+html[data-skin="ms-dos-prompt"] .button::before,
+html[data-skin="ms-dos-prompt"] .features article .inner span a::before {
+	content: "[ ";
+}
+
+html[data-skin="ms-dos-prompt"] .button::after,
+html[data-skin="ms-dos-prompt"] .features article .inner span a::after {
+	content: " ]";
 }
 
 html[data-skin="ms-dos-prompt"] input[type="submit"]:hover,
 html[data-skin="ms-dos-prompt"] button:not([class^="skin-picker"]):hover,
 html[data-skin="ms-dos-prompt"] .button:hover,
 html[data-skin="ms-dos-prompt"] .features article .inner span a:hover {
-	border-color: #ffffff !important;
-	background: #c0c0c0 !important;
+	background: #aaaaaa !important;
 	color: #000000 !important;
-	box-shadow: 3px 3px 0 #ffff55 !important;
-}
-
-html[data-skin="ms-dos-prompt"] .section-cta {
-	border-block: 2px solid #55ffff !important;
-	background: #0000aa !important;
-	box-shadow: inset 0 4px 0 #000055, inset 0 -4px 0 #000055;
 }
 
 html[data-skin="ms-dos-prompt"] .section-cta h2,
 html[data-skin="ms-dos-prompt"] .section-cta p {
-	color: #ffffff !important;
-}
-
-html[data-skin="ms-dos-prompt"] .section-cta h2::before {
-	color: #ffff55;
+	color: #aaaaaa !important;
 }
 
 html[data-skin="ms-dos-prompt"] .site-footer {
-	padding-bottom: 2.25rem;
-	border-top: 2px solid #00aaaa !important;
+	padding: 1.35rem 0 2.7rem;
+	border: 0 !important;
 	background: #000000 !important;
-	color: #c0c0c0 !important;
+	color: #aaaaaa !important;
 }
 
 html[data-skin="ms-dos-prompt"] .site-footer::before {
-	content: "C:\\ALEC> EXIT";
+	content: "C:\\PORTFOLIO> VER";
 	display: block;
-	width: min(100% - 2rem, 90rem);
-	margin: 0 auto 1rem;
-	color: #55ffff;
-	font: 700 0.75rem/1.4 "Lucida Console", "Courier New", monospace;
+	width: min(80ch, calc(100% - 2rem));
+	max-width: 80ch;
+	margin: 0 auto 0.35rem 1rem;
+	color: #aaaaaa;
+	font: 400 1rem/1.35 "Courier New", Courier, ui-monospace, monospace;
+}
+
+html[data-skin="ms-dos-prompt"] .footer-inner {
+	display: block;
+}
+
+html[data-skin="ms-dos-prompt"] .social-inline {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0 2ch;
+	margin-top: 1.35rem;
 }
 
 html[data-skin="ms-dos-prompt"] .skin-picker {
 	--skin-ui-bg: #000000;
-	--skin-ui-panel: #00002a;
+	--skin-ui-panel: #0000aa;
 	--skin-ui-text: #ffffff;
-	--skin-ui-muted: #c0c0c0;
-	--skin-ui-accent: #ffff55;
-	--skin-ui-border: #00aaaa;
-	font-family: "Lucida Console", "Courier New", monospace;
+	--skin-ui-muted: #aaaaaa;
+	--skin-ui-accent: #ffffff;
+	--skin-ui-border: #aaaaaa;
+	font-family: "Courier New", Courier, ui-monospace, monospace;
 }
 
 html[data-skin="ms-dos-prompt"] .skin-picker-controls,
@@ -571,101 +715,115 @@ html[data-skin="ms-dos-prompt"] .skin-picker-panel,
 html[data-skin="ms-dos-prompt"] .skin-picker-option,
 html[data-skin="ms-dos-prompt"] .skin-picker-close {
 	border-radius: 0 !important;
+	box-shadow: none !important;
 }
 
 html[data-skin="ms-dos-prompt"] .skin-picker-controls,
+html[data-skin="ms-dos-prompt"] .skin-picker-toggle,
+html[data-skin="ms-dos-prompt"] .skin-picker-cycle {
+	border-color: #aaaaaa !important;
+	background: #000000 !important;
+	color: #aaaaaa !important;
+}
+
+html[data-skin="ms-dos-prompt"] .skin-picker-toggle-icon,
+html[data-skin="ms-dos-prompt"] .skin-picker-chevron,
+html[data-skin="ms-dos-prompt"] .skin-picker-current {
+	display: none !important;
+}
+
+html[data-skin="ms-dos-prompt"] .skin-picker-toggle-label {
+	font-size: 0 !important;
+}
+
+html[data-skin="ms-dos-prompt"] .skin-picker-toggle-label::after {
+	content: "F10 THEME";
+	font: 400 0.72rem/1 "Courier New", Courier, ui-monospace, monospace;
+}
+
 html[data-skin="ms-dos-prompt"] .skin-picker-panel {
-	box-shadow: 5px 5px 0 #0000aa !important;
+	border: 2px solid #aaaaaa !important;
+	background: #0000aa !important;
 }
 
 html[data-skin="ms-dos-prompt"] .skin-picker-heading,
 html[data-skin="ms-dos-prompt"] .skin-picker-current {
-	color: #ffff55 !important;
+	color: #ffffff !important;
 }
 
 html[data-skin="ms-dos-prompt"] .skin-picker .skin-picker-option[aria-pressed="true"] {
-	background: #0000aa !important;
-	color: #ffff55 !important;
+	background: #aaaaaa !important;
+	color: #000000 !important;
 }
 
 html[data-skin-id="ms-dos-prompt"] .skin-contact-charm {
-	border: 2px solid #ffff55 !important;
+	display: inline !important;
+	position: static !important;
+	width: auto;
+	max-width: none;
+	min-height: 0;
+	margin: 0 0 1.35rem;
+	padding: 0 !important;
+	border: 0 !important;
 	border-radius: 0 !important;
-	background: #0000aa !important;
-	box-shadow: 4px 4px 0 #00aaaa !important;
-	color: #ffff55 !important;
-	font: 700 0.72rem/1.25 "Lucida Console", "Courier New", monospace;
-	letter-spacing: 0;
-	text-transform: uppercase;
+	background: transparent !important;
+	box-shadow: none !important;
+	color: #ffffff !important;
+	font: 400 1rem/1.35 "Courier New", Courier, ui-monospace, monospace !important;
+	letter-spacing: 0 !important;
+	text-align: left;
+	text-transform: none !important;
+	transform: none !important;
 }
 
 html[data-skin-id="ms-dos-prompt"] .skin-contact-charm::before {
-	content: "C:\\MAIL> ";
+	content: "C:\\PORTFOLIO> ";
+	color: #aaaaaa;
 }
 
 html[data-skin-id="ms-dos-prompt"] .skin-contact-charm:hover {
-	background: #ffff55 !important;
+	background: #aaaaaa !important;
 	color: #000000 !important;
-	transform: translate(-2px, -2px);
+	transform: none !important;
 }
 
 @media (max-width: 736px) {
-	html[data-skin="ms-dos-prompt"] body::before {
-		content: "DOS 6.22   MEM: 640K";
-		font-size: 0.58rem;
-		text-align: center;
+	html[data-skin="ms-dos-prompt"] body {
+		font-size: 14px;
 	}
 
-	html[data-skin="ms-dos-prompt"] .brand-text::before {
-		content: "C:\\>";
+	html[data-skin="ms-dos-prompt"] .site-shell,
+	html[data-skin="ms-dos-prompt"] body.page-fridge .site-main .site-shell,
+	html[data-skin="ms-dos-prompt"] body.page-fridge .page-section .site-shell,
+	html[data-skin="ms-dos-prompt"] .page-hero::before,
+	html[data-skin="ms-dos-prompt"] .page-hero::after,
+	html[data-skin="ms-dos-prompt"] .site-footer::before {
+		width: calc(100% - 1.25rem) !important;
+		margin-left: 0.625rem !important;
+		margin-right: auto !important;
 	}
 
-	html[data-skin="ms-dos-prompt"] body.nav-open .site-nav {
-		border: 2px solid #55ffff !important;
-		border-radius: 0 !important;
-		background: #0000aa !important;
-		box-shadow: 5px 5px 0 #000000 !important;
+	html[data-skin="ms-dos-prompt"] .site-nav ul {
+		gap: 0 1.5ch;
 	}
 
-	html[data-skin="ms-dos-prompt"] body.nav-open .site-nav a {
-		border-bottom: 1px solid #00aaaa !important;
-	}
-
-	html[data-skin="ms-dos-prompt"] .page-hero,
-	html[data-skin="ms-dos-prompt"] body.page-home .page-hero,
-	html[data-skin="ms-dos-prompt"] body.page-services .page-hero,
-	html[data-skin="ms-dos-prompt"] body.page-work .page-hero,
-	html[data-skin="ms-dos-prompt"] body.page-connect .page-hero,
-	html[data-skin="ms-dos-prompt"] body.page-about .page-hero,
-	html[data-skin="ms-dos-prompt"] body.page-contact .page-hero {
-		width: calc(100% - 1rem);
-		padding-top: 7.75rem !important;
-		box-shadow: 4px 4px 0 #0000aa !important;
-	}
-
-	html[data-skin="ms-dos-prompt"] .page-hero::before {
-		content: "C:\\ALEC.EXE";
-	}
-
-	html[data-skin="ms-dos-prompt"] .page-hero::after {
-		content: "F1 HELP   ESC QUIT";
-		word-spacing: 0;
-	}
-
-	html[data-skin="ms-dos-prompt"] .page-hero h1 {
-		font-size: clamp(1.9rem, 11vw, 3.4rem);
-		text-shadow: 2px 2px 0 #0000aa;
-	}
-
-	html[data-skin="ms-dos-prompt"] .panel-card,
-	html[data-skin="ms-dos-prompt"] .features article,
-	html[data-skin="ms-dos-prompt"] .contact-rail,
-	html[data-skin="ms-dos-prompt"] ul.feature-icons li,
-	html[data-skin="ms-dos-prompt"] .work-overview,
-	html[data-skin="ms-dos-prompt"] .profile-chip,
-	html[data-skin="ms-dos-prompt"] .work-tech-item,
-	html[data-skin="ms-dos-prompt"] .contact-form-grid {
-		box-shadow: 3px 3px 0 #0000aa !important;
+	html[data-skin="ms-dos-prompt"] .site-nav a,
+	html[data-skin="ms-dos-prompt"] .site-nav .nav-cta,
+	html[data-skin="ms-dos-prompt"] .brand-text::before,
+	html[data-skin="ms-dos-prompt"] .page-hero::before,
+	html[data-skin="ms-dos-prompt"] .page-hero::after,
+	html[data-skin="ms-dos-prompt"] .page-hero h1,
+	html[data-skin="ms-dos-prompt"] .hero-summary,
+	html[data-skin="ms-dos-prompt"] .page-hero .lead,
+	html[data-skin="ms-dos-prompt"] .eyebrow,
+	html[data-skin="ms-dos-prompt"] .hero-splash .hero-splash-text,
+	html[data-skin="ms-dos-prompt"] label,
+	html[data-skin="ms-dos-prompt"] input,
+	html[data-skin="ms-dos-prompt"] textarea,
+	html[data-skin="ms-dos-prompt"] .button,
+	html[data-skin-id="ms-dos-prompt"] .skin-contact-charm,
+	html[data-skin="ms-dos-prompt"] .site-footer::before {
+		font-size: 14px !important;
 	}
 }
 
