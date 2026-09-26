@@ -113,6 +113,7 @@
 				'<span>' + skin.name + '</span>' +
 			'</button>';
 		}).join('');
+		var skinCountLabel = skinRuntime.all.length + ' themes';
 		var $skinPicker = $(
 			'<aside class="skin-picker" data-skin-ui aria-label="Theme controls">' +
 				'<div class="skin-picker-controls">' +
@@ -121,7 +122,10 @@
 					'</button>' +
 					'<button type="button" class="skin-picker-toggle" aria-expanded="false" aria-controls="skin-picker-panel">' +
 						'<span class="skin-picker-toggle-icon" aria-hidden="true">&#10022;</span>' +
-						'<span class="skin-picker-toggle-label">Change theme</span>' +
+						'<span class="skin-picker-toggle-copy">' +
+							'<span class="skin-picker-toggle-kicker">' + skinCountLabel + '</span>' +
+							'<span class="skin-picker-toggle-label">Change the whole look</span>' +
+						'</span>' +
 						'<span class="skin-picker-current"></span>' +
 						'<span class="skin-picker-chevron" aria-hidden="true"></span>' +
 					'</button>' +
