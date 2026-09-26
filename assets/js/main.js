@@ -43,6 +43,32 @@
 		}
 	});
 
+	// Give stable page regions their own snapshots during a theme change. The
+	// View Transitions API can then blend each region independently instead of
+	// treating the entire page as one flat screenshot.
+	if ('startViewTransition' in document) {
+		var skinTransitionRegions = [
+			{ selector: '.site-header', name: 'skin-header' },
+			{ selector: '.page-hero', name: 'skin-hero' },
+			{ selector: '.hero-copy', name: 'skin-hero-copy' },
+			{ selector: '.hero-media', name: 'skin-hero-media' },
+			{ selector: '.hero-quests', name: 'skin-hero-quests' },
+			{ selector: '.site-footer', name: 'skin-footer' }
+		];
+
+		skinTransitionRegions.forEach(function(region) {
+			var element = document.querySelector(region.selector);
+
+			if (element) {
+				element.style.viewTransitionName = region.name;
+			}
+		});
+
+		document.querySelectorAll('.page-section').forEach(function(section, index) {
+			section.style.viewTransitionName = 'skin-section-' + (index + 1);
+		});
+	}
+
 	// Runtime skin picker. The head bootstrap owns selection and persistence so
 	// the correct skin is already active before this interaction layer loads.
 	var skinRuntime = window.SiteSkins;
@@ -73,6 +99,7 @@
 			'type-sculpture': 'Shape an idea',
 			'browser-archaeology': "I\u2019VE GOT MAIL!",
 			'oracular-tarot': 'Ask the oracle',
+			'hello-kitty': 'Say hello!',
 			'forties-field-notes': 'Drop me a line',
 			'nutrition-facts': 'Contact Alec'
 		};
@@ -306,6 +333,10 @@
 
 		$('.page-hero').first().append($skinContactCharm);
 		$('body').append($skinPicker);
+		if ('startViewTransition' in document) {
+			$skinContactCharm[0].style.viewTransitionName = 'skin-contact-charm';
+			$skinPicker[0].style.viewTransitionName = 'skin-picker';
+		}
 		syncSkinPicker();
 
 		$skinToggle.on('click', function() {

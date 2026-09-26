@@ -1,0 +1,559 @@
+/*
+	Hello Kitty
+	A bright, bow-filled stationery skin built entirely with CSS decoration.
+*/
+
+html[data-skin="hello-kitty"] {
+	--background: #fff6fb;
+	--foreground: #2d2430;
+	--muted-bg: #ffe8f3;
+	--card-bg: #ffffff;
+	--border: #f19abd;
+	--primary: #e92f70;
+	--primary-fg: #ffffff;
+	--secondary: #74c9eb;
+	--secondary-fg: #25202a;
+	--accent: #ffd44d;
+	--accent-fg: #2d2430;
+	--link: #c71957;
+	--warning: #e92f70;
+	--header-bg: rgba(255, 255, 255, 0.96);
+	--header-fg: #2d2430;
+	--footer-bg: #f9c9de;
+	--footer-fg: #442d3a;
+	--kitty-paper: #fffafd;
+	--kitty-blush: #f9c9de;
+	--kitty-pink: #f28ab5;
+	--kitty-hot: #e92f70;
+	--kitty-red: #d92152;
+	--kitty-blue: #74c9eb;
+	--kitty-yellow: #ffd44d;
+	--kitty-ink: #2d2430;
+	--kitty-line: #ee8fb6;
+	color-scheme: light;
+	overflow-x: clip;
+}
+
+html[data-skin="hello-kitty"] body {
+	background-color: #fff6fb !important;
+	background-image:
+		radial-gradient(circle, rgba(233, 47, 112, 0.13) 0 2px, transparent 2.5px),
+		linear-gradient(45deg, rgba(242, 138, 181, 0.055) 25%, transparent 25% 75%, rgba(242, 138, 181, 0.055) 75%),
+		linear-gradient(45deg, rgba(116, 201, 235, 0.045) 25%, transparent 25% 75%, rgba(116, 201, 235, 0.045) 75%) !important;
+	background-position: 0 0, 0 0, 12px 12px;
+	background-size: 28px 28px, 24px 24px, 24px 24px;
+	color: var(--kitty-ink) !important;
+	font-family: "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif !important;
+	overflow-x: hidden;
+}
+
+html[data-skin="hello-kitty"] body,
+html[data-skin="hello-kitty"] p,
+html[data-skin="hello-kitty"] li,
+html[data-skin="hello-kitty"] label,
+html[data-skin="hello-kitty"] .lead,
+html[data-skin="hello-kitty"] .note,
+html[data-skin="hello-kitty"] .footer-inner p {
+	color: #533b49 !important;
+}
+
+html[data-skin="hello-kitty"] h1,
+html[data-skin="hello-kitty"] h2,
+html[data-skin="hello-kitty"] h3,
+html[data-skin="hello-kitty"] h4,
+html[data-skin="hello-kitty"] h5,
+html[data-skin="hello-kitty"] h6,
+html[data-skin="hello-kitty"] strong {
+	color: var(--kitty-ink) !important;
+	font-family: "Arial Rounded MT Bold", "Trebuchet MS", Arial, sans-serif !important;
+	font-weight: 900;
+	letter-spacing: -0.035em;
+}
+
+html[data-skin="hello-kitty"] a {
+	color: #bd164e !important;
+	text-decoration-color: rgba(116, 201, 235, 0.95);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.2em;
+}
+
+html[data-skin="hello-kitty"] a:hover {
+	color: #e92f70 !important;
+}
+
+html[data-skin="hello-kitty"] .site-header {
+	border-bottom: 3px solid var(--kitty-hot) !important;
+	background:
+		linear-gradient(90deg, rgba(255, 255, 255, 0.96), rgba(255, 240, 247, 0.96)) !important;
+	box-shadow: 0 7px 0 rgba(116, 201, 235, 0.35), 0 12px 24px rgba(108, 56, 79, 0.1) !important;
+}
+
+html[data-skin="hello-kitty"] .brand-mark {
+	position: relative;
+	border: 2px solid var(--kitty-ink);
+	border-radius: 48% 48% 44% 44%;
+	background: #ffffff url("../../images/hello-kitty-mascot.svg?v=hello-kitty-mascot-1") 50% 10% / 170% auto no-repeat !important;
+	box-shadow: 0 0 0 4px var(--kitty-blush), 3px 4px 0 var(--kitty-hot);
+	color: transparent !important;
+}
+
+html[data-skin="hello-kitty"] .brand-mark::after {
+	display: none;
+}
+
+html[data-skin="hello-kitty"] .brand-text,
+html[data-skin="hello-kitty"] .site-nav a,
+html[data-skin="hello-kitty"] .nav-toggle {
+	color: var(--kitty-ink) !important;
+	font-family: "Arial Rounded MT Bold", "Trebuchet MS", Arial, sans-serif !important;
+	font-weight: 900;
+	letter-spacing: 0.035em;
+}
+
+html[data-skin="hello-kitty"] .site-nav a {
+	border: 2px solid transparent;
+	border-radius: 999px;
+}
+
+html[data-skin="hello-kitty"] .site-nav a:hover,
+html[data-skin="hello-kitty"] .site-nav a[aria-current="page"] {
+	border-color: var(--kitty-hot);
+	background: #fff0f7 !important;
+	color: #c51651 !important;
+}
+
+html[data-skin="hello-kitty"] .site-nav .nav-cta,
+html[data-skin="hello-kitty"] .nav-toggle {
+	border: 2px solid var(--kitty-hot) !important;
+	border-radius: 999px !important;
+	background: var(--kitty-hot) !important;
+	box-shadow: 3px 4px 0 var(--kitty-yellow) !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="hello-kitty"] .page-hero {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	border-bottom: 0 !important;
+	background:
+		linear-gradient(90deg, rgba(255, 255, 255, 0.96), rgba(255, 235, 245, 0.93)),
+		repeating-linear-gradient(0deg, transparent 0 24px, rgba(116, 201, 235, 0.13) 24px 25px) !important;
+	box-shadow: inset 0 -8px 0 var(--kitty-blush), inset 0 -11px 0 var(--kitty-hot);
+}
+
+html[data-skin="hello-kitty"] .page-hero::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: clamp(-4rem, 4vw, 5rem);
+	z-index: -1;
+	width: clamp(18rem, 34vw, 30rem);
+	aspect-ratio: 600 / 760;
+	background: url("../../images/hello-kitty-mascot.svg?v=hello-kitty-mascot-1") center / contain no-repeat;
+	filter: drop-shadow(10px 14px 0 rgba(242, 138, 181, 0.36)) drop-shadow(18px 23px 0 rgba(116, 201, 235, 0.2));
+	opacity: 1;
+	pointer-events: none;
+	transform: translateY(-50%) rotate(1deg);
+}
+
+html[data-skin="hello-kitty"] .page-hero::after {
+	display: none;
+}
+
+html[data-skin="hello-kitty"] .page-hero > .site-shell,
+html[data-skin="hello-kitty"] .hero-copy,
+html[data-skin="hello-kitty"] .hero-grid--with-portrait {
+	position: relative;
+	z-index: 1;
+}
+
+html[data-skin="hello-kitty"] .page-hero h1,
+html[data-skin="hello-kitty"] body.page-home .page-hero h1 {
+	max-width: 13ch;
+	color: var(--kitty-ink) !important;
+	font-family: "Arial Rounded MT Bold", "Trebuchet MS", Arial, sans-serif !important;
+	font-weight: 900;
+	letter-spacing: -0.065em;
+	line-height: 0.9;
+	text-shadow: 4px 5px 0 rgba(242, 138, 181, 0.38);
+}
+
+html[data-skin="hello-kitty"] .hero-title-role {
+	color: inherit !important;
+}
+
+html[data-skin="hello-kitty"] .hero-title-role:nth-child(2n),
+html[data-skin="hello-kitty"] .metallic-pearl-text,
+html[data-skin="hello-kitty"] #hero-silly-title {
+	color: var(--kitty-hot) !important;
+	-webkit-text-fill-color: var(--kitty-hot) !important;
+	text-shadow: 4px 5px 0 rgba(255, 212, 77, 0.66);
+}
+
+html[data-skin="hello-kitty"] .eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	border: 2px solid var(--kitty-hot) !important;
+	border-radius: 999px !important;
+	background: #ffffff !important;
+	box-shadow: 3px 3px 0 var(--kitty-blue);
+	color: #bd164e !important;
+	font-weight: 900;
+	letter-spacing: 0.09em;
+}
+
+html[data-skin="hello-kitty"] .eyebrow::before {
+	content: "♥";
+	color: var(--kitty-hot);
+}
+
+html[data-skin="hello-kitty"] .hero-summary,
+html[data-skin="hello-kitty"] .page-hero .lead {
+	max-width: 47rem;
+	color: #533b49 !important;
+}
+
+html[data-skin="hello-kitty"] .page-section {
+	position: relative;
+	border: 0 !important;
+	background: rgba(255, 250, 253, 0.94) !important;
+}
+
+html[data-skin="hello-kitty"] .page-section + .page-section {
+	border-top: 4px dotted var(--kitty-pink) !important;
+}
+
+html[data-skin="hello-kitty"] .section-soft,
+html[data-skin="hello-kitty"] .section-portrait,
+html[data-skin="hello-kitty"] .profile-section {
+	background:
+		linear-gradient(rgba(255, 232, 243, 0.93), rgba(255, 245, 250, 0.95)),
+		repeating-linear-gradient(90deg, transparent 0 31px, rgba(233, 47, 112, 0.08) 31px 32px) !important;
+}
+
+html[data-skin="hello-kitty"] .section-cta {
+	background:
+		radial-gradient(circle, rgba(255, 255, 255, 0.44) 0 3px, transparent 3.5px) 0 0 / 24px 24px,
+		linear-gradient(135deg, #f69ac0, #ffd7e8) !important;
+	text-align: center;
+}
+
+html[data-skin="hello-kitty"] .section-cta .site-shell::before {
+	content: "HELLO! ♡";
+	display: inline-block;
+	margin-bottom: 1rem;
+	padding: 0.45rem 0.85rem;
+	border: 2px solid var(--kitty-ink);
+	border-radius: 999px;
+	background: var(--kitty-yellow);
+	box-shadow: 4px 4px 0 #ffffff;
+	color: var(--kitty-ink);
+	font-size: 0.76rem;
+	font-weight: 900;
+	letter-spacing: 0.12em;
+}
+
+html[data-skin="hello-kitty"] .section-cta h2 {
+	max-width: 21ch;
+	margin-inline: auto;
+}
+
+html[data-skin="hello-kitty"] .section-cta p,
+html[data-skin="hello-kitty"] .section-cta .actions {
+	max-width: 58rem;
+	margin-inline: auto;
+}
+
+html[data-skin="hello-kitty"] .panel-card,
+html[data-skin="hello-kitty"] .features article,
+html[data-skin="hello-kitty"] .contact-rail,
+html[data-skin="hello-kitty"] .service-card,
+html[data-skin="hello-kitty"] .project-card,
+html[data-skin="hello-kitty"] .portrait-panel,
+html[data-skin="hello-kitty"] .contact-form,
+html[data-skin="hello-kitty"] .fridge-panel,
+html[data-skin="hello-kitty"] .work-overview-tech {
+	position: relative;
+	overflow: hidden;
+	border: 3px solid var(--kitty-line) !important;
+	border-radius: 1.6rem !important;
+	background:
+		radial-gradient(circle at 90% 10%, rgba(255, 212, 77, 0.24) 0 2.2rem, transparent 2.25rem),
+		#ffffff !important;
+	box-shadow: 7px 8px 0 rgba(116, 201, 235, 0.42), 0 16px 34px rgba(105, 48, 73, 0.1) !important;
+}
+
+html[data-skin="hello-kitty"] .panel-card::after,
+html[data-skin="hello-kitty"] .features article::after,
+html[data-skin="hello-kitty"] .service-card::after,
+html[data-skin="hello-kitty"] .project-card::after {
+	content: "";
+	position: absolute;
+	top: 0.7rem;
+	right: 0.8rem;
+	width: 2.25rem;
+	height: 1.45rem;
+	background:
+		radial-gradient(ellipse at 18% 50%, var(--kitty-red) 0 36%, transparent 39%),
+		radial-gradient(ellipse at 82% 50%, var(--kitty-red) 0 36%, transparent 39%),
+		radial-gradient(circle at 50% 50%, #ff7da7 0 23%, var(--kitty-red) 25% 39%, transparent 41%);
+	pointer-events: none;
+	transform: rotate(-8deg);
+}
+
+html[data-skin="hello-kitty"] .quest-grid {
+	align-items: stretch;
+}
+
+html[data-skin="hello-kitty"] .quest-card {
+	display: flex;
+	flex-direction: column;
+	padding-top: 4rem !important;
+}
+
+html[data-skin="hello-kitty"] .quest-card:nth-child(1) { border-color: var(--kitty-hot) !important; }
+html[data-skin="hello-kitty"] .quest-card:nth-child(2) { border-color: var(--kitty-blue) !important; }
+html[data-skin="hello-kitty"] .quest-card:nth-child(3) { border-color: var(--kitty-yellow) !important; }
+
+html[data-skin="hello-kitty"] .quest-card::before {
+	position: absolute;
+	top: 1.05rem;
+	left: 1.1rem;
+	padding: 0.35rem 0.65rem;
+	border-radius: 999px;
+	background: var(--kitty-blush);
+	color: #a61547;
+	font-size: 0.68rem;
+	font-weight: 900;
+	letter-spacing: 0.08em;
+}
+
+html[data-skin="hello-kitty"] .quest-card:nth-child(1)::before { content: "♡ CREATE"; }
+html[data-skin="hello-kitty"] .quest-card:nth-child(2)::before { content: "♫ PLAY"; background: #d9f3ff; color: #17627f; }
+html[data-skin="hello-kitty"] .quest-card:nth-child(3)::before { content: "★ TOGETHER"; background: #fff2ad; color: #6d5411; }
+
+html[data-skin="hello-kitty"] .quest-card .quest-link { margin-top: auto; }
+
+html[data-skin="hello-kitty"] .feature-icon,
+html[data-skin="hello-kitty"] .service-icon {
+	border: 3px solid var(--kitty-hot) !important;
+	border-radius: 50% !important;
+	background: var(--kitty-yellow) !important;
+	box-shadow: 4px 4px 0 var(--kitty-blue);
+	color: var(--kitty-ink) !important;
+}
+
+html[data-skin="hello-kitty"] .hero-media,
+html[data-skin="hello-kitty"] .portrait-panel,
+html[data-skin="hello-kitty"] .project-card .image,
+html[data-skin="hello-kitty"] .image.fit {
+	border: 4px solid #ffffff !important;
+	border-radius: 1.8rem !important;
+	box-shadow: 0 0 0 3px var(--kitty-hot), 8px 9px 0 var(--kitty-blue) !important;
+}
+
+html[data-skin="hello-kitty"] .hero-headshot,
+html[data-skin="hello-kitty"] .portrait-panel img,
+html[data-skin="hello-kitty"] .profile-photo {
+	filter: saturate(1.05) contrast(1.02);
+}
+
+html[data-skin="hello-kitty"] .hero-splash {
+	height: auto;
+	min-height: 9rem;
+	border: 3px solid var(--kitty-hot) !important;
+	border-radius: 1.25rem !important;
+	background: #ffffff !important;
+	box-shadow: 5px 6px 0 var(--kitty-yellow) !important;
+	color: var(--kitty-ink) !important;
+	font-family: "Trebuchet MS", Arial, sans-serif !important;
+}
+
+html[data-skin="hello-kitty"] .hero-splash .hero-splash-text {
+	height: calc(9rem - 6px);
+	min-height: calc(9rem - 6px);
+	padding: 1rem 1.1rem;
+	color: var(--kitty-ink) !important;
+	font-family: "Trebuchet MS", Arial, sans-serif !important;
+	font-weight: 800 !important;
+	line-height: 1.28 !important;
+	letter-spacing: 0.015em;
+	text-shadow: none !important;
+	text-transform: none;
+	animation: none !important;
+}
+
+html[data-skin="hello-kitty"] .button,
+html[data-skin="hello-kitty"] input[type="submit"],
+html[data-skin="hello-kitty"] input[type="reset"] {
+	border: 2px solid var(--kitty-hot) !important;
+	border-radius: 999px !important;
+	background: #ffffff !important;
+	box-shadow: 4px 5px 0 var(--kitty-blue) !important;
+	color: #b8144b !important;
+	font-family: "Arial Rounded MT Bold", "Trebuchet MS", Arial, sans-serif !important;
+	font-weight: 900 !important;
+	letter-spacing: 0.035em !important;
+}
+
+html[data-skin="hello-kitty"] .button:hover,
+html[data-skin="hello-kitty"] input[type="submit"]:hover,
+html[data-skin="hello-kitty"] input[type="reset"]:hover,
+html[data-skin="hello-kitty"] .button.primary {
+	background: var(--kitty-hot) !important;
+	color: #ffffff !important;
+	transform: translateY(-2px);
+}
+
+html[data-skin="hello-kitty"] input[type="text"],
+html[data-skin="hello-kitty"] input[type="email"],
+html[data-skin="hello-kitty"] input[type="tel"],
+html[data-skin="hello-kitty"] textarea,
+html[data-skin="hello-kitty"] select {
+	border: 2px solid var(--kitty-pink) !important;
+	border-radius: 1rem !important;
+	background: #ffffff !important;
+	color: var(--kitty-ink) !important;
+	font-family: "Trebuchet MS", Arial, sans-serif !important;
+}
+
+html[data-skin="hello-kitty"] input:focus,
+html[data-skin="hello-kitty"] textarea:focus,
+html[data-skin="hello-kitty"] select:focus {
+	border-color: var(--kitty-hot) !important;
+	box-shadow: 0 0 0 4px rgba(116, 201, 235, 0.28) !important;
+}
+
+html[data-skin="hello-kitty"] .work-tech-item,
+html[data-skin="hello-kitty"] .fact-list li,
+html[data-skin="hello-kitty"] .contact-list li {
+	border-color: rgba(233, 47, 112, 0.2) !important;
+}
+
+html[data-skin="hello-kitty"] .work-tech-item dt,
+html[data-skin="hello-kitty"] .fact-list strong {
+	color: #b8144b !important;
+}
+
+html[data-skin="hello-kitty"] .site-footer {
+	position: relative;
+	border-top: 4px solid var(--kitty-hot) !important;
+	background:
+		radial-gradient(circle, rgba(255, 255, 255, 0.5) 0 2px, transparent 2.5px) 0 0 / 22px 22px,
+		var(--kitty-blush) !important;
+	color: #533b49 !important;
+}
+
+html[data-skin="hello-kitty"] .site-footer::before {
+	content: "♡  HELLO, FRIEND!  ♡";
+	display: block;
+	padding-top: 1.35rem;
+	color: #ac1046;
+	font-size: 0.78rem;
+	font-weight: 900;
+	letter-spacing: 0.16em;
+	text-align: center;
+}
+
+html[data-skin="hello-kitty"] .skin-contact-charm {
+	--skin-contact-rotate: -3deg;
+	top: 0.8rem;
+	max-width: 9rem;
+	min-height: 4.1rem;
+	padding: 0.85rem 1rem 0.85rem 2.65rem;
+	border: 3px solid var(--kitty-hot) !important;
+	border-radius: 1.3rem !important;
+	background: #ffffff !important;
+	box-shadow: 5px 6px 0 var(--kitty-yellow), 8px 10px 0 rgba(116, 201, 235, 0.55);
+	color: #b8144b !important;
+	font-family: "Arial Rounded MT Bold", "Trebuchet MS", Arial, sans-serif !important;
+	font-size: 0.7rem !important;
+	letter-spacing: 0.035em !important;
+}
+
+html[data-skin="hello-kitty"] .skin-contact-charm::before {
+	content: "";
+	position: absolute;
+	left: 0.5rem;
+	top: 50%;
+	width: 1.8rem;
+	height: 1.2rem;
+	background:
+		radial-gradient(ellipse at 18% 50%, var(--kitty-red) 0 36%, transparent 39%),
+		radial-gradient(ellipse at 82% 50%, var(--kitty-red) 0 36%, transparent 39%),
+		radial-gradient(circle at 50% 50%, #ff7da7 0 23%, var(--kitty-red) 25% 39%, transparent 41%);
+	transform: translateY(-50%) rotate(-9deg);
+}
+
+html[data-skin="hello-kitty"] .skin-picker {
+	--skin-ui-bg: #ffffff;
+	--skin-ui-panel: #fff4f9;
+	--skin-ui-text: #2d2430;
+	--skin-ui-muted: #6e5261;
+	--skin-ui-accent: #e92f70;
+	--skin-ui-border: rgba(233, 47, 112, 0.42);
+}
+
+html[data-skin="hello-kitty"] .skin-picker-toggle,
+html[data-skin="hello-kitty"] .skin-picker-panel,
+html[data-skin="hello-kitty"] .skin-picker .skin-picker-cycle {
+	border-color: var(--kitty-hot) !important;
+	background: #ffffff !important;
+	box-shadow: 4px 5px 0 var(--kitty-blue) !important;
+	color: var(--kitty-ink) !important;
+}
+
+html[data-skin="hello-kitty"] .skin-picker-option[aria-pressed="true"] {
+	background: var(--kitty-blush) !important;
+	color: #9d0e41 !important;
+}
+
+html[data-skin="hello-kitty"] .skin-picker .skin-picker-option {
+	color: var(--kitty-ink) !important;
+}
+
+html[data-skin="hello-kitty"] .skin-picker .skin-picker-option:hover {
+	color: #9d0e41 !important;
+}
+
+html[data-skin="hello-kitty"] .skin-picker-option-mark {
+	border-color: #8a6677;
+}
+
+html[data-skin="hello-kitty"] .skin-picker-scroll-arrow,
+html[data-skin="hello-kitty"] .skin-picker-chevron,
+html[data-skin="hello-kitty"] .skin-picker-current,
+html[data-skin="hello-kitty"] .skin-picker-toggle-label {
+	color: #b8144b !important;
+}
+
+@media (max-width: 736px) {
+	html[data-skin="hello-kitty"] .page-hero::before {
+		top: 31%;
+		right: -6rem;
+		width: 19rem;
+		opacity: 0.3;
+	}
+
+	html[data-skin="hello-kitty"] .page-hero h1,
+	html[data-skin="hello-kitty"] body.page-home .page-hero h1 {
+		font-size: clamp(2.7rem, 14vw, 4.4rem);
+	}
+
+	html[data-skin="hello-kitty"] .skin-contact-charm {
+		top: 0.7rem;
+		right: 0.65rem;
+		max-width: 7.25rem;
+		min-height: 3rem;
+		padding: 0.6rem 0.65rem 0.6rem 2.15rem;
+		font-size: 0.58rem !important;
+	}
+
+	html[data-skin="hello-kitty"] .skin-contact-charm::before {
+		left: 0.35rem;
+		width: 1.5rem;
+		height: 1rem;
+	}
+}

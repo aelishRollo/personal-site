@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 760" role="img" aria-labelledby="title desc">
+  <title id="title">Hello Kitty mascot</title>
+  <desc id="desc">A dimensional white cat mascot with a red bow, yellow nose, red shirt, and blue overalls.</desc>
+  <defs>
+    <linearGradient id="fur" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0.58" stop-color="#fffdfd"/>
+      <stop offset="1" stop-color="#eadfe5"/>
+    </linearGradient>
+    <linearGradient id="furShade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f7edf2"/>
+      <stop offset="0.52" stop-color="#fff"/>
+      <stop offset="1" stop-color="#ded0d8"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff527b"/>
+      <stop offset="0.48" stop-color="#e52958"/>
+      <stop offset="1" stop-color="#b80f3c"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#68c4f0"/>
+      <stop offset="0.48" stop-color="#238bc9"/>
+      <stop offset="1" stop-color="#12629a"/>
+    </linearGradient>
+    <radialGradient id="nose" cx="38%" cy="32%" r="72%">
+      <stop offset="0" stop-color="#fff2a4"/>
+      <stop offset="0.48" stop-color="#ffd43f"/>
+      <stop offset="1" stop-color="#e4a900"/>
+    </radialGradient>
+    <radialGradient id="blush">
+      <stop offset="0" stop-color="#f6a5bd" stop-opacity=".42"/>
+      <stop offset="1" stop-color="#f6a5bd" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="9" dy="14" stdDeviation="12" flood-color="#7f244c" flood-opacity=".24"/>
+    </filter>
+    <filter id="soft" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+  </defs>
+
+  <ellipse cx="306" cy="714" rx="176" ry="25" fill="#93375e" opacity=".16" filter="url(#soft)"/>
+
+  <g filter="url(#shadow)">
+    <!-- legs and feet -->
+    <path d="M210 589c-26 45-37 94-27 125 9 27 54 31 82 6 20-18 21-89 12-132z" fill="url(#furShade)" stroke="#33272f" stroke-width="8"/>
+    <path d="M336 588c-9 42-8 114 12 132 28 25 73 21 82-6 10-31-1-80-27-125z" fill="url(#furShade)" stroke="#33272f" stroke-width="8"/>
+    <ellipse cx="222" cy="698" rx="46" ry="24" fill="#fff" opacity=".45"/>
+    <ellipse cx="391" cy="698" rx="46" ry="24" fill="#fff" opacity=".45"/>
+
+    <!-- body and shirt -->
+    <path d="M198 405c23-26 66-40 108-40s86 14 109 40c31 35 27 133 3 202-18 52-205 52-224 0-24-69-28-167 4-202z" fill="url(#red)" stroke="#33272f" stroke-width="9"/>
+
+    <!-- arms -->
+    <path d="M206 424c-40 10-84 45-99 83-11 28 6 56 34 55 35-1 85-53 102-88 14-29-7-58-37-50z" fill="url(#fur)" stroke="#33272f" stroke-width="9"/>
+    <path d="M405 421c38 3 83 29 104 63 17 27 8 57-18 65-33 10-91-31-114-62-19-26-2-69 28-66z" fill="url(#fur)" stroke="#33272f" stroke-width="9"/>
+    <!-- waving paw details -->
+    <path d="M477 476c12-21 8-47-3-67M493 482c18-17 21-41 16-62" fill="none" stroke="#d8cbd2" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- overalls -->
+    <path d="M215 459h183l20 147c-31 27-70 40-112 40s-81-13-112-40z" fill="url(#blue)" stroke="#33272f" stroke-width="9"/>
+    <path d="M234 383l42 77M378 383l-42 77" fill="none" stroke="#278ec7" stroke-width="28" stroke-linecap="round"/>
+    <path d="M234 383l42 77M378 383l-42 77" fill="none" stroke="#8dd8f4" stroke-width="6" stroke-linecap="round" opacity=".72"/>
+    <rect x="257" y="446" width="98" height="89" rx="22" fill="#2d94cc" stroke="#33272f" stroke-width="8"/>
+    <path d="M273 473h66" stroke="#8fd9f5" stroke-width="6" stroke-linecap="round" opacity=".72"/>
+    <circle cx="267" cy="459" r="12" fill="#ffd44d" stroke="#33272f" stroke-width="6"/>
+    <circle cx="345" cy="459" r="12" fill="#ffd44d" stroke="#33272f" stroke-width="6"/>
+    <path d="M306 536v102" stroke="#176696" stroke-width="8"/>
+    <path d="M222 600c25 11 53 16 84 16s59-5 84-16" fill="none" stroke="#176696" stroke-width="7" stroke-linecap="round"/>
+
+    <!-- head silhouette with ears -->
+    <path d="M110 242c2-61 23-105 66-135l8-74 78 47c35-10 78-10 113 0l79-47 7 76c40 31 60 74 60 132 0 108-83 178-211 178-126 0-204-70-200-177z" fill="url(#fur)" stroke="#33272f" stroke-width="10" stroke-linejoin="round"/>
+    <!-- ear interiors -->
+    <path d="M190 66l13 91 59-68z" fill="#f6c5d7" opacity=".7"/>
+    <path d="M444 66l-14 91-58-68z" fill="#f6c5d7" opacity=".7"/>
+    <!-- fur highlights -->
+    <path d="M148 216c19-70 73-111 143-123" fill="none" stroke="#fff" stroke-width="15" stroke-linecap="round" opacity=".8"/>
+    <path d="M474 236c-3 69-45 118-98 137" fill="none" stroke="#d9ccd4" stroke-width="11" stroke-linecap="round" opacity=".58"/>
+
+    <!-- face -->
+    <ellipse cx="235" cy="241" rx="15" ry="23" fill="#2a2529"/>
+    <ellipse cx="387" cy="241" rx="15" ry="23" fill="#2a2529"/>
+    <ellipse cx="230" cy="234" rx="5" ry="7" fill="#fff" opacity=".65"/>
+    <ellipse cx="382" cy="234" rx="5" ry="7" fill="#fff" opacity=".65"/>
+    <ellipse cx="311" cy="286" rx="22" ry="16" fill="url(#nose)" stroke="#33272f" stroke-width="6"/>
+    <ellipse cx="185" cy="301" rx="49" ry="30" fill="url(#blush)"/>
+    <ellipse cx="437" cy="301" rx="49" ry="30" fill="url(#blush)"/>
+    <!-- exactly three whiskers per cheek -->
+    <path d="M185 267L77 244M183 294L65 293M188 321L83 345M437 267l105-25M439 294l119-2M434 321l106 26" fill="none" stroke="#33272f" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- signature bow on character's left ear (viewer right) -->
+    <g transform="translate(416 86) rotate(-10)">
+      <path d="M0 47C-35 6-83 5-88 39c-4 31 41 54 82 42z" fill="url(#red)" stroke="#33272f" stroke-width="8"/>
+      <path d="M48 46C79 4 128 6 130 42c2 31-44 52-84 38z" fill="url(#red)" stroke="#33272f" stroke-width="8"/>
+      <ellipse cx="22" cy="61" rx="37" ry="34" fill="#ef3e6d" stroke="#33272f" stroke-width="8"/>
+      <ellipse cx="12" cy="50" rx="11" ry="9" fill="#ff9ab7" opacity=".75"/>
+      <path d="M-61 30c17-10 35-7 49 8M73 30c18-9 35-5 46 7" fill="none" stroke="#ff91af" stroke-width="8" stroke-linecap="round" opacity=".7"/>
+    </g>
+  </g>
+</svg>

@@ -791,11 +791,26 @@ html[data-skin="nutrition-facts"] .skin-picker .skin-picker-option {
 
 html[data-skin="nutrition-facts"] .skin-picker .skin-picker-option {
 	border-radius: 0 !important;
+	background: #ffffff !important;
+	color: #050505 !important;
+}
+
+html[data-skin="nutrition-facts"] .skin-picker .skin-picker-option:hover {
+	background: #eeeeea !important;
+	color: #050505 !important;
 }
 
 html[data-skin="nutrition-facts"] .skin-picker .skin-picker-option[aria-pressed="true"] {
 	background: #050505 !important;
 	color: #ffffff !important;
+}
+
+html[data-skin="nutrition-facts"] .skin-picker-option-mark {
+	border-color: #050505;
+}
+
+html[data-skin="nutrition-facts"] .skin-picker-option[aria-pressed="true"] .skin-picker-option-mark {
+	border-color: #ffffff;
 }
 
 html[data-skin="nutrition-facts"] .skin-picker-scroll-arrow {

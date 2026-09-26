@@ -884,7 +884,104 @@ html[data-skin-id="forties-field-notes"] .skin-contact-charm::after {
 	}
 }
 
+::view-transition-old(root) {
+	animation: skin-transition-out 630ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+::view-transition-new(root) {
+	animation: skin-transition-in 630ms cubic-bezier(0.4, 0, 0.2, 1) both;
+	mix-blend-mode: normal;
+}
+
+::view-transition-old(skin-header),
+::view-transition-old(skin-hero),
+::view-transition-old(skin-hero-copy),
+::view-transition-old(skin-hero-media),
+::view-transition-old(skin-hero-quests),
+::view-transition-old(skin-section-1),
+::view-transition-old(skin-section-2),
+::view-transition-old(skin-section-3),
+::view-transition-old(skin-footer),
+::view-transition-old(skin-contact-charm),
+::view-transition-old(skin-picker) {
+	animation: skin-element-out 520ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+::view-transition-new(skin-header),
+::view-transition-new(skin-hero),
+::view-transition-new(skin-hero-copy),
+::view-transition-new(skin-hero-media),
+::view-transition-new(skin-hero-quests),
+::view-transition-new(skin-section-1),
+::view-transition-new(skin-section-2),
+::view-transition-new(skin-section-3),
+::view-transition-new(skin-footer),
+::view-transition-new(skin-contact-charm),
+::view-transition-new(skin-picker) {
+	animation: skin-element-in 630ms cubic-bezier(0.16, 1, 0.3, 1) both;
+	mix-blend-mode: normal;
+}
+
+@keyframes skin-transition-out {
+	to {
+		opacity: 0;
+		filter: blur(3px);
+		transform: scale(0.985);
+	}
+}
+
+@keyframes skin-transition-in {
+	from {
+		opacity: 0;
+		filter: blur(3px);
+		transform: scale(1.015);
+	}
+}
+
+@keyframes skin-element-out {
+	to {
+		opacity: 0;
+		filter: blur(2px);
+		transform: translateY(-5px) scale(0.992);
+	}
+}
+
+@keyframes skin-element-in {
+	from {
+		opacity: 0;
+		filter: blur(2px);
+		transform: translateY(7px) scale(1.008);
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
+	::view-transition-old(root),
+	::view-transition-new(root),
+	::view-transition-old(skin-header),
+	::view-transition-new(skin-header),
+	::view-transition-old(skin-hero),
+	::view-transition-new(skin-hero),
+	::view-transition-old(skin-hero-copy),
+	::view-transition-new(skin-hero-copy),
+	::view-transition-old(skin-hero-media),
+	::view-transition-new(skin-hero-media),
+	::view-transition-old(skin-hero-quests),
+	::view-transition-new(skin-hero-quests),
+	::view-transition-old(skin-section-1),
+	::view-transition-new(skin-section-1),
+	::view-transition-old(skin-section-2),
+	::view-transition-new(skin-section-2),
+	::view-transition-old(skin-section-3),
+	::view-transition-new(skin-section-3),
+	::view-transition-old(skin-footer),
+	::view-transition-new(skin-footer),
+	::view-transition-old(skin-contact-charm),
+	::view-transition-new(skin-contact-charm),
+	::view-transition-old(skin-picker),
+	::view-transition-new(skin-picker) {
+		animation: none;
+	}
+
 	.skin-picker *,
 	.skin-picker *::before,
 	.skin-picker *::after {
