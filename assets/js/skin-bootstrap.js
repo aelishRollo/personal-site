@@ -43,8 +43,11 @@
 	];
 	var skinById = {};
 	var activeId = '';
+	var activeMode = '';
 	var persistedId = '';
 	var stylesheet = null;
+	var activeTransition = null;
+	var transitionRequest = 0;
 	var themeAssets = [
 		{ href: 'assets/images/corkboard-texture.webp?v=corkboard-1', as: 'image', type: 'image/webp' },
 		{ href: 'assets/images/forties-writers-desk.webp?v=forties-writers-desk-1', as: 'image', type: 'image/webp' },
@@ -163,7 +166,7 @@
 		});
 	}
 
-	function apply(id, mode) {
+	function applyNow(id, mode, waitForStylesheet) {
 		var skin = skinById[id];
 
 		if (!skin) {
@@ -172,22 +175,109 @@
 		}
 
 		activeId = id;
+		activeMode = mode || (persistedId === id ? 'saved' : 'random');
 		root.setAttribute('data-skin', skin.selectorId || id);
 		root.setAttribute('data-skin-id', id);
 		root.setAttribute('data-theme', skin.scheme);
-		root.setAttribute('data-skin-mode', mode || (persistedId === id ? 'saved' : 'random'));
+		root.setAttribute('data-skin-mode', activeMode);
 		root.style.colorScheme = skin.scheme;
 
 		var link = ensureStylesheet();
 		if (skin.css) {
 			link.disabled = false;
 			if (link.getAttribute('href') !== skin.css) {
+				if (waitForStylesheet) {
+					return new Promise(function(resolve) {
+						var settled = false;
+						var timeout;
+
+						function finish() {
+							if (settled) {
+								return;
+							}
+
+							settled = true;
+							window.clearTimeout(timeout);
+							link.onload = null;
+							link.onerror = null;
+							resolve(id);
+						}
+
+						link.onload = finish;
+						link.onerror = finish;
+						link.setAttribute('href', skin.css);
+						timeout = window.setTimeout(finish, 4000);
+					});
+				}
+
 				link.setAttribute('href', skin.css);
 			}
 		} else {
 			link.disabled = true;
 			link.removeAttribute('href');
 		}
+
+		return id;
+	}
+
+	function apply(id, mode) {
+		var skin = skinById[id];
+
+		if (!skin) {
+			id = randomId();
+			skin = skinById[id];
+		}
+
+		var nextMode = mode || (persistedId === id ? 'saved' : 'random');
+		var previousId = activeId;
+		activeId = id;
+		activeMode = nextMode;
+
+		if (id === previousId) {
+			if (activeTransition) {
+				root.setAttribute('data-skin-mode', activeMode);
+				return id;
+			}
+
+			return applyNow(id, nextMode, false);
+		}
+
+		var reduceMotion = false;
+		try {
+			reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		} catch (error) {
+			// Treat unavailable motion preferences as the default animated mode.
+		}
+
+		if (!document.body || typeof document.startViewTransition !== 'function' || reduceMotion) {
+			return applyNow(id, nextMode, false);
+		}
+
+		transitionRequest += 1;
+		var request = transitionRequest;
+
+		if (activeTransition && typeof activeTransition.skipTransition === 'function') {
+			activeTransition.skipTransition();
+		}
+
+		activeTransition = document.startViewTransition(function() {
+			if (request !== transitionRequest) {
+				return activeId;
+			}
+
+			return applyNow(id, activeMode, true);
+		});
+
+		var transition = activeTransition;
+		transition.finished.then(function() {
+			if (activeTransition === transition) {
+				activeTransition = null;
+			}
+		}, function() {
+			if (activeTransition === transition) {
+				activeTransition = null;
+			}
+		});
 
 		return id;
 	}
@@ -247,7 +337,7 @@
 			return persistedId;
 		},
 		getMode: function() {
-			return root.getAttribute('data-skin-mode') || 'random';
+			return activeMode || root.getAttribute('data-skin-mode') || 'random';
 		},
 		preview: function(id) {
 			if (!isValid(id)) {
