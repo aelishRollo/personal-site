@@ -487,6 +487,9 @@ html[data-skin-id="forties-field-notes"] .skin-contact-charm::after {
 	letter-spacing: 0 !important;
 	text-transform: none !important;
 	cursor: pointer;
+	touch-action: manipulation;
+	user-select: none;
+	-webkit-user-select: none;
 }
 
 .skin-picker .skin-picker-cycle span {
@@ -903,9 +906,9 @@ html[data-skin-id="forties-field-notes"] .skin-contact-charm::after {
 	}
 
 	.skin-picker-toggle {
-		width: min(14rem, calc(100vw - 6.2rem)) !important;
+		width: min(14rem, calc(100vw - 6.8rem)) !important;
 		min-width: 0;
-		max-width: calc(100vw - 5.9rem);
+		max-width: calc(100vw - 6.5rem);
 		flex: 0 1 auto;
 		height: 3.1rem !important;
 		gap: 0.4rem;
@@ -914,10 +917,10 @@ html[data-skin-id="forties-field-notes"] .skin-contact-charm::after {
 	}
 
 	.skin-picker .skin-picker-cycle {
-		width: 2.5rem !important;
-		height: 2.5rem !important;
-		min-width: 2.5rem !important;
-		min-height: 2.5rem !important;
+		width: 2.8rem !important;
+		height: 2.8rem !important;
+		min-width: 2.8rem !important;
+		min-height: 2.8rem !important;
 		font-size: 1.65rem !important;
 	}
 
@@ -978,16 +981,14 @@ html[data-skin-id="forties-field-notes"] .skin-contact-charm::after {
 ::view-transition-old(skin-header),
 ::view-transition-old(skin-hero),
 ::view-transition-old(skin-footer),
-::view-transition-old(skin-contact-charm),
-::view-transition-old(skin-picker) {
+::view-transition-old(skin-contact-charm) {
 	animation: skin-element-out 520ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
 ::view-transition-new(skin-header),
 ::view-transition-new(skin-hero),
 ::view-transition-new(skin-footer),
-::view-transition-new(skin-contact-charm),
-::view-transition-new(skin-picker) {
+::view-transition-new(skin-contact-charm) {
 	animation: skin-element-in 630ms cubic-bezier(0.16, 1, 0.3, 1) both;
 	mix-blend-mode: normal;
 }
@@ -1030,9 +1031,7 @@ html[data-skin-id="forties-field-notes"] .skin-contact-charm::after {
 	::view-transition-old(skin-footer),
 	::view-transition-new(skin-footer),
 	::view-transition-old(skin-contact-charm),
-	::view-transition-new(skin-contact-charm),
-	::view-transition-old(skin-picker),
-	::view-transition-new(skin-picker) {
+	::view-transition-new(skin-contact-charm) {
 		animation: none;
 	}
 

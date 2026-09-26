@@ -165,6 +165,7 @@
 		var $skinStatus = $skinPicker.find('.skin-picker-status');
 		var skinScrollFrame = null;
 		var skinScrollTimestamp = null;
+		var supportsPointerEvents = 'PointerEvent' in window;
 
 		function skinName(id) {
 			var match = skinRuntime.all.filter(function(skin) {
@@ -332,7 +333,6 @@
 		$('body').append($skinPicker);
 		if ('startViewTransition' in document) {
 			$skinContactCharm[0].style.viewTransitionName = 'skin-contact-charm';
-			$skinPicker[0].style.viewTransitionName = 'skin-picker';
 		}
 		syncSkinPicker();
 
@@ -351,16 +351,36 @@
 
 		$skinOptions.on('scroll', updateSkinScrollArrows);
 
-		$skinCycleButtons.on('click', function() {
+		function cycleSkin(direction) {
 			var activeId = skinRuntime.getActiveId();
 			var activeIndex = skinIndex(activeId);
-			var direction = Number($(this).attr('data-skin-cycle'));
 			var nextIndex = (activeIndex + direction + skinRuntime.all.length) % skinRuntime.all.length;
 			var nextSkin = skinRuntime.all[nextIndex];
 
 			skinRuntime.preview(nextSkin.id);
 			syncSkinPicker('Previewing ' + nextSkin.name + '.');
 			keepActiveSkinChoiceInView();
+		}
+
+		$skinCycleButtons.on('pointerdown', function(event) {
+			var pointerEvent = event.originalEvent || event;
+
+			if (!supportsPointerEvents || pointerEvent.isPrimary === false || (pointerEvent.pointerType === 'mouse' && pointerEvent.button !== 0)) {
+				return;
+			}
+
+			cycleSkin(Number($(this).attr('data-skin-cycle')));
+		}).on('click', function(event) {
+			var clickEvent = event.originalEvent || event;
+
+			// Pointer input is handled on pointerdown so a transition cannot cancel
+			// the synthesized click. Keep click for keyboard and assistive input.
+			if (supportsPointerEvents && clickEvent.detail !== 0) {
+				event.preventDefault();
+				return;
+			}
+
+			cycleSkin(Number($(this).attr('data-skin-cycle')));
 		});
 
 		$skinScrollUp.on('mouseenter', function() {
