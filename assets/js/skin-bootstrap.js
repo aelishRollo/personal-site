@@ -2,8 +2,8 @@
 	Skin selection bootstrap.
 
 	This file intentionally runs in the document head. It resolves the active skin
-	before first paint, exposes the small runtime API used by main.js, and loads
-	only the active skin stylesheet.
+	before first paint, exposes the small runtime API used by main.js, and prepares
+	the inactive skin stylesheets for instant runtime switching.
 */
 (function() {
 	'use strict';
@@ -46,11 +46,16 @@
 	var activeMode = '';
 	var persistedId = '';
 	var stylesheet = null;
+	var stylesheetById = {};
+	var stylesheetReady = {};
 	var activeTransition = null;
 	var transitionRequest = 0;
+	var lastChangeAt = 0;
+	var rapidSwitchWindow = 650;
 	var themeAssets = [
 		{ href: 'assets/images/corkboard-texture.webp?v=corkboard-1', as: 'image', type: 'image/webp' },
 		{ href: 'assets/images/forties-writers-desk.webp?v=forties-writers-desk-1', as: 'image', type: 'image/webp' },
+		{ href: 'assets/images/hello-kitty-mascot.svg?v=hello-kitty-mascot-1', as: 'image', type: 'image/svg+xml' },
 		{ href: 'assets/images/midnight-aurora-glass.webp?v=midnight-aurora-glass-1', as: 'image', type: 'image/webp' },
 		{ href: 'images/paper-texture-tile.webp?v=paper-texture-1', as: 'image', type: 'image/webp' }
 	];
@@ -129,31 +134,44 @@
 		return stylesheet;
 	}
 
-	function preloadThemeResources() {
-		var resources = [];
-		var seen = {};
+	function registerStylesheet(skin, link, isActive) {
+		stylesheetById[skin.id] = link;
+		link.setAttribute('data-skin-stylesheet', skin.id);
+		link.media = isActive ? 'all' : 'not all';
 
+		function markReady() {
+			stylesheetReady[skin.id] = true;
+			link.setAttribute('data-skin-ready', '');
+		}
+
+		if (link.sheet) {
+			markReady();
+		} else {
+			link.addEventListener('load', markReady, { once: true });
+			link.addEventListener('error', markReady, { once: true });
+		}
+	}
+
+	function prepareThemeResources() {
 		skins.forEach(function(skin) {
-			if (skin.css) {
-				resources.push({ href: skin.css, as: 'style' });
+			if (!skin.css) {
+				return;
 			}
+
+			var isActive = skin.id === activeId && stylesheet && stylesheet.getAttribute('href') === skin.css;
+			var link = isActive ? stylesheet : document.createElement('link');
+
+			if (!isActive) {
+				link.rel = 'stylesheet';
+				link.media = 'not all';
+				link.href = skin.css;
+				document.head.appendChild(link);
+			}
+
+			registerStylesheet(skin, link, isActive);
 		});
 
-		resources = resources.concat(themeAssets);
-		resources.forEach(function(resource) {
-			if (!resource.href || seen[resource.href]) {
-				return;
-			}
-
-			seen[resource.href] = true;
-
-			// The active stylesheet is already being fetched at render-blocking
-			// priority. Preload every other theme so rapid cycling only swaps in
-			// resources that are already in the browser cache.
-			if (resource.as === 'style' && stylesheet && stylesheet.getAttribute('href') === resource.href) {
-				return;
-			}
-
+		themeAssets.forEach(function(resource) {
 			var preload = document.createElement('link');
 			preload.rel = 'preload';
 			preload.as = resource.as;
@@ -166,7 +184,68 @@
 		});
 	}
 
-	function applyNow(id, mode, waitForStylesheet) {
+	function waitForStylesheet(id) {
+		var link = stylesheetById[id];
+
+		if (!link || stylesheetReady[id] || link.sheet) {
+			stylesheetReady[id] = true;
+			return Promise.resolve();
+		}
+
+		return new Promise(function(resolve) {
+			var settled = false;
+			var timeout;
+
+			function finish() {
+				if (settled) {
+					return;
+				}
+
+				settled = true;
+				window.clearTimeout(timeout);
+				link.removeEventListener('load', finish);
+				link.removeEventListener('error', finish);
+				resolve();
+			}
+
+			link.addEventListener('load', finish);
+			link.addEventListener('error', finish);
+			timeout = window.setTimeout(finish, 1500);
+		});
+	}
+
+	function activateStylesheet(skin) {
+		var nextStylesheet = skin.css ? stylesheetById[skin.id] : null;
+
+		if (nextStylesheet) {
+			if (stylesheet && stylesheet !== nextStylesheet) {
+				stylesheet.media = 'not all';
+				stylesheet.removeAttribute('id');
+			}
+
+			nextStylesheet.disabled = false;
+			nextStylesheet.media = 'all';
+			nextStylesheet.id = 'active-skin-stylesheet';
+			stylesheet = nextStylesheet;
+			return;
+		}
+
+		if (skin.css) {
+			var fallback = ensureStylesheet();
+			fallback.disabled = false;
+			fallback.media = 'all';
+			fallback.setAttribute('href', skin.css);
+			return;
+		}
+
+		if (stylesheet) {
+			stylesheet.media = 'not all';
+			stylesheet.removeAttribute('id');
+			stylesheet = null;
+		}
+	}
+
+	function applyNow(id, mode) {
 		var skin = skinById[id];
 
 		if (!skin) {
@@ -182,40 +261,7 @@
 		root.setAttribute('data-skin-mode', activeMode);
 		root.style.colorScheme = skin.scheme;
 
-		var link = ensureStylesheet();
-		if (skin.css) {
-			link.disabled = false;
-			if (link.getAttribute('href') !== skin.css) {
-				if (waitForStylesheet) {
-					return new Promise(function(resolve) {
-						var settled = false;
-						var timeout;
-
-						function finish() {
-							if (settled) {
-								return;
-							}
-
-							settled = true;
-							window.clearTimeout(timeout);
-							link.onload = null;
-							link.onerror = null;
-							resolve(id);
-						}
-
-						link.onload = finish;
-						link.onerror = finish;
-						link.setAttribute('href', skin.css);
-						timeout = window.setTimeout(finish, 4000);
-					});
-				}
-
-				link.setAttribute('href', skin.css);
-			}
-		} else {
-			link.disabled = true;
-			link.removeAttribute('href');
-		}
+		activateStylesheet(skin);
 
 		return id;
 	}
@@ -239,7 +285,7 @@
 				return id;
 			}
 
-			return applyNow(id, nextMode, false);
+			return applyNow(id, nextMode);
 		}
 
 		var reduceMotion = false;
@@ -250,22 +296,32 @@
 		}
 
 		if (!document.body || typeof document.startViewTransition !== 'function' || reduceMotion) {
-			return applyNow(id, nextMode, false);
+			return applyNow(id, nextMode);
 		}
 
 		transitionRequest += 1;
 		var request = transitionRequest;
+		var now = Date.now();
+		var isRapidSwitch = activeTransition || now - lastChangeAt < rapidSwitchWindow;
+		lastChangeAt = now;
 
-		if (activeTransition && typeof activeTransition.skipTransition === 'function') {
-			activeTransition.skipTransition();
+		if (isRapidSwitch) {
+			if (activeTransition && typeof activeTransition.skipTransition === 'function') {
+				activeTransition.skipTransition();
+			}
+
+			activeTransition = null;
+			return applyNow(id, nextMode);
 		}
 
 		activeTransition = document.startViewTransition(function() {
-			if (request !== transitionRequest) {
-				return activeId;
-			}
+			return waitForStylesheet(id).then(function() {
+				if (request !== transitionRequest) {
+					return activeId;
+				}
 
-			return applyNow(id, activeMode, true);
+				return applyNow(id, activeMode);
+			});
 		});
 
 		var transition = activeTransition;
@@ -326,7 +382,7 @@
 	write(window.sessionStorage, sessionKey, initialId);
 	write(window.sessionStorage, sessionModeKey, initialMode);
 	apply(initialId, initialMode);
-	preloadThemeResources();
+	prepareThemeResources();
 
 	window.SiteSkins = {
 		all: skins.slice(),

@@ -43,16 +43,13 @@
 		}
 	});
 
-	// Give stable page regions their own snapshots during a theme change. The
-	// View Transitions API can then blend each region independently instead of
-	// treating the entire page as one flat screenshot.
+	// Blend only the largest stable regions independently. Nested hero elements
+	// and off-screen sections stay in the root snapshot to avoid creating a large
+	// stack of compositor surfaces for every theme change.
 	if ('startViewTransition' in document) {
 		var skinTransitionRegions = [
 			{ selector: '.site-header', name: 'skin-header' },
 			{ selector: '.page-hero', name: 'skin-hero' },
-			{ selector: '.hero-copy', name: 'skin-hero-copy' },
-			{ selector: '.hero-media', name: 'skin-hero-media' },
-			{ selector: '.hero-quests', name: 'skin-hero-quests' },
 			{ selector: '.site-footer', name: 'skin-footer' }
 		];
 
@@ -62,10 +59,6 @@
 			if (element) {
 				element.style.viewTransitionName = region.name;
 			}
-		});
-
-		document.querySelectorAll('.page-section').forEach(function(section, index) {
-			section.style.viewTransitionName = 'skin-section-' + (index + 1);
 		});
 	}
 
