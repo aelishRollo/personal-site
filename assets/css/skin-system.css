@@ -961,6 +961,11 @@ html[data-skin-id="forties-field-notes"] .skin-contact-charm::after {
 	}
 }
 
+/* Keep the live controls interactive while transition snapshots animate above them. */
+::view-transition {
+	pointer-events: none;
+}
+
 ::view-transition-old(root) {
 	animation: skin-transition-out 630ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }
