@@ -31,7 +31,7 @@
 		{ id: 'riso-hallucination', name: 'Riso Hallucination', scheme: 'light', css: 'assets/css/skins/riso-hallucination.css?v=hero-initial-fix-1' },
 		{ id: 'crystal-prism', name: 'Crystal Prism', scheme: 'light', css: 'assets/css/skins/crystal-prism.css?v=crystal-prism-3' },
 		{ id: 'midnight-aurora-glass', name: 'Midnight Aurora Glass', scheme: 'dark', css: 'assets/css/skins/midnight-aurora-glass.css?v=midnight-aurora-glass-8' },
-		{ id: 'starlight', name: 'Starlight', scheme: 'dark', css: 'assets/css/skins/starlight.css?v=starlight-5' },
+		{ id: 'starlight', name: 'Starlight', scheme: 'dark', css: 'assets/css/skins/starlight.css?v=starlight-6' },
 		{ id: 'recursive-portal', name: 'Recursive Portal', scheme: 'dark', css: 'assets/css/skins/recursive-portal.css?v=recursive-portal-3' },
 		{ id: 'split-duality', name: 'Split Duality', scheme: 'dark', css: 'assets/css/skins/split-duality.css?v=split-duality-4' },
 		{ id: 'card-deck-stack', name: 'Card Deck Stack', scheme: 'light', css: 'assets/css/skins/card-deck-stack.css?v=card-deck-stack-4' },
@@ -324,6 +324,11 @@
 			return applyNow(id, nextMode);
 		}
 
+		var useLightweightSnapshot = previousId === 'starlight';
+		if (useLightweightSnapshot) {
+			root.setAttribute('data-skin-transition-lite', '');
+		}
+
 		activeTransition = document.startViewTransition(function() {
 			return waitForStylesheet(id).then(function() {
 				if (request !== transitionRequest) {
@@ -335,11 +340,23 @@
 		});
 
 		var transition = activeTransition;
+		function clearLightweightSnapshot() {
+			if (useLightweightSnapshot) {
+				root.removeAttribute('data-skin-transition-lite');
+			}
+		}
+
+		if (transition.ready && typeof transition.ready.then === 'function') {
+			transition.ready.then(clearLightweightSnapshot, clearLightweightSnapshot);
+		}
+
 		transition.finished.then(function() {
+			clearLightweightSnapshot();
 			if (activeTransition === transition) {
 				activeTransition = null;
 			}
 		}, function() {
+			clearLightweightSnapshot();
 			if (activeTransition === transition) {
 				activeTransition = null;
 			}

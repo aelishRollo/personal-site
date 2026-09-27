@@ -969,6 +969,38 @@ html[data-skin-id="forties-field-notes"] .skin-contact-charm::after {
 	pointer-events: none;
 }
 
+/*
+	Starlight's moving gradient field and refractive panes are intentionally rich,
+	but rasterizing each named region on exit can stall the first transition frame.
+	Use one root snapshot and suspend only its expensive capture-time effects. The
+	attribute is removed as soon as the transition pseudo-tree is ready.
+*/
+html[data-skin-transition-lite] .site-header,
+html[data-skin-transition-lite] .page-hero,
+html[data-skin-transition-lite] .site-footer,
+html[data-skin-transition-lite] .skin-contact-charm,
+html[data-skin-transition-lite] .skin-picker {
+	view-transition-name: none !important;
+}
+
+html[data-skin-id="starlight"][data-skin-transition-lite] body::before,
+html[data-skin-id="starlight"][data-skin-transition-lite] body::after {
+	animation-play-state: paused !important;
+	will-change: auto !important;
+}
+
+html[data-skin-id="starlight"][data-skin-transition-lite] .site-header,
+html[data-skin-id="starlight"][data-skin-transition-lite] .page-hero > .site-shell,
+html[data-skin-id="starlight"][data-skin-transition-lite] .page-section > .site-shell,
+html[data-skin-id="starlight"][data-skin-transition-lite] .site-footer .site-shell,
+html[data-skin-id="starlight"][data-skin-transition-lite] .skin-picker-panel,
+html[data-skin-id="starlight"][data-skin-transition-lite] .skin-picker-toggle,
+html[data-skin-id="starlight"][data-skin-transition-lite] .skin-picker .skin-picker-cycle,
+html[data-skin-id="starlight"][data-skin-transition-lite] .skin-contact-charm {
+	-webkit-backdrop-filter: none !important;
+	backdrop-filter: none !important;
+}
+
 ::view-transition-old(root) {
 	animation: skin-transition-out 630ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }
