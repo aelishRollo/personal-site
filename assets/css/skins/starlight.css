@@ -82,17 +82,25 @@ html[data-skin="starlight"] body::before {
 	opacity: 0.82;
 	pointer-events: none;
 	transform: translate3d(0, 0, 0) scale(1.04);
-	will-change: transform;
-	animation: starlight-drift 34s linear infinite alternate;
+	will-change: opacity, transform;
+	animation: starlight-deep-twinkle 18s ease-in-out infinite alternate;
 }
 
-/* Larger colored stars twinkle as a single opacity-only layer. */
+/* Near stars flare on a separate rhythm, with restrained diffraction spikes. */
 html[data-skin="starlight"] body::after {
 	content: "";
 	position: fixed;
 	inset: 0;
 	z-index: -1;
 	background:
+		linear-gradient(90deg, transparent, rgba(205, 244, 255, 0.68), transparent) 8% 19% / 34px 1px no-repeat,
+		linear-gradient(0deg, transparent, rgba(205, 244, 255, 0.55), transparent) 8% 19% / 1px 34px no-repeat,
+		linear-gradient(90deg, transparent, rgba(255, 229, 188, 0.58), transparent) 43% 12% / 27px 1px no-repeat,
+		linear-gradient(0deg, transparent, rgba(213, 203, 255, 0.56), transparent) 43% 12% / 1px 27px no-repeat,
+		linear-gradient(90deg, transparent, rgba(205, 244, 255, 0.62), transparent) 57% 64% / 31px 1px no-repeat,
+		linear-gradient(0deg, transparent, rgba(205, 244, 255, 0.5), transparent) 57% 64% / 1px 31px no-repeat,
+		linear-gradient(90deg, transparent, rgba(255, 205, 225, 0.56), transparent) 91% 46% / 29px 1px no-repeat,
+		linear-gradient(0deg, transparent, rgba(255, 205, 225, 0.48), transparent) 91% 46% / 1px 29px no-repeat,
 		radial-gradient(circle at 8% 19%, #ffffff 0 1px, rgba(169, 232, 255, 0.6) 1.4px 2.7px, transparent 3.4px),
 		radial-gradient(circle at 19% 72%, #fff7dc 0 1.2px, rgba(255, 211, 155, 0.56) 1.7px 3.3px, transparent 4.2px),
 		radial-gradient(circle at 31% 39%, #ffffff 0 0.8px, rgba(255, 179, 206, 0.5) 1.3px 2.5px, transparent 3.4px),
@@ -104,8 +112,9 @@ html[data-skin="starlight"] body::after {
 		radial-gradient(ellipse at 50% 50%, transparent 44%, rgba(124, 170, 255, 0.04) 45%, transparent 46%);
 	opacity: 0.72;
 	pointer-events: none;
-	will-change: opacity;
-	animation: starlight-twinkle 5.8s ease-in-out infinite alternate;
+	transform: translate3d(0, 0, 0) scale(1);
+	will-change: opacity, transform;
+	animation: starlight-near-twinkle 6.2s ease-in-out infinite;
 }
 
 html[data-skin="starlight"] body,
@@ -233,7 +242,13 @@ html[data-skin="starlight"] .page-section > .site-shell::before {
 	inset: 0;
 	z-index: -1;
 	border-radius: inherit;
-	background: linear-gradient(112deg, transparent 16%, rgba(255, 255, 255, 0.07) 32%, rgba(169, 232, 255, 0.1) 42%, transparent 58%);
+	background:
+		radial-gradient(ellipse at 12% 78%, rgba(67, 210, 255, 0.1), transparent 34%),
+		radial-gradient(ellipse at 88% 16%, rgba(176, 126, 255, 0.11), transparent 31%),
+		radial-gradient(ellipse at 64% 110%, rgba(255, 180, 218, 0.07), transparent 38%),
+		linear-gradient(112deg, transparent 16%, rgba(255, 255, 255, 0.07) 32%, rgba(169, 232, 255, 0.1) 42%, transparent 58%);
+	mix-blend-mode: screen;
+	opacity: 0.88;
 	pointer-events: none;
 }
 
@@ -530,16 +545,33 @@ html[data-skin="starlight"] .skin-picker-toggle-label {
 	color: var(--starlight-cyan) !important;
 }
 
-@keyframes starlight-drift {
-	from { transform: translate3d(-1.5%, -1%, 0) scale(1.04); }
-	to { transform: translate3d(1.5%, 1%, 0) scale(1.055); }
+@keyframes starlight-deep-twinkle {
+	0% {
+		opacity: 0.3;
+		transform: translate3d(-1.5%, -1%, 0) scale(1.04);
+	}
+	18% { opacity: 0.88; }
+	43% { opacity: 0.44; }
+	67% { opacity: 0.96; }
+	84% { opacity: 0.38; }
+	100% {
+		opacity: 0.78;
+		transform: translate3d(1.5%, 1%, 0) scale(1.055);
+	}
 }
 
-@keyframes starlight-twinkle {
-	0% { opacity: 0.46; }
-	36% { opacity: 0.78; }
-	68% { opacity: 0.58; }
-	100% { opacity: 0.86; }
+@keyframes starlight-near-twinkle {
+	0%, 100% {
+		opacity: 0.16;
+		transform: translate3d(0, 0, 0) scale(0.992);
+	}
+	23% { opacity: 0.92; }
+	47% { opacity: 0.31; }
+	71% {
+		opacity: 1;
+		transform: translate3d(0, 0, 0) scale(1.008);
+	}
+	86% { opacity: 0.42; }
 }
 
 @media (max-width: 736px) {
