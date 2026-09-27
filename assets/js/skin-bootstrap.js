@@ -324,6 +324,11 @@
 			return applyNow(id, nextMode);
 		}
 
+		var useLightweightSnapshot = previousId === 'starlight';
+		if (useLightweightSnapshot) {
+			root.setAttribute('data-skin-transition-lite', '');
+		}
+
 		activeTransition = document.startViewTransition(function() {
 			return waitForStylesheet(id).then(function() {
 				if (request !== transitionRequest) {
@@ -335,11 +340,23 @@
 		});
 
 		var transition = activeTransition;
+		function clearLightweightSnapshot() {
+			if (useLightweightSnapshot) {
+				root.removeAttribute('data-skin-transition-lite');
+			}
+		}
+
+		if (transition.ready && typeof transition.ready.then === 'function') {
+			transition.ready.then(clearLightweightSnapshot, clearLightweightSnapshot);
+		}
+
 		transition.finished.then(function() {
+			clearLightweightSnapshot();
 			if (activeTransition === transition) {
 				activeTransition = null;
 			}
 		}, function() {
+			clearLightweightSnapshot();
 			if (activeTransition === transition) {
 				activeTransition = null;
 			}
