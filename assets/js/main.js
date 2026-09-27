@@ -363,19 +363,55 @@
 			keepActiveSkinChoiceInView();
 		}
 
-		$skinCycleButtons.on('pointerdown', function(event) {
-			var pointerEvent = event.originalEvent || event;
+		function skinCycleDirectionAtPoint(clientX, clientY) {
+			var direction = 0;
 
-			if (!supportsPointerEvents || pointerEvent.isPrimary === false || (pointerEvent.pointerType === 'mouse' && pointerEvent.button !== 0)) {
-				return;
-			}
+			$skinCycleButtons.each(function() {
+				var rect = this.getBoundingClientRect();
 
-			cycleSkin(Number($(this).attr('data-skin-cycle')));
-		}).on('click', function(event) {
+				if (clientX >= rect.left && clientX <= rect.right && clientY >= rect.top && clientY <= rect.bottom) {
+					direction = Number($(this).attr('data-skin-cycle'));
+					return false;
+				}
+			});
+
+			return direction;
+		}
+
+		if (supportsPointerEvents) {
+			document.addEventListener('pointerdown', function(event) {
+				if (event.isPrimary === false || (event.pointerType === 'mouse' && event.button !== 0)) {
+					return;
+				}
+
+				var direction = skinCycleDirectionAtPoint(event.clientX, event.clientY);
+
+				if (!direction) {
+					return;
+				}
+
+				event.preventDefault();
+				event.stopPropagation();
+				cycleSkin(direction);
+			}, true);
+
+			// The visual picker is a pointer-transparent transition snapshot while
+			// themes blend. Suppress any resulting click on the page underneath it.
+			document.addEventListener('click', function(event) {
+				if (event.detail === 0 || !skinCycleDirectionAtPoint(event.clientX, event.clientY)) {
+					return;
+				}
+
+				event.preventDefault();
+				event.stopPropagation();
+			}, true);
+		}
+
+		$skinCycleButtons.on('click', function(event) {
 			var clickEvent = event.originalEvent || event;
 
-			// Pointer input is handled on pointerdown so a transition cannot cancel
-			// the synthesized click. Keep click for keyboard and assistive input.
+			// Pointer input is captured above. Keep click for keyboard, assistive
+			// input, and browsers without Pointer Events.
 			if (supportsPointerEvents && clickEvent.detail !== 0) {
 				event.preventDefault();
 				return;
