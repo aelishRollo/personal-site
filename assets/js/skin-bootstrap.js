@@ -31,6 +31,7 @@
 		{ id: 'riso-hallucination', name: 'Riso Hallucination', scheme: 'light', css: 'assets/css/skins/riso-hallucination.css?v=hero-initial-fix-1' },
 		{ id: 'crystal-prism', name: 'Crystal Prism', scheme: 'light', css: 'assets/css/skins/crystal-prism.css?v=crystal-prism-3' },
 		{ id: 'midnight-aurora-glass', name: 'Midnight Aurora Glass', scheme: 'dark', css: 'assets/css/skins/midnight-aurora-glass.css?v=midnight-aurora-glass-8' },
+		{ id: 'starlight', name: 'Starlight', scheme: 'dark', css: 'assets/css/skins/starlight.css?v=starlight-1' },
 		{ id: 'recursive-portal', name: 'Recursive Portal', scheme: 'dark', css: 'assets/css/skins/recursive-portal.css?v=recursive-portal-3' },
 		{ id: 'split-duality', name: 'Split Duality', scheme: 'dark', css: 'assets/css/skins/split-duality.css?v=split-duality-4' },
 		{ id: 'card-deck-stack', name: 'Card Deck Stack', scheme: 'light', css: 'assets/css/skins/card-deck-stack.css?v=card-deck-stack-4' },
@@ -116,6 +117,15 @@
 			return window.performance && window.performance.navigation && window.performance.navigation.type === 1;
 		} catch (error) {
 			return false;
+		}
+	}
+
+	function requestedSkinId() {
+		try {
+			var requested = new URLSearchParams(window.location.search).get('theme') || '';
+			return isValid(requested) ? requested : '';
+		} catch (error) {
+			return '';
 		}
 	}
 
@@ -359,8 +369,12 @@
 
 	var initialId;
 	var initialMode;
+	var requestedId = requestedSkinId();
 
-	if (isReloadNavigation()) {
+	if (requestedId) {
+		initialId = requestedId;
+		initialMode = persistedId === requestedId ? 'saved' : 'preview';
+	} else if (isReloadNavigation()) {
 		if (persistedId) {
 			initialId = persistedId;
 			initialMode = 'saved';
