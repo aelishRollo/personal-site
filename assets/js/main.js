@@ -43,16 +43,13 @@
 		}
 	});
 
-	// Give stable page regions their own snapshots during a theme change. The
-	// View Transitions API can then blend each region independently instead of
-	// treating the entire page as one flat screenshot.
+	// Blend only the largest stable regions independently. Nested hero elements
+	// and off-screen sections stay in the root snapshot to avoid creating a large
+	// stack of compositor surfaces for every theme change.
 	if ('startViewTransition' in document) {
 		var skinTransitionRegions = [
 			{ selector: '.site-header', name: 'skin-header' },
 			{ selector: '.page-hero', name: 'skin-hero' },
-			{ selector: '.hero-copy', name: 'skin-hero-copy' },
-			{ selector: '.hero-media', name: 'skin-hero-media' },
-			{ selector: '.hero-quests', name: 'skin-hero-quests' },
 			{ selector: '.site-footer', name: 'skin-footer' }
 		];
 
@@ -62,10 +59,6 @@
 			if (element) {
 				element.style.viewTransitionName = region.name;
 			}
-		});
-
-		document.querySelectorAll('.page-section').forEach(function(section, index) {
-			section.style.viewTransitionName = 'skin-section-' + (index + 1);
 		});
 	}
 
@@ -113,6 +106,7 @@
 				'<span>' + skin.name + '</span>' +
 			'</button>';
 		}).join('');
+		var skinCountLabel = skinRuntime.all.length + ' themes';
 		var $skinPicker = $(
 			'<aside class="skin-picker" data-skin-ui aria-label="Theme controls">' +
 				'<div class="skin-picker-controls">' +
@@ -121,7 +115,10 @@
 					'</button>' +
 					'<button type="button" class="skin-picker-toggle" aria-expanded="false" aria-controls="skin-picker-panel">' +
 						'<span class="skin-picker-toggle-icon" aria-hidden="true">&#10022;</span>' +
-						'<span class="skin-picker-toggle-label">Change theme</span>' +
+						'<span class="skin-picker-toggle-copy">' +
+							'<span class="skin-picker-toggle-kicker">' + skinCountLabel + '</span>' +
+							'<span class="skin-picker-toggle-label">Change the whole look</span>' +
+						'</span>' +
 						'<span class="skin-picker-current"></span>' +
 						'<span class="skin-picker-chevron" aria-hidden="true"></span>' +
 					'</button>' +
@@ -168,6 +165,7 @@
 		var $skinStatus = $skinPicker.find('.skin-picker-status');
 		var skinScrollFrame = null;
 		var skinScrollTimestamp = null;
+		var supportsPointerEvents = 'PointerEvent' in window;
 
 		function skinName(id) {
 			var match = skinRuntime.all.filter(function(skin) {
@@ -354,16 +352,72 @@
 
 		$skinOptions.on('scroll', updateSkinScrollArrows);
 
-		$skinCycleButtons.on('click', function() {
+		function cycleSkin(direction) {
 			var activeId = skinRuntime.getActiveId();
 			var activeIndex = skinIndex(activeId);
-			var direction = Number($(this).attr('data-skin-cycle'));
 			var nextIndex = (activeIndex + direction + skinRuntime.all.length) % skinRuntime.all.length;
 			var nextSkin = skinRuntime.all[nextIndex];
 
 			skinRuntime.preview(nextSkin.id);
 			syncSkinPicker('Previewing ' + nextSkin.name + '.');
 			keepActiveSkinChoiceInView();
+		}
+
+		function skinCycleDirectionAtPoint(clientX, clientY) {
+			var direction = 0;
+
+			$skinCycleButtons.each(function() {
+				var rect = this.getBoundingClientRect();
+
+				if (clientX >= rect.left && clientX <= rect.right && clientY >= rect.top && clientY <= rect.bottom) {
+					direction = Number($(this).attr('data-skin-cycle'));
+					return false;
+				}
+			});
+
+			return direction;
+		}
+
+		if (supportsPointerEvents) {
+			document.addEventListener('pointerdown', function(event) {
+				if (event.isPrimary === false || (event.pointerType === 'mouse' && event.button !== 0)) {
+					return;
+				}
+
+				var direction = skinCycleDirectionAtPoint(event.clientX, event.clientY);
+
+				if (!direction) {
+					return;
+				}
+
+				event.preventDefault();
+				event.stopPropagation();
+				cycleSkin(direction);
+			}, true);
+
+			// The visual picker is a pointer-transparent transition snapshot while
+			// themes blend. Suppress any resulting click on the page underneath it.
+			document.addEventListener('click', function(event) {
+				if (event.detail === 0 || !skinCycleDirectionAtPoint(event.clientX, event.clientY)) {
+					return;
+				}
+
+				event.preventDefault();
+				event.stopPropagation();
+			}, true);
+		}
+
+		$skinCycleButtons.on('click', function(event) {
+			var clickEvent = event.originalEvent || event;
+
+			// Pointer input is captured above. Keep click for keyboard, assistive
+			// input, and browsers without Pointer Events.
+			if (supportsPointerEvents && clickEvent.detail !== 0) {
+				event.preventDefault();
+				return;
+			}
+
+			cycleSkin(Number($(this).attr('data-skin-cycle')));
 		});
 
 		$skinScrollUp.on('mouseenter', function() {
