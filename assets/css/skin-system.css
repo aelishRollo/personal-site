@@ -993,6 +993,18 @@ html[data-skin-id="forties-field-notes"] .skin-contact-charm::after {
 	mix-blend-mode: normal;
 }
 
+/* Keep the theme controls continuously visible while the page changes below. */
+::view-transition-group(skin-picker) {
+	z-index: 20000;
+}
+
+::view-transition-old(skin-picker),
+::view-transition-new(skin-picker) {
+	animation: none;
+	opacity: 1;
+	mix-blend-mode: normal;
+}
+
 @keyframes skin-transition-out {
 	to {
 		opacity: 0;

@@ -333,6 +333,7 @@
 		$('body').append($skinPicker);
 		if ('startViewTransition' in document) {
 			$skinContactCharm[0].style.viewTransitionName = 'skin-contact-charm';
+			$skinPicker[0].style.viewTransitionName = 'skin-picker';
 		}
 		syncSkinPicker();
 
