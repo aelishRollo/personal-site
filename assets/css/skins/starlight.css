@@ -7,8 +7,8 @@
 html[data-skin="starlight"] {
 	--background: #030711;
 	--foreground: #f4f8ff;
-	--muted-bg: rgba(12, 20, 38, 0.78);
-	--card-bg: rgba(9, 17, 33, 0.76);
+	--muted-bg: rgba(12, 20, 38, 0.54);
+	--card-bg: rgba(9, 17, 33, 0.5);
 	--border: rgba(191, 224, 255, 0.34);
 	--primary: #a9e8ff;
 	--primary-fg: #06101d;
@@ -18,14 +18,14 @@ html[data-skin="starlight"] {
 	--accent-fg: #181005;
 	--link: #a9e8ff;
 	--warning: #ffb3ce;
-	--header-bg: rgba(4, 9, 20, 0.84);
+	--header-bg: rgba(4, 9, 20, 0.62);
 	--header-fg: #f4f8ff;
 	--footer-bg: rgba(3, 7, 17, 0.9);
 	--footer-fg: #c7d3e3;
 	--starlight-ink: #f4f8ff;
 	--starlight-muted: #c0ccdc;
 	--starlight-line: rgba(191, 224, 255, 0.32);
-	--starlight-glass: rgba(8, 17, 33, 0.72);
+	--starlight-glass: rgba(8, 17, 33, 0.46);
 	--starlight-cyan: #a9e8ff;
 	--starlight-violet: #a990ff;
 	--starlight-gold: #ffd39b;
@@ -47,20 +47,39 @@ html[data-skin="starlight"] body {
 	overflow-x: hidden;
 }
 
-/* Repeating micro-stars are painted once and moved as one composited layer. */
+/* One viewport-sized, irregular star map: no tile can reveal itself as a pattern. */
 html[data-skin="starlight"] body::before {
 	content: "";
 	position: fixed;
 	inset: -12vh -10vw;
 	z-index: -2;
 	background-image:
-		radial-gradient(circle, rgba(255, 255, 255, 0.88) 0 0.7px, transparent 1.1px),
-		radial-gradient(circle, rgba(169, 232, 255, 0.72) 0 1px, transparent 1.45px),
-		radial-gradient(circle, rgba(169, 144, 255, 0.6) 0 1.25px, transparent 1.75px),
-		radial-gradient(circle, rgba(255, 211, 155, 0.62) 0 0.8px, transparent 1.25px);
-	background-position: 7px 13px, 31px 9px, 18px 47px, 55px 27px;
-	background-size: 43px 47px, 79px 83px, 113px 109px, 151px 137px;
-	opacity: 0.66;
+		radial-gradient(circle at 3% 11%, #fff 0 1.4px, rgba(169, 232, 255, 0.62) 1.8px 3.9px, transparent 5.7px),
+		radial-gradient(circle at 7% 63%, #fff8e8 0 1px, rgba(255, 211, 155, 0.5) 1.5px 3.1px, transparent 4.8px),
+		radial-gradient(circle at 12% 34%, #fff 0 1.8px, rgba(169, 144, 255, 0.56) 2.2px 4.7px, transparent 6.7px),
+		radial-gradient(circle at 16% 88%, #fff 0 1.1px, rgba(255, 179, 206, 0.5) 1.6px 3.6px, transparent 5.2px),
+		radial-gradient(circle at 21% 7%, #fff 0 0.9px, rgba(169, 232, 255, 0.5) 1.4px 3px, transparent 4.6px),
+		radial-gradient(circle at 24% 48%, #fffbe9 0 1.6px, rgba(255, 211, 155, 0.58) 2px 4.4px, transparent 6.2px),
+		radial-gradient(circle at 28% 77%, #fff 0 1.25px, rgba(169, 232, 255, 0.52) 1.8px 3.8px, transparent 5.6px),
+		radial-gradient(circle at 33% 19%, #fff 0 1.1px, rgba(255, 179, 206, 0.46) 1.7px 3.5px, transparent 5.1px),
+		radial-gradient(circle at 37% 58%, #fff 0 2.1px, rgba(169, 144, 255, 0.55) 2.6px 5.2px, transparent 7.6px),
+		radial-gradient(circle at 41% 94%, #fff7dd 0 1px, rgba(255, 211, 155, 0.48) 1.5px 3.2px, transparent 4.8px),
+		radial-gradient(circle at 45% 31%, #fff 0 1.4px, rgba(169, 232, 255, 0.58) 1.9px 4.1px, transparent 5.9px),
+		radial-gradient(circle at 49% 71%, #fff 0 0.9px, rgba(169, 144, 255, 0.48) 1.4px 3.2px, transparent 4.9px),
+		radial-gradient(circle at 53% 4%, #fff 0 1.7px, rgba(169, 232, 255, 0.58) 2.2px 4.7px, transparent 6.8px),
+		radial-gradient(circle at 57% 44%, #fff9ea 0 1.2px, rgba(255, 211, 155, 0.55) 1.8px 3.8px, transparent 5.5px),
+		radial-gradient(circle at 61% 84%, #fff 0 1.5px, rgba(255, 179, 206, 0.5) 2px 4.2px, transparent 6.2px),
+		radial-gradient(circle at 65% 16%, #fff 0 1px, rgba(169, 144, 255, 0.52) 1.5px 3.5px, transparent 5.2px),
+		radial-gradient(circle at 69% 61%, #fff 0 2.3px, rgba(169, 232, 255, 0.58) 2.8px 5.5px, transparent 8px),
+		radial-gradient(circle at 73% 96%, #fff7df 0 1.15px, rgba(255, 211, 155, 0.48) 1.7px 3.7px, transparent 5.4px),
+		radial-gradient(circle at 77% 36%, #fff 0 1.45px, rgba(255, 179, 206, 0.5) 2px 4.1px, transparent 6px),
+		radial-gradient(circle at 81% 73%, #fff 0 1px, rgba(169, 144, 255, 0.54) 1.5px 3.5px, transparent 5.1px),
+		radial-gradient(circle at 86% 9%, #fff 0 1.9px, rgba(169, 232, 255, 0.58) 2.4px 5px, transparent 7.2px),
+		radial-gradient(circle at 89% 52%, #fff8e7 0 1.25px, rgba(255, 211, 155, 0.54) 1.8px 3.9px, transparent 5.7px),
+		radial-gradient(circle at 94% 27%, #fff 0 1.05px, rgba(169, 144, 255, 0.5) 1.55px 3.4px, transparent 5px),
+		radial-gradient(circle at 97% 86%, #fff 0 1.65px, rgba(255, 179, 206, 0.5) 2.15px 4.5px, transparent 6.5px);
+	background-repeat: no-repeat;
+	opacity: 0.82;
 	pointer-events: none;
 	transform: translate3d(0, 0, 0) scale(1.04);
 	will-change: transform;
@@ -125,10 +144,10 @@ html[data-skin="starlight"] a:hover {
 
 html[data-skin="starlight"] .site-header {
 	border-bottom: 1px solid rgba(191, 224, 255, 0.22) !important;
-	background: linear-gradient(180deg, rgba(3, 8, 18, 0.92), rgba(5, 11, 24, 0.74)) !important;
+	background: linear-gradient(180deg, rgba(3, 8, 18, 0.7), rgba(5, 11, 24, 0.46)) !important;
 	box-shadow: inset 0 -1px 0 rgba(169, 232, 255, 0.06), 0 16px 45px rgba(0, 0, 0, 0.38) !important;
-	-webkit-backdrop-filter: blur(18px) saturate(1.25);
-	backdrop-filter: blur(18px) saturate(1.25);
+	-webkit-backdrop-filter: blur(10px) saturate(1.2);
+	backdrop-filter: blur(10px) saturate(1.2);
 }
 
 html[data-skin="starlight"] .brand-mark {
@@ -196,15 +215,15 @@ html[data-skin="starlight"] .page-section > .site-shell {
 		radial-gradient(circle at 1.1rem calc(100% - 1.1rem), #bdaeff 0 2px, rgba(169, 144, 255, 0.18) 2.5px 6px, transparent 6.5px),
 		radial-gradient(circle at calc(100% - 1.1rem) calc(100% - 1.1rem), #ffc3d8 0 2px, rgba(255, 179, 206, 0.16) 2.5px 6px, transparent 6.5px),
 		linear-gradient(142deg, rgba(255, 255, 255, 0.11), transparent 19%, rgba(169, 232, 255, 0.035) 53%, rgba(169, 144, 255, 0.055) 79%, transparent),
-		linear-gradient(125deg, rgba(8, 18, 36, 0.82), rgba(7, 14, 29, 0.55) 48%, rgba(9, 15, 31, 0.8)) !important;
+		linear-gradient(125deg, rgba(8, 18, 36, 0.57), rgba(7, 14, 29, 0.25) 48%, rgba(9, 15, 31, 0.52)) !important;
 	box-shadow:
 		inset 0 1px 0 rgba(255, 255, 255, 0.28),
 		inset 0 -1px 0 rgba(169, 232, 255, 0.08),
 		inset 0 0 0 7px rgba(2, 7, 16, 0.36),
 		0 1.8rem 5rem rgba(0, 0, 0, 0.48),
 		0 0 40px rgba(107, 151, 255, 0.07);
-	-webkit-backdrop-filter: blur(19px) saturate(1.32);
-	backdrop-filter: blur(19px) saturate(1.32);
+	-webkit-backdrop-filter: blur(8px) saturate(1.22);
+	backdrop-filter: blur(8px) saturate(1.22);
 }
 
 html[data-skin="starlight"] .page-hero > .site-shell::before,
@@ -295,7 +314,7 @@ html[data-skin="starlight"] .contact-panel {
 		radial-gradient(circle at 88% 16%, rgba(255, 255, 255, 0.85) 0 0.8px, rgba(169, 232, 255, 0.35) 1px 2px, transparent 2.8px),
 		radial-gradient(circle at 16% 82%, rgba(255, 211, 155, 0.7) 0 0.8px, transparent 2px),
 		linear-gradient(142deg, rgba(255, 255, 255, 0.08), transparent 28%, rgba(169, 144, 255, 0.04) 70%),
-		rgba(7, 15, 30, 0.72) !important;
+		rgba(7, 15, 30, 0.48) !important;
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 0 -1px 0 rgba(169, 232, 255, 0.05), 0 1rem 2.7rem rgba(0, 0, 0, 0.34) !important;
 }
 
@@ -342,7 +361,7 @@ html[data-skin="starlight"] .hero-splash {
 	min-height: 9rem;
 	border: 1px solid rgba(169, 232, 255, 0.34) !important;
 	border-radius: 1rem !important;
-	background: linear-gradient(135deg, rgba(7, 15, 30, 0.88), rgba(12, 18, 38, 0.72)) !important;
+	background: linear-gradient(135deg, rgba(7, 15, 30, 0.62), rgba(12, 18, 38, 0.44)) !important;
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 0 24px rgba(169, 144, 255, 0.08) !important;
 }
 
@@ -372,7 +391,7 @@ html[data-skin="starlight"] .tag-list li,
 html[data-skin="starlight"] .profile-chip {
 	border: 1px solid rgba(191, 224, 255, 0.28) !important;
 	border-radius: 999px !important;
-	background: rgba(7, 15, 30, 0.72) !important;
+	background: rgba(7, 15, 30, 0.5) !important;
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
 	color: #e8f4ff !important;
 }
@@ -462,10 +481,10 @@ html[data-skin="starlight"] .site-footer .site-shell {
 	padding: 1.25rem 1.6rem;
 	border: 1px solid rgba(191, 224, 255, 0.2);
 	border-radius: 1.25rem;
-	background: rgba(5, 12, 25, 0.7);
+	background: rgba(5, 12, 25, 0.46);
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 1rem 3rem rgba(0, 0, 0, 0.3);
-	-webkit-backdrop-filter: blur(14px);
-	backdrop-filter: blur(14px);
+	-webkit-backdrop-filter: blur(8px);
+	backdrop-filter: blur(8px);
 }
 
 html[data-skin="starlight"] .site-footer a,
