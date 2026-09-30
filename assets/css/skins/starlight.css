@@ -51,7 +51,7 @@ html[data-skin="starlight"] body {
 html[data-skin="starlight"] body::before {
 	content: "";
 	position: fixed;
-	inset: -12vh -10vw;
+	inset: 0;
 	z-index: -2;
 	background-image:
 		radial-gradient(circle at 3% 11%, #fff 0 1.4px, rgba(169, 232, 255, 0.62) 1.8px 3.9px, transparent 5.7px),
@@ -81,8 +81,7 @@ html[data-skin="starlight"] body::before {
 	background-repeat: no-repeat;
 	opacity: 0.82;
 	pointer-events: none;
-	transform: translate3d(0, 0, 0) scale(1.04);
-	will-change: opacity, transform;
+	will-change: opacity;
 	animation: starlight-deep-twinkle 18s ease-in-out infinite alternate;
 }
 
@@ -112,8 +111,7 @@ html[data-skin="starlight"] body::after {
 		radial-gradient(ellipse at 50% 50%, transparent 44%, rgba(124, 170, 255, 0.04) 45%, transparent 46%);
 	opacity: 0.72;
 	pointer-events: none;
-	transform: translate3d(0, 0, 0) scale(1);
-	will-change: opacity, transform;
+	will-change: opacity;
 	animation: starlight-near-twinkle 6.2s ease-in-out infinite;
 }
 
@@ -155,8 +153,8 @@ html[data-skin="starlight"] .site-header {
 	border-bottom: 1px solid rgba(226, 244, 255, 0.38) !important;
 	background: linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(6, 14, 30, 0.035)) !important;
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(169, 232, 255, 0.1), 0 16px 45px rgba(0, 0, 0, 0.2) !important;
-	-webkit-backdrop-filter: blur(18px) saturate(1.65) brightness(1.08);
-	backdrop-filter: blur(18px) saturate(1.65) brightness(1.08);
+	-webkit-backdrop-filter: none;
+	backdrop-filter: none;
 }
 
 html[data-skin="starlight"] .brand-mark {
@@ -209,7 +207,11 @@ html[data-skin="starlight"] .section-cta {
 	box-shadow: none !important;
 }
 
-/* Near-clear liquid-glass windows: light is carried by their edges, not their fill. */
+/*
+	Near-clear liquid-glass windows: light is carried by their edges, not their fill.
+	Keep the large panes filter-free so the animated starfield remains compositor-only
+	instead of forcing a full-window backdrop blur repaint on every frame.
+*/
 html[data-skin="starlight"] .page-hero > .site-shell,
 html[data-skin="starlight"] .page-section > .site-shell {
 	position: relative;
@@ -232,8 +234,6 @@ html[data-skin="starlight"] .page-section > .site-shell {
 		inset 0 0 0 7px rgba(2, 7, 16, 0.09),
 		0 1.8rem 5rem rgba(0, 0, 0, 0.28),
 		0 0 46px rgba(107, 151, 255, 0.1);
-	-webkit-backdrop-filter: blur(10px) saturate(1.7) brightness(1.08);
-	backdrop-filter: blur(10px) saturate(1.7) brightness(1.08);
 }
 
 html[data-skin="starlight"] .page-hero > .site-shell::before,
@@ -501,8 +501,8 @@ html[data-skin="starlight"] .site-footer .site-shell {
 	border-radius: 1.25rem;
 	background: rgba(255, 255, 255, 0.06);
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 1rem 3rem rgba(0, 0, 0, 0.2);
-	-webkit-backdrop-filter: blur(18px) saturate(1.6) brightness(1.06);
-	backdrop-filter: blur(18px) saturate(1.6) brightness(1.06);
+	-webkit-backdrop-filter: none;
+	backdrop-filter: none;
 }
 
 html[data-skin="starlight"] .site-footer a,
@@ -551,7 +551,6 @@ html[data-skin="starlight"] .skin-picker-toggle-label {
 @keyframes starlight-deep-twinkle {
 	0% {
 		opacity: 0.3;
-		transform: translate3d(-1.5%, -1%, 0) scale(1.04);
 	}
 	18% { opacity: 0.88; }
 	43% { opacity: 0.44; }
@@ -559,20 +558,17 @@ html[data-skin="starlight"] .skin-picker-toggle-label {
 	84% { opacity: 0.38; }
 	100% {
 		opacity: 0.78;
-		transform: translate3d(1.5%, 1%, 0) scale(1.055);
 	}
 }
 
 @keyframes starlight-near-twinkle {
 	0%, 100% {
 		opacity: 0.16;
-		transform: translate3d(0, 0, 0) scale(0.992);
 	}
 	23% { opacity: 0.92; }
 	47% { opacity: 0.31; }
 	71% {
 		opacity: 1;
-		transform: translate3d(0, 0, 0) scale(1.008);
 	}
 	86% { opacity: 0.42; }
 }
@@ -611,6 +607,5 @@ html[data-skin="starlight"] .skin-picker-toggle-label {
 	html[data-skin="starlight"] body::before,
 	html[data-skin="starlight"] body::after {
 		animation: none !important;
-		transform: none !important;
 	}
 }
