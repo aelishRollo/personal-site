@@ -23,7 +23,7 @@
 		{ id: 'terminal-vision', name: 'Terminal Vision', scheme: 'dark', css: 'assets/css/skins/terminal-vision.css?v=hero-initial-fix-1' },
 		{ id: 'ms-dos-prompt', name: 'MS-DOS Prompt', scheme: 'dark', css: 'assets/css/skins/ms-dos-prompt.css?v=ms-dos-prompt-13' },
 		{ id: 'psychedelic-scrapbook', name: 'Psychedelic Scrapbook', scheme: 'light', css: 'assets/css/skins/psychedelic-scrapbook.css?v=psychedelic-scrapbook-corkboard-3' },
-		{ id: 'cut-and-paste-riot', name: 'Cut-and-Paste Riot', scheme: 'light', selectorId: 'psychedelic-scrapbook', css: 'assets/css/skins/cut-and-paste-riot.css?v=cut-and-paste-riot-2' },
+		{ id: 'cut-and-paste-riot', name: 'Cut-and-Paste Riot', scheme: 'light', selectorId: 'psychedelic-scrapbook', css: 'assets/css/skins/cut-and-paste-riot.css?v=cut-and-paste-riot-3' },
 		{ id: 'liquid-chrome-y2k', name: 'Liquid Chrome Y2K', scheme: 'light', css: 'assets/css/skins/liquid-chrome-y2k.css?v=hero-initial-fix-1' },
 		{ id: 'acid-brutalist', name: 'Acid Brutalist', scheme: 'dark', css: 'assets/css/skins/acid-brutalist.css?v=hero-initial-fix-1' },
 		{ id: 'botanical-dreamscape', name: 'Botanical Dreamscape', scheme: 'dark', css: 'assets/css/skins/botanical-dreamscape.css?v=hero-initial-fix-1' },
@@ -54,13 +54,27 @@
 	var transitionRequest = 0;
 	var lastChangeAt = 0;
 	var rapidSwitchWindow = 650;
-	var themeAssets = [
-		{ href: 'assets/images/corkboard-texture.webp?v=corkboard-1', as: 'image', type: 'image/webp' },
-		{ href: 'assets/images/forties-writers-desk.webp?v=forties-writers-desk-1', as: 'image', type: 'image/webp' },
-		{ href: 'assets/images/hello-kitty-mascot.svg?v=hello-kitty-mascot-1', as: 'image', type: 'image/svg+xml' },
-		{ href: 'assets/images/midnight-aurora-glass.webp?v=midnight-aurora-glass-1', as: 'image', type: 'image/webp' },
+	var sharedAssets = [
 		{ href: 'images/paper-texture-tile.webp?v=paper-texture-1', as: 'image', type: 'image/webp' }
 	];
+	var assetsBySkin = {
+		'psychedelic-scrapbook': [
+			{ href: 'assets/images/corkboard-texture.webp?v=corkboard-1', as: 'image', type: 'image/webp' }
+		],
+		'cut-and-paste-riot': [
+			{ href: 'assets/images/corkboard-texture.webp?v=corkboard-1', as: 'image', type: 'image/webp' }
+		],
+		'forties-field-notes': [
+			{ href: 'assets/images/forties-writers-desk.webp?v=forties-writers-desk-1', as: 'image', type: 'image/webp' }
+		],
+		'hello-kitty': [
+			{ href: 'assets/images/hello-kitty-mascot.svg?v=hello-kitty-mascot-1', as: 'image', type: 'image/svg+xml' }
+		],
+		'midnight-aurora-glass': [
+			{ href: 'assets/images/midnight-aurora-glass.webp?v=midnight-aurora-glass-1', as: 'image', type: 'image/webp' }
+		]
+	};
+	var preloadedAssets = {};
 
 	skins.forEach(function(skin) {
 		skinById[skin.id] = skin;
@@ -130,21 +144,6 @@
 		}
 	}
 
-	function ensureStylesheet() {
-		if (!stylesheet) {
-			stylesheet = document.getElementById('active-skin-stylesheet');
-		}
-
-		if (!stylesheet) {
-			stylesheet = document.createElement('link');
-			stylesheet.id = 'active-skin-stylesheet';
-			stylesheet.rel = 'stylesheet';
-			document.head.appendChild(stylesheet);
-		}
-
-		return stylesheet;
-	}
-
 	function registerStylesheet(skin, link, isActive) {
 		stylesheetById[skin.id] = link;
 		link.setAttribute('data-skin-stylesheet', skin.id);
@@ -163,26 +162,31 @@
 		}
 	}
 
-	function prepareThemeResources() {
-		skins.forEach(function(skin) {
-			if (!skin.css) {
+	function ensureSkinStylesheet(skin, isActive) {
+		if (!skin.css) {
+			return null;
+		}
+
+		if (stylesheetById[skin.id]) {
+			return stylesheetById[skin.id];
+		}
+
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.href = skin.css;
+		registerStylesheet(skin, link, isActive);
+		document.head.appendChild(link);
+
+		return link;
+	}
+
+	function preloadAssets(resources) {
+		resources.forEach(function(resource) {
+			if (preloadedAssets[resource.href]) {
 				return;
 			}
 
-			var isActive = skin.id === activeId && stylesheet && stylesheet.getAttribute('href') === skin.css;
-			var link = isActive ? stylesheet : document.createElement('link');
-
-			if (!isActive) {
-				link.rel = 'stylesheet';
-				link.media = 'not all';
-				link.href = skin.css;
-				document.head.appendChild(link);
-			}
-
-			registerStylesheet(skin, link, isActive);
-		});
-
-		themeAssets.forEach(function(resource) {
+			preloadedAssets[resource.href] = true;
 			var preload = document.createElement('link');
 			preload.rel = 'preload';
 			preload.as = resource.as;
@@ -193,6 +197,19 @@
 			}
 			document.head.appendChild(preload);
 		});
+	}
+
+	function prepareSkin(id) {
+		var skin = skinById[id];
+
+		if (!skin) {
+			return Promise.resolve();
+		}
+
+		ensureSkinStylesheet(skin, id === appliedId);
+		preloadAssets(assetsBySkin[id] || []);
+
+		return waitForStylesheet(id);
 	}
 
 	function waitForStylesheet(id) {
@@ -226,7 +243,7 @@
 	}
 
 	function activateStylesheet(skin) {
-		var nextStylesheet = skin.css ? stylesheetById[skin.id] : null;
+		var nextStylesheet = skin.css ? ensureSkinStylesheet(skin, true) : null;
 
 		if (nextStylesheet) {
 			if (stylesheet && stylesheet !== nextStylesheet) {
@@ -238,14 +255,6 @@
 			nextStylesheet.media = 'all';
 			nextStylesheet.id = 'active-skin-stylesheet';
 			stylesheet = nextStylesheet;
-			return;
-		}
-
-		if (skin.css) {
-			var fallback = ensureStylesheet();
-			fallback.disabled = false;
-			fallback.media = 'all';
-			fallback.setAttribute('href', skin.css);
 			return;
 		}
 
@@ -300,6 +309,7 @@
 		var previousId = activeId;
 		activeId = id;
 		activeMode = nextMode;
+		preloadAssets(assetsBySkin[id] || []);
 
 		if (id === previousId) {
 			if (activeTransition) {
@@ -317,12 +327,24 @@
 			// Treat unavailable motion preferences as the default animated mode.
 		}
 
-		if (!document.body || typeof document.startViewTransition !== 'function' || reduceMotion) {
+		if (!document.body) {
 			return applyNow(id, nextMode);
 		}
 
 		transitionRequest += 1;
 		var request = transitionRequest;
+
+		ensureSkinStylesheet(skin, false);
+
+		if (typeof document.startViewTransition !== 'function' || reduceMotion) {
+			waitForStylesheet(id).then(function() {
+				if (request === transitionRequest) {
+					applyNow(id, activeMode);
+				}
+			});
+			return id;
+		}
+
 		var now = Date.now();
 		var isRapidSwitch = activeTransition || now - lastChangeAt < rapidSwitchWindow;
 		lastChangeAt = now;
@@ -333,7 +355,12 @@
 			}
 
 			activeTransition = null;
-			return applyNow(id, nextMode);
+			waitForStylesheet(id).then(function() {
+				if (request === transitionRequest) {
+					applyNow(id, activeMode);
+				}
+			});
+			return id;
 		}
 
 		var useLightweightSnapshot = previousId === 'starlight';
@@ -424,8 +451,8 @@
 
 	write(window.sessionStorage, sessionKey, initialId);
 	write(window.sessionStorage, sessionModeKey, initialMode);
+	preloadAssets(sharedAssets);
 	apply(initialId, initialMode);
-	prepareThemeResources();
 
 	window.SiteSkins = {
 		all: skins.slice(),
@@ -437,6 +464,9 @@
 		},
 		getMode: function() {
 			return activeMode || root.getAttribute('data-skin-mode') || 'random';
+		},
+		prepare: function(id) {
+			return prepareSkin(id);
 		},
 		preview: function(id) {
 			if (!isValid(id)) {

@@ -351,6 +351,25 @@
 			}
 		});
 
+		// Warm only the theme a visitor is actively considering. This keeps the
+		// initial page lean without making deliberate picker changes feel delayed.
+		$skinChoices.on('pointerenter focus', function() {
+			if (skinRuntime.prepare) {
+				skinRuntime.prepare($(this).attr('data-skin-choice'));
+			}
+		});
+
+		$skinCycleButtons.on('pointerenter focus', function() {
+			if (!skinRuntime.prepare) {
+				return;
+			}
+
+			var direction = Number($(this).attr('data-skin-cycle'));
+			var activeIndex = skinIndex(skinRuntime.getActiveId());
+			var nextIndex = (activeIndex + direction + skinRuntime.all.length) % skinRuntime.all.length;
+			skinRuntime.prepare(skinRuntime.all[nextIndex].id);
+		});
+
 		$skinOptions.on('scroll', updateSkinScrollArrows);
 
 		function cycleSkin(direction) {
