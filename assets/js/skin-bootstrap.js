@@ -44,6 +44,7 @@
 	];
 	var skinById = {};
 	var activeId = '';
+	var appliedId = '';
 	var activeMode = '';
 	var persistedId = '';
 	var stylesheet = null;
@@ -257,6 +258,7 @@
 
 	function applyNow(id, mode) {
 		var skin = skinById[id];
+		var previousAppliedId = appliedId;
 
 		if (!skin) {
 			id = randomId();
@@ -272,6 +274,16 @@
 		root.style.colorScheme = skin.scheme;
 
 		activateStylesheet(skin);
+		appliedId = id;
+
+		if (previousAppliedId && previousAppliedId !== id) {
+			document.dispatchEvent(new CustomEvent('site-skin-change', {
+				detail: {
+					previousId: previousAppliedId,
+					activeId: id
+				}
+			}));
+		}
 
 		return id;
 	}

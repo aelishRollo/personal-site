@@ -476,14 +476,25 @@
 		});
 	}
 
-	// Home splash text: load one adapted quote and allow quick dismissal.
+	// Home personality: load one adapted quote and refresh both playful lines
+	// together when either is activated or the active theme changes.
 	var isHome = $body.hasClass('page-home');
 	var splash = document.getElementById('hero-splash');
 	var splashText = document.getElementById('hero-splash-text');
+	var sillyTitle = document.getElementById('hero-silly-title');
+	var splashQuotes = [];
 	var splashFitRaf = null;
 
-	function pickRandom(items) {
-		return items[Math.floor(Math.random() * items.length)];
+	function pickRandom(items, currentItem) {
+		var choices = items.filter(function(item) {
+			return item !== currentItem;
+		});
+
+		if (!choices.length) {
+			choices = items;
+		}
+
+		return choices[Math.floor(Math.random() * choices.length)];
 	}
 
 	function fitSplashText() {
@@ -533,20 +544,31 @@
 		});
 	}
 
-	function reloadPage() {
-		window.location.reload();
+	function refreshHomePersonality() {
+		if (!isHome) {
+			return;
+		}
+
+		if (typeof window.refreshAlecSillyTitle === 'function') {
+			window.refreshAlecSillyTitle(sillyTitle);
+		}
+
+		if (splashText && splashQuotes.length) {
+			splashText.textContent = pickRandom(splashQuotes, splashText.textContent);
+			scheduleSplashFit();
+		}
 	}
 
-	function reloadPageFromKey(event) {
+	function refreshHomePersonalityFromKey(event) {
 		if (event.key !== 'Enter' && event.key !== ' ') {
 			return;
 		}
 
 		event.preventDefault();
-		reloadPage();
+		refreshHomePersonality();
 	}
 
-	function makeReloadTrigger(element, label) {
+	function makePersonalityRefreshTrigger(element, label) {
 		if (!element) {
 			return;
 		}
@@ -556,16 +578,17 @@
 		element.setAttribute('tabindex', '0');
 		element.setAttribute('aria-label', label);
 
-		element.addEventListener('click', reloadPage);
-		element.addEventListener('keydown', reloadPageFromKey);
+		element.addEventListener('click', refreshHomePersonality);
+		element.addEventListener('keydown', refreshHomePersonalityFromKey);
 	}
 
 	if (isHome) {
-		makeReloadTrigger(document.getElementById('hero-silly-title'), 'Reload for another silly hero title');
+		makePersonalityRefreshTrigger(sillyTitle, 'Show another silly hero title and Jeff Dean quote');
+		document.addEventListener('site-skin-change', refreshHomePersonality);
 	}
 
 	if (isHome && splash && splashText) {
-		makeReloadTrigger(splashText, 'Reload for another splash quote');
+		makePersonalityRefreshTrigger(splashText, 'Show another Jeff Dean quote and silly hero title');
 		splash.hidden = false;
 		scheduleSplashFit();
 
@@ -577,12 +600,12 @@
 				return response.json();
 			})
 			.then(function(data) {
-				var quotes = data && Array.isArray(data.quotes) ? data.quotes : [];
-				if (!quotes.length) {
+				splashQuotes = data && Array.isArray(data.quotes) ? data.quotes : [];
+				if (!splashQuotes.length) {
 					return;
 				}
 
-				splashText.textContent = pickRandom(quotes);
+				splashText.textContent = pickRandom(splashQuotes, splashText.textContent);
 				splash.hidden = false;
 				scheduleSplashFit();
 			})

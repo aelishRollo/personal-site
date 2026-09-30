@@ -66,18 +66,25 @@
 		'100% Organic'
 	];
 
-	function pickRandom(items) {
+	function pickRandom(items, currentItem) {
 		var index;
+		var choices = items.filter(function(item) {
+			return item !== currentItem;
+		});
+
+		if (!choices.length) {
+			choices = items;
+		}
 
 		if (window.crypto && window.crypto.getRandomValues) {
 			var randomValues = new Uint32Array(1);
 			window.crypto.getRandomValues(randomValues);
-			index = randomValues[0] % items.length;
+			index = randomValues[0] % choices.length;
 		} else {
-			index = Math.floor(Math.random() * items.length);
+			index = Math.floor(Math.random() * choices.length);
 		}
 
-		return items[index];
+		return choices[index];
 	}
 
 	function wordCount(text) {
@@ -102,5 +109,17 @@
 		var remainder = escapeHtml(title.slice(1));
 
 		return '<span class="' + classes + '" id="hero-silly-title"><span class="hero-title-initial">' + initial + '</span>' + remainder + '.</span>';
+	};
+
+	window.refreshAlecSillyTitle = function(element) {
+		if (!element) {
+			return '';
+		}
+
+		selectedTitle = pickRandom(titles, selectedTitle);
+		element.classList.toggle('silly-title-long', wordCount(selectedTitle) > 4);
+		element.innerHTML = '<span class="hero-title-initial">' + escapeHtml(selectedTitle.charAt(0)) + '</span>' + escapeHtml(selectedTitle.slice(1)) + '.';
+
+		return selectedTitle;
 	};
 })(window);
