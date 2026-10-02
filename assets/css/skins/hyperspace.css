@@ -1,7 +1,7 @@
 /*
 	Hyperspace
 	A recursive rainbow tunnel built from layered conic and radial geometry.
-	The site layout stays fixed while compositor-friendly decorative layers move.
+	The site layout stays fixed while its recursive backdrop moves and its content chambers shift color.
 */
 
 html[data-skin="hyperspace"] {
@@ -227,13 +227,14 @@ html[data-skin="hyperspace"] .page-section > .site-shell {
 	border: 2px solid transparent;
 	border-color: rgba(255, 255, 255, 0.72) !important;
 	border-radius: clamp(1rem, 2.5vw, 2rem);
-	background: #07020f !important;
+	background-color: #720052;
 	box-shadow:
 		inset 0 1px 0 rgba(255, 255, 255, 0.15),
 		inset 0 0 60px rgba(88, 117, 255, 0.09),
 		0 1.7rem 4.5rem rgba(0, 0, 0, 0.52),
 		0 0 34px rgba(255, 56, 221, 0.18);
 	color: #f9f4fc !important;
+	animation: hyperspace-panel-color 1.45s linear infinite;
 }
 
 html[data-skin="hyperspace"] .page-hero > .site-shell > *,
@@ -259,39 +260,21 @@ html[data-skin="hyperspace"] .features {
 	color: #f9f4fc !important;
 }
 
-/* Fast moving chroma lives behind the content, so copy and photos stay readable. */
+/* The chamber itself changes solid color; there is no animated graphic inside it. */
 html[data-skin="hyperspace"] .page-hero > .site-shell::before,
 html[data-skin="hyperspace"] .page-section > .site-shell::before {
-	content: "";
-	position: absolute;
-	inset: -65%;
-	z-index: 0;
-	border-radius: 42% 58% 46% 54%;
-	background:
-		radial-gradient(circle at 26% 24%, #ff00bf 0 10%, transparent 33%),
-		radial-gradient(circle at 76% 30%, #00d9ff 0 12%, transparent 36%),
-		radial-gradient(circle at 67% 78%, #65ff00 0 11%, transparent 34%),
-		radial-gradient(circle at 22% 72%, #ff6a00 0 9%, transparent 32%),
-		conic-gradient(from 0deg, #ff00c8, #ff6a00, #f4ff00, #00ff9d, #00d9ff, #6f3cff, #ff00c8);
-	mix-blend-mode: normal;
-	opacity: 1;
-	filter: brightness(0.46) saturate(2.1) contrast(1.3);
-	pointer-events: none;
-	transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
-	transform-origin: center;
-	will-change: transform, opacity;
-	animation: hyperspace-panel-chroma 2.25s linear infinite;
+	content: none;
 }
 
-html[data-skin="hyperspace"] .page-section:nth-of-type(2) > .site-shell::before {
-	animation-duration: 2.65s;
-	animation-delay: -1.15s;
+html[data-skin="hyperspace"] .page-section:nth-of-type(3n + 2) > .site-shell {
+	animation-duration: 1.7s;
+	animation-delay: -0.9s;
 	animation-direction: reverse;
 }
 
-html[data-skin="hyperspace"] .page-section:nth-of-type(3) > .site-shell::before {
-	animation-duration: 1.85s;
-	animation-delay: -0.7s;
+html[data-skin="hyperspace"] .page-section:nth-of-type(3n) > .site-shell {
+	animation-duration: 1.2s;
+	animation-delay: -0.55s;
 }
 
 html[data-skin="hyperspace"] .page-hero > .site-shell::after,
@@ -602,21 +585,27 @@ html[data-skin="hyperspace"] .skin-picker-toggle-label {
 	text-shadow: 0 0 10px rgba(255, 56, 221, 0.4);
 }
 
-@keyframes hyperspace-panel-chroma {
+@keyframes hyperspace-panel-color {
 	0% {
-		transform: translate3d(-3%, -2%, 0) rotate(0deg) scale(1);
+		background-color: #720052;
 	}
-	25% {
-		transform: translate3d(3%, -4%, 0) rotate(92deg) scale(1.08);
+	16.667% {
+		background-color: #7a2000;
+	}
+	33.333% {
+		background-color: #505c00;
 	}
 	50% {
-		transform: translate3d(4%, 3%, 0) rotate(184deg) scale(1.14);
+		background-color: #00613c;
 	}
-	75% {
-		transform: translate3d(-4%, 4%, 0) rotate(274deg) scale(1.06);
+	66.667% {
+		background-color: #005c70;
+	}
+	83.333% {
+		background-color: #34207f;
 	}
 	100% {
-		transform: translate3d(-3%, -2%, 0) rotate(360deg) scale(1);
+		background-color: #720052;
 	}
 }
 
@@ -668,12 +657,6 @@ html[data-skin="hyperspace"] .skin-picker-toggle-label {
 		margin-block: 0.75rem;
 		padding: 3.1rem 1rem 1.5rem;
 		border-radius: 1rem;
-	}
-
-	html[data-skin="hyperspace"] .page-hero > .site-shell::before,
-	html[data-skin="hyperspace"] .page-section > .site-shell::before {
-		inset: -80%;
-		width: auto;
 	}
 
 	html[data-skin="hyperspace"] .page-hero > .site-shell::after,
