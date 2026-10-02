@@ -5,8 +5,10 @@
   "description": "Validation tooling for the Alec Rollison static portfolio",
   "scripts": {
     "serve": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "site:sync": "python3 scripts/sync_shared_html.py",
+    "site:check": "python3 scripts/sync_shared_html.py --check",
     "test": "npm run test:resources && npm run test:browser && npm run test:a11y && npm run test:performance",
-    "test:resources": "python3 scripts/validate_resources.py && python3 -m json.tool assets/data/alec-splash-quotes.json > /dev/null && python3 -m json.tool assets/data/fridge-poetry-words.json > /dev/null",
+    "test:resources": "npm run site:check && python3 scripts/validate_resources.py && python3 -m json.tool assets/data/alec-splash-quotes.json > /dev/null && python3 -m json.tool assets/data/fridge-poetry-words.json > /dev/null",
     "test:browser": "playwright test tests/browser",
     "test:a11y": "playwright test tests/accessibility --project=chromium",
     "test:performance": "node scripts/run_lighthouse.cjs"

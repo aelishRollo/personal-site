@@ -40,6 +40,7 @@ CSS_IMPORT_PATTERN = re.compile(
     r"@import\s+(?!url\()(['\"])(.*?)\1", re.IGNORECASE
 )
 CSS_COMMENT_PATTERN = re.compile(r"/\*.*?\*/", re.DOTALL)
+MANUAL_CACHE_VERSION = "?v="
 
 
 def is_local_reference(value: str) -> bool:
@@ -160,13 +161,27 @@ def validate_css(css_files: list[Path], failures: list[str]) -> int:
     return reference_count
 
 
+def validate_stable_asset_urls(source_files: list[Path], failures: list[str]) -> None:
+    """Keep cache invalidation in HTTP semantics instead of URL maintenance."""
+    for source_file in source_files:
+        contents = source_file.read_text(encoding="utf-8", errors="replace")
+        for line_number, line in enumerate(contents.splitlines(), start=1):
+            if MANUAL_CACHE_VERSION in line:
+                failures.append(
+                    f"{source_file.relative_to(ROOT)}:{line_number}: "
+                    f"manual cache-version query found; use the stable asset URL"
+                )
+
+
 def main() -> int:
     html_files = sorted(ROOT.glob("*.html"))
     css_files = sorted(CSS_ROOT.rglob("*.css"))
+    js_files = sorted((ROOT / "assets" / "js").glob("*.js"))
     failures: list[str] = []
 
     html_references = validate_html(html_files, failures)
     css_references = validate_css(css_files, failures)
+    validate_stable_asset_urls(html_files + css_files + js_files, failures)
 
     if failures:
         print("Resource validation failed:", file=sys.stderr)

@@ -31,7 +31,7 @@ html[data-skin="midnight-aurora-glass"] {
 	--line-1: rgba(206, 240, 255, 0.22);
 	--accent-1: #60f7ff;
 	--accent-2: #ff4fc8;
-	--aurora-image: url("../../images/midnight-aurora-glass.webp?v=midnight-aurora-glass-1");
+	--aurora-image: url("../../images/midnight-aurora-glass.webp");
 	--aurora-spectrum: linear-gradient(110deg, #44f7ff, #7475ff 18%, #c85cff 37%, #ff4fb8 55%, #ffd95c 72%, #70ff9b 87%, #44f7ff);
 	color-scheme: dark;
 	overflow-x: clip;
