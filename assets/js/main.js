@@ -87,6 +87,7 @@
 			'crystal-prism': 'Refract an idea',
 			'midnight-aurora-glass': 'Catch the spectrum',
 			'starlight': 'Open a channel',
+			'hyperspace': 'Open the portal',
 			'recursive-portal': 'Enter the conversation',
 			'split-duality': 'Meet in the middle',
 			'card-deck-stack': 'Pick a card',
