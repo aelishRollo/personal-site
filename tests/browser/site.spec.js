@@ -84,6 +84,17 @@ test('every registered theme stylesheet loads and can be applied', async ({ page
   expect(failures).toEqual([]);
 });
 
+test('fridge board reserves its layout before the component upgrades', async ({ page }) => {
+  await page.route('**/assets/js/fridge-poetry.js*', (route) => route.abort('blockedbyclient'));
+  await page.goto('/fridge-poetry.html?theme=portfolio-dark', { waitUntil: 'domcontentloaded' });
+
+  const board = page.locator('fridge-poetry-board');
+  await expect(board).toBeVisible();
+  await expect
+    .poll(() => board.evaluate((element) => element.getBoundingClientRect().height))
+    .toBeGreaterThan(700);
+});
+
 test.describe('mobile navigation', () => {
   test.use({ viewport: { width: 390, height: 844 } });
 

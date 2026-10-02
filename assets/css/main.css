@@ -4301,6 +4301,25 @@ body.page-fridge .page-section .site-shell {
 	max-width: none;
 }
 
+/*
+	Reserve the web component's rendered footprint while its script downloads.
+	Without this, the following section can jump almost a full viewport when the
+	custom element upgrades on throttled connections.
+*/
+fridge-poetry-board {
+	display: block;
+}
+
+fridge-poetry-board:not(:defined) {
+	min-height: calc(min(72vh, 680px) + 14rem);
+}
+
+@media screen and (max-width: 760px) {
+	fridge-poetry-board:not(:defined) {
+		min-height: calc(max(68vh, 360px) + 36.25rem);
+	}
+}
+
 .site-header {
 	position: sticky;
 	top: 0;
