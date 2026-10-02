@@ -3592,9 +3592,9 @@ section#three .container .features article .inner {
 	--primary-fg: #141414;
 	--secondary: #9EDFD1;
 	--secondary-fg: #141414;
-	--accent: #007A78;
+	--accent: #006E6C;
 	--accent-fg: #ffffff;
-	--link: #007A78;
+	--link: #006E6C;
 	--warning: #D93636;
 	--header-bg: #123B5D;
 	--header-fg: #F7F4ED;
@@ -4301,6 +4301,25 @@ body.page-fridge .page-section .site-shell {
 	max-width: none;
 }
 
+/*
+	Reserve the web component's rendered footprint while its script downloads.
+	Without this, the following section can jump almost a full viewport when the
+	custom element upgrades on throttled connections.
+*/
+fridge-poetry-board {
+	display: block;
+}
+
+fridge-poetry-board:not(:defined) {
+	min-height: calc(min(72vh, 680px) + 14rem);
+}
+
+@media screen and (max-width: 760px) {
+	fridge-poetry-board:not(:defined) {
+		min-height: calc(max(68vh, 360px) + 36.25rem);
+	}
+}
+
 .site-header {
 	position: sticky;
 	top: 0;
@@ -4856,11 +4875,16 @@ html[data-theme="light"] .work-tech-item dt {
 .splash-attribution {
 	font-size: 0.72rem;
 	line-height: 1.25;
-	opacity: 0.72;
 }
 
 .splash-attribution a {
 	border-bottom: 0;
+	text-decoration: underline;
+	text-underline-offset: 0.15em;
+}
+
+.site-footer .splash-attribution a {
+	color: inherit !important;
 }
 
 .social-inline {
@@ -5718,9 +5742,9 @@ html[data-theme="light"] {
 	--primary-fg: #141414;
 	--secondary: #9EDFD1;
 	--secondary-fg: #141414;
-	--accent: #007A78;
+	--accent: #006E6C;
 	--accent-fg: #ffffff;
-	--link: #007A78;
+	--link: #006E6C;
 	--warning: #D93636;
 	--header-bg: #123B5D;
 	--header-fg: #F7F4ED;

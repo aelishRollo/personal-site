@@ -36,7 +36,7 @@ html[data-skin="psychedelic-scrapbook"] {
 
 html[data-skin="psychedelic-scrapbook"] body {
 	background-color: var(--background) !important;
-	background-image: url("../../images/corkboard-texture.webp?v=corkboard-1") !important;
+	background-image: url("../../images/corkboard-texture.webp") !important;
 	background-position: 0 0 !important;
 	background-repeat: repeat !important;
 	background-size: 720px 720px !important;
