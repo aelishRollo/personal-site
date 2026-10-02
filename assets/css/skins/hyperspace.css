@@ -1,0 +1,719 @@
+/*
+	Hyperspace
+	A recursive rainbow tunnel built from layered conic and radial geometry.
+	The site layout stays fixed while its recursive backdrop moves and its content chambers shift color.
+*/
+
+html[data-skin="hyperspace"] {
+	--background: #07020f;
+	--foreground: #fff9ff;
+	--muted-bg: rgba(17, 7, 30, 0.94);
+	--card-bg: rgba(13, 5, 25, 0.94);
+	--border: rgba(255, 255, 255, 0.3);
+	--primary: #ff38dd;
+	--primary-fg: #120419;
+	--secondary: #32f6ff;
+	--secondary-fg: #041418;
+	--accent: #d9ff3f;
+	--accent-fg: #0b1002;
+	--link: #72faff;
+	--warning: #ffcf35;
+	--header-bg: rgba(7, 2, 15, 0.96);
+	--header-fg: #fff9ff;
+	--footer-bg: rgba(6, 2, 12, 0.96);
+	--footer-fg: #e7dcef;
+	--hyper-ink: #fff9ff;
+	--hyper-muted: #ddd0e9;
+	--hyper-black: #07020f;
+	--hyper-panel: rgba(12, 4, 23, 0.94);
+	--hyper-pink: #ff38dd;
+	--hyper-orange: #ff781f;
+	--hyper-yellow: #f6ff3d;
+	--hyper-green: #35ff91;
+	--hyper-cyan: #32f6ff;
+	--hyper-blue: #5875ff;
+	--hyper-violet: #a64dff;
+	color-scheme: dark;
+	overflow-x: clip;
+}
+
+html[data-skin="hyperspace"] body {
+	position: relative;
+	isolation: isolate;
+	background:
+		radial-gradient(circle at 50% 42%, rgba(19, 4, 35, 0.26) 0 12%, rgba(7, 2, 15, 0.7) 52%, #050109 100%),
+		#050109 !important;
+	color: var(--hyper-ink) !important;
+	font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+	overflow-x: hidden;
+}
+
+/* Deep recursive lattice. The gradient is static; only its layer transforms. */
+html[data-skin="hyperspace"] body::before {
+	content: "";
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	z-index: -2;
+	width: 150vmax;
+	aspect-ratio: 1;
+	border-radius: 46%;
+	background:
+		repeating-conic-gradient(
+			from 0deg,
+			#ff38dd 0deg 4deg,
+			#ff781f 4deg 8deg,
+			#f6ff3d 8deg 12deg,
+			#35ff91 12deg 16deg,
+			#32f6ff 16deg 20deg,
+			#5875ff 20deg 24deg,
+			#a64dff 24deg 28deg,
+			#ff38dd 28deg 32deg
+		);
+	-webkit-mask-image: repeating-radial-gradient(circle at center, #000 0 3.2%, transparent 3.8% 6.2%, #000 7% 9.8%);
+	mask-image: repeating-radial-gradient(circle at center, #000 0 3.2%, transparent 3.8% 6.2%, #000 7% 9.8%);
+	mix-blend-mode: screen;
+	opacity: 0.48;
+	filter: saturate(1.35) contrast(1.08);
+	pointer-events: none;
+	transform: translate3d(-50%, -50%, 0) rotate(0deg) scaleX(1) scaleY(0.94);
+	will-change: transform, opacity;
+	animation: hyperspace-deep-orbit 28s linear infinite;
+}
+
+/* Counter-rotating close geometry makes the tunnel appear to fold through itself. */
+html[data-skin="hyperspace"] body::after {
+	content: "";
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	z-index: -1;
+	width: 104vmax;
+	aspect-ratio: 1;
+	border-radius: 42% 58% 48% 52%;
+	background:
+		radial-gradient(circle at center, transparent 0 11%, rgba(255, 255, 255, 0.12) 11.4% 11.8%, transparent 12.3% 21%, rgba(255, 255, 255, 0.08) 21.4% 21.8%, transparent 22.3% 100%),
+		repeating-conic-gradient(
+			from 15deg,
+			rgba(255, 56, 221, 0.9) 0deg 3deg,
+			transparent 3deg 7deg,
+			rgba(50, 246, 255, 0.86) 7deg 10deg,
+			transparent 10deg 15deg,
+			rgba(246, 255, 61, 0.82) 15deg 18deg,
+			transparent 18deg 24deg
+		);
+	-webkit-mask-image: radial-gradient(circle at center, transparent 0 8%, #000 10% 72%, transparent 78%);
+	mask-image: radial-gradient(circle at center, transparent 0 8%, #000 10% 72%, transparent 78%);
+	mix-blend-mode: screen;
+	opacity: 0.38;
+	filter: saturate(1.5) blur(0.5px);
+	pointer-events: none;
+	transform: translate3d(-50%, -50%, 0) rotate(0deg) scaleX(0.9) scaleY(1.08);
+	will-change: transform, opacity;
+	animation: hyperspace-near-orbit 19s linear infinite reverse;
+}
+
+html[data-skin="hyperspace"] body,
+html[data-skin="hyperspace"] p,
+html[data-skin="hyperspace"] li,
+html[data-skin="hyperspace"] label,
+html[data-skin="hyperspace"] .lead,
+html[data-skin="hyperspace"] .note,
+html[data-skin="hyperspace"] .footer-inner p,
+html[data-skin="hyperspace"] .social-inline a {
+	color: #f7f0fb !important;
+}
+
+html[data-skin="hyperspace"] h1,
+html[data-skin="hyperspace"] h2,
+html[data-skin="hyperspace"] h3,
+html[data-skin="hyperspace"] h4,
+html[data-skin="hyperspace"] h5,
+html[data-skin="hyperspace"] h6,
+html[data-skin="hyperspace"] strong {
+	color: #ffffff !important;
+	font-family: Inter, ui-sans-serif, system-ui, sans-serif !important;
+	font-weight: 850;
+	letter-spacing: -0.045em;
+}
+
+html[data-skin="hyperspace"] a {
+	color: var(--hyper-cyan) !important;
+	text-decoration-color: rgba(255, 56, 221, 0.78);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.22em;
+	transition-property: background-color, border-color, box-shadow, transform, text-decoration-color !important;
+}
+
+html[data-skin="hyperspace"] a:hover {
+	color: var(--hyper-yellow) !important;
+}
+
+html[data-skin="hyperspace"] .site-header {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.16) !important;
+	background:
+		linear-gradient(90deg, rgba(255, 56, 221, 0.08), transparent 28%, transparent 72%, rgba(50, 246, 255, 0.08)),
+		rgba(7, 2, 15, 0.96) !important;
+	box-shadow: inset 0 -1px 0 rgba(50, 246, 255, 0.12), 0 14px 40px rgba(0, 0, 0, 0.42) !important;
+	-webkit-backdrop-filter: none !important;
+	backdrop-filter: none !important;
+	color: #fff9ff !important;
+}
+
+html[data-skin="hyperspace"] .brand-mark {
+	border: 2px solid transparent;
+	border-radius: 38% 62% 52% 48% !important;
+	background:
+		linear-gradient(#0b0315, #0b0315) padding-box,
+		conic-gradient(from 30deg, var(--hyper-pink), var(--hyper-yellow), var(--hyper-green), var(--hyper-cyan), var(--hyper-violet), var(--hyper-pink)) border-box !important;
+	box-shadow: 0 0 14px rgba(255, 56, 221, 0.42), 0 0 28px rgba(50, 246, 255, 0.28);
+	color: var(--hyper-yellow) !important;
+	text-shadow: 0 0 8px var(--hyper-cyan);
+	transform: rotate(-5deg);
+}
+
+html[data-skin="hyperspace"] .brand-text,
+html[data-skin="hyperspace"] .site-nav a,
+html[data-skin="hyperspace"] .nav-toggle {
+	color: #dffcff !important;
+	font-weight: 800;
+	letter-spacing: 0.075em;
+	text-transform: uppercase;
+}
+
+html[data-skin="hyperspace"] .site-nav a {
+	border: 1px solid transparent;
+	border-radius: 999px;
+}
+
+html[data-skin="hyperspace"] .site-nav a:hover,
+html[data-skin="hyperspace"] .site-nav a[aria-current="page"] {
+	border-color: rgba(50, 246, 255, 0.42);
+	background: linear-gradient(110deg, rgba(255, 56, 221, 0.16), rgba(50, 246, 255, 0.12)) !important;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 0 20px rgba(166, 77, 255, 0.18);
+}
+
+html[data-skin="hyperspace"] body .site-nav a:hover,
+html[data-skin="hyperspace"] body .site-nav a[aria-current="page"],
+html[data-skin="hyperspace"] body .site-nav .nav-cta:hover {
+	color: #ffffff !important;
+}
+
+html[data-skin="hyperspace"] .site-nav .nav-cta,
+html[data-skin="hyperspace"] .nav-toggle {
+	border-color: rgba(246, 255, 61, 0.58) !important;
+	background: linear-gradient(110deg, rgba(246, 255, 61, 0.14), rgba(255, 56, 221, 0.13)) !important;
+}
+
+html[data-skin="hyperspace"] .page-hero,
+html[data-skin="hyperspace"] .page-section,
+html[data-skin="hyperspace"] .section-soft,
+html[data-skin="hyperspace"] .section-portrait,
+html[data-skin="hyperspace"] .profile-section,
+html[data-skin="hyperspace"] .section-cta {
+	border: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+/* Chroma chambers keep their content readable above the moving lattice. */
+html[data-skin="hyperspace"] .page-hero > .site-shell,
+html[data-skin="hyperspace"] .page-section > .site-shell {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	margin-block: clamp(1rem, 2.6vw, 2.35rem);
+	padding: clamp(2.35rem, 5vw, 4.8rem) clamp(1.2rem, 4.5vw, 4.35rem);
+	border: 2px solid transparent;
+	border-color: rgba(255, 255, 255, 0.72) !important;
+	border-radius: clamp(1rem, 2.5vw, 2rem);
+	background-color: #720052;
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.15),
+		inset 0 0 60px rgba(88, 117, 255, 0.09),
+		0 1.7rem 4.5rem rgba(0, 0, 0, 0.52),
+		0 0 34px rgba(255, 56, 221, 0.18);
+	color: #f9f4fc !important;
+	animation: hyperspace-panel-color 1.45s linear infinite;
+}
+
+html[data-skin="hyperspace"] .page-hero > .site-shell > *,
+html[data-skin="hyperspace"] .page-section > .site-shell > * {
+	position: relative;
+	z-index: 1;
+}
+
+html[data-skin="hyperspace"] .page-hero > .site-shell :is(p, li, label, h2, h3, h4, h5, h6, strong, dt, dd, input, select, textarea, .hero-splash-text, a:not(.button):not(.skin-contact-charm)),
+html[data-skin="hyperspace"] .page-section > .site-shell :is(p, li, label, h2, h3, h4, h5, h6, strong, dt, dd, input, select, textarea, .hero-splash-text, a:not(.button):not(.skin-contact-charm)) {
+	color: inherit !important;
+}
+
+html[data-skin="hyperspace"] :is(.quest-grid, .info-grid) {
+	color: #f9f4fc !important;
+}
+
+html[data-skin="hyperspace"] .work-tech-list {
+	color: #f9f4fc !important;
+}
+
+html[data-skin="hyperspace"] .features {
+	color: #f9f4fc !important;
+}
+
+/* The chamber itself changes solid color; there is no animated graphic inside it. */
+html[data-skin="hyperspace"] .page-hero > .site-shell::before,
+html[data-skin="hyperspace"] .page-section > .site-shell::before {
+	content: none;
+}
+
+html[data-skin="hyperspace"] .page-section:nth-of-type(3n + 2) > .site-shell {
+	animation-duration: 1.7s;
+	animation-delay: -0.9s;
+	animation-direction: reverse;
+}
+
+html[data-skin="hyperspace"] .page-section:nth-of-type(3n) > .site-shell {
+	animation-duration: 1.2s;
+	animation-delay: -0.55s;
+}
+
+html[data-skin="hyperspace"] .page-hero > .site-shell::after,
+html[data-skin="hyperspace"] .page-section > .site-shell::after {
+	content: "FRACTAL NAVIGATION  //  HYPERSPACE";
+	position: absolute;
+	top: 0.9rem;
+	right: 1.35rem;
+	z-index: 2;
+	color: rgba(229, 217, 242, 0.64);
+	font: 750 0.56rem/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	letter-spacing: 0.15em;
+	pointer-events: none;
+}
+
+html[data-skin="hyperspace"] .page-section:nth-of-type(2) > .site-shell::after {
+	content: "RECURSION DEPTH  //  02";
+}
+
+html[data-skin="hyperspace"] .page-section:nth-of-type(3) > .site-shell::after {
+	content: "SPECTRAL FOLD  //  03";
+}
+
+html[data-skin="hyperspace"] .page-hero h1,
+html[data-skin="hyperspace"] body.page-home .page-hero h1 {
+	background: linear-gradient(108deg, #ffffff 0%, #ff68e7 16%, #ffaf45 31%, #f6ff3d 43%, #55ff9c 56%, #59f7ff 70%, #8c9bff 83%, #e772ff 96%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent !important;
+	-webkit-text-fill-color: transparent;
+	letter-spacing: -0.068em;
+	line-height: 0.91;
+	text-shadow: 0 12px 45px rgba(166, 77, 255, 0.24);
+}
+
+html[data-skin="hyperspace"] .page-hero h1 .hero-title-role,
+html[data-skin="hyperspace"] .page-hero h1 .hero-title-initial,
+html[data-skin="hyperspace"] .metallic-pearl-text {
+	background: inherit;
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent !important;
+	-webkit-text-fill-color: transparent;
+}
+
+html[data-skin="hyperspace"] .eyebrow {
+	border: 1px solid rgba(50, 246, 255, 0.4) !important;
+	border-radius: 999px !important;
+	background: rgba(11, 3, 21, 0.88) !important;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.13), 0 0 20px rgba(255, 56, 221, 0.14);
+	color: #ffe56f !important;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+	font-weight: 800;
+	letter-spacing: 0.13em;
+}
+
+html[data-skin="hyperspace"] .eyebrow::before {
+	content: "◇";
+	margin-right: 0.45rem;
+	color: var(--hyper-yellow);
+	text-shadow: 0 0 9px var(--hyper-pink);
+}
+
+html[data-skin="hyperspace"] .panel-card,
+html[data-skin="hyperspace"] .features article,
+html[data-skin="hyperspace"] .contact-rail,
+html[data-skin="hyperspace"] ul.feature-icons li,
+html[data-skin="hyperspace"] .work-overview,
+html[data-skin="hyperspace"] .work-tech-item,
+html[data-skin="hyperspace"] .profile-chip,
+html[data-skin="hyperspace"] .profile-note,
+html[data-skin="hyperspace"] .contact-panel {
+	position: relative;
+	overflow: hidden;
+	border: 1px solid transparent !important;
+	border-color: currentColor !important;
+	border-radius: 1rem !important;
+	background: linear-gradient(140deg, var(--hyper-panel), rgba(8, 3, 17, 0.95)) !important;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1rem 2.7rem rgba(0, 0, 0, 0.38) !important;
+	transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+html[data-skin="hyperspace"] .panel-card:hover,
+html[data-skin="hyperspace"] .features article:hover,
+html[data-skin="hyperspace"] .work-tech-item:hover {
+	transform: translateY(-3px) rotate(-0.35deg);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 1.2rem 3rem rgba(0, 0, 0, 0.44), 0 0 25px rgba(50, 246, 255, 0.11) !important;
+}
+
+html[data-skin="hyperspace"] .quest-card:nth-child(2),
+html[data-skin="hyperspace"] .features article:nth-child(3n + 2),
+html[data-skin="hyperspace"] .work-tech-item:nth-child(3n + 2) {
+	background:
+		linear-gradient(140deg, rgba(15, 7, 34, 0.97), rgba(8, 3, 17, 0.95)) !important;
+}
+
+html[data-skin="hyperspace"] .quest-card:nth-child(3),
+html[data-skin="hyperspace"] .features article:nth-child(3n),
+html[data-skin="hyperspace"] .work-tech-item:nth-child(3n) {
+	background:
+		linear-gradient(140deg, rgba(18, 8, 27, 0.97), rgba(8, 3, 17, 0.95)) !important;
+}
+
+html[data-skin="hyperspace"] .hero-headshot,
+html[data-skin="hyperspace"] .portrait-panel img,
+html[data-skin="hyperspace"] .profile-photo,
+html[data-skin="hyperspace"] .features article .image img,
+html[data-skin="hyperspace"] .image.fit {
+	border: 2px solid #ff8bea !important;
+	border-radius: 1rem !important;
+	box-shadow:
+		0 0 0 4px rgba(255, 56, 221, 0.36),
+		0 0 0 7px rgba(50, 246, 255, 0.23),
+		0 1.4rem 3.2rem rgba(0, 0, 0, 0.52),
+		0 0 35px rgba(166, 77, 255, 0.22) !important;
+	filter: saturate(1.1) contrast(1.04) !important;
+}
+
+html[data-skin="hyperspace"] .hero-splash {
+	height: auto;
+	min-height: 9rem;
+	border: 1px solid transparent !important;
+	border-color: currentColor !important;
+	border-radius: 1rem !important;
+	background: linear-gradient(135deg, rgba(15, 5, 28, 0.96), rgba(7, 2, 15, 0.96)) !important;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 24px rgba(166, 77, 255, 0.14) !important;
+}
+
+html[data-skin="hyperspace"] .hero-splash .hero-splash-text {
+	height: calc(9rem - 2px);
+	min-height: calc(9rem - 2px);
+	padding: 1rem 1.1rem;
+	color: #fdf7ff !important;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+	font-weight: 720 !important;
+	line-height: 1.28 !important;
+	text-shadow: none !important;
+	animation: none !important;
+}
+
+html[data-skin="hyperspace"] .hero-splash-notice-icon {
+	color: var(--hyper-cyan) !important;
+}
+
+html[data-skin="hyperspace"] .hero-splash-close {
+	color: var(--hyper-muted) !important;
+}
+
+html[data-skin="hyperspace"] .tag-list li,
+html[data-skin="hyperspace"] .profile-chip {
+	border: 1px solid rgba(50, 246, 255, 0.35) !important;
+	border-radius: 999px !important;
+	background: linear-gradient(110deg, rgba(255, 56, 221, 0.12), rgba(50, 246, 255, 0.09)) !important;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+	color: #f8f2ff !important;
+}
+
+html[data-skin="hyperspace"] .timeline li::before {
+	background: var(--hyper-yellow) !important;
+	box-shadow: 0 0 0 5px rgba(7, 2, 15, 0.95), 0 0 18px var(--hyper-pink), 0 0 30px rgba(50, 246, 255, 0.55);
+}
+
+html[data-skin="hyperspace"] input[type="text"],
+html[data-skin="hyperspace"] input[type="password"],
+html[data-skin="hyperspace"] input[type="email"],
+html[data-skin="hyperspace"] select,
+html[data-skin="hyperspace"] textarea {
+	border: 1px solid rgba(50, 246, 255, 0.34) !important;
+	border-radius: 0.75rem !important;
+	background: rgba(7, 2, 15, 0.9) !important;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 10px 28px rgba(0, 0, 0, 0.3);
+	color: #ffffff !important;
+}
+
+html[data-skin="hyperspace"] input:focus,
+html[data-skin="hyperspace"] select:focus,
+html[data-skin="hyperspace"] textarea:focus {
+	border-color: var(--hyper-yellow) !important;
+	box-shadow: 0 0 0 3px rgba(246, 255, 61, 0.12), 0 0 28px rgba(255, 56, 221, 0.2) !important;
+}
+
+html[data-skin="hyperspace"] .button,
+html[data-skin="hyperspace"] input[type="submit"],
+html[data-skin="hyperspace"] input[type="reset"],
+html[data-skin="hyperspace"] input[type="button"],
+html[data-skin="hyperspace"] button:not([class^="skin-picker"]) {
+	border: 1px solid rgba(255, 255, 255, 0.42) !important;
+	border-radius: 999px !important;
+	background: linear-gradient(110deg, rgba(255, 56, 221, 0.28), rgba(88, 117, 255, 0.24), rgba(50, 246, 255, 0.23), rgba(246, 255, 61, 0.19)) !important;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 10px 26px rgba(0, 0, 0, 0.32);
+	color: #ffffff !important;
+	font-weight: 800;
+	letter-spacing: 0.065em;
+	text-transform: uppercase;
+	transition-property: border-color, box-shadow, transform !important;
+}
+
+html[data-skin="hyperspace"] .button.primary,
+html[data-skin="hyperspace"] input[type="submit"].primary,
+html[data-skin="hyperspace"] .contact-submit,
+html[data-skin="hyperspace"] .features article .inner span a {
+	border-color: rgba(255, 255, 255, 0.72) !important;
+	background: linear-gradient(105deg, #ff5fe5, #ffb13f 24%, #efff4f 42%, #4dff9d 59%, #48f4ff 76%, #b66aff) !important;
+	box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.62), 0 0 28px rgba(255, 56, 221, 0.2), 0 13px 30px rgba(0, 0, 0, 0.36);
+	color: #100316 !important;
+}
+
+html[data-skin="hyperspace"] body .section-cta h2 {
+	color: inherit !important;
+}
+
+html[data-skin="hyperspace"] body .section-cta p {
+	color: inherit !important;
+}
+
+html[data-skin="hyperspace"] body .section-cta .button,
+html[data-skin="hyperspace"] body .section-cta .button.primary {
+	border-color: rgba(255, 255, 255, 0.72) !important;
+	background: linear-gradient(105deg, #ff5fe5, #ffb13f 24%, #efff4f 42%, #4dff9d 59%, #48f4ff 76%, #b66aff) !important;
+	color: #100316 !important;
+}
+
+html[data-skin="hyperspace"] .button:hover,
+html[data-skin="hyperspace"] button:not([class^="skin-picker"]):hover {
+	border-color: #ffffff !important;
+	transform: translateY(-2px) scale(1.01);
+}
+
+html[data-skin="hyperspace"] .skin-contact-charm {
+	--skin-contact-rotate: -2deg;
+	min-width: 10.5rem;
+	border: 2px solid rgba(255, 255, 255, 0.72) !important;
+	border-radius: 999px;
+	background: linear-gradient(105deg, #ff50df, #ffaf3f 27%, #eaff4a 43%, #4dffa0 60%, #48f4ff 77%, #ad64ff) !important;
+	box-shadow: 0 0 24px rgba(255, 56, 221, 0.3), 0 12px 28px rgba(0, 0, 0, 0.38);
+	color: #100316 !important;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+	font-weight: 900 !important;
+}
+
+html[data-skin="hyperspace"] .skin-contact-charm::before {
+	content: "◇";
+	margin-right: 0.45rem;
+	color: #100316;
+}
+
+html[data-skin="hyperspace"] .site-footer {
+	border-top: 0 !important;
+	background: transparent !important;
+	color: var(--hyper-muted) !important;
+}
+
+html[data-skin="hyperspace"] .site-footer .site-shell {
+	margin-bottom: 1.25rem;
+	padding: 1.25rem 1.6rem;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 1rem;
+	background: rgba(7, 2, 15, 0.94);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 1rem 3rem rgba(0, 0, 0, 0.34);
+	color: #e9dfef !important;
+}
+
+html[data-skin="hyperspace"] .site-footer a,
+html[data-skin="hyperspace"] .site-footer p {
+	color: inherit !important;
+}
+
+html[data-skin="hyperspace"] .skin-picker {
+	--skin-ui-bg: rgba(7, 2, 15, 0.96);
+	--skin-ui-panel: rgba(12, 4, 23, 0.97);
+	--skin-ui-text: #fff9ff;
+	--skin-ui-muted: #d7c8e4;
+	--skin-ui-accent: var(--hyper-cyan);
+	--skin-ui-border: rgba(255, 255, 255, 0.3);
+	color: #f9f4fc !important;
+}
+
+html[data-skin="hyperspace"] .skin-picker-panel,
+html[data-skin="hyperspace"] .skin-picker-toggle,
+html[data-skin="hyperspace"] .skin-picker .skin-picker-cycle {
+	border-color: rgba(50, 246, 255, 0.42) !important;
+	background:
+		linear-gradient(140deg, rgba(18, 6, 31, 0.98), rgba(7, 2, 15, 0.97)) padding-box,
+		conic-gradient(from 0deg, var(--hyper-pink), var(--hyper-yellow), var(--hyper-cyan), var(--hyper-violet), var(--hyper-pink)) border-box !important;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.13), 0 12px 34px rgba(0, 0, 0, 0.48), 0 0 22px rgba(166, 77, 255, 0.12) !important;
+	color: var(--skin-ui-text) !important;
+	-webkit-backdrop-filter: none !important;
+	backdrop-filter: none !important;
+}
+
+html[data-skin="hyperspace"] .skin-picker .skin-picker-option {
+	border-color: rgba(255, 255, 255, 0.17) !important;
+	background: rgba(10, 3, 19, 0.92) !important;
+	color: #f7f0ff !important;
+}
+
+html[data-skin="hyperspace"] .skin-picker .skin-picker-option[aria-pressed="true"] {
+	border-color: rgba(255, 255, 255, 0.62) !important;
+	background: linear-gradient(110deg, rgba(255, 56, 221, 0.32), rgba(88, 117, 255, 0.26), rgba(50, 246, 255, 0.28)) !important;
+	color: #ffffff !important;
+}
+
+html[data-skin="hyperspace"] .skin-picker-scroll-arrow,
+html[data-skin="hyperspace"] .skin-picker-chevron,
+html[data-skin="hyperspace"] .skin-picker-current,
+html[data-skin="hyperspace"] .skin-picker-toggle-label {
+	color: var(--hyper-cyan) !important;
+	text-shadow: 0 0 10px rgba(255, 56, 221, 0.4);
+}
+
+@keyframes hyperspace-panel-color {
+	0% {
+		background-color: #720052;
+	}
+	16.667% {
+		background-color: #7a2000;
+	}
+	33.333% {
+		background-color: #505c00;
+	}
+	50% {
+		background-color: #00613c;
+	}
+	66.667% {
+		background-color: #005c70;
+	}
+	83.333% {
+		background-color: #34207f;
+	}
+	100% {
+		background-color: #720052;
+	}
+}
+
+@keyframes hyperspace-deep-orbit {
+	0% {
+		opacity: 0.38;
+		transform: translate3d(-50%, -50%, 0) rotate(0deg) scaleX(1) scaleY(0.94);
+	}
+	33% {
+		opacity: 0.53;
+		transform: translate3d(-50%, -50%, 0) rotate(120deg) scaleX(1.07) scaleY(0.9);
+	}
+	66% {
+		opacity: 0.45;
+		transform: translate3d(-50%, -50%, 0) rotate(240deg) scaleX(0.92) scaleY(1.06);
+	}
+	100% {
+		opacity: 0.38;
+		transform: translate3d(-50%, -50%, 0) rotate(360deg) scaleX(1) scaleY(0.94);
+	}
+}
+
+@keyframes hyperspace-near-orbit {
+	0% {
+		opacity: 0.24;
+		transform: translate3d(-50%, -50%, 0) rotate(0deg) scaleX(0.9) scaleY(1.08);
+	}
+	50% {
+		opacity: 0.48;
+		transform: translate3d(-50%, -50%, 0) rotate(180deg) scaleX(1.08) scaleY(0.9);
+	}
+	100% {
+		opacity: 0.24;
+		transform: translate3d(-50%, -50%, 0) rotate(360deg) scaleX(0.9) scaleY(1.08);
+	}
+}
+
+@media (max-width: 736px) {
+	html[data-skin="hyperspace"] body::before {
+		opacity: 0.38;
+	}
+
+	html[data-skin="hyperspace"] body::after {
+		opacity: 0.28;
+	}
+
+	html[data-skin="hyperspace"] .page-hero > .site-shell,
+	html[data-skin="hyperspace"] .page-section > .site-shell {
+		margin-block: 0.75rem;
+		padding: 3.1rem 1rem 1.5rem;
+		border-radius: 1rem;
+	}
+
+	html[data-skin="hyperspace"] .page-hero > .site-shell::after,
+	html[data-skin="hyperspace"] .page-section > .site-shell::after {
+		top: 1rem;
+		left: 1rem;
+		right: auto;
+		max-width: calc(100% - 2rem);
+		font-size: 0.49rem;
+		line-height: 1.3;
+	}
+
+	html[data-skin="hyperspace"] .skin-contact-charm {
+		top: 0.65rem;
+		right: 0.65rem;
+		min-width: 0;
+		max-width: 8.5rem;
+		min-height: 3rem;
+		padding: 0.65rem 0.75rem;
+		font-size: 0.58rem !important;
+	}
+}
+
+@media (prefers-contrast: more) {
+	html[data-skin="hyperspace"] .page-hero > .site-shell,
+	html[data-skin="hyperspace"] .page-section > .site-shell,
+	html[data-skin="hyperspace"] .panel-card,
+	html[data-skin="hyperspace"] .features article,
+	html[data-skin="hyperspace"] .contact-panel {
+		--hyper-panel: rgba(7, 2, 15, 0.98);
+	}
+
+	html[data-skin="hyperspace"] .page-hero > .site-shell,
+	html[data-skin="hyperspace"] .page-section > .site-shell {
+		background: rgba(4, 1, 10, 0.8) !important;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-skin="hyperspace"],
+	html[data-skin="hyperspace"] body::before,
+	html[data-skin="hyperspace"] body::after,
+	html[data-skin="hyperspace"] .page-hero > .site-shell::before,
+	html[data-skin="hyperspace"] .page-section > .site-shell::before,
+	html[data-skin="hyperspace"] .page-hero > .site-shell,
+	html[data-skin="hyperspace"] .page-section > .site-shell,
+	html[data-skin="hyperspace"] .site-footer .site-shell,
+	html[data-skin="hyperspace"] :is(p, li, label, h1, h2, h3, h4, h5, h6, strong, a, .lead, .note, .eyebrow),
+	html[data-skin="hyperspace"] :is(.panel-card, .features article, .contact-rail, ul.feature-icons li, .work-overview, .work-tech-item, .profile-chip, .profile-note, .contact-panel),
+	html[data-skin="hyperspace"] :is(.hero-headshot, .portrait-panel img, .profile-photo, .features article .image img, .image.fit, .hero-splash, .hero-splash-text, .button, input, select, textarea, .skin-contact-charm, .skin-picker) {
+		animation: none !important;
+		will-change: auto !important;
+	}
+
+	html[data-skin="hyperspace"] .panel-card,
+	html[data-skin="hyperspace"] .features article,
+	html[data-skin="hyperspace"] .work-tech-item {
+		transition: none !important;
+	}
+}

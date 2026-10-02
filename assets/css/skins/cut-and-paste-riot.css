@@ -109,6 +109,12 @@ html[data-skin="psychedelic-scrapbook"] .page-hero::after {
 	to { transform: rotate(12deg) scale(1.035); }
 }
 
+@media (prefers-reduced-motion: reduce), (update: slow) {
+	html[data-skin-id="cut-and-paste-riot"] .page-hero::before {
+		animation: none !important;
+	}
+}
+
 html[data-skin="psychedelic-scrapbook"] .page-hero h1,
 html[data-skin="psychedelic-scrapbook"] body.page-home .page-hero h1 {
 	display: grid;
