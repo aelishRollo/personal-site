@@ -45,7 +45,11 @@ for (const sitePage of pages) {
 
 test('open theme picker has no serious WCAG A/AA violations', async ({ page }) => {
   await openSitePage(page, '/index.html?theme=portfolio-light');
-  await page.locator('.skin-picker-toggle').click();
+  const pickerToggle = page.locator('.skin-picker-toggle');
+  await pickerToggle.click();
   await expect(page.locator('#skin-picker-panel')).toBeVisible();
+  await pickerToggle.evaluate((element) =>
+    Promise.all(element.getAnimations().map((animation) => animation.finished))
+  );
   await expectNoImportantViolations(page);
 });
