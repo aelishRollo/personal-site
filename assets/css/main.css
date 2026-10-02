@@ -3592,9 +3592,9 @@ section#three .container .features article .inner {
 	--primary-fg: #141414;
 	--secondary: #9EDFD1;
 	--secondary-fg: #141414;
-	--accent: #007A78;
+	--accent: #006E6C;
 	--accent-fg: #ffffff;
-	--link: #007A78;
+	--link: #006E6C;
 	--warning: #D93636;
 	--header-bg: #123B5D;
 	--header-fg: #F7F4ED;
@@ -4856,11 +4856,16 @@ html[data-theme="light"] .work-tech-item dt {
 .splash-attribution {
 	font-size: 0.72rem;
 	line-height: 1.25;
-	opacity: 0.72;
 }
 
 .splash-attribution a {
 	border-bottom: 0;
+	text-decoration: underline;
+	text-underline-offset: 0.15em;
+}
+
+.site-footer .splash-attribution a {
+	color: inherit !important;
 }
 
 .social-inline {
@@ -5718,9 +5723,9 @@ html[data-theme="light"] {
 	--primary-fg: #141414;
 	--secondary: #9EDFD1;
 	--secondary-fg: #141414;
-	--accent: #007A78;
+	--accent: #006E6C;
 	--accent-fg: #ffffff;
-	--link: #007A78;
+	--link: #006E6C;
 	--warning: #D93636;
 	--header-bg: #123B5D;
 	--header-fg: #F7F4ED;

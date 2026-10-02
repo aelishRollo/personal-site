@@ -51,7 +51,7 @@ The project is no longer a stock HTML5 UP template. It has been reshaped into a 
 
 ## Local Development
 
-This is a plain static site. There is no package manager, dependency install, or build command required for the current workflow. Netlify should publish the repository root directly.
+The deployed site is plain static HTML, CSS, and JavaScript, so it has no runtime package install or build command. Node development dependencies are used only for automated validation. Netlify should continue to publish the repository root directly.
 
 To preview locally:
 
@@ -60,6 +60,24 @@ python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
 Then open `http://127.0.0.1:8000`.
+
+## Validation
+
+The validation suite covers four complementary layers:
+
+- `npm run test:resources` checks JSON and every local HTML/CSS reference. CSS validation walks all nested files under `assets/css`, including skin stylesheets, `@import` targets, fonts, and images.
+- `npm run test:browser` loads every page in Chromium, Firefox, and WebKit, fails on local request/runtime errors, and exercises theme persistence and mobile navigation.
+- `npm run test:a11y` runs axe WCAG 2.1 A/AA checks against every page and the open theme-picker state, failing on serious or critical violations.
+- `npm run test:performance` runs Lighthouse against stable, explicitly selected theme URLs. It enforces FCP, LCP, CLS, TBT, script/style byte budgets, accessibility, and best-practice thresholds. Reports are written to `.lighthouseci/reports/`.
+
+Install the validation tooling and Playwright browser engines once:
+
+```bash
+npm install
+npx playwright install chromium firefox webkit
+```
+
+Run all checks with `npm test`, or run one layer with the commands above. CI runs the same suite for pushes and pull requests targeting `development` or `main`, and stores browser/Lighthouse diagnostics as a `validation-reports` artifact for 14 days.
 
 ## Deployment Workflow
 

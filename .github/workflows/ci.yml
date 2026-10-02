@@ -17,10 +17,17 @@ jobs:
   static-site:
     name: Static site validation
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
 
       - name: Verify required deploy files
         shell: bash
@@ -29,7 +36,9 @@ jobs:
           required_files=(
             "index.html"
             "assets/css/main.css"
+            "assets/css/skin-system.css"
             "assets/js/main.js"
+            "assets/js/skin-bootstrap.js"
             "assets/js/fridge-poetry.js"
             "assets/data/alec-splash-quotes.json"
             "assets/data/fridge-poetry-words.json"
@@ -41,78 +50,32 @@ jobs:
             test -f "$file"
           done
 
-      - name: Validate JSON data
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 -m json.tool assets/data/alec-splash-quotes.json > /dev/null
-          python3 -m json.tool assets/data/fridge-poetry-words.json > /dev/null
+      - name: Install validation dependencies
+        run: npm ci
 
-      - name: Check local HTML and CSS references
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          from html.parser import HTMLParser
-          from pathlib import Path
-          from urllib.parse import unquote, urlparse
-          import re
-          import sys
+      - name: Validate nested resources and data
+        run: npm run test:resources
 
-          ROOT = Path(".")
-          SKIP_SCHEMES = {"http", "https", "mailto", "tel", "data", "javascript"}
-          REF_ATTRS = {"href", "src", "action", "poster", "words-src"}
+      - name: Install browser engines
+        run: npx playwright install --with-deps chromium firefox webkit
 
-          def is_local(value):
-              if not value or value.startswith("#"):
-                  return False
-              parsed = urlparse(value)
-              return parsed.scheme.lower() not in SKIP_SCHEMES and not parsed.netloc
+      - name: Test browser behavior
+        run: npm run test:browser
 
-          def normalize(value, base):
-              parsed = urlparse(value)
-              path = unquote(parsed.path)
-              if not path:
-                  return None
-              if path.startswith("/"):
-                  return ROOT / path.lstrip("/")
-              return base.parent / path
+      - name: Test accessibility
+        run: npm run test:a11y
 
-          class RefParser(HTMLParser):
-              def __init__(self, source):
-                  super().__init__()
-                  self.source = source
-                  self.refs = []
+      - name: Enforce performance budgets
+        run: npm run test:performance
 
-              def handle_starttag(self, tag, attrs):
-                  for name, value in attrs:
-                      if name in REF_ATTRS and is_local(value):
-                          target = normalize(value, self.source)
-                          if target is not None:
-                              self.refs.append((value, target))
-
-          failures = []
-          html_files = sorted(ROOT.glob("*.html"))
-          for html_file in html_files:
-              parser = RefParser(html_file)
-              parser.feed(html_file.read_text(encoding="utf-8"))
-              for raw, target in parser.refs:
-                  if not target.exists():
-                      failures.append(f"{html_file}: missing {raw} -> {target}")
-
-          url_re = re.compile(r"url\((['\"]?)(.*?)\1\)")
-          for css_file in sorted((ROOT / "assets" / "css").glob("*.css")):
-              text = css_file.read_text(encoding="utf-8", errors="ignore")
-              for match in url_re.finditer(text):
-                  raw = match.group(2).strip()
-                  if is_local(raw):
-                      target = normalize(raw, css_file)
-                      if target is not None and not target.exists():
-                          failures.append(f"{css_file}: missing {raw} -> {target}")
-
-          if failures:
-              print("\n".join(failures), file=sys.stderr)
-              sys.exit(1)
-
-          print(f"Checked {len(html_files)} HTML files and CSS references.")
-          PY
+      - name: Upload validation reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-reports
+          path: |
+            .lighthouseci/reports/
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 14

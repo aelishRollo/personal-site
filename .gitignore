@@ -17,6 +17,9 @@ _site/
 .next/
 out/
 coverage/
+.lighthouseci/
+playwright-report/
+test-results/
 
 # Logs
 *.log
