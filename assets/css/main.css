@@ -4394,6 +4394,24 @@ fridge-poetry-board:not(:defined) {
 	color: var(--secondary-fg) !important;
 }
 
+.site-nav .nav-favorites-short {
+	display: none;
+}
+
+.site-nav .nav-favorites {
+	white-space: nowrap;
+}
+
+@media screen and (min-width: 1121px) and (max-width: 1320px) {
+	.site-nav .nav-favorites-full {
+		display: none;
+	}
+
+	.site-nav .nav-favorites-short {
+		display: inline;
+	}
+}
+
 .site-nav a[aria-current="page"] {
 	background: var(--primary);
 	color: var(--primary-fg) !important;

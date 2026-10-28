@@ -49,7 +49,7 @@ The project is no longer a stock HTML5 UP template. It has been reshaped into a 
 - The theme preference is stored in `localStorage` under `site-theme-v2`.
 - The contact form posts to `thanks.html`.
 - Fridge Poetry Lab reads word data from `assets/data/fridge-poetry-words.json` and persists board state with browser storage.
-- Favorite things are independent cards in `favorites.html`, with page-specific styling in `assets/css/favorites.css`; add or remove a card without changing a fixed count or layout rule.
+- Favorite things are independent cards in `favorites.html`, with page-specific styling in `assets/css/favorites.css` and local images documented in `assets/images/favorites/SOURCES.md`; add or remove a card without changing a fixed count or layout rule.
 
 ## Local Development
 

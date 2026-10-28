@@ -44,34 +44,43 @@
 	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
-.favorite-art {
-	--art-bg: #deddd0;
-	--art-ink: #293f36;
-	display: grid;
-	place-items: center;
+.favorite-media {
+	position: relative;
 	width: 100%;
 	aspect-ratio: 420 / 220;
-	background: radial-gradient(circle at 72% 20%, rgba(255, 255, 255, 0.52), transparent 38%), var(--art-bg);
-	color: var(--art-ink);
+	background: #f5f3ed;
 }
 
-.favorite-art svg {
+.favorite-media img {
 	display: block;
 	width: 100%;
 	height: 100%;
+	object-fit: cover;
 }
 
-.art-waking { --art-bg: #e8c9a1; --art-ink: #77522f; }
-.art-boulder { --art-bg: #bfd6cc; --art-ink: #305f55; }
-.art-sivers { --art-bg: #edd6d0; --art-ink: #764851; }
-.art-songdrive { --art-bg: #d2c9e6; --art-ink: #594b7a; }
-.art-wikipedia { --art-bg: #d9e5e6; --art-ink: #365b62; }
-.art-fsf { --art-bg: #d5dfb2; --art-ink: #4e6536; }
-.art-oasis { --art-bg: #c6d4a6; --art-ink: #566747; }
-.art-anki { --art-bg: #c5d8ee; --art-ink: #3a5f85; }
-.art-gnu { --art-bg: #e6d4b8; --art-ink: #795834; }
-.art-browser { --art-bg: #c9e5df; --art-ink: #346c69; }
-.art-learning { --art-bg: #e9d4e9; --art-ink: #805078; }
+.favorite-media--logo {
+	display: grid;
+	place-items: center;
+	background: #f9f7f1;
+}
+
+.favorite-media--logo img {
+	width: 65%;
+	height: 78%;
+	object-fit: contain;
+}
+
+.favorite-media--fsf img {
+	width: 80%;
+}
+
+.favorite-media--oasis img {
+	object-position: center 68%;
+}
+
+.favorite-media--kitten img {
+	object-position: center 37%;
+}
 
 .favorite-copy {
 	display: flex;
@@ -101,12 +110,8 @@
 	line-height: 1.6;
 }
 
-.favorite-copy .favorite-value {
+.favorite-copy > p:last-of-type {
 	margin-bottom: 1.3rem;
-}
-
-.favorite-value strong {
-	color: var(--text-1);
 }
 
 .favorite-link {
@@ -118,8 +123,10 @@
 	margin-left: 0.2rem;
 }
 
-.favorite-copy .nowrap {
-	white-space: nowrap;
+.favorites-image-credits {
+	margin: 1.5rem 0 0;
+	font-size: 0.78rem;
+	line-height: 1.5;
 }
 
 @media screen and (max-width: 700px) {
