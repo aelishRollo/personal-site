@@ -92,7 +92,7 @@ html[data-skin="hello-kitty"] .brand-mark {
 	position: relative;
 	border: 2px solid var(--kitty-ink);
 	border-radius: 48% 48% 44% 44%;
-	background: #ffffff url("../../images/hello-kitty-mascot.svg?v=hello-kitty-mascot-1") 50% 10% / 170% auto no-repeat !important;
+	background: #ffffff url("../../images/hello-kitty-mascot.svg") 50% 10% / 170% auto no-repeat !important;
 	box-shadow: 0 0 0 4px var(--kitty-blush), 3px 4px 0 var(--kitty-hot);
 	color: transparent !important;
 }
@@ -150,7 +150,7 @@ html[data-skin="hello-kitty"] .page-hero::before {
 	z-index: -1;
 	width: clamp(18rem, 34vw, 30rem);
 	aspect-ratio: 600 / 760;
-	background: url("../../images/hello-kitty-mascot.svg?v=hello-kitty-mascot-1") center / contain no-repeat;
+	background: url("../../images/hello-kitty-mascot.svg") center / contain no-repeat;
 	filter: drop-shadow(10px 14px 0 rgba(242, 138, 181, 0.36)) drop-shadow(18px 23px 0 rgba(116, 201, 235, 0.2));
 	opacity: 1;
 	pointer-events: none;

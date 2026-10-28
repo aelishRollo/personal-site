@@ -732,7 +732,7 @@
 							<p class="hint">Pan by dragging empty fridge space. Pinch or ctrl/cmd+scroll to zoom.</p>
 							<div class="board-frame">
 								<div class="board-viewport">
-									<div class="board" tabindex="0" aria-label="Interactive fridge poetry board">
+									<div class="board" role="region" tabindex="0" aria-label="Interactive fridge poetry board">
 										<div class="magnets"></div>
 									</div>
 								</div>
@@ -1253,11 +1253,11 @@
 				wordsHtml = '<div class="word-bank-empty">No words match the current filters.</div>';
 			}
 
-			var categoriesHtml = '<button type="button" class="category-chip" data-category-chip="all" data-active="' + (this._activeCategory === 'all' ? 'true' : 'false') + '">All</button>';
+			var categoriesHtml = '<button type="button" class="category-chip" data-category-chip="all" data-active="' + (this._activeCategory === 'all' ? 'true' : 'false') + '" aria-pressed="' + (this._activeCategory === 'all' ? 'true' : 'false') + '">All</button>';
 			for (var j = 0; j < this._categoryOrder.length; j++) {
 				var category = this._categoryOrder[j];
 				var summary = this.categoryRemainingSummary(category, used);
-				categoriesHtml += '<button type="button" class="category-chip" data-category-chip="' + escapeHtml(category) + '" data-active="' + (this._activeCategory === category ? 'true' : 'false') + '">' + escapeHtml(category) + ' (' + summary.remaining + ')</button>';
+				categoriesHtml += '<button type="button" class="category-chip" data-category-chip="' + escapeHtml(category) + '" data-active="' + (this._activeCategory === category ? 'true' : 'false') + '" aria-pressed="' + (this._activeCategory === category ? 'true' : 'false') + '">' + escapeHtml(category) + ' (' + summary.remaining + ')</button>';
 			}
 
 			var activeLabel = this._activeCategory === 'all' ? 'all categories' : this._activeCategory;
@@ -1266,7 +1266,7 @@
 			this.$pickers.innerHTML =
 				'<div class="word-controls">' +
 					'<input class="word-search" type="search" data-word-search placeholder="Search words..." value="' + searchValue + '" aria-label="Search words" />' +
-					'<div class="category-chips" role="tablist" aria-label="Word categories">' + categoriesHtml + '</div>' +
+					'<div class="category-chips" role="group" aria-label="Word categories">' + categoriesHtml + '</div>' +
 					'<div class="word-panel-actions">' +
 						'<button type="button" class="word-filter-toggle" data-word-filter data-pressed="' + (this._showAvailableOnly ? 'true' : 'false') + '">Available only</button>' +
 						'<span class="word-meta-summary">' + totalEntries + ' available in ' + escapeHtml(activeLabel) + '</span>' +

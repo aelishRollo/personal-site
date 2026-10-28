@@ -15,33 +15,33 @@
 	var skins = [
 		{ id: 'portfolio-dark', name: 'Portfolio Dark', scheme: 'dark', css: '' },
 		{ id: 'portfolio-light', name: 'Portfolio Light', scheme: 'light', css: '' },
-		{ id: 'acid-editorial', name: 'Acid Editorial', scheme: 'light', css: 'assets/css/skins/acid-editorial.css?v=hero-initial-fix-1' },
-		{ id: 'op-art-monochrome', name: 'Op Art Monochrome', scheme: 'light', css: 'assets/css/skins/op-art-monochrome.css?v=hero-initial-fix-1' },
-		{ id: 'neon-glitch', name: 'Neon Glitch', scheme: 'dark', css: 'assets/css/skins/neon-glitch.css?v=hero-initial-fix-1' },
-		{ id: 'liquid-dream', name: 'Liquid Dream', scheme: 'light', css: 'assets/css/skins/liquid-dream.css?v=hero-initial-fix-1' },
-		{ id: 'sacred-geometry', name: 'Sacred Geometry', scheme: 'dark', css: 'assets/css/skins/sacred-geometry.css?v=hero-initial-fix-1' },
-		{ id: 'terminal-vision', name: 'Terminal Vision', scheme: 'dark', css: 'assets/css/skins/terminal-vision.css?v=hero-initial-fix-1' },
-		{ id: 'ms-dos-prompt', name: 'MS-DOS Prompt', scheme: 'dark', css: 'assets/css/skins/ms-dos-prompt.css?v=ms-dos-prompt-13' },
-		{ id: 'psychedelic-scrapbook', name: 'Psychedelic Scrapbook', scheme: 'light', css: 'assets/css/skins/psychedelic-scrapbook.css?v=psychedelic-scrapbook-corkboard-3' },
-		{ id: 'cut-and-paste-riot', name: 'Cut-and-Paste Riot', scheme: 'light', selectorId: 'psychedelic-scrapbook', css: 'assets/css/skins/cut-and-paste-riot.css?v=cut-and-paste-riot-3' },
-		{ id: 'liquid-chrome-y2k', name: 'Liquid Chrome Y2K', scheme: 'light', css: 'assets/css/skins/liquid-chrome-y2k.css?v=hero-initial-fix-1' },
-		{ id: 'acid-brutalist', name: 'Acid Brutalist', scheme: 'dark', css: 'assets/css/skins/acid-brutalist.css?v=hero-initial-fix-1' },
-		{ id: 'botanical-dreamscape', name: 'Botanical Dreamscape', scheme: 'dark', css: 'assets/css/skins/botanical-dreamscape.css?v=hero-initial-fix-1' },
-		{ id: 'cosmic-airbrush', name: 'Cosmic Airbrush', scheme: 'dark', css: 'assets/css/skins/cosmic-airbrush.css?v=hero-initial-fix-1' },
-		{ id: 'riso-hallucination', name: 'Riso Hallucination', scheme: 'light', css: 'assets/css/skins/riso-hallucination.css?v=hero-initial-fix-1' },
-		{ id: 'crystal-prism', name: 'Crystal Prism', scheme: 'light', css: 'assets/css/skins/crystal-prism.css?v=crystal-prism-3' },
-		{ id: 'midnight-aurora-glass', name: 'Midnight Aurora Glass', scheme: 'dark', css: 'assets/css/skins/midnight-aurora-glass.css?v=midnight-aurora-glass-8' },
-		{ id: 'starlight', name: 'Starlight', scheme: 'dark', css: 'assets/css/skins/starlight.css?v=starlight-7' },
-		{ id: 'hyperspace', name: 'Hyperspace', scheme: 'dark', css: 'assets/css/skins/hyperspace.css?v=hyperspace-5' },
-		{ id: 'recursive-portal', name: 'Recursive Portal', scheme: 'dark', css: 'assets/css/skins/recursive-portal.css?v=recursive-portal-3' },
-		{ id: 'split-duality', name: 'Split Duality', scheme: 'dark', css: 'assets/css/skins/split-duality.css?v=split-duality-4' },
-		{ id: 'card-deck-stack', name: 'Card Deck Stack', scheme: 'light', css: 'assets/css/skins/card-deck-stack.css?v=card-deck-stack-4' },
-		{ id: 'type-sculpture', name: 'Type Sculpture', scheme: 'dark', css: 'assets/css/skins/type-sculpture.css?v=type-sculpture-2' },
-		{ id: 'browser-archaeology', name: 'Browser Archaeology', scheme: 'light', css: 'assets/css/skins/browser-archaeology.css?v=browser-archaeology-8' },
-		{ id: 'oracular-tarot', name: 'Oracular Tarot', scheme: 'dark', css: 'assets/css/skins/oracular-tarot.css?v=oracular-tarot-2' },
-		{ id: 'hello-kitty', name: 'Hello Kitty', scheme: 'light', css: 'assets/css/skins/hello-kitty.css?v=hello-kitty-3' },
-		{ id: 'forties-field-notes', name: '1940s Field Notes', scheme: 'light', css: 'assets/css/skins/forties-field-notes.css?v=forties-field-notes-5' },
-		{ id: 'nutrition-facts', name: 'Nutrition Facts', scheme: 'light', css: 'assets/css/skins/nutrition-facts.css?v=nutrition-facts-10' }
+		{ id: 'acid-editorial', name: 'Acid Editorial', scheme: 'light', css: 'assets/css/skins/acid-editorial.css' },
+		{ id: 'op-art-monochrome', name: 'Op Art Monochrome', scheme: 'light', css: 'assets/css/skins/op-art-monochrome.css' },
+		{ id: 'neon-glitch', name: 'Neon Glitch', scheme: 'dark', css: 'assets/css/skins/neon-glitch.css' },
+		{ id: 'liquid-dream', name: 'Liquid Dream', scheme: 'light', css: 'assets/css/skins/liquid-dream.css' },
+		{ id: 'sacred-geometry', name: 'Sacred Geometry', scheme: 'dark', css: 'assets/css/skins/sacred-geometry.css' },
+		{ id: 'terminal-vision', name: 'Terminal Vision', scheme: 'dark', css: 'assets/css/skins/terminal-vision.css' },
+		{ id: 'ms-dos-prompt', name: 'MS-DOS Prompt', scheme: 'dark', css: 'assets/css/skins/ms-dos-prompt.css' },
+		{ id: 'psychedelic-scrapbook', name: 'Psychedelic Scrapbook', scheme: 'light', css: 'assets/css/skins/psychedelic-scrapbook.css' },
+		{ id: 'cut-and-paste-riot', name: 'Cut-and-Paste Riot', scheme: 'light', selectorId: 'psychedelic-scrapbook', css: 'assets/css/skins/cut-and-paste-riot.css' },
+		{ id: 'liquid-chrome-y2k', name: 'Liquid Chrome Y2K', scheme: 'light', css: 'assets/css/skins/liquid-chrome-y2k.css' },
+		{ id: 'acid-brutalist', name: 'Acid Brutalist', scheme: 'dark', css: 'assets/css/skins/acid-brutalist.css' },
+		{ id: 'botanical-dreamscape', name: 'Botanical Dreamscape', scheme: 'dark', css: 'assets/css/skins/botanical-dreamscape.css' },
+		{ id: 'cosmic-airbrush', name: 'Cosmic Airbrush', scheme: 'dark', css: 'assets/css/skins/cosmic-airbrush.css' },
+		{ id: 'riso-hallucination', name: 'Riso Hallucination', scheme: 'light', css: 'assets/css/skins/riso-hallucination.css' },
+		{ id: 'crystal-prism', name: 'Crystal Prism', scheme: 'light', css: 'assets/css/skins/crystal-prism.css' },
+		{ id: 'midnight-aurora-glass', name: 'Midnight Aurora Glass', scheme: 'dark', css: 'assets/css/skins/midnight-aurora-glass.css' },
+		{ id: 'starlight', name: 'Starlight', scheme: 'dark', css: 'assets/css/skins/starlight.css' },
+		{ id: 'hyperspace', name: 'Hyperspace', scheme: 'dark', css: 'assets/css/skins/hyperspace.css' },
+		{ id: 'recursive-portal', name: 'Recursive Portal', scheme: 'dark', css: 'assets/css/skins/recursive-portal.css' },
+		{ id: 'split-duality', name: 'Split Duality', scheme: 'dark', css: 'assets/css/skins/split-duality.css' },
+		{ id: 'card-deck-stack', name: 'Card Deck Stack', scheme: 'light', css: 'assets/css/skins/card-deck-stack.css' },
+		{ id: 'type-sculpture', name: 'Type Sculpture', scheme: 'dark', css: 'assets/css/skins/type-sculpture.css' },
+		{ id: 'browser-archaeology', name: 'Browser Archaeology', scheme: 'light', css: 'assets/css/skins/browser-archaeology.css' },
+		{ id: 'oracular-tarot', name: 'Oracular Tarot', scheme: 'dark', css: 'assets/css/skins/oracular-tarot.css' },
+		{ id: 'hello-kitty', name: 'Hello Kitty', scheme: 'light', css: 'assets/css/skins/hello-kitty.css' },
+		{ id: 'forties-field-notes', name: '1940s Field Notes', scheme: 'light', css: 'assets/css/skins/forties-field-notes.css' },
+		{ id: 'nutrition-facts', name: 'Nutrition Facts', scheme: 'light', css: 'assets/css/skins/nutrition-facts.css' }
 	];
 	var skinById = {};
 	var activeId = '';
@@ -56,23 +56,23 @@
 	var lastChangeAt = 0;
 	var rapidSwitchWindow = 650;
 	var sharedAssets = [
-		{ href: 'images/paper-texture-tile.webp?v=paper-texture-1', as: 'image', type: 'image/webp' }
+		{ href: 'images/paper-texture-tile.webp', as: 'image', type: 'image/webp' }
 	];
 	var assetsBySkin = {
 		'psychedelic-scrapbook': [
-			{ href: 'assets/images/corkboard-texture.webp?v=corkboard-1', as: 'image', type: 'image/webp' }
+			{ href: 'assets/images/corkboard-texture.webp', as: 'image', type: 'image/webp' }
 		],
 		'cut-and-paste-riot': [
-			{ href: 'assets/images/corkboard-texture.webp?v=corkboard-1', as: 'image', type: 'image/webp' }
+			{ href: 'assets/images/corkboard-texture.webp', as: 'image', type: 'image/webp' }
 		],
 		'forties-field-notes': [
-			{ href: 'assets/images/forties-writers-desk.webp?v=forties-writers-desk-1', as: 'image', type: 'image/webp' }
+			{ href: 'assets/images/forties-writers-desk.webp', as: 'image', type: 'image/webp' }
 		],
 		'hello-kitty': [
-			{ href: 'assets/images/hello-kitty-mascot.svg?v=hello-kitty-mascot-1', as: 'image', type: 'image/svg+xml' }
+			{ href: 'assets/images/hello-kitty-mascot.svg', as: 'image', type: 'image/svg+xml' }
 		],
 		'midnight-aurora-glass': [
-			{ href: 'assets/images/midnight-aurora-glass.webp?v=midnight-aurora-glass-1', as: 'image', type: 'image/webp' }
+			{ href: 'assets/images/midnight-aurora-glass.webp', as: 'image', type: 'image/webp' }
 		]
 	};
 	var preloadedAssets = {};

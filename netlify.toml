@@ -1,3 +1,11 @@
 # Plain static site: Netlify should deploy files directly from the repository root.
 [build]
   publish = "."
+
+# Stable asset URLs are safe because browsers revalidate on every use and
+# Netlify invalidates changed static responses when an atomic deploy goes live.
+[[headers]]
+  for = "/*"
+
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
