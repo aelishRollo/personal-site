@@ -1,0 +1,130 @@
+/* The list is intentionally made of independent cards, so items can be added or removed. */
+.page-favorites .favorites-hero {
+	background: linear-gradient(135deg, var(--surface-2), var(--bg));
+}
+
+.page-favorites .favorites-hero .site-shell {
+	max-width: 1120px;
+}
+
+.page-favorites .favorites-hero h1 {
+	max-width: 16ch;
+}
+
+.page-favorites .favorites-hero .lead {
+	max-width: 42rem;
+}
+
+.favorites-jump {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-top: 0.35rem;
+	font-weight: 700;
+}
+
+.favorites-section {
+	scroll-margin-top: 5rem;
+}
+
+.favorites-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1.4rem;
+}
+
+.favorite-card {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	overflow: hidden;
+	border: 1px solid var(--line-1);
+	border-radius: 1rem;
+	background: var(--surface-1);
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.favorite-art {
+	--art-bg: #deddd0;
+	--art-ink: #293f36;
+	display: grid;
+	place-items: center;
+	width: 100%;
+	aspect-ratio: 420 / 220;
+	background: radial-gradient(circle at 72% 20%, rgba(255, 255, 255, 0.52), transparent 38%), var(--art-bg);
+	color: var(--art-ink);
+}
+
+.favorite-art svg {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.art-waking { --art-bg: #e8c9a1; --art-ink: #77522f; }
+.art-boulder { --art-bg: #bfd6cc; --art-ink: #305f55; }
+.art-sivers { --art-bg: #edd6d0; --art-ink: #764851; }
+.art-songdrive { --art-bg: #d2c9e6; --art-ink: #594b7a; }
+.art-wikipedia { --art-bg: #d9e5e6; --art-ink: #365b62; }
+.art-fsf { --art-bg: #d5dfb2; --art-ink: #4e6536; }
+.art-oasis { --art-bg: #c6d4a6; --art-ink: #566747; }
+.art-anki { --art-bg: #c5d8ee; --art-ink: #3a5f85; }
+.art-gnu { --art-bg: #e6d4b8; --art-ink: #795834; }
+.art-browser { --art-bg: #c9e5df; --art-ink: #346c69; }
+.art-learning { --art-bg: #e9d4e9; --art-ink: #805078; }
+
+.favorite-copy {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: clamp(1.3rem, 3vw, 1.8rem);
+}
+
+.favorite-kind {
+	margin: 0 0 0.55rem;
+	color: var(--accent-1);
+	font-size: 0.76rem;
+	font-weight: 800;
+	letter-spacing: 0.09em;
+	text-transform: uppercase;
+}
+
+.favorite-copy h2 {
+	margin: 0 0 0.8rem;
+	font-size: clamp(1.3rem, 2vw, 1.65rem);
+	line-height: 1.2;
+}
+
+.favorite-copy p {
+	margin: 0 0 0.8rem;
+	line-height: 1.6;
+}
+
+.favorite-copy .favorite-value {
+	margin-bottom: 1.3rem;
+}
+
+.favorite-value strong {
+	color: var(--text-1);
+}
+
+.favorite-link {
+	margin-top: auto;
+	font-weight: 700;
+}
+
+.favorite-link span {
+	margin-left: 0.2rem;
+}
+
+.favorite-copy .nowrap {
+	white-space: nowrap;
+}
+
+@media screen and (max-width: 700px) {
+	.favorites-grid {
+		grid-template-columns: 1fr;
+		gap: 1rem;
+	}
+}

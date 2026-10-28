@@ -25,6 +25,7 @@ PAGES = {
     "index.html": PageConfig("index.html", footer="footer-home.html"),
     "work.html": PageConfig("work.html"),
     "about.html": PageConfig("about.html"),
+    "favorites.html": PageConfig("favorites.html"),
     "connect.html": PageConfig("connect.html"),
     "services.html": PageConfig("services.html"),
     "contact.html": PageConfig("contact.html"),

@@ -6,7 +6,7 @@ The project is no longer a stock HTML5 UP template. It has been reshaped into a 
 
 ## What Is Included
 
-- Multi-page static site: `index.html`, `work.html`, `about.html`, `connect.html`, `services.html`, `contact.html`, and `thanks.html`
+- Multi-page static site: `index.html`, `work.html`, `about.html`, `favorites.html`, `connect.html`, `services.html`, `contact.html`, and `thanks.html`
 - Project showcase pages for software, product, music-thinking tools, and creative experiments
 - Custom responsive layout and dark/light theme switcher
 - Contact form markup with honeypot spam protection
@@ -49,6 +49,7 @@ The project is no longer a stock HTML5 UP template. It has been reshaped into a 
 - The theme preference is stored in `localStorage` under `site-theme-v2`.
 - The contact form posts to `thanks.html`.
 - Fridge Poetry Lab reads word data from `assets/data/fridge-poetry-words.json` and persists board state with browser storage.
+- Favorite things are independent cards in `favorites.html`, with page-specific styling in `assets/css/favorites.css`; add or remove a card without changing a fixed count or layout rule.
 
 ## Local Development
 

@@ -6,6 +6,7 @@ const pages = [
   'index.html',
   'work.html',
   'about.html',
+  'favorites.html',
   'connect.html',
   'services.html',
   'contact.html',
