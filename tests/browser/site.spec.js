@@ -33,6 +33,25 @@ for (const sitePage of pages) {
   });
 }
 
+test('favorites index lists every card and jumps to it', async ({ page }) => {
+  await openSitePage(page, '/favorites.html?theme=portfolio-dark');
+
+  const indexEntries = await page.locator('.favorites-index-list a').evaluateAll((links) =>
+    links.map((link) => ({ id: link.hash.slice(1), name: link.textContent.trim() }))
+  );
+  const cards = await page.locator('.favorite-card').evaluateAll((items) =>
+    items.map((item) => ({ id: item.id, name: item.querySelector('h2').textContent.trim() }))
+  );
+  expect(indexEntries).toEqual(cards);
+
+  await page.locator('.favorites-index-list a').last().click();
+  await expect(page).toHaveURL(/#favorite-whiskers-on-kittens$/);
+  await expect(page.locator('#favorite-whiskers-on-kittens')).toBeInViewport({ ratio: 0.1 });
+  expect(await page.locator('#favorite-whiskers-on-kittens').evaluate((item) =>
+    item.getBoundingClientRect().top > document.querySelector('.site-header').getBoundingClientRect().bottom
+  )).toBe(true);
+});
+
 test('theme picker previews and persists a selected theme', async ({ page }) => {
   const failures = watchRuntimeFailures(page);
   await openSitePage(page, '/index.html?theme=portfolio-dark');

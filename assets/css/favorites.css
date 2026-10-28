@@ -27,6 +27,82 @@
 	scroll-margin-top: 5rem;
 }
 
+.favorites-index {
+	margin-bottom: clamp(2rem, 4vw, 3rem);
+	padding: clamp(1.2rem, 2.5vw, 1.8rem);
+	border: 1px solid var(--line-1);
+	border-radius: 1rem;
+	background: var(--surface-1);
+}
+
+.favorites-index-heading {
+	display: flex;
+	align-items: end;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-bottom: 1.2rem;
+}
+
+.favorites-index-heading h2 {
+	margin: 0;
+	font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+}
+
+.favorites-index-heading > p {
+	margin: 0;
+	color: var(--text-2);
+}
+
+.favorites-index-list {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 0.55rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	counter-reset: favorites;
+}
+
+.favorites-index-list li {
+	min-width: 0;
+	counter-increment: favorites;
+}
+
+.favorites-index-list a {
+	display: flex;
+	align-items: baseline;
+	gap: 0.6rem;
+	height: 100%;
+	padding: 0.7rem 0.75rem;
+	border: 1px solid var(--line-1);
+	border-radius: 0.6rem;
+	background: var(--surface-2);
+	color: var(--text-1);
+	font-size: 0.88rem;
+	font-weight: 700;
+	line-height: 1.35;
+	text-decoration: none;
+}
+
+.favorites-index-list a::before {
+	content: counter(favorites, decimal-leading-zero);
+	flex: 0 0 1.5rem;
+	color: var(--accent-1);
+	font-size: 0.75rem;
+	font-variant-numeric: tabular-nums;
+}
+
+.favorites-index-list a:hover,
+.favorites-index-list a:focus-visible {
+	border-color: var(--accent-1);
+	text-decoration: underline;
+}
+
+.favorites-index-list a:focus-visible {
+	outline: 2px solid var(--accent-1);
+	outline-offset: 2px;
+}
+
 .favorites-grid {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -42,6 +118,12 @@
 	border-radius: 1rem;
 	background: var(--surface-1);
 	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+	scroll-margin-top: 6rem;
+}
+
+.favorite-card:target {
+	outline: 3px solid var(--accent-1);
+	outline-offset: 3px;
 }
 
 .favorite-media {
@@ -130,8 +212,32 @@
 }
 
 @media screen and (max-width: 700px) {
+	.favorites-index-heading {
+		display: block;
+	}
+
+	.favorites-index-heading > p {
+		margin-top: 0.4rem;
+	}
+
+	.favorites-index-list {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.45rem;
+	}
+
+	.favorites-index-list a {
+		padding: 0.6rem;
+		font-size: 0.84rem;
+	}
+
 	.favorites-grid {
 		grid-template-columns: 1fr;
 		gap: 1rem;
+	}
+}
+
+@media screen and (max-width: 360px) {
+	.favorites-index-list {
+		grid-template-columns: 1fr;
 	}
 }
