@@ -19,6 +19,11 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
     "@lhci/cli": "^0.15.1",
-    "@playwright/test": "^1.60.0"
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^26.6.6"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.2.0",
+    "@netlify/functions": "^6.0.3"
   }
 }
