@@ -17,4 +17,9 @@ These files are stored locally; the page does not load third-party images.
 | `learning-how-to-learn.jpg` | [Coursera course preview](https://www.coursera.org/learn/learning-how-to-learn?action=showPartnerSupportedAccess) |
 | `crawler-zoo.jpg` | Screenshot of [The Crawler Zoo](https://crawlerzoo.com/), captured October 28, 2026 |
 | `camping-with-steve.jpg` | [Camping With Steve site preview](https://campingwithsteve.com/) |
+| `high-agency.jpg` | Screenshot of [George Mack's High Agency essay](https://www.highagency.com/), captured October 28, 2026 |
+| `undertale.jpg` | [Official Undertale soundtrack cover](https://tobyfox.bandcamp.com/album/undertale-soundtrack) |
+| `fourier-transform.jpg` | [3Blue1Brown's Fourier transform video thumbnail](https://www.youtube.com/watch?v=spUNpyF58BY) |
+| `which-way-is-down.jpg` | [Vsauce's Which Way Is Down? video thumbnail](https://www.youtube.com/watch?v=Xc4xYacTu-E) |
+| `boreal-forest.jpg` | [NPS / Tim Rains photo of Denali's boreal forest](https://commons.wikimedia.org/wiki/File:The_boreal_forest_in_late_winter_(c1e6fe2a-628b-4b31-bdd4-9b7270a716d1).jpg), public domain |
 | `whiskers-on-kittens.jpg` | [Kätzchen.JPG on Wikimedia Commons](https://commons.wikimedia.org/wiki/File:K%C3%A4tzchen.JPG), public domain |
