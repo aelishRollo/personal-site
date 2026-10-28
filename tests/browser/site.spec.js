@@ -52,6 +52,28 @@ test('favorites index lists every card and jumps to it', async ({ page }) => {
   )).toBe(true);
 });
 
+test('favorites back-to-top appears after scrolling and returns to the top', async ({ page }) => {
+  await openSitePage(page, '/favorites.html?theme=portfolio-dark');
+
+  const backToTop = page.locator('.favorites-back-to-top');
+  await expect(backToTop).toBeHidden();
+
+  await page.locator('#favorite-whiskers-on-kittens').scrollIntoViewIfNeeded();
+  await expect(backToTop).toBeVisible();
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  expect(await page.evaluate(() => {
+    const backToTopBox = document.querySelector('.favorites-back-to-top').getBoundingClientRect();
+    const pickerBox = document.querySelector('.skin-picker').getBoundingClientRect();
+    return backToTopBox.bottom <= pickerBox.top;
+  })).toBe(true);
+
+  await backToTop.click();
+  await expect(page).toHaveURL(/#page-top$/);
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+  await expect(backToTop).toBeHidden();
+});
+
 test('theme picker previews and persists a selected theme', async ({ page }) => {
   const failures = watchRuntimeFailures(page);
   await openSitePage(page, '/index.html?theme=portfolio-dark');
