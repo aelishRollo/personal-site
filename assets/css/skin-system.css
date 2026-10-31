@@ -1,5 +1,9 @@
 /* Runtime skin picker. Source-skin rules live in assets/css/skins/. */
 
+html[data-skin-loading] body {
+	visibility: hidden;
+}
+
 .skin-picker {
 	--skin-ui-bg: #11151a;
 	--skin-ui-panel: #1c232b;

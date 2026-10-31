@@ -46,7 +46,7 @@ The project is no longer a stock HTML5 UP template. It has been reshaped into a 
 - The Sass sources remain in `assets/sass/`, but the current workflow edits the compiled CSS directly.
 - Shared head assets, navigation, footer, and common scripts are authored in `shared/` and synchronized into the committed HTML pages with `npm run site:sync`.
 - Asset URLs are stable and use explicit revalidation headers in `netlify.toml`; Netlify's atomic deploy invalidation replaces manual cache-version query strings.
-- The theme preference is stored in `localStorage` under `site-theme-v2`.
+- The saved theme preference is stored in `localStorage` under `site-skin-v2`. The head bootstrap applies it before first paint and waits for its stylesheet when navigating between pages.
 - The contact form posts to `thanks.html`.
 - Fridge Poetry Lab reads word data from `assets/data/fridge-poetry-words.json` and persists board state with browser storage.
 - Favorite things are independent cards in `favorites.html`, with page-specific styling in `assets/css/favorites.css` and local images documented in `assets/images/favorites/SOURCES.md`. When adding or removing a card, keep its Contents link and card ID in sync; the layout has no fixed item count.
