@@ -99,7 +99,36 @@ test('theme picker previews and persists a selected theme', async ({ page }) => 
 
   await page.goto('/index.html', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'acid-editorial');
+  await expect(page.locator('html')).not.toHaveAttribute('data-skin-loading');
   expect(failures).toEqual([]);
+});
+
+test('saved theme is ready before the destination page paints', async ({ page, browserName }) => {
+  test.skip(browserName !== 'chromium', 'Paint timing is checked in Chromium.');
+  await openSitePage(page, '/index.html?theme=portfolio-dark');
+  await page.evaluate(() => {
+    localStorage.setItem('site-skin-v2', 'acid-editorial');
+    sessionStorage.setItem('site-skin-session-v2', 'acid-editorial');
+    sessionStorage.setItem('site-skin-session-mode-v2', 'saved');
+  });
+  await page.route('**/assets/css/skins/acid-editorial.css', async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 400));
+    await route.continue();
+  });
+
+  await page.goto('/work.html', { waitUntil: 'load' });
+  await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'acid-editorial');
+  await expect(page.locator('html')).not.toHaveAttribute('data-skin-loading');
+  await expect(page.locator('#active-skin-stylesheet')).toHaveAttribute('blocking', 'render');
+
+  const timing = await page.evaluate(() => ({
+    firstContentfulPaint: performance.getEntriesByType('paint')
+      .find((entry) => entry.name === 'first-contentful-paint')?.startTime,
+    stylesheetResponseEnd: performance.getEntriesByType('resource')
+      .find((entry) => entry.name.endsWith('/assets/css/skins/acid-editorial.css'))?.responseEnd,
+  }));
+  expect(timing.stylesheetResponseEnd).toBeGreaterThan(0);
+  expect(timing.firstContentfulPaint).toBeGreaterThanOrEqual(timing.stylesheetResponseEnd);
 });
 
 test('every registered theme stylesheet loads and can be applied', async ({ page, browserName }) => {

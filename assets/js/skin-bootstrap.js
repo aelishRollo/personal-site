@@ -153,6 +153,9 @@
 		function markReady() {
 			stylesheetReady[skin.id] = true;
 			link.setAttribute('data-skin-ready', '');
+			if (root.getAttribute('data-skin-id') === skin.id) {
+				root.removeAttribute('data-skin-loading');
+			}
 		}
 
 		if (link.sheet) {
@@ -175,6 +178,9 @@
 		var link = document.createElement('link');
 		link.rel = 'stylesheet';
 		link.href = skin.css;
+		if (isActive && !document.body) {
+			link.setAttribute('blocking', 'render');
+		}
 		registerStylesheet(skin, link, isActive);
 		document.head.appendChild(link);
 
@@ -282,6 +288,9 @@
 		root.setAttribute('data-theme', skin.scheme);
 		root.setAttribute('data-skin-mode', activeMode);
 		root.style.colorScheme = skin.scheme;
+		if (!document.body && skin.css) {
+			root.setAttribute('data-skin-loading', '');
+		}
 
 		activateStylesheet(skin);
 		appliedId = id;
