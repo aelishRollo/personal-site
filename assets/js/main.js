@@ -331,8 +331,15 @@
 			skinScrollFrame = window.requestAnimationFrame(step);
 		}
 
-		$('.page-hero').first().append($skinContactCharm);
-		$('body').append($skinPicker);
+		if ($body.hasClass('page-contact')) {
+			// Keep theme controls in the page flow so they never cover the form.
+			$('<div class="site-shell contact-theme-controls"></div>')
+				.append($skinPicker)
+				.insertBefore('.site-footer');
+		} else {
+			$('.page-hero').first().append($skinContactCharm);
+			$body.append($skinPicker);
+		}
 		if ('startViewTransition' in document) {
 			$skinContactCharm[0].style.viewTransitionName = 'skin-contact-charm';
 			$skinPicker[0].style.viewTransitionName = 'skin-picker';

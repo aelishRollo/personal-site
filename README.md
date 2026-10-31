@@ -6,7 +6,8 @@ The project is no longer a stock HTML5 UP template. It has been reshaped into a 
 
 ## What Is Included
 
-- Multi-page static site: `index.html`, `work.html`, `about.html`, `favorites.html`, `connect.html`, `services.html`, `contact.html`, and `thanks.html`
+- Four main destinations: Home (`index.html`), Work, Favorite Things, and Contact
+- Legacy About links redirect to Home; Connect and Collaborate links redirect to Contact
 - Project showcase pages for software, product, music-thinking tools, and creative experiments
 - Custom responsive layout and dark/light theme switcher
 - Contact form markup with honeypot spam protection
@@ -20,9 +21,10 @@ The project is no longer a stock HTML5 UP template. It has been reshaped into a 
 .
 ├── index.html
 ├── work.html
-├── about.html
-├── connect.html
-├── services.html
+├── favorites.html
+├── about.html        # Redirect to Home
+├── connect.html      # Redirect to Contact
+├── services.html     # Redirect to Contact
 ├── contact.html
 ├── fridge-poetry.html
 ├── thanks.html
@@ -48,6 +50,7 @@ The project is no longer a stock HTML5 UP template. It has been reshaped into a 
 - Asset URLs are stable and use explicit revalidation headers in `netlify.toml`; Netlify's atomic deploy invalidation replaces manual cache-version query strings.
 - The saved theme preference is stored in `localStorage` under `site-skin-v2`. The head bootstrap applies it before first paint and waits for its stylesheet when navigating between pages.
 - The contact form posts to `thanks.html`.
+- Legacy page redirects are configured in `netlify.toml`, with small HTML fallbacks for local static previews. Redirect documents are excluded from shared HTML synchronization.
 - Fridge Poetry Lab reads word data from `assets/data/fridge-poetry-words.json` and persists board state with browser storage.
 - Favorite things are independent cards in `favorites.html`, with page-specific styling in `assets/css/favorites.css` and local images documented in `assets/images/favorites/SOURCES.md`. When adding or removing a card, keep its Contents link and card ID in sync; the layout has no fixed item count.
 
@@ -149,7 +152,7 @@ Detected project type: plain static HTML/CSS/JS.
 
 These settings are also captured in `netlify.toml` with `publish = "."`. If the Netlify UI has conflicting build or publish settings, the matching setting in `netlify.toml` takes precedence.
 
-There are no repository-level Netlify redirects, custom headers, functions, or framework adapters at the moment. The contact page uses Netlify Forms markup, so keep Forms enabled in Netlify and confirm the form is detected after the first Git-based deploy. Configure any production environment variables in the Netlify UI; do not commit secrets or `.env` files.
+Netlify redirects and cache headers are configured in `netlify.toml`. There are no functions or framework adapters. The contact page uses Netlify Forms markup, so keep Forms enabled in Netlify and confirm the form is detected after the first Git-based deploy. Configure any production environment variables in the Netlify UI; do not commit secrets or `.env` files.
 
 The `development` branch deploy and Deploy Preview URLs are public URLs. That is acceptable for this site as long as no sensitive content or secrets are committed.
 

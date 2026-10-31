@@ -27,6 +27,21 @@ html[data-skin-loading] body {
 	box-sizing: border-box;
 }
 
+/* Contact keeps the picker below the form, including in themed layouts. */
+.contact-theme-controls {
+	padding-block: 1.5rem;
+}
+
+html[data-skin] body.page-contact .skin-picker,
+body.page-contact .skin-picker {
+	position: relative !important;
+	inset: auto !important;
+	transform: none !important;
+	width: fit-content;
+	max-width: 100%;
+	margin-inline: auto;
+}
+
 /* Theme-aware contact charm. The text is supplied by main.js for each skin. */
 html[data-skin-id="portfolio-dark"] .page-hero,
 html[data-skin-id="portfolio-light"] .page-hero {

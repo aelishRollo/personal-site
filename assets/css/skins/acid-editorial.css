@@ -205,6 +205,10 @@ html[data-skin="acid-editorial"] .page-hero::after {
 	animation: acid-spin 10s linear infinite;
 }
 
+html[data-skin="acid-editorial"] .contact-hero {
+	overflow: clip;
+}
+
 /* Keep the home-page wheel attached to Alec's portrait without affecting flow. */
 html[data-skin="acid-editorial"] body.page-home .page-hero::after {
 	content: none;
