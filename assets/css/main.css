@@ -4040,6 +4040,23 @@ input[type="button"].alt,
 	border-bottom-color: var(--primary);
 }
 
+.project-links {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.55rem;
+	margin-top: 1rem;
+}
+
+.features article .project-links > span {
+	max-width: 100%;
+	margin-top: 0;
+}
+
+#embed {
+	scroll-margin-top: 6rem;
+}
+
 .features--showcase {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
