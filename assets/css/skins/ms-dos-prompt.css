@@ -493,7 +493,7 @@ html[data-skin="ms-dos-prompt"] .features article .image::before {
 }
 
 html[data-skin="ms-dos-prompt"] .features article .image::after {
-	content: "[ IMAGE LINK — ENTER=OPEN ]";
+	content: "[ IMAGE LINK  ENTER=OPEN ]";
 	display: inline-block;
 	margin-top: 0.35rem;
 	color: #ffffff;

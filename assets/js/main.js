@@ -197,7 +197,7 @@
 			if (isKept) {
 				modeDescription = 'Kept for future visits.';
 			} else if (mode === 'preview') {
-				modeDescription = 'Preview only — not saved.';
+				modeDescription = 'Preview only, not saved.';
 			} else {
 				modeDescription = 'Random for this visit.';
 			}
@@ -221,7 +221,7 @@
 			$skinStatus.text(announcement || activeName + '. ' + modeDescription);
 			$skinContactCharm
 				.attr('data-skin-contact-for', activeId)
-				.attr('aria-label', contactMessage + ' — contact Alec')
+				.attr('aria-label', contactMessage + ' (contact Alec)')
 				.find('span').text(contactMessage);
 		}
 
