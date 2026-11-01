@@ -24,10 +24,7 @@ class PageConfig:
 PAGES = {
     "index.html": PageConfig("index.html", footer="footer-home.html"),
     "work.html": PageConfig("work.html"),
-    "about.html": PageConfig("about.html"),
     "favorites.html": PageConfig("favorites.html"),
-    "connect.html": PageConfig("connect.html"),
-    "services.html": PageConfig("services.html"),
     "contact.html": PageConfig("contact.html"),
     "thanks.html": PageConfig("contact.html", header="header-compact.html", footer=None),
     "fridge-poetry.html": PageConfig("work.html"),

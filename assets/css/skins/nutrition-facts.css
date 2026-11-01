@@ -190,6 +190,13 @@ html[data-skin="nutrition-facts"] .page-hero > .site-shell::after {
 	pointer-events: none;
 }
 
+/* Leave room for the serving line above the two-column contact layout. */
+@media (min-width: 737px) {
+	html[data-skin="nutrition-facts"] .contact-hero > .site-shell {
+		padding-top: 10rem;
+	}
+}
+
 html[data-skin="nutrition-facts"] .page-hero h1,
 html[data-skin="nutrition-facts"] body.page-home .page-hero h1 {
 	max-width: 62rem;

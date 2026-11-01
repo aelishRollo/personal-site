@@ -8,10 +8,7 @@ const {
 const pages = [
   'index.html',
   'work.html',
-  'about.html',
   'favorites.html',
-  'connect.html',
-  'services.html',
   'contact.html',
   'fridge-poetry.html',
   'thanks.html',
@@ -32,6 +29,61 @@ for (const sitePage of pages) {
     expect(failures).toEqual([]);
   });
 }
+
+for (const [legacyPage, destination] of [
+  ['about.html', 'index.html'],
+  ['connect.html', 'contact.html'],
+  ['services.html', 'contact.html'],
+]) {
+  test(`${legacyPage} forwards old links and preserves the requested theme`, async ({ page }) => {
+    await page.goto(`/${legacyPage}?theme=portfolio-light`);
+    await expect(page).toHaveURL(new RegExp(`/${destination.replace('.', '\\.')}\\?theme=portfolio-light$`));
+    await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'portfolio-light');
+    await expect(page.locator('main')).toBeVisible();
+    await expect(page.locator('#site-nav a')).toHaveCount(4);
+  });
+}
+
+test('contact form submits its fields and keeps theme controls clear on mobile', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await openSitePage(page, '/contact.html?theme=portfolio-light');
+  await expect(page.locator('.skin-contact-charm')).toHaveCount(0);
+
+  const form = page.getByRole('form', { name: 'Send a message' });
+  await form.getByLabel('Name', { exact: true }).fill('Local preview');
+  await form.getByLabel('Your Email').fill('preview@example.com');
+  await form.getByLabel('Message', { exact: true }).fill('Testing the contact form locally.');
+  await form.getByRole('button', { name: 'Send message' }).scrollIntoViewIfNeeded();
+  expect(await page.evaluate(() => {
+    const formBox = document.querySelector('.contact-form-grid').getBoundingClientRect();
+    const pickerBox = document.querySelector('.skin-picker').getBoundingClientRect();
+    return pickerBox.top >= formBox.bottom;
+  })).toBe(true);
+
+  await page.locator('.skin-picker-toggle').click();
+  await expect(page.locator('#skin-picker-panel')).toBeVisible();
+  await page.getByRole('button', { name: 'Close theme picker' }).click();
+
+  // Intercept the POST: this verifies the form without sending a message.
+  await page.route('**/thanks.html', (route) => route.fulfill({
+    status: 200,
+    contentType: 'text/html',
+    body: '<main>Local form submission received.</main>',
+  }));
+  const submitted = page.waitForRequest((request) =>
+    request.method() === 'POST' && new URL(request.url()).pathname === '/thanks.html'
+  );
+  await form.getByRole('button', { name: 'Send message' }).click();
+  const fields = new URLSearchParams((await submitted).postData());
+  expect(Object.fromEntries(fields)).toEqual({
+    'form-name': 'contact-form',
+    'bot-field': '',
+    subject: 'New portfolio inquiry',
+    name: 'Local preview',
+    email: 'preview@example.com',
+    message: 'Testing the contact form locally.',
+  });
+});
 
 test('favorites index lists every card and jumps to it', async ({ page }) => {
   await openSitePage(page, '/favorites.html?theme=portfolio-dark');

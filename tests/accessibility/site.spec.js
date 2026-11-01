@@ -5,10 +5,7 @@ const { makeNetworkDeterministic, openSitePage } = require('../helpers');
 const pages = [
   'index.html',
   'work.html',
-  'about.html',
   'favorites.html',
-  'connect.html',
-  'services.html',
   'contact.html',
   'fridge-poetry.html',
   'thanks.html',

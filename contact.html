@@ -24,10 +24,7 @@
 					<ul>
 						<li><a href="index.html">Home</a></li>
 						<li><a href="work.html">Work</a></li>
-						<li><a href="about.html">About</a></li>
 						<li><a href="favorites.html" class="nav-favorites" aria-label="A Few Of My Favorite Things"><span class="nav-favorites-full" aria-hidden="true">A Few Of My Favorite Things</span><span class="nav-favorites-short" aria-hidden="true">My Favorite Things</span></a></li>
-						<li><a href="connect.html">Connect</a></li>
-						<li><a href="services.html">Collaborate</a></li>
 						<li><a href="contact.html" class="nav-cta" aria-current="page">Contact</a></li>
 					</ul>
 				</nav>
@@ -36,36 +33,30 @@
 		<!-- shared:header:end -->
 		<div id="wrapper" class="site-main-wrap">
 			<main id="main" class="site-main">
-				<section class="page-hero">
-					<div class="site-shell hero-grid hero-grid--with-portrait">
-						<div>
-							<p class="eyebrow">Contact</p>
-							<h1>Tell me what you are thinking about.</h1>
-							<p class="lead">Reach out about software work, music collaboration, jam sessions, professional opportunities, or anything else you want to start a conversation around.</p>
-						</div>
-						<figure class="portrait-panel portrait-panel-compact msdos-page-image" data-dos-filename="CONTACT.BMP">
-							<img src="images/avatar-512.webp" alt="A picture of Alec" width="512" height="669" loading="eager" decoding="async" />
-						</figure>
-					</div>
-				</section>
-				<section class="page-section">
+				<section class="page-hero contact-hero" aria-labelledby="contact-title">
 					<div class="site-shell contact-layout">
 						<div class="contact-intro">
-							<h2>Send a Note</h2>
-							<p>No need to fit your message into a category. A little context is helpful, but the important part is saying hello and telling me what is on your mind.</p>
+							<p class="eyebrow">Contact</p>
+							<h1 id="contact-title">Say hello.</h1>
+							<p class="lead">Have a project in mind, want to make music, or just feel like talking? I’d love to hear from you.</p>
+							<p>I’m based in Indianapolis and happy to collaborate locally or remotely. I’m open to full-time or contract software work, songwriting, recording, and jams.</p>
+							<p>I respond to every email.</p>
+							<ul class="contact-links" aria-label="Find me elsewhere">
+								<li><a href="https://github.com/aelishRollo">GitHub</a></li>
+								<li><a href="https://x.com/RollisonDev">Twitter / X</a></li>
+							</ul>
 						</div>
-						<form name="contact-form" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thanks.html" class="contact-form-grid">
+						<form name="contact-form" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thanks.html" class="contact-form-grid" aria-label="Send a message">
 							<input type="hidden" name="form-name" value="contact-form" />
 							<p class="hidden-field">
 								<label>Do not fill this out: <input name="bot-field" /></label>
 							</p>
 							<input type="hidden" name="subject" value="New portfolio inquiry" />
 							<div class="row gtr-uniform">
-								<div class="col-6 col-12-small"><label for="name">Name</label><input type="text" name="name" id="name" required /></div>
-								<div class="col-6 col-12-small"><label for="email">Your Email</label><input type="email" name="email" id="email" required /></div>
-								<div class="col-12"><label for="context">Topic <span class="optional-label">(optional)</span></label><input type="text" name="context" id="context" /></div>
-								<div class="col-12"><label for="message">Message</label><textarea name="message" id="message" rows="7" required></textarea></div>
-								<div class="col-12"><ul class="actions contact-actions"><li><button type="submit" class="primary contact-submit">Send Message</button></li></ul></div>
+								<div class="col-6 col-12-small"><label for="name">Name</label><input type="text" name="name" id="name" autocomplete="name" required /></div>
+								<div class="col-6 col-12-small"><label for="email">Your Email</label><input type="email" name="email" id="email" autocomplete="email" required /></div>
+								<div class="col-12"><label for="message">Message</label><textarea name="message" id="message" rows="6" required></textarea></div>
+								<div class="col-12"><ul class="actions contact-actions"><li><button type="submit" class="primary contact-submit">Send message</button></li></ul></div>
 							</div>
 						</form>
 					</div>
