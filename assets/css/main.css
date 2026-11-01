@@ -4067,6 +4067,10 @@ input[type="button"].alt,
 	width: auto;
 }
 
+.features--showcase .inner > p {
+	margin-bottom: 1rem;
+}
+
 .features--showcase .featured-project {
 	grid-column: 1 / -1;
 	display: grid;
@@ -4270,6 +4274,7 @@ input[type="button"].alt,
 
 .work-background p {
 	max-width: 48rem;
+	margin-bottom: 1.25rem;
 }
 
 .contact-tags {
