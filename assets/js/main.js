@@ -511,19 +511,8 @@
 	var splashText = document.getElementById('hero-splash-text');
 	var sillyTitle = document.getElementById('hero-silly-title');
 	var splashQuotes = [];
+	var splashQuoteIndex = -1;
 	var splashFitRaf = null;
-
-	function pickRandom(items, currentItem) {
-		var choices = items.filter(function(item) {
-			return item !== currentItem;
-		});
-
-		if (!choices.length) {
-			choices = items;
-		}
-
-		return choices[Math.floor(Math.random() * choices.length)];
-	}
 
 	function fitSplashText() {
 		if (!splash || !splashText || splash.hidden) {
@@ -572,6 +561,16 @@
 		});
 	}
 
+	function navigateSplashQuote(direction) {
+		if (!splashText || !splashQuotes.length) {
+			return;
+		}
+
+		splashQuoteIndex = (splashQuoteIndex + direction + splashQuotes.length) % splashQuotes.length;
+		splashText.textContent = splashQuotes[splashQuoteIndex];
+		scheduleSplashFit();
+	}
+
 	function refreshHomePersonality() {
 		if (!isHome) {
 			return;
@@ -581,42 +580,26 @@
 			window.refreshAlecSillyTitle(sillyTitle);
 		}
 
-		if (splashText && splashQuotes.length) {
-			splashText.textContent = pickRandom(splashQuotes, splashText.textContent);
-			scheduleSplashFit();
-		}
-	}
-
-	function refreshHomePersonalityFromKey(event) {
-		if (event.key !== 'Enter' && event.key !== ' ') {
-			return;
-		}
-
-		event.preventDefault();
-		refreshHomePersonality();
-	}
-
-	function makePersonalityRefreshTrigger(element, label) {
-		if (!element) {
-			return;
-		}
-
-		element.classList.add('hero-reload-trigger');
-		element.setAttribute('role', 'button');
-		element.setAttribute('tabindex', '0');
-		element.setAttribute('aria-label', label);
-
-		element.addEventListener('click', refreshHomePersonality);
-		element.addEventListener('keydown', refreshHomePersonalityFromKey);
+		navigateSplashQuote(1);
 	}
 
 	if (isHome) {
-		makePersonalityRefreshTrigger(sillyTitle, 'Show another silly hero title and Jeff Dean quote');
+		document.querySelectorAll('.personality-arrow').forEach(function(button) {
+			button.addEventListener('click', function() {
+				var direction = button.getAttribute('data-direction') === 'previous' ? -1 : 1;
+				if (button.getAttribute('data-personality') === 'title') {
+					if (typeof window.navigateAlecSillyTitle === 'function') {
+						window.navigateAlecSillyTitle(sillyTitle, direction);
+					}
+				} else {
+					navigateSplashQuote(direction);
+				}
+			});
+		});
 		document.addEventListener('site-skin-change', refreshHomePersonality);
 	}
 
 	if (isHome && splash && splashText) {
-		makePersonalityRefreshTrigger(splashText, 'Show another Jeff Dean quote and silly hero title');
 		splash.hidden = false;
 		scheduleSplashFit();
 
@@ -633,7 +616,8 @@
 					return;
 				}
 
-				splashText.textContent = pickRandom(splashQuotes, splashText.textContent);
+				splashQuoteIndex = Math.floor(Math.random() * splashQuotes.length);
+				splashText.textContent = splashQuotes[splashQuoteIndex];
 				splash.hidden = false;
 				scheduleSplashFit();
 			})
@@ -652,9 +636,6 @@
 			splashObserver.observe(splashText);
 		}
 
-		$(splash).find('.hero-splash-close').on('click', function() {
-			splash.hidden = true;
-		});
 	}
 
 	// Mobile nav toggle.

@@ -101,6 +101,7 @@
 	}
 
 	var selectedTitle = pickRandom(titles);
+	var selectedTitleIndex = titles.indexOf(selectedTitle);
 
 	window.renderAlecSillyTitle = function() {
 		var title = selectedTitle;
@@ -111,15 +112,20 @@
 		return '<span class="' + classes + '" id="hero-silly-title"><span class="hero-title-initial">' + initial + '</span>' + remainder + '.</span>';
 	};
 
-	window.refreshAlecSillyTitle = function(element) {
+	window.navigateAlecSillyTitle = function(element, direction) {
 		if (!element) {
 			return '';
 		}
 
-		selectedTitle = pickRandom(titles, selectedTitle);
+		selectedTitleIndex = (selectedTitleIndex + direction + titles.length) % titles.length;
+		selectedTitle = titles[selectedTitleIndex];
 		element.classList.toggle('silly-title-long', wordCount(selectedTitle) > 4);
 		element.innerHTML = '<span class="hero-title-initial">' + escapeHtml(selectedTitle.charAt(0)) + '</span>' + escapeHtml(selectedTitle.slice(1)) + '.';
 
 		return selectedTitle;
+	};
+
+	window.refreshAlecSillyTitle = function(element) {
+		return window.navigateAlecSillyTitle(element, 1);
 	};
 })(window);

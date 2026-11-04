@@ -30,6 +30,42 @@ for (const sitePage of pages) {
   });
 }
 
+test('hero title and Jeff Dean quote arrows browse independently', async ({ page }) => {
+  await openSitePage(page, '/index.html?theme=browser-archaeology');
+  const title = page.locator('#hero-silly-title');
+  const quote = page.locator('#hero-splash-text');
+  await expect(quote).not.toHaveText('Alec Rollison can get 1s out of `/dev/zero`.');
+  await expect(page.locator('.hero-splash-close, .hero-splash-notice-icon')).toHaveCount(0);
+
+  const initialTitle = await title.textContent();
+  const initialQuote = await quote.textContent();
+  await page.getByRole('button', { name: 'Next hero title' }).click();
+  await expect(title).not.toHaveText(initialTitle);
+  await expect(quote).toHaveText(initialQuote);
+  await page.getByRole('button', { name: 'Previous hero title' }).click();
+  await expect(title).toHaveText(initialTitle);
+
+  await page.getByRole('button', { name: 'Next Jeff Dean quote' }).click();
+  await expect(quote).not.toHaveText(initialQuote);
+  await expect(title).toHaveText(initialTitle);
+  await page.getByRole('button', { name: 'Previous Jeff Dean quote' }).click();
+  await expect(quote).toHaveText(initialQuote);
+});
+
+test('quote arrows remain usable in themed mobile layouts', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const theme of ['nutrition-facts', 'ms-dos-prompt', 'op-art-monochrome']) {
+    await openSitePage(page, `/index.html?theme=${theme}`);
+    const quote = page.locator('#hero-splash-text');
+    await expect(quote).not.toHaveText('Alec Rollison can get 1s out of `/dev/zero`.');
+    const previous = await quote.textContent();
+    await page.getByRole('button', { name: 'Next Jeff Dean quote' }).click();
+    await expect(quote).not.toHaveText(previous);
+    await page.getByRole('button', { name: 'Previous Jeff Dean quote' }).click();
+    await expect(quote).toHaveText(previous);
+  }
+});
+
 test('Afterimage text contrasts with both the page and the artwork', async ({ page }) => {
   await page.setViewportSize({ width: 768, height: 900 });
   await openSitePage(page, '/favorites.html?theme=op-art-monochrome');

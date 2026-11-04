@@ -216,7 +216,8 @@ html[data-skin="nutrition-facts"] .hero-title-role {
 	border-bottom: 1px solid #050505;
 }
 
-html[data-skin="nutrition-facts"] .hero-title-role:last-child {
+html[data-skin="nutrition-facts"] .hero-title-role:last-child,
+html[data-skin="nutrition-facts"] #hero-silly-title {
 	border-bottom-width: 0.7rem;
 }
 
