@@ -71,7 +71,7 @@
 			'portfolio-dark': 'Let\'s build something',
 			'portfolio-light': 'Say hello',
 			'acid-editorial': 'Start a conversation',
-			'op-art-monochrome': 'Step into the idea',
+			'op-art-monochrome': 'Look again',
 			'neon-glitch': 'Ping me //',
 			'liquid-dream': 'Dive into an idea',
 			'sacred-geometry': 'Align & connect',
