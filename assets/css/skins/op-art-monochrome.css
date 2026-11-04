@@ -1,29 +1,29 @@
-/* Afterimage: an optical gallery poster made from ink, paper, and one signal red. */
+/* Afterimage: an optical study in curved rhythms and neighboring colors. */
 html[data-skin="op-art-monochrome"] {
-	--background: #f2f1eb;
-	--foreground: #171717;
-	--muted-bg: #e6e5df;
-	--card-bg: #fffefa;
-	--border: #171717;
-	--primary: #171717;
+	--background: #f5f0e6;
+	--foreground: #1d3533;
+	--muted-bg: #e2ebe3;
+	--card-bg: #fffdf7;
+	--border: #36514b;
+	--primary: #1d3b39;
 	--primary-fg: #fffefa;
-	--secondary: #e6e5df;
-	--secondary-fg: #171717;
-	--accent: #bd382b;
+	--secondary: #e2ebe3;
+	--secondary-fg: #1d3533;
+	--accent: #aa3f31;
 	--accent-fg: #ffffff;
-	--link: #98291f;
-	--warning: #bd382b;
-	--header-bg: #171717;
+	--link: #8c3025;
+	--warning: #aa3f31;
+	--header-bg: #1d3b39;
 	--header-fg: #fffefa;
-	--footer-bg: #171717;
+	--footer-bg: #1d3b39;
 	--footer-fg: #fffefa;
 	--bg: var(--background);
 	--surface-1: var(--card-bg);
 	--surface-2: var(--muted-bg);
-	--surface-3: #171717;
+	--surface-3: #1d3b39;
 	--text-1: var(--foreground);
-	--text-2: #41403e;
-	--line-1: #9e9d96;
+	--text-2: #3b504b;
+	--line-1: #a4b4aa;
 	--accent-1: var(--link);
 	--accent-2: var(--accent);
 }
@@ -72,7 +72,7 @@ html[data-skin="op-art-monochrome"] .brand-mark {
 	border: 1px solid #fffefa;
 	border-radius: 0;
 	background: #fffefa !important;
-	color: #171717 !important;
+	color: var(--foreground) !important;
 	font-weight: 900;
 }
 
@@ -97,7 +97,7 @@ html[data-skin="op-art-monochrome"] .site-nav a {
 html[data-skin="op-art-monochrome"] .site-nav a:hover,
 html[data-skin="op-art-monochrome"] .site-nav a[aria-current="page"] {
 	background: #fffefa !important;
-	color: #171717 !important;
+	color: var(--foreground) !important;
 }
 
 html[data-skin="op-art-monochrome"] .site-nav .nav-cta,
@@ -125,16 +125,16 @@ html[data-skin="op-art-monochrome"] body.page-contact .page-hero {
 	color: var(--foreground);
 }
 
-/* The interference field occupies one edge, keeping text on calm paper. */
+/* A bounded, static wave field leaves the copy and photographs unobscured. */
 html[data-skin="op-art-monochrome"] .page-hero::before {
 	content: "";
 	position: absolute;
 	top: 0;
 	right: 0;
-	bottom: 0;
-	width: min(39%, 38rem);
-	clip-path: polygon(13% 0, 100% 0, 100% 100%, 0 100%);
-	background: repeating-linear-gradient(90deg, #171717 0 6px, #f2f1eb 6px 15px);
+	width: min(45%, 40rem);
+	height: min(42rem, 100%);
+	border-bottom-left-radius: 42%;
+	background: #b8d2c5 url("../../images/afterimage-wave.svg") center / cover no-repeat;
 	pointer-events: none;
 }
 
@@ -179,10 +179,10 @@ html[data-skin="op-art-monochrome"] .eyebrow {
 }
 
 html[data-skin="op-art-monochrome"] .hero-media img {
-	border: 2px solid var(--border) !important;
+	border: 7px solid var(--card-bg) !important;
 	border-radius: 0;
-	box-shadow: 0 0 0 10px var(--background);
-	filter: grayscale(1) contrast(1.08) !important;
+	box-shadow: 0 12px 28px rgba(29, 53, 51, 0.2);
+	filter: none !important;
 }
 
 html[data-skin="op-art-monochrome"] .hero-splash {
@@ -191,17 +191,34 @@ html[data-skin="op-art-monochrome"] .hero-splash {
 	background: var(--card-bg);
 }
 
+html[data-skin="op-art-monochrome"] .hero-splash-notice-icon {
+	display: none;
+}
+
 html[data-skin="op-art-monochrome"] .hero-splash-text,
 html[data-skin="op-art-monochrome"] .hero-splash .hero-splash-text {
 	color: var(--foreground) !important;
 	font: 800 0.82rem/1.25 Arial, Helvetica, sans-serif;
 	letter-spacing: 0.045em;
+	align-items: flex-start;
+	padding-top: 1rem;
 	text-shadow: none;
 	animation: none;
 }
 
 html[data-skin="op-art-monochrome"] .hero-splash-close {
-	color: var(--foreground);
+	top: 0;
+	right: 0;
+	z-index: 5;
+	width: 2.75rem;
+	height: 2.75rem;
+	transform: translateY(-50%);
+	border: 1px solid #fffefa;
+	background: var(--primary);
+	color: #fffefa;
+	font-size: 1.4rem;
+	line-height: 1;
+	opacity: 1;
 }
 
 html[data-skin="op-art-monochrome"] .page-section:not(.section-cta) {
@@ -241,7 +258,7 @@ html[data-skin="op-art-monochrome"] .quest-card::before {
 }
 
 html[data-skin="op-art-monochrome"] .quest-card:nth-child(2) {
-	background: var(--foreground) !important;
+	background: var(--primary) !important;
 	color: #fffefa;
 }
 
@@ -322,7 +339,7 @@ html[data-skin="op-art-monochrome"] .features article .inner span a:hover {
 html[data-skin="op-art-monochrome"] .section-cta {
 	position: relative;
 	border-block: 1px solid var(--border);
-	background: var(--foreground) !important;
+	background: var(--primary) !important;
 	color: #fffefa !important;
 }
 
@@ -361,17 +378,31 @@ html[data-skin="op-art-monochrome"] fridge-poetry-board {
 		top: 0;
 		left: 0;
 		right: 0;
-		bottom: auto;
 		width: 100%;
-		height: 9px;
-		clip-path: none;
+		height: 14px;
+		border-radius: 0;
+		background-size: 250px auto;
+		background-position: center 48%;
 	}
 
 	html[data-skin="op-art-monochrome"] body.nav-open .site-nav a {
 		border-radius: 0;
 	}
 
-	html[data-skin="op-art-monochrome"] .hero-media img {
-		box-shadow: 0 0 0 5px var(--background);
+	html[data-skin="op-art-monochrome"] .hero-media {
+		isolation: isolate;
+	}
+
+	html[data-skin="op-art-monochrome"] .hero-media::before {
+		content: "";
+		position: absolute;
+		z-index: -1;
+		top: -1rem;
+		left: 0;
+		right: 0;
+		height: min(85vw, 21rem);
+		border-radius: 45% 0 45% 0;
+		background: url("../../images/afterimage-wave.svg") center / cover no-repeat;
+		pointer-events: none;
 	}
 }
