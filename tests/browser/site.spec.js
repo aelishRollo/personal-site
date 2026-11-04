@@ -30,6 +30,43 @@ for (const sitePage of pages) {
   });
 }
 
+test('Afterimage hero copy stays clear of its dark artwork', async ({ page }) => {
+  const heroPages = ['index.html', 'favorites.html', 'contact.html', 'fridge-poetry.html'];
+  const widths = [768, 1024, 1120, 1121, 1280];
+
+  for (const sitePage of heroPages) {
+    for (const width of widths) {
+      await page.setViewportSize({ width, height: 900 });
+      await openSitePage(page, `/${sitePage}?theme=op-art-monochrome`);
+
+      const overlaps = await page.evaluate(() => {
+        const hero = document.querySelector('.page-hero');
+        const bounds = hero.getBoundingClientRect();
+        const artwork = getComputedStyle(hero, '::before');
+        const artworkLeft = bounds.right - parseFloat(artwork.width);
+        const artworkBottom = bounds.top + parseFloat(artwork.height);
+        const copy = hero.querySelectorAll(
+          'h1, h2, .lead, .hero-summary, .contact-intro > p, .contact-links, .favorites-jump'
+        );
+
+        return Array.from(copy)
+          .filter((element) => !element.closest('.panel-card'))
+          .flatMap((element) => {
+            const range = document.createRange();
+            range.selectNodeContents(element);
+            return Array.from(range.getClientRects())
+              .filter((rect) => rect.width > 0 && rect.height > 0 &&
+                rect.right > artworkLeft + 1 && rect.top < artworkBottom - 1 &&
+                rect.bottom > bounds.top)
+              .map(() => element.textContent.trim().slice(0, 60));
+          });
+      });
+
+      expect(overlaps, `${sitePage} at ${width}px`).toEqual([]);
+    }
+  }
+});
+
 for (const [legacyPage, destination] of [
   ['about.html', 'index.html'],
   ['connect.html', 'contact.html'],
