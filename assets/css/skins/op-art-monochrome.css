@@ -164,6 +164,8 @@ html[data-skin="op-art-monochrome"] .contact-intro .contact-links,
 html[data-skin="op-art-monochrome"] .favorites-hero .favorites-jump {
 	color: #fff !important;
 	mix-blend-mode: difference;
+	-webkit-text-stroke: 1px currentColor;
+	paint-order: stroke fill;
 }
 
 html[data-skin="op-art-monochrome"] .page-hero h1 *,
