@@ -112,13 +112,14 @@ html[data-skin-id="acid-editorial"] .skin-contact-charm {
 }
 
 html[data-skin-id="op-art-monochrome"] .skin-contact-charm {
-	--skin-contact-rotate: -1deg;
-	border: 3px solid #ffffff !important;
+	--skin-contact-rotate: 0deg;
+	border: 1px solid #171717 !important;
+	border-left: 5px solid #bd382b !important;
 	border-radius: 0;
-	background: repeating-linear-gradient(135deg, #000 0 6px, #fff 6px 12px) !important;
-	box-shadow: 6px 6px 0 #ffffff;
-	color: #ffffff !important;
-	text-shadow: 2px 2px 0 #000, -2px -2px 0 #000;
+	background: #fffefa !important;
+	box-shadow: none;
+	color: #171717 !important;
+	text-shadow: none;
 }
 
 html[data-skin-id="neon-glitch"] .skin-contact-charm {
