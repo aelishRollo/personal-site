@@ -1,29 +1,29 @@
-/* Afterimage: an optical study in curved rhythms and neighboring colors. */
+/* Afterimage: a study in black, white, space, and repeated lines. */
 html[data-skin="op-art-monochrome"] {
-	--background: #f5f0e6;
-	--foreground: #1d3533;
-	--muted-bg: #e2ebe3;
-	--card-bg: #fffdf7;
-	--border: #36514b;
-	--primary: #1d3b39;
-	--primary-fg: #fffefa;
-	--secondary: #e2ebe3;
-	--secondary-fg: #1d3533;
-	--accent: #aa3f31;
+	--background: #f7f7f4;
+	--foreground: #161616;
+	--muted-bg: #eaeae6;
+	--card-bg: #ffffff;
+	--border: #161616;
+	--primary: #161616;
+	--primary-fg: #ffffff;
+	--secondary: #eaeae6;
+	--secondary-fg: #161616;
+	--accent: #161616;
 	--accent-fg: #ffffff;
-	--link: #8c3025;
-	--warning: #aa3f31;
-	--header-bg: #1d3b39;
-	--header-fg: #fffefa;
-	--footer-bg: #1d3b39;
-	--footer-fg: #fffefa;
+	--link: #161616;
+	--warning: #161616;
+	--header-bg: #161616;
+	--header-fg: #ffffff;
+	--footer-bg: #161616;
+	--footer-fg: #ffffff;
 	--bg: var(--background);
 	--surface-1: var(--card-bg);
 	--surface-2: var(--muted-bg);
-	--surface-3: #1d3b39;
+	--surface-3: #161616;
 	--text-1: var(--foreground);
-	--text-2: #3b504b;
-	--line-1: #a4b4aa;
+	--text-2: #3c3c3c;
+	--line-1: #a5a5a0;
 	--accent-1: var(--link);
 	--accent-2: var(--accent);
 }
@@ -43,7 +43,7 @@ html[data-skin="op-art-monochrome"] h1,
 html[data-skin="op-art-monochrome"] h2,
 html[data-skin="op-art-monochrome"] h3 {
 	color: var(--foreground);
-	font-family: Georgia, "Times New Roman", serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: 700;
 	letter-spacing: -0.045em;
 }
@@ -54,12 +54,18 @@ html[data-skin="op-art-monochrome"] a {
 }
 
 html[data-skin="op-art-monochrome"] a:hover {
-	color: #651b15 !important;
+	color: #555 !important;
 }
 
 html[data-skin="op-art-monochrome"] :focus-visible {
 	outline: 3px solid var(--accent);
 	outline-offset: 3px;
+}
+
+html[data-skin="op-art-monochrome"] .site-header :focus-visible,
+html[data-skin="op-art-monochrome"] .section-cta :focus-visible,
+html[data-skin="op-art-monochrome"] .quest-card:nth-child(2) :focus-visible {
+	outline-color: #fff;
 }
 
 html[data-skin="op-art-monochrome"] .site-header {
@@ -107,7 +113,7 @@ html[data-skin="op-art-monochrome"] .nav-toggle {
 }
 
 html[data-skin="op-art-monochrome"] .site-nav .nav-cta {
-	border-bottom: 4px solid var(--accent) !important;
+	border-bottom: 3px solid #fffefa !important;
 }
 
 html[data-skin="op-art-monochrome"] .page-hero,
@@ -125,7 +131,7 @@ html[data-skin="op-art-monochrome"] body.page-contact .page-hero {
 	color: var(--foreground);
 }
 
-/* A bounded, static wave field leaves the copy and photographs unobscured. */
+/* Repeated lines cross one bounded black field, leaving the copy in open space. */
 html[data-skin="op-art-monochrome"] .page-hero::before {
 	content: "";
 	position: absolute;
@@ -134,7 +140,7 @@ html[data-skin="op-art-monochrome"] .page-hero::before {
 	width: min(45%, 40rem);
 	height: min(42rem, 100%);
 	border-bottom-left-radius: 42%;
-	background: #b8d2c5 url("../../images/afterimage-wave.svg") center / cover no-repeat;
+	background: #161616 url("../../images/afterimage-wave.svg") center / cover no-repeat;
 	pointer-events: none;
 }
 
@@ -164,7 +170,7 @@ html[data-skin="op-art-monochrome"] .metallic-pearl-text {
 	background: none;
 	filter: none;
 	animation: none;
-	font-style: italic;
+	font-style: normal;
 }
 
 html[data-skin="op-art-monochrome"] .eyebrow {
@@ -181,7 +187,7 @@ html[data-skin="op-art-monochrome"] .eyebrow {
 html[data-skin="op-art-monochrome"] .hero-media img {
 	border: 7px solid var(--card-bg) !important;
 	border-radius: 0;
-	box-shadow: 0 12px 28px rgba(29, 53, 51, 0.2);
+	box-shadow: none;
 	filter: none !important;
 }
 
@@ -215,7 +221,7 @@ html[data-skin="op-art-monochrome"] .hero-splash-close {
 	transform: translateY(-50%);
 	border: 1px solid #fffefa;
 	background: var(--primary);
-	color: #fffefa;
+	color: #fffefa !important;
 	font-size: 1.4rem;
 	line-height: 1;
 	opacity: 1;
@@ -366,11 +372,11 @@ html[data-skin="op-art-monochrome"] .site-footer a {
 }
 
 html[data-skin="op-art-monochrome"] .skin-picker {
-	--skin-ui-accent: #e36a5b;
+	--skin-ui-accent: #eeeeeb;
 }
 
 html[data-skin="op-art-monochrome"] fridge-poetry-board {
-	--fp-focus: #e8b4ac;
+	--fp-focus: #deded9;
 }
 
 @media (max-width: 736px) {
