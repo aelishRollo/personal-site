@@ -27,6 +27,7 @@
 		{ id: 'liquid-chrome-y2k', name: 'Liquid Chrome Y2K', scheme: 'light', css: 'assets/css/skins/liquid-chrome-y2k.css' },
 		{ id: 'acid-brutalist', name: 'Acid Brutalist', scheme: 'dark', css: 'assets/css/skins/acid-brutalist.css' },
 		{ id: 'botanical-dreamscape', name: 'Botanical Dreamscape', scheme: 'dark', css: 'assets/css/skins/botanical-dreamscape.css' },
+		{ id: 'sea-glass-mosaic', name: 'Sea Glass Mosaic', scheme: 'light', css: 'assets/css/skins/sea-glass-mosaic.css' },
 		{ id: 'cosmic-airbrush', name: 'Cosmic Airbrush', scheme: 'dark', css: 'assets/css/skins/cosmic-airbrush.css' },
 		{ id: 'riso-hallucination', name: 'Riso Hallucination', scheme: 'light', css: 'assets/css/skins/riso-hallucination.css' },
 		{ id: 'crystal-prism', name: 'Crystal Prism', scheme: 'light', css: 'assets/css/skins/crystal-prism.css' },
@@ -73,6 +74,9 @@
 		],
 		'midnight-aurora-glass': [
 			{ href: 'assets/images/midnight-aurora-glass.webp', as: 'image', type: 'image/webp' }
+		],
+		'sea-glass-mosaic': [
+			{ href: 'assets/images/sea-glass-mosaic.webp', as: 'image', type: 'image/webp' }
 		]
 	};
 	var preloadedAssets = {};
