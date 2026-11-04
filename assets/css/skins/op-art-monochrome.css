@@ -137,7 +137,7 @@ html[data-skin="op-art-monochrome"] .page-hero::before {
 	position: absolute;
 	top: 0;
 	right: 0;
-	width: min(35%, 34rem);
+	width: min(45%, 40rem);
 	height: min(42rem, 100%);
 	border-bottom-left-radius: 42%;
 	background: #161616 url("../../images/afterimage-wave.svg") center / cover no-repeat;
@@ -151,8 +151,25 @@ html[data-skin="op-art-monochrome"] .page-hero::after {
 html[data-skin="op-art-monochrome"] .page-hero .site-shell,
 html[data-skin="op-art-monochrome"] .hero-copy {
 	position: relative;
-	z-index: 1;
+	z-index: auto;
 	min-width: 0;
+}
+
+/* Difference blending keeps each glyph legible over both the paper and the artwork. */
+html[data-skin="op-art-monochrome"] .page-hero h1,
+html[data-skin="op-art-monochrome"] .page-hero .lead,
+html[data-skin="op-art-monochrome"] .page-hero .hero-summary,
+html[data-skin="op-art-monochrome"] .contact-intro > p:not(.eyebrow),
+html[data-skin="op-art-monochrome"] .contact-intro .contact-links,
+html[data-skin="op-art-monochrome"] .favorites-hero .favorites-jump {
+	color: #fff !important;
+	mix-blend-mode: difference;
+}
+
+html[data-skin="op-art-monochrome"] .page-hero h1 *,
+html[data-skin="op-art-monochrome"] .contact-intro .contact-links a {
+	color: #fff !important;
+	-webkit-text-fill-color: #fff !important;
 }
 
 html[data-skin="op-art-monochrome"] .page-hero h1 {
@@ -379,15 +396,7 @@ html[data-skin="op-art-monochrome"] fridge-poetry-board {
 	--fp-focus: #deded9;
 }
 
-/* Keep the artwork beyond the widest hero copy when the layout is side by side. */
-@media (min-width: 1121px) {
-	html[data-skin="op-art-monochrome"] .page-hero h1 {
-		max-width: min(13em, 42rem);
-	}
-}
-
-/* The shared layout stacks at 1120px, so reserve the main field for text. */
-@media (max-width: 1120px) {
+@media (max-width: 736px) {
 	html[data-skin="op-art-monochrome"] .page-hero::before {
 		top: 0;
 		left: 0;
