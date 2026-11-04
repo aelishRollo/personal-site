@@ -51,3 +51,12 @@ test('open theme picker has no serious WCAG A/AA violations', async ({ page }) =
   );
   await expectNoImportantViolations(page);
 });
+
+test('Sea Glass Mosaic is accessible on narrow home and fridge pages', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const path of ['index.html', 'fridge-poetry.html']) {
+    await openSitePage(page, `/${path}?theme=sea-glass-mosaic`);
+    await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'sea-glass-mosaic');
+    await expectNoImportantViolations(page);
+  }
+});

@@ -82,6 +82,7 @@
 			'liquid-chrome-y2k': 'CONNECT.EXE',
 			'acid-brutalist': 'TALK TO ME',
 			'botanical-dreamscape': 'Grow an idea',
+			'sea-glass-mosaic': 'Make waves together',
 			'cosmic-airbrush': 'Send a signal',
 			'riso-hallucination': 'Print something wild',
 			'crystal-prism': 'Refract an idea',

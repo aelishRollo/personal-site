@@ -1,0 +1,274 @@
+/* Sea Glass Mosaic: a quiet gallery built from the photographed glass and stone tiles. */
+html[data-skin="sea-glass-mosaic"] {
+	--background: #f1ede3;
+	--foreground: #24352f;
+	--muted-bg: #e8e3d5;
+	--card-bg: #faf8f0;
+	--border: #a7aa98;
+	--primary: #98512f;
+	--primary-fg: #fffaf1;
+	--secondary: #b9cec2;
+	--secondary-fg: #253b32;
+	--accent: #365f52;
+	--accent-fg: #fffaf1;
+	--link: #245749;
+	--warning: #a34e35;
+	--header-bg: #273d34;
+	--header-fg: #f5f0e4;
+	--footer-bg: #273d34;
+	--footer-fg: #f5f0e4;
+	--bg: #f1ede3;
+	--surface-1: #faf8f0;
+	--surface-2: #e8e3d5;
+	--surface-3: #b9cec2;
+	--text-1: #24352f;
+	--text-2: #44534b;
+	--line-1: #a7aa98;
+	--accent-1: #245749;
+	--accent-2: #b66d3d;
+	color-scheme: light;
+}
+
+html[data-skin="sea-glass-mosaic"] body {
+	background: #f1ede3 !important;
+	color: #24352f !important;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html[data-skin="sea-glass-mosaic"] h1,
+html[data-skin="sea-glass-mosaic"] h2,
+html[data-skin="sea-glass-mosaic"] h3,
+html[data-skin="sea-glass-mosaic"] h4 {
+	font-family: Georgia, "Times New Roman", serif;
+	font-weight: 700;
+	letter-spacing: -0.035em;
+}
+
+html[data-skin="sea-glass-mosaic"] a:hover {
+	color: #934c30 !important;
+}
+
+html[data-skin="sea-glass-mosaic"] .site-header {
+	background: #273d34 !important;
+	border-bottom: 5px solid #ded9cb !important;
+	box-shadow: none;
+	backdrop-filter: none;
+}
+
+html[data-skin="sea-glass-mosaic"] .brand-mark {
+	border: 2px solid #e6e7d8;
+	border-radius: 4px;
+	background: linear-gradient(145deg, #9ec5b2, #557968) !important;
+	box-shadow: inset 2px 2px 0 rgba(255, 255, 255, 0.38), inset -3px -3px 0 rgba(22, 58, 45, 0.3);
+	color: #183a2d !important;
+}
+
+html[data-skin="sea-glass-mosaic"] .brand-text,
+html[data-skin="sea-glass-mosaic"] .site-nav a,
+html[data-skin="sea-glass-mosaic"] .nav-toggle {
+	color: #f5f0e4 !important;
+}
+
+html[data-skin="sea-glass-mosaic"] .site-nav a,
+html[data-skin="sea-glass-mosaic"] .nav-toggle {
+	border-radius: 3px;
+}
+
+html[data-skin="sea-glass-mosaic"] .site-nav a[aria-current="page"] {
+	background: #b9cec2 !important;
+	color: #253b32 !important;
+}
+
+html[data-skin="sea-glass-mosaic"] .site-nav .nav-cta,
+html[data-skin="sea-glass-mosaic"] .nav-toggle {
+	border-color: #e0c9a4 !important;
+}
+
+html[data-skin="sea-glass-mosaic"] .page-hero {
+	position: relative;
+	isolation: isolate;
+	padding-top: clamp(12rem, 20vw, 15rem) !important;
+	background: #e8e3d5 !important;
+	border-bottom: 8px solid #f8f6ed !important;
+}
+
+html[data-skin="sea-glass-mosaic"] .page-hero::before {
+	content: "";
+	position: absolute;
+	inset: 0 0 auto;
+	height: clamp(8.5rem, 16vw, 12rem);
+	background: linear-gradient(rgba(24, 46, 37, 0.12), rgba(24, 46, 37, 0.12)), url("../../images/sea-glass-mosaic.webp") center 50% / cover;
+	border-bottom: 8px solid #f8f6ed;
+	box-shadow: 0 2px 0 #9a9c88;
+	pointer-events: none;
+}
+
+html[data-skin="sea-glass-mosaic"] .page-hero .site-shell {
+	position: relative;
+	z-index: 1;
+}
+
+html[data-skin="sea-glass-mosaic"] .page-hero h1 {
+	color: #233a30 !important;
+	text-wrap: balance;
+}
+
+html[data-skin="sea-glass-mosaic"] .hero-title-role {
+	margin-bottom: 0.15em;
+}
+
+html[data-skin="sea-glass-mosaic"] .hero-title-role:nth-of-type(odd) .hero-title-initial,
+html[data-skin="sea-glass-mosaic"] .hero-title-role:nth-of-type(even) .hero-title-initial {
+	color: #b66d3d;
+}
+
+html[data-skin="sea-glass-mosaic"] .hero-title-role:last-child {
+	color: #526f60;
+}
+
+html[data-skin="sea-glass-mosaic"] .metallic-pearl-text {
+	background: none;
+	color: #526f60;
+	-webkit-text-fill-color: currentColor;
+	filter: none;
+}
+
+html[data-skin="sea-glass-mosaic"] .eyebrow {
+	border: 1px solid #718c78 !important;
+	border-radius: 3px;
+	background: #cbd9c9 !important;
+	color: #284b3b !important;
+	font-size: 0.7rem;
+	font-weight: 800;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+}
+
+html[data-skin="sea-glass-mosaic"] .hero-media img,
+html[data-skin="sea-glass-mosaic"] .portrait-panel img {
+	border: 8px solid #f8f6ed;
+	border-radius: 5px;
+	box-shadow: 0 0 0 1px #9a9c88, 8px 10px 0 rgba(76, 89, 71, 0.16);
+}
+
+html[data-skin="sea-glass-mosaic"] .panel-card,
+html[data-skin="sea-glass-mosaic"] .features article,
+html[data-skin="sea-glass-mosaic"] .contact-rail,
+html[data-skin="sea-glass-mosaic"] ul.feature-icons li,
+html[data-skin="sea-glass-mosaic"] .profile-chip {
+	border: 5px solid #f8f6ed !important;
+	border-radius: 5px;
+	background: #d6dfd1 !important;
+	box-shadow: 0 0 0 1px #aaa995, 5px 7px 0 rgba(61, 82, 66, 0.12) !important;
+}
+
+html[data-skin="sea-glass-mosaic"] .quest-card:nth-child(3n + 2) {
+	background: #d9d8c6 !important;
+}
+
+html[data-skin="sea-glass-mosaic"] .quest-card:nth-child(3n) {
+	background: #c3d5cc !important;
+}
+
+html[data-skin="sea-glass-mosaic"] .features article:nth-child(3n + 2) {
+	background: #eee7d4 !important;
+}
+
+html[data-skin="sea-glass-mosaic"] .features article:nth-child(3n) {
+	background: #d9d8c6 !important;
+}
+
+html[data-skin="sea-glass-mosaic"] .features article .image {
+	border-radius: 2px;
+}
+
+html[data-skin="sea-glass-mosaic"] .quest-card h3 {
+	font-size: 1.65rem;
+}
+
+html[data-skin="sea-glass-mosaic"] .quest-link,
+html[data-skin="sea-glass-mosaic"] .contact-links a {
+	color: #245749 !important;
+	text-decoration: underline;
+	text-decoration-color: #b66d3d;
+	text-underline-offset: 0.25em;
+}
+
+html[data-skin="sea-glass-mosaic"] .button,
+html[data-skin="sea-glass-mosaic"] button.primary,
+html[data-skin="sea-glass-mosaic"] .features article .inner span a {
+	border-radius: 3px;
+}
+
+html[data-skin="sea-glass-mosaic"] .button.primary:hover,
+html[data-skin="sea-glass-mosaic"] button.primary:hover {
+	background: #813f27 !important;
+	color: #fffaf1 !important;
+}
+
+html[data-skin="sea-glass-mosaic"] .section-cta {
+	background: #365b4e !important;
+}
+
+html[data-skin="sea-glass-mosaic"] .section-cta h2,
+html[data-skin="sea-glass-mosaic"] .section-cta p {
+	color: #f5f0e4 !important;
+}
+
+html[data-skin="sea-glass-mosaic"] .site-footer {
+	border-top: 8px solid #e2dccd !important;
+	background: #273d34 !important;
+}
+
+html[data-skin="sea-glass-mosaic"] .contact-form-grid {
+	padding: 1.25rem;
+	border: 5px solid #f8f6ed;
+	border-radius: 5px;
+	background: #d6dfd1;
+	box-shadow: 0 0 0 1px #aaa995;
+}
+
+html[data-skin="sea-glass-mosaic"] .contact-form-grid input,
+html[data-skin="sea-glass-mosaic"] .contact-form-grid textarea {
+	border-radius: 3px;
+}
+
+html[data-skin="sea-glass-mosaic"] fridge-poetry-board {
+	--fp-focus: #73bf90;
+}
+
+html[data-skin="sea-glass-mosaic"] pre code {
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+	overflow-x: visible;
+}
+
+html[data-skin="sea-glass-mosaic"] .skin-picker {
+	--skin-ui-bg: #273d34;
+	--skin-ui-panel: #365b4e;
+	--skin-ui-accent: #d9c99f;
+	--skin-ui-border: #93ad9e;
+}
+
+html[data-skin="sea-glass-mosaic"] .skin-contact-charm {
+	--skin-contact-rotate: -3deg;
+	border: 3px solid #f8f6ed !important;
+	border-radius: 4px;
+	background: #98512f !important;
+	box-shadow: 4px 4px 0 #273d34;
+	color: #fffaf1 !important;
+}
+
+@media screen and (max-width: 736px) {
+	html[data-skin="sea-glass-mosaic"] .page-hero {
+		padding-top: 11rem !important;
+	}
+
+	html[data-skin="sea-glass-mosaic"] .page-hero::before {
+		height: 8.5rem;
+	}
+
+	html[data-skin="sea-glass-mosaic"] .contact-form-grid {
+		padding: 0.85rem;
+	}
+}
