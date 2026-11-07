@@ -360,8 +360,8 @@
 			}
 		});
 
-		// Warm only the theme a visitor is actively considering. This keeps the
-		// initial page lean without making deliberate picker changes feel delayed.
+		// Start preparation immediately on intent as well as during automatic
+		// background warming, including interactions before it has completed.
 		$skinChoices.on('pointerenter focus', function() {
 			if (skinRuntime.prepare) {
 				skinRuntime.prepare($(this).attr('data-skin-choice'));

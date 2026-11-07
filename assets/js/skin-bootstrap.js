@@ -60,6 +60,9 @@
 		{ href: 'images/paper-texture-tile.webp', as: 'image', type: 'image/webp' }
 	];
 	var assetsBySkin = {
+		'op-art-monochrome': [
+			{ href: 'assets/images/afterimage-wave.svg', as: 'image', type: 'image/svg+xml' }
+		],
 		'psychedelic-scrapbook': [
 			{ href: 'assets/images/corkboard-texture.webp', as: 'image', type: 'image/webp' }
 		],
@@ -467,6 +470,21 @@
 	write(window.sessionStorage, sessionModeKey, initialMode);
 	preloadAssets(sharedAssets);
 	apply(initialId, initialMode);
+
+	// Fetch inactive themes after the initial document is parsed. Nonmatching
+	// media keeps their CSS from applying or blocking the initial render.
+	// Hover alone is insufficient for touch and repeated cycle-button clicks.
+	function prepareAllSkins() {
+		skins.forEach(function(skin) {
+			prepareSkin(skin.id);
+		});
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', prepareAllSkins, { once: true });
+	} else {
+		prepareAllSkins();
+	}
 
 	window.SiteSkins = {
 		all: skins.slice(),
