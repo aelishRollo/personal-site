@@ -232,6 +232,34 @@ test('saved theme is ready before the destination page paints', async ({ page, b
   expect(timing.firstContentfulPaint).toBeGreaterThanOrEqual(timing.stylesheetResponseEnd);
 });
 
+test('unseen themes warm automatically before their first selection', async ({ page, browserName }) => {
+  const themeRequests = [];
+  page.on('request', (request) => {
+    if (/assets\/css\/skins\/|assets\/images\//.test(request.url())) {
+      themeRequests.push(request.url());
+    }
+  });
+  await openSitePage(page, '/index.html?theme=portfolio-dark');
+  const themes = await page.evaluate(() => window.SiteSkins.all.filter((theme) => theme.css));
+  for (const theme of themes) {
+    await expect(page.locator(`[data-skin-stylesheet="${theme.id}"]`)).toHaveAttribute('data-skin-ready', '');
+  }
+  await page.waitForLoadState('networkidle');
+  await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'portfolio-dark');
+  await expect(page.locator('[data-skin-stylesheet][media="all"]')).toHaveCount(0);
+  expect(themeRequests.some((url) => url.endsWith('/afterimage-wave.svg'))).toBe(true);
+
+  // WebKit revalidates nonmatching-media CSS when it becomes active on this
+  // test server (which supplies no cache lifetime). Other engines can also
+  // verify the first application with the network entirely unavailable.
+  if (browserName !== 'webkit') await page.context().setOffline(true);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.evaluate(() => window.SiteSkins.preview('op-art-monochrome'));
+  await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'op-art-monochrome');
+  await expect(page.locator('[data-skin-stylesheet][media="all"]')).toHaveCount(1);
+  await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(247, 247, 244)');
+});
+
 test('every registered theme stylesheet loads and can be applied', async ({ page, browserName }) => {
   test.skip(browserName !== 'chromium', 'The full theme matrix runs once; core behavior runs in all engines.');
   const failures = watchRuntimeFailures(page);
