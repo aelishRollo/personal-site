@@ -593,8 +593,8 @@ html[data-skin="pretty-calc"] .personality-arrow {
 }
 
 html[data-skin="pretty-calc"] .skin-contact-charm {
-	--skin-contact-rotate: -2deg;
-	border: 0 !important;
+	--skin-contact-rotate: 0deg;
+	border: 1px solid rgba(255, 255, 255, 0.42) !important;
 	border-radius: var(--pc-radius-md) !important;
 	background: var(--pc-eq) !important;
 	box-shadow: 0 8px 18px var(--pc-shadow), inset 0 1px 0 var(--pc-bevel) !important;
@@ -602,6 +602,11 @@ html[data-skin="pretty-calc"] .skin-contact-charm {
 	font-family: var(--pc-font-ui) !important;
 	font-weight: 800;
 	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
+}
+
+html[data-skin="pretty-calc"] .skin-contact-charm:hover {
+	filter: brightness(1.1);
+	color: #ffffff !important;
 }
 
 /* Footer */

@@ -154,20 +154,21 @@ html[data-skin="midnight-aurora-glass"] .nav-toggle {
 }
 
 html[data-skin="midnight-aurora-glass"] .skin-contact-charm {
-	--skin-contact-rotate: -2deg;
-	border: 1px solid rgba(225, 248, 255, 0.58) !important;
-	background: linear-gradient(120deg, rgba(3, 6, 11, 0.75), rgba(13, 18, 27, 0.48)) !important;
+	--skin-contact-rotate: 0deg;
+	border: 1px solid rgba(255, 255, 255, 0.72) !important;
+	border-radius: 999px;
+	background: var(--aurora-spectrum) 50% 50% / 200% 100% !important;
 	box-shadow:
-		inset 0 1px 0 rgba(255, 255, 255, 0.18),
-		0 0 20px rgba(68, 247, 255, 0.16),
-		0 0 30px rgba(255, 79, 184, 0.11),
-		0 12px 28px rgba(0, 0, 0, 0.4);
-	color: #f7fbff !important;
-	text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+		inset 0 1px 1px rgba(255, 255, 255, 0.65),
+		0 0 24px rgba(68, 247, 255, 0.22),
+		0 12px 28px rgba(0, 0, 0, 0.42);
+	color: #030407 !important;
+	text-shadow: none;
 }
 
 html[data-skin="midnight-aurora-glass"] .skin-contact-charm:hover {
-	color: #ffffff !important;
+	border-color: #ffffff !important;
+	color: #030407 !important;
 }
 
 html[data-skin="midnight-aurora-glass"] .page-hero,

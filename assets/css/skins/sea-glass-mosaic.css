@@ -493,12 +493,17 @@ html[data-skin="sea-glass-mosaic"] .skin-picker {
 }
 
 html[data-skin="sea-glass-mosaic"] .skin-contact-charm {
-	--skin-contact-rotate: -3deg;
+	--skin-contact-rotate: 0deg;
 	border: 4px solid !important;
 	border-color: #c9865a #a45f36 #6e3518 #b26c42 !important;
-	border-radius: 5px;
+	border-radius: 6px;
 	background: var(--sg-sheen), #93502e !important;
 	box-shadow: 0 0 0 3px var(--sg-grout), 3px 6px 10px rgba(20, 40, 32, 0.35);
+	color: #fffaf1 !important;
+}
+
+html[data-skin="sea-glass-mosaic"] .skin-contact-charm:hover {
+	background: var(--sg-sheen), #7f4224 !important;
 	color: #fffaf1 !important;
 }
 

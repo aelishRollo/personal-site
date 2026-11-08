@@ -458,23 +458,28 @@ html[data-skin="starlight"] button:not([class^="skin-picker"]):hover {
 
 html[data-skin="starlight"] .skin-contact-charm {
 	--skin-contact-rotate: 0deg;
-	min-width: 9.5rem;
-	border: 1px solid rgba(255, 211, 155, 0.55) !important;
+	min-width: 0;
+	border: 1px solid rgba(255, 255, 255, 0.72) !important;
 	border-radius: 999px;
-	background: linear-gradient(115deg, rgba(255, 255, 255, 0.12), rgba(169, 144, 255, 0.07)) !important;
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32), 0 0 24px rgba(255, 211, 155, 0.14), 0 12px 28px rgba(0, 0, 0, 0.22);
+	background: linear-gradient(105deg, #c8f2ff, #b9abff 58%, #ffd9aa) !important;
+	box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.78), 0 0 26px rgba(169, 232, 255, 0.2), 0 12px 28px rgba(0, 0, 0, 0.34);
 	-webkit-backdrop-filter: none;
 	backdrop-filter: none;
-	color: #fff4e4 !important;
+	color: #07101d !important;
 	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
 }
 
 html[data-skin="starlight"] .skin-contact-charm::before {
-	content: "●";
-	margin-right: 0.45rem;
-	color: #8fffb5;
-	font-size: 0.7rem;
-	text-shadow: 0 0 10px #8fffb5;
+	content: "✦";
+	margin-right: 0;
+	color: #07101d;
+	font-size: 0.8em;
+	text-shadow: none;
+}
+
+html[data-skin="starlight"] .skin-contact-charm:hover {
+	border-color: #ffffff !important;
+	color: #07101d !important;
 }
 
 html[data-skin="starlight"] .site-footer {
@@ -560,9 +565,9 @@ html[data-skin="starlight"] .skin-picker-toggle-label {
 		top: 0.65rem;
 		right: 0.65rem;
 		min-width: 0;
-		max-width: 7.5rem;
-		min-height: 3rem;
-		padding: 0.65rem 0.75rem;
+		max-width: 10.5rem;
+		min-height: 2.35rem;
+		padding: 0.45rem 0.75rem;
 		font-size: 0.58rem !important;
 	}
 }
