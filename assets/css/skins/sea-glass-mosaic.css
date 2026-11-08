@@ -1,37 +1,46 @@
-/* Sea Glass Mosaic: a quiet gallery built from the photographed glass and stone tiles. */
+/* Sea Glass Mosaic: the page is a wall of tumbled glass and stone tiles set in sandy grout.
+   Content sits on grout-plaster inlays; every card, chip and button is its own bevelled glass tile. */
 html[data-skin="sea-glass-mosaic"] {
 	--background: #f1ede3;
-	--foreground: #24352f;
-	--muted-bg: #e8e3d5;
-	--card-bg: #faf8f0;
-	--border: #a7aa98;
+	--foreground: #22352d;
+	--muted-bg: #ebe5d7;
+	--card-bg: #d3e7db;
+	--border: #9fb4a6;
 	--primary: #98512f;
 	--primary-fg: #fffaf1;
-	--secondary: #b9cec2;
-	--secondary-fg: #253b32;
-	--accent: #365f52;
+	--secondary: #b9d6c6;
+	--secondary-fg: #22392f;
+	--accent: #2f5a4a;
 	--accent-fg: #fffaf1;
-	--link: #245749;
+	--link: #1f5545;
 	--warning: #a34e35;
-	--header-bg: #273d34;
-	--header-fg: #f5f0e4;
-	--footer-bg: #273d34;
-	--footer-fg: #f5f0e4;
+	--header-bg: #2b5243;
+	--header-fg: #f3f1e6;
+	--footer-bg: #2b5243;
+	--footer-fg: #f3f1e6;
 	--bg: #f1ede3;
-	--surface-1: #faf8f0;
-	--surface-2: #e8e3d5;
-	--surface-3: #b9cec2;
-	--text-1: #24352f;
-	--text-2: #44534b;
-	--line-1: #a7aa98;
-	--accent-1: #245749;
-	--accent-2: #b66d3d;
+	--surface-1: #f1ece0;
+	--surface-2: #e7e0d0;
+	--surface-3: #b9d6c6;
+	--text-1: #22352d;
+	--text-2: #3f5048;
+	--line-1: #a9b4a4;
+	--accent-1: #1f5545;
+	--accent-2: #a8642f;
+	--sg-mosaic: url("../../images/sea-glass-mosaic.svg");
+	--sg-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .33 0 0 0 0 .26 0 0 0 .6 -.2'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+	--sg-ripple: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='r'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.005 .03' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .5 -.22'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23r)'/%3E%3C/svg%3E");
+	--sg-sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.08) 34%, rgba(255, 255, 255, 0) 62%, rgba(16, 48, 37, 0.08));
+	--sg-plaster: #efe9dc;
+	--sg-grout: #e2dac7;
 	color-scheme: light;
 }
 
+/* ---------- The wall ---------- */
+
 html[data-skin="sea-glass-mosaic"] body {
-	background: #f1ede3 !important;
-	color: #24352f !important;
+	background: #f1ede3 var(--sg-mosaic) 0 0 / 640px 640px repeat !important;
+	color: #22352d !important;
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -39,105 +48,248 @@ html[data-skin="sea-glass-mosaic"] h1,
 html[data-skin="sea-glass-mosaic"] h2,
 html[data-skin="sea-glass-mosaic"] h3,
 html[data-skin="sea-glass-mosaic"] h4 {
+	color: #20342b;
 	font-family: Georgia, "Times New Roman", serif;
 	font-weight: 700;
-	letter-spacing: -0.035em;
+	letter-spacing: -0.03em;
+}
+
+html[data-skin="sea-glass-mosaic"] a {
+	color: #1f5545;
 }
 
 html[data-skin="sea-glass-mosaic"] a:hover {
-	color: #934c30 !important;
+	color: #8a4527 !important;
 }
 
-html[data-skin="sea-glass-mosaic"] .site-header {
-	background: #273d34 !important;
-	border-bottom: 5px solid #ded9cb !important;
-	box-shadow: none;
+/* ---------- Header + footer: bottle-green glass with a mosaic trim ---------- */
+
+html[data-skin="sea-glass-mosaic"] .site-header,
+html[data-skin="sea-glass-mosaic"] .site-footer {
+	background: var(--sg-ripple) center / cover no-repeat, linear-gradient(180deg, #34604f, #26493c) !important;
+	border: 0 !important;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(0, 0, 0, 0.25);
 	backdrop-filter: none;
 }
 
+html[data-skin="sea-glass-mosaic"] .site-header {
+	margin-bottom: 15px;
+}
+
+html[data-skin="sea-glass-mosaic"] .site-footer {
+	position: relative;
+	margin-top: 15px;
+}
+
+html[data-skin="sea-glass-mosaic"] .site-header::after,
+html[data-skin="sea-glass-mosaic"] .site-footer::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	height: 15px;
+	background: var(--sg-grout) var(--sg-mosaic) 0 0 / 120px 120px repeat-x;
+	box-shadow: 0 3px 6px rgba(20, 40, 32, 0.2);
+	pointer-events: none;
+}
+
+html[data-skin="sea-glass-mosaic"] .site-header::after {
+	top: 100%;
+}
+
+html[data-skin="sea-glass-mosaic"] .site-footer::before {
+	bottom: 100%;
+	background-position: 0 -45px;
+	box-shadow: 0 -3px 6px rgba(20, 40, 32, 0.15);
+}
+
 html[data-skin="sea-glass-mosaic"] .brand-mark {
-	border: 2px solid #e6e7d8;
-	border-radius: 4px;
-	background: linear-gradient(145deg, #9ec5b2, #557968) !important;
-	box-shadow: inset 2px 2px 0 rgba(255, 255, 255, 0.38), inset -3px -3px 0 rgba(22, 58, 45, 0.3);
-	color: #183a2d !important;
+	border: 3px solid;
+	border-color: #c7e3d4 #8dbaa3 #5f8f78 #a8d0bb;
+	border-radius: 5px;
+	background: var(--sg-sheen), #a9cfba !important;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+	color: #173a2c !important;
 }
 
 html[data-skin="sea-glass-mosaic"] .brand-text,
 html[data-skin="sea-glass-mosaic"] .site-nav a,
-html[data-skin="sea-glass-mosaic"] .nav-toggle {
-	color: #f5f0e4 !important;
+html[data-skin="sea-glass-mosaic"] .nav-toggle,
+html[data-skin="sea-glass-mosaic"] .site-footer,
+html[data-skin="sea-glass-mosaic"] .site-footer p,
+html[data-skin="sea-glass-mosaic"] .site-footer a {
+	color: #f3f1e6 !important;
 }
 
 html[data-skin="sea-glass-mosaic"] .site-nav a,
 html[data-skin="sea-glass-mosaic"] .nav-toggle {
-	border-radius: 3px;
+	border: 2px solid transparent;
+	border-radius: 4px;
+	transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+html[data-skin="sea-glass-mosaic"] .site-nav a:hover {
+	background: rgba(255, 255, 255, 0.1) !important;
+	color: #ffffff !important;
 }
 
 html[data-skin="sea-glass-mosaic"] .site-nav a[aria-current="page"] {
-	background: #b9cec2 !important;
-	color: #253b32 !important;
+	border-color: #d6ece0 #9cc5af #6e9c85 #b5d8c4 !important;
+	background: var(--sg-sheen), #b6d8c5 !important;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+	color: #183a2d !important;
 }
 
 html[data-skin="sea-glass-mosaic"] .site-nav .nav-cta,
 html[data-skin="sea-glass-mosaic"] .nav-toggle {
-	border-color: #e0c9a4 !important;
+	border-color: #e6c999 #c49a5c #9a7136 #d4b07a !important;
+	background: var(--sg-sheen), #d5b479 !important;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+	color: #2e2210 !important;
 }
 
-html[data-skin="sea-glass-mosaic"] .page-hero {
+html[data-skin="sea-glass-mosaic"] .site-nav .nav-cta:hover,
+html[data-skin="sea-glass-mosaic"] .nav-toggle:hover {
+	background: var(--sg-sheen), #e2c48e !important;
+	color: #2e2210 !important;
+}
+
+html[data-skin="sea-glass-mosaic"] .site-footer a {
+	text-decoration-color: #d5b479;
+}
+
+/* ---------- Grout-plaster inlays set into the wall ---------- */
+
+html[data-skin="sea-glass-mosaic"] .page-hero,
+html[data-skin="sea-glass-mosaic"] .page-section,
+html[data-skin="sea-glass-mosaic"] .page-section:not(.section-cta):not(.section-soft):not(.section-portrait) {
 	position: relative;
-	isolation: isolate;
-	padding-top: clamp(12rem, 20vw, 15rem) !important;
-	background: #e8e3d5 !important;
-	border-bottom: 8px solid #f8f6ed !important;
+	padding: clamp(1rem, 2.4vw, 1.75rem) 0 !important;
+	background: transparent !important;
+	border: 0 !important;
 }
 
-html[data-skin="sea-glass-mosaic"] .page-hero::before {
-	content: "";
-	position: absolute;
-	inset: 0 0 auto;
-	height: clamp(8.5rem, 16vw, 12rem);
-	background: linear-gradient(rgba(24, 46, 37, 0.12), rgba(24, 46, 37, 0.12)), url("../../images/sea-glass-mosaic.webp") center 50% / cover;
-	border-bottom: 8px solid #f8f6ed;
-	box-shadow: 0 2px 0 #9a9c88;
-	pointer-events: none;
+html[data-skin="sea-glass-mosaic"] .page-hero::before,
+html[data-skin="sea-glass-mosaic"] .page-hero::after,
+html[data-skin="sea-glass-mosaic"] .page-section::before,
+html[data-skin="sea-glass-mosaic"] .page-section::after {
+	content: none !important;
 }
 
-html[data-skin="sea-glass-mosaic"] .page-hero .site-shell {
+html[data-skin="sea-glass-mosaic"] .page-hero > .site-shell,
+html[data-skin="sea-glass-mosaic"] .page-section > .site-shell {
 	position: relative;
 	z-index: 1;
+	box-sizing: border-box;
+	width: min(1200px, calc(100% - 2.5rem));
+	padding: clamp(1.75rem, 4vw, 3.25rem);
+	border-radius: 6px;
+	background: var(--sg-grain) 0 0 / 180px 180px, linear-gradient(160deg, #f6f1e6, #ebe4d4) !important;
+	box-shadow:
+		inset 0 2px 0 rgba(255, 255, 255, 0.85),
+		inset 0 -3px 0 rgba(120, 104, 70, 0.14),
+		0 0 0 4px var(--sg-grout),
+		0 0 0 5px rgba(120, 108, 80, 0.35),
+		0 12px 28px rgba(22, 42, 34, 0.32);
 }
 
+html[data-skin="sea-glass-mosaic"] .section-soft > .site-shell {
+	background: var(--sg-grain) 0 0 / 180px 180px, var(--sg-sheen), linear-gradient(160deg, #e6f0e8, #d8e7dc) !important;
+}
+
+/* The call-to-action is one big slab of tumbled bottle-green glass. */
+html[data-skin="sea-glass-mosaic"] .section-cta > .site-shell {
+	border: 14px solid;
+	border-color: #5f9079 #3c6b58 #234537 #4d7d68;
+	background: var(--sg-ripple) center / cover no-repeat, var(--sg-sheen), linear-gradient(150deg, #3d6d5a, #2a5243) !important;
+	box-shadow:
+		inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+		0 0 0 4px var(--sg-grout),
+		0 14px 30px rgba(18, 38, 30, 0.4);
+}
+
+html[data-skin="sea-glass-mosaic"] .section-cta h2,
+html[data-skin="sea-glass-mosaic"] .section-cta p {
+	color: #f4f1e6 !important;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- Hero ---------- */
+
 html[data-skin="sea-glass-mosaic"] .page-hero h1 {
-	color: #233a30 !important;
+	color: #20342b !important;
 	text-wrap: balance;
 }
 
 html[data-skin="sea-glass-mosaic"] .hero-title-role {
-	margin-bottom: 0.15em;
+	margin-bottom: 0.12em;
 }
 
-html[data-skin="sea-glass-mosaic"] .hero-title-role:nth-of-type(odd) .hero-title-initial,
-html[data-skin="sea-glass-mosaic"] .hero-title-role:nth-of-type(even) .hero-title-initial {
-	color: #b66d3d;
+/* Every role's initial is a single glass tile. */
+html[data-skin="sea-glass-mosaic"] .hero-title-initial {
+	--tile-face: #a9cfba;
+	--tile-hi: #d1eadc;
+	--tile-lo: #5f8f78;
+	display: inline-block;
+	min-width: 0.9em;
+	margin-right: 0.035em;
+	padding: 0.02em 0.07em 0;
+	border: 0.07em solid;
+	border-color: var(--tile-hi) var(--tile-face) var(--tile-lo) var(--tile-face);
+	border-radius: 0.09em;
+	background: var(--sg-sheen), var(--tile-face);
+	box-shadow: 0.03em 0.05em 0.06em rgba(30, 45, 38, 0.35);
+	color: #1c3a2e !important;
+	-webkit-text-fill-color: #1c3a2e;
+	line-height: 1;
+	text-align: center;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 
-html[data-skin="sea-glass-mosaic"] .hero-title-role:last-child {
-	color: #526f60;
+html[data-skin="sea-glass-mosaic"] .hero-title-role:nth-of-type(2) .hero-title-initial {
+	--tile-face: #b4dbd5;
+	--tile-hi: #daf0ec;
+	--tile-lo: #6a9f98;
+}
+
+html[data-skin="sea-glass-mosaic"] .hero-title-role:nth-of-type(3) .hero-title-initial {
+	--tile-face: #d8bd86;
+	--tile-hi: #efdcb2;
+	--tile-lo: #a4823f;
+	color: #33250c !important;
+	-webkit-text-fill-color: #33250c;
+}
+
+html[data-skin="sea-glass-mosaic"] .hero-title-role.metallic-pearl-text .hero-title-initial,
+html[data-skin="sea-glass-mosaic"] .hero-title-role:nth-of-type(4) .hero-title-initial {
+	--tile-face: #a6c3d3;
+	--tile-hi: #d0e1ea;
+	--tile-lo: #5f8197;
 }
 
 html[data-skin="sea-glass-mosaic"] .metallic-pearl-text {
 	background: none;
-	color: #526f60;
-	-webkit-text-fill-color: currentColor;
+	color: #2f6150 !important;
+	-webkit-text-fill-color: #2f6150;
 	filter: none;
+	animation: none !important;
 }
 
+html[data-skin="sea-glass-mosaic"] .personality-arrow {
+	color: #2f5a4a !important;
+}
+
+/* Little stone chips: sandy, speckled, matte. */
 html[data-skin="sea-glass-mosaic"] .eyebrow {
-	border: 1px solid #718c78 !important;
+	display: inline-block;
+	width: fit-content;
+	max-width: 100%;
+	padding: 0.45em 0.8em 0.4em;
+	border: 0 !important;
 	border-radius: 3px;
-	background: #cbd9c9 !important;
-	color: #284b3b !important;
+	background: var(--sg-grain) 0 0 / 120px 120px, linear-gradient(150deg, #d6c9a3, #c4b48a) !important;
+	box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.45), inset -1px -2px 0 rgba(90, 72, 40, 0.25), 1px 2px 3px rgba(40, 40, 28, 0.3);
+	color: #2b2412 !important;
 	font-size: 0.7rem;
 	font-weight: 800;
 	letter-spacing: 0.16em;
@@ -145,41 +297,108 @@ html[data-skin="sea-glass-mosaic"] .eyebrow {
 }
 
 html[data-skin="sea-glass-mosaic"] .hero-media img,
-html[data-skin="sea-glass-mosaic"] .portrait-panel img {
-	border: 8px solid #f8f6ed;
-	border-radius: 5px;
-	box-shadow: 0 0 0 1px #9a9c88, 8px 10px 0 rgba(76, 89, 71, 0.16);
+html[data-skin="sea-glass-mosaic"] .portrait-panel img,
+html[data-skin="sea-glass-mosaic"] .section-portrait img {
+	border: 10px solid;
+	border-color: #c7e3d4 #8dbaa3 #5f8f78 #a8d0bb;
+	border-radius: 6px;
+	box-shadow: 0 0 0 4px var(--sg-grout), 4px 8px 16px rgba(30, 45, 38, 0.3);
 }
+
+html[data-skin="sea-glass-mosaic"] .hero-splash .hero-splash-text {
+	border: 6px solid;
+	border-color: #edf3ee #cad9cf #a9bcaf #dbe6de;
+	border-radius: 6px;
+	background: var(--sg-ripple) center / cover no-repeat, var(--sg-sheen), #dfe9e2 !important;
+	box-shadow: 2px 4px 8px rgba(30, 45, 38, 0.25);
+	color: #22453a !important;
+	font-family: Georgia, "Times New Roman", serif !important;
+	font-size: 1rem;
+	font-style: italic;
+	font-weight: 600;
+	letter-spacing: 0;
+	line-height: 1.3;
+	text-shadow: none !important;
+	text-transform: none;
+}
+
+/* ---------- Glass tiles: cards, panels and chips ---------- */
 
 html[data-skin="sea-glass-mosaic"] .panel-card,
 html[data-skin="sea-glass-mosaic"] .features article,
 html[data-skin="sea-glass-mosaic"] .contact-rail,
 html[data-skin="sea-glass-mosaic"] ul.feature-icons li,
-html[data-skin="sea-glass-mosaic"] .profile-chip {
-	border: 5px solid #f8f6ed !important;
-	border-radius: 5px;
-	background: #d6dfd1 !important;
-	box-shadow: 0 0 0 1px #aaa995, 5px 7px 0 rgba(61, 82, 66, 0.12) !important;
+html[data-skin="sea-glass-mosaic"] .profile-chip,
+html[data-skin="sea-glass-mosaic"] .contact-form-grid,
+html[data-skin="sea-glass-mosaic"] .work-tech-item,
+html[data-skin="sea-glass-mosaic"] .favorite-card,
+html[data-skin="sea-glass-mosaic"] .favorites-index {
+	--tile-face: #cfe5d8;
+	--tile-hi: #e6f3eb;
+	--tile-mid: #a9cdb8;
+	--tile-lo: #7fab93;
+	border: 10px solid !important;
+	border-color: var(--tile-hi) var(--tile-mid) var(--tile-lo) var(--tile-mid) !important;
+	border-radius: 7px !important;
+	background: var(--sg-ripple) center / cover no-repeat, var(--sg-sheen), var(--tile-face) !important;
+	box-shadow:
+		inset 0 0 0 1px rgba(255, 255, 255, 0.45),
+		inset 0 0 18px rgba(255, 255, 255, 0.35),
+		0 0 0 3px var(--sg-grout),
+		2px 6px 12px rgba(30, 45, 38, 0.28) !important;
+	color: #22352d;
+	transition: transform 220ms ease, box-shadow 220ms ease;
 }
 
-html[data-skin="sea-glass-mosaic"] .quest-card:nth-child(3n + 2) {
-	background: #d9d8c6 !important;
+html[data-skin="sea-glass-mosaic"] .panel-card:nth-child(3n + 2),
+html[data-skin="sea-glass-mosaic"] .features article:nth-child(3n + 2),
+html[data-skin="sea-glass-mosaic"] ul.feature-icons li:nth-child(3n + 2),
+html[data-skin="sea-glass-mosaic"] .work-tech-item:nth-child(3n + 2),
+html[data-skin="sea-glass-mosaic"] .favorite-card:nth-child(3n + 2),
+html[data-skin="sea-glass-mosaic"] .contact-form-grid {
+	--tile-face: #d3ebe7;
+	--tile-hi: #e9f6f3;
+	--tile-mid: #a8d2cc;
+	--tile-lo: #77aaa2;
 }
 
-html[data-skin="sea-glass-mosaic"] .quest-card:nth-child(3n) {
-	background: #c3d5cc !important;
+html[data-skin="sea-glass-mosaic"] .panel-card:nth-child(3n),
+html[data-skin="sea-glass-mosaic"] .features article:nth-child(3n),
+html[data-skin="sea-glass-mosaic"] ul.feature-icons li:nth-child(3n),
+html[data-skin="sea-glass-mosaic"] .work-tech-item:nth-child(3n),
+html[data-skin="sea-glass-mosaic"] .favorite-card:nth-child(3n),
+html[data-skin="sea-glass-mosaic"] .favorites-index,
+html[data-skin="sea-glass-mosaic"] .contact-rail {
+	--tile-face: #e4ebe2;
+	--tile-hi: #f4f7f2;
+	--tile-mid: #c5d2c7;
+	--tile-lo: #9aac9e;
 }
 
-html[data-skin="sea-glass-mosaic"] .features article:nth-child(3n + 2) {
-	background: #eee7d4 !important;
+html[data-skin="sea-glass-mosaic"] .features article:nth-child(4n + 4),
+html[data-skin="sea-glass-mosaic"] .favorite-card:nth-child(7n + 5) {
+	--tile-face: #ecdcb8;
+	--tile-hi: #f7eed8;
+	--tile-mid: #d8bd86;
+	--tile-lo: #ae9050;
 }
 
-html[data-skin="sea-glass-mosaic"] .features article:nth-child(3n) {
-	background: #d9d8c6 !important;
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+	html[data-skin="sea-glass-mosaic"] .panel-card:hover,
+	html[data-skin="sea-glass-mosaic"] .features article:hover,
+html[data-skin="sea-glass-mosaic"] .favorite-card:hover {
+		transform: translateY(-3px);
+		box-shadow:
+			inset 0 0 0 1px rgba(255, 255, 255, 0.5),
+			inset 0 0 18px rgba(255, 255, 255, 0.4),
+			0 0 0 3px var(--sg-grout),
+			4px 12px 20px rgba(30, 45, 38, 0.3) !important;
+	}
 }
 
-html[data-skin="sea-glass-mosaic"] .features article .image {
-	border-radius: 2px;
+html[data-skin="sea-glass-mosaic"] .features article .image,
+html[data-skin="sea-glass-mosaic"] .features article .image img {
+	border-radius: 3px;
 }
 
 html[data-skin="sea-glass-mosaic"] .quest-card h3 {
@@ -188,49 +407,70 @@ html[data-skin="sea-glass-mosaic"] .quest-card h3 {
 
 html[data-skin="sea-glass-mosaic"] .quest-link,
 html[data-skin="sea-glass-mosaic"] .contact-links a {
-	color: #245749 !important;
+	color: #1c4f40 !important;
 	text-decoration: underline;
-	text-decoration-color: #b66d3d;
+	text-decoration-color: #a8642f;
+	text-decoration-thickness: 2px;
 	text-underline-offset: 0.25em;
 }
 
+/* ---------- Buttons: amber glass, frosted secondary glass ---------- */
+
 html[data-skin="sea-glass-mosaic"] .button,
 html[data-skin="sea-glass-mosaic"] button.primary,
+html[data-skin="sea-glass-mosaic"] input[type="submit"],
 html[data-skin="sea-glass-mosaic"] .features article .inner span a {
-	border-radius: 3px;
+	border: 3px solid !important;
+	border-color: #e3f1e9 #b0cfbf #87ae98 #c3dccd !important;
+	border-radius: 5px !important;
+	background: var(--sg-sheen), #c4dfd0 !important;
+	box-shadow: 1px 3px 5px rgba(30, 45, 38, 0.28) !important;
+	color: #183a2d !important;
+}
+
+html[data-skin="sea-glass-mosaic"] .button.primary,
+html[data-skin="sea-glass-mosaic"] button.primary,
+html[data-skin="sea-glass-mosaic"] input[type="submit"] {
+	border-color: #c9865a #a45f36 #6e3518 #b26c42 !important;
+	background: var(--sg-sheen), #93502e !important;
+	color: #fffaf1 !important;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+html[data-skin="sea-glass-mosaic"] .button:hover,
+html[data-skin="sea-glass-mosaic"] .features article .inner span a:hover {
+	background: var(--sg-sheen), #d6eadf !important;
+	color: #183a2d !important;
 }
 
 html[data-skin="sea-glass-mosaic"] .button.primary:hover,
-html[data-skin="sea-glass-mosaic"] button.primary:hover {
-	background: #813f27 !important;
+html[data-skin="sea-glass-mosaic"] button.primary:hover,
+html[data-skin="sea-glass-mosaic"] input[type="submit"]:hover {
+	background: var(--sg-sheen), #7f4224 !important;
 	color: #fffaf1 !important;
 }
 
-html[data-skin="sea-glass-mosaic"] .section-cta {
-	background: #365b4e !important;
-}
-
-html[data-skin="sea-glass-mosaic"] .section-cta h2,
-html[data-skin="sea-glass-mosaic"] .section-cta p {
-	color: #f5f0e4 !important;
-}
-
-html[data-skin="sea-glass-mosaic"] .site-footer {
-	border-top: 8px solid #e2dccd !important;
-	background: #273d34 !important;
-}
+/* ---------- Forms ---------- */
 
 html[data-skin="sea-glass-mosaic"] .contact-form-grid {
 	padding: 1.25rem;
-	border: 5px solid #f8f6ed;
-	border-radius: 5px;
-	background: #d6dfd1;
-	box-shadow: 0 0 0 1px #aaa995;
 }
 
-html[data-skin="sea-glass-mosaic"] .contact-form-grid input,
-html[data-skin="sea-glass-mosaic"] .contact-form-grid textarea {
-	border-radius: 3px;
+html[data-skin="sea-glass-mosaic"] input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
+html[data-skin="sea-glass-mosaic"] select,
+html[data-skin="sea-glass-mosaic"] textarea {
+	border: 1px solid #86a294 !important;
+	border-radius: 4px !important;
+	background: rgba(255, 255, 255, 0.78) !important;
+	box-shadow: inset 1px 2px 3px rgba(30, 45, 38, 0.15) !important;
+	color: #1f3029 !important;
+}
+
+html[data-skin="sea-glass-mosaic"] input:focus,
+html[data-skin="sea-glass-mosaic"] select:focus,
+html[data-skin="sea-glass-mosaic"] textarea:focus {
+	border-color: #2f6b56 !important;
+	box-shadow: 0 0 0 3px rgba(115, 191, 144, 0.45) !important;
 }
 
 html[data-skin="sea-glass-mosaic"] fridge-poetry-board {
@@ -243,29 +483,49 @@ html[data-skin="sea-glass-mosaic"] pre code {
 	overflow-x: visible;
 }
 
+/* ---------- Theme UI ---------- */
+
 html[data-skin="sea-glass-mosaic"] .skin-picker {
-	--skin-ui-bg: #273d34;
-	--skin-ui-panel: #365b4e;
-	--skin-ui-accent: #d9c99f;
-	--skin-ui-border: #93ad9e;
+	--skin-ui-bg: #26493c;
+	--skin-ui-panel: #34604f;
+	--skin-ui-accent: #d5b479;
+	--skin-ui-border: #8dbaa3;
 }
 
 html[data-skin="sea-glass-mosaic"] .skin-contact-charm {
 	--skin-contact-rotate: -3deg;
-	border: 3px solid #f8f6ed !important;
-	border-radius: 4px;
-	background: #98512f !important;
-	box-shadow: 4px 4px 0 #273d34;
+	border: 4px solid !important;
+	border-color: #c9865a #a45f36 #6e3518 #b26c42 !important;
+	border-radius: 5px;
+	background: var(--sg-sheen), #93502e !important;
+	box-shadow: 0 0 0 3px var(--sg-grout), 3px 6px 10px rgba(20, 40, 32, 0.35);
 	color: #fffaf1 !important;
 }
 
+/* ---------- Small screens: smaller tiles, thinner grout margins ---------- */
+
 @media screen and (max-width: 736px) {
-	html[data-skin="sea-glass-mosaic"] .page-hero {
-		padding-top: 11rem !important;
+	html[data-skin="sea-glass-mosaic"] body {
+		background-size: 400px 400px !important;
 	}
 
-	html[data-skin="sea-glass-mosaic"] .page-hero::before {
-		height: 8.5rem;
+	html[data-skin="sea-glass-mosaic"] .page-hero > .site-shell,
+	html[data-skin="sea-glass-mosaic"] .page-section > .site-shell {
+		width: calc(100% - 1.5rem);
+		padding: 1.4rem 1.1rem;
+	}
+
+	html[data-skin="sea-glass-mosaic"] .section-cta > .site-shell {
+		border-width: 10px;
+	}
+
+	html[data-skin="sea-glass-mosaic"] .panel-card,
+	html[data-skin="sea-glass-mosaic"] .features article,
+	html[data-skin="sea-glass-mosaic"] .contact-rail,
+	html[data-skin="sea-glass-mosaic"] ul.feature-icons li,
+	html[data-skin="sea-glass-mosaic"] .contact-form-grid,
+	html[data-skin="sea-glass-mosaic"] .work-tech-item {
+		border-width: 7px !important;
 	}
 
 	html[data-skin="sea-glass-mosaic"] .contact-form-grid {
