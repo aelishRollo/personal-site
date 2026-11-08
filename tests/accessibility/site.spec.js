@@ -61,7 +61,7 @@ test('Sea Glass Mosaic is accessible on narrow home and fridge pages', async ({ 
   }
 });
 
-test('Pretty Calc is accessible on desktop and mobile', async ({ page }) => {
+test('Photo Carousel is accessible on desktop and mobile', async ({ page }) => {
   for (const viewport of [
     { width: 1280, height: 860 },
     { width: 390, height: 844 },

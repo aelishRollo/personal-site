@@ -234,6 +234,7 @@ test('theme picker previews and persists a selected theme', async ({ page }) => 
     'acid-editorial'
   );
 
+  await page.waitForLoadState('networkidle');
   await page.goto('/index.html', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'acid-editorial');
   await expect(page.locator('html')).not.toHaveAttribute('data-skin-loading');
@@ -320,7 +321,7 @@ test('every registered theme stylesheet loads and can be applied', async ({ page
   expect(failures).toEqual([]);
 });
 
-test('Pretty Calc preloads photos upon site load, shows one immediately on visit, steps forward/back, and auto-cycles', async ({ page }) => {
+test('Photo Carousel preloads photos upon site load, shows one immediately on visit, steps forward/back, and auto-cycles', async ({ page }) => {
   const onePixelPng = Buffer.from(
     'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
     'base64'
@@ -364,6 +365,7 @@ test('Pretty Calc preloads photos upon site load, shows one immediately on visit
   await page.evaluate(() => window.SiteSkins.preview('pretty-calc'));
   await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'pretty-calc');
   await expect(page.locator('html')).toHaveAttribute('data-pretty-calc-photo', 'ready');
+  await expect(page.locator('[data-skin-choice="pretty-calc"]')).toHaveText('Photo Carousel');
 
   const prevButton = page.getByRole('button', { name: 'Previous', exact: true });
   const nextButton = page.getByRole('button', { name: 'Next', exact: true });
@@ -393,6 +395,7 @@ test('Pretty Calc preloads photos upon site load, shows one immediately on visit
   await page.waitForURL('**/work.html');
   await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'pretty-calc');
   await expect(page.locator('html')).toHaveAttribute('data-pretty-calc-photo', 'ready');
+  await expect(page.locator('.skin-picker-current')).toHaveText('Photo Carousel');
   await expect(page.locator('.pretty-calc-photo.is-visible')).toHaveAttribute(
     'data-photo-source',
     initialSource

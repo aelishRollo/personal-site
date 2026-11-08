@@ -169,7 +169,7 @@
 			'hello-kitty': 'Say hello!',
 			'forties-field-notes': 'Drop me a line',
 			'nutrition-facts': 'Contact Alec',
-			'pretty-calc': 'Let\'s add it up'
+			'pretty-calc': 'Stay in the frame'
 		};
 		var randomOption = '<button type="button" class="skin-picker-option skin-picker-option-random" data-skin-random aria-pressed="false">' +
 			'<span class="skin-picker-option-mark" aria-hidden="true"></span>' +
