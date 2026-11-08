@@ -42,7 +42,8 @@
 		{ id: 'oracular-tarot', name: 'Oracular Tarot', scheme: 'dark', css: 'assets/css/skins/oracular-tarot.css' },
 		{ id: 'hello-kitty', name: 'Hello Kitty', scheme: 'light', css: 'assets/css/skins/hello-kitty.css' },
 		{ id: 'forties-field-notes', name: '1940s Field Notes', scheme: 'light', css: 'assets/css/skins/forties-field-notes.css' },
-		{ id: 'nutrition-facts', name: 'Nutrition Facts', scheme: 'light', css: 'assets/css/skins/nutrition-facts.css' }
+		{ id: 'nutrition-facts', name: 'Nutrition Facts', scheme: 'light', css: 'assets/css/skins/nutrition-facts.css' },
+		{ id: 'pretty-calc', name: 'Pretty Calc', scheme: 'dark', css: 'assets/css/skins/pretty-calc.css' }
 	];
 	var skinById = {};
 	var activeId = '';
@@ -85,6 +86,7 @@
 		]
 	};
 	var preloadedAssets = {};
+	var prettyCalcLoaded = false;
 
 	skins.forEach(function(skin) {
 		skinById[skin.id] = skin;
@@ -196,14 +198,28 @@
 		return link;
 	}
 
-	function preloadAssets(resources) {
-		resources.forEach(function(resource) {
-			if (preloadedAssets[resource.href]) {
-				return;
+	function preloadAsset(resource) {
+		if (preloadedAssets[resource.href]) {
+			return Promise.resolve();
+		}
+
+		preloadedAssets[resource.href] = true;
+		return new Promise(function(resolve) {
+			var preload = document.createElement('link');
+			var settled = false;
+			var timeout;
+
+			function finish() {
+				if (settled) {
+					return;
+				}
+				settled = true;
+				window.clearTimeout(timeout);
+				preload.removeEventListener('load', finish);
+				preload.removeEventListener('error', finish);
+				resolve();
 			}
 
-			preloadedAssets[resource.href] = true;
-			var preload = document.createElement('link');
 			preload.rel = 'preload';
 			preload.as = resource.as;
 			preload.href = resource.href;
@@ -211,8 +227,62 @@
 			if (resource.type) {
 				preload.type = resource.type;
 			}
+			preload.addEventListener('load', finish);
+			preload.addEventListener('error', finish);
+			timeout = window.setTimeout(finish, 1500);
 			document.head.appendChild(preload);
 		});
+	}
+
+	function preloadAssets(resources) {
+		resources.forEach(function(resource) {
+			preloadAsset(resource);
+		});
+	}
+
+	// Pretty Calc's random palette (ported from the Pretty Calc project): one
+	// random hue in a deep, mid, or light mood. Lightness stays low so light text
+	// keeps strong contrast over any photo. Applied here so it is set before the
+	// first paint instead of after the photo engine loads.
+	function randomizePrettyCalcPalette() {
+		function randomIn(min, max) {
+			return Math.random() * (max - min) + min;
+		}
+
+		var mood = Math.floor(Math.random() * 3);
+		var hue = randomIn(0, 360);
+		var saturation = [randomIn(44, 58), randomIn(38, 52), randomIn(30, 45)][mood];
+		var lightness = [randomIn(10, 15), randomIn(13, 18), randomIn(16, 21)][mood];
+
+		root.style.setProperty('--pc-h', hue.toFixed(1));
+		root.style.setProperty('--pc-s', saturation.toFixed(1) + '%');
+		root.style.setProperty('--pc-l', lightness.toFixed(1) + '%');
+		root.style.setProperty('--pc-op-h', (hue + randomIn(16, 28)).toFixed(1));
+		root.style.setProperty('--pc-eq-h', (hue + randomIn(120, 180)).toFixed(1));
+	}
+
+	// The photo engine and Picsum connections are only needed while Pretty Calc
+	// is active, so other themes never contact the photo service.
+	function loadPrettyCalc() {
+		randomizePrettyCalcPalette();
+
+		if (prettyCalcLoaded) {
+			return;
+		}
+		prettyCalcLoaded = true;
+
+		['https://picsum.photos', 'https://fastly.picsum.photos'].forEach(function(origin) {
+			var preconnect = document.createElement('link');
+			preconnect.rel = 'preconnect';
+			preconnect.href = origin;
+			preconnect.crossOrigin = 'anonymous';
+			document.head.appendChild(preconnect);
+		});
+
+		var script = document.createElement('script');
+		script.src = 'assets/js/pretty-calc.js';
+		script.async = true;
+		document.head.appendChild(script);
 	}
 
 	function prepareSkin(id) {
@@ -303,6 +373,10 @@
 
 		activateStylesheet(skin);
 		appliedId = id;
+
+		if (id === 'pretty-calc' && previousAppliedId !== id) {
+			loadPrettyCalc();
+		}
 
 		if (previousAppliedId && previousAppliedId !== id) {
 			document.dispatchEvent(new CustomEvent('site-skin-change', {
@@ -480,19 +554,44 @@
 	preloadAssets(sharedAssets);
 	apply(initialId, initialMode);
 
-	// Fetch inactive themes after the initial document is parsed. Nonmatching
-	// media keeps their CSS from applying or blocking the initial render.
-	// Hover alone is insufficient for touch and repeated cycle-button clicks.
+	// Fetch inactive themes after the initial page load. Nonmatching media keeps
+	// their CSS from applying or blocking render, and warming one resource at a
+	// time avoids saturating per-origin sockets or single-threaded dev servers.
 	function prepareAllSkins() {
+		var skinQueue = skins.slice();
+		var assetQueue = [];
+
 		skins.forEach(function(skin) {
-			prepareSkin(skin.id);
+			(assetsBySkin[skin.id] || []).forEach(function(resource) {
+				assetQueue.push(resource);
+			});
 		});
+
+		function nextAsset() {
+			var resource = assetQueue.shift();
+			if (!resource) {
+				return;
+			}
+			preloadAsset(resource).then(nextAsset);
+		}
+
+		function nextSkin() {
+			var skin = skinQueue.shift();
+			if (!skin) {
+				nextAsset();
+				return;
+			}
+			ensureSkinStylesheet(skin, skin.id === appliedId);
+			waitForStylesheet(skin.id).then(nextSkin);
+		}
+
+		nextSkin();
 	}
 
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', prepareAllSkins, { once: true });
-	} else {
+	if (document.readyState === 'complete') {
 		prepareAllSkins();
+	} else {
+		window.addEventListener('load', prepareAllSkins, { once: true });
 	}
 
 	window.SiteSkins = {
@@ -509,6 +608,7 @@
 		prepare: function(id) {
 			return prepareSkin(id);
 		},
+		randomizePrettyCalcPalette: randomizePrettyCalcPalette,
 		preview: function(id) {
 			if (!isValid(id)) {
 				return activeId;

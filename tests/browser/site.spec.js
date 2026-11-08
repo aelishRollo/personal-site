@@ -320,6 +320,69 @@ test('every registered theme stylesheet loads and can be applied', async ({ page
   expect(failures).toEqual([]);
 });
 
+test('Pretty Calc shows a random photo on load, preloads a queue, and rerolls', async ({ page }) => {
+  const onePixelPng = Buffer.from(
+    'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+    'base64'
+  );
+  let photoCount = 0;
+
+  await page.route('https://picsum.photos/**', async (route) => {
+    const url = route.request().url();
+    if (url.includes('/info')) {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        headers: { 'access-control-allow-origin': '*' },
+        body: JSON.stringify({
+          id: '101',
+          author: 'Test Photographer',
+          url: 'https://unsplash.com/photos/test',
+        }),
+      });
+      return;
+    }
+
+    photoCount += 1;
+    await route.fulfill({
+      status: 200,
+      contentType: 'image/png',
+      headers: {
+        'access-control-allow-origin': '*',
+        'access-control-expose-headers': 'Picsum-Id',
+        'picsum-id': String(100 + photoCount),
+      },
+      body: onePixelPng,
+    });
+  });
+
+  await openSitePage(page, '/index.html?theme=pretty-calc');
+  await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'pretty-calc');
+  await expect(page.locator('html')).toHaveAttribute('data-pretty-calc-photo', 'ready');
+
+  const photo = page.locator('.pretty-calc-photo.is-visible');
+  await expect(photo).toHaveCount(1);
+  const initialSrc = await photo.getAttribute('src');
+  expect(initialSrc).toMatch(/^blob:/);
+
+  // Initial photo plus the preloaded ready queue.
+  await expect.poll(() => photoCount).toBeGreaterThanOrEqual(3);
+  await expect(page.locator('.pretty-calc-credit')).toContainText('Test Photographer');
+
+  const initialHue = await page.evaluate(() =>
+    document.documentElement.style.getPropertyValue('--pc-h')
+  );
+  expect(initialHue).not.toBe('');
+
+  await page.getByRole('button', { name: 'Show a new random photo and palette' }).click();
+  await expect
+    .poll(() => page.locator('.pretty-calc-photo.is-visible').last().getAttribute('src'))
+    .not.toBe(initialSrc);
+
+  await page.evaluate(() => window.SiteSkins.preview('portfolio-dark'));
+  await expect(page.locator('.pretty-calc-stage, .pretty-calc-controls, .pretty-calc-credit')).toHaveCount(0);
+});
+
 test('fridge board reserves its layout before the component upgrades', async ({ page }) => {
   await page.route('**/assets/js/fridge-poetry.js*', (route) => route.abort('blockedbyclient'));
   await page.goto('/fridge-poetry.html?theme=portfolio-dark', { waitUntil: 'domcontentloaded' });

@@ -158,7 +158,8 @@
 			'oracular-tarot': 'Ask the oracle',
 			'hello-kitty': 'Say hello!',
 			'forties-field-notes': 'Drop me a line',
-			'nutrition-facts': 'Contact Alec'
+			'nutrition-facts': 'Contact Alec',
+			'pretty-calc': 'Let\'s add it up'
 		};
 		var randomOption = '<button type="button" class="skin-picker-option skin-picker-option-random" data-skin-random aria-pressed="false">' +
 			'<span class="skin-picker-option-mark" aria-hidden="true"></span>' +

@@ -60,3 +60,16 @@ test('Sea Glass Mosaic is accessible on narrow home and fridge pages', async ({ 
     await expectNoImportantViolations(page);
   }
 });
+
+test('Pretty Calc is accessible on desktop and mobile', async ({ page }) => {
+  for (const viewport of [
+    { width: 1280, height: 860 },
+    { width: 390, height: 844 },
+  ]) {
+    await page.setViewportSize(viewport);
+    await openSitePage(page, '/index.html?theme=pretty-calc');
+    await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'pretty-calc');
+    await expect(page.locator('.pretty-calc-dice')).toBeVisible();
+    await expectNoImportantViolations(page);
+  }
+});
