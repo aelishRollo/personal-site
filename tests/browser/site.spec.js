@@ -448,7 +448,27 @@ test('Photo Carousel preloads photos upon site load, shows one immediately on vi
   );
   expect(restoredHue).toBe(initialHue);
 
-  // Clicking Next steps forward to the second photo in history.
+  // Track 60000ms (60s) auto-cycle timers and step forward to the second photo in history.
+  await page.evaluate(() => {
+    window.__prettyCalcCycles = [];
+    const realSetTimeout = window.setTimeout.bind(window);
+    const realClearTimeout = window.clearTimeout.bind(window);
+    window.setTimeout = function (fn, delay, ...args) {
+      if (delay === 60000) {
+        const id = realSetTimeout(() => {}, 60000);
+        window.__prettyCalcCycles.push({ id, fn, delay, cleared: false });
+        return id;
+      }
+      return realSetTimeout(fn, delay, ...args);
+    };
+    window.clearTimeout = function (id) {
+      for (const entry of window.__prettyCalcCycles) {
+        if (entry.id === id) entry.cleared = true;
+      }
+      return realClearTimeout(id);
+    };
+  });
+
   await nextButton.click();
   await expect(prevButton).toBeEnabled();
   await expect(page.locator('.pretty-calc-photo.is-visible').last()).toHaveAttribute(
@@ -456,14 +476,21 @@ test('Photo Carousel preloads photos upon site load, shows one immediately on vi
     secondSource
   );
 
-  // Wait for the 6000ms auto-cycle to advance to a third photo.
+  // Verify a 60000ms auto-cycle timer is active and advances to a third photo when it fires.
+  const activeCycleDelays = await page.evaluate(() =>
+    window.__prettyCalcCycles.filter((entry) => !entry.cleared).map((entry) => entry.delay)
+  );
+  expect(activeCycleDelays).toEqual([60000]);
+  await page.evaluate(() => {
+    const active = window.__prettyCalcCycles.find((entry) => !entry.cleared);
+    active.cleared = true;
+    active.fn();
+  });
   await expect
-    .poll(() => page.locator('.pretty-calc-photo.is-visible').last().getAttribute('data-photo-source'), {
-      timeout: 8000,
-    })
+    .poll(() => page.locator('.pretty-calc-photo.is-visible').last().getAttribute('data-photo-source'))
     .not.toBe(secondSource);
 
-  // Clicking the cycle bubble pauses photo and color cycling.
+  // Clicking the cycle bubble pauses photo and color cycling and clears the 60s timer.
   const pausedSource = await page
     .locator('.pretty-calc-photo.is-visible')
     .last()
@@ -476,7 +503,10 @@ test('Photo Carousel preloads photos upon site load, shows one immediately on vi
   await expect(cycleBubble).toHaveAttribute('aria-pressed', 'false');
   await expect(cycleBubble).toHaveClass(/is-paused/);
   await expect(cycleBubble).toHaveCSS('text-decoration-line', /line-through/);
-  await page.waitForTimeout(6300);
+  const remainingCycleDelays = await page.evaluate(() =>
+    window.__prettyCalcCycles.filter((entry) => !entry.cleared).map((entry) => entry.delay)
+  );
+  expect(remainingCycleDelays).toEqual([]);
   await expect(page.locator('.pretty-calc-photo.is-visible').last()).toHaveAttribute(
     'data-photo-source',
     pausedSource

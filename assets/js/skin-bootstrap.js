@@ -600,6 +600,7 @@
 		function nextAsset() {
 			var resource = assetQueue.shift();
 			if (!resource) {
+				loadPrettyCalc(false);
 				return;
 			}
 			preloadAsset(resource).then(nextAsset);
@@ -615,7 +616,6 @@
 			waitForStylesheet(skin.id).then(nextSkin);
 		}
 
-		loadPrettyCalc(false);
 		nextSkin();
 	}
 

@@ -1,7 +1,7 @@
 /*
 	Pretty Calc photo engine: preloads random Lorem Picsum WebP photos, preserves
 	photo + palette history across page navigations, steps backward/forward, and
-	cycles every 6000 ms (pausing during active scroll to avoid mid-scroll repaints).
+	cycles every 60000 ms (pausing during active scroll to avoid mid-scroll repaints).
 */
 (function() {
 	'use strict';
@@ -15,7 +15,7 @@
 	var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 	var saveData = Boolean(connection && connection.saveData);
 	var TARGET = saveData ? 1 : 5;
-	var CYCLE_MS = 6000;
+	var CYCLE_MS = 60000;
 	var SCROLL_QUIET_MS = 250;
 	var WAIT_MS = 8000;
 	var FADE_MS = 700;
