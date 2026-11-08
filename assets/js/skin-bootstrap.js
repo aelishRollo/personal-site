@@ -261,10 +261,12 @@
 		root.style.setProperty('--pc-eq-h', (hue + randomIn(120, 180)).toFixed(1));
 	}
 
-	// The photo engine and Picsum connections are only needed while Pretty Calc
-	// is active, so other themes never contact the photo service.
-	function loadPrettyCalc() {
-		randomizePrettyCalcPalette();
+	// Preload Pretty Calc's photo engine and several random Picsum photos so
+	// visiting the theme displays a decoded photo immediately without delay.
+	function loadPrettyCalc(randomizePaletteNow) {
+		if (randomizePaletteNow) {
+			randomizePrettyCalcPalette();
+		}
 
 		if (prettyCalcLoaded) {
 			return;
@@ -375,7 +377,7 @@
 		appliedId = id;
 
 		if (id === 'pretty-calc' && previousAppliedId !== id) {
-			loadPrettyCalc();
+			loadPrettyCalc(true);
 		}
 
 		if (previousAppliedId && previousAppliedId !== id) {
@@ -585,6 +587,7 @@
 			waitForStylesheet(skin.id).then(nextSkin);
 		}
 
+		loadPrettyCalc(false);
 		nextSkin();
 	}
 

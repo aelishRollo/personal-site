@@ -2,21 +2,20 @@
 	Pretty Calc photo engine.
 
 	Ported from the Pretty Calc project: random Lorem Picsum photos are fetched
-	as blobs, decoded before display, and held in a small ready queue so a
-	reroll swaps instantly. Unlike the calculator, a photo is shown on load.
+	as blobs, decoded before display, and held in a ready queue so visiting the
+	theme or rolling the dice displays a photo immediately. Unlike the calculator,
+	a photo is shown on load without waiting for a button click.
 
 	Changes from the original:
+	- Several photos are preloaded upon site load even before Pretty Calc is
+	  selected, and kept buffered across theme switches for instant display.
 	- The decoded <img> element itself is mounted, so a swap never re-decodes.
-	- Photos crossfade over the palette gradient instead of a hard swap.
+	- Photos crossfade on reroll, while the initial photo appears immediately.
 	- Failed fetches back off instead of retrying in a tight loop.
 	- Unseen queued photos are handed to the next page through sessionStorage.
 	  Their final Picsum URLs are immutable and HTTP-cached, so the next page
 	  shows a new photo almost immediately without downloading it again.
-	- The queue is smaller (1 with Save-Data), WebP is requested, and the size
-	  follows the viewport and pixel density.
-
-	skin-bootstrap.js loads this file only while Pretty Calc is active, after
-	it has already applied a random palette and preconnected to Picsum.
+	- WebP is requested, and dimensions follow the viewport and pixel density.
 */
 (function() {
 	'use strict';
@@ -28,7 +27,7 @@
 	var connection = navigator.connection;
 	var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 	var saveData = Boolean(connection && connection.saveData);
-	var TARGET = saveData ? 1 : 3;
+	var TARGET = saveData ? 1 : 5;
 	var WAIT_MS = 8000;
 	var FADE_MS = 700;
 	var MAX_BACKOFF_MS = 30000;
@@ -38,7 +37,6 @@
 	var stash = readStash();
 	var inFlight = 0;
 	var waiters = [];
-	var controllers = [];
 	var failures = 0;
 	var retryTimer = 0;
 	var current = null;
@@ -91,7 +89,8 @@
 		}
 	}
 
-	// Hand unseen photos to the next page. Each is shown at most once.
+	// Keep unseen cached photo URLs in sessionStorage so navigating to another
+	// page can pull them straight from the browser's HTTP disk cache.
 	function writeStash() {
 		var unseen = ready.map(function(photo) {
 			return photo.source;
@@ -99,11 +98,12 @@
 			return url.indexOf(CACHED_PREFIX) === 0;
 		}).slice(0, TARGET);
 
-		if (!unseen.length) {
-			return;
-		}
 		try {
-			window.sessionStorage.setItem(STASH_KEY, JSON.stringify(unseen));
+			if (unseen.length) {
+				window.sessionStorage.setItem(STASH_KEY, JSON.stringify(unseen));
+			} else {
+				window.sessionStorage.removeItem(STASH_KEY);
+			}
 		} catch (error) {
 			// Storage can be unavailable; the next page simply fetches new photos.
 		}
@@ -116,12 +116,33 @@
 		}
 	}
 
+	function prefetchAuthor(id) {
+		if (!id || authorById[id]) {
+			return;
+		}
+		window.fetch('https://picsum.photos/id/' + id + '/info', { mode: 'cors', credentials: 'omit', priority: 'low' })
+			.then(function(response) {
+				return response.ok ? response.json() : null;
+			})
+			.then(function(info) {
+				if (info) {
+					authorById[id] = info;
+					if (current && current.id === id) {
+						setCredit(info);
+					}
+				}
+			}, function() {
+				// Generic credit remains if author lookup fails.
+			});
+	}
+
 	function deliver(photo) {
 		var waiter = waiters.shift();
 		if (waiter) {
 			waiter(photo);
 		} else {
 			ready.push(photo);
+			writeStash();
 		}
 	}
 
@@ -136,16 +157,11 @@
 	}
 
 	function loadPhoto(url, lowPriority) {
-		var controller = typeof AbortController === 'function' ? new AbortController() : null;
 		var options = { mode: 'cors', credentials: 'omit', referrerPolicy: 'no-referrer' };
 		var objectUrl = '';
 		var source = '';
 		var id = '';
 
-		if (controller) {
-			options.signal = controller.signal;
-			controllers.push(controller);
-		}
 		if (lowPriority) {
 			options.priority = 'low';
 		}
@@ -157,6 +173,7 @@
 			}
 			source = response.url || url;
 			id = photoIdFrom(source, response);
+			prefetchAuthor(id);
 			return response.blob();
 		}).then(function(blob) {
 			objectUrl = URL.createObjectURL(blob);
@@ -169,11 +186,7 @@
 			});
 		}).then(function(photo) {
 			failures = 0;
-			if (running) {
-				deliver(photo);
-			} else {
-				release(photo);
-			}
+			deliver(photo);
 		}, function() {
 			if (objectUrl) {
 				URL.revokeObjectURL(objectUrl);
@@ -181,9 +194,6 @@
 			failures++;
 		}).then(function() {
 			inFlight--;
-			if (controller) {
-				controllers.splice(controllers.indexOf(controller), 1);
-			}
 			if (inFlight === 0 && !ready.length && waiters.length) {
 				// Nothing else in flight can satisfy anyone waiting for a photo.
 				waiters.slice().forEach(function(waiter) {
@@ -197,9 +207,10 @@
 		var deficit = TARGET - ready.length - inFlight;
 		var pending = [];
 
-		while (running && deficit-- > 0) {
+		while (deficit-- > 0) {
 			// Unseen photos from the previous page come from the HTTP cache.
-			pending.push(loadPhoto(stash.shift() || randomPhotoUrl(), true));
+			var firstForActiveTheme = isActive() && !current && !ready.length && !inFlight;
+			pending.push(loadPhoto(stash.shift() || randomPhotoUrl(), !firstForActiveTheme));
 		}
 		if (pending.length) {
 			Promise.all(pending).then(topUp);
@@ -207,14 +218,17 @@
 	}
 
 	function topUp() {
-		if (!running || retryTimer || ready.length + inFlight >= TARGET) {
+		if (retryTimer || ready.length + inFlight >= TARGET) {
 			return;
 		}
 		if (!failures) {
 			fill();
 			return;
 		}
-		// Back off while offline, blocked, or rate limited.
+		// Only schedule background retry timers while Pretty Calc is active.
+		if (!running) {
+			return;
+		}
 		retryTimer = window.setTimeout(function() {
 			retryTimer = 0;
 			fill();
@@ -224,14 +238,16 @@
 	function nextPhoto() {
 		var photo = ready.shift();
 		if (photo) {
+			writeStash();
 			return Promise.resolve(photo);
 		}
 
 		if (!inFlight) {
-			// An explicit request skips any pending backoff.
+			// An explicit request skips any pending backoff and races a full batch.
+			failures = 0;
 			window.clearTimeout(retryTimer);
 			retryTimer = 0;
-			loadPhoto(stash.shift() || randomPhotoUrl(), false);
+			fill();
 		}
 
 		return new Promise(function(resolve) {
@@ -242,9 +258,9 @@
 
 			function finish(result) {
 				if (settled) {
-					// A late photo still belongs at the front of the queue.
 					if (result) {
 						ready.unshift(result);
+						writeStash();
 					}
 					return;
 				}
@@ -289,24 +305,7 @@
 	function updateCredit(photo) {
 		var id = photo.id;
 		setCredit(authorById[id]);
-		if (!id || authorById[id]) {
-			return;
-		}
-
-		window.fetch('https://picsum.photos/id/' + id + '/info', { mode: 'cors', credentials: 'omit', priority: 'low' })
-			.then(function(response) {
-				return response.ok ? response.json() : null;
-			})
-			.then(function(info) {
-				if (info) {
-					authorById[id] = info;
-					if (current === photo) {
-						setCredit(info);
-					}
-				}
-			}, function() {
-				// The generic credit stays in place.
-			});
+		prefetchAuthor(id);
 	}
 
 	function show(photo) {
@@ -317,22 +316,28 @@
 		image.className = 'pretty-calc-photo';
 		image.setAttribute('aria-hidden', 'true');
 		image.setAttribute('draggable', 'false');
-		stage.appendChild(image);
 		root.setAttribute('data-pretty-calc-photo', 'ready');
 		updateCredit(photo);
 
-		if (!reducedMotion.matches) {
-			// Commit the hidden state so the fade runs, including for the first photo.
-			void image.offsetWidth;
-		}
-		image.classList.add('is-visible');
-
-		if (previous) {
-			window.setTimeout(function() {
+		// Show the initial photo on frame 0 without fading in from blank.
+		if (!previous || reducedMotion.matches) {
+			image.classList.add('is-visible');
+			stage.appendChild(image);
+			if (previous) {
 				previous.image.remove();
 				release(previous);
-			}, reducedMotion.matches ? 0 : FADE_MS + 50);
+			}
+			return;
 		}
+
+		stage.appendChild(image);
+		// Commit the hidden state so dice rerolls crossfade over the previous photo.
+		void image.offsetWidth;
+		image.classList.add('is-visible');
+		window.setTimeout(function() {
+			previous.image.remove();
+			release(previous);
+		}, FADE_MS + 50);
 	}
 
 	function setBusy(state) {
@@ -348,11 +353,29 @@
 			return;
 		}
 
+		// When a photo is already preloaded, swap synchronously with zero delay.
+		if (ready.length) {
+			var readyPhoto = ready.shift();
+			writeStash();
+			if (!isInitial) {
+				randomizePalette();
+				if (stage && !reducedMotion.matches && typeof stage.animate === 'function') {
+					stage.animate([{ filter: 'brightness(1.18)' }, { filter: 'brightness(1)' }], { duration: 350, easing: 'ease-out' });
+				}
+			}
+			show(readyPhoto);
+			topUp();
+			return;
+		}
+
 		setBusy(true);
 		nextPhoto().then(function(photo) {
 			setBusy(false);
 			if (!running) {
-				release(photo);
+				if (photo) {
+					ready.unshift(photo);
+					writeStash();
+				}
 				return;
 			}
 			if (!photo) {
@@ -362,7 +385,6 @@
 				topUp();
 				return;
 			}
-			// The bootstrap already chose a palette for the first photo.
 			if (!isInitial) {
 				randomizePalette();
 				if (stage && !reducedMotion.matches && typeof stage.animate === 'function') {
@@ -433,25 +455,19 @@
 		running = false;
 		window.clearTimeout(retryTimer);
 		retryTimer = 0;
-
-		// Keep unseen cached photos for a later return to Pretty Calc.
-		stash = ready.map(function(photo) {
-			return photo.source;
-		}).concat(stash).slice(0, TARGET);
-		ready.splice(0).forEach(release);
-		controllers.slice().forEach(function(controller) {
-			controller.abort();
-		});
 		waiters.slice().forEach(function(waiter) {
 			waiter(null);
 		});
 
+		// Release the displayed photo, but keep the preloaded ready queue warm
+		// in memory so visiting Pretty Calc again shows a photo immediately.
 		if (current) {
 			release(current);
 			current = null;
 		}
 		setBusy(false);
 		unmount();
+		topUp();
 	}
 
 	function sync() {
@@ -485,6 +501,10 @@
 			reroll(false);
 		}
 	};
+
+	// Begin preloading several photos immediately upon script load, even before
+	// Pretty Calc is visited.
+	topUp();
 
 	if (document.body) {
 		init();

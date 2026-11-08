@@ -320,7 +320,7 @@ test('every registered theme stylesheet loads and can be applied', async ({ page
   expect(failures).toEqual([]);
 });
 
-test('Pretty Calc shows a random photo on load, preloads a queue, and rerolls', async ({ page }) => {
+test('Pretty Calc preloads photos upon site load, shows one immediately on visit, and rerolls', async ({ page }) => {
   const onePixelPng = Buffer.from(
     'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
     'base64'
@@ -356,7 +356,12 @@ test('Pretty Calc shows a random photo on load, preloads a queue, and rerolls', 
     });
   });
 
-  await openSitePage(page, '/index.html?theme=pretty-calc');
+  // Load on another theme first: several Pretty Calc photos should preload automatically.
+  await openSitePage(page, '/index.html?theme=portfolio-dark');
+  await expect.poll(() => photoCount).toBeGreaterThanOrEqual(5);
+
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.evaluate(() => window.SiteSkins.preview('pretty-calc'));
   await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'pretty-calc');
   await expect(page.locator('html')).toHaveAttribute('data-pretty-calc-photo', 'ready');
 
@@ -364,9 +369,6 @@ test('Pretty Calc shows a random photo on load, preloads a queue, and rerolls', 
   await expect(photo).toHaveCount(1);
   const initialSrc = await photo.getAttribute('src');
   expect(initialSrc).toMatch(/^blob:/);
-
-  // Initial photo plus the preloaded ready queue.
-  await expect.poll(() => photoCount).toBeGreaterThanOrEqual(3);
   await expect(page.locator('.pretty-calc-credit')).toContainText('Test Photographer');
 
   const initialHue = await page.evaluate(() =>

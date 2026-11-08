@@ -1,13 +1,15 @@
 /*
 	Pretty Calc
 	Ported from the Pretty Calc calculator: a random full-screen photo behind
-	frosted, randomly tinted glass. Page sections are calculator bodies, the hero
+	tinted calculator glass. Page sections are calculator bodies, the hero
 	title sits in the display screen, and cards and buttons are bevelled keys.
 
 	skin-bootstrap.js sets the random palette (--pc-h, --pc-s, --pc-l, --pc-op-h,
-	--pc-eq-h) before first paint; assets/js/pretty-calc.js mounts the photos and
-	the dice control. Every derived color stays dark so light text keeps strong
-	contrast whatever photo is behind it.
+	--pc-eq-h) before first paint; assets/js/pretty-calc.js preloads photos upon
+	site load and mounts the stage and dice control. Every derived color stays
+	dark so light text keeps strong contrast whatever photo is behind it.
+	Scrolling surfaces avoid backdrop-filter and background-attachment: fixed so
+	scrolling stays compositor-only.
 */
 
 html[data-skin="pretty-calc"] {
@@ -17,24 +19,23 @@ html[data-skin="pretty-calc"] {
 	--pc-op-h: 190;
 	--pc-eq-h: 320;
 
-	--pc-panel: hsl(var(--pc-h) var(--pc-s) var(--pc-l) / 0.62);
-	--pc-panel-2: hsl(calc(var(--pc-h) - 6) calc(var(--pc-s) - 4%) calc(var(--pc-l) - 4%) / 0.66);
-	--pc-btn: hsl(calc(var(--pc-h) + 8) calc(var(--pc-s) + 3%) calc(var(--pc-l) + 4%) / 0.7);
-	--pc-fn: hsl(calc(var(--pc-h) - 8) calc(var(--pc-s) + 3%) calc(var(--pc-l) + 2%) / 0.7);
-	--pc-op: hsl(var(--pc-op-h) calc(var(--pc-s) + 5%) calc(var(--pc-l) + 7%) / 0.76);
-	--pc-eq: hsl(var(--pc-eq-h) calc(var(--pc-s) + 12%) calc(var(--pc-l) + 10%) / 0.86);
+	--pc-panel: hsl(var(--pc-h) var(--pc-s) var(--pc-l) / 0.72);
+	--pc-panel-2: hsl(calc(var(--pc-h) - 6) calc(var(--pc-s) - 4%) calc(var(--pc-l) - 4%) / 0.76);
+	--pc-btn: hsl(calc(var(--pc-h) + 8) calc(var(--pc-s) + 3%) calc(var(--pc-l) + 4%) / 0.74);
+	--pc-fn: hsl(calc(var(--pc-h) - 8) calc(var(--pc-s) + 3%) calc(var(--pc-l) + 2%) / 0.74);
+	--pc-op: hsl(var(--pc-op-h) calc(var(--pc-s) + 5%) calc(var(--pc-l) + 7%) / 0.8);
+	--pc-eq: hsl(var(--pc-eq-h) calc(var(--pc-s) + 12%) calc(var(--pc-l) + 10%) / 0.88);
 	--pc-solid: hsl(var(--pc-h) var(--pc-s) calc(var(--pc-l) - 4%));
 	--pc-accent: hsl(var(--pc-eq-h) 90% 82%);
 	--pc-ink: #f6fff9;
 	--pc-ink-dim: #dbe9e3;
-	--pc-bevel: rgba(255, 255, 255, 0.1);
+	--pc-bevel: rgba(255, 255, 255, 0.14);
 	--pc-line: rgba(255, 255, 255, 0.24);
 	--pc-shadow: rgba(0, 0, 0, 0.38);
 	--pc-radius-lg: 20px;
 	--pc-radius-md: 14px;
 	--pc-font-ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 	--pc-font-num: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-	--pc-glass-filter: blur(12px) saturate(1.2) brightness(0.86) contrast(1.06);
 
 	--background: var(--pc-solid);
 	--foreground: var(--pc-ink);
@@ -63,12 +64,7 @@ html[data-skin="pretty-calc"] {
 	--accent-1: var(--pc-accent);
 	--accent-2: var(--pc-accent);
 
-	/* Shown before the first photo arrives, or if the photo service is offline. */
-	background:
-		radial-gradient(ellipse at 20% 15%, hsl(var(--pc-op-h) calc(var(--pc-s) + 10%) calc(var(--pc-l) + 18%)), transparent 55%),
-		radial-gradient(ellipse at 85% 90%, hsl(var(--pc-eq-h) var(--pc-s) calc(var(--pc-l) + 12%)), transparent 50%),
-		linear-gradient(160deg, hsl(var(--pc-h) var(--pc-s) calc(var(--pc-l) + 8%)), hsl(var(--pc-h) var(--pc-s) calc(var(--pc-l) - 6%)));
-	background-attachment: fixed;
+	background: var(--pc-solid);
 	color-scheme: dark;
 	overflow-x: clip;
 }
@@ -82,6 +78,21 @@ html[data-skin="pretty-calc"] body {
 	overflow-x: hidden;
 }
 
+/* Fixed compositor layer for the fallback gradient (avoids background-attachment: fixed). */
+html[data-skin="pretty-calc"] body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: -3;
+	background:
+		radial-gradient(ellipse at 20% 15%, hsl(var(--pc-op-h) calc(var(--pc-s) + 10%) calc(var(--pc-l) + 18%)), transparent 55%),
+		radial-gradient(ellipse at 85% 90%, hsl(var(--pc-eq-h) var(--pc-s) calc(var(--pc-l) + 12%)), transparent 50%),
+		linear-gradient(160deg, hsl(var(--pc-h) var(--pc-s) calc(var(--pc-l) + 8%)), hsl(var(--pc-h) var(--pc-s) calc(var(--pc-l) - 6%)));
+	contain: strict;
+	transform: translateZ(0);
+	pointer-events: none;
+}
+
 /* Photo stage: decoded photos crossfade here; the scrim keeps text legible. */
 html[data-skin="pretty-calc"] .pretty-calc-stage {
 	position: fixed;
@@ -89,6 +100,8 @@ html[data-skin="pretty-calc"] .pretty-calc-stage {
 	z-index: -2;
 	overflow: hidden;
 	contain: strict;
+	transform: translateZ(0);
+	backface-visibility: hidden;
 	pointer-events: none;
 }
 
@@ -97,7 +110,7 @@ html[data-skin="pretty-calc"] .pretty-calc-stage::after {
 	position: absolute;
 	inset: 0;
 	z-index: 1;
-	background: linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.3));
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.32));
 }
 
 html[data-skin="pretty-calc"] .pretty-calc-photo {
@@ -145,8 +158,6 @@ html[data-skin="pretty-calc"] .pretty-calc-dice {
 	line-height: 1;
 	cursor: pointer;
 	pointer-events: auto;
-	-webkit-backdrop-filter: var(--pc-glass-filter);
-	backdrop-filter: var(--pc-glass-filter);
 	transition: transform 80ms ease, filter 120ms ease;
 	-webkit-tap-highlight-color: transparent;
 }
@@ -167,7 +178,7 @@ html[data-skin="pretty-calc"] .pretty-calc-dice:focus-visible {
 html[data-skin="pretty-calc"] .pretty-calc-dice-face {
 	display: inline-block;
 	font-size: 2rem;
-	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.55));
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
 	translate: 0 1px;
 }
 
@@ -184,8 +195,6 @@ html[data-skin="pretty-calc"] .pretty-calc-credit {
 	color: var(--pc-ink-dim) !important;
 	font: 600 0.75rem/1.4 var(--pc-font-ui);
 	text-align: center;
-	-webkit-backdrop-filter: var(--pc-glass-filter);
-	backdrop-filter: var(--pc-glass-filter);
 }
 
 html[data-skin="pretty-calc"] .pretty-calc-credit a {
@@ -230,13 +239,13 @@ html[data-skin="pretty-calc"] a:hover {
 	color: #ffffff !important;
 }
 
-/* Header: the calculator toolbar. */
+/* Header: the calculator toolbar. Disable main.css backdrop-filter for smooth scrolling. */
 html[data-skin="pretty-calc"] .site-header {
 	border-bottom: 1px solid var(--pc-line) !important;
 	background: linear-gradient(180deg, var(--pc-panel), var(--pc-panel-2)) !important;
 	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 var(--pc-bevel) !important;
-	-webkit-backdrop-filter: var(--pc-glass-filter) !important;
-	backdrop-filter: var(--pc-glass-filter) !important;
+	-webkit-backdrop-filter: none !important;
+	backdrop-filter: none !important;
 }
 
 html[data-skin="pretty-calc"] .brand-mark {
@@ -283,7 +292,7 @@ html[data-skin="pretty-calc"] .site-nav .nav-cta {
 	color: #ffffff !important;
 }
 
-/* Sections become frosted calculator bodies floating over the photo. */
+/* Sections become translucent calculator bodies floating over the photo. */
 html[data-skin="pretty-calc"] .page-hero,
 html[data-skin="pretty-calc"] .page-section,
 html[data-skin="pretty-calc"] .section-soft,
@@ -304,18 +313,12 @@ html[data-skin="pretty-calc"] .page-section > .site-shell {
 	position: relative;
 	margin-block: clamp(0.75rem, 2vw, 1.6rem);
 	padding: clamp(1.6rem, 4vw, 3.4rem) clamp(1.1rem, 3.6vw, 3.2rem);
+	border: 1px solid rgba(255, 255, 255, 0.14);
 	border-radius: var(--pc-radius-lg);
-	background: linear-gradient(180deg, var(--pc-panel), var(--pc-panel-2));
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 28%),
+		linear-gradient(180deg, var(--pc-panel), var(--pc-panel-2));
 	box-shadow: 0 24px 60px var(--pc-shadow), inset 0 1px 0 var(--pc-bevel);
-}
-
-/* Blur large panes only where scrolling them is cheap (fine pointer devices). */
-@media (hover: hover) and (pointer: fine) {
-	html[data-skin="pretty-calc"] .page-hero > .site-shell,
-	html[data-skin="pretty-calc"] .page-section > .site-shell {
-		-webkit-backdrop-filter: var(--pc-glass-filter);
-		backdrop-filter: var(--pc-glass-filter);
-	}
 }
 
 /* The hero title sits in the calculator display screen. */
@@ -528,8 +531,6 @@ html[data-skin="pretty-calc"] .skin-contact-charm {
 html[data-skin="pretty-calc"] .site-footer {
 	border-top: 1px solid var(--pc-line) !important;
 	background: linear-gradient(180deg, var(--pc-panel), var(--pc-panel-2)) !important;
-	-webkit-backdrop-filter: var(--pc-glass-filter);
-	backdrop-filter: var(--pc-glass-filter);
 	color: var(--pc-ink-dim) !important;
 }
 
