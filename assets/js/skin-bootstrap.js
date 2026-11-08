@@ -79,7 +79,9 @@
 			{ href: 'assets/images/midnight-aurora-glass.webp', as: 'image', type: 'image/webp' }
 		],
 		'sea-glass-mosaic': [
-			{ href: 'assets/images/sea-glass-mosaic.svg', as: 'image', type: 'image/svg+xml' }
+			{ href: 'assets/images/sea-glass-mosaic.webp', as: 'image', type: 'image/webp' },
+			{ href: 'assets/images/sea-glass-grain.webp', as: 'image', type: 'image/webp' },
+			{ href: 'assets/images/sea-glass-ripple.webp', as: 'image', type: 'image/webp' }
 		]
 	};
 	var preloadedAssets = {};

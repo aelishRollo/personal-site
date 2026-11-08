@@ -283,7 +283,7 @@ test('unseen themes warm automatically before their first selection', async ({ p
   await page.waitForLoadState('networkidle');
   await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'portfolio-dark');
   await expect(page.locator('[data-skin-stylesheet][media="all"]')).toHaveCount(0);
-  expect(themeRequests.some((url) => url.endsWith('/sea-glass-mosaic.svg'))).toBe(true);
+  expect(themeRequests.some((url) => url.endsWith('/sea-glass-mosaic.webp'))).toBe(true);
 
   // WebKit revalidates nonmatching-media CSS when it becomes active on this
   // test server (which supplies no cache lifetime). Other engines can also
