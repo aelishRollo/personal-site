@@ -594,6 +594,8 @@ html[data-skin="pretty-calc"] .personality-arrow {
 
 html[data-skin="pretty-calc"] .skin-contact-charm {
 	--skin-contact-rotate: 0deg;
+	top: 0.7rem;
+	right: max(1.75rem, calc((100% - 1120px) / 2));
 	border: 1px solid rgba(255, 255, 255, 0.42) !important;
 	border-radius: var(--pc-radius-md) !important;
 	background: var(--pc-eq) !important;

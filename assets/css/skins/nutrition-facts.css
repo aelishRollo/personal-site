@@ -895,6 +895,7 @@ html[data-skin-id="nutrition-facts"] .skin-contact-charm:hover::before {
 
 	html[data-skin-id="nutrition-facts"] .skin-contact-charm {
 		top: 4.75rem;
+		right: max(2rem, calc((100% - 1120px) / 2 + 1.5rem));
 	}
 }
 

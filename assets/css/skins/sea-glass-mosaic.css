@@ -169,6 +169,10 @@ html[data-skin="sea-glass-mosaic"] .page-section:not(.section-cta):not(.section-
 	border: 0 !important;
 }
 
+html[data-skin="sea-glass-mosaic"] body:not(.page-contact) .page-hero {
+	padding-top: clamp(4.35rem, 5.5vw, 4.9rem) !important;
+}
+
 html[data-skin="sea-glass-mosaic"] .page-hero::before,
 html[data-skin="sea-glass-mosaic"] .page-hero::after,
 html[data-skin="sea-glass-mosaic"] .page-section::before,
@@ -494,6 +498,8 @@ html[data-skin="sea-glass-mosaic"] .skin-picker {
 
 html[data-skin="sea-glass-mosaic"] .skin-contact-charm {
 	--skin-contact-rotate: 0deg;
+	top: clamp(0.75rem, 1.4vw, 1.05rem);
+	right: max(1.25rem, calc((100% - 1200px) / 2));
 	border: 4px solid !important;
 	border-color: #c9865a #a45f36 #6e3518 #b26c42 !important;
 	border-radius: 6px;
@@ -512,6 +518,15 @@ html[data-skin="sea-glass-mosaic"] .skin-contact-charm:hover {
 @media screen and (max-width: 736px) {
 	html[data-skin="sea-glass-mosaic"] body {
 		background-size: 400px 400px !important;
+	}
+
+	html[data-skin="sea-glass-mosaic"] body:not(.page-contact) .page-hero {
+		padding-top: 3.75rem !important;
+	}
+
+	html[data-skin="sea-glass-mosaic"] .skin-contact-charm {
+		top: 0.65rem;
+		right: 0.75rem;
 	}
 
 	html[data-skin="sea-glass-mosaic"] .page-hero > .site-shell,

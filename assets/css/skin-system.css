@@ -52,7 +52,7 @@ html[data-skin-id="portfolio-light"] .page-hero {
 	--skin-contact-rotate: 0deg;
 
 	position: absolute;
-	top: clamp(1rem, 3vw, 2.5rem);
+	top: clamp(0.75rem, 1.5vw, 1.15rem);
 	right: clamp(0.8rem, 3vw, 3rem);
 	z-index: 8;
 	display: inline-flex;
@@ -505,6 +505,7 @@ html[data-skin-id="browser-archaeology"] .skin-contact-charm:visited {
 html[data-skin-id="forties-field-notes"] .skin-contact-charm {
 	--skin-contact-rotate: 0deg;
 	top: clamp(5.8rem, 8vw, 7rem);
+	right: max(1.75rem, calc((100% - 1120px) / 2 + 1.5rem));
 	min-width: 0;
 	min-height: 2.75rem;
 	padding: 0.6rem 1rem;

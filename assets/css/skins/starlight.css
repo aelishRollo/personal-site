@@ -458,6 +458,8 @@ html[data-skin="starlight"] button:not([class^="skin-picker"]):hover {
 
 html[data-skin="starlight"] .skin-contact-charm {
 	--skin-contact-rotate: 0deg;
+	top: clamp(0.65rem, 1.3vw, 0.95rem);
+	right: max(1.25rem, calc((100% - 1120px) / 2));
 	min-width: 0;
 	border: 1px solid rgba(255, 255, 255, 0.72) !important;
 	border-radius: 999px;
