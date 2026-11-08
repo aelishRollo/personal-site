@@ -23,8 +23,13 @@ html[data-skin="pretty-calc"] {
 	--pc-panel-2: hsl(calc(var(--pc-h) - 6) calc(var(--pc-s) - 4%) calc(var(--pc-l) - 4%) / 0.76);
 	--pc-btn: hsl(calc(var(--pc-h) + 8) calc(var(--pc-s) + 3%) calc(var(--pc-l) + 4%) / 0.74);
 	--pc-fn: hsl(calc(var(--pc-h) - 8) calc(var(--pc-s) + 3%) calc(var(--pc-l) + 2%) / 0.74);
+	--pc-chip: hsl(calc(var(--pc-h) - 8) calc(var(--pc-s) + 2%) calc(var(--pc-l) + 9%) / 0.82);
 	--pc-op: hsl(var(--pc-op-h) calc(var(--pc-s) + 5%) calc(var(--pc-l) + 7%) / 0.8);
 	--pc-eq: hsl(var(--pc-eq-h) calc(var(--pc-s) + 12%) calc(var(--pc-l) + 10%) / 0.88);
+	--pc-eq-active: hsl(var(--pc-eq-h) calc(var(--pc-s) + 14%) calc(var(--pc-l) + 16%) / 0.9);
+	--pc-screen-top: hsl(var(--pc-h) var(--pc-s) calc(var(--pc-l) - 3%) / 0.82);
+	--pc-screen-bottom: hsl(calc(var(--pc-h) - 6) calc(var(--pc-s) - 4%) calc(var(--pc-l) - 6%) / 0.86);
+	--pc-input: hsl(calc(var(--pc-h) - 6) calc(var(--pc-s) - 4%) calc(var(--pc-l) - 5%) / 0.84);
 	--pc-solid: hsl(var(--pc-h) var(--pc-s) calc(var(--pc-l) - 4%));
 	--pc-accent: hsl(var(--pc-eq-h) 90% 82%);
 	--pc-ink: #f6fff9;
@@ -75,7 +80,7 @@ html[data-skin="pretty-calc"] body {
 	background: transparent !important;
 	color: var(--pc-ink) !important;
 	font-family: var(--pc-font-ui) !important;
-	overflow-x: hidden;
+	overflow-x: clip;
 }
 
 /* Fixed compositor layer for the fallback gradient (avoids background-attachment: fixed). */
@@ -281,7 +286,7 @@ html[data-skin="pretty-calc"] .site-nav a,
 html[data-skin="pretty-calc"] .nav-toggle {
 	border: 0 !important;
 	border-radius: 10px !important;
-	background: color-mix(in oklab, var(--pc-fn) 72%, rgba(255, 255, 255, 0.15)) !important;
+	background: var(--pc-chip) !important;
 	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.28), inset 0 1px 0 var(--pc-bevel) !important;
 	text-decoration: none;
 	transition: transform 80ms ease, filter 120ms ease;
@@ -298,7 +303,7 @@ html[data-skin="pretty-calc"] .site-nav a:active {
 
 html[data-skin="pretty-calc"] .site-nav a[aria-current="page"],
 html[data-skin="pretty-calc"] .site-nav .nav-cta {
-	background: color-mix(in oklab, var(--pc-eq) 82%, rgba(255, 255, 255, 0.18)) !important;
+	background: var(--pc-eq-active) !important;
 	color: #ffffff !important;
 }
 
@@ -328,7 +333,7 @@ html[data-skin="pretty-calc"] .page-section > .site-shell {
 	background:
 		linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 28%),
 		linear-gradient(180deg, var(--pc-panel), var(--pc-panel-2));
-	box-shadow: 0 24px 60px var(--pc-shadow), inset 0 1px 0 var(--pc-bevel);
+	box-shadow: 0 12px 28px var(--pc-shadow), inset 0 1px 0 var(--pc-bevel);
 }
 
 /* The hero title sits in the calculator display screen. */
@@ -336,9 +341,7 @@ html[data-skin="pretty-calc"] .page-hero h1 {
 	padding: clamp(0.7rem, 1.8vw, 1.1rem) clamp(0.85rem, 2vw, 1.3rem);
 	border: 2px solid rgba(255, 255, 255, 0.3);
 	border-radius: calc(var(--pc-radius-md) - 4px);
-	background: linear-gradient(180deg,
-		color-mix(in oklab, var(--pc-panel) 70%, rgba(0, 0, 0, 0.35)),
-		color-mix(in oklab, var(--pc-panel-2) 70%, rgba(0, 0, 0, 0.45)));
+	background: linear-gradient(180deg, var(--pc-screen-top), var(--pc-screen-bottom));
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), inset 0 -6px 18px rgba(0, 0, 0, 0.35);
 	color: var(--pc-ink) !important;
 	font-family: var(--pc-font-num) !important;
@@ -365,7 +368,7 @@ html[data-skin="pretty-calc"] .profile-chip,
 html[data-skin="pretty-calc"] .favorite-kind {
 	border: 0 !important;
 	border-radius: 10px !important;
-	background: color-mix(in oklab, var(--pc-fn) 72%, rgba(255, 255, 255, 0.15)) !important;
+	background: var(--pc-chip) !important;
 	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.28), inset 0 1px 0 var(--pc-bevel) !important;
 	color: var(--pc-ink) !important;
 	font-family: var(--pc-font-ui) !important;
@@ -421,7 +424,7 @@ html[data-skin="pretty-calc"] .features article .image img,
 html[data-skin="pretty-calc"] .favorite-media,
 html[data-skin="pretty-calc"] .image.fit {
 	border-radius: var(--pc-radius-md) !important;
-	box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4), 0 0 0 2px rgba(255, 255, 255, 0.22) !important;
+	box-shadow: 0 6px 14px rgba(0, 0, 0, 0.36), 0 0 0 2px rgba(255, 255, 255, 0.22) !important;
 	filter: none !important;
 }
 
@@ -441,9 +444,7 @@ html[data-skin="pretty-calc"] .hero-splash .hero-splash-text {
 	padding: 1rem 1.1rem;
 	border: 2px solid rgba(255, 255, 255, 0.3) !important;
 	border-radius: calc(var(--pc-radius-md) - 4px) !important;
-	background: linear-gradient(180deg,
-		color-mix(in oklab, var(--pc-panel) 70%, rgba(0, 0, 0, 0.35)),
-		color-mix(in oklab, var(--pc-panel-2) 70%, rgba(0, 0, 0, 0.45))) !important;
+	background: linear-gradient(180deg, var(--pc-screen-top), var(--pc-screen-bottom)) !important;
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), inset 0 -6px 18px rgba(0, 0, 0, 0.35) !important;
 	color: var(--pc-ink) !important;
 	font-family: var(--pc-font-num) !important;
@@ -467,7 +468,7 @@ html[data-skin="pretty-calc"] select,
 html[data-skin="pretty-calc"] textarea {
 	border: 2px solid rgba(255, 255, 255, 0.28) !important;
 	border-radius: calc(var(--pc-radius-md) - 4px) !important;
-	background: color-mix(in oklab, var(--pc-panel-2) 80%, rgba(0, 0, 0, 0.4)) !important;
+	background: var(--pc-input) !important;
 	box-shadow: inset 0 -4px 12px rgba(0, 0, 0, 0.3) !important;
 	color: #ffffff !important;
 	font-family: var(--pc-font-num) !important;

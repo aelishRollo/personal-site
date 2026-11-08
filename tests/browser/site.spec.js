@@ -399,6 +399,18 @@ test('Pretty Calc preloads photos upon site load, shows one immediately on visit
   );
   expect(hueAfterNavigation).toBe(initialHue);
 
+  // Content images and root scrolling should be ready upfront without lazy-load scroll delay.
+  const scrollReadiness = await page.evaluate(() => ({
+    bodyOverflowY: window.getComputedStyle(document.body).overflowY,
+    allEagerAndComplete: Array.from(document.querySelectorAll('main img')).every(
+      (img) => img.loading === 'eager' && img.complete && img.naturalWidth > 0
+    ),
+  }));
+  expect(scrollReadiness).toEqual({
+    bodyOverflowY: 'visible',
+    allEagerAndComplete: true,
+  });
+
   // Clicking Next advances to a second photo/palette and enables Previous.
   await nextButton.click();
   await expect(prevButton).toBeEnabled();

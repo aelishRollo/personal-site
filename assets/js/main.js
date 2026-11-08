@@ -14,6 +14,16 @@
 		}, 100);
 	});
 
+	// Pre-decode page images upfront so below-the-fold cards never pop in late
+	// or stall tile rasterization while scrolling.
+	document.querySelectorAll('img').forEach(function(img) {
+		img.loading = 'eager';
+		img.decoding = 'sync';
+		if (typeof img.decode === 'function') {
+			img.decode().catch(function() {});
+		}
+	});
+
 	// Polyfill: object-fit.
 	if (!browser.canUse('object-fit')) {
 		$('.image[data-position]').each(function() {

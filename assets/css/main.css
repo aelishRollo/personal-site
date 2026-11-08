@@ -3162,7 +3162,7 @@ section#three .container .features article .inner {
 
 	html,
 	body {
-		overflow-x: hidden;
+		overflow-x: clip;
 	}
 
 	body,

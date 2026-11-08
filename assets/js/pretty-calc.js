@@ -1,26 +1,7 @@
 /*
-	Pretty Calc photo engine.
-
-	Ported from the Pretty Calc project: random Lorem Picsum photos are fetched
-	as blobs, decoded before display, and held in a ready queue so visiting the
-	theme or advancing to the next photo displays immediately. Unlike the
-	calculator, a photo is shown on load without waiting for a button click.
-
-	Changes from the original:
-	- Several photos are preloaded upon site load even before Pretty Calc is
-	  selected, and kept buffered across theme switches for instant display.
-	- Previous and next arrows step backward and forward through photo + palette
-	  sets (with Previous disabled/greyed out on the first set), and the active
-	  photo and palette automatically advance every 6000 ms.
-	- The active history and palette are preserved in sessionStorage across page
-	  navigations so moving between pages never changes the photo.
-	- The decoded <img> element itself is mounted, so a swap never re-decodes.
-	- Photos crossfade on step changes, while the initial photo appears immediately.
-	- Failed fetches back off instead of retrying in a tight loop.
-	- Unseen queued photos are handed to the next page through sessionStorage.
-	  Their final Picsum URLs are immutable and HTTP-cached, so the next page
-	  keeps the ready queue warm without downloading them again.
-	- WebP is requested, and dimensions follow the viewport and pixel density.
+	Pretty Calc photo engine: preloads random Lorem Picsum WebP photos, preserves
+	photo + palette history across page navigations, steps backward/forward, and
+	cycles every 6000 ms (pausing during active scroll to avoid mid-scroll repaints).
 */
 (function() {
 	'use strict';
@@ -35,6 +16,7 @@
 	var saveData = Boolean(connection && connection.saveData);
 	var TARGET = saveData ? 1 : 5;
 	var CYCLE_MS = 6000;
+	var SCROLL_QUIET_MS = 250;
 	var WAIT_MS = 8000;
 	var FADE_MS = 700;
 	var MAX_BACKOFF_MS = 30000;
@@ -50,6 +32,7 @@
 	var failures = 0;
 	var retryTimer = 0;
 	var cycleTimer = 0;
+	var lastScrollAt = 0;
 	var history = [];
 	var historyIndex = -1;
 	var current = null;
@@ -66,24 +49,12 @@
 		return root.getAttribute('data-skin-id') === SKIN_ID;
 	}
 
-	function randomToken() {
-		return Date.now().toString(36) + '-' + Math.random().toString(36).slice(2);
-	}
-
-	function photoSize() {
-		var density = Math.min(window.devicePixelRatio || 1, saveData ? 1 : 1.5);
-		var step = 64;
-		var width = Math.max(800, Math.min(2560, window.innerWidth * density));
-		var height = Math.max(600, Math.min(2560, window.innerHeight * density));
-		return {
-			width: Math.ceil(width / step) * step,
-			height: Math.ceil(height / step) * step
-		};
-	}
-
 	function randomPhotoUrl() {
-		var size = photoSize();
-		return 'https://picsum.photos/' + size.width + '/' + size.height + '.webp?random=' + randomToken();
+		var density = Math.min(window.devicePixelRatio || 1, saveData ? 1 : 1.25);
+		var width = Math.ceil(Math.max(800, Math.min(1600, window.innerWidth * density)) / 64) * 64;
+		var height = Math.ceil(Math.max(600, Math.min(1200, window.innerHeight * density)) / 64) * 64;
+		var token = Date.now().toString(36) + '-' + Math.random().toString(36).slice(2);
+		return 'https://picsum.photos/' + width + '/' + height + '.webp?random=' + token;
 	}
 
 	function photoIdFrom(source, response) {
@@ -93,38 +64,17 @@
 	}
 
 	function currentPalette() {
-		if (window.SiteSkins && typeof window.SiteSkins.getPrettyCalcPalette === 'function') {
-			return window.SiteSkins.getPrettyCalcPalette();
-		}
-		return {
-			h: root.style.getPropertyValue('--pc-h') || '168',
-			s: root.style.getPropertyValue('--pc-s') || '48%',
-			l: root.style.getPropertyValue('--pc-l') || '15%',
-			opH: root.style.getPropertyValue('--pc-op-h') || '190',
-			eqH: root.style.getPropertyValue('--pc-eq-h') || '320'
-		};
+		return window.SiteSkins.getPrettyCalcPalette();
 	}
 
 	function applyPalette(palette) {
-		if (!palette) {
-			return;
-		}
-		if (window.SiteSkins && typeof window.SiteSkins.setPrettyCalcPalette === 'function') {
+		if (palette) {
 			window.SiteSkins.setPrettyCalcPalette(palette);
-			return;
 		}
-		root.style.setProperty('--pc-h', palette.h);
-		root.style.setProperty('--pc-s', palette.s);
-		root.style.setProperty('--pc-l', palette.l);
-		root.style.setProperty('--pc-op-h', palette.opH);
-		root.style.setProperty('--pc-eq-h', palette.eqH);
 	}
 
 	function randomizePalette() {
-		if (window.SiteSkins && typeof window.SiteSkins.randomizePrettyCalcPalette === 'function') {
-			return window.SiteSkins.randomizePrettyCalcPalette();
-		}
-		return currentPalette();
+		return window.SiteSkins.randomizePrettyCalcPalette();
 	}
 
 	function restoreHistory() {
@@ -135,10 +85,7 @@
 			}
 			var restored = [];
 			saved.items.forEach(function(item) {
-				if (!item || typeof item !== 'object') {
-					return;
-				}
-				var src = item.dataUrl || item.source || '';
+				var src = item && (item.dataUrl || item.source || '');
 				if (!src) {
 					return;
 				}
@@ -164,8 +111,8 @@
 				return;
 			}
 			history = restored;
-			var requestedIndex = typeof saved.index === 'number' ? saved.index : restored.length - 1;
-			historyIndex = Math.max(0, Math.min(restored.length - 1, requestedIndex));
+			var idx = typeof saved.index === 'number' ? saved.index : restored.length - 1;
+			historyIndex = Math.max(0, Math.min(restored.length - 1, idx));
 			current = history[historyIndex].photo;
 			applyPalette(history[historyIndex].palette);
 		} catch (error) {
@@ -177,20 +124,20 @@
 		if (!history.length || historyIndex < 0) {
 			return;
 		}
-		var startIndex = Math.max(0, historyIndex - (MAX_STORED_HISTORY - 1));
-		var slice = history.slice(startIndex, startIndex + MAX_STORED_HISTORY);
-		var relativeIndex = historyIndex - startIndex;
+		var start = Math.max(0, historyIndex - (MAX_STORED_HISTORY - 1));
+		var slice = history.slice(start, start + MAX_STORED_HISTORY);
+		var relIndex = historyIndex - start;
 
-		function serialize(includeDataUrl) {
+		function serialize(withData) {
 			return JSON.stringify({
-				index: relativeIndex,
+				index: relIndex,
 				items: slice.map(function(entry) {
-					var photo = entry.photo;
+					var p = entry.photo;
 					return {
-						source: photo.source || '',
-						id: photo.id || '',
-						dataUrl: includeDataUrl ? (photo.dataUrl || '') : '',
-						author: (photo.id && authorById[photo.id]) || null,
+						source: p.source || '',
+						id: p.id || '',
+						dataUrl: withData ? (p.dataUrl || '') : '',
+						author: (p.id && authorById[p.id]) || null,
 						palette: entry.palette
 					};
 				})
@@ -202,9 +149,7 @@
 		} catch (error) {
 			try {
 				window.sessionStorage.setItem(HISTORY_KEY, serialize(false));
-			} catch (fallbackError) {
-				// Storage can be unavailable in locked-down browsing modes.
-			}
+			} catch (fallbackError) {}
 		}
 	}
 
@@ -220,8 +165,6 @@
 		}
 	}
 
-	// Keep unseen cached photo URLs in sessionStorage so navigating to another
-	// page can pull them straight from the browser's HTTP disk cache.
 	function writeStash() {
 		var unseen = ready.map(function(photo) {
 			return photo.source;
@@ -235,9 +178,7 @@
 			} else {
 				window.sessionStorage.removeItem(STASH_KEY);
 			}
-		} catch (error) {
-			// Storage can be unavailable; the next page simply fetches new photos.
-		}
+		} catch (error) {}
 	}
 
 	function release(photo) {
@@ -248,12 +189,9 @@
 	}
 
 	function isInHistory(photo) {
-		for (var i = 0; i < history.length; i++) {
-			if (history[i].photo === photo) {
-				return true;
-			}
-		}
-		return false;
+		return history.some(function(entry) {
+			return entry.photo === photo;
+		});
 	}
 
 	function prefetchAuthor(id) {
@@ -272,9 +210,7 @@
 					}
 					writeHistory();
 				}
-			}, function() {
-				// Generic credit remains if author lookup fails.
-			});
+			}, function() {});
 	}
 
 	function deliver(photo) {
@@ -339,7 +275,10 @@
 			image.decoding = 'async';
 			image.alt = '';
 			image.src = objectUrl;
-			return Promise.all([decode(image), blobToDataUrl(blob)]).then(function(results) {
+			var dataUrlPromise = (source.indexOf(CACHED_PREFIX) !== 0 && blob.size <= 65536)
+				? blobToDataUrl(blob)
+				: Promise.resolve('');
+			return Promise.all([decode(image), dataUrlPromise]).then(function(results) {
 				return {
 					image: image,
 					objectUrl: objectUrl,
@@ -359,7 +298,6 @@
 		}).then(function() {
 			inFlight--;
 			if (inFlight === 0 && !ready.length && waiters.length) {
-				// Nothing else in flight can satisfy anyone waiting for a photo.
 				waiters.slice().forEach(function(waiter) {
 					waiter(null);
 				});
@@ -372,7 +310,6 @@
 		var pending = [];
 
 		while (deficit-- > 0) {
-			// Unseen photos from the previous page come from the HTTP cache.
 			var firstForActiveTheme = isActive() && !current && !ready.length && !inFlight;
 			pending.push(loadPhoto(stash.shift() || randomPhotoUrl(), !firstForActiveTheme));
 		}
@@ -389,7 +326,6 @@
 			fill();
 			return;
 		}
-		// Only schedule background retry timers while Pretty Calc is active.
 		if (!running) {
 			return;
 		}
@@ -407,7 +343,6 @@
 		}
 
 		if (!inFlight) {
-			// An explicit request skips any pending backoff and races a full batch.
 			failures = 0;
 			window.clearTimeout(retryTimer);
 			retryTimer = 0;
@@ -485,15 +420,21 @@
 		}
 	}
 
-	function scheduleCycle() {
+	function scheduleCycle(delayMs) {
 		clearCycle();
 		if (!running) {
 			return;
 		}
+		var wait = typeof delayMs === 'number' ? delayMs : CYCLE_MS;
 		cycleTimer = window.setTimeout(function() {
 			cycleTimer = 0;
+			var sinceScroll = Date.now() - lastScrollAt;
+			if (sinceScroll < SCROLL_QUIET_MS) {
+				scheduleCycle(SCROLL_QUIET_MS - sinceScroll);
+				return;
+			}
 			next();
-		}, CYCLE_MS);
+		}, wait);
 	}
 
 	function show(photo) {
@@ -510,7 +451,6 @@
 		root.setAttribute('data-pretty-calc-photo', 'ready');
 		updateCredit(photo);
 
-		// Show the initial or restored photo on frame 0 without fading in from blank.
 		if (!previous || previous === photo || reducedMotion.matches) {
 			image.classList.add('is-visible');
 			stage.appendChild(image);
@@ -525,7 +465,6 @@
 
 		image.classList.remove('is-visible');
 		stage.appendChild(image);
-		// Commit the hidden state so step changes crossfade over the previous photo.
 		void image.offsetWidth;
 		image.classList.add('is-visible');
 		window.setTimeout(function() {
@@ -543,11 +482,8 @@
 		syncControls();
 	}
 
-	function commitStep(entry, animateFlash) {
+	function commitStep(entry) {
 		applyPalette(entry.palette);
-		if (animateFlash && stage && !reducedMotion.matches && typeof stage.animate === 'function') {
-			stage.animate([{ filter: 'brightness(1.18)' }, { filter: 'brightness(1)' }], { duration: 350, easing: 'ease-out' });
-		}
 		show(entry.photo);
 		syncControls();
 		writeHistory();
@@ -566,7 +502,7 @@
 			}
 		}
 		historyIndex = history.length - 1;
-		commitStep(entry, !isInitial);
+		commitStep(entry);
 	}
 
 	function advanceToNewPhoto(isInitial) {
@@ -574,7 +510,6 @@
 			return;
 		}
 
-		// When a photo is already preloaded, swap synchronously with zero delay.
 		if (ready.length) {
 			var readyPhoto = ready.shift();
 			writeStash();
@@ -611,7 +546,7 @@
 			return;
 		}
 		historyIndex -= 1;
-		commitStep(history[historyIndex], true);
+		commitStep(history[historyIndex]);
 	}
 
 	function next() {
@@ -620,7 +555,7 @@
 		}
 		if (historyIndex < history.length - 1) {
 			historyIndex += 1;
-			commitStep(history[historyIndex], true);
+			commitStep(history[historyIndex]);
 			topUp();
 			return;
 		}
@@ -685,7 +620,7 @@
 		failures = 0;
 		mount();
 		if (history.length && historyIndex >= 0) {
-			commitStep(history[historyIndex], false);
+			commitStep(history[historyIndex]);
 			topUp();
 		} else {
 			advanceToNewPhoto(true);
@@ -703,9 +638,6 @@
 		waiters.slice().forEach(function(waiter) {
 			waiter(null);
 		});
-
-		// Keep history and the preloaded ready queue warm so revisiting Pretty Calc
-		// or navigating between pages preserves the active photo immediately.
 		setBusy(false);
 		unmount();
 		topUp();
@@ -732,9 +664,14 @@
 		}
 	}
 
+	function onScroll() {
+		lastScrollAt = Date.now();
+	}
+
 	function init() {
 		document.addEventListener('site-skin-change', sync);
 		window.addEventListener('keydown', onKeyDown);
+		window.addEventListener('scroll', onScroll, { passive: true });
 		window.addEventListener('pagehide', function() {
 			writeHistory();
 			writeStash();
@@ -748,8 +685,6 @@
 		reroll: next
 	};
 
-	// Begin preloading several photos immediately upon script load, even before
-	// Pretty Calc is visited.
 	topUp();
 
 	if (document.body) {
