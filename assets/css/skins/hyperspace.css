@@ -216,6 +216,11 @@ html[data-skin="hyperspace"] .section-cta {
 	box-shadow: none !important;
 }
 
+/* Anchor the contact charm (appended to the hero by main.js) to the hero, not the page. */
+html[data-skin="hyperspace"] .page-hero {
+	position: relative;
+}
+
 /* Chroma chambers keep their content readable above the moving lattice. */
 html[data-skin="hyperspace"] .page-hero > .site-shell,
 html[data-skin="hyperspace"] .page-section > .site-shell {

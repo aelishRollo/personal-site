@@ -184,6 +184,11 @@ html[data-skin="starlight"] .section-cta {
 	box-shadow: none !important;
 }
 
+/* Anchor the contact charm (appended to the hero by main.js) to the hero, not the page. */
+html[data-skin="starlight"] .page-hero {
+	position: relative;
+}
+
 /*
 	Near-clear liquid-glass windows: light is carried by their edges, not their fill.
 	Keep the large panes filter-free so the animated starfield remains compositor-only
