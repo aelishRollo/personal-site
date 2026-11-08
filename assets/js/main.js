@@ -62,6 +62,80 @@
 		});
 	}
 
+	// Mount media only while Starlight is active; other skins never fetch the video.
+	var starlightVideo;
+	var starlightTools;
+	var starlightPaused = false;
+	var starlightMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+	var starlightConnection = navigator.connection;
+
+	function syncStarlightVideo() {
+		var active = document.documentElement.getAttribute('data-skin-id') === 'starlight';
+		if (!active) {
+			if (starlightVideo) {
+				starlightVideo.pause();
+				starlightVideo.removeAttribute('src');
+				starlightVideo.load();
+				starlightVideo.remove();
+				starlightVideo = null;
+			}
+			if (starlightTools) {
+				starlightTools.remove();
+				starlightTools = null;
+			}
+			return;
+		}
+
+		if (!starlightTools) {
+			starlightTools = document.createElement('div');
+			starlightTools.className = 'starlight-media-tools';
+			starlightTools.innerHTML = '<button type="button">Pause stars</button>' +
+				'<span>Sky footage: <a href="https://www.eso.org/public/videos/">ESO</a>' +
+				' · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · stabilized, darkened &amp; looped</span>';
+			document.body.appendChild(starlightTools);
+			starlightTools.querySelector('button').addEventListener('click', function() {
+				starlightPaused = !starlightPaused;
+				syncStarlightVideo();
+			});
+		}
+
+		var stillOnly = starlightMotion.matches || (starlightConnection && starlightConnection.saveData);
+		var toggle = starlightTools.querySelector('button');
+		toggle.hidden = Boolean(stillOnly);
+		toggle.textContent = starlightPaused ? 'Play stars' : 'Pause stars';
+		if (stillOnly || starlightPaused || document.hidden) {
+			if (starlightVideo) starlightVideo.pause();
+			return;
+		}
+
+		if (!starlightVideo) {
+			starlightVideo = document.createElement('video');
+			starlightVideo.className = 'starlight-video';
+			starlightVideo.muted = true;
+			starlightVideo.loop = true;
+			starlightVideo.playsInline = true;
+			starlightVideo.setAttribute('aria-hidden', 'true');
+			starlightVideo.setAttribute('tabindex', '-1');
+			starlightVideo.poster = 'assets/video/starlight-fixed-stars.jpg';
+			starlightVideo.src = 'assets/video/starlight-fixed-stars.mp4';
+			document.body.prepend(starlightVideo);
+		}
+		var playback = starlightVideo.play();
+		if (playback) playback.catch(function() {
+			// Autoplay may be blocked by low-power mode; the poster stays visible.
+			if (starlightTools && starlightVideo && starlightVideo.paused) {
+				starlightPaused = true;
+				starlightTools.querySelector('button').textContent = 'Play stars';
+			}
+		});
+	}
+
+	document.addEventListener('site-skin-change', syncStarlightVideo);
+	document.addEventListener('visibilitychange', syncStarlightVideo);
+	starlightMotion.addEventListener('change', syncStarlightVideo);
+	if (starlightConnection) starlightConnection.addEventListener('change', syncStarlightVideo);
+	syncStarlightVideo();
+
 	// Runtime skin picker. The head bootstrap owns selection and persistence so
 	// the correct skin is already active before this interaction layer loads.
 	var skinRuntime = window.SiteSkins;

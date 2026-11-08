@@ -353,7 +353,14 @@
 
 		ensureSkinStylesheet(skin, false);
 
-		if (typeof document.startViewTransition !== 'function' || reduceMotion) {
+		// Live video should not be captured into full-page transition textures.
+		// Apply Starlight switches directly, including an interrupted transition.
+		var involvesVideo = previousId === 'starlight' || id === 'starlight';
+		if (typeof document.startViewTransition !== 'function' || reduceMotion || involvesVideo) {
+			if (activeTransition && typeof activeTransition.skipTransition === 'function') {
+				activeTransition.skipTransition();
+			}
+			activeTransition = null;
 			waitForStylesheet(id).then(function() {
 				if (request === transitionRequest) {
 					applyNow(id, activeMode);
