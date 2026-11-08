@@ -9,18 +9,21 @@
 	Changes from the original:
 	- Several photos are preloaded upon site load even before Pretty Calc is
 	  selected, and kept buffered across theme switches for instant display.
+	- The active photo and palette are preserved in sessionStorage across page
+	  navigations so moving between pages never changes the photo.
 	- The decoded <img> element itself is mounted, so a swap never re-decodes.
 	- Photos crossfade on reroll, while the initial photo appears immediately.
 	- Failed fetches back off instead of retrying in a tight loop.
 	- Unseen queued photos are handed to the next page through sessionStorage.
 	  Their final Picsum URLs are immutable and HTTP-cached, so the next page
-	  shows a new photo almost immediately without downloading it again.
+	  keeps the ready queue warm without downloading them again.
 	- WebP is requested, and dimensions follow the viewport and pixel density.
 */
 (function() {
 	'use strict';
 
 	var SKIN_ID = 'pretty-calc';
+	var CURRENT_KEY = 'pretty-calc-current-photo-v1';
 	var STASH_KEY = 'pretty-calc-unseen-photos-v1';
 	var CACHED_PREFIX = 'https://fastly.picsum.photos/';
 	var root = document.documentElement;
@@ -32,6 +35,7 @@
 	var FADE_MS = 700;
 	var MAX_BACKOFF_MS = 30000;
 
+	var authorById = {};
 	var running = false;
 	var ready = [];
 	var stash = readStash();
@@ -39,13 +43,12 @@
 	var waiters = [];
 	var failures = 0;
 	var retryTimer = 0;
-	var current = null;
+	var current = readCurrent();
 	var busy = false;
 	var stage = null;
 	var controls = null;
 	var credit = null;
 	var dice = null;
-	var authorById = {};
 
 	function isActive() {
 		return root.getAttribute('data-skin-id') === SKIN_ID;
@@ -75,6 +78,57 @@
 		var header = response.headers.get('Picsum-Id');
 		var match = /\/id\/(\d+)\//.exec(source || '');
 		return header || (match ? match[1] : '');
+	}
+
+	function readCurrent() {
+		try {
+			var saved = JSON.parse(window.sessionStorage.getItem(CURRENT_KEY) || 'null');
+			if (!saved || typeof saved !== 'object') {
+				return null;
+			}
+			var src = saved.dataUrl || saved.source || '';
+			if (!src) {
+				return null;
+			}
+			if (saved.id && saved.author) {
+				authorById[saved.id] = saved.author;
+			}
+			var image = new Image();
+			image.decoding = 'async';
+			image.alt = '';
+			image.src = src;
+			return {
+				image: image,
+				objectUrl: '',
+				dataUrl: saved.dataUrl || '',
+				source: saved.source || src,
+				id: saved.id || ''
+			};
+		} catch (error) {
+			return null;
+		}
+	}
+
+	function writeCurrent() {
+		if (!current) {
+			return;
+		}
+		var payload = {
+			source: current.source || '',
+			id: current.id || '',
+			dataUrl: current.dataUrl || '',
+			author: (current.id && authorById[current.id]) || null
+		};
+		try {
+			window.sessionStorage.setItem(CURRENT_KEY, JSON.stringify(payload));
+		} catch (error) {
+			try {
+				payload.dataUrl = '';
+				window.sessionStorage.setItem(CURRENT_KEY, JSON.stringify(payload));
+			} catch (fallbackError) {
+				// Storage can be unavailable in locked-down browsing modes.
+			}
+		}
 	}
 
 	function readStash() {
@@ -129,6 +183,7 @@
 					authorById[id] = info;
 					if (current && current.id === id) {
 						setCredit(info);
+						writeCurrent();
 					}
 				}
 			}, function() {
@@ -153,6 +208,23 @@
 		return new Promise(function(resolve, reject) {
 			image.onload = resolve;
 			image.onerror = reject;
+		});
+	}
+
+	function blobToDataUrl(blob) {
+		return new Promise(function(resolve) {
+			try {
+				var reader = new FileReader();
+				reader.onloadend = function() {
+					resolve(typeof reader.result === 'string' ? reader.result : '');
+				};
+				reader.onerror = function() {
+					resolve('');
+				};
+				reader.readAsDataURL(blob);
+			} catch (error) {
+				resolve('');
+			}
 		});
 	}
 
@@ -181,8 +253,14 @@
 			image.decoding = 'async';
 			image.alt = '';
 			image.src = objectUrl;
-			return decode(image).then(function() {
-				return { image: image, objectUrl: objectUrl, source: source, id: id };
+			return Promise.all([decode(image), blobToDataUrl(blob)]).then(function(results) {
+				return {
+					image: image,
+					objectUrl: objectUrl,
+					dataUrl: results[1],
+					source: source,
+					id: id
+				};
 			});
 		}).then(function(photo) {
 			failures = 0;
@@ -313,17 +391,21 @@
 		var previous = current;
 
 		current = photo;
+		writeCurrent();
 		image.className = 'pretty-calc-photo';
 		image.setAttribute('aria-hidden', 'true');
 		image.setAttribute('draggable', 'false');
+		if (photo.source) {
+			image.setAttribute('data-photo-source', photo.source);
+		}
 		root.setAttribute('data-pretty-calc-photo', 'ready');
 		updateCredit(photo);
 
-		// Show the initial photo on frame 0 without fading in from blank.
-		if (!previous || reducedMotion.matches) {
+		// Show the initial or restored photo on frame 0 without fading in from blank.
+		if (!previous || previous === photo || reducedMotion.matches) {
 			image.classList.add('is-visible');
 			stage.appendChild(image);
-			if (previous) {
+			if (previous && previous !== photo) {
 				previous.image.remove();
 				release(previous);
 			}
@@ -445,7 +527,12 @@
 		running = true;
 		failures = 0;
 		mount();
-		reroll(true);
+		if (current) {
+			show(current);
+			topUp();
+		} else {
+			reroll(true);
+		}
 	}
 
 	function stop() {
@@ -459,12 +546,8 @@
 			waiter(null);
 		});
 
-		// Release the displayed photo, but keep the preloaded ready queue warm
-		// in memory so visiting Pretty Calc again shows a photo immediately.
-		if (current) {
-			release(current);
-			current = null;
-		}
+		// Keep current and the preloaded ready queue warm so revisiting Pretty Calc
+		// or navigating between pages preserves the active photo immediately.
 		setBusy(false);
 		unmount();
 		topUp();
@@ -492,7 +575,10 @@
 	function init() {
 		document.addEventListener('site-skin-change', sync);
 		window.addEventListener('keydown', onKeyDown);
-		window.addEventListener('pagehide', writeStash);
+		window.addEventListener('pagehide', function() {
+			writeCurrent();
+			writeStash();
+		});
 		sync();
 	}
 

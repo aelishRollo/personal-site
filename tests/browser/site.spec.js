@@ -368,7 +368,9 @@ test('Pretty Calc preloads photos upon site load, shows one immediately on visit
   const photo = page.locator('.pretty-calc-photo.is-visible');
   await expect(photo).toHaveCount(1);
   const initialSrc = await photo.getAttribute('src');
+  const initialSource = await photo.getAttribute('data-photo-source');
   expect(initialSrc).toMatch(/^blob:/);
+  expect(initialSource).toMatch(/^https:\/\/picsum\.photos\//);
   await expect(page.locator('.pretty-calc-credit')).toContainText('Test Photographer');
 
   const initialHue = await page.evaluate(() =>
@@ -376,10 +378,25 @@ test('Pretty Calc preloads photos upon site load, shows one immediately on visit
   );
   expect(initialHue).not.toBe('');
 
+  // Navigating to another page should keep the exact same photo and palette.
+  await page.locator('#site-nav a[href="work.html"]').click();
+  await page.waitForURL('**/work.html');
+  await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'pretty-calc');
+  await expect(page.locator('html')).toHaveAttribute('data-pretty-calc-photo', 'ready');
+  await expect(page.locator('.pretty-calc-photo.is-visible')).toHaveAttribute(
+    'data-photo-source',
+    initialSource
+  );
+  await expect(page.locator('.pretty-calc-credit')).toContainText('Test Photographer');
+  const hueAfterNavigation = await page.evaluate(() =>
+    document.documentElement.style.getPropertyValue('--pc-h')
+  );
+  expect(hueAfterNavigation).toBe(initialHue);
+
   await page.getByRole('button', { name: 'Show a new random photo and palette' }).click();
   await expect
-    .poll(() => page.locator('.pretty-calc-photo.is-visible').last().getAttribute('src'))
-    .not.toBe(initialSrc);
+    .poll(() => page.locator('.pretty-calc-photo.is-visible').last().getAttribute('data-photo-source'))
+    .not.toBe(initialSource);
 
   await page.evaluate(() => window.SiteSkins.preview('portfolio-dark'));
   await expect(page.locator('.pretty-calc-stage, .pretty-calc-controls, .pretty-calc-credit')).toHaveCount(0);

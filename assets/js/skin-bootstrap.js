@@ -11,6 +11,7 @@
 	var preferenceKey = 'site-skin-v2';
 	var sessionKey = 'site-skin-session-v2';
 	var sessionModeKey = 'site-skin-session-mode-v2';
+	var prettyCalcPaletteKey = 'pretty-calc-palette-v1';
 	var root = document.documentElement;
 	var skins = [
 		{ id: 'portfolio-dark', name: 'Portfolio Dark', scheme: 'dark', css: '' },
@@ -244,6 +245,15 @@
 	// random hue in a deep, mid, or light mood. Lightness stays low so light text
 	// keeps strong contrast over any photo. Applied here so it is set before the
 	// first paint instead of after the photo engine loads.
+	function applyPrettyCalcPalette(palette) {
+		root.style.setProperty('--pc-h', palette.h);
+		root.style.setProperty('--pc-s', palette.s);
+		root.style.setProperty('--pc-l', palette.l);
+		root.style.setProperty('--pc-op-h', palette.opH);
+		root.style.setProperty('--pc-eq-h', palette.eqH);
+		write(window.sessionStorage, prettyCalcPaletteKey, JSON.stringify(palette));
+	}
+
 	function randomizePrettyCalcPalette() {
 		function randomIn(min, max) {
 			return Math.random() * (max - min) + min;
@@ -254,18 +264,33 @@
 		var saturation = [randomIn(44, 58), randomIn(38, 52), randomIn(30, 45)][mood];
 		var lightness = [randomIn(10, 15), randomIn(13, 18), randomIn(16, 21)][mood];
 
-		root.style.setProperty('--pc-h', hue.toFixed(1));
-		root.style.setProperty('--pc-s', saturation.toFixed(1) + '%');
-		root.style.setProperty('--pc-l', lightness.toFixed(1) + '%');
-		root.style.setProperty('--pc-op-h', (hue + randomIn(16, 28)).toFixed(1));
-		root.style.setProperty('--pc-eq-h', (hue + randomIn(120, 180)).toFixed(1));
+		applyPrettyCalcPalette({
+			h: hue.toFixed(1),
+			s: saturation.toFixed(1) + '%',
+			l: lightness.toFixed(1) + '%',
+			opH: (hue + randomIn(16, 28)).toFixed(1),
+			eqH: (hue + randomIn(120, 180)).toFixed(1)
+		});
+	}
+
+	function ensurePrettyCalcPalette() {
+		try {
+			var saved = JSON.parse(read(window.sessionStorage, prettyCalcPaletteKey) || 'null');
+			if (saved && saved.h && saved.s && saved.l && saved.opH && saved.eqH) {
+				applyPrettyCalcPalette(saved);
+				return;
+			}
+		} catch (error) {
+			// Fall back to generating a fresh palette when sessionStorage has no valid entry.
+		}
+		randomizePrettyCalcPalette();
 	}
 
 	// Preload Pretty Calc's photo engine and several random Picsum photos so
 	// visiting the theme displays a decoded photo immediately without delay.
-	function loadPrettyCalc(randomizePaletteNow) {
-		if (randomizePaletteNow) {
-			randomizePrettyCalcPalette();
+	function loadPrettyCalc(ensurePaletteNow) {
+		if (ensurePaletteNow) {
+			ensurePrettyCalcPalette();
 		}
 
 		if (prettyCalcLoaded) {
