@@ -597,10 +597,38 @@
 			});
 		});
 
+		var lazyImages = Array.prototype.slice.call(document.querySelectorAll('img[loading="lazy"]'));
+
+		function nextLazyImage() {
+			var img = lazyImages.shift();
+			if (!img) {
+				loadPrettyCalc(false);
+				return;
+			}
+			if (img.complete) {
+				nextLazyImage();
+				return;
+			}
+			var done = false;
+			function finish() {
+				if (done) {
+					return;
+				}
+				done = true;
+				img.removeEventListener('load', finish);
+				img.removeEventListener('error', finish);
+				nextLazyImage();
+			}
+			img.addEventListener('load', finish);
+			img.addEventListener('error', finish);
+			window.setTimeout(finish, 800);
+			img.loading = 'eager';
+		}
+
 		function nextAsset() {
 			var resource = assetQueue.shift();
 			if (!resource) {
-				loadPrettyCalc(false);
+				nextLazyImage();
 				return;
 			}
 			preloadAsset(resource).then(nextAsset);

@@ -689,6 +689,9 @@
 				}
 
 				splashQuoteIndex = Math.floor(Math.random() * splashQuotes.length);
+				if (splashQuotes.length > 1 && splashQuotes[splashQuoteIndex] === splashText.textContent) {
+					splashQuoteIndex = (splashQuoteIndex + 1) % splashQuotes.length;
+				}
 				splashText.textContent = splashQuotes[splashQuoteIndex];
 				splash.hidden = false;
 				scheduleSplashFit();

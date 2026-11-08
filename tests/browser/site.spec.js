@@ -448,14 +448,14 @@ test('Photo Carousel preloads photos upon site load, shows one immediately on vi
   );
   expect(restoredHue).toBe(initialHue);
 
-  // Track 60000ms (60s) auto-cycle timers and step forward to the second photo in history.
+  // Track 30000ms (30s) auto-cycle timers and step forward to the second photo in history.
   await page.evaluate(() => {
     window.__prettyCalcCycles = [];
     const realSetTimeout = window.setTimeout.bind(window);
     const realClearTimeout = window.clearTimeout.bind(window);
     window.setTimeout = function (fn, delay, ...args) {
-      if (delay === 60000) {
-        const id = realSetTimeout(() => {}, 60000);
+      if (delay === 30000) {
+        const id = realSetTimeout(() => {}, 30000);
         window.__prettyCalcCycles.push({ id, fn, delay, cleared: false });
         return id;
       }
@@ -476,11 +476,11 @@ test('Photo Carousel preloads photos upon site load, shows one immediately on vi
     secondSource
   );
 
-  // Verify a 60000ms auto-cycle timer is active and advances to a third photo when it fires.
+  // Verify a 30000ms auto-cycle timer is active and advances to a third photo when it fires.
   const activeCycleDelays = await page.evaluate(() =>
     window.__prettyCalcCycles.filter((entry) => !entry.cleared).map((entry) => entry.delay)
   );
-  expect(activeCycleDelays).toEqual([60000]);
+  expect(activeCycleDelays).toEqual([30000]);
   await page.evaluate(() => {
     const active = window.__prettyCalcCycles.find((entry) => !entry.cleared);
     active.cleared = true;
