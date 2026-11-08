@@ -421,8 +421,8 @@
 			nextButton.setAttribute('aria-busy', busy ? 'true' : 'false');
 		}
 		if (cycleButton) {
-			cycleButton.textContent = cycling ? 'Photos Cycling' : 'Photos Not Cycling';
 			cycleButton.setAttribute('aria-pressed', cycling ? 'true' : 'false');
+			cycleButton.classList.toggle('is-paused', !cycling);
 		}
 	}
 
@@ -593,9 +593,9 @@
 		controls.setAttribute('role', 'group');
 		controls.setAttribute('aria-label', 'Photo and palette controls');
 		controls.innerHTML =
-			'<button type="button" class="pretty-calc-btn pretty-calc-prev" data-pretty-calc-nav="-1" disabled aria-disabled="true">Previous</button>' +
-			'<button type="button" class="pretty-calc-btn pretty-calc-next" data-pretty-calc-nav="1">Next</button>' +
-			'<button type="button" class="pretty-calc-cycle-bubble" data-pretty-calc-cycle-toggle aria-pressed="true">Photos Cycling</button>';
+			'<button type="button" class="pretty-calc-btn pretty-calc-prev" data-pretty-calc-nav="-1" disabled aria-disabled="true">Back</button>' +
+			'<button type="button" class="pretty-calc-btn pretty-calc-cycle-bubble" data-pretty-calc-cycle-toggle aria-pressed="true">Photos Cycling</button>' +
+			'<button type="button" class="pretty-calc-btn pretty-calc-next" data-pretty-calc-nav="1">Next</button>';
 		document.body.appendChild(controls);
 
 		credit = document.createElement('p');

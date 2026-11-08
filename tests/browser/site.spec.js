@@ -367,15 +367,26 @@ test('Photo Carousel preloads photos upon site load, shows one immediately on vi
   await expect(page.locator('html')).toHaveAttribute('data-pretty-calc-photo', 'ready');
   await expect(page.locator('[data-skin-choice="pretty-calc"]')).toHaveText('Photo Carousel');
 
-  const prevButton = page.getByRole('button', { name: 'Previous', exact: true });
+  const prevButton = page.getByRole('button', { name: 'Back', exact: true });
   const nextButton = page.getByRole('button', { name: 'Next', exact: true });
   const cycleBubble = page.locator('[data-pretty-calc-cycle-toggle]');
-  await expect(prevButton).toHaveText('Previous');
-  await expect(nextButton).toHaveText('Next');
+  await expect(page.locator('.pretty-calc-controls button')).toHaveText([
+    'Back',
+    'Photos Cycling',
+    'Next',
+  ]);
   await expect(prevButton).toBeDisabled();
   await expect(nextButton).toBeEnabled();
   await expect(cycleBubble).toHaveText('Photos Cycling');
   await expect(cycleBubble).toHaveAttribute('aria-pressed', 'true');
+
+  // The bottom-left control dock sits in the left margin without overlapping main content.
+  const horizontalClearance = await page.evaluate(() => {
+    const controlsRect = document.querySelector('.pretty-calc-controls').getBoundingClientRect();
+    const shellRect = document.querySelector('.site-main .site-shell').getBoundingClientRect();
+    return shellRect.left - controlsRect.right;
+  });
+  expect(horizontalClearance).toBeGreaterThanOrEqual(4);
 
   const photo = page.locator('.pretty-calc-photo.is-visible');
   await expect(photo).toHaveCount(1);
@@ -461,8 +472,10 @@ test('Photo Carousel preloads photos upon site load, shows one immediately on vi
     document.documentElement.style.getPropertyValue('--pc-h')
   );
   await cycleBubble.click();
-  await expect(cycleBubble).toHaveText('Photos Not Cycling');
+  await expect(cycleBubble).toHaveText('Photos Cycling');
   await expect(cycleBubble).toHaveAttribute('aria-pressed', 'false');
+  await expect(cycleBubble).toHaveClass(/is-paused/);
+  await expect(cycleBubble).toHaveCSS('text-decoration-line', /line-through/);
   await page.waitForTimeout(6300);
   await expect(page.locator('.pretty-calc-photo.is-visible').last()).toHaveAttribute(
     'data-photo-source',
