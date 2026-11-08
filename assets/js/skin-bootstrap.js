@@ -11,6 +11,7 @@
 	var preferenceKey = 'site-skin-v2';
 	var sessionKey = 'site-skin-session-v2';
 	var sessionModeKey = 'site-skin-session-mode-v2';
+	var prettyCalcPaletteKey = 'pretty-calc-palette-v1';
 	var root = document.documentElement;
 	var skins = [
 		{ id: 'portfolio-dark', name: 'Portfolio Dark', scheme: 'dark', css: '' },
@@ -27,6 +28,7 @@
 		{ id: 'liquid-chrome-y2k', name: 'Liquid Chrome Y2K', scheme: 'light', css: 'assets/css/skins/liquid-chrome-y2k.css' },
 		{ id: 'acid-brutalist', name: 'Acid Brutalist', scheme: 'dark', css: 'assets/css/skins/acid-brutalist.css' },
 		{ id: 'botanical-dreamscape', name: 'Botanical Dreamscape', scheme: 'dark', css: 'assets/css/skins/botanical-dreamscape.css' },
+		{ id: 'sea-glass-mosaic', name: 'Sea Glass Mosaic', scheme: 'light', css: 'assets/css/skins/sea-glass-mosaic.css' },
 		{ id: 'cosmic-airbrush', name: 'Cosmic Airbrush', scheme: 'dark', css: 'assets/css/skins/cosmic-airbrush.css' },
 		{ id: 'riso-hallucination', name: 'Riso Hallucination', scheme: 'light', css: 'assets/css/skins/riso-hallucination.css' },
 		{ id: 'crystal-prism', name: 'Crystal Prism', scheme: 'light', css: 'assets/css/skins/crystal-prism.css' },
@@ -41,7 +43,8 @@
 		{ id: 'oracular-tarot', name: 'Oracular Tarot', scheme: 'dark', css: 'assets/css/skins/oracular-tarot.css' },
 		{ id: 'hello-kitty', name: 'Hello Kitty', scheme: 'light', css: 'assets/css/skins/hello-kitty.css' },
 		{ id: 'forties-field-notes', name: '1940s Field Notes', scheme: 'light', css: 'assets/css/skins/forties-field-notes.css' },
-		{ id: 'nutrition-facts', name: 'Nutrition Facts', scheme: 'light', css: 'assets/css/skins/nutrition-facts.css' }
+		{ id: 'nutrition-facts', name: 'Nutrition Facts', scheme: 'light', css: 'assets/css/skins/nutrition-facts.css' },
+		{ id: 'pretty-calc', name: 'Photo Carousel', scheme: 'dark', css: 'assets/css/skins/pretty-calc.css' }
 	];
 	var skinById = {};
 	var activeId = '';
@@ -76,9 +79,15 @@
 		],
 		'midnight-aurora-glass': [
 			{ href: 'assets/images/midnight-aurora-glass.webp', as: 'image', type: 'image/webp' }
+		],
+		'sea-glass-mosaic': [
+			{ href: 'assets/images/sea-glass-mosaic.webp', as: 'image', type: 'image/webp' },
+			{ href: 'assets/images/sea-glass-grain.webp', as: 'image', type: 'image/webp' },
+			{ href: 'assets/images/sea-glass-ripple.webp', as: 'image', type: 'image/webp' }
 		]
 	};
 	var preloadedAssets = {};
+	var prettyCalcLoaded = false;
 
 	skins.forEach(function(skin) {
 		skinById[skin.id] = skin;
@@ -190,14 +199,28 @@
 		return link;
 	}
 
-	function preloadAssets(resources) {
-		resources.forEach(function(resource) {
-			if (preloadedAssets[resource.href]) {
-				return;
+	function preloadAsset(resource) {
+		if (preloadedAssets[resource.href]) {
+			return Promise.resolve();
+		}
+
+		preloadedAssets[resource.href] = true;
+		return new Promise(function(resolve) {
+			var preload = document.createElement('link');
+			var settled = false;
+			var timeout;
+
+			function finish() {
+				if (settled) {
+					return;
+				}
+				settled = true;
+				window.clearTimeout(timeout);
+				preload.removeEventListener('load', finish);
+				preload.removeEventListener('error', finish);
+				resolve();
 			}
 
-			preloadedAssets[resource.href] = true;
-			var preload = document.createElement('link');
 			preload.rel = 'preload';
 			preload.as = resource.as;
 			preload.href = resource.href;
@@ -205,8 +228,91 @@
 			if (resource.type) {
 				preload.type = resource.type;
 			}
+			preload.addEventListener('load', finish);
+			preload.addEventListener('error', finish);
+			timeout = window.setTimeout(finish, 1500);
 			document.head.appendChild(preload);
 		});
+	}
+
+	function preloadAssets(resources) {
+		resources.forEach(function(resource) {
+			preloadAsset(resource);
+		});
+	}
+
+	// Pretty Calc's random palette (ported from the Pretty Calc project): one
+	// random hue in a deep, mid, or light mood. Lightness stays low so light text
+	// keeps strong contrast over any photo. Applied here so it is set before the
+	// first paint instead of after the photo engine loads.
+	function applyPrettyCalcPalette(palette) {
+		if (!palette) {
+			return null;
+		}
+		root.style.setProperty('--pc-h', palette.h);
+		root.style.setProperty('--pc-s', palette.s);
+		root.style.setProperty('--pc-l', palette.l);
+		root.style.setProperty('--pc-op-h', palette.opH);
+		root.style.setProperty('--pc-eq-h', palette.eqH);
+		write(window.sessionStorage, prettyCalcPaletteKey, JSON.stringify(palette));
+		return palette;
+	}
+
+	function randomizePrettyCalcPalette() {
+		function randomIn(min, max) {
+			return Math.random() * (max - min) + min;
+		}
+
+		var mood = Math.floor(Math.random() * 3);
+		var hue = randomIn(0, 360);
+		var saturation = [randomIn(44, 58), randomIn(38, 52), randomIn(30, 45)][mood];
+		var lightness = [randomIn(10, 15), randomIn(13, 18), randomIn(16, 21)][mood];
+
+		return applyPrettyCalcPalette({
+			h: hue.toFixed(1),
+			s: saturation.toFixed(1) + '%',
+			l: lightness.toFixed(1) + '%',
+			opH: (hue + randomIn(16, 28)).toFixed(1),
+			eqH: (hue + randomIn(120, 180)).toFixed(1)
+		});
+	}
+
+	function ensurePrettyCalcPalette() {
+		try {
+			var saved = JSON.parse(read(window.sessionStorage, prettyCalcPaletteKey) || 'null');
+			if (saved && saved.h && saved.s && saved.l && saved.opH && saved.eqH) {
+				return applyPrettyCalcPalette(saved);
+			}
+		} catch (error) {
+			// Fall back to generating a fresh palette when sessionStorage has no valid entry.
+		}
+		return randomizePrettyCalcPalette();
+	}
+
+	// Preload Pretty Calc's photo engine and several random Picsum photos so
+	// visiting the theme displays a decoded photo immediately without delay.
+	function loadPrettyCalc(ensurePaletteNow) {
+		if (ensurePaletteNow) {
+			ensurePrettyCalcPalette();
+		}
+
+		if (prettyCalcLoaded) {
+			return;
+		}
+		prettyCalcLoaded = true;
+
+		['https://picsum.photos', 'https://fastly.picsum.photos'].forEach(function(origin) {
+			var preconnect = document.createElement('link');
+			preconnect.rel = 'preconnect';
+			preconnect.href = origin;
+			preconnect.crossOrigin = 'anonymous';
+			document.head.appendChild(preconnect);
+		});
+
+		var script = document.createElement('script');
+		script.src = 'assets/js/pretty-calc.js';
+		script.async = true;
+		document.head.appendChild(script);
 	}
 
 	function prepareSkin(id) {
@@ -297,6 +403,10 @@
 
 		activateStylesheet(skin);
 		appliedId = id;
+
+		if (id === 'pretty-calc' && previousAppliedId !== id) {
+			loadPrettyCalc(true);
+		}
 
 		if (previousAppliedId && previousAppliedId !== id) {
 			document.dispatchEvent(new CustomEvent('site-skin-change', {
@@ -474,19 +584,73 @@
 	preloadAssets(sharedAssets);
 	apply(initialId, initialMode);
 
-	// Fetch inactive themes after the initial document is parsed. Nonmatching
-	// media keeps their CSS from applying or blocking the initial render.
-	// Hover alone is insufficient for touch and repeated cycle-button clicks.
+	// Fetch inactive themes after the initial page load. Nonmatching media keeps
+	// their CSS from applying or blocking render, and warming one resource at a
+	// time avoids saturating per-origin sockets or single-threaded dev servers.
 	function prepareAllSkins() {
+		var skinQueue = skins.slice();
+		var assetQueue = [];
+
 		skins.forEach(function(skin) {
-			prepareSkin(skin.id);
+			(assetsBySkin[skin.id] || []).forEach(function(resource) {
+				assetQueue.push(resource);
+			});
 		});
+
+		var lazyImages = Array.prototype.slice.call(document.querySelectorAll('img[loading="lazy"]'));
+
+		function nextLazyImage() {
+			var img = lazyImages.shift();
+			if (!img) {
+				loadPrettyCalc(false);
+				return;
+			}
+			if (img.complete) {
+				nextLazyImage();
+				return;
+			}
+			var done = false;
+			function finish() {
+				if (done) {
+					return;
+				}
+				done = true;
+				img.removeEventListener('load', finish);
+				img.removeEventListener('error', finish);
+				nextLazyImage();
+			}
+			img.addEventListener('load', finish);
+			img.addEventListener('error', finish);
+			window.setTimeout(finish, 800);
+			img.loading = 'eager';
+		}
+
+		function nextAsset() {
+			var resource = assetQueue.shift();
+			if (!resource) {
+				nextLazyImage();
+				return;
+			}
+			preloadAsset(resource).then(nextAsset);
+		}
+
+		function nextSkin() {
+			var skin = skinQueue.shift();
+			if (!skin) {
+				nextAsset();
+				return;
+			}
+			ensureSkinStylesheet(skin, skin.id === appliedId);
+			waitForStylesheet(skin.id).then(nextSkin);
+		}
+
+		nextSkin();
 	}
 
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', prepareAllSkins, { once: true });
-	} else {
+	if (document.readyState === 'complete') {
 		prepareAllSkins();
+	} else {
+		window.addEventListener('load', prepareAllSkins, { once: true });
 	}
 
 	window.SiteSkins = {
@@ -503,6 +667,9 @@
 		prepare: function(id) {
 			return prepareSkin(id);
 		},
+		getPrettyCalcPalette: ensurePrettyCalcPalette,
+		setPrettyCalcPalette: applyPrettyCalcPalette,
+		randomizePrettyCalcPalette: randomizePrettyCalcPalette,
 		preview: function(id) {
 			if (!isValid(id)) {
 				return activeId;

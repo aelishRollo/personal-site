@@ -14,6 +14,16 @@
 		}, 100);
 	});
 
+	// Pre-decode page images upfront so below-the-fold cards never pop in late
+	// or stall tile rasterization while scrolling.
+	document.querySelectorAll('img').forEach(function(img) {
+		img.loading = 'eager';
+		img.decoding = 'sync';
+		if (typeof img.decode === 'function') {
+			img.decode().catch(function() {});
+		}
+	});
+
 	// Polyfill: object-fit.
 	if (!browser.canUse('object-fit')) {
 		$('.image[data-position]').each(function() {
@@ -65,7 +75,6 @@
 	// Mount media only while Starlight is active; other skins never fetch the video.
 	var starlightVideo;
 	var starlightTools;
-	var starlightPaused = false;
 	var starlightMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 	var starlightConnection = navigator.connection;
 
@@ -89,21 +98,13 @@
 		if (!starlightTools) {
 			starlightTools = document.createElement('div');
 			starlightTools.className = 'starlight-media-tools';
-			starlightTools.innerHTML = '<button type="button">Pause stars</button>' +
-				'<span>Sky footage: <a href="https://www.eso.org/public/videos/">ESO</a>' +
-				' · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · stabilized, darkened &amp; looped</span>';
+			starlightTools.innerHTML = '<span>Star field adapted from <a href="https://www.eso.org/public/videos/">ESO</a> imagery' +
+				' · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · recoloured &amp; animated</span>';
 			document.body.appendChild(starlightTools);
-			starlightTools.querySelector('button').addEventListener('click', function() {
-				starlightPaused = !starlightPaused;
-				syncStarlightVideo();
-			});
 		}
 
 		var stillOnly = starlightMotion.matches || (starlightConnection && starlightConnection.saveData);
-		var toggle = starlightTools.querySelector('button');
-		toggle.hidden = Boolean(stillOnly);
-		toggle.textContent = starlightPaused ? 'Play stars' : 'Pause stars';
-		if (stillOnly || starlightPaused || document.hidden) {
+		if (stillOnly || document.hidden) {
 			if (starlightVideo) starlightVideo.pause();
 			return;
 		}
@@ -123,10 +124,6 @@
 		var playback = starlightVideo.play();
 		if (playback) playback.catch(function() {
 			// Autoplay may be blocked by low-power mode; the poster stays visible.
-			if (starlightTools && starlightVideo && starlightVideo.paused) {
-				starlightPaused = true;
-				starlightTools.querySelector('button').textContent = 'Play stars';
-			}
 		});
 	}
 
@@ -142,35 +139,37 @@
 
 	if (skinRuntime && skinRuntime.all && skinRuntime.all.length) {
 		var skinContactMessages = {
-			'portfolio-dark': 'Let\'s build something',
+			'portfolio-dark': 'Let\u2019s talk',
 			'portfolio-light': 'Say hello',
-			'acid-editorial': 'Start a conversation',
-			'op-art-monochrome': 'Look again',
-			'neon-glitch': 'Ping me //',
-			'liquid-dream': 'Dive into an idea',
-			'sacred-geometry': 'Align & connect',
-			'terminal-vision': '> OPEN_CHANNEL',
+			'acid-editorial': 'Hit me up',
+			'op-art-monochrome': 'Get in touch',
+			'neon-glitch': 'Ping me',
+			'liquid-dream': 'Say hi',
+			'sacred-geometry': 'Let\u2019s connect',
+			'terminal-vision': '> MESSAGE_ALEC',
 			'ms-dos-prompt': 'RUN CONTACT.EXE',
-			'psychedelic-scrapbook': 'HELLO!',
-			'cut-and-paste-riot': 'MAKE SOMETHING WEIRD',
-			'liquid-chrome-y2k': 'CONNECT.EXE',
+			'psychedelic-scrapbook': 'Say hey!',
+			'cut-and-paste-riot': 'HIT ME UP!',
+			'liquid-chrome-y2k': 'MESSAGE ME',
 			'acid-brutalist': 'TALK TO ME',
-			'botanical-dreamscape': 'Grow an idea',
-			'cosmic-airbrush': 'Send a signal',
-			'riso-hallucination': 'Print something wild',
-			'crystal-prism': 'Refract an idea',
-			'midnight-aurora-glass': 'Catch the spectrum',
-			'starlight': 'Open a channel',
-			'hyperspace': 'Open the portal',
-			'recursive-portal': 'Enter the conversation',
-			'split-duality': 'Meet in the middle',
-			'card-deck-stack': 'Pick a card',
-			'type-sculpture': 'Shape an idea',
-			'browser-archaeology': "I\u2019VE GOT MAIL!",
-			'oracular-tarot': 'Ask the oracle',
-			'hello-kitty': 'Say hello!',
+			'botanical-dreamscape': 'Send a note',
+			'sea-glass-mosaic': 'Send me a note',
+			'cosmic-airbrush': 'Send a transmission',
+			'riso-hallucination': 'Drop me a note',
+			'crystal-prism': 'Reach out',
+			'midnight-aurora-glass': 'Send a message',
+			'starlight': 'Hail the observatory',
+			'hyperspace': 'Beam me a message',
+			'recursive-portal': 'Reach through the portal',
+			'split-duality': 'Let\u2019s connect',
+			'card-deck-stack': 'Message the dealer',
+			'type-sculpture': 'Drop a line',
+			'browser-archaeology': 'Send Me Mail!',
+			'oracular-tarot': 'Message the oracle',
+			'hello-kitty': 'Say hi to me!',
 			'forties-field-notes': 'Drop me a line',
-			'nutrition-facts': 'Contact Alec'
+			'nutrition-facts': 'Contact Alec',
+			'pretty-calc': 'Get in touch'
 		};
 		var randomOption = '<button type="button" class="skin-picker-option skin-picker-option-random" data-skin-random aria-pressed="false">' +
 			'<span class="skin-picker-option-mark" aria-hidden="true"></span>' +
@@ -584,19 +583,8 @@
 	var splashText = document.getElementById('hero-splash-text');
 	var sillyTitle = document.getElementById('hero-silly-title');
 	var splashQuotes = [];
+	var splashQuoteIndex = -1;
 	var splashFitRaf = null;
-
-	function pickRandom(items, currentItem) {
-		var choices = items.filter(function(item) {
-			return item !== currentItem;
-		});
-
-		if (!choices.length) {
-			choices = items;
-		}
-
-		return choices[Math.floor(Math.random() * choices.length)];
-	}
 
 	function fitSplashText() {
 		if (!splash || !splashText || splash.hidden) {
@@ -645,6 +633,16 @@
 		});
 	}
 
+	function navigateSplashQuote(direction) {
+		if (!splashText || !splashQuotes.length) {
+			return;
+		}
+
+		splashQuoteIndex = (splashQuoteIndex + direction + splashQuotes.length) % splashQuotes.length;
+		splashText.textContent = splashQuotes[splashQuoteIndex];
+		scheduleSplashFit();
+	}
+
 	function refreshHomePersonality() {
 		if (!isHome) {
 			return;
@@ -654,42 +652,26 @@
 			window.refreshAlecSillyTitle(sillyTitle);
 		}
 
-		if (splashText && splashQuotes.length) {
-			splashText.textContent = pickRandom(splashQuotes, splashText.textContent);
-			scheduleSplashFit();
-		}
-	}
-
-	function refreshHomePersonalityFromKey(event) {
-		if (event.key !== 'Enter' && event.key !== ' ') {
-			return;
-		}
-
-		event.preventDefault();
-		refreshHomePersonality();
-	}
-
-	function makePersonalityRefreshTrigger(element, label) {
-		if (!element) {
-			return;
-		}
-
-		element.classList.add('hero-reload-trigger');
-		element.setAttribute('role', 'button');
-		element.setAttribute('tabindex', '0');
-		element.setAttribute('aria-label', label);
-
-		element.addEventListener('click', refreshHomePersonality);
-		element.addEventListener('keydown', refreshHomePersonalityFromKey);
+		navigateSplashQuote(1);
 	}
 
 	if (isHome) {
-		makePersonalityRefreshTrigger(sillyTitle, 'Show another silly hero title and Jeff Dean quote');
+		document.querySelectorAll('.personality-arrow').forEach(function(button) {
+			button.addEventListener('click', function() {
+				var direction = button.getAttribute('data-direction') === 'previous' ? -1 : 1;
+				if (button.getAttribute('data-personality') === 'title') {
+					if (typeof window.navigateAlecSillyTitle === 'function') {
+						window.navigateAlecSillyTitle(sillyTitle, direction);
+					}
+				} else {
+					navigateSplashQuote(direction);
+				}
+			});
+		});
 		document.addEventListener('site-skin-change', refreshHomePersonality);
 	}
 
 	if (isHome && splash && splashText) {
-		makePersonalityRefreshTrigger(splashText, 'Show another Jeff Dean quote and silly hero title');
 		splash.hidden = false;
 		scheduleSplashFit();
 
@@ -706,7 +688,11 @@
 					return;
 				}
 
-				splashText.textContent = pickRandom(splashQuotes, splashText.textContent);
+				splashQuoteIndex = Math.floor(Math.random() * splashQuotes.length);
+				if (splashQuotes.length > 1 && splashQuotes[splashQuoteIndex] === splashText.textContent) {
+					splashQuoteIndex = (splashQuoteIndex + 1) % splashQuotes.length;
+				}
+				splashText.textContent = splashQuotes[splashQuoteIndex];
 				splash.hidden = false;
 				scheduleSplashFit();
 			})
@@ -725,9 +711,6 @@
 			splashObserver.observe(splashText);
 		}
 
-		$(splash).find('.hero-splash-close').on('click', function() {
-			splash.hidden = true;
-		});
 	}
 
 	// Mobile nav toggle.

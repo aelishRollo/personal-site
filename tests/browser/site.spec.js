@@ -30,6 +30,42 @@ for (const sitePage of pages) {
   });
 }
 
+test('hero title and Jeff Dean quote arrows browse independently', async ({ page }) => {
+  await openSitePage(page, '/index.html?theme=browser-archaeology');
+  const title = page.locator('#hero-silly-title');
+  const quote = page.locator('#hero-splash-text');
+  await expect(quote).not.toHaveText('Alec Rollison can get 1s out of `/dev/zero`.');
+  await expect(page.locator('.hero-splash-close, .hero-splash-notice-icon')).toHaveCount(0);
+
+  const initialTitle = await title.textContent();
+  const initialQuote = await quote.textContent();
+  await page.getByRole('button', { name: 'Next hero title' }).click();
+  await expect(title).not.toHaveText(initialTitle);
+  await expect(quote).toHaveText(initialQuote);
+  await page.getByRole('button', { name: 'Previous hero title' }).click();
+  await expect(title).toHaveText(initialTitle);
+
+  await page.getByRole('button', { name: 'Next Jeff Dean quote' }).click();
+  await expect(quote).not.toHaveText(initialQuote);
+  await expect(title).toHaveText(initialTitle);
+  await page.getByRole('button', { name: 'Previous Jeff Dean quote' }).click();
+  await expect(quote).toHaveText(initialQuote);
+});
+
+test('quote arrows remain usable in themed mobile layouts', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const theme of ['nutrition-facts', 'ms-dos-prompt', 'op-art-monochrome']) {
+    await openSitePage(page, `/index.html?theme=${theme}`);
+    const quote = page.locator('#hero-splash-text');
+    await expect(quote).not.toHaveText('Alec Rollison can get 1s out of `/dev/zero`.');
+    const previous = await quote.textContent();
+    await page.getByRole('button', { name: 'Next Jeff Dean quote' }).click();
+    await expect(quote).not.toHaveText(previous);
+    await page.getByRole('button', { name: 'Previous Jeff Dean quote' }).click();
+    await expect(quote).toHaveText(previous);
+  }
+});
+
 test('Afterimage text contrasts with both the page and the artwork', async ({ page }) => {
   await page.setViewportSize({ width: 768, height: 900 });
   await openSitePage(page, '/favorites.html?theme=op-art-monochrome');
@@ -198,6 +234,7 @@ test('theme picker previews and persists a selected theme', async ({ page }) => 
     'acid-editorial'
   );
 
+  await page.waitForLoadState('networkidle');
   await page.goto('/index.html', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'acid-editorial');
   await expect(page.locator('html')).not.toHaveAttribute('data-skin-loading');
@@ -247,17 +284,17 @@ test('unseen themes warm automatically before their first selection', async ({ p
   await page.waitForLoadState('networkidle');
   await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'portfolio-dark');
   await expect(page.locator('[data-skin-stylesheet][media="all"]')).toHaveCount(0);
-  expect(themeRequests.some((url) => url.endsWith('/afterimage-wave.svg'))).toBe(true);
+  expect(themeRequests.some((url) => url.endsWith('/sea-glass-mosaic.webp'))).toBe(true);
 
   // WebKit revalidates nonmatching-media CSS when it becomes active on this
   // test server (which supplies no cache lifetime). Other engines can also
   // verify the first application with the network entirely unavailable.
   if (browserName !== 'webkit') await page.context().setOffline(true);
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.evaluate(() => window.SiteSkins.preview('op-art-monochrome'));
-  await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'op-art-monochrome');
+  await page.evaluate(() => window.SiteSkins.preview('sea-glass-mosaic'));
+  await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'sea-glass-mosaic');
   await expect(page.locator('[data-skin-stylesheet][media="all"]')).toHaveCount(1);
-  await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(247, 247, 244)');
+  await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(241, 237, 227)');
 });
 
 test('every registered theme stylesheet loads and can be applied', async ({ page, browserName }) => {
@@ -282,6 +319,205 @@ test('every registered theme stylesheet loads and can be applied', async ({ page
   }
 
   expect(failures).toEqual([]);
+});
+
+test('Photo Carousel preloads photos upon site load, shows one immediately on visit, steps forward/back, and auto-cycles', async ({ page }) => {
+  const onePixelPng = Buffer.from(
+    'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+    'base64'
+  );
+  let photoCount = 0;
+
+  await page.route('https://picsum.photos/**', async (route) => {
+    const url = route.request().url();
+    if (url.includes('/info')) {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        headers: { 'access-control-allow-origin': '*' },
+        body: JSON.stringify({
+          id: '101',
+          author: 'Test Photographer',
+          url: 'https://unsplash.com/photos/test',
+        }),
+      });
+      return;
+    }
+
+    photoCount += 1;
+    await route.fulfill({
+      status: 200,
+      contentType: 'image/png',
+      headers: {
+        'access-control-allow-origin': '*',
+        'access-control-expose-headers': 'Picsum-Id',
+        'picsum-id': String(100 + photoCount),
+      },
+      body: onePixelPng,
+    });
+  });
+
+  // Load on another theme first: several Pretty Calc photos should preload automatically.
+  await openSitePage(page, '/index.html?theme=portfolio-dark');
+  await expect.poll(() => photoCount).toBeGreaterThanOrEqual(5);
+
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.evaluate(() => window.SiteSkins.preview('pretty-calc'));
+  await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'pretty-calc');
+  await expect(page.locator('html')).toHaveAttribute('data-pretty-calc-photo', 'ready');
+  await expect(page.locator('[data-skin-choice="pretty-calc"]')).toHaveText('Photo Carousel');
+
+  const prevButton = page.getByRole('button', { name: 'Back', exact: true });
+  const nextButton = page.getByRole('button', { name: 'Next', exact: true });
+  const cycleBubble = page.locator('[data-pretty-calc-cycle-toggle]');
+  await expect(page.locator('.pretty-calc-controls button')).toHaveText([
+    'Back',
+    'Photos Cycling',
+    'Next',
+  ]);
+  await expect(prevButton).toBeDisabled();
+  await expect(nextButton).toBeEnabled();
+  await expect(cycleBubble).toHaveText('Photos Cycling');
+  await expect(cycleBubble).toHaveAttribute('aria-pressed', 'true');
+
+  // The bottom-left control dock sits in the left margin without overlapping main content.
+  const horizontalClearance = await page.evaluate(() => {
+    const controlsRect = document.querySelector('.pretty-calc-controls').getBoundingClientRect();
+    const shellRect = document.querySelector('.site-main .site-shell').getBoundingClientRect();
+    return shellRect.left - controlsRect.right;
+  });
+  expect(horizontalClearance).toBeGreaterThanOrEqual(4);
+
+  const photo = page.locator('.pretty-calc-photo.is-visible');
+  await expect(photo).toHaveCount(1);
+  const initialSrc = await photo.getAttribute('src');
+  const initialSource = await photo.getAttribute('data-photo-source');
+  expect(initialSrc).toMatch(/^blob:/);
+  expect(initialSource).toMatch(/^https:\/\/picsum\.photos\//);
+  await expect(page.locator('.pretty-calc-credit')).toContainText('Test Photographer');
+
+  const initialHue = await page.evaluate(() =>
+    document.documentElement.style.getPropertyValue('--pc-h')
+  );
+  expect(initialHue).not.toBe('');
+
+  // Navigating to another page should keep the exact same photo, palette, and disabled Previous state.
+  await page.locator('#site-nav a[href="work.html"]').click();
+  await page.waitForURL('**/work.html');
+  await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'pretty-calc');
+  await expect(page.locator('html')).toHaveAttribute('data-pretty-calc-photo', 'ready');
+  await expect(page.locator('.skin-picker-current')).toHaveText('Photo Carousel');
+  await expect(page.locator('.pretty-calc-photo.is-visible')).toHaveAttribute(
+    'data-photo-source',
+    initialSource
+  );
+  await expect(prevButton).toBeDisabled();
+  await expect(page.locator('.pretty-calc-credit')).toContainText('Test Photographer');
+  const hueAfterNavigation = await page.evaluate(() =>
+    document.documentElement.style.getPropertyValue('--pc-h')
+  );
+  expect(hueAfterNavigation).toBe(initialHue);
+
+  // Content images and root scrolling should be ready upfront without lazy-load scroll delay.
+  const scrollReadiness = await page.evaluate(() => ({
+    bodyOverflowY: window.getComputedStyle(document.body).overflowY,
+    allEagerAndComplete: Array.from(document.querySelectorAll('main img')).every(
+      (img) => img.loading === 'eager' && img.complete && img.naturalWidth > 0
+    ),
+  }));
+  expect(scrollReadiness).toEqual({
+    bodyOverflowY: 'visible',
+    allEagerAndComplete: true,
+  });
+
+  // Clicking Next advances to a second photo/palette and enables Previous.
+  await nextButton.click();
+  await expect(prevButton).toBeEnabled();
+  const secondSource = await page.locator('.pretty-calc-photo.is-visible').last().getAttribute('data-photo-source');
+  expect(secondSource).not.toBe(initialSource);
+
+  // Clicking Previous returns to the first set and greys out Previous again.
+  await prevButton.click();
+  await expect(prevButton).toBeDisabled();
+  await expect(page.locator('.pretty-calc-photo.is-visible').last()).toHaveAttribute(
+    'data-photo-source',
+    initialSource
+  );
+  const restoredHue = await page.evaluate(() =>
+    document.documentElement.style.getPropertyValue('--pc-h')
+  );
+  expect(restoredHue).toBe(initialHue);
+
+  // Track 30000ms (30s) auto-cycle timers and step forward to the second photo in history.
+  await page.evaluate(() => {
+    window.__prettyCalcCycles = [];
+    const realSetTimeout = window.setTimeout.bind(window);
+    const realClearTimeout = window.clearTimeout.bind(window);
+    window.setTimeout = function (fn, delay, ...args) {
+      if (delay === 30000) {
+        const id = realSetTimeout(() => {}, 30000);
+        window.__prettyCalcCycles.push({ id, fn, delay, cleared: false });
+        return id;
+      }
+      return realSetTimeout(fn, delay, ...args);
+    };
+    window.clearTimeout = function (id) {
+      for (const entry of window.__prettyCalcCycles) {
+        if (entry.id === id) entry.cleared = true;
+      }
+      return realClearTimeout(id);
+    };
+  });
+
+  await nextButton.click();
+  await expect(prevButton).toBeEnabled();
+  await expect(page.locator('.pretty-calc-photo.is-visible').last()).toHaveAttribute(
+    'data-photo-source',
+    secondSource
+  );
+
+  // Verify a 30000ms auto-cycle timer is active and advances to a third photo when it fires.
+  const activeCycleDelays = await page.evaluate(() =>
+    window.__prettyCalcCycles.filter((entry) => !entry.cleared).map((entry) => entry.delay)
+  );
+  expect(activeCycleDelays).toEqual([30000]);
+  await page.evaluate(() => {
+    const active = window.__prettyCalcCycles.find((entry) => !entry.cleared);
+    active.cleared = true;
+    active.fn();
+  });
+  await expect
+    .poll(() => page.locator('.pretty-calc-photo.is-visible').last().getAttribute('data-photo-source'))
+    .not.toBe(secondSource);
+
+  // Clicking the cycle bubble pauses photo and color cycling and clears the 60s timer.
+  const pausedSource = await page
+    .locator('.pretty-calc-photo.is-visible')
+    .last()
+    .getAttribute('data-photo-source');
+  const pausedHue = await page.evaluate(() =>
+    document.documentElement.style.getPropertyValue('--pc-h')
+  );
+  await cycleBubble.click();
+  await expect(cycleBubble).toHaveText('Photos Cycling');
+  await expect(cycleBubble).toHaveAttribute('aria-pressed', 'false');
+  await expect(cycleBubble).toHaveClass(/is-paused/);
+  await expect(cycleBubble).toHaveCSS('text-decoration-line', /line-through/);
+  const remainingCycleDelays = await page.evaluate(() =>
+    window.__prettyCalcCycles.filter((entry) => !entry.cleared).map((entry) => entry.delay)
+  );
+  expect(remainingCycleDelays).toEqual([]);
+  await expect(page.locator('.pretty-calc-photo.is-visible').last()).toHaveAttribute(
+    'data-photo-source',
+    pausedSource
+  );
+  const hueWhilePaused = await page.evaluate(() =>
+    document.documentElement.style.getPropertyValue('--pc-h')
+  );
+  expect(hueWhilePaused).toBe(pausedHue);
+
+  await page.evaluate(() => window.SiteSkins.preview('portfolio-dark'));
+  await expect(page.locator('.pretty-calc-stage, .pretty-calc-controls, .pretty-calc-credit')).toHaveCount(0);
 });
 
 test('fridge board reserves its layout before the component upgrades', async ({ page }) => {

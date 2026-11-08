@@ -1003,34 +1003,47 @@ html[data-skin="ms-dos-prompt"] .skin-picker .skin-picker-option[aria-pressed="t
 }
 
 html[data-skin-id="ms-dos-prompt"] .skin-contact-charm {
-	display: inline !important;
+	display: inline-flex !important;
+	align-items: center;
+	gap: 0.35ch;
 	position: static !important;
 	width: auto;
-	max-width: none;
+	max-width: calc(100% - 2rem);
 	min-height: 0;
-	margin: 0 0 1.35rem;
-	padding: 0 !important;
-	border: 0 !important;
+	margin: 0.25rem 0 1.35rem 1rem;
+	padding: 0.35rem 0.75rem !important;
+	border: 2px solid #ffffff !important;
 	border-radius: 0 !important;
-	background: transparent !important;
-	box-shadow: none !important;
+	background: #0000aa !important;
+	box-shadow: 0.5ch 0.5ch 0 #aaaaaa !important;
 	color: #ffffff !important;
-	font: 400 1rem/1.35 "Courier New", Courier, ui-monospace, monospace !important;
+	font: 700 1rem/1.35 "Courier New", Courier, ui-monospace, monospace !important;
 	letter-spacing: 0 !important;
 	text-align: left;
-	text-transform: none !important;
+	text-transform: uppercase !important;
 	transform: none !important;
 }
 
 html[data-skin-id="ms-dos-prompt"] .skin-contact-charm::before {
-	content: "C:\\PORTFOLIO> ";
-	color: #aaaaaa;
+	content: "[ ";
+	color: #ffff55;
+}
+
+html[data-skin-id="ms-dos-prompt"] .skin-contact-charm::after {
+	content: " \2192 ]";
+	color: #ffff55;
+	transform: none !important;
 }
 
 html[data-skin-id="ms-dos-prompt"] .skin-contact-charm:hover {
 	background: #aaaaaa !important;
 	color: #000000 !important;
 	transform: none !important;
+}
+
+html[data-skin-id="ms-dos-prompt"] .skin-contact-charm:hover::before,
+html[data-skin-id="ms-dos-prompt"] .skin-contact-charm:hover::after {
+	color: #000000;
 }
 
 @media (max-width: 736px) {

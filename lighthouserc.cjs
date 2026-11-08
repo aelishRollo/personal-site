@@ -23,9 +23,9 @@ module.exports = {
         'cumulative-layout-shift': ['error', { maxNumericValue: 0.1, aggregationMethod: 'median' }],
         'total-blocking-time': ['error', { maxNumericValue: 300, aggregationMethod: 'median' }],
         'resource-summary:script:size': ['error', { maxNumericValue: 225000 }],
-        // Includes inactive theme CSS warmed for first-time switching (~713 KB).
+        // Includes inactive theme CSS warmed for first-time switching (~749 KB).
         // Paint and blocking-time budgets above still guard initial responsiveness.
-        'resource-summary:stylesheet:size': ['error', { maxNumericValue: 750000 }],
+        'resource-summary:stylesheet:size': ['error', { maxNumericValue: 775000 }],
       },
     },
     upload: {

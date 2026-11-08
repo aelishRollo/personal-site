@@ -461,28 +461,33 @@ html[data-skin="oracular-tarot"] .site-footer::before {
 }
 
 html[data-skin="oracular-tarot"] .skin-contact-charm {
-	--skin-contact-rotate: 2deg;
+	--skin-contact-rotate: 0deg;
 	top: 0.85rem;
-	max-width: 9rem;
-	min-height: 4.5rem;
-	padding: 1.2rem 0.85rem;
+	max-width: 14.5rem;
+	min-height: 2.85rem;
+	padding: 0.65rem 1.05rem;
 	border: 1px solid var(--oracle-gold) !important;
-	border-radius: 0.75rem !important;
-	background: linear-gradient(155deg, #19102c, #0b0715) !important;
-	box-shadow: inset 0 0 0 3px #090713, inset 0 0 0 4px rgba(239, 213, 138, 0.24), 5px 6px 0 rgba(216, 82, 142, 0.36);
-	color: var(--oracle-cream) !important;
+	border-radius: 999px !important;
+	background: linear-gradient(135deg, var(--oracle-pink), #8b58e9) !important;
+	box-shadow: inset 0 1px 0 rgba(255, 248, 234, 0.38), 0 0 0 1px rgba(14, 9, 25, 0.85), 0 8px 22px rgba(0, 0, 0, 0.38);
+	color: #fff8ea !important;
 	font-family: Georgia, "Times New Roman", serif !important;
 	font-size: 0.68rem !important;
-	letter-spacing: 0.08em !important;
+	letter-spacing: 0.07em !important;
 }
 
 html[data-skin="oracular-tarot"] .skin-contact-charm::before {
 	content: "✦";
-	display: block;
-	margin-right: 0.35rem;
-	color: var(--oracle-pink);
-	font-size: 1.1rem;
-	text-shadow: 0 0 14px var(--oracle-violet);
+	display: inline-block;
+	margin-right: 0;
+	color: var(--oracle-gold);
+	font-size: 0.9rem;
+	text-shadow: none;
+}
+
+html[data-skin="oracular-tarot"] .skin-contact-charm:hover {
+	border-color: #fff8ea !important;
+	color: #ffffff !important;
 }
 
 html[data-skin="oracular-tarot"] .skin-picker {
@@ -556,13 +561,13 @@ html[data-skin="oracular-tarot"] .skin-picker-current {
 	html[data-skin="oracular-tarot"] .skin-contact-charm {
 		top: 0.75rem;
 		right: 0.65rem;
-		max-width: 7.5rem;
-		min-height: 3rem;
-		padding: 0.65rem;
+		max-width: 10.5rem;
+		min-height: 2.35rem;
+		padding: 0.45rem 0.75rem;
 		font-size: 0.59rem !important;
 	}
 
-	html[data-skin="oracular-tarot"] .skin-contact-charm::before { font-size: 0.85rem; }
+	html[data-skin="oracular-tarot"] .skin-contact-charm::before { font-size: 0.8rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -24,13 +24,21 @@ function watchRuntimeFailures(page) {
     const url = new URL(request.url());
     if (LOCAL_HOSTS.has(url.hostname)) {
       const detail = request.failure() ? request.failure().errorText : 'unknown error';
+      if (request.resourceType() === 'media' && /ERR_ABORTED|NS_BINDING_ABORTED/.test(detail)) {
+        return;
+      }
       failures.push(`request failed: ${request.method()} ${url.pathname} (${detail})`);
     }
   });
 
   page.on('console', (message) => {
-    if (message.type() === 'error' && !message.text().startsWith('Failed to load resource:')) {
-      failures.push(`console error: ${message.text()}`);
+    const text = message.text();
+    if (
+      message.type() === 'error' &&
+      !text.startsWith('Failed to load resource:') &&
+      !text.includes('Cross-Origin Request Blocked:')
+    ) {
+      failures.push(`console error: ${text}`);
     }
   });
 

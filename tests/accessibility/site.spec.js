@@ -51,3 +51,27 @@ test('open theme picker has no serious WCAG A/AA violations', async ({ page }) =
   );
   await expectNoImportantViolations(page);
 });
+
+test('Sea Glass Mosaic is accessible on narrow home and fridge pages', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const path of ['index.html', 'fridge-poetry.html']) {
+    await openSitePage(page, `/${path}?theme=sea-glass-mosaic`);
+    await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'sea-glass-mosaic');
+    await expectNoImportantViolations(page);
+  }
+});
+
+test('Photo Carousel is accessible on desktop and mobile', async ({ page }) => {
+  for (const viewport of [
+    { width: 1280, height: 860 },
+    { width: 390, height: 844 },
+  ]) {
+    await page.setViewportSize(viewport);
+    await openSitePage(page, '/index.html?theme=pretty-calc');
+    await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'pretty-calc');
+    await expect(page.locator('.pretty-calc-prev')).toBeVisible();
+    await expect(page.locator('.pretty-calc-next')).toBeVisible();
+    await expect(page.locator('.pretty-calc-cycle-bubble')).toBeVisible();
+    await expectNoImportantViolations(page);
+  }
+});

@@ -216,6 +216,11 @@ html[data-skin="hyperspace"] .section-cta {
 	box-shadow: none !important;
 }
 
+/* Anchor the contact charm (appended to the hero by main.js) to the hero, not the page. */
+html[data-skin="hyperspace"] .page-hero {
+	position: relative;
+}
+
 /* Chroma chambers keep their content readable above the moving lattice. */
 html[data-skin="hyperspace"] .page-hero > .site-shell,
 html[data-skin="hyperspace"] .page-section > .site-shell {
@@ -504,12 +509,14 @@ html[data-skin="hyperspace"] button:not([class^="skin-picker"]):hover {
 }
 
 html[data-skin="hyperspace"] .skin-contact-charm {
-	--skin-contact-rotate: -2deg;
-	min-width: 10.5rem;
+	--skin-contact-rotate: 0deg;
+	top: clamp(0.65rem, 1.3vw, 0.95rem);
+	right: max(1.25rem, calc((100% - 1120px) / 2));
+	min-width: 0;
 	border: 2px solid rgba(255, 255, 255, 0.72) !important;
 	border-radius: 999px;
 	background: linear-gradient(105deg, #ff50df, #ffaf3f 27%, #eaff4a 43%, #4dffa0 60%, #48f4ff 77%, #ad64ff) !important;
-	box-shadow: 0 0 24px rgba(255, 56, 221, 0.3), 0 12px 28px rgba(0, 0, 0, 0.38);
+	box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.65), 0 0 24px rgba(255, 56, 221, 0.3), 0 12px 28px rgba(0, 0, 0, 0.38);
 	color: #100316 !important;
 	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
 	font-weight: 900 !important;
@@ -517,7 +524,7 @@ html[data-skin="hyperspace"] .skin-contact-charm {
 
 html[data-skin="hyperspace"] .skin-contact-charm::before {
 	content: "◇";
-	margin-right: 0.45rem;
+	margin-right: 0;
 	color: #100316;
 }
 
@@ -673,9 +680,9 @@ html[data-skin="hyperspace"] .skin-picker-toggle-label {
 		top: 0.65rem;
 		right: 0.65rem;
 		min-width: 0;
-		max-width: 8.5rem;
-		min-height: 3rem;
-		padding: 0.65rem 0.75rem;
+		max-width: 10.5rem;
+		min-height: 2.35rem;
+		padding: 0.45rem 0.75rem;
 		font-size: 0.58rem !important;
 	}
 }

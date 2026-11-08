@@ -3162,7 +3162,7 @@ section#three .container .features article .inner {
 
 	html,
 	body {
-		overflow-x: hidden;
+		overflow-x: clip;
 	}
 
 	body,
@@ -4794,6 +4794,73 @@ html[data-theme="dark"] .hero-splash .hero-splash-text,
 html[data-theme="light"] .hero-splash .hero-splash-text,
 html:not([data-theme]) .hero-splash .hero-splash-text {
 	color: #ffff55 !important;
+}
+
+.hero-title-controls {
+	display: inline-flex;
+	vertical-align: middle;
+	gap: 0.08em;
+	margin-left: 0.12em;
+	white-space: nowrap;
+}
+
+#hero-silly-title.hero-title-role {
+	margin-bottom: 0;
+}
+
+.hero-splash-controls {
+	position: absolute;
+	bottom: -2rem;
+	left: 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	gap: 0.2rem;
+	pointer-events: auto;
+}
+
+body.page-home .hero-media {
+	padding-bottom: 2rem;
+}
+
+html body.page-home .personality-arrow {
+	display: inline-grid;
+	place-items: center;
+	width: 1.65rem;
+	height: 1.65rem;
+	min-width: 1.65rem;
+	min-height: 1.65rem;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	border-radius: 50%;
+	background: transparent !important;
+	box-shadow: none !important;
+	color: var(--text-1, currentColor) !important;
+	opacity: 0.65;
+	cursor: pointer;
+	transition: opacity 150ms ease, transform 150ms ease;
+}
+
+html body.page-home .personality-arrow:hover,
+html body.page-home .personality-arrow:focus-visible {
+	opacity: 1;
+	transform: scale(1.08);
+}
+
+html body.page-home .personality-arrow:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+}
+
+.personality-arrow svg {
+	width: 0.8rem;
+	height: 0.8rem;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 1.5;
+	stroke-linecap: round;
+	stroke-linejoin: round;
 }
 
 .hero-splash-close {
