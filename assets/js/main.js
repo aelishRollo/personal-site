@@ -65,7 +65,6 @@
 	// Mount media only while Starlight is active; other skins never fetch the video.
 	var starlightVideo;
 	var starlightTools;
-	var starlightPaused = false;
 	var starlightMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 	var starlightConnection = navigator.connection;
 
@@ -89,21 +88,13 @@
 		if (!starlightTools) {
 			starlightTools = document.createElement('div');
 			starlightTools.className = 'starlight-media-tools';
-			starlightTools.innerHTML = '<button type="button">Pause stars</button>' +
-				'<span>Sky footage: <a href="https://www.eso.org/public/videos/">ESO</a>' +
-				' · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · stabilized, darkened &amp; looped</span>';
+			starlightTools.innerHTML = '<span>Star field adapted from <a href="https://www.eso.org/public/videos/">ESO</a> imagery' +
+				' · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · recoloured &amp; animated</span>';
 			document.body.appendChild(starlightTools);
-			starlightTools.querySelector('button').addEventListener('click', function() {
-				starlightPaused = !starlightPaused;
-				syncStarlightVideo();
-			});
 		}
 
 		var stillOnly = starlightMotion.matches || (starlightConnection && starlightConnection.saveData);
-		var toggle = starlightTools.querySelector('button');
-		toggle.hidden = Boolean(stillOnly);
-		toggle.textContent = starlightPaused ? 'Play stars' : 'Pause stars';
-		if (stillOnly || starlightPaused || document.hidden) {
+		if (stillOnly || document.hidden) {
 			if (starlightVideo) starlightVideo.pause();
 			return;
 		}
@@ -123,10 +114,6 @@
 		var playback = starlightVideo.play();
 		if (playback) playback.catch(function() {
 			// Autoplay may be blocked by low-power mode; the poster stays visible.
-			if (starlightTools && starlightVideo && starlightVideo.paused) {
-				starlightPaused = true;
-				starlightTools.querySelector('button').textContent = 'Play stars';
-			}
 		});
 	}
 

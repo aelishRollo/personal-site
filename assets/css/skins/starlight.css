@@ -90,14 +90,6 @@ html[data-skin="starlight"] .starlight-media-tools {
 	background: rgba(3, 7, 17, 0.8);
 }
 
-html[data-skin="starlight"] .starlight-media-tools button {
-	min-height: 36px;
-	height: auto;
-	padding: 0.4rem 0.8rem;
-	font-size: inherit;
-	line-height: 1.4;
-}
-
 html[data-skin="starlight"] body,
 html[data-skin="starlight"] p,
 html[data-skin="starlight"] li,
