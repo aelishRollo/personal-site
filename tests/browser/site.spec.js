@@ -365,10 +365,15 @@ test('Pretty Calc preloads photos upon site load, shows one immediately on visit
   await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'pretty-calc');
   await expect(page.locator('html')).toHaveAttribute('data-pretty-calc-photo', 'ready');
 
-  const prevButton = page.getByRole('button', { name: 'Previous photo and palette' });
-  const nextButton = page.getByRole('button', { name: 'Next photo and palette' });
+  const prevButton = page.getByRole('button', { name: 'Previous', exact: true });
+  const nextButton = page.getByRole('button', { name: 'Next', exact: true });
+  const cycleBubble = page.locator('[data-pretty-calc-cycle-toggle]');
+  await expect(prevButton).toHaveText('Previous');
+  await expect(nextButton).toHaveText('Next');
   await expect(prevButton).toBeDisabled();
   await expect(nextButton).toBeEnabled();
+  await expect(cycleBubble).toHaveText('Photos Cycling');
+  await expect(cycleBubble).toHaveAttribute('aria-pressed', 'true');
 
   const photo = page.locator('.pretty-calc-photo.is-visible');
   await expect(photo).toHaveCount(1);
@@ -443,6 +448,27 @@ test('Pretty Calc preloads photos upon site load, shows one immediately on visit
       timeout: 8000,
     })
     .not.toBe(secondSource);
+
+  // Clicking the cycle bubble pauses photo and color cycling.
+  const pausedSource = await page
+    .locator('.pretty-calc-photo.is-visible')
+    .last()
+    .getAttribute('data-photo-source');
+  const pausedHue = await page.evaluate(() =>
+    document.documentElement.style.getPropertyValue('--pc-h')
+  );
+  await cycleBubble.click();
+  await expect(cycleBubble).toHaveText('Photos Not Cycling');
+  await expect(cycleBubble).toHaveAttribute('aria-pressed', 'false');
+  await page.waitForTimeout(6300);
+  await expect(page.locator('.pretty-calc-photo.is-visible').last()).toHaveAttribute(
+    'data-photo-source',
+    pausedSource
+  );
+  const hueWhilePaused = await page.evaluate(() =>
+    document.documentElement.style.getPropertyValue('--pc-h')
+  );
+  expect(hueWhilePaused).toBe(pausedHue);
 
   await page.evaluate(() => window.SiteSkins.preview('portfolio-dark'));
   await expect(page.locator('.pretty-calc-stage, .pretty-calc-controls, .pretty-calc-credit')).toHaveCount(0);

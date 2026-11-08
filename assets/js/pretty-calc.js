@@ -36,12 +36,14 @@
 	var history = [];
 	var historyIndex = -1;
 	var current = null;
+	var cycling = true;
 	var busy = false;
 	var stage = null;
 	var controls = null;
 	var credit = null;
 	var prevButton = null;
 	var nextButton = null;
+	var cycleButton = null;
 
 	restoreHistory();
 
@@ -80,7 +82,13 @@
 	function restoreHistory() {
 		try {
 			var saved = JSON.parse(window.sessionStorage.getItem(HISTORY_KEY) || 'null');
-			if (!saved || !Array.isArray(saved.items) || !saved.items.length) {
+			if (!saved) {
+				return;
+			}
+			if (typeof saved.cycling === 'boolean') {
+				cycling = saved.cycling;
+			}
+			if (!Array.isArray(saved.items) || !saved.items.length) {
 				return;
 			}
 			var restored = [];
@@ -130,6 +138,7 @@
 
 		function serialize(withData) {
 			return JSON.stringify({
+				cycling: cycling,
 				index: relIndex,
 				items: slice.map(function(entry) {
 					var p = entry.photo;
@@ -411,6 +420,10 @@
 			nextButton.classList.toggle('is-loading', busy);
 			nextButton.setAttribute('aria-busy', busy ? 'true' : 'false');
 		}
+		if (cycleButton) {
+			cycleButton.textContent = cycling ? 'Photos Cycling' : 'Photos Not Cycling';
+			cycleButton.setAttribute('aria-pressed', cycling ? 'true' : 'false');
+		}
 	}
 
 	function clearCycle() {
@@ -422,7 +435,7 @@
 
 	function scheduleCycle(delayMs) {
 		clearCycle();
-		if (!running) {
+		if (!running || !cycling) {
 			return;
 		}
 		var wait = typeof delayMs === 'number' ? delayMs : CYCLE_MS;
@@ -435,6 +448,13 @@
 			}
 			next();
 		}, wait);
+	}
+
+	function toggleCycling() {
+		cycling = !cycling;
+		syncControls();
+		writeHistory();
+		scheduleCycle();
 	}
 
 	function show(photo) {
@@ -573,12 +593,9 @@
 		controls.setAttribute('role', 'group');
 		controls.setAttribute('aria-label', 'Photo and palette controls');
 		controls.innerHTML =
-			'<button type="button" class="pretty-calc-arrow pretty-calc-prev" data-pretty-calc-nav="-1" aria-label="Previous photo and palette" title="Previous photo and palette" disabled aria-disabled="true">' +
-				'<span class="pretty-calc-arrow-icon" aria-hidden="true">&#8592;</span>' +
-			'</button>' +
-			'<button type="button" class="pretty-calc-arrow pretty-calc-next" data-pretty-calc-nav="1" aria-label="Next photo and palette" title="Next photo and palette">' +
-				'<span class="pretty-calc-arrow-icon" aria-hidden="true">&#8594;</span>' +
-			'</button>';
+			'<button type="button" class="pretty-calc-btn pretty-calc-prev" data-pretty-calc-nav="-1" disabled aria-disabled="true">Previous</button>' +
+			'<button type="button" class="pretty-calc-btn pretty-calc-next" data-pretty-calc-nav="1">Next</button>' +
+			'<button type="button" class="pretty-calc-cycle-bubble" data-pretty-calc-cycle-toggle aria-pressed="true">Photos Cycling</button>';
 		document.body.appendChild(controls);
 
 		credit = document.createElement('p');
@@ -589,8 +606,10 @@
 
 		prevButton = controls.querySelector('.pretty-calc-prev');
 		nextButton = controls.querySelector('.pretty-calc-next');
+		cycleButton = controls.querySelector('.pretty-calc-cycle-bubble');
 		prevButton.addEventListener('click', previous);
 		nextButton.addEventListener('click', next);
+		cycleButton.addEventListener('click', toggleCycling);
 		syncControls();
 	}
 
@@ -608,6 +627,7 @@
 		controls = null;
 		prevButton = null;
 		nextButton = null;
+		cycleButton = null;
 		credit = null;
 		root.removeAttribute('data-pretty-calc-photo');
 	}
@@ -682,7 +702,8 @@
 	window.PrettyCalc = {
 		next: next,
 		previous: previous,
-		reroll: next
+		reroll: next,
+		toggleCycling: toggleCycling
 	};
 
 	topUp();
