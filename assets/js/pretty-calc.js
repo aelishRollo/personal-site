@@ -3,16 +3,19 @@
 
 	Ported from the Pretty Calc project: random Lorem Picsum photos are fetched
 	as blobs, decoded before display, and held in a ready queue so visiting the
-	theme or rolling the dice displays a photo immediately. Unlike the calculator,
-	a photo is shown on load without waiting for a button click.
+	theme or advancing to the next photo displays immediately. Unlike the
+	calculator, a photo is shown on load without waiting for a button click.
 
 	Changes from the original:
 	- Several photos are preloaded upon site load even before Pretty Calc is
 	  selected, and kept buffered across theme switches for instant display.
-	- The active photo and palette are preserved in sessionStorage across page
+	- Previous and next arrows step backward and forward through photo + palette
+	  sets (with Previous disabled/greyed out on the first set), and the active
+	  photo and palette automatically advance every 6000 ms.
+	- The active history and palette are preserved in sessionStorage across page
 	  navigations so moving between pages never changes the photo.
 	- The decoded <img> element itself is mounted, so a swap never re-decodes.
-	- Photos crossfade on reroll, while the initial photo appears immediately.
+	- Photos crossfade on step changes, while the initial photo appears immediately.
 	- Failed fetches back off instead of retrying in a tight loop.
 	- Unseen queued photos are handed to the next page through sessionStorage.
 	  Their final Picsum URLs are immutable and HTTP-cached, so the next page
@@ -23,7 +26,7 @@
 	'use strict';
 
 	var SKIN_ID = 'pretty-calc';
-	var CURRENT_KEY = 'pretty-calc-current-photo-v1';
+	var HISTORY_KEY = 'pretty-calc-history-v1';
 	var STASH_KEY = 'pretty-calc-unseen-photos-v1';
 	var CACHED_PREFIX = 'https://fastly.picsum.photos/';
 	var root = document.documentElement;
@@ -31,9 +34,12 @@
 	var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 	var saveData = Boolean(connection && connection.saveData);
 	var TARGET = saveData ? 1 : 5;
+	var CYCLE_MS = 6000;
 	var WAIT_MS = 8000;
 	var FADE_MS = 700;
 	var MAX_BACKOFF_MS = 30000;
+	var MAX_HISTORY = 20;
+	var MAX_STORED_HISTORY = 5;
 
 	var authorById = {};
 	var running = false;
@@ -43,12 +49,18 @@
 	var waiters = [];
 	var failures = 0;
 	var retryTimer = 0;
-	var current = readCurrent();
+	var cycleTimer = 0;
+	var history = [];
+	var historyIndex = -1;
+	var current = null;
 	var busy = false;
 	var stage = null;
 	var controls = null;
 	var credit = null;
-	var dice = null;
+	var prevButton = null;
+	var nextButton = null;
+
+	restoreHistory();
 
 	function isActive() {
 		return root.getAttribute('data-skin-id') === SKIN_ID;
@@ -80,51 +92,116 @@
 		return header || (match ? match[1] : '');
 	}
 
-	function readCurrent() {
+	function currentPalette() {
+		if (window.SiteSkins && typeof window.SiteSkins.getPrettyCalcPalette === 'function') {
+			return window.SiteSkins.getPrettyCalcPalette();
+		}
+		return {
+			h: root.style.getPropertyValue('--pc-h') || '168',
+			s: root.style.getPropertyValue('--pc-s') || '48%',
+			l: root.style.getPropertyValue('--pc-l') || '15%',
+			opH: root.style.getPropertyValue('--pc-op-h') || '190',
+			eqH: root.style.getPropertyValue('--pc-eq-h') || '320'
+		};
+	}
+
+	function applyPalette(palette) {
+		if (!palette) {
+			return;
+		}
+		if (window.SiteSkins && typeof window.SiteSkins.setPrettyCalcPalette === 'function') {
+			window.SiteSkins.setPrettyCalcPalette(palette);
+			return;
+		}
+		root.style.setProperty('--pc-h', palette.h);
+		root.style.setProperty('--pc-s', palette.s);
+		root.style.setProperty('--pc-l', palette.l);
+		root.style.setProperty('--pc-op-h', palette.opH);
+		root.style.setProperty('--pc-eq-h', palette.eqH);
+	}
+
+	function randomizePalette() {
+		if (window.SiteSkins && typeof window.SiteSkins.randomizePrettyCalcPalette === 'function') {
+			return window.SiteSkins.randomizePrettyCalcPalette();
+		}
+		return currentPalette();
+	}
+
+	function restoreHistory() {
 		try {
-			var saved = JSON.parse(window.sessionStorage.getItem(CURRENT_KEY) || 'null');
-			if (!saved || typeof saved !== 'object') {
-				return null;
+			var saved = JSON.parse(window.sessionStorage.getItem(HISTORY_KEY) || 'null');
+			if (!saved || !Array.isArray(saved.items) || !saved.items.length) {
+				return;
 			}
-			var src = saved.dataUrl || saved.source || '';
-			if (!src) {
-				return null;
+			var restored = [];
+			saved.items.forEach(function(item) {
+				if (!item || typeof item !== 'object') {
+					return;
+				}
+				var src = item.dataUrl || item.source || '';
+				if (!src) {
+					return;
+				}
+				if (item.id && item.author) {
+					authorById[item.id] = item.author;
+				}
+				var image = new Image();
+				image.decoding = 'async';
+				image.alt = '';
+				image.src = src;
+				restored.push({
+					photo: {
+						image: image,
+						objectUrl: '',
+						dataUrl: item.dataUrl || '',
+						source: item.source || src,
+						id: item.id || ''
+					},
+					palette: item.palette || currentPalette()
+				});
+			});
+			if (!restored.length) {
+				return;
 			}
-			if (saved.id && saved.author) {
-				authorById[saved.id] = saved.author;
-			}
-			var image = new Image();
-			image.decoding = 'async';
-			image.alt = '';
-			image.src = src;
-			return {
-				image: image,
-				objectUrl: '',
-				dataUrl: saved.dataUrl || '',
-				source: saved.source || src,
-				id: saved.id || ''
-			};
+			history = restored;
+			var requestedIndex = typeof saved.index === 'number' ? saved.index : restored.length - 1;
+			historyIndex = Math.max(0, Math.min(restored.length - 1, requestedIndex));
+			current = history[historyIndex].photo;
+			applyPalette(history[historyIndex].palette);
 		} catch (error) {
-			return null;
+			// Ignore malformed sessionStorage state.
 		}
 	}
 
-	function writeCurrent() {
-		if (!current) {
+	function writeHistory() {
+		if (!history.length || historyIndex < 0) {
 			return;
 		}
-		var payload = {
-			source: current.source || '',
-			id: current.id || '',
-			dataUrl: current.dataUrl || '',
-			author: (current.id && authorById[current.id]) || null
-		};
+		var startIndex = Math.max(0, historyIndex - (MAX_STORED_HISTORY - 1));
+		var slice = history.slice(startIndex, startIndex + MAX_STORED_HISTORY);
+		var relativeIndex = historyIndex - startIndex;
+
+		function serialize(includeDataUrl) {
+			return JSON.stringify({
+				index: relativeIndex,
+				items: slice.map(function(entry) {
+					var photo = entry.photo;
+					return {
+						source: photo.source || '',
+						id: photo.id || '',
+						dataUrl: includeDataUrl ? (photo.dataUrl || '') : '',
+						author: (photo.id && authorById[photo.id]) || null,
+						palette: entry.palette
+					};
+				})
+			});
+		}
+
 		try {
-			window.sessionStorage.setItem(CURRENT_KEY, JSON.stringify(payload));
+			window.sessionStorage.setItem(HISTORY_KEY, serialize(true));
 		} catch (error) {
 			try {
-				payload.dataUrl = '';
-				window.sessionStorage.setItem(CURRENT_KEY, JSON.stringify(payload));
+				window.sessionStorage.setItem(HISTORY_KEY, serialize(false));
 			} catch (fallbackError) {
 				// Storage can be unavailable in locked-down browsing modes.
 			}
@@ -170,6 +247,15 @@
 		}
 	}
 
+	function isInHistory(photo) {
+		for (var i = 0; i < history.length; i++) {
+			if (history[i].photo === photo) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	function prefetchAuthor(id) {
 		if (!id || authorById[id]) {
 			return;
@@ -183,8 +269,8 @@
 					authorById[id] = info;
 					if (current && current.id === id) {
 						setCredit(info);
-						writeCurrent();
 					}
+					writeHistory();
 				}
 			}, function() {
 				// Generic credit remains if author lookup fails.
@@ -355,12 +441,6 @@
 		});
 	}
 
-	function randomizePalette() {
-		if (window.SiteSkins && typeof window.SiteSkins.randomizePrettyCalcPalette === 'function') {
-			window.SiteSkins.randomizePrettyCalcPalette();
-		}
-	}
-
 	function setCredit(info) {
 		if (!credit) {
 			return;
@@ -386,12 +466,41 @@
 		prefetchAuthor(id);
 	}
 
+	function syncControls() {
+		if (prevButton) {
+			var atStart = historyIndex <= 0;
+			prevButton.disabled = atStart;
+			prevButton.setAttribute('aria-disabled', atStart ? 'true' : 'false');
+		}
+		if (nextButton) {
+			nextButton.classList.toggle('is-loading', busy);
+			nextButton.setAttribute('aria-busy', busy ? 'true' : 'false');
+		}
+	}
+
+	function clearCycle() {
+		if (cycleTimer) {
+			window.clearTimeout(cycleTimer);
+			cycleTimer = 0;
+		}
+	}
+
+	function scheduleCycle() {
+		clearCycle();
+		if (!running) {
+			return;
+		}
+		cycleTimer = window.setTimeout(function() {
+			cycleTimer = 0;
+			next();
+		}, CYCLE_MS);
+	}
+
 	function show(photo) {
 		var image = photo.image;
 		var previous = current;
 
 		current = photo;
-		writeCurrent();
 		image.className = 'pretty-calc-photo';
 		image.setAttribute('aria-hidden', 'true');
 		image.setAttribute('draggable', 'false');
@@ -407,30 +516,60 @@
 			stage.appendChild(image);
 			if (previous && previous !== photo) {
 				previous.image.remove();
-				release(previous);
+				if (!isInHistory(previous)) {
+					release(previous);
+				}
 			}
 			return;
 		}
 
+		image.classList.remove('is-visible');
 		stage.appendChild(image);
-		// Commit the hidden state so dice rerolls crossfade over the previous photo.
+		// Commit the hidden state so step changes crossfade over the previous photo.
 		void image.offsetWidth;
 		image.classList.add('is-visible');
 		window.setTimeout(function() {
-			previous.image.remove();
-			release(previous);
+			if (previous.image !== image) {
+				previous.image.remove();
+			}
+			if (!isInHistory(previous)) {
+				release(previous);
+			}
 		}, FADE_MS + 50);
 	}
 
 	function setBusy(state) {
 		busy = state;
-		if (dice) {
-			dice.classList.toggle('is-loading', state);
-			dice.setAttribute('aria-busy', state ? 'true' : 'false');
-		}
+		syncControls();
 	}
 
-	function reroll(isInitial) {
+	function commitStep(entry, animateFlash) {
+		applyPalette(entry.palette);
+		if (animateFlash && stage && !reducedMotion.matches && typeof stage.animate === 'function') {
+			stage.animate([{ filter: 'brightness(1.18)' }, { filter: 'brightness(1)' }], { duration: 350, easing: 'ease-out' });
+		}
+		show(entry.photo);
+		syncControls();
+		writeHistory();
+		scheduleCycle();
+	}
+
+	function pushAndShow(photo, isInitial) {
+		var palette = isInitial ? currentPalette() : randomizePalette();
+		var entry = { photo: photo, palette: palette };
+
+		history.push(entry);
+		while (history.length > MAX_HISTORY) {
+			var evicted = history.shift();
+			if (evicted && evicted.photo !== photo) {
+				release(evicted.photo);
+			}
+		}
+		historyIndex = history.length - 1;
+		commitStep(entry, !isInitial);
+	}
+
+	function advanceToNewPhoto(isInitial) {
 		if (!running || busy) {
 			return;
 		}
@@ -439,13 +578,7 @@
 		if (ready.length) {
 			var readyPhoto = ready.shift();
 			writeStash();
-			if (!isInitial) {
-				randomizePalette();
-				if (stage && !reducedMotion.matches && typeof stage.animate === 'function') {
-					stage.animate([{ filter: 'brightness(1.18)' }, { filter: 'brightness(1)' }], { duration: 350, easing: 'ease-out' });
-				}
-			}
-			show(readyPhoto);
+			pushAndShow(readyPhoto, isInitial);
 			topUp();
 			return;
 		}
@@ -464,18 +597,34 @@
 				if (credit && !current) {
 					credit.textContent = 'Photos are unavailable right now';
 				}
+				scheduleCycle();
 				topUp();
 				return;
 			}
-			if (!isInitial) {
-				randomizePalette();
-				if (stage && !reducedMotion.matches && typeof stage.animate === 'function') {
-					stage.animate([{ filter: 'brightness(1.18)' }, { filter: 'brightness(1)' }], { duration: 350, easing: 'ease-out' });
-				}
-			}
-			show(photo);
+			pushAndShow(photo, isInitial);
 			topUp();
 		});
+	}
+
+	function previous() {
+		if (!running || busy || historyIndex <= 0) {
+			return;
+		}
+		historyIndex -= 1;
+		commitStep(history[historyIndex], true);
+	}
+
+	function next() {
+		if (!running || busy) {
+			return;
+		}
+		if (historyIndex < history.length - 1) {
+			historyIndex += 1;
+			commitStep(history[historyIndex], true);
+			topUp();
+			return;
+		}
+		advanceToNewPhoto(false);
 	}
 
 	function mount() {
@@ -486,8 +635,14 @@
 
 		controls = document.createElement('div');
 		controls.className = 'pretty-calc-controls';
-		controls.innerHTML = '<button type="button" class="pretty-calc-dice" aria-label="Show a new random photo and palette" title="New photo and palette">' +
-			'<span class="pretty-calc-dice-face" aria-hidden="true">&#127922;</span>' +
+		controls.setAttribute('role', 'group');
+		controls.setAttribute('aria-label', 'Photo and palette controls');
+		controls.innerHTML =
+			'<button type="button" class="pretty-calc-arrow pretty-calc-prev" data-pretty-calc-nav="-1" aria-label="Previous photo and palette" title="Previous photo and palette" disabled aria-disabled="true">' +
+				'<span class="pretty-calc-arrow-icon" aria-hidden="true">&#8592;</span>' +
+			'</button>' +
+			'<button type="button" class="pretty-calc-arrow pretty-calc-next" data-pretty-calc-nav="1" aria-label="Next photo and palette" title="Next photo and palette">' +
+				'<span class="pretty-calc-arrow-icon" aria-hidden="true">&#8594;</span>' +
 			'</button>';
 		document.body.appendChild(controls);
 
@@ -497,10 +652,11 @@
 		credit.textContent = 'Finding a photo\u2026';
 		document.body.appendChild(credit);
 
-		dice = controls.querySelector('.pretty-calc-dice');
-		dice.addEventListener('click', function() {
-			reroll(false);
-		});
+		prevButton = controls.querySelector('.pretty-calc-prev');
+		nextButton = controls.querySelector('.pretty-calc-next');
+		prevButton.addEventListener('click', previous);
+		nextButton.addEventListener('click', next);
+		syncControls();
 	}
 
 	function unmount() {
@@ -515,7 +671,8 @@
 		}
 		stage = null;
 		controls = null;
-		dice = null;
+		prevButton = null;
+		nextButton = null;
 		credit = null;
 		root.removeAttribute('data-pretty-calc-photo');
 	}
@@ -527,11 +684,11 @@
 		running = true;
 		failures = 0;
 		mount();
-		if (current) {
-			show(current);
+		if (history.length && historyIndex >= 0) {
+			commitStep(history[historyIndex], false);
 			topUp();
 		} else {
-			reroll(true);
+			advanceToNewPhoto(true);
 		}
 	}
 
@@ -540,13 +697,14 @@
 			return;
 		}
 		running = false;
+		clearCycle();
 		window.clearTimeout(retryTimer);
 		retryTimer = 0;
 		waiters.slice().forEach(function(waiter) {
 			waiter(null);
 		});
 
-		// Keep current and the preloaded ready queue warm so revisiting Pretty Calc
+		// Keep history and the preloaded ready queue warm so revisiting Pretty Calc
 		// or navigating between pages preserves the active photo immediately.
 		setBusy(false);
 		unmount();
@@ -562,30 +720,32 @@
 	}
 
 	function onKeyDown(event) {
-		if (!running || event.key !== '?' || event.ctrlKey || event.metaKey || event.altKey) {
+		if (!running || event.ctrlKey || event.metaKey || event.altKey) {
 			return;
 		}
 		var target = event.target;
 		if (target && (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/i.test(target.tagName))) {
 			return;
 		}
-		reroll(false);
+		if (event.key === '?') {
+			next();
+		}
 	}
 
 	function init() {
 		document.addEventListener('site-skin-change', sync);
 		window.addEventListener('keydown', onKeyDown);
 		window.addEventListener('pagehide', function() {
-			writeCurrent();
+			writeHistory();
 			writeStash();
 		});
 		sync();
 	}
 
 	window.PrettyCalc = {
-		reroll: function() {
-			reroll(false);
-		}
+		next: next,
+		previous: previous,
+		reroll: next
 	};
 
 	// Begin preloading several photos immediately upon script load, even before

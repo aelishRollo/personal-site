@@ -246,12 +246,16 @@
 	// keeps strong contrast over any photo. Applied here so it is set before the
 	// first paint instead of after the photo engine loads.
 	function applyPrettyCalcPalette(palette) {
+		if (!palette) {
+			return null;
+		}
 		root.style.setProperty('--pc-h', palette.h);
 		root.style.setProperty('--pc-s', palette.s);
 		root.style.setProperty('--pc-l', palette.l);
 		root.style.setProperty('--pc-op-h', palette.opH);
 		root.style.setProperty('--pc-eq-h', palette.eqH);
 		write(window.sessionStorage, prettyCalcPaletteKey, JSON.stringify(palette));
+		return palette;
 	}
 
 	function randomizePrettyCalcPalette() {
@@ -264,7 +268,7 @@
 		var saturation = [randomIn(44, 58), randomIn(38, 52), randomIn(30, 45)][mood];
 		var lightness = [randomIn(10, 15), randomIn(13, 18), randomIn(16, 21)][mood];
 
-		applyPrettyCalcPalette({
+		return applyPrettyCalcPalette({
 			h: hue.toFixed(1),
 			s: saturation.toFixed(1) + '%',
 			l: lightness.toFixed(1) + '%',
@@ -277,13 +281,12 @@
 		try {
 			var saved = JSON.parse(read(window.sessionStorage, prettyCalcPaletteKey) || 'null');
 			if (saved && saved.h && saved.s && saved.l && saved.opH && saved.eqH) {
-				applyPrettyCalcPalette(saved);
-				return;
+				return applyPrettyCalcPalette(saved);
 			}
 		} catch (error) {
 			// Fall back to generating a fresh palette when sessionStorage has no valid entry.
 		}
-		randomizePrettyCalcPalette();
+		return randomizePrettyCalcPalette();
 	}
 
 	// Preload Pretty Calc's photo engine and several random Picsum photos so
@@ -636,6 +639,8 @@
 		prepare: function(id) {
 			return prepareSkin(id);
 		},
+		getPrettyCalcPalette: ensurePrettyCalcPalette,
+		setPrettyCalcPalette: applyPrettyCalcPalette,
 		randomizePrettyCalcPalette: randomizePrettyCalcPalette,
 		preview: function(id) {
 			if (!isValid(id)) {

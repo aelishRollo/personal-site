@@ -320,7 +320,7 @@ test('every registered theme stylesheet loads and can be applied', async ({ page
   expect(failures).toEqual([]);
 });
 
-test('Pretty Calc preloads photos upon site load, shows one immediately on visit, and rerolls', async ({ page }) => {
+test('Pretty Calc preloads photos upon site load, shows one immediately on visit, steps forward/back, and auto-cycles', async ({ page }) => {
   const onePixelPng = Buffer.from(
     'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
     'base64'
@@ -365,6 +365,11 @@ test('Pretty Calc preloads photos upon site load, shows one immediately on visit
   await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'pretty-calc');
   await expect(page.locator('html')).toHaveAttribute('data-pretty-calc-photo', 'ready');
 
+  const prevButton = page.getByRole('button', { name: 'Previous photo and palette' });
+  const nextButton = page.getByRole('button', { name: 'Next photo and palette' });
+  await expect(prevButton).toBeDisabled();
+  await expect(nextButton).toBeEnabled();
+
   const photo = page.locator('.pretty-calc-photo.is-visible');
   await expect(photo).toHaveCount(1);
   const initialSrc = await photo.getAttribute('src');
@@ -378,7 +383,7 @@ test('Pretty Calc preloads photos upon site load, shows one immediately on visit
   );
   expect(initialHue).not.toBe('');
 
-  // Navigating to another page should keep the exact same photo and palette.
+  // Navigating to another page should keep the exact same photo, palette, and disabled Previous state.
   await page.locator('#site-nav a[href="work.html"]').click();
   await page.waitForURL('**/work.html');
   await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'pretty-calc');
@@ -387,16 +392,45 @@ test('Pretty Calc preloads photos upon site load, shows one immediately on visit
     'data-photo-source',
     initialSource
   );
+  await expect(prevButton).toBeDisabled();
   await expect(page.locator('.pretty-calc-credit')).toContainText('Test Photographer');
   const hueAfterNavigation = await page.evaluate(() =>
     document.documentElement.style.getPropertyValue('--pc-h')
   );
   expect(hueAfterNavigation).toBe(initialHue);
 
-  await page.getByRole('button', { name: 'Show a new random photo and palette' }).click();
+  // Clicking Next advances to a second photo/palette and enables Previous.
+  await nextButton.click();
+  await expect(prevButton).toBeEnabled();
+  const secondSource = await page.locator('.pretty-calc-photo.is-visible').last().getAttribute('data-photo-source');
+  expect(secondSource).not.toBe(initialSource);
+
+  // Clicking Previous returns to the first set and greys out Previous again.
+  await prevButton.click();
+  await expect(prevButton).toBeDisabled();
+  await expect(page.locator('.pretty-calc-photo.is-visible').last()).toHaveAttribute(
+    'data-photo-source',
+    initialSource
+  );
+  const restoredHue = await page.evaluate(() =>
+    document.documentElement.style.getPropertyValue('--pc-h')
+  );
+  expect(restoredHue).toBe(initialHue);
+
+  // Clicking Next steps forward to the second photo in history.
+  await nextButton.click();
+  await expect(prevButton).toBeEnabled();
+  await expect(page.locator('.pretty-calc-photo.is-visible').last()).toHaveAttribute(
+    'data-photo-source',
+    secondSource
+  );
+
+  // Wait for the 6000ms auto-cycle to advance to a third photo.
   await expect
-    .poll(() => page.locator('.pretty-calc-photo.is-visible').last().getAttribute('data-photo-source'))
-    .not.toBe(initialSource);
+    .poll(() => page.locator('.pretty-calc-photo.is-visible').last().getAttribute('data-photo-source'), {
+      timeout: 8000,
+    })
+    .not.toBe(secondSource);
 
   await page.evaluate(() => window.SiteSkins.preview('portfolio-dark'));
   await expect(page.locator('.pretty-calc-stage, .pretty-calc-controls, .pretty-calc-credit')).toHaveCount(0);

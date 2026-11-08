@@ -69,7 +69,8 @@ test('Pretty Calc is accessible on desktop and mobile', async ({ page }) => {
     await page.setViewportSize(viewport);
     await openSitePage(page, '/index.html?theme=pretty-calc');
     await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'pretty-calc');
-    await expect(page.locator('.pretty-calc-dice')).toBeVisible();
+    await expect(page.locator('.pretty-calc-prev')).toBeVisible();
+    await expect(page.locator('.pretty-calc-next')).toBeVisible();
     await expectNoImportantViolations(page);
   }
 });
