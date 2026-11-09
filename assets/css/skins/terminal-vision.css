@@ -156,7 +156,6 @@ html[data-skin="terminal-vision"] .page-hero::before {
 	background: radial-gradient(circle, rgba(157, 255, 176, 0.88) 0 1px, transparent 1.5px);
 	background-size: 18px 18px;
 	opacity: 0.13;
-	animation: terminal-drift 12s linear infinite;
 }
 
 html[data-skin="terminal-vision"] .page-hero::after {
@@ -175,14 +174,9 @@ html[data-skin="terminal-vision"] .page-hero::after {
 	animation: terminal-pulse 2s ease-in-out infinite alternate;
 }
 
-@keyframes terminal-drift {
-	to { background-position: 90px 180px; }
-}
-
 @keyframes terminal-pulse {
 	to {
 		transform: scale(1.3);
-		border-radius: 20%;
 	}
 }
 

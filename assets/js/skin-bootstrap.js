@@ -623,42 +623,14 @@
 			waitForStylesheet(skin.id).then(nextSkin);
 		}
 
-		function warmPageImages() {
-			var img = pageImages.shift();
-			if (!img) {
-				nextSkin();
-				return;
-			}
+		Promise.all(pageImages.map(function(img) {
 			img.loading = 'eager';
 			img.decoding = 'sync';
-			if (img.complete) {
-				if (typeof img.decode === 'function') {
-					img.decode().catch(function() {}).then(warmPageImages);
-				} else {
-					warmPageImages();
-				}
-				return;
+			if (typeof img.decode === 'function') {
+				return img.decode().catch(function() {});
 			}
-			var done = false;
-			function finish() {
-				if (done) {
-					return;
-				}
-				done = true;
-				img.removeEventListener('load', finish);
-				img.removeEventListener('error', finish);
-				if (typeof img.decode === 'function') {
-					img.decode().catch(function() {}).then(warmPageImages);
-				} else {
-					warmPageImages();
-				}
-			}
-			img.addEventListener('load', finish);
-			img.addEventListener('error', finish);
-			window.setTimeout(finish, 800);
-		}
-
-		warmPageImages();
+			return Promise.resolve();
+		})).then(nextSkin);
 	}
 
 	if (document.readyState === 'complete') {

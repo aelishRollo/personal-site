@@ -59,7 +59,7 @@ html[data-skin="ms-dos-prompt"] .site-shell {
 	margin-inline: auto !important;
 }
 
-html[data-skin="ms-dos-prompt"] :is(body.page-fridge .site-main .site-shell, body.page-fridge .page-section .site-shell) {
+html[data-skin="ms-dos-prompt"] :is(body.page-fridge .site-main .site-shell, body.page-fridge .page-section .site-shell, body.page-favorites .favorites-section > .site-shell) {
 	width: min(1360px, calc(100% - 2rem)) !important;
 	max-width: none !important;
 	margin-inline: auto !important;
@@ -890,13 +890,13 @@ html[data-skin="ms-dos-prompt"] .favorites-index h2 {
 html[data-skin="ms-dos-prompt"] .favorites-index h2::before { content: "C:\\FAVORITES> DIR /W /O:N \2014  "; color: #55ffff; }
 
 html[data-skin="ms-dos-prompt"] .favorites-index-list {
-	columns: 2;
-	column-gap: 2.5rem;
+	columns: 3;
+	column-gap: 2.25rem;
 	margin: 0;
 	padding-left: 1.75rem;
 }
 
-html[data-skin="ms-dos-prompt"] .favorites-index-list li { margin-bottom: 0.4rem; color: #ffff55 !important; }
+html[data-skin="ms-dos-prompt"] .favorites-index-list li { margin-bottom: 0.3rem; color: #ffff55 !important; }
 
 html[data-skin="ms-dos-prompt"] .favorites-index-list a {
 	display: inline-block;
@@ -909,8 +909,14 @@ html[data-skin="ms-dos-prompt"] :is(.favorites-index-list a:hover, .favorites-in
 
 html[data-skin="ms-dos-prompt"] .favorites-grid {
 	display: grid !important;
-	grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-	gap: 1.65rem !important;
+	grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+	gap: 1.15rem !important;
+}
+
+@media screen and (min-width: 1180px) {
+	html[data-skin="ms-dos-prompt"] .favorites-grid {
+		grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+	}
 }
 
 html[data-skin="ms-dos-prompt"] .favorite-card {
@@ -1356,6 +1362,14 @@ html[data-skin-id="ms-dos-prompt"] .skin-contact-charm:hover::after { color: #00
 @media (max-width: 980px) {
 	html[data-skin="ms-dos-prompt"] :is(.hero-copy, .hero-grid--with-portrait, .quest-grid, .features--showcase .featured-project, .contact-layout, .contact-hero .contact-layout) {
 		grid-template-columns: 1fr !important;
+	}
+
+	html[data-skin="ms-dos-prompt"] .favorites-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+	}
+
+	html[data-skin="ms-dos-prompt"] .favorites-index-list {
+		columns: 2;
 	}
 
 	html[data-skin="ms-dos-prompt"] .hero-copy .hero-media {

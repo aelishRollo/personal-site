@@ -269,7 +269,6 @@ html[data-skin="acid-editorial"] .hero-title-role {
 	-webkit-background-clip: text;
 	color: transparent !important;
 	-webkit-text-fill-color: transparent;
-	animation: acid-gradient-shift 5s linear infinite;
 }
 
 html[data-skin="acid-editorial"] .hero-title-initial {

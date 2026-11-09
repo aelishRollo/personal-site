@@ -186,9 +186,7 @@ html[data-skin="liquid-dream"] .page-hero::after {
 
 @keyframes liquid-dream-morph {
 	to {
-		border-radius: 62% 38% 35% 65% / 40% 65% 35% 60%;
 		transform: rotate(10deg) scale(1.06);
-		filter: hue-rotate(35deg) saturate(1.12) blur(1px);
 	}
 }
 

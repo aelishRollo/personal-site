@@ -36,19 +36,15 @@ html[data-skin="forties-field-notes"] {
 	--field-paper:
 		linear-gradient(90deg, transparent 0 4.2rem, rgba(145, 55, 50, 0.2) 4.2rem 4.28rem, transparent 4.28rem),
 		repeating-linear-gradient(0deg, transparent 0 1.72rem, rgba(70, 91, 103, 0.12) 1.72rem 1.78rem),
-		radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.42), transparent 23rem),
-		linear-gradient(rgba(238, 227, 197, 0.82), rgba(238, 227, 197, 0.82)),
-		var(--field-paper-photo) center / 500px 500px repeat;
-	--field-grain:
-		repeating-linear-gradient(93deg, rgba(52, 40, 28, 0.018) 0 1px, transparent 1px 5px),
-		repeating-linear-gradient(7deg, rgba(52, 40, 28, 0.014) 0 1px, transparent 1px 8px);
+		linear-gradient(#eee3c5, #e6d7b1);
+	--field-grain: linear-gradient(180deg, rgba(52, 40, 28, 0.02), rgba(52, 40, 28, 0.02));
 	overflow-x: clip;
 }
 
 html[data-skin="forties-field-notes"] body {
 	background:
-		linear-gradient(rgba(45, 31, 20, 0.2), rgba(45, 31, 20, 0.42)),
-		var(--field-desk-photo) center top / max(100vw, 64rem) auto repeat-y scroll !important;
+		linear-gradient(rgba(45, 31, 20, 0.24), rgba(45, 31, 20, 0.42)),
+		var(--field-desk-photo) center top / 1024px auto repeat !important;
 	color: #29251f !important;
 	font-family: "Courier New", Courier, monospace !important;
 	overflow-x: clip;

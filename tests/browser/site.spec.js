@@ -636,6 +636,27 @@ test('keeps root scrolling, upfront paint, and eager image decoding across skins
       expect(img.complete, `${pagePath} ${img.src} should be loaded before scrolling`).toBe(true);
       expect(img.naturalWidth, `${pagePath} ${img.src} should be decoded before scrolling`).toBeGreaterThan(0);
     }
+
+    if (pagePath === '/favorites.html') {
+      const favoritesReadiness = await page.evaluate(() => ({
+        scrollHeight: document.documentElement.scrollHeight,
+        canvases: Array.from(document.querySelectorAll('.favorite-media')).map((media) => {
+          const canvas = media.querySelector('canvas.favorite-media-canvas');
+          return {
+            hasCanvas: Boolean(canvas),
+            width: canvas ? canvas.width : 0,
+            height: canvas ? canvas.height : 0,
+          };
+        }),
+      }));
+      expect(favoritesReadiness.scrollHeight).toBeLessThan(4900);
+      expect(favoritesReadiness.canvases.length).toBe(19);
+      for (const canvas of favoritesReadiness.canvases) {
+        expect(canvas.hasCanvas).toBe(true);
+        expect(canvas.width).toBeGreaterThan(0);
+        expect(canvas.height).toBeGreaterThan(0);
+      }
+    }
   }
 });
 
