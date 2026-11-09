@@ -657,6 +657,16 @@ test('keeps root scrolling, upfront paint, and eager image decoding across skins
 
       await page.locator('[data-favorites-view-choice="compact"]').click();
       await expect(page.locator('body')).toHaveAttribute('data-favorites-view', 'compact');
+      await expect(page.locator('#favorites-fixed-bg')).toHaveCount(1);
+
+      const parkedWithinRetinaBudget = await page.evaluate(() => {
+        const vh = window.innerHeight;
+        return Array.from(document.querySelectorAll('.favorite-card')).every((card) => {
+          const rect = card.getBoundingClientRect();
+          return rect.top >= -1560 && rect.bottom <= vh + 1560;
+        });
+      });
+      expect(parkedWithinRetinaBudget).toBe(true);
     }
   }
 });

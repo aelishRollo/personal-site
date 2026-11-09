@@ -610,7 +610,6 @@
 			var resource = assetQueue.shift();
 			if (!resource) {
 				loadPrettyCalc(false);
-				root.setAttribute('data-skins-prepared', '');
 				document.dispatchEvent(new CustomEvent('site-skins-prepared'));
 				return;
 			}

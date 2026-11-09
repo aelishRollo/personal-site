@@ -122,7 +122,9 @@
 			var idx = typeof saved.index === 'number' ? saved.index : restored.length - 1;
 			historyIndex = Math.max(0, Math.min(restored.length - 1, idx));
 			current = history[historyIndex].photo;
-			applyPalette(history[historyIndex].palette);
+			if (isActive()) {
+				applyPalette(history[historyIndex].palette);
+			}
 		} catch (error) {
 			// Ignore malformed sessionStorage state.
 		}
