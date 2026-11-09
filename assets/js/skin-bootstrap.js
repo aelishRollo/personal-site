@@ -467,6 +467,7 @@
 				activeTransition.skipTransition();
 			}
 			activeTransition = null;
+			root.removeAttribute('data-skin-transitioning');
 			waitForStylesheet(id).then(function() {
 				if (request === transitionRequest) {
 					applyNow(id, activeMode);
@@ -485,6 +486,7 @@
 			}
 
 			activeTransition = null;
+			root.removeAttribute('data-skin-transitioning');
 			waitForStylesheet(id).then(function() {
 				if (request === transitionRequest) {
 					applyNow(id, activeMode);
@@ -497,6 +499,7 @@
 		if (useLightweightSnapshot) {
 			root.setAttribute('data-skin-transition-lite', '');
 		}
+		root.setAttribute('data-skin-transitioning', '');
 
 		activeTransition = document.startViewTransition(function() {
 			return waitForStylesheet(id).then(function() {
@@ -523,11 +526,13 @@
 			clearLightweightSnapshot();
 			if (activeTransition === transition) {
 				activeTransition = null;
+				root.removeAttribute('data-skin-transitioning');
 			}
 		}, function() {
 			clearLightweightSnapshot();
 			if (activeTransition === transition) {
 				activeTransition = null;
+				root.removeAttribute('data-skin-transitioning');
 			}
 		});
 
@@ -597,38 +602,12 @@
 			});
 		});
 
-		var lazyImages = Array.prototype.slice.call(document.querySelectorAll('img[loading="lazy"]'));
-
-		function nextLazyImage() {
-			var img = lazyImages.shift();
-			if (!img) {
-				loadPrettyCalc(false);
-				return;
-			}
-			if (img.complete) {
-				nextLazyImage();
-				return;
-			}
-			var done = false;
-			function finish() {
-				if (done) {
-					return;
-				}
-				done = true;
-				img.removeEventListener('load', finish);
-				img.removeEventListener('error', finish);
-				nextLazyImage();
-			}
-			img.addEventListener('load', finish);
-			img.addEventListener('error', finish);
-			window.setTimeout(finish, 800);
-			img.loading = 'eager';
-		}
+		var pageImages = Array.prototype.slice.call(document.querySelectorAll('img'));
 
 		function nextAsset() {
 			var resource = assetQueue.shift();
 			if (!resource) {
-				nextLazyImage();
+				loadPrettyCalc(false);
 				return;
 			}
 			preloadAsset(resource).then(nextAsset);
@@ -644,7 +623,42 @@
 			waitForStylesheet(skin.id).then(nextSkin);
 		}
 
-		nextSkin();
+		function warmPageImages() {
+			var img = pageImages.shift();
+			if (!img) {
+				nextSkin();
+				return;
+			}
+			img.loading = 'eager';
+			img.decoding = 'sync';
+			if (img.complete) {
+				if (typeof img.decode === 'function') {
+					img.decode().catch(function() {}).then(warmPageImages);
+				} else {
+					warmPageImages();
+				}
+				return;
+			}
+			var done = false;
+			function finish() {
+				if (done) {
+					return;
+				}
+				done = true;
+				img.removeEventListener('load', finish);
+				img.removeEventListener('error', finish);
+				if (typeof img.decode === 'function') {
+					img.decode().catch(function() {}).then(warmPageImages);
+				} else {
+					warmPageImages();
+				}
+			}
+			img.addEventListener('load', finish);
+			img.addEventListener('error', finish);
+			window.setTimeout(finish, 800);
+		}
+
+		warmPageImages();
 	}
 
 	if (document.readyState === 'complete') {

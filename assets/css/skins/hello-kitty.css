@@ -44,7 +44,7 @@ html[data-skin="hello-kitty"] body {
 	background-size: 28px 28px, 24px 24px, 24px 24px;
 	color: var(--kitty-ink) !important;
 	font-family: "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif !important;
-	overflow-x: hidden;
+	overflow-x: clip;
 }
 
 html[data-skin="hello-kitty"] body,

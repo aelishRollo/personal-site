@@ -39,12 +39,11 @@ html[data-skin="oracular-tarot"] body {
 		radial-gradient(circle at 77% 31%, rgba(239, 213, 138, 0.5) 0 1px, transparent 1.35px),
 		radial-gradient(circle at 48% 78%, rgba(123, 91, 234, 0.4) 0 1px, transparent 1.5px),
 		linear-gradient(145deg, #090713 0%, #100a1d 48%, #07050f 100%) !important;
-	background-attachment: fixed;
 	background-position: 0 0, 13px 17px, 7px 29px, 0 0;
 	background-size: 41px 41px, 67px 67px, 89px 89px, auto;
 	color: var(--oracle-cream) !important;
 	font-family: Georgia, "Times New Roman", serif !important;
-	overflow-x: hidden;
+	overflow-x: clip;
 }
 
 html[data-skin="oracular-tarot"] body,
@@ -82,8 +81,8 @@ html[data-skin="oracular-tarot"] .site-header {
 	border-bottom: 1px solid rgba(239, 213, 138, 0.42) !important;
 	background: rgba(9, 7, 19, 0.94) !important;
 	box-shadow: 0 10px 34px rgba(0, 0, 0, 0.36) !important;
-	-webkit-backdrop-filter: blur(12px);
-	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: none !important;
+	backdrop-filter: none !important;
 }
 
 html[data-skin="oracular-tarot"] .brand-mark {

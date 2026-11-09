@@ -38,7 +38,7 @@ html[data-skin="browser-archaeology"] body {
 	background: #008080 !important;
 	color: #000000 !important;
 	font-family: "Times New Roman", Times, serif !important;
-	overflow-x: hidden;
+	overflow-x: clip;
 }
 
 html[data-skin="browser-archaeology"] body,

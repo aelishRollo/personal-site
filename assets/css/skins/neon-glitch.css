@@ -82,7 +82,7 @@ html[data-skin="neon-glitch"] a:hover {
 html[data-skin="neon-glitch"] .site-header {
 	border-bottom: 1px solid var(--border) !important;
 	background: rgba(5, 5, 9, 0.88) !important;
-	backdrop-filter: blur(12px);
+	backdrop-filter: none !important;
 }
 
 html[data-skin="neon-glitch"] .brand-mark {

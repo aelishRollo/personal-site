@@ -38,15 +38,7 @@ html[data-skin="ms-dos-prompt"] {
 
 html[data-skin="ms-dos-prompt"] body {
 	position: relative;
-	background-color: #05070e !important;
-	background-image:
-		repeating-linear-gradient(
-			0deg,
-			rgba(255, 255, 255, 0.025) 0 1px,
-			transparent 1px 3px
-		),
-		radial-gradient(rgba(85, 255, 255, 0.08) 1px, transparent 1px) !important;
-	background-size: 100% 3px, 16px 16px !important;
+	background: #05070e !important;
 	color: #cccccc !important;
 	font-family: var(--dos-font) !important;
 	font-size: 16px;
@@ -54,8 +46,7 @@ html[data-skin="ms-dos-prompt"] body {
 	font-synthesis: none;
 	line-height: 1.5;
 	letter-spacing: 0;
-	text-rendering: geometricPrecision;
-	overflow-x: hidden;
+	overflow-x: clip;
 }
 
 html[data-skin="ms-dos-prompt"] body::before,
@@ -399,6 +390,7 @@ html[data-skin="ms-dos-prompt"] .page-hero h1::after {
 	margin-left: 0.2em;
 	background: #ffff55;
 	vertical-align: -0.1em;
+	will-change: opacity;
 	animation: msdos-cursor 1s steps(2, end) infinite;
 }
 

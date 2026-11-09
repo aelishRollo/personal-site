@@ -89,7 +89,7 @@ html[data-skin="terminal-vision"] a:hover {
 html[data-skin="terminal-vision"] .site-header {
 	border-bottom: 1px solid var(--border) !important;
 	background: var(--header-bg) !important;
-	backdrop-filter: blur(7px);
+	backdrop-filter: none !important;
 }
 
 html[data-skin="terminal-vision"] .brand-mark {

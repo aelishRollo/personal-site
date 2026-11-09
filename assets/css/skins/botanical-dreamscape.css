@@ -45,7 +45,7 @@ html[data-skin="botanical-dreamscape"] body {
 	background-size: auto, auto, 180px 180px, auto !important;
 	color: #f5edcf !important;
 	font-family: Georgia, "Times New Roman", serif !important;
-	overflow-x: hidden;
+	overflow-x: clip;
 }
 
 html[data-skin="botanical-dreamscape"] body,
@@ -306,7 +306,6 @@ html[data-skin="botanical-dreamscape"] .profile-chip {
 		#1c493a !important;
 	box-shadow: 0 20px 42px rgba(5, 25, 18, 0.24) !important;
 	color: #f5edcf !important;
-	contain: paint;
 	transition: transform 220ms ease, box-shadow 220ms ease;
 }
 

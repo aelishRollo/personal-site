@@ -35,7 +35,7 @@ html[data-skin="liquid-dream"] {
 
 html[data-skin="liquid-dream"] body {
 	position: relative;
-	overflow-x: hidden;
+	overflow-x: clip;
 	background-color: var(--background) !important;
 	background-image:
 		radial-gradient(circle at 8% 15%, rgba(255, 228, 108, 0.23), transparent 26%),
@@ -83,7 +83,7 @@ html[data-skin="liquid-dream"] a:hover {
 html[data-skin="liquid-dream"] .site-header {
 	border-bottom: 1px solid rgba(32, 25, 40, 0.15) !important;
 	background: rgba(248, 241, 231, 0.85) !important;
-	backdrop-filter: blur(14px);
+	backdrop-filter: none !important;
 }
 
 html[data-skin="liquid-dream"] .brand-mark {

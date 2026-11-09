@@ -51,7 +51,7 @@ html[data-skin="forties-field-notes"] body {
 		var(--field-desk-photo) center top / max(100vw, 64rem) auto repeat-y scroll !important;
 	color: #29251f !important;
 	font-family: "Courier New", Courier, monospace !important;
-	overflow-x: hidden;
+	overflow-x: clip;
 }
 
 html[data-skin="forties-field-notes"] body,

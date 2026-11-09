@@ -45,7 +45,7 @@ html[data-skin="crystal-prism"] body {
 	background-size: 100% 82rem, 100% 64rem, auto, auto !important;
 	color: var(--foreground) !important;
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
-	overflow-x: hidden;
+	overflow-x: clip;
 }
 
 html[data-skin="crystal-prism"] body,
@@ -87,7 +87,7 @@ html[data-skin="crystal-prism"] .site-header {
 	border-bottom: 3px solid var(--border) !important;
 	background: var(--header-bg) !important;
 	box-shadow: 0 5px 0 var(--primary), 0 9px 0 rgba(255, 60, 172, 0.72) !important;
-	backdrop-filter: blur(12px) saturate(160%) !important;
+	backdrop-filter: none !important;
 }
 
 html[data-skin="crystal-prism"] .brand-mark {
@@ -294,7 +294,6 @@ html[data-skin="crystal-prism"] .profile-chip {
 		linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(228, 248, 255, 0.9) 58%, rgba(246, 232, 255, 0.9)) !important;
 	box-shadow: 10px 10px 0 var(--primary), -5px -5px 0 rgba(255, 60, 172, 0.82) !important;
 	color: var(--foreground) !important;
-	contain: paint;
 	transition: transform 180ms ease, box-shadow 180ms ease;
 }
 

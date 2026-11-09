@@ -1,5 +1,10 @@
 /* Runtime skin picker. Source-skin rules live in assets/css/skins/. */
 
+html[data-skin],
+html[data-skin] body {
+	overflow-x: clip;
+}
+
 html[data-skin-loading] body {
 	visibility: hidden;
 }
@@ -1134,6 +1139,26 @@ html[data-skin-id="forties-field-notes"] .skin-contact-charm:hover::before {
 /* Keep the live controls interactive while transition snapshots animate above them. */
 ::view-transition {
 	pointer-events: none;
+}
+
+html[data-skin-transitioning]:not([data-skin-transition-lite]) .site-header {
+	view-transition-name: skin-header;
+}
+
+html[data-skin-transitioning]:not([data-skin-transition-lite]) .page-hero {
+	view-transition-name: skin-hero;
+}
+
+html[data-skin-transitioning]:not([data-skin-transition-lite]) .site-footer {
+	view-transition-name: skin-footer;
+}
+
+html[data-skin-transitioning]:not([data-skin-transition-lite]) .skin-contact-charm {
+	view-transition-name: skin-contact-charm;
+}
+
+html[data-skin-transitioning]:not([data-skin-transition-lite]) .skin-picker {
+	view-transition-name: skin-picker;
 }
 
 /*

@@ -39,7 +39,7 @@ html[data-skin="type-sculpture"] body {
 	background: #09090d !important;
 	color: #ffffff !important;
 	font-family: Arial, Helvetica, sans-serif !important;
-	overflow-x: hidden;
+	overflow-x: clip;
 }
 
 html[data-skin="type-sculpture"] body,
@@ -81,7 +81,7 @@ html[data-skin="type-sculpture"] .site-header {
 	border-bottom: 1px solid #30303a !important;
 	background: rgba(9, 9, 13, 0.96) !important;
 	box-shadow: none !important;
-	backdrop-filter: blur(12px);
+	backdrop-filter: none !important;
 }
 
 html[data-skin="type-sculpture"] .brand-mark {

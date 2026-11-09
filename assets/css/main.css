@@ -4380,7 +4380,6 @@ fridge-poetry-board:not(:defined) {
 	z-index: 10010;
 	border-bottom: 1px solid var(--border);
 	background: var(--header-bg);
-	backdrop-filter: blur(8px);
 }
 
 .site-header .site-shell {
@@ -5361,7 +5360,6 @@ a:hover {
 .site-header {
 	border-bottom: 1px solid var(--line-1);
 	background: var(--header-bg);
-	backdrop-filter: blur(10px);
 }
 
 .brand-mark {

@@ -580,6 +580,65 @@ test('MS-DOS Prompt renders multi-column TUI panes on desktop and stacks cleanly
   expect(mobileOverflow).toBeLessThanOrEqual(0);
 });
 
+test('keeps root scrolling, upfront paint, and eager image decoding across skins and pages', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await openSitePage(page, '/index.html?theme=portfolio-dark');
+
+  const skinIds = await page.evaluate(() => window.SiteSkins.all.map((skin) => skin.id));
+  for (const id of skinIds) {
+    const metrics = await page.evaluate(async (skinId) => {
+      window.SiteSkins.preview(skinId);
+      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      const link = document.getElementById('active-skin-stylesheet');
+      if (link && !link.sheet) {
+        await new Promise((resolve) => {
+          link.addEventListener('load', resolve, { once: true });
+          link.addEventListener('error', resolve, { once: true });
+          setTimeout(resolve, 1000);
+        });
+      }
+      const bodyStyle = window.getComputedStyle(document.body);
+      const headerStyle = window.getComputedStyle(document.querySelector('.site-header'));
+      const cardStyle = window.getComputedStyle(document.querySelector('.panel-card'));
+      return {
+        skinId,
+        bodyOverflowY: bodyStyle.overflowY,
+        bodyBgAttachment: bodyStyle.backgroundAttachment,
+        headerBackdropFilter: headerStyle.backdropFilter || headerStyle.webkitBackdropFilter || 'none',
+        cardContain: cardStyle.contain,
+        cardContentVisibility: cardStyle.contentVisibility,
+      };
+    }, id);
+
+    expect(metrics.bodyOverflowY, `${id} should keep root scrolling on html`).toBe('visible');
+    expect(metrics.bodyBgAttachment, `${id} should avoid fixed body backgrounds`).not.toContain('fixed');
+    expect(metrics.headerBackdropFilter, `${id} should avoid sticky header backdrop blur`).toBe('none');
+    expect(metrics.cardContain, `${id} should not defer off-screen card paint`).not.toContain('paint');
+    expect(metrics.cardContentVisibility, `${id} should not defer off-screen card layout`).not.toBe('auto');
+  }
+
+  for (const pagePath of ['/index.html', '/work.html', '/favorites.html', '/fridge-poetry.html', '/thanks.html']) {
+    await page.goto(`${pagePath}?theme=ms-dos-prompt`, { waitUntil: 'load' });
+    const images = await page.evaluate(() =>
+      Array.from(document.querySelectorAll('main img')).map((img) => ({
+        src: img.getAttribute('src'),
+        loading: img.loading,
+        decoding: img.decoding,
+        complete: img.complete,
+        naturalWidth: img.naturalWidth,
+      }))
+    );
+
+    expect(images.length).toBeGreaterThan(0);
+    for (const img of images) {
+      expect(img.loading, `${pagePath} ${img.src} should load eagerly`).toBe('eager');
+      expect(img.decoding, `${pagePath} ${img.src} should decode synchronously`).toBe('sync');
+      expect(img.complete, `${pagePath} ${img.src} should be loaded before scrolling`).toBe(true);
+      expect(img.naturalWidth, `${pagePath} ${img.src} should be decoded before scrolling`).toBeGreaterThan(0);
+    }
+  }
+});
+
 test('fridge board reserves its layout before the component upgrades', async ({ page }) => {
   await page.route('**/assets/js/fridge-poetry.js*', (route) => route.abort('blockedbyclient'));
   await page.goto('/fridge-poetry.html?theme=portfolio-dark', { waitUntil: 'domcontentloaded' });
