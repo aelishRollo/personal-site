@@ -402,6 +402,8 @@
 		}
 
 		activateStylesheet(skin);
+		preloadAssets(sharedAssets);
+		preloadAssets(assetsBySkin[id] || []);
 		appliedId = id;
 
 		if (id === 'pretty-calc' && previousAppliedId !== id) {
@@ -608,6 +610,8 @@
 			var resource = assetQueue.shift();
 			if (!resource) {
 				loadPrettyCalc(false);
+				root.setAttribute('data-skins-prepared', '');
+				document.dispatchEvent(new CustomEvent('site-skins-prepared'));
 				return;
 			}
 			preloadAsset(resource).then(nextAsset);

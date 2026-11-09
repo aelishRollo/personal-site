@@ -523,8 +523,8 @@ html[data-skin="oracular-tarot"] .skin-picker-current {
 }
 
 @keyframes oracular-tarot-pulse {
-	from { color: var(--oracle-pink); transform: translate(50%, -50%) rotate(0deg) scale(0.84); }
-	to { color: var(--oracle-gold); transform: translate(50%, -50%) rotate(35deg) scale(1); }
+	from { transform: translate(50%, -50%) rotate(0deg) scale(0.84); }
+	to { transform: translate(50%, -50%) rotate(35deg) scale(1); }
 }
 
 @media (min-width: 900px) {

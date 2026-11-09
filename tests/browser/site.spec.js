@@ -638,24 +638,25 @@ test('keeps root scrolling, upfront paint, and eager image decoding across skins
     }
 
     if (pagePath === '/favorites.html') {
-      const favoritesReadiness = await page.evaluate(() => ({
-        scrollHeight: document.documentElement.scrollHeight,
-        canvases: Array.from(document.querySelectorAll('.favorite-media')).map((media) => {
-          const canvas = media.querySelector('canvas.favorite-media-canvas');
-          return {
-            hasCanvas: Boolean(canvas),
-            width: canvas ? canvas.width : 0,
-            height: canvas ? canvas.height : 0,
-          };
-        }),
-      }));
-      expect(favoritesReadiness.scrollHeight).toBeLessThan(4900);
-      expect(favoritesReadiness.canvases.length).toBe(19);
-      for (const canvas of favoritesReadiness.canvases) {
-        expect(canvas.hasCanvas).toBe(true);
-        expect(canvas.width).toBeGreaterThan(0);
-        expect(canvas.height).toBeGreaterThan(0);
-      }
+      await expect(page.locator('body')).toHaveAttribute('data-favorites-view', 'compact');
+      await expect(page.locator('[data-favorites-view-choice="compact"]')).toHaveAttribute(
+        'aria-pressed',
+        'true'
+      );
+      const compactHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+      expect(compactHeight).toBeLessThan(3800);
+
+      await page.locator('[data-favorites-view-choice="two-column"]').click();
+      await expect(page.locator('body')).toHaveAttribute('data-favorites-view', 'two-column');
+      await expect(page.locator('[data-favorites-view-choice="two-column"]')).toHaveAttribute(
+        'aria-pressed',
+        'true'
+      );
+      const twoColumnHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+      expect(twoColumnHeight).toBeLessThan(3800);
+
+      await page.locator('[data-favorites-view-choice="compact"]').click();
+      await expect(page.locator('body')).toHaveAttribute('data-favorites-view', 'compact');
     }
   }
 });

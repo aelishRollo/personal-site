@@ -13,7 +13,7 @@
 		<!-- shared:head-assets:end -->
 		<link rel="stylesheet" href="assets/css/favorites.css" />
 	</head>
-	<body class="is-preload page-favorites" id="page-top">
+	<body class="is-preload page-favorites" id="page-top" data-favorites-view="compact">
 		<!-- shared:header:start -->
 		<header class="site-header" role="banner">
 			<div class="site-shell">
@@ -45,6 +45,13 @@
 				</section>
 				<section class="page-section favorites-section" id="the-list" aria-label="A Few Of My Favorite Things">
 					<div class="site-shell">
+						<div class="favorites-toolbar">
+							<span class="favorites-toolbar-label" id="favorites-view-label">Layout</span>
+							<div class="favorites-view-switch" role="group" aria-labelledby="favorites-view-label">
+								<button type="button" class="favorites-view-button" data-favorites-view-choice="compact" aria-pressed="true">Compact grid</button>
+								<button type="button" class="favorites-view-button" data-favorites-view-choice="two-column" aria-pressed="false">Two-column</button>
+							</div>
+						</div>
 						<nav class="favorites-index" aria-labelledby="favorites-contents-title">
 							<h2 id="favorites-contents-title">Contents</h2>
 							<ol class="favorites-index-list">

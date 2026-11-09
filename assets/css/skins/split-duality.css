@@ -538,7 +538,7 @@ html[data-skin="split-duality"] body.page-home .page-hero h1,
 html[data-skin="split-duality"] .page-hero h1 .hero-title-role,
 html[data-skin="split-duality"] .page-hero h1 .hero-title-initial,
 html[data-skin="split-duality"] .page-hero h1 .metallic-pearl-text {
-	background: var(--split-ink) fixed !important;
+	background: var(--split-ink) !important;
 	background-clip: text !important;
 	-webkit-background-clip: text !important;
 	color: transparent !important;
@@ -547,7 +547,7 @@ html[data-skin="split-duality"] .page-hero h1 .metallic-pearl-text {
 
 html[data-skin="split-duality"] .page-hero .hero-quests > h2,
 html[data-skin="split-duality"] .site-nav a:not([aria-current="page"]):not(.nav-cta) {
-	background: var(--split-ink) fixed !important;
+	background: var(--split-ink) !important;
 	background-clip: text !important;
 	-webkit-background-clip: text !important;
 	color: transparent !important;

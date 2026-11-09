@@ -616,34 +616,34 @@ html[data-skin="hyperspace"] .skin-picker-toggle-label {
 @keyframes hyperspace-deep-orbit {
 	0% {
 		opacity: 0.38;
-		transform: translate3d(-50%, -50%, 0) rotate(0deg) scaleX(1) scaleY(0.94);
+		transform: translate3d(-50%, -50%, 0) rotate(0deg);
 	}
 	33% {
 		opacity: 0.53;
-		transform: translate3d(-50%, -50%, 0) rotate(120deg) scaleX(1.07) scaleY(0.9);
+		transform: translate3d(-50%, -50%, 0) rotate(120deg);
 	}
 	66% {
 		opacity: 0.45;
-		transform: translate3d(-50%, -50%, 0) rotate(240deg) scaleX(0.92) scaleY(1.06);
+		transform: translate3d(-50%, -50%, 0) rotate(240deg);
 	}
 	100% {
 		opacity: 0.38;
-		transform: translate3d(-50%, -50%, 0) rotate(360deg) scaleX(1) scaleY(0.94);
+		transform: translate3d(-50%, -50%, 0) rotate(360deg);
 	}
 }
 
 @keyframes hyperspace-near-orbit {
 	0% {
 		opacity: 0.24;
-		transform: translate3d(-50%, -50%, 0) rotate(0deg) scaleX(0.9) scaleY(1.08);
+		transform: translate3d(-50%, -50%, 0) rotate(0deg);
 	}
 	50% {
 		opacity: 0.48;
-		transform: translate3d(-50%, -50%, 0) rotate(180deg) scaleX(1.08) scaleY(0.9);
+		transform: translate3d(-50%, -50%, 0) rotate(180deg);
 	}
 	100% {
 		opacity: 0.24;
-		transform: translate3d(-50%, -50%, 0) rotate(360deg) scaleX(0.9) scaleY(1.08);
+		transform: translate3d(-50%, -50%, 0) rotate(360deg);
 	}
 }
 
