@@ -520,6 +520,66 @@ test('Photo Carousel preloads photos upon site load, shows one immediately on vi
   await expect(page.locator('.pretty-calc-stage, .pretty-calc-controls, .pretty-calc-credit')).toHaveCount(0);
 });
 
+test('MS-DOS Prompt renders multi-column TUI panes on desktop and stacks cleanly on mobile', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 860 });
+  await openSitePage(page, '/index.html?theme=ms-dos-prompt');
+
+  const homeLayout = await page.evaluate(() => {
+    const shell = document.querySelector('.page-hero > .site-shell').getBoundingClientRect();
+    const h1 = document.querySelector('.page-hero h1').getBoundingClientRect();
+    const media = document.querySelector('.hero-copy .hero-media').getBoundingClientRect();
+    const quests = Array.from(document.querySelectorAll('.quest-card')).map((el) =>
+      el.getBoundingClientRect()
+    );
+    return {
+      shellWidth: shell.width,
+      shellLeft: shell.left,
+      shellRightGap: window.innerWidth - shell.right,
+      mediaBesideHeading: media.left >= h1.right - 4,
+      questTops: quests.map((q) => Math.round(q.top)),
+      questLefts: quests.map((q) => Math.round(q.left)),
+      overflow: document.documentElement.scrollWidth - window.innerWidth,
+    };
+  });
+
+  expect(homeLayout.shellWidth).toBeGreaterThan(1000);
+  expect(Math.abs(homeLayout.shellLeft - homeLayout.shellRightGap)).toBeLessThanOrEqual(2);
+  expect(homeLayout.mediaBesideHeading).toBe(true);
+  expect(homeLayout.questTops[0]).toBe(homeLayout.questTops[1]);
+  expect(homeLayout.questTops[1]).toBe(homeLayout.questTops[2]);
+  expect(homeLayout.questLefts[0]).toBeLessThan(homeLayout.questLefts[1]);
+  expect(homeLayout.questLefts[1]).toBeLessThan(homeLayout.questLefts[2]);
+  expect(homeLayout.overflow).toBeLessThanOrEqual(0);
+
+  await openSitePage(page, '/work.html?theme=ms-dos-prompt');
+  const workLayout = await page.evaluate(() => {
+    const featured = document.querySelector('.features--showcase .featured-project');
+    const featuredImage = featured.querySelector('.image').getBoundingClientRect();
+    const featuredInner = featured.querySelector('.inner').getBoundingClientRect();
+    const cards = Array.from(document.querySelectorAll('.features--showcase > article:not(.featured-project)')).map(
+      (el) => el.getBoundingClientRect()
+    );
+    return {
+      featuredImageHeight: featuredImage.height,
+      featuredTwoCol: featuredInner.left >= featuredImage.right - 4,
+      rowAligned: Math.round(cards[0].top) === Math.round(cards[1].top),
+      twoColCards: cards[0].left < cards[1].left,
+    };
+  });
+
+  expect(workLayout.featuredImageHeight).toBeGreaterThan(180);
+  expect(workLayout.featuredTwoCol).toBe(true);
+  expect(workLayout.rowAligned).toBe(true);
+  expect(workLayout.twoColCards).toBe(true);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await openSitePage(page, '/index.html?theme=ms-dos-prompt');
+  const mobileOverflow = await page.evaluate(
+    () => document.documentElement.scrollWidth - window.innerWidth
+  );
+  expect(mobileOverflow).toBeLessThanOrEqual(0);
+});
+
 test('fridge board reserves its layout before the component upgrades', async ({ page }) => {
   await page.route('**/assets/js/fridge-poetry.js*', (route) => route.abort('blockedbyclient'));
   await page.goto('/fridge-poetry.html?theme=portfolio-dark', { waitUntil: 'domcontentloaded' });

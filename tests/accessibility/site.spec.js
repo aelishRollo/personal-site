@@ -75,3 +75,17 @@ test('Photo Carousel is accessible on desktop and mobile', async ({ page }) => {
     await expectNoImportantViolations(page);
   }
 });
+
+test('MS-DOS Prompt is accessible across pages on desktop and mobile', async ({ page }) => {
+  for (const viewport of [
+    { width: 1280, height: 860 },
+    { width: 390, height: 844 },
+  ]) {
+    await page.setViewportSize(viewport);
+    for (const path of ['index.html', 'work.html', 'favorites.html', 'contact.html', 'fridge-poetry.html']) {
+      await openSitePage(page, `/${path}?theme=ms-dos-prompt`);
+      await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'ms-dos-prompt');
+      await expectNoImportantViolations(page);
+    }
+  }
+});
