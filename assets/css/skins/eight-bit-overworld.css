@@ -1,11 +1,15 @@
 /*
 	8-Bit Overworld
 	An artistic Famicom / 8-bit RPG cartridge & twilight overworld theme.
-	Features crisp SVG pixel-art horizon landscapes (shape-rendering="crispEdges"),
-	stepped pixel dialogue frames, a reverse-split Character Sprite Card + 2x2
-	Class Equipment Matrix on Home, an interlocking Bento Quest Map, a 6-column
-	Game Cartridge Rack + 2-column Strategy Guide on Work, and a swapped Command
-	Input Console + Save Point Innkeeper layout on Contact.
+	Built around authentic square-pixel SVG sprites and multi-layer 8-bit
+	overworld dioramas (shape-rendering="crispEdges") with clean typography:
+	- Seamless pixel starfield, crescent moon, and dithered night clouds
+	- Full-width 8-bit overworld stage panorama (mountains, castle keep,
+	  pine forest, floating [?] blocks, coins, hero sprite, campfire & brick turf)
+	- Reverse-split Hero on Home with 16x16 pixel item sprites in a 2x2 role grid
+	- Interlocking Bento Quest Map with pixel-art emblems
+	- 6-Column Game Cartridge Rack (1 + 3 + 2) & 2-Column Manual on Work
+	- Swapped Command Console & Innkeeper layout on Contact
 */
 
 html[data-skin="eight-bit-overworld"] {
@@ -44,8 +48,41 @@ html[data-skin="eight-bit-overworld"] {
 	--pixel-violet: #b589ff;
 	--pixel-display: "Minecraft", "Press Start 2P", "Silkscreen", "VT323", ui-monospace, monospace;
 	--pixel-body: ui-monospace, "Cascadia Mono", "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
-	--pixel-sky-tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 40 40' shape-rendering='crispEdges'%3E%3Crect x='4' y='5' width='1' height='1' fill='%23fff9ec' opacity='.85'/%3E%3Crect x='18' y='3' width='1' height='1' fill='%235ce1e6' opacity='.8'/%3E%3Crect x='33' y='6' width='1' height='3' fill='%23ffd84d'/%3E%3Crect x='32' y='7' width='3' height='1' fill='%23ffd84d'/%3E%3Crect x='11' y='15' width='1' height='1' fill='%23b589ff' opacity='.8'/%3E%3Crect x='26' y='18' width='1' height='1' fill='%23fff9ec' opacity='.7'/%3E%3Crect x='7' y='27' width='1' height='3' fill='%235ce1e6'/%3E%3Crect x='6' y='28' width='3' height='1' fill='%235ce1e6'/%3E%3Crect x='22' y='31' width='1' height='1' fill='%23ffd84d' opacity='.85'/%3E%3Crect x='36' y='29' width='1' height='1' fill='%23ff5c7c' opacity='.8'/%3E%3Crect x='14' y='37' width='1' height='1' fill='%23fff9ec' opacity='.65'/%3E%3C/svg%3E");
-	--pixel-horizon-scene: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 28' preserveAspectRatio='none' shape-rendering='crispEdges'%3E%3Cpath fill='%231b1342' d='M0 20h10v-2h8v-3h8v-3h6v3h8v3h10v-2h8v-4h8v-3h6v-3h6v3h6v3h8v4h10v-3h8v-3h8v3h8v3h10v2h16v8H0z'/%3E%3Cpath fill='%23291e61' d='M18 15h8v-3h6v3h-6v2h-8zm46 0h8v-3h6v-3h6v3h-6v3h-8zm50-1h8v-3h8v3h-8v2h-8z'/%3E%3Cpath fill='%23122a38' d='M0 22h6v-2h4v2h8v-3h4v3h10v-2h4v2h12v-3h4v3h14v-2h4v2h18v-3h4v3h12v-2h4v2h16v-3h4v3h12v-2h4v2h16v6H0z'/%3E%3Crect x='118' y='14' width='6' height='8' fill='%23261b5c'/%3E%3Crect x='117' y='12' width='8' height='2' fill='%23ff5c7c'/%3E%3Crect x='119' y='10' width='4' height='2' fill='%23ff5c7c'/%3E%3Crect x='120' y='16' width='2' height='2' fill='%23ffd84d'/%3E%3Crect x='0' y='24' width='160' height='2' fill='%2338ef7d'/%3E%3Cpath fill='%231b4d3e' d='M4 25h4v1H4zm12 0h6v1h-6zm16 0h4v1h-4zm14 0h6v1h-6zm18 0h4v1h-4zm16 0h6v1h-6zm16 0h4v1h-4zm16 0h6v1h-6zm18 0h4v1h-4zm14 0h6v1h-6z'/%3E%3Crect x='0' y='26' width='160' height='2' fill='%23281d60'/%3E%3C/svg%3E");
+
+	/* 1. Seamless 8-Bit Night Sky Tile (120x60 grid -> rendered at 480x240px = 4px square pixels):
+	   Features pixel crescent moon, stepped night clouds, and cross-shaped twinkling stars */
+	--pixel-sky-scene: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='240' viewBox='0 0 120 60' shape-rendering='crispEdges'%3E%3Cg fill='%23fff9ec'%3E%3Crect x='8' y='7' width='1' height='1'/%3E%3Crect x='34' y='14' width='1' height='1'/%3E%3Crect x='67' y='6' width='1' height='1'/%3E%3Crect x='52' y='28' width='1' height='1'/%3E%3Crect x='19' y='44' width='1' height='1'/%3E%3Crect x='83' y='38' width='1' height='1'/%3E%3Crect x='110' y='48' width='1' height='1'/%3E%3C/g%3E%3Cg fill='%23ffd84d'%3E%3Crect x='22' y='9' width='1' height='3'/%3E%3Crect x='21' y='10' width='3' height='1'/%3E%3Crect x='76' y='21' width='1' height='3'/%3E%3Crect x='75' y='22' width='3' height='1'/%3E%3Crect x='43' y='49' width='1' height='3'/%3E%3Crect x='42' y='50' width='3' height='1'/%3E%3C/g%3E%3Cg fill='%235ce1e6'%3E%3Crect x='54' y='10' width='1' height='3'/%3E%3Crect x='53' y='11' width='3' height='1'/%3E%3Crect x='12' y='29' width='1' height='3'/%3E%3Crect x='11' y='30' width='3' height='1'/%3E%3Crect x='98' y='29' width='1' height='3'/%3E%3Crect x='97' y='30' width='3' height='1'/%3E%3C/g%3E%3Cpath fill='%23ffd84d' d='M96 6h5v1h2v2h1v5h-1v2h-2v1h-5v-1h2v-1h2v-2h1V9h-1V7h-2V6z'/%3E%3Cpath fill='%23fff9ec' d='M98 7h3v1h1v2h-1V8h-3V7zm2 7h2v1h-2v-1z'/%3E%3Cpath fill='%231b1345' d='M14 20h14v2H14zm-2-2h18v2H12zm2-2h12v2H14zm3-2h6v2h-6zM70 44h18v2H70zm-2-2h22v2H68zm3-2h14v2H71zm3-2h8v2h-8z'/%3E%3Cpath fill='%232f2269' d='M17 14h6v1h-6zm-3 2h12v1H14zm60 22h8v1h-8zm-3 2h14v1H71z'/%3E%3C/svg%3E");
+
+	/* 2. Full 8-Bit Overworld Panorama (160x36 grid -> rendered at 640x144px = 4px square pixels):
+	   Features distant snow-capped pixel mountains, crenellated castle & wizard tower,
+	   layered pine forest, floating NES [?] blocks & coins, pixel hero with cyan sword,
+	   flickering campfire, treasure chest, emerald turf, and checkered NES brick ground */
+	--pixel-overworld-mural: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='144' viewBox='0 0 160 36' shape-rendering='crispEdges'%3E%3Cpath fill='%231d1447' d='M0 28V20h6v-3h6v-3h6v-3h6v3h6v3h6v3h8v-2h6v-3h6v-3h6v-3h6v3h6v3h6v3h6v2h14v-3h6v-3h6v-3h6v3h6v3h6v3h18v8H0z'/%3E%3Cpath fill='%232b1f66' d='M18 11h6v3h6v3h-6v-3h-6zm54-3h6v3h6v3h-6v-3h-6zm56 6h6v3h6v3h-6v-3h-6z'/%3E%3Cpath fill='%235ce1e6' d='M18 11h6v2h-2v1h-4v-3zm54-3h6v2h-2v2h-4V8zm56 6h6v2h-4v-2z'/%3E%3Cpath fill='%23fff9ec' d='M18 11h4v1h-4zm54-3h4v1h-4zm56 6h4v1h-4z'/%3E%3Cpath fill='%23261b5c' d='M98 14h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v14H98V14zm-6 6h6v8h-6v-8zm20 0h6v8h-6v-8z'/%3E%3Cpath fill='%233b2b7d' d='M98 14h2v14h-2V14zm6 0h2v2h-2v-2zm6 0h2v2h-2v-2zm-18 6h2v8h-2v-8zm24 0h2v8h-2v-8z'/%3E%3Cpath fill='%23ff5c7c' d='M102 10h6v2h-6v-2zm1-2h4v2h-4V8zm1-2h2v2h-2V6z'/%3E%3Cpath fill='%23ffd84d' d='M105 4h4v2h-4V4zm-3 14h2v3h-2v-3zm4 0h2v3h-2v-3zm-2 5h2v5h-2v-5zm-9-1h2v2h-2v-2zm20 0h2v2h-2v-2z'/%3E%3Cpath fill='%230f3d3e' d='M6 22h6v2H6zm2-2h2v2H8zm18 2h6v2h-6zm2-2h2v2h-2zm56 2h6v2h-6zm2-2h2v2h-2zm56 2h6v2h-6zm2-2h2v2h-2z'/%3E%3Cpath fill='%2310b981' d='M4 25h10v3H4zm2-2h6v2H6zm16 2h10v3H22zm2-2h6v2h-6zm54 2h10v3H78zm2-2h6v2h-6zm54 2h10v3h-10zm2-2h6v2h-6z'/%3E%3Cpath fill='%234ade80' d='M8 20h2v1H8zm-2 3h4v1H6zm20-3h2v1h-2zm-2 3h4v1h-4zm56-3h2v1h-2zm-2 3h4v1h-4zm56-3h2v1h-2zm-2 3h4v1h-4z'/%3E%3Cpath fill='%23b87d00' d='M42 12h18v6H42v-6z'/%3E%3Cpath fill='%23ffd84d' d='M43 13h4v4h-4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4z'/%3E%3Cpath fill='%23070412' d='M50 14h2v1h-1v1h-1v-2zm0 2h1v1h-1v-1z'/%3E%3Cpath fill='%23ffd84d' d='M44 7h2v4h-2V7zm6-2h2v4h-2V5zm6 2h2v4h-2V7z'/%3E%3Cpath fill='%23fff9ec' d='M44 7h1v3h-1V7zm6-2h1v3h-1V5zm6 2h1v3h-1V7z'/%3E%3Cpath fill='%23ffd84d' d='M64 21h3v2h-3v-2z'/%3E%3Cpath fill='%235ce1e6' d='M64 23h3v3h-3v-3zm5-3h1v5h-1v-5z'/%3E%3Cpath fill='%23ff5c7c' d='M63 23h1v2h-1v-2zm10 3h4v2h-4v-2z'/%3E%3Cpath fill='%23ffd84d' d='M74 24h2v2h-2v-2zm-10 2h1v2h-1v-2zm2 0h1v2h-1v-2z'/%3E%3Cpath fill='%23fff9ec' d='M69 19h1v1h-1v-1zm5 6h1v1h-1v-1z'/%3E%3Crect x='0' y='28' width='160' height='2' fill='%234ade80'/%3E%3Cpath fill='%2310b981' d='M0 30h160v1H0zm4-1h4v1H4zm14 0h6v1h-6zm16 0h4v1h-4zm16 0h6v1h-6zm18 0h4v1h-4zm16 0h6v1h-6zm18 0h4v1h-4zm16 0h6v1h-6zm18 0h4v1h-4zm14 0h6v1h-6z'/%3E%3Crect x='0' y='31' width='160' height='5' fill='%2378350f'/%3E%3Cpath fill='%23b45309' d='M0 31h7v2H0zm8 0h7v2H8zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zM4 34h7v2H4zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h4v2h-4z'/%3E%3C/svg%3E");
+
+	/* 3. 8-Bit Ground Strip for Footer & Dividers (32x8 grid -> rendered at 128x32px = 4px square pixels) */
+	--pixel-ground-strip: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='32' viewBox='0 0 32 8' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='32' height='2' fill='%234ade80'/%3E%3Cpath fill='%2310b981' d='M0 2h32v1H0zm3-1h4v1H3zm10 0h5v1h-5zm11 0h4v1h-4z'/%3E%3Crect x='0' y='3' width='32' height='5' fill='%2378350f'/%3E%3Cpath fill='%23b45309' d='M0 3h7v2H0zm8 0h7v2H8zm8 0h7v2h-7zm8 0h7v2h-7zM4 6h7v2H4zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h4v2h-4z'/%3E%3C/svg%3E");
+
+	/* 4. 8-Bit HUD Three Ruby Hearts Sprite (29x8 grid -> rendered at 87x24px = 3px square pixels) */
+	--pixel-hud-hearts: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='87' height='24' viewBox='0 0 29 8' shape-rendering='crispEdges'%3E%3Cg%3E%3Cpath fill='%23070412' d='M1 0h2v1h2V0h2v1h1v3H7v1H6v1H5v1H3V6H2V5H1V4H0V1h1V0zm10 0h2v1h2V0h2v1h1v3h-1v1h-1v1h-1v1h-2V6h-1V5h-1V4h-1V1h1V0zm10 0h2v1h2V0h2v1h1v3h-1v1h-1v1h-1v1h-2V6h-1V5h-1V4h-1V1h1V0z'/%3E%3Cpath fill='%23ff3b6b' d='M1 1h2v1h2V1h2v3H6v1H5v1H3V5H2V4H1V1zm10 0h2v1h2V1h2v3h-1v1h-1v1h-2V5h-1V4h-1V1zm10 0h2v1h2V1h2v3h-1v1h-1v1h-2V5h-1V4h-1V1z'/%3E%3Cpath fill='%23fff9ec' d='M1 1h1v2H1V1zm10 0h1v2h-1V1zm10 0h1v2h-1V1z'/%3E%3C/g%3E%3C/svg%3E");
+
+	/* 5. 16x16 8-Bit Magic Sword Sprite (Developer / Code) */
+	--pixel-sprite-sword: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M11 1h4v4h-1v2h-1v1h-1v1h-1v1h1v2H9v-1H7v1H6v1H4v1H1v-3h1v-2h1V9h1V8h1v1h1V8h1V7h1V6h1V5h1V3h1V1z'/%3E%3Cpath fill='%235ce1e6' d='M12 2h2v2h-1v2h-1v1h-1v1h-1v1H8V8h1V7h1V6h1V4h1V2z'/%3E%3Cpath fill='%23fff9ec' d='M12 2h1v2h-1v2h-1v1h-1v1H9V7h1V6h1V4h1V2z'/%3E%3Cpath fill='%23ffd84d' d='M5 8h2v2h2v2H7v-1H5V9H4V8h1zm-3 5h2v1H2v-1z'/%3E%3Cpath fill='%23ff5c7c' d='M6 10h1v1H6v-1zm-4 3h1v1H2v-1z'/%3E%3C/svg%3E");
+
+	/* 6. 16x16 8-Bit Chiptune Music Notes Sprite (Musician / Music) */
+	--pixel-sprite-music: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M6 2h8v9h-1v2h-4v-3h2V6H8v6H7v2H3v-3h2V2h1z'/%3E%3Cpath fill='%234ade80' d='M6 3h7v2H6V3zm0 2h1v6H6V5zm6 0h1v5h-1V5zM3 10h3v3H3v-3zm6-1h3v3H9V9z'/%3E%3Cpath fill='%23ffd84d' d='M6 3h7v1H6V3zM2 4h2v1H2V4zm1-1h1v2H3V3z'/%3E%3Cpath fill='%23fff9ec' d='M4 10h1v1H4v-1zm6-1h1v1h-1V9z'/%3E%3C/svg%3E");
+
+	/* 7. 16x16 8-Bit Paladin Crest Shield Sprite (Collaborator) */
+	--pixel-sprite-shield: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M3 2h10v7h-1v2h-1v1h-1v1H9v1H7v-1H6v-1H5v-1H4V9H3V2z'/%3E%3Cpath fill='%23ffd84d' d='M4 3h8v6h-1v2H9v2H7v-2H5V9H4V3z'/%3E%3Cpath fill='%23261b5c' d='M5 4h6v5h-1v1H8v2H7v-2H6V9H5V4z'/%3E%3Cpath fill='%235ce1e6' d='M7 4h2v7H7V4zM5 6h6v2H5V6z'/%3E%3Cpath fill='%23fff9ec' d='M7 6h2v2H7V6z'/%3E%3C/svg%3E");
+
+	/* 8. 16x16 8-Bit Invincibility Star Sprite (Silly Title / Buff) */
+	--pixel-sprite-star: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M7 1h2v3h5v2h-1v2h-1v2h1v4h-3v-1H6v1H3v-4h1V8H3V6H2V4h5V1z'/%3E%3Cpath fill='%23ffd84d' d='M7 2h2v3h4v1h-1v2h-1v2h1v3h-2v-1H6v1H4v-3h1V8H4V6H3V5h4V2z'/%3E%3Cpath fill='%23fff9ec' d='M7 3h1v2H4v1h3V3z'/%3E%3Cpath fill='%23070412' d='M6 6h1v3H6V6zm3 0h1v3H9V6z'/%3E%3C/svg%3E");
+
+	/* 9. 16x16 8-Bit Treasure Chest Sprite (Community / Favorites) */
+	--pixel-sprite-chest: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M2 3h12v10H2V3z'/%3E%3Cpath fill='%23b45309' d='M3 4h10v3H3V4zm0 5h10v3H3V9z'/%3E%3Cpath fill='%23ffd84d' d='M3 4h10v1H3V4zm0 3h10v2H3V7zm4-1h2v4H7V6zm-4 5h10v1H3v-1z'/%3E%3Cpath fill='%23ff5c7c' d='M7 7h2v2H7V7z'/%3E%3Cpath fill='%23fff9ec' d='M4 4h2v1H4V4zm3 3h1v1H7V7z'/%3E%3C/svg%3E");
+
+	/* 10. 8-Bit Game Cartridge Moulded Grip Pattern for Work Cards */
+	--pixel-cartridge-grip: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='12' viewBox='0 0 8 3' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='8' height='3' fill='%23261b5c'/%3E%3Crect x='1' y='0' width='5' height='1' fill='%234c389e'/%3E%3Crect x='1' y='2' width='5' height='1' fill='%230b0720'/%3E%3C/svg%3E");
+
 	color-scheme: dark;
 	overflow-x: clip;
 }
@@ -54,9 +91,9 @@ html[data-skin="eight-bit-overworld"] body {
 	position: relative;
 	background-color: #0d0922 !important;
 	background-image:
-		var(--pixel-sky-tile),
-		linear-gradient(180deg, #090619 0%, #130d31 48%, #1c1347 100%) !important;
-	background-size: 160px 160px, 100% 100% !important;
+		var(--pixel-sky-scene),
+		linear-gradient(180deg, #090619 0%, #130d31 52%, #1d1447 100%) !important;
+	background-size: 480px 240px, 100% 100% !important;
 	background-repeat: repeat, no-repeat !important;
 	color: var(--text-1) !important;
 	font-family: var(--pixel-body) !important;
@@ -112,7 +149,7 @@ html[data-skin="eight-bit-overworld"] h2 {
 
 html[data-skin="eight-bit-overworld"] h3 {
 	font-size: clamp(1rem, 1.35vw, 1.2rem);
-	margin-bottom: 0.6rem;
+	margin-bottom: 0.55rem;
 }
 
 html[data-skin="eight-bit-overworld"] a {
@@ -139,7 +176,7 @@ html[data-skin="eight-bit-overworld"] :focus-visible {
 	outline-offset: 2px !important;
 }
 
-/* --- 1. Top Arcade HUD & Cartridge Stage Select Bar (.site-header) --- */
+/* --- 1. Top Arcade HUD Bar with 8-Bit Pixel Hearts (.site-header) --- */
 
 html[data-skin="eight-bit-overworld"] .site-header {
 	position: sticky;
@@ -155,18 +192,8 @@ html[data-skin="eight-bit-overworld"] .site-header {
 }
 
 html[data-skin="eight-bit-overworld"] .site-header::before {
-	content: "1P: ALEC   \2665\2665\2665\2665   LV.99 BARD-ENGINEER   \2502   WORLD 3-17 (INDY)   \2502   COINS \00D799";
-	display: block;
-	padding: 0.25rem 1rem;
-	border-bottom: 2px solid #281d60;
-	background: #140e36;
-	color: var(--pixel-gold);
-	font: 400 0.68rem/1.3 var(--pixel-display);
-	letter-spacing: 0.08em;
-	text-align: center;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	content: none !important;
+	display: none !important;
 }
 
 html[data-skin="eight-bit-overworld"] .site-header .site-shell {
@@ -175,14 +202,14 @@ html[data-skin="eight-bit-overworld"] .site-header .site-shell {
 	justify-content: space-between;
 	flex-wrap: wrap;
 	gap: 0.65rem 1rem;
-	min-height: 3.6rem;
-	padding: 0.45rem 0;
+	min-height: 3.7rem;
+	padding: 0.5rem 0;
 }
 
 html[data-skin="eight-bit-overworld"] .brand {
 	display: inline-flex;
 	align-items: center;
-	gap: 0.6rem;
+	gap: 0.65rem;
 	margin: 0;
 	padding: 0.15rem 0.35rem 0.15rem 0;
 	text-decoration: none !important;
@@ -193,25 +220,36 @@ html[data-skin="eight-bit-overworld"] :is(.brand:hover, .brand:focus-visible) {
 	color: var(--pixel-gold) !important;
 }
 
+/* 8-Bit Three Ruby Hearts Sprite next to Brand */
+html[data-skin="eight-bit-overworld"] .brand::after {
+	content: "";
+	display: inline-block;
+	width: 87px;
+	height: 24px;
+	margin-left: 0.25rem;
+	background: var(--pixel-hud-hearts) no-repeat center / 87px 24px;
+	flex-shrink: 0;
+}
+
 html[data-skin="eight-bit-overworld"] .brand-mark {
 	display: inline-grid !important;
 	place-items: center;
 	width: auto;
 	height: auto;
 	min-width: 2.35rem;
-	padding: 0.25rem 0.45rem;
+	padding: 0.28rem 0.48rem;
 	border: 2px solid var(--text-1);
 	border-radius: 0 !important;
 	background: var(--pixel-ruby) !important;
 	box-shadow: 3px 3px 0 var(--pixel-ink);
 	color: #ffffff !important;
-	font: 400 0.76rem/1 var(--pixel-display) !important;
+	font: 400 0.78rem/1 var(--pixel-display) !important;
 	text-shadow: 1px 1px 0 var(--pixel-ink);
 }
 
 html[data-skin="eight-bit-overworld"] .brand-text {
 	color: var(--text-1) !important;
-	font: 400 0.88rem/1.2 var(--pixel-display) !important;
+	font: 400 0.9rem/1.2 var(--pixel-display) !important;
 	letter-spacing: 0.06em;
 	text-transform: uppercase;
 	text-shadow: 2px 2px 0 var(--pixel-ink);
@@ -247,22 +285,17 @@ html[data-skin="eight-bit-overworld"] :is(.site-nav a, .site-nav .nav-cta) {
 	display: inline-flex;
 	align-items: center;
 	gap: 0.35ch;
-	padding: 0.35rem 0.65rem !important;
+	padding: 0.38rem 0.72rem !important;
 	border: 2px solid var(--text-1) !important;
 	border-radius: 0 !important;
 	background: #1a1242 !important;
 	box-shadow: inset -2px -2px 0 #0b0720, 3px 3px 0 var(--pixel-ink) !important;
 	color: var(--text-1) !important;
-	font: 400 0.72rem/1.2 var(--pixel-display) !important;
+	font: 400 0.74rem/1.2 var(--pixel-display) !important;
 	letter-spacing: 0.05em;
 	text-decoration: none !important;
 	text-transform: uppercase;
 }
-
-html[data-skin="eight-bit-overworld"] .site-nav li:nth-child(1) a::before { content: "1P\25B8"; color: var(--pixel-cyan); }
-html[data-skin="eight-bit-overworld"] .site-nav li:nth-child(2) a::before { content: "2P\25B8"; color: var(--pixel-emerald); }
-html[data-skin="eight-bit-overworld"] .site-nav li:nth-child(3) a::before { content: "3P\25B8"; color: var(--pixel-violet); }
-html[data-skin="eight-bit-overworld"] .site-nav li:nth-child(4) a::before { content: "\2605\25B8"; color: var(--pixel-gold); }
 
 html[data-skin="eight-bit-overworld"] :is(.site-nav a:hover, .site-nav a:focus-visible, .site-nav a[aria-current="page"]) {
 	border-color: var(--pixel-ink) !important;
@@ -270,10 +303,6 @@ html[data-skin="eight-bit-overworld"] :is(.site-nav a:hover, .site-nav a:focus-v
 	box-shadow: inset -2px -2px 0 var(--pixel-gold-shade), 3px 3px 0 var(--pixel-ink) !important;
 	color: var(--pixel-ink) !important;
 	text-shadow: none !important;
-}
-
-html[data-skin="eight-bit-overworld"] :is(.site-nav a:hover, .site-nav a:focus-visible, .site-nav a[aria-current="page"])::before {
-	color: var(--pixel-ink) !important;
 }
 
 html[data-skin="eight-bit-overworld"] .nav-toggle {
@@ -288,7 +317,7 @@ html[data-skin="eight-bit-overworld"] :is(.page-hero, body.page-home .page-hero,
 	width: 100%;
 	max-width: none;
 	margin: 0;
-	padding: 3.6rem 0 1.85rem !important;
+	padding: 3.4rem 0 1.85rem !important;
 	border: 0 !important;
 	background: transparent !important;
 	box-shadow: none !important;
@@ -303,18 +332,19 @@ html[data-skin="eight-bit-overworld"] :is(.page-hero::before, .page-hero::after)
 	display: none !important;
 }
 
-/* Stepped 8-bit RPG Window with Pixel Overworld Horizon Along Bottom */
+/* Stepped 8-bit RPG Window with Unobstructed 144px Pixel Overworld Panorama Stage at Bottom */
 html[data-skin="eight-bit-overworld"] .page-hero > .site-shell {
 	position: relative;
-	padding: clamp(3.3rem, 4.5vw, 3.9rem) clamp(1.35rem, 3vw, 2.25rem) clamp(2.8rem, 4.5vw, 3.4rem);
+	padding: clamp(1.6rem, 3vw, 2.25rem) clamp(1.35rem, 3vw, 2.25rem) 9.6rem;
 	border: 4px solid var(--text-1);
 	background-color: #120d2e !important;
 	background-image:
-		var(--pixel-horizon-scene),
-		linear-gradient(180deg, #161038 0%, #110c2b 82%, #1b1342 100%) !important;
-	background-position: center bottom, 0 0 !important;
-	background-size: 100% 56px, 100% 100% !important;
-	background-repeat: no-repeat !important;
+		var(--pixel-overworld-mural),
+		var(--pixel-sky-scene),
+		linear-gradient(180deg, #100b29 0%, #17113b 62%, #221854 100%) !important;
+	background-position: left bottom, center top, 0 0 !important;
+	background-size: 640px 144px, 480px 240px, 100% 100% !important;
+	background-repeat: repeat-x, repeat, no-repeat !important;
 	box-shadow:
 		inset 0 0 0 4px #281d60,
 		0 0 0 4px var(--pixel-ink),
@@ -322,47 +352,20 @@ html[data-skin="eight-bit-overworld"] .page-hero > .site-shell {
 }
 
 html[data-skin="eight-bit-overworld"] .page-hero > .site-shell::before {
-	content: "\25C6 OVERWORLD MAP // STAGE 01: PARTY & QUEST STATUS";
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	padding: 0.48rem 1rem;
-	border-bottom: 4px solid var(--text-1);
-	background: linear-gradient(90deg, #281d60 0%, #1a1242 100%);
-	color: var(--pixel-gold);
-	font: 400 0.74rem/1.25 var(--pixel-display);
-	letter-spacing: 0.06em;
-	text-shadow: 2px 2px 0 var(--pixel-ink);
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	content: none !important;
+	display: none !important;
 }
 
-html[data-skin="eight-bit-overworld"] body.page-work .page-hero > .site-shell::before {
-	content: "\25C6 CARTRIDGE SELECT // STAGE 02: BUILT PROJECTS & ROMS";
-}
-
-html[data-skin="eight-bit-overworld"] body.page-favorites .page-hero > .site-shell::before {
-	content: "\25C6 TREASURE VAULT // STAGE 03: COLLECTED ARTIFACTS";
-}
-
+/* Keep favorites hero compact so the page stays well under the 3800px 2x Retina tile budget */
 html[data-skin="eight-bit-overworld"] body.page-favorites#page-top .favorites-hero > .site-shell {
-	padding-top: 2.6rem !important;
-	padding-bottom: 1.75rem !important;
-}
-
-html[data-skin="eight-bit-overworld"] body.page-contact .page-hero > .site-shell::before {
-	content: "\25C6 SAVE POINT & GUILD INN // STAGE 04: SEND TRANSMISSION";
-}
-
-html[data-skin="eight-bit-overworld"] body.page-fridge .page-hero > .site-shell::before {
-	content: "\25C6 SOUND & WORD COMPOSER // BONUS STAGE: FRIDGE POETRY";
+	padding-top: 1.5rem !important;
+	padding-bottom: 4.5rem !important;
+	background-size: 320px 72px, 480px 240px, 100% 100% !important;
 }
 
 /* Bespoke Reverse-Split Hero Layout on Home:
-   Column 1 (Left): Character Portrait & Lore Card (.hero-media)
-   Column 2 (Right): 2x2 RPG Class Matrix (h1) + Dialogue Windows (.hero-summary, .lead) */
+   Column 1 (Left): Character Portrait & Splash Scroll (.hero-media)
+   Column 2 (Right): 2x2 RPG Sprite Matrix (h1) + Dialogue Windows (.hero-summary, .lead) */
 html[data-skin="eight-bit-overworld"] .hero-grid {
 	display: grid;
 	grid-template-columns: 1fr;
@@ -398,7 +401,7 @@ html[data-skin="eight-bit-overworld"] .hero-copy > :not(.hero-media):not(.hero-q
 	grid-column: 2;
 }
 
-/* Left-hand Character Sprite & NPC Encounter Card */
+/* Left-hand Character Portrait & Splash Frame */
 html[data-skin="eight-bit-overworld"] .hero-copy .hero-media {
 	grid-column: 1;
 	grid-row: 1 / span 5;
@@ -407,12 +410,12 @@ html[data-skin="eight-bit-overworld"] .hero-copy .hero-media {
 	width: 100%;
 	max-width: none;
 	margin: 0;
-	padding: 0.85rem;
+	padding: 0.9rem;
 	border: 3px solid var(--pixel-gold);
 	background: #0b0720;
 	box-shadow:
-		inset 0 0 0 2px #281d60,
-		5px 5px 0 var(--pixel-ink);
+		inset 0 0 0 3px #281d60,
+		6px 6px 0 var(--pixel-ink);
 	transform: none !important;
 }
 
@@ -425,21 +428,20 @@ html[data-skin="eight-bit-overworld"] .eyebrow {
 	align-items: center;
 	gap: 0.45rem;
 	width: fit-content;
-	margin: 0 0 0.5rem;
+	margin: 0 0 0.45rem;
 	padding: 0.26rem 0.65rem;
 	border: 2px solid var(--pixel-gold) !important;
 	border-radius: 0 !important;
 	background: #241954 !important;
 	box-shadow: 3px 3px 0 var(--pixel-ink) !important;
 	color: var(--pixel-gold) !important;
-	font: 400 0.7rem/1.2 var(--pixel-display) !important;
+	font: 400 0.72rem/1.2 var(--pixel-display) !important;
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
 }
 
 html[data-skin="eight-bit-overworld"] .eyebrow::before {
-	content: "\2691 SPAWN:";
-	color: var(--pixel-cyan);
+	content: none !important;
 }
 
 /* Non-home page hero h1 */
@@ -452,7 +454,7 @@ html[data-skin="eight-bit-overworld"] .page-hero h1 {
 	text-shadow: 3px 3px 0 var(--pixel-ink), 5px 5px 0 #281d60 !important;
 }
 
-/* Home page h1: 2x2 RPG Equipped Class & Trait Matrix */
+/* Home page h1: 2x2 RPG Item Slot Matrix with Real 16x16 Pixel Art Sprites */
 html[data-skin="eight-bit-overworld"] body.page-home .page-hero h1 {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -460,68 +462,57 @@ html[data-skin="eight-bit-overworld"] body.page-home .page-hero h1 {
 	max-width: 100%;
 	margin: 0 0 0.9rem;
 	padding: 0;
-	font-size: clamp(1.05rem, 1.65vw, 1.35rem) !important;
+	font-size: clamp(1.05rem, 1.6vw, 1.32rem) !important;
 	line-height: 1.2 !important;
 }
 
 html[data-skin="eight-bit-overworld"] :is(.hero-title-role, .hero-title-role:nth-of-type(2n), .metallic-pearl-text) {
 	position: relative;
 	display: flex !important;
-	flex-direction: column;
-	justify-content: center;
+	flex-direction: row;
+	align-items: center;
 	min-width: 0;
+	min-height: 3.35rem;
 	margin: 0 !important;
-	padding: 1.55rem 0.8rem 0.65rem !important;
+	padding: 0.65rem 0.8rem 0.65rem 3.35rem !important;
 	border: 2px solid var(--text-1) !important;
 	border-radius: 0 !important;
-	background: #18113d !important;
+	background-color: #18113d !important;
+	background-image: var(--pixel-sprite-sword) !important;
+	background-repeat: no-repeat !important;
+	background-position: 0.7rem center !important;
+	background-size: 32px 32px !important;
 	box-shadow: inset -2px -2px 0 #090619, 4px 4px 0 var(--pixel-ink) !important;
 	color: var(--text-1) !important;
 	-webkit-text-fill-color: var(--text-1) !important;
 	-webkit-text-stroke: 0 !important;
 	filter: none !important;
-	font: 400 clamp(1rem, 1.5vw, 1.28rem)/1.2 var(--pixel-display) !important;
+	font: 400 clamp(0.98rem, 1.45vw, 1.24rem)/1.2 var(--pixel-display) !important;
 	text-shadow: 2px 2px 0 var(--pixel-ink) !important;
 	transform: none !important;
 	animation: none !important;
 	overflow-wrap: anywhere;
 }
 
-html[data-skin="eight-bit-overworld"] .hero-title-role::before {
-	content: "CLASS 01 // LV.99";
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	padding: 0.2rem 0.55rem;
-	border-bottom: 2px solid rgba(255, 249, 236, 0.3);
-	background: #261b5c;
-	color: var(--pixel-cyan);
-	font: 400 0.58rem/1.15 var(--pixel-display);
-	letter-spacing: 0.08em;
+html[data-skin="eight-bit-overworld"] :is(.hero-title-role, #hero-silly-title)::before {
+	content: none !important;
+	display: none !important;
 }
 
-html[data-skin="eight-bit-overworld"] .hero-title-role:nth-of-type(2)::before {
-	content: "CLASS 02 // LV.99";
-	color: var(--pixel-emerald);
+html[data-skin="eight-bit-overworld"] .hero-title-role:nth-of-type(2) {
+	background-image: var(--pixel-sprite-music) !important;
 }
 
-html[data-skin="eight-bit-overworld"] .hero-title-role:nth-of-type(3)::before {
-	content: "CLASS 03 // CO-OP";
-	color: var(--pixel-violet);
+html[data-skin="eight-bit-overworld"] .hero-title-role:nth-of-type(3) {
+	background-image: var(--pixel-sprite-shield) !important;
 }
 
 html[data-skin="eight-bit-overworld"] #hero-silly-title {
 	border-color: var(--pixel-gold) !important;
-	background: #21164f !important;
+	background-color: #21164f !important;
+	background-image: var(--pixel-sprite-star) !important;
 	color: var(--pixel-gold) !important;
 	-webkit-text-fill-color: var(--pixel-gold) !important;
-}
-
-html[data-skin="eight-bit-overworld"] #hero-silly-title::before {
-	content: "PASSIVE BUFF // REROLL";
-	background: #352370;
-	color: var(--pixel-gold);
 }
 
 html[data-skin="eight-bit-overworld"] .hero-title-initial {
@@ -540,11 +531,7 @@ html[data-skin="eight-bit-overworld"] .hero-title-controls {
 }
 
 html[data-skin="eight-bit-overworld"] .hero-title-controls::before {
-	content: "CYCLE PASSIVE BUFF:";
-	margin-right: 0.25rem;
-	color: var(--pixel-gold);
-	font: 400 0.64rem/1 var(--pixel-display);
-	letter-spacing: 0.06em;
+	content: none !important;
 }
 
 html[data-skin="eight-bit-overworld"] body.page-home .personality-arrow {
@@ -567,12 +554,12 @@ html[data-skin="eight-bit-overworld"] :is(body.page-home .personality-arrow:hove
 	transform: translate(1px, 1px) !important;
 }
 
-/* JRPG Dialogue Windows for Hero Copy */
+/* Clean JRPG Dialogue Windows for Hero Copy */
 html[data-skin="eight-bit-overworld"] .hero-summary {
 	position: relative;
 	max-width: none;
 	margin: 0 0 0.75rem;
-	padding: 1.65rem 1rem 0.85rem;
+	padding: 0.9rem 1.05rem;
 	border: 3px solid var(--text-1);
 	background: #0b0720 !important;
 	box-shadow: inset 0 0 0 2px #281d60, 4px 4px 0 var(--pixel-ink);
@@ -581,44 +568,25 @@ html[data-skin="eight-bit-overworld"] .hero-summary {
 }
 
 html[data-skin="eight-bit-overworld"] .hero-summary::before {
-	content: "\25B6 DIALOGUE // ALEC THE ARTIFICER-BARD";
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	padding: 0.22rem 0.65rem;
-	border-bottom: 2px solid #281d60;
-	background: #1c1444;
-	color: var(--pixel-cyan);
-	font: 400 0.64rem/1.2 var(--pixel-display);
-	letter-spacing: 0.06em;
+	content: none !important;
 }
 
 html[data-skin="eight-bit-overworld"] .page-hero .lead {
 	position: relative;
 	max-width: none;
 	margin: 0;
-	padding: 0.7rem 1rem;
-	border: 2px dashed var(--pixel-gold);
+	padding: 0.75rem 1.05rem;
+	border: 2px solid var(--pixel-gold);
 	border-left: 5px solid var(--pixel-gold);
-	background: rgba(38, 27, 92, 0.55) !important;
+	background: rgba(20, 14, 54, 0.85) !important;
 	color: var(--text-1) !important;
 	font: 400 0.94rem/1.5 var(--pixel-body) !important;
 }
 
-/* Character Sprite Frame & Splash Encounter Box */
-html[data-skin="eight-bit-overworld"] .hero-media::before,
-html[data-skin="eight-bit-overworld"] .portrait-panel::before {
-	content: "\2605 PLAYER 01 // SPRITE STATUS \2605";
-	display: block;
-	margin: -0.85rem -0.85rem 0.75rem;
-	padding: 0.35rem 0.65rem;
-	border-bottom: 2px solid var(--pixel-gold);
-	background: #261b5c;
-	color: var(--pixel-gold);
-	font: 400 0.68rem/1.2 var(--pixel-display);
-	letter-spacing: 0.06em;
-	text-align: center;
+/* Character Portrait & Splash Quote Box */
+html[data-skin="eight-bit-overworld"] :is(.hero-media::before, .portrait-panel::before) {
+	content: none !important;
+	display: none !important;
 }
 
 html[data-skin="eight-bit-overworld"] .msdos-page-image {
@@ -660,9 +628,9 @@ html[data-skin="eight-bit-overworld"] .hero-splash {
 	position: relative;
 	display: block;
 	width: 100%;
-	height: 146px;
-	margin: 0.8rem auto 1.85rem;
-	padding: 1.5rem 0.55rem 0.45rem;
+	height: 124px;
+	margin: 0.8rem auto 0;
+	padding: 0.55rem;
 	border: 2px solid var(--pixel-cyan) !important;
 	border-radius: 0 !important;
 	background: #140e36 !important;
@@ -673,18 +641,7 @@ html[data-skin="eight-bit-overworld"] .hero-splash {
 }
 
 html[data-skin="eight-bit-overworld"] .hero-splash::before {
-	content: "\25C6 LORE SCROLL // NPC RUMOR";
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	padding: 0.18rem 0.5rem;
-	border-bottom: 2px solid var(--pixel-cyan);
-	background: #261b5c;
-	color: var(--pixel-cyan);
-	font: 400 0.6rem/1.2 var(--pixel-display);
-	letter-spacing: 0.06em;
-	text-align: left;
+	content: none !important;
 }
 
 html[data-skin="eight-bit-overworld"] .hero-splash .hero-splash-text {
@@ -707,9 +664,9 @@ html[data-skin="eight-bit-overworld"] .hero-splash .hero-splash-text {
    Code (left top) + Community (left bottom) flank Music (right full-height span) */
 
 html[data-skin="eight-bit-overworld"] .hero-quests {
-	margin: 1.65rem 0 0;
-	padding: 1.5rem 0 0;
-	border-top: 4px dashed #3b2b7d !important;
+	margin: 1.5rem 0 0;
+	padding: 1.35rem 0 0;
+	border-top: 3px dashed #3b2b7d !important;
 }
 
 html[data-skin="eight-bit-overworld"] .quest-grid {
@@ -761,19 +718,34 @@ html[data-skin="eight-bit-overworld"] :is(.panel-card:hover, .quest-card:hover) 
 }
 
 html[data-skin="eight-bit-overworld"] .panel-card h3 {
+	display: flex;
+	align-items: center;
+	min-height: 2.6rem;
 	margin: -1.15rem -1.15rem 0.9rem !important;
-	padding: 0.5rem 0.85rem;
+	padding: 0.45rem 0.85rem 0.45rem 3.1rem;
 	border-bottom: 3px solid var(--text-1);
-	background: #241954;
+	background-color: #241954;
+	background-image: var(--pixel-sprite-sword);
+	background-repeat: no-repeat;
+	background-position: 0.65rem center;
+	background-size: 28px 28px;
 	color: var(--pixel-gold) !important;
-	font: 400 0.88rem/1.25 var(--pixel-display) !important;
+	font: 400 0.94rem/1.25 var(--pixel-display) !important;
 	letter-spacing: 0.06em;
 	text-transform: uppercase;
 }
 
-html[data-skin="eight-bit-overworld"] .quest-card:nth-child(1) h3::before { content: "\2694 QUEST I // "; color: var(--pixel-cyan); }
-html[data-skin="eight-bit-overworld"] .quest-card:nth-child(2) h3::before { content: "\266B GRAND QUEST II // "; color: var(--pixel-emerald); }
-html[data-skin="eight-bit-overworld"] .quest-card:nth-child(3) h3::before { content: "\2665 QUEST III // "; color: var(--pixel-ruby); }
+html[data-skin="eight-bit-overworld"] .quest-card:nth-child(2) h3 {
+	background-image: var(--pixel-sprite-music);
+}
+
+html[data-skin="eight-bit-overworld"] .quest-card:nth-child(3) h3 {
+	background-image: var(--pixel-sprite-chest);
+}
+
+html[data-skin="eight-bit-overworld"] .quest-card h3::before {
+	content: none !important;
+}
 
 html[data-skin="eight-bit-overworld"] .panel-card p {
 	margin: 0 0 0.75rem;
@@ -799,10 +771,6 @@ html[data-skin="eight-bit-overworld"] .quest-link {
 	text-shadow: none !important;
 }
 
-html[data-skin="eight-bit-overworld"] .quest-link::before {
-	content: "\25B6 ";
-}
-
 html[data-skin="eight-bit-overworld"] .quest-link span {
 	display: none !important;
 }
@@ -822,11 +790,6 @@ html[data-skin="eight-bit-overworld"] :is(.page-section, .section-soft, .section
 	box-shadow: none !important;
 }
 
-html[data-skin="eight-bit-overworld"] .page-section > .site-shell > h2::before {
-	content: "\25C6 STAGE SELECT // ";
-	color: var(--pixel-gold);
-}
-
 /* 6-Column Master Grid:
    Row 1: Featured Cartridge (spans 6 cols, text LEFT, monitor RIGHT)
    Row 2: Cartridges 2, 3, 4 (each spans 2 cols -> 3 across!)
@@ -838,6 +801,7 @@ html[data-skin="eight-bit-overworld"] :is(.features, .features--showcase) {
 	align-items: stretch;
 }
 
+/* Moulded 8-Bit ROM Cartridge Shell with Top Grip Ridges */
 html[data-skin="eight-bit-overworld"] .features article {
 	grid-column: span 3;
 	display: flex !important;
@@ -846,11 +810,15 @@ html[data-skin="eight-bit-overworld"] .features article {
 	width: auto !important;
 	min-width: 0;
 	margin: 0 !important;
-	padding: 1.15rem !important;
+	padding: 1.55rem 1.15rem 1.15rem !important;
 	border: 3px solid var(--text-1) !important;
-	border-top: 10px solid var(--pixel-gold) !important;
+	border-top: 6px solid var(--pixel-gold) !important;
 	border-radius: 0 !important;
-	background: #120d2e !important;
+	background-color: #120d2e !important;
+	background-image: var(--pixel-cartridge-grip) !important;
+	background-repeat: repeat-x !important;
+	background-position: left top !important;
+	background-size: 32px 12px !important;
 	box-shadow:
 		inset 0 0 0 3px #281d60,
 		6px 6px 0 var(--pixel-ink) !important;
@@ -876,7 +844,7 @@ html[data-skin="eight-bit-overworld"] .features--showcase .featured-project {
 	gap: 1.65rem !important;
 	align-items: center;
 	border-top-color: var(--pixel-cyan) !important;
-	background: #161038 !important;
+	background-color: #161038 !important;
 }
 
 html[data-skin="eight-bit-overworld"] .features--showcase .featured-project .inner {
@@ -895,7 +863,6 @@ html[data-skin="eight-bit-overworld"] .features article:hover {
 }
 
 html[data-skin="eight-bit-overworld"] .features article .image {
-	--cart-label: "CARTRIDGE ROM // PRESS START";
 	display: block !important;
 	position: relative !important;
 	width: 100% !important;
@@ -906,30 +873,13 @@ html[data-skin="eight-bit-overworld"] .features article .image {
 	border-radius: 0 !important;
 	background: #090619 !important;
 	box-shadow: 4px 4px 0 var(--pixel-ink) !important;
-	color: var(--pixel-gold) !important;
-	font: 400 0.66rem/1.25 var(--pixel-display) !important;
 	text-decoration: none !important;
 	overflow: hidden;
 }
 
-html[data-skin="eight-bit-overworld"] .features article:nth-child(1) .image { --cart-label: "CART #01 // PROMPT PALETTE [64KB ROM]"; }
-html[data-skin="eight-bit-overworld"] .features article:nth-child(2) .image { --cart-label: "CART #02 // CHORD FUNCTION API"; }
-html[data-skin="eight-bit-overworld"] .features article:nth-child(3) .image { --cart-label: "CART #03 // PERSONAL SITE ENGINE"; }
-html[data-skin="eight-bit-overworld"] .features article:nth-child(4) .image { --cart-label: "CART #04 // SAGE & CEDAR"; }
-html[data-skin="eight-bit-overworld"] .features article:nth-child(5) .image { --cart-label: "CART #05 // FLOWERS BY LEANNE"; }
-html[data-skin="eight-bit-overworld"] .features article:nth-child(6) .image { --cart-label: "CART #06 // FRIDGE POETRY LAB"; }
-
 html[data-skin="eight-bit-overworld"] .features article .image::before {
-	content: var(--cart-label);
-	display: block;
-	padding: 0.3rem 0.6rem;
-	border-bottom: 2px solid var(--text-1);
-	background: #261b5c;
-	color: var(--pixel-gold);
-	letter-spacing: 0.05em;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	content: none !important;
+	display: none !important;
 }
 
 html[data-skin="eight-bit-overworld"] .features article .image img {
@@ -997,22 +947,13 @@ html[data-skin="eight-bit-overworld"] .features article .inner span a {
 	text-transform: uppercase;
 }
 
-html[data-skin="eight-bit-overworld"] .features article .inner span a::before {
-	content: "\25B8 ";
-	color: var(--pixel-gold);
-}
-
 html[data-skin="eight-bit-overworld"] :is(.features article .inner span a:hover, .features article .inner span a:focus-visible) {
 	border-color: var(--pixel-ink) !important;
 	background: var(--pixel-gold) !important;
 	color: var(--pixel-ink) !important;
 }
 
-html[data-skin="eight-bit-overworld"] :is(.features article .inner span a:hover, .features article .inner span a:focus-visible)::before {
-	color: var(--pixel-ink) !important;
-}
-
-/* 2-Column RPG Strategy Guide / Instruction Booklet for .work-background */
+/* 2-Column RPG Instruction Booklet for .work-background */
 html[data-skin="eight-bit-overworld"] .section-soft > .site-shell {
 	padding: clamp(1.35rem, 3vw, 2rem);
 	border: 4px solid var(--text-1);
@@ -1077,11 +1018,6 @@ html[data-skin="eight-bit-overworld"] .favorites-toolbar-label {
 	font: 400 0.72rem/1.2 var(--pixel-display) !important;
 }
 
-html[data-skin="eight-bit-overworld"] .favorites-toolbar-label::before {
-	content: "\25C6 BAG VIEW: ";
-	color: var(--pixel-cyan);
-}
-
 html[data-skin="eight-bit-overworld"] .favorites-view-button {
 	min-height: 1.95rem;
 	padding: 0.25rem 0.65rem !important;
@@ -1115,11 +1051,6 @@ html[data-skin="eight-bit-overworld"] .favorites-index h2 {
 	border-bottom: 2px dashed #3b2b7d;
 	color: var(--pixel-gold) !important;
 	font-size: 0.92rem !important;
-}
-
-html[data-skin="eight-bit-overworld"] .favorites-index h2::before {
-	content: "\25B6 WARP ZONE // ";
-	color: var(--pixel-cyan);
 }
 
 html[data-skin="eight-bit-overworld"] .favorites-index-list li {
@@ -1223,7 +1154,7 @@ html[data-skin="eight-bit-overworld"] .contact-form-grid {
 	position: relative;
 	width: 100% !important;
 	margin: 0 !important;
-	padding: 2.55rem 1.25rem 1.25rem !important;
+	padding: 1.35rem !important;
 	border: 3px solid var(--pixel-gold) !important;
 	border-radius: 0 !important;
 	background: #0b0720 !important;
@@ -1233,20 +1164,7 @@ html[data-skin="eight-bit-overworld"] .contact-form-grid {
 }
 
 html[data-skin="eight-bit-overworld"] .contact-form-grid::before {
-	content: "\25B6 COMMAND INPUT // COMPOSE GUILD MESSAGE";
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	padding: 0.4rem 0.85rem;
-	border-bottom: 2px solid var(--pixel-gold);
-	background: #241954;
-	color: var(--pixel-gold);
-	font: 400 0.68rem/1.2 var(--pixel-display);
-	letter-spacing: 0.06em;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	content: none !important;
 }
 
 html[data-skin="eight-bit-overworld"] .contact-intro {
@@ -1305,7 +1223,7 @@ html[data-skin="eight-bit-overworld"] :is(input:focus, select:focus, textarea:fo
 	box-shadow: inset 3px 3px 0 var(--pixel-ink), 0 0 0 2px var(--pixel-gold) !important;
 }
 
-/* --- 7. Arcade Buttons, Boss Stage CTA, Fridge Board & Footer HUD --- */
+/* --- 7. Arcade Buttons, Overworld Stage CTA, Fridge Board & Pixel Ground Footer --- */
 
 html[data-skin="eight-bit-overworld"] :is(input[type="submit"], input[type="reset"], input[type="button"], button:not([class^="skin-picker"]):not(.personality-arrow):not(.favorites-view-button), .button) {
 	display: inline-flex;
@@ -1332,14 +1250,6 @@ html[data-skin="eight-bit-overworld"] :is(input[type="submit"], input[type="rese
 	cursor: pointer;
 }
 
-html[data-skin="eight-bit-overworld"] :is(.button, .contact-submit)::before {
-	content: "\2605 ";
-}
-
-html[data-skin="eight-bit-overworld"] :is(.button, .contact-submit)::after {
-	content: " \25B6";
-}
-
 html[data-skin="eight-bit-overworld"] :is(input[type="submit"]:hover, button:not([class^="skin-picker"]):not(.personality-arrow):not(.favorites-view-button):hover, .button:hover, .button:focus-visible) {
 	background: var(--pixel-cyan) !important;
 	box-shadow:
@@ -1357,15 +1267,16 @@ html[data-skin="eight-bit-overworld"] .section-cta {
 
 html[data-skin="eight-bit-overworld"] .section-cta > .site-shell {
 	position: relative;
-	padding: 2.65rem 1.75rem 2.85rem;
+	padding: 1.85rem 1.75rem 8.8rem;
 	border: 4px solid var(--pixel-gold);
 	background-color: #140e36 !important;
 	background-image:
-		var(--pixel-horizon-scene),
-		linear-gradient(180deg, #1d1549 0%, #120d2e 100%) !important;
-	background-position: center bottom, 0 0 !important;
-	background-size: 100% 44px, 100% 100% !important;
-	background-repeat: no-repeat !important;
+		var(--pixel-overworld-mural),
+		var(--pixel-sky-scene),
+		linear-gradient(180deg, #1b1345 0%, #120d2e 100%) !important;
+	background-position: center bottom, center top, 0 0 !important;
+	background-size: 640px 144px, 480px 240px, 100% 100% !important;
+	background-repeat: repeat-x, repeat, no-repeat !important;
 	box-shadow:
 		inset 0 0 0 3px #281d60,
 		8px 8px 0 var(--pixel-ink);
@@ -1373,17 +1284,7 @@ html[data-skin="eight-bit-overworld"] .section-cta > .site-shell {
 }
 
 html[data-skin="eight-bit-overworld"] .section-cta > .site-shell::before {
-	content: "\2605 CO-OP PARTY INVITE // PRESS START TO COLLABORATE \2605";
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	padding: 0.35rem 0.9rem;
-	border-bottom: 3px solid var(--pixel-gold);
-	background: #261b5c;
-	color: var(--pixel-gold);
-	font: 400 0.68rem/1.2 var(--pixel-display);
-	letter-spacing: 0.06em;
+	content: none !important;
 }
 
 html[data-skin="eight-bit-overworld"] .section-cta h2 {
@@ -1434,29 +1335,21 @@ html[data-skin="eight-bit-overworld"] pre code {
 	overflow-x: visible;
 }
 
-/* Footer Controller HUD */
+/* Footer with 8-Bit Grass & Checkered Brick Ground Platform */
 html[data-skin="eight-bit-overworld"] .site-footer {
 	margin-top: 1.5rem;
-	padding: 0;
+	padding: 2rem 0 0;
 	border: 0 !important;
-	border-top: 4px solid var(--pixel-gold) !important;
-	background: #080516 !important;
+	background-color: #080516 !important;
+	background-image: var(--pixel-ground-strip) !important;
+	background-repeat: repeat-x !important;
+	background-position: left top !important;
+	background-size: 128px 32px !important;
 	color: var(--text-1) !important;
 }
 
 html[data-skin="eight-bit-overworld"] .site-footer::before {
-	content: "[A] CONFIRM   [B] BACK   [SELECT] SWITCH THEME   [START] CONTACT   \2502   8-BIT OVERWORLD ENGINE";
-	display: block;
-	padding: 0.25rem 1rem;
-	border-bottom: 2px solid #281d60;
-	background: #140e36;
-	color: var(--pixel-cyan);
-	font: 400 0.64rem/1.3 var(--pixel-display);
-	letter-spacing: 0.06em;
-	text-align: center;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	content: none !important;
 }
 
 html[data-skin="eight-bit-overworld"] .footer-inner {
@@ -1542,11 +1435,6 @@ html[data-skin-id="eight-bit-overworld"] .skin-contact-charm {
 	transform: none !important;
 }
 
-html[data-skin-id="eight-bit-overworld"] .skin-contact-charm::before {
-	content: "\2605";
-	color: var(--pixel-ink);
-}
-
 html[data-skin-id="eight-bit-overworld"] .skin-contact-charm:hover {
 	background: var(--pixel-cyan) !important;
 	box-shadow:
@@ -1629,7 +1517,8 @@ html[data-skin-id="eight-bit-overworld"] .skin-contact-charm:hover {
 	}
 
 	html[data-skin="eight-bit-overworld"] .page-hero > .site-shell {
-		padding: 2.85rem 1rem 2.5rem;
+		padding: 1.35rem 1rem 7.8rem;
+		background-size: 480px 108px, 480px 240px, 100% 100% !important;
 		box-shadow:
 			inset 0 0 0 3px #281d60,
 			0 0 0 3px var(--pixel-ink),

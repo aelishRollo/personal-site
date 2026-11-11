@@ -590,9 +590,15 @@ test('8-Bit Overworld renders its bespoke reverse-split RPG hero, Bento quest ma
     const roles = Array.from(document.querySelectorAll('.page-hero h1 .hero-title-role')).map((el) =>
       el.getBoundingClientRect()
     );
+    const roleSprites = Array.from(document.querySelectorAll('.page-hero h1 .hero-title-role')).map(
+      (el) => window.getComputedStyle(el).backgroundImage
+    );
     const quests = Array.from(document.querySelectorAll('.quest-card')).map((el) =>
       el.getBoundingClientRect()
     );
+    const brandHearts = window.getComputedStyle(document.querySelector('.brand'), '::after').backgroundImage;
+    const heroMural = window.getComputedStyle(document.querySelector('.page-hero > .site-shell')).backgroundImage;
+    const roleBeforeContent = window.getComputedStyle(document.querySelector('.hero-title-role'), '::before').content;
     return {
       mediaLeftOfHeading: media.right <= h1.left + 4,
       roleGridTwoByTwo:
@@ -600,6 +606,9 @@ test('8-Bit Overworld renders its bespoke reverse-split RPG hero, Bento quest ma
         roles[0].left < roles[1].left &&
         Math.round(roles[2].top) === Math.round(roles[3].top) &&
         roles[2].left < roles[3].left,
+      hasDistinctRoleSprites: new Set(roleSprites).size === 4 && roleSprites.every((bg) => bg.includes('data:image/svg+xml')),
+      hasHudHeartsAndOverworldMural: brandHearts.includes('data:image/svg+xml') && heroMural.includes('data:image/svg+xml'),
+      noExtraneousRoleBanner: roleBeforeContent === 'none',
       bentoLeftStacked:
         Math.round(quests[0].left) === Math.round(quests[2].left) &&
         quests[0].bottom <= quests[2].top + 4,
@@ -613,6 +622,9 @@ test('8-Bit Overworld renders its bespoke reverse-split RPG hero, Bento quest ma
 
   expect(homeLayout.mediaLeftOfHeading).toBe(true);
   expect(homeLayout.roleGridTwoByTwo).toBe(true);
+  expect(homeLayout.hasDistinctRoleSprites).toBe(true);
+  expect(homeLayout.hasHudHeartsAndOverworldMural).toBe(true);
+  expect(homeLayout.noExtraneousRoleBanner).toBe(true);
   expect(homeLayout.bentoLeftStacked).toBe(true);
   expect(homeLayout.bentoRightSpanning).toBe(true);
   expect(homeLayout.overflow).toBeLessThanOrEqual(0);
