@@ -597,7 +597,10 @@ test('8-Bit Overworld renders its bespoke reverse-split RPG hero, Bento quest ma
       el.getBoundingClientRect()
     );
     const brandHearts = window.getComputedStyle(document.querySelector('.brand'), '::after').backgroundImage;
-    const heroMural = window.getComputedStyle(document.querySelector('.page-hero > .site-shell')).backgroundImage;
+    const bodyBg = window.getComputedStyle(document.body).backgroundImage;
+    const heroShellStyle = window.getComputedStyle(document.querySelector('.page-hero > .site-shell'));
+    const cardStyle = window.getComputedStyle(document.querySelector('.panel-card'));
+    const sillyStyle = window.getComputedStyle(document.getElementById('hero-silly-title'));
     const roleBeforeContent = window.getComputedStyle(document.querySelector('.hero-title-role'), '::before').content;
     return {
       mediaLeftOfHeading: media.right <= h1.left + 4,
@@ -607,7 +610,11 @@ test('8-Bit Overworld renders its bespoke reverse-split RPG hero, Bento quest ma
         Math.round(roles[2].top) === Math.round(roles[3].top) &&
         roles[2].left < roles[3].left,
       hasDistinctRoleSprites: new Set(roleSprites).size === 4 && roleSprites.every((bg) => bg.includes('data:image/svg+xml')),
-      hasHudHeartsAndOverworldMural: brandHearts.includes('data:image/svg+xml') && heroMural.includes('data:image/svg+xml'),
+      sillyTitleIconUnclipped: sillyStyle.backgroundClip === 'border-box',
+      hasHudHeartsAndOverworldMural:
+        brandHearts.includes('data:image/svg+xml') && heroShellStyle.backgroundImage.includes('data:image/svg+xml'),
+      distinctBackgroundAndContainers:
+        bodyBg !== heroShellStyle.backgroundImage && heroShellStyle.backgroundColor !== cardStyle.backgroundColor,
       noExtraneousRoleBanner: roleBeforeContent === 'none',
       bentoLeftStacked:
         Math.round(quests[0].left) === Math.round(quests[2].left) &&
@@ -623,7 +630,9 @@ test('8-Bit Overworld renders its bespoke reverse-split RPG hero, Bento quest ma
   expect(homeLayout.mediaLeftOfHeading).toBe(true);
   expect(homeLayout.roleGridTwoByTwo).toBe(true);
   expect(homeLayout.hasDistinctRoleSprites).toBe(true);
+  expect(homeLayout.sillyTitleIconUnclipped).toBe(true);
   expect(homeLayout.hasHudHeartsAndOverworldMural).toBe(true);
+  expect(homeLayout.distinctBackgroundAndContainers).toBe(true);
   expect(homeLayout.noExtraneousRoleBanner).toBe(true);
   expect(homeLayout.bentoLeftStacked).toBe(true);
   expect(homeLayout.bentoRightSpanning).toBe(true);

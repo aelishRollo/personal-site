@@ -81,8 +81,12 @@ html[data-skin="eight-bit-overworld"] {
 	   Classic gold mystery block with corner rivets and bold pixel question mark */
 	--pixel-sprite-question: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M2 1h12v1H15v12h-1v1H2v-1H1V2h1V1z'/%3E%3Cpath fill='%23d97706' d='M2 2h12v12H2V2z'/%3E%3Cpath fill='%23ffd84d' d='M2 2h11v11H2V2z'/%3E%3Cpath fill='%2378350f' d='M3 3h1v1H3V3zm9 0h1v1h-1V3zM3 12h1v1H3v-1zm9 0h1v1h-1v-1z'/%3E%3Cpath fill='%23070412' d='M6 4h5v4H9v2H7V7h2V5H6V4zm1 7h2v2H7v-2z'/%3E%3Cpath fill='%23fff9ec' d='M5 3h5v4H8v2H6V6h2V4H5V3zm1 7h2v2H6v-2z'/%3E%3C/svg%3E");
 
+	/* 9. 8-Bit Castle Stone Brickwork Tile for Main Containers (16x8 grid -> rendered at 64x32px = 4px square pixels):
+	   Gives main containers a distinct Royal Cobalt castle-wall texture separate from the night-sky body background */
+	--pixel-castle-stone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='32' viewBox='0 0 16 8' shape-rendering='crispEdges'%3E%3Crect width='16' height='8' fill='%231b2a52'/%3E%3Cpath fill='%23243769' d='M0 0h7v1H0zm8 0h7v1H8zM0 1h1v2H0zm8 0h1v2H8zM4 4h7v1H4zm8 4h4v-4h-4v1h3v3zM0 4h3v1H0zm12 0h4v1h-4zM4 5h1v2H4zm8 0h1v2h-1z'/%3E%3Cpath fill='%23101935' d='M7 0h1v3H7zm8 0h1v3h-1zM0 3h16v1H0zm3 1h1v3H3zm8 0h1v3h-1zM0 7h16v1H0z'/%3E%3C/svg%3E");
+
 	/* 10. 8-Bit Game Cartridge Moulded Grip Pattern for Work Cards */
-	--pixel-cartridge-grip: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='12' viewBox='0 0 8 3' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='8' height='3' fill='%23261b5c'/%3E%3Crect x='1' y='0' width='5' height='1' fill='%234c389e'/%3E%3Crect x='1' y='2' width='5' height='1' fill='%230b0720'/%3E%3C/svg%3E");
+	--pixel-cartridge-grip: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='12' viewBox='0 0 8 3' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='8' height='3' fill='%23243769'/%3E%3Crect x='1' y='0' width='5' height='1' fill='%235ce1e6'/%3E%3Crect x='1' y='2' width='5' height='1' fill='%23080c1a'/%3E%3C/svg%3E");
 
 	color-scheme: dark;
 	overflow-x: clip;
@@ -90,10 +94,10 @@ html[data-skin="eight-bit-overworld"] {
 
 html[data-skin="eight-bit-overworld"] body {
 	position: relative;
-	background-color: #0d0922 !important;
+	background-color: #060410 !important;
 	background-image:
 		var(--pixel-sky-scene),
-		linear-gradient(180deg, #090619 0%, #130d31 52%, #1d1447 100%) !important;
+		linear-gradient(180deg, #05030d 0%, #090619 55%, #110b29 100%) !important;
 	background-size: 480px 240px, 100% 100% !important;
 	background-repeat: repeat, no-repeat !important;
 	color: var(--text-1) !important;
@@ -333,21 +337,20 @@ html[data-skin="eight-bit-overworld"] :is(.page-hero::before, .page-hero::after)
 	display: none !important;
 }
 
-/* Stepped 8-bit RPG Window with Unobstructed 144px Pixel Overworld Panorama Stage at Bottom */
+/* Stepped 8-bit Castle Stone Stage with Unobstructed 144px Pixel Overworld Panorama at Bottom */
 html[data-skin="eight-bit-overworld"] .page-hero > .site-shell {
 	position: relative;
 	padding: clamp(1.6rem, 3vw, 2.25rem) clamp(1.35rem, 3vw, 2.25rem) 9.6rem;
-	border: 4px solid var(--text-1);
-	background-color: #120d2e !important;
+	border: 4px solid var(--pixel-gold);
+	background-color: #1b2a52 !important;
 	background-image:
 		var(--pixel-overworld-mural),
-		var(--pixel-sky-scene),
-		linear-gradient(180deg, #100b29 0%, #17113b 62%, #221854 100%) !important;
-	background-position: left bottom, center top, 0 0 !important;
-	background-size: 640px 144px, 480px 240px, 100% 100% !important;
-	background-repeat: repeat-x, repeat, no-repeat !important;
+		var(--pixel-castle-stone) !important;
+	background-position: left bottom, left top !important;
+	background-size: 640px 144px, 64px 32px !important;
+	background-repeat: repeat-x, repeat !important;
 	box-shadow:
-		inset 0 0 0 4px #281d60,
+		inset 0 0 0 4px #354d8c,
 		0 0 0 4px var(--pixel-ink),
 		8px 8px 0 var(--pixel-ink);
 }
@@ -361,7 +364,7 @@ html[data-skin="eight-bit-overworld"] .page-hero > .site-shell::before {
 html[data-skin="eight-bit-overworld"] body.page-favorites#page-top .favorites-hero > .site-shell {
 	padding-top: 1.5rem !important;
 	padding-bottom: 4.5rem !important;
-	background-size: 320px 72px, 480px 240px, 100% 100% !important;
+	background-size: 320px 72px, 64px 32px !important;
 }
 
 /* Bespoke Reverse-Split Hero Layout on Home:
@@ -412,10 +415,10 @@ html[data-skin="eight-bit-overworld"] .hero-copy .hero-media {
 	max-width: none;
 	margin: 0;
 	padding: 0.9rem;
-	border: 3px solid var(--pixel-gold);
-	background: #0b0720;
+	border: 3px solid var(--text-1);
+	background: #080c1a;
 	box-shadow:
-		inset 0 0 0 3px #281d60,
+		inset 0 0 0 3px #1e2d59,
 		6px 6px 0 var(--pixel-ink);
 	transform: none !important;
 }
@@ -433,7 +436,7 @@ html[data-skin="eight-bit-overworld"] .eyebrow {
 	padding: 0.26rem 0.65rem;
 	border: 2px solid var(--pixel-gold) !important;
 	border-radius: 0 !important;
-	background: #241954 !important;
+	background: #080c1a !important;
 	box-shadow: 3px 3px 0 var(--pixel-ink) !important;
 	color: var(--pixel-gold) !important;
 	font: 400 0.72rem/1.2 var(--pixel-display) !important;
@@ -452,7 +455,7 @@ html[data-skin="eight-bit-overworld"] .page-hero h1 {
 	color: var(--text-1) !important;
 	font: 400 clamp(1.75rem, 3.3vw, 2.65rem)/1.18 var(--pixel-display) !important;
 	letter-spacing: 0.03em;
-	text-shadow: 3px 3px 0 var(--pixel-ink), 5px 5px 0 #281d60 !important;
+	text-shadow: 3px 3px 0 var(--pixel-ink), 5px 5px 0 #080c1a !important;
 }
 
 /* Home page h1: 2x2 RPG Item Slot Matrix with Real 16x16 Pixel Art Sprites */
@@ -476,14 +479,16 @@ html[data-skin="eight-bit-overworld"] :is(.hero-title-role, .hero-title-role:nth
 	min-height: 3.35rem;
 	margin: 0 !important;
 	padding: 0.65rem 0.8rem 0.65rem 3.35rem !important;
-	border: 2px solid var(--text-1) !important;
+	border: 3px solid var(--text-1) !important;
 	border-radius: 0 !important;
-	background-color: #18113d !important;
+	background-color: #080c1a !important;
 	background-image: var(--pixel-sprite-wizard-hat) !important;
 	background-repeat: no-repeat !important;
 	background-position: 0.7rem center !important;
 	background-size: 32px 32px !important;
-	box-shadow: inset -2px -2px 0 #090619, 4px 4px 0 var(--pixel-ink) !important;
+	background-clip: border-box !important;
+	-webkit-background-clip: border-box !important;
+	box-shadow: inset -2px -2px 0 #1e2d59, 4px 4px 0 var(--pixel-ink) !important;
 	color: var(--text-1) !important;
 	-webkit-text-fill-color: var(--text-1) !important;
 	-webkit-text-stroke: 0 !important;
@@ -510,8 +515,10 @@ html[data-skin="eight-bit-overworld"] .hero-title-role:nth-of-type(3) {
 
 html[data-skin="eight-bit-overworld"] #hero-silly-title {
 	border-color: var(--pixel-gold) !important;
-	background-color: #21164f !important;
+	background-color: #101730 !important;
 	background-image: var(--pixel-sprite-question) !important;
+	background-clip: border-box !important;
+	-webkit-background-clip: border-box !important;
 	color: var(--pixel-gold) !important;
 	-webkit-text-fill-color: var(--pixel-gold) !important;
 }
@@ -542,7 +549,7 @@ html[data-skin="eight-bit-overworld"] body.page-home .personality-arrow {
 	min-height: 1.85rem !important;
 	border: 2px solid var(--text-1) !important;
 	border-radius: 0 !important;
-	background: #261b5c !important;
+	background: #080c1a !important;
 	box-shadow: 2px 2px 0 var(--pixel-ink) !important;
 	color: var(--pixel-gold) !important;
 	opacity: 1 !important;
@@ -555,15 +562,15 @@ html[data-skin="eight-bit-overworld"] :is(body.page-home .personality-arrow:hove
 	transform: translate(1px, 1px) !important;
 }
 
-/* Clean JRPG Dialogue Windows for Hero Copy */
+/* Clean High-Contrast NES Dialogue Windows for Hero Copy */
 html[data-skin="eight-bit-overworld"] .hero-summary {
 	position: relative;
 	max-width: none;
 	margin: 0 0 0.75rem;
 	padding: 0.9rem 1.05rem;
 	border: 3px solid var(--text-1);
-	background: #0b0720 !important;
-	box-shadow: inset 0 0 0 2px #281d60, 4px 4px 0 var(--pixel-ink);
+	background: #080c1a !important;
+	box-shadow: inset 0 0 0 2px #1e2d59, 4px 4px 0 var(--pixel-ink);
 	color: var(--text-1) !important;
 	font: 400 0.96rem/1.55 var(--pixel-body) !important;
 }
@@ -579,7 +586,8 @@ html[data-skin="eight-bit-overworld"] .page-hero .lead {
 	padding: 0.75rem 1.05rem;
 	border: 2px solid var(--pixel-gold);
 	border-left: 5px solid var(--pixel-gold);
-	background: rgba(20, 14, 54, 0.85) !important;
+	background: #0b1124 !important;
+	box-shadow: 4px 4px 0 var(--pixel-ink);
 	color: var(--text-1) !important;
 	font: 400 0.94rem/1.5 var(--pixel-body) !important;
 }
@@ -613,9 +621,9 @@ html[data-skin="eight-bit-overworld"] :is(.portrait-panel, .portrait-panel-compa
 	max-width: 340px !important;
 	margin: 0 !important;
 	padding: 0.85rem !important;
-	border: 3px solid var(--pixel-gold) !important;
+	border: 3px solid var(--text-1) !important;
 	border-radius: 0 !important;
-	background: #0b0720 !important;
+	background: #080c1a !important;
 	box-shadow: 5px 5px 0 var(--pixel-ink) !important;
 	transform: none !important;
 }
@@ -630,16 +638,16 @@ html[data-skin="eight-bit-overworld"] .hero-splash {
 	display: block;
 	width: 100%;
 	height: 124px;
-	margin: 0.8rem auto 0;
-	padding: 0.55rem 0.55rem 0.55rem 2.75rem;
+	margin: 0.8rem auto 1.95rem;
+	padding: 0.55rem 0.55rem 0.55rem 2.85rem;
 	border: 2px solid var(--pixel-cyan) !important;
 	border-radius: 0 !important;
-	background-color: #140e36 !important;
+	background-color: #101730 !important;
 	background-image: var(--pixel-sprite-question) !important;
 	background-repeat: no-repeat !important;
 	background-position: 0.55rem center !important;
 	background-size: 28px 28px !important;
-	box-shadow: inset 0 0 0 2px #090619 !important;
+	box-shadow: inset 0 0 0 2px #050811 !important;
 	color: var(--pixel-gold) !important;
 	transform: none;
 	pointer-events: auto;
@@ -671,7 +679,7 @@ html[data-skin="eight-bit-overworld"] .hero-splash .hero-splash-text {
 html[data-skin="eight-bit-overworld"] .hero-quests {
 	margin: 1.5rem 0 0;
 	padding: 1.35rem 0 0;
-	border-top: 3px dashed #3b2b7d !important;
+	border-top: 3px dashed var(--pixel-gold) !important;
 }
 
 html[data-skin="eight-bit-overworld"] .quest-grid {
@@ -706,16 +714,16 @@ html[data-skin="eight-bit-overworld"] :is(.panel-card, .quest-card) {
 	padding: 1.15rem !important;
 	border: 3px solid var(--text-1) !important;
 	border-radius: 0 !important;
-	background: #0c0822 !important;
+	background: #080c1a !important;
 	box-shadow:
-		inset 0 0 0 3px #241954,
+		inset 0 0 0 3px #1e2d59,
 		6px 6px 0 var(--pixel-ink) !important;
 	transform: none !important;
 }
 
 html[data-skin="eight-bit-overworld"] .quest-card:nth-child(2) {
 	border-color: var(--pixel-gold) !important;
-	background: #140e36 !important;
+	background: #0b1124 !important;
 }
 
 html[data-skin="eight-bit-overworld"] :is(.panel-card:hover, .quest-card:hover) {
@@ -729,7 +737,7 @@ html[data-skin="eight-bit-overworld"] .panel-card h3 {
 	margin: -1.15rem -1.15rem 0.9rem !important;
 	padding: 0.45rem 0.85rem 0.45rem 3.1rem;
 	border-bottom: 3px solid var(--text-1);
-	background-color: #241954;
+	background-color: #162244;
 	background-image: var(--pixel-sprite-wizard-hat);
 	background-repeat: no-repeat;
 	background-position: 0.65rem center;
@@ -819,13 +827,13 @@ html[data-skin="eight-bit-overworld"] .features article {
 	border: 3px solid var(--text-1) !important;
 	border-top: 6px solid var(--pixel-gold) !important;
 	border-radius: 0 !important;
-	background-color: #120d2e !important;
+	background-color: #080c1a !important;
 	background-image: var(--pixel-cartridge-grip) !important;
 	background-repeat: repeat-x !important;
 	background-position: left top !important;
 	background-size: 32px 12px !important;
 	box-shadow:
-		inset 0 0 0 3px #281d60,
+		inset 0 0 0 3px #1e2d59,
 		6px 6px 0 var(--pixel-ink) !important;
 	transform: none !important;
 }
@@ -849,7 +857,7 @@ html[data-skin="eight-bit-overworld"] .features--showcase .featured-project {
 	gap: 1.65rem !important;
 	align-items: center;
 	border-top-color: var(--pixel-cyan) !important;
-	background-color: #161038 !important;
+	background-color: #0d142b !important;
 }
 
 html[data-skin="eight-bit-overworld"] .features--showcase .featured-project .inner {
@@ -876,7 +884,7 @@ html[data-skin="eight-bit-overworld"] .features article .image {
 	padding: 0 !important;
 	border: 3px solid var(--text-1) !important;
 	border-radius: 0 !important;
-	background: #090619 !important;
+	background: #050811 !important;
 	box-shadow: 4px 4px 0 var(--pixel-ink) !important;
 	text-decoration: none !important;
 	overflow: hidden;
@@ -912,7 +920,7 @@ html[data-skin="eight-bit-overworld"] :is(.features article .inner, .features--s
 html[data-skin="eight-bit-overworld"] .features article h3 {
 	margin: 0 0 0.55rem !important;
 	padding-bottom: 0.4rem;
-	border-bottom: 2px dashed #3b2b7d;
+	border-bottom: 2px dashed #2b3f78;
 	color: var(--pixel-gold) !important;
 	font-size: 1.05rem !important;
 }
@@ -943,8 +951,8 @@ html[data-skin="eight-bit-overworld"] .features article .inner span a {
 	padding: 0.3rem 0.6rem !important;
 	border: 2px solid var(--text-1) !important;
 	border-radius: 0 !important;
-	background: #261b5c !important;
-	box-shadow: inset -2px -2px 0 #090619, 3px 3px 0 var(--pixel-ink) !important;
+	background: #162244 !important;
+	box-shadow: inset -2px -2px 0 #050811, 3px 3px 0 var(--pixel-ink) !important;
 	color: var(--pixel-cyan) !important;
 	font: 400 0.68rem/1.2 var(--pixel-display) !important;
 	letter-spacing: 0.04em;
@@ -961,10 +969,13 @@ html[data-skin="eight-bit-overworld"] :is(.features article .inner span a:hover,
 /* 2-Column RPG Instruction Booklet for .work-background */
 html[data-skin="eight-bit-overworld"] .section-soft > .site-shell {
 	padding: clamp(1.35rem, 3vw, 2rem);
-	border: 4px solid var(--text-1);
-	background: #120d2e;
+	border: 4px solid var(--pixel-gold);
+	background-color: #1b2a52 !important;
+	background-image: var(--pixel-castle-stone) !important;
+	background-size: 64px 32px !important;
+	background-repeat: repeat !important;
 	box-shadow:
-		inset 0 0 0 3px #281d60,
+		inset 0 0 0 3px #354d8c,
 		6px 6px 0 var(--pixel-ink);
 }
 
@@ -984,9 +995,9 @@ html[data-skin="eight-bit-overworld"] .work-background > p:not(:last-child) {
 	max-width: none;
 	margin: 0 !important;
 	padding: 0.8rem 0.95rem;
-	border: 2px solid #3b2b7d;
+	border: 2px solid var(--text-1);
 	border-left: 4px solid var(--pixel-cyan);
-	background: #0b0720;
+	background: #080c1a;
 	box-shadow: 3px 3px 0 var(--pixel-ink);
 	font-size: 0.9rem;
 	line-height: 1.5;
@@ -1013,8 +1024,10 @@ html[data-skin="eight-bit-overworld"] .favorites-jump {
 html[data-skin="eight-bit-overworld"] .favorites-toolbar {
 	margin: 0 0 0.85rem;
 	padding: 0.5rem 0.85rem;
-	border: 3px solid var(--text-1);
-	background: #120d2e;
+	border: 3px solid var(--pixel-gold);
+	background-color: #1b2a52;
+	background-image: var(--pixel-castle-stone);
+	background-size: 64px 32px;
 	box-shadow: 4px 4px 0 var(--pixel-ink);
 }
 
@@ -1028,7 +1041,7 @@ html[data-skin="eight-bit-overworld"] .favorites-view-button {
 	padding: 0.25rem 0.65rem !important;
 	border: 2px solid var(--text-1) !important;
 	border-radius: 0 !important;
-	background: #241954 !important;
+	background: #080c1a !important;
 	box-shadow: 2px 2px 0 var(--pixel-ink) !important;
 	color: var(--text-1) !important;
 	font: 400 0.68rem/1.2 var(--pixel-display) !important;
@@ -1045,15 +1058,17 @@ html[data-skin="eight-bit-overworld"] .favorites-index {
 	max-width: none;
 	margin-bottom: 1rem;
 	padding: 0.85rem 1.2rem;
-	border: 3px solid var(--text-1);
-	background: #120d2e;
+	border: 3px solid var(--pixel-gold);
+	background-color: #1b2a52;
+	background-image: var(--pixel-castle-stone);
+	background-size: 64px 32px;
 	box-shadow: 5px 5px 0 var(--pixel-ink);
 }
 
 html[data-skin="eight-bit-overworld"] .favorites-index h2 {
 	margin: 0 0 0.55rem;
 	padding-bottom: 0.35rem;
-	border-bottom: 2px dashed #3b2b7d;
+	border-bottom: 2px dashed var(--pixel-gold);
 	color: var(--pixel-gold) !important;
 	font-size: 0.92rem !important;
 }
@@ -1075,15 +1090,15 @@ html[data-skin="eight-bit-overworld"] :is(.favorites-index-list a:hover, .favori
 html[data-skin="eight-bit-overworld"] .favorite-card {
 	border: 3px solid var(--text-1) !important;
 	border-radius: 0 !important;
-	background: #120d2e !important;
+	background: #080c1a !important;
 	box-shadow:
-		inset 0 0 0 2px #281d60,
+		inset 0 0 0 2px #1e2d59,
 		5px 5px 0 var(--pixel-ink) !important;
 }
 
 html[data-skin="eight-bit-overworld"] .favorite-media {
 	border-bottom: 3px solid var(--text-1);
-	background: #090619;
+	background: #050811;
 }
 
 html[data-skin="eight-bit-overworld"] .favorite-media--logo {
@@ -1094,7 +1109,7 @@ html[data-skin="eight-bit-overworld"] .favorite-kind {
 	margin: 0 0 0.3rem;
 	padding: 0.1rem 0.42rem;
 	border: 1px solid var(--pixel-cyan);
-	background: #241954;
+	background: #162244;
 	color: var(--pixel-gold) !important;
 	font: 400 0.62rem/1.2 var(--pixel-display) !important;
 	letter-spacing: 0.06em;
@@ -1119,7 +1134,7 @@ html[data-skin="eight-bit-overworld"] .favorite-link {
 	margin-top: auto;
 	padding: 0.3rem 0.6rem !important;
 	border: 2px solid var(--text-1) !important;
-	background: #241954 !important;
+	background: #162244 !important;
 	box-shadow: 2px 2px 0 var(--pixel-ink) !important;
 	color: var(--pixel-gold) !important;
 	font: 400 0.68rem/1.2 var(--pixel-display) !important;
@@ -1136,7 +1151,7 @@ html[data-skin="eight-bit-overworld"] :is(.favorite-link:hover, .favorite-link:f
 html[data-skin="eight-bit-overworld"] .favorites-back-to-top {
 	border: 3px solid var(--text-1) !important;
 	border-radius: 0 !important;
-	background: #241954 !important;
+	background: #162244 !important;
 	box-shadow: 4px 4px 0 var(--pixel-ink) !important;
 	color: var(--pixel-gold) !important;
 	font: 400 0.72rem/1.2 var(--pixel-display) !important;
@@ -1162,9 +1177,9 @@ html[data-skin="eight-bit-overworld"] .contact-form-grid {
 	padding: 1.35rem !important;
 	border: 3px solid var(--pixel-gold) !important;
 	border-radius: 0 !important;
-	background: #0b0720 !important;
+	background: #080c1a !important;
 	box-shadow:
-		inset 0 0 0 2px #281d60,
+		inset 0 0 0 2px #1e2d59,
 		6px 6px 0 var(--pixel-ink) !important;
 }
 
@@ -1179,9 +1194,9 @@ html[data-skin="eight-bit-overworld"] .contact-intro {
 	top: auto !important;
 	padding: 1.25rem;
 	border: 3px solid var(--text-1);
-	background: #140e36;
+	background: #080c1a;
 	box-shadow:
-		inset 0 0 0 2px #281d60,
+		inset 0 0 0 2px #1e2d59,
 		6px 6px 0 var(--pixel-ink);
 }
 
@@ -1196,7 +1211,7 @@ html[data-skin="eight-bit-overworld"] .contact-links a {
 	display: inline-block;
 	padding: 0.35rem 0.65rem !important;
 	border: 2px solid var(--text-1) !important;
-	background: #241954 !important;
+	background: #162244 !important;
 	box-shadow: 3px 3px 0 var(--pixel-ink) !important;
 	color: var(--pixel-gold) !important;
 	font: 400 0.7rem/1.2 var(--pixel-display) !important;
@@ -1215,7 +1230,7 @@ html[data-skin="eight-bit-overworld"] :is(input[type="text"], input[type="passwo
 	padding: 0.55rem 0.75rem !important;
 	border: 2px solid var(--text-1) !important;
 	border-radius: 0 !important;
-	background: #140e36 !important;
+	background: #101730 !important;
 	box-shadow: inset 3px 3px 0 var(--pixel-ink) !important;
 	color: var(--text-1) !important;
 	font: 400 0.95rem/1.4 var(--pixel-body) !important;
@@ -1224,7 +1239,7 @@ html[data-skin="eight-bit-overworld"] :is(input[type="text"], input[type="passwo
 
 html[data-skin="eight-bit-overworld"] :is(input:focus, select:focus, textarea:focus) {
 	border-color: var(--pixel-gold) !important;
-	background: #191240 !important;
+	background: #162244 !important;
 	box-shadow: inset 3px 3px 0 var(--pixel-ink), 0 0 0 2px var(--pixel-gold) !important;
 }
 
@@ -1272,18 +1287,17 @@ html[data-skin="eight-bit-overworld"] .section-cta {
 
 html[data-skin="eight-bit-overworld"] .section-cta > .site-shell {
 	position: relative;
-	padding: 1.85rem 1.75rem 8.8rem;
+	padding: 1.85rem 1.75rem 3.85rem;
 	border: 4px solid var(--pixel-gold);
-	background-color: #140e36 !important;
+	background-color: #1b2a52 !important;
 	background-image:
-		var(--pixel-overworld-mural),
-		var(--pixel-sky-scene),
-		linear-gradient(180deg, #1b1345 0%, #120d2e 100%) !important;
-	background-position: center bottom, center top, 0 0 !important;
-	background-size: 640px 144px, 480px 240px, 100% 100% !important;
-	background-repeat: repeat-x, repeat, no-repeat !important;
+		var(--pixel-ground-strip),
+		var(--pixel-castle-stone) !important;
+	background-position: left bottom, left top !important;
+	background-size: 128px 32px, 64px 32px !important;
+	background-repeat: repeat-x, repeat !important;
 	box-shadow:
-		inset 0 0 0 3px #281d60,
+		inset 0 0 0 3px #354d8c,
 		8px 8px 0 var(--pixel-ink);
 	text-align: center;
 }
@@ -1523,9 +1537,9 @@ html[data-skin-id="eight-bit-overworld"] .skin-contact-charm:hover {
 
 	html[data-skin="eight-bit-overworld"] .page-hero > .site-shell {
 		padding: 1.35rem 1rem 7.8rem;
-		background-size: 480px 108px, 480px 240px, 100% 100% !important;
+		background-size: 480px 108px, 64px 32px !important;
 		box-shadow:
-			inset 0 0 0 3px #281d60,
+			inset 0 0 0 3px #354d8c,
 			0 0 0 3px var(--pixel-ink),
 			5px 5px 0 var(--pixel-ink);
 	}
