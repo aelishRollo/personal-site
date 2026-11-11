@@ -89,3 +89,17 @@ test('MS-DOS Prompt is accessible across pages on desktop and mobile', async ({ 
     }
   }
 });
+
+test('8-Bit Overworld is accessible across pages on desktop and mobile', async ({ page }) => {
+  for (const viewport of [
+    { width: 1280, height: 860 },
+    { width: 390, height: 844 },
+  ]) {
+    await page.setViewportSize(viewport);
+    for (const path of ['index.html', 'work.html', 'favorites.html', 'contact.html', 'fridge-poetry.html']) {
+      await openSitePage(page, `/${path}?theme=eight-bit-overworld`);
+      await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'eight-bit-overworld');
+      await expectNoImportantViolations(page);
+    }
+  }
+});

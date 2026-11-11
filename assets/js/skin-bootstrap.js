@@ -44,7 +44,8 @@
 		{ id: 'hello-kitty', name: 'Hello Kitty', scheme: 'light', css: 'assets/css/skins/hello-kitty.css' },
 		{ id: 'forties-field-notes', name: '1940s Field Notes', scheme: 'light', css: 'assets/css/skins/forties-field-notes.css' },
 		{ id: 'nutrition-facts', name: 'Nutrition Facts', scheme: 'light', css: 'assets/css/skins/nutrition-facts.css' },
-		{ id: 'pretty-calc', name: 'Photo Carousel', scheme: 'dark', css: 'assets/css/skins/pretty-calc.css' }
+		{ id: 'pretty-calc', name: 'Photo Carousel', scheme: 'dark', css: 'assets/css/skins/pretty-calc.css' },
+		{ id: 'eight-bit-overworld', name: '8-Bit Overworld', scheme: 'dark', css: 'assets/css/skins/eight-bit-overworld.css' }
 	];
 	var skinById = {};
 	var activeId = '';

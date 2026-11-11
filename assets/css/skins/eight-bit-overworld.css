@@ -1,0 +1,1652 @@
+/*
+	8-Bit Overworld
+	An artistic Famicom / 8-bit RPG cartridge & twilight overworld theme.
+	Features crisp SVG pixel-art horizon landscapes (shape-rendering="crispEdges"),
+	stepped pixel dialogue frames, a reverse-split Character Sprite Card + 2x2
+	Class Equipment Matrix on Home, an interlocking Bento Quest Map, a 6-column
+	Game Cartridge Rack + 2-column Strategy Guide on Work, and a swapped Command
+	Input Console + Save Point Innkeeper layout on Contact.
+*/
+
+html[data-skin="eight-bit-overworld"] {
+	--background: #0d0922;
+	--foreground: #fff9ec;
+	--muted-bg: #161038;
+	--card-bg: #120d2e;
+	--border: #fff9ec;
+	--primary: #ffd84d;
+	--primary-fg: #0d0922;
+	--secondary: #261b5c;
+	--secondary-fg: #fff9ec;
+	--accent: #5ce1e6;
+	--accent-fg: #0d0922;
+	--link: #5ce1e6;
+	--warning: #ff5c7c;
+	--header-bg: #090619;
+	--header-fg: #fff9ec;
+	--footer-bg: #080516;
+	--footer-fg: #fff9ec;
+	--bg: #0d0922;
+	--surface-1: #120d2e;
+	--surface-2: #1c1444;
+	--surface-3: #281d60;
+	--text-1: #fff9ec;
+	--text-2: #e2dbf7;
+	--line-1: #fff9ec;
+	--accent-1: #ffd84d;
+	--accent-2: #5ce1e6;
+	--pixel-ink: #070412;
+	--pixel-gold: #ffd84d;
+	--pixel-gold-shade: #b87d00;
+	--pixel-cyan: #5ce1e6;
+	--pixel-emerald: #4ade80;
+	--pixel-ruby: #ff5c7c;
+	--pixel-violet: #b589ff;
+	--pixel-display: "Minecraft", "Press Start 2P", "Silkscreen", "VT323", ui-monospace, monospace;
+	--pixel-body: ui-monospace, "Cascadia Mono", "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+	--pixel-sky-tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 40 40' shape-rendering='crispEdges'%3E%3Crect x='4' y='5' width='1' height='1' fill='%23fff9ec' opacity='.85'/%3E%3Crect x='18' y='3' width='1' height='1' fill='%235ce1e6' opacity='.8'/%3E%3Crect x='33' y='6' width='1' height='3' fill='%23ffd84d'/%3E%3Crect x='32' y='7' width='3' height='1' fill='%23ffd84d'/%3E%3Crect x='11' y='15' width='1' height='1' fill='%23b589ff' opacity='.8'/%3E%3Crect x='26' y='18' width='1' height='1' fill='%23fff9ec' opacity='.7'/%3E%3Crect x='7' y='27' width='1' height='3' fill='%235ce1e6'/%3E%3Crect x='6' y='28' width='3' height='1' fill='%235ce1e6'/%3E%3Crect x='22' y='31' width='1' height='1' fill='%23ffd84d' opacity='.85'/%3E%3Crect x='36' y='29' width='1' height='1' fill='%23ff5c7c' opacity='.8'/%3E%3Crect x='14' y='37' width='1' height='1' fill='%23fff9ec' opacity='.65'/%3E%3C/svg%3E");
+	--pixel-horizon-scene: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 28' preserveAspectRatio='none' shape-rendering='crispEdges'%3E%3Cpath fill='%231b1342' d='M0 20h10v-2h8v-3h8v-3h6v3h8v3h10v-2h8v-4h8v-3h6v-3h6v3h6v3h8v4h10v-3h8v-3h8v3h8v3h10v2h16v8H0z'/%3E%3Cpath fill='%23291e61' d='M18 15h8v-3h6v3h-6v2h-8zm46 0h8v-3h6v-3h6v3h-6v3h-8zm50-1h8v-3h8v3h-8v2h-8z'/%3E%3Cpath fill='%23122a38' d='M0 22h6v-2h4v2h8v-3h4v3h10v-2h4v2h12v-3h4v3h14v-2h4v2h18v-3h4v3h12v-2h4v2h16v-3h4v3h12v-2h4v2h16v6H0z'/%3E%3Crect x='118' y='14' width='6' height='8' fill='%23261b5c'/%3E%3Crect x='117' y='12' width='8' height='2' fill='%23ff5c7c'/%3E%3Crect x='119' y='10' width='4' height='2' fill='%23ff5c7c'/%3E%3Crect x='120' y='16' width='2' height='2' fill='%23ffd84d'/%3E%3Crect x='0' y='24' width='160' height='2' fill='%2338ef7d'/%3E%3Cpath fill='%231b4d3e' d='M4 25h4v1H4zm12 0h6v1h-6zm16 0h4v1h-4zm14 0h6v1h-6zm18 0h4v1h-4zm16 0h6v1h-6zm16 0h4v1h-4zm16 0h6v1h-6zm18 0h4v1h-4zm14 0h6v1h-6z'/%3E%3Crect x='0' y='26' width='160' height='2' fill='%23281d60'/%3E%3C/svg%3E");
+	color-scheme: dark;
+	overflow-x: clip;
+}
+
+html[data-skin="eight-bit-overworld"] body {
+	position: relative;
+	background-color: #0d0922 !important;
+	background-image:
+		var(--pixel-sky-tile),
+		linear-gradient(180deg, #090619 0%, #130d31 48%, #1c1347 100%) !important;
+	background-size: 160px 160px, 100% 100% !important;
+	background-repeat: repeat, no-repeat !important;
+	color: var(--text-1) !important;
+	font-family: var(--pixel-body) !important;
+	font-size: 16px;
+	font-weight: 400;
+	font-synthesis: none;
+	line-height: 1.55;
+	overflow-x: clip;
+}
+
+html[data-skin="eight-bit-overworld"] :is(body::before, body::after) {
+	content: none !important;
+	display: none !important;
+}
+
+/* Generous 8-bit console arena width */
+html[data-skin="eight-bit-overworld"] .site-shell {
+	width: min(1180px, calc(100% - 2.5rem)) !important;
+	max-width: 1180px !important;
+	margin-inline: auto !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(body.page-fridge .site-main .site-shell, body.page-fridge .page-section .site-shell, body.page-favorites .favorites-section > .site-shell) {
+	width: min(1340px, calc(100% - 2rem)) !important;
+	max-width: none !important;
+	margin-inline: auto !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-fridge .page-hero > .site-shell {
+	width: min(1180px, calc(100% - 2.5rem)) !important;
+	max-width: 1180px !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(p, li, label, .lead, .note, .footer-inner p, dd) {
+	color: var(--text-2) !important;
+	font-family: var(--pixel-body) !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(h1, h2, h3, h4, h5, h6, strong, dt) {
+	color: var(--text-1) !important;
+	font-family: var(--pixel-display) !important;
+	font-weight: 400;
+	letter-spacing: 0.04em;
+	line-height: 1.25;
+	text-transform: uppercase;
+	text-shadow: 2px 2px 0 var(--pixel-ink) !important;
+}
+
+html[data-skin="eight-bit-overworld"] h2 {
+	font-size: clamp(1.25rem, 2vw, 1.65rem);
+	margin-bottom: 1rem;
+}
+
+html[data-skin="eight-bit-overworld"] h3 {
+	font-size: clamp(1rem, 1.35vw, 1.2rem);
+	margin-bottom: 0.6rem;
+}
+
+html[data-skin="eight-bit-overworld"] a {
+	border: 0 !important;
+	border-radius: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	color: var(--pixel-cyan) !important;
+	text-decoration: underline;
+	text-decoration-color: rgba(92, 225, 230, 0.6);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.22em;
+}
+
+html[data-skin="eight-bit-overworld"] :is(a:hover, a:focus-visible) {
+	background: var(--pixel-gold) !important;
+	color: var(--pixel-ink) !important;
+	text-decoration: none !important;
+	text-shadow: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] :focus-visible {
+	outline: 3px solid var(--pixel-gold) !important;
+	outline-offset: 2px !important;
+}
+
+/* --- 1. Top Arcade HUD & Cartridge Stage Select Bar (.site-header) --- */
+
+html[data-skin="eight-bit-overworld"] .site-header {
+	position: sticky;
+	top: 0;
+	z-index: 10010;
+	padding: 0;
+	border: 0 !important;
+	border-bottom: 4px solid var(--pixel-gold) !important;
+	background: #090619 !important;
+	box-shadow: 0 4px 0 var(--pixel-ink) !important;
+	backdrop-filter: none !important;
+	-webkit-backdrop-filter: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .site-header::before {
+	content: "1P: ALEC   \2665\2665\2665\2665   LV.99 BARD-ENGINEER   \2502   WORLD 3-17 (INDY)   \2502   COINS \00D799";
+	display: block;
+	padding: 0.25rem 1rem;
+	border-bottom: 2px solid #281d60;
+	background: #140e36;
+	color: var(--pixel-gold);
+	font: 400 0.68rem/1.3 var(--pixel-display);
+	letter-spacing: 0.08em;
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+html[data-skin="eight-bit-overworld"] .site-header .site-shell {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 0.65rem 1rem;
+	min-height: 3.6rem;
+	padding: 0.45rem 0;
+}
+
+html[data-skin="eight-bit-overworld"] .brand {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
+	margin: 0;
+	padding: 0.15rem 0.35rem 0.15rem 0;
+	text-decoration: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.brand:hover, .brand:focus-visible) {
+	background: transparent !important;
+	color: var(--pixel-gold) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .brand-mark {
+	display: inline-grid !important;
+	place-items: center;
+	width: auto;
+	height: auto;
+	min-width: 2.35rem;
+	padding: 0.25rem 0.45rem;
+	border: 2px solid var(--text-1);
+	border-radius: 0 !important;
+	background: var(--pixel-ruby) !important;
+	box-shadow: 3px 3px 0 var(--pixel-ink);
+	color: #ffffff !important;
+	font: 400 0.76rem/1 var(--pixel-display) !important;
+	text-shadow: 1px 1px 0 var(--pixel-ink);
+}
+
+html[data-skin="eight-bit-overworld"] .brand-text {
+	color: var(--text-1) !important;
+	font: 400 0.88rem/1.2 var(--pixel-display) !important;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	text-shadow: 2px 2px 0 var(--pixel-ink);
+}
+
+html[data-skin="eight-bit-overworld"] .site-nav {
+	display: block !important;
+	position: static !important;
+	width: auto !important;
+	margin: 0 0 0 auto !important;
+	padding: 0 !important;
+	border: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	transform: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .site-nav ul {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.45rem;
+	margin: 0;
+	padding: 0;
+}
+
+html[data-skin="eight-bit-overworld"] .site-nav li {
+	margin: 0;
+	padding: 0;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.site-nav a, .site-nav .nav-cta) {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35ch;
+	padding: 0.35rem 0.65rem !important;
+	border: 2px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	background: #1a1242 !important;
+	box-shadow: inset -2px -2px 0 #0b0720, 3px 3px 0 var(--pixel-ink) !important;
+	color: var(--text-1) !important;
+	font: 400 0.72rem/1.2 var(--pixel-display) !important;
+	letter-spacing: 0.05em;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] .site-nav li:nth-child(1) a::before { content: "1P\25B8"; color: var(--pixel-cyan); }
+html[data-skin="eight-bit-overworld"] .site-nav li:nth-child(2) a::before { content: "2P\25B8"; color: var(--pixel-emerald); }
+html[data-skin="eight-bit-overworld"] .site-nav li:nth-child(3) a::before { content: "3P\25B8"; color: var(--pixel-violet); }
+html[data-skin="eight-bit-overworld"] .site-nav li:nth-child(4) a::before { content: "\2605\25B8"; color: var(--pixel-gold); }
+
+html[data-skin="eight-bit-overworld"] :is(.site-nav a:hover, .site-nav a:focus-visible, .site-nav a[aria-current="page"]) {
+	border-color: var(--pixel-ink) !important;
+	background: var(--pixel-gold) !important;
+	box-shadow: inset -2px -2px 0 var(--pixel-gold-shade), 3px 3px 0 var(--pixel-ink) !important;
+	color: var(--pixel-ink) !important;
+	text-shadow: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.site-nav a:hover, .site-nav a:focus-visible, .site-nav a[aria-current="page"])::before {
+	color: var(--pixel-ink) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .nav-toggle {
+	display: none !important;
+}
+
+/* --- 2. Overworld Stage Frame & Reverse-Split Hero Arena (.page-hero) --- */
+
+html[data-skin="eight-bit-overworld"] :is(.page-hero, body.page-home .page-hero, body.page-services .page-hero, body.page-work .page-hero, body.page-connect .page-hero, body.page-about .page-hero, body.page-contact .page-hero, body.page-favorites .page-hero) {
+	position: relative;
+	overflow: visible;
+	width: 100%;
+	max-width: none;
+	margin: 0;
+	padding: 3.6rem 0 1.85rem !important;
+	border: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact .page-hero {
+	padding-top: 1.85rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.page-hero::before, .page-hero::after) {
+	content: none !important;
+	display: none !important;
+}
+
+/* Stepped 8-bit RPG Window with Pixel Overworld Horizon Along Bottom */
+html[data-skin="eight-bit-overworld"] .page-hero > .site-shell {
+	position: relative;
+	padding: clamp(3.3rem, 4.5vw, 3.9rem) clamp(1.35rem, 3vw, 2.25rem) clamp(2.8rem, 4.5vw, 3.4rem);
+	border: 4px solid var(--text-1);
+	background-color: #120d2e !important;
+	background-image:
+		var(--pixel-horizon-scene),
+		linear-gradient(180deg, #161038 0%, #110c2b 82%, #1b1342 100%) !important;
+	background-position: center bottom, 0 0 !important;
+	background-size: 100% 56px, 100% 100% !important;
+	background-repeat: no-repeat !important;
+	box-shadow:
+		inset 0 0 0 4px #281d60,
+		0 0 0 4px var(--pixel-ink),
+		8px 8px 0 var(--pixel-ink);
+}
+
+html[data-skin="eight-bit-overworld"] .page-hero > .site-shell::before {
+	content: "\25C6 OVERWORLD MAP // STAGE 01: PARTY & QUEST STATUS";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: 0.48rem 1rem;
+	border-bottom: 4px solid var(--text-1);
+	background: linear-gradient(90deg, #281d60 0%, #1a1242 100%);
+	color: var(--pixel-gold);
+	font: 400 0.74rem/1.25 var(--pixel-display);
+	letter-spacing: 0.06em;
+	text-shadow: 2px 2px 0 var(--pixel-ink);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-work .page-hero > .site-shell::before {
+	content: "\25C6 CARTRIDGE SELECT // STAGE 02: BUILT PROJECTS & ROMS";
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites .page-hero > .site-shell::before {
+	content: "\25C6 TREASURE VAULT // STAGE 03: COLLECTED ARTIFACTS";
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top .favorites-hero > .site-shell {
+	padding-top: 2.6rem !important;
+	padding-bottom: 1.75rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact .page-hero > .site-shell::before {
+	content: "\25C6 SAVE POINT & GUILD INN // STAGE 04: SEND TRANSMISSION";
+}
+
+html[data-skin="eight-bit-overworld"] body.page-fridge .page-hero > .site-shell::before {
+	content: "\25C6 SOUND & WORD COMPOSER // BONUS STAGE: FRIDGE POETRY";
+}
+
+/* Bespoke Reverse-Split Hero Layout on Home:
+   Column 1 (Left): Character Portrait & Lore Card (.hero-media)
+   Column 2 (Right): 2x2 RPG Class Matrix (h1) + Dialogue Windows (.hero-summary, .lead) */
+html[data-skin="eight-bit-overworld"] .hero-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 1.75rem;
+	align-items: start;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-grid--with-portrait {
+	grid-template-columns: minmax(250px, 340px) minmax(0, 1fr);
+	align-items: center;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-grid--with-portrait > :first-child {
+	grid-column: 2;
+	grid-row: 1;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-grid--with-portrait > .portrait-panel {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-copy {
+	display: grid;
+	grid-column: 1 / -1;
+	grid-template-columns: minmax(280px, 330px) minmax(0, 1fr);
+	column-gap: clamp(1.5rem, 3vw, 2.35rem);
+	row-gap: 0.85rem;
+	align-items: start;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-copy > :not(.hero-media):not(.hero-quests) {
+	grid-column: 2;
+}
+
+/* Left-hand Character Sprite & NPC Encounter Card */
+html[data-skin="eight-bit-overworld"] .hero-copy .hero-media {
+	grid-column: 1;
+	grid-row: 1 / span 5;
+	align-self: start;
+	justify-self: stretch;
+	width: 100%;
+	max-width: none;
+	margin: 0;
+	padding: 0.85rem;
+	border: 3px solid var(--pixel-gold);
+	background: #0b0720;
+	box-shadow:
+		inset 0 0 0 2px #281d60,
+		5px 5px 0 var(--pixel-ink);
+	transform: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-copy .hero-quests {
+	grid-column: 1 / -1;
+}
+
+html[data-skin="eight-bit-overworld"] .eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.45rem;
+	width: fit-content;
+	margin: 0 0 0.5rem;
+	padding: 0.26rem 0.65rem;
+	border: 2px solid var(--pixel-gold) !important;
+	border-radius: 0 !important;
+	background: #241954 !important;
+	box-shadow: 3px 3px 0 var(--pixel-ink) !important;
+	color: var(--pixel-gold) !important;
+	font: 400 0.7rem/1.2 var(--pixel-display) !important;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] .eyebrow::before {
+	content: "\2691 SPAWN:";
+	color: var(--pixel-cyan);
+}
+
+/* Non-home page hero h1 */
+html[data-skin="eight-bit-overworld"] .page-hero h1 {
+	max-width: 100%;
+	margin: 0 0 0.85rem;
+	color: var(--text-1) !important;
+	font: 400 clamp(1.75rem, 3.3vw, 2.65rem)/1.18 var(--pixel-display) !important;
+	letter-spacing: 0.03em;
+	text-shadow: 3px 3px 0 var(--pixel-ink), 5px 5px 0 #281d60 !important;
+}
+
+/* Home page h1: 2x2 RPG Equipped Class & Trait Matrix */
+html[data-skin="eight-bit-overworld"] body.page-home .page-hero h1 {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.65rem;
+	max-width: 100%;
+	margin: 0 0 0.9rem;
+	padding: 0;
+	font-size: clamp(1.05rem, 1.65vw, 1.35rem) !important;
+	line-height: 1.2 !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.hero-title-role, .hero-title-role:nth-of-type(2n), .metallic-pearl-text) {
+	position: relative;
+	display: flex !important;
+	flex-direction: column;
+	justify-content: center;
+	min-width: 0;
+	margin: 0 !important;
+	padding: 1.55rem 0.8rem 0.65rem !important;
+	border: 2px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	background: #18113d !important;
+	box-shadow: inset -2px -2px 0 #090619, 4px 4px 0 var(--pixel-ink) !important;
+	color: var(--text-1) !important;
+	-webkit-text-fill-color: var(--text-1) !important;
+	-webkit-text-stroke: 0 !important;
+	filter: none !important;
+	font: 400 clamp(1rem, 1.5vw, 1.28rem)/1.2 var(--pixel-display) !important;
+	text-shadow: 2px 2px 0 var(--pixel-ink) !important;
+	transform: none !important;
+	animation: none !important;
+	overflow-wrap: anywhere;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-title-role::before {
+	content: "CLASS 01 // LV.99";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: 0.2rem 0.55rem;
+	border-bottom: 2px solid rgba(255, 249, 236, 0.3);
+	background: #261b5c;
+	color: var(--pixel-cyan);
+	font: 400 0.58rem/1.15 var(--pixel-display);
+	letter-spacing: 0.08em;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-title-role:nth-of-type(2)::before {
+	content: "CLASS 02 // LV.99";
+	color: var(--pixel-emerald);
+}
+
+html[data-skin="eight-bit-overworld"] .hero-title-role:nth-of-type(3)::before {
+	content: "CLASS 03 // CO-OP";
+	color: var(--pixel-violet);
+}
+
+html[data-skin="eight-bit-overworld"] #hero-silly-title {
+	border-color: var(--pixel-gold) !important;
+	background: #21164f !important;
+	color: var(--pixel-gold) !important;
+	-webkit-text-fill-color: var(--pixel-gold) !important;
+}
+
+html[data-skin="eight-bit-overworld"] #hero-silly-title::before {
+	content: "PASSIVE BUFF // REROLL";
+	background: #352370;
+	color: var(--pixel-gold);
+}
+
+html[data-skin="eight-bit-overworld"] .hero-title-initial {
+	display: inline !important;
+	color: var(--pixel-gold) !important;
+	-webkit-text-fill-color: var(--pixel-gold) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-title-controls {
+	grid-column: 1 / -1;
+	display: inline-flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 0.35rem;
+	margin: 0.1rem 0 0;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-title-controls::before {
+	content: "CYCLE PASSIVE BUFF:";
+	margin-right: 0.25rem;
+	color: var(--pixel-gold);
+	font: 400 0.64rem/1 var(--pixel-display);
+	letter-spacing: 0.06em;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-home .personality-arrow {
+	width: 1.85rem !important;
+	height: 1.85rem !important;
+	min-width: 1.85rem !important;
+	min-height: 1.85rem !important;
+	border: 2px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	background: #261b5c !important;
+	box-shadow: 2px 2px 0 var(--pixel-ink) !important;
+	color: var(--pixel-gold) !important;
+	opacity: 1 !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(body.page-home .personality-arrow:hover, body.page-home .personality-arrow:focus-visible) {
+	border-color: var(--pixel-ink) !important;
+	background: var(--pixel-gold) !important;
+	color: var(--pixel-ink) !important;
+	transform: translate(1px, 1px) !important;
+}
+
+/* JRPG Dialogue Windows for Hero Copy */
+html[data-skin="eight-bit-overworld"] .hero-summary {
+	position: relative;
+	max-width: none;
+	margin: 0 0 0.75rem;
+	padding: 1.65rem 1rem 0.85rem;
+	border: 3px solid var(--text-1);
+	background: #0b0720 !important;
+	box-shadow: inset 0 0 0 2px #281d60, 4px 4px 0 var(--pixel-ink);
+	color: var(--text-1) !important;
+	font: 400 0.96rem/1.55 var(--pixel-body) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-summary::before {
+	content: "\25B6 DIALOGUE // ALEC THE ARTIFICER-BARD";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: 0.22rem 0.65rem;
+	border-bottom: 2px solid #281d60;
+	background: #1c1444;
+	color: var(--pixel-cyan);
+	font: 400 0.64rem/1.2 var(--pixel-display);
+	letter-spacing: 0.06em;
+}
+
+html[data-skin="eight-bit-overworld"] .page-hero .lead {
+	position: relative;
+	max-width: none;
+	margin: 0;
+	padding: 0.7rem 1rem;
+	border: 2px dashed var(--pixel-gold);
+	border-left: 5px solid var(--pixel-gold);
+	background: rgba(38, 27, 92, 0.55) !important;
+	color: var(--text-1) !important;
+	font: 400 0.94rem/1.5 var(--pixel-body) !important;
+}
+
+/* Character Sprite Frame & Splash Encounter Box */
+html[data-skin="eight-bit-overworld"] .hero-media::before,
+html[data-skin="eight-bit-overworld"] .portrait-panel::before {
+	content: "\2605 PLAYER 01 // SPRITE STATUS \2605";
+	display: block;
+	margin: -0.85rem -0.85rem 0.75rem;
+	padding: 0.35rem 0.65rem;
+	border-bottom: 2px solid var(--pixel-gold);
+	background: #261b5c;
+	color: var(--pixel-gold);
+	font: 400 0.68rem/1.2 var(--pixel-display);
+	letter-spacing: 0.06em;
+	text-align: center;
+}
+
+html[data-skin="eight-bit-overworld"] .msdos-page-image {
+	display: block !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.hero-media img, .portrait-panel img) {
+	display: block !important;
+	width: 100% !important;
+	max-width: 240px !important;
+	height: auto !important;
+	margin: 0 auto !important;
+	border: 3px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	box-shadow: 4px 4px 0 var(--pixel-ink) !important;
+	filter: none !important;
+	object-fit: cover;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.portrait-panel, .portrait-panel-compact) {
+	display: block !important;
+	width: 100% !important;
+	max-width: 340px !important;
+	margin: 0 !important;
+	padding: 0.85rem !important;
+	border: 3px solid var(--pixel-gold) !important;
+	border-radius: 0 !important;
+	background: #0b0720 !important;
+	box-shadow: 5px 5px 0 var(--pixel-ink) !important;
+	transform: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .portrait-panel-compact img {
+	max-width: 280px !important;
+	aspect-ratio: 16 / 10 !important;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-splash {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 146px;
+	margin: 0.8rem auto 1.85rem;
+	padding: 1.5rem 0.55rem 0.45rem;
+	border: 2px solid var(--pixel-cyan) !important;
+	border-radius: 0 !important;
+	background: #140e36 !important;
+	box-shadow: inset 0 0 0 2px #090619 !important;
+	color: var(--pixel-gold) !important;
+	transform: none;
+	pointer-events: auto;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-splash::before {
+	content: "\25C6 LORE SCROLL // NPC RUMOR";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: 0.18rem 0.5rem;
+	border-bottom: 2px solid var(--pixel-cyan);
+	background: #261b5c;
+	color: var(--pixel-cyan);
+	font: 400 0.6rem/1.2 var(--pixel-display);
+	letter-spacing: 0.06em;
+	text-align: left;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-splash .hero-splash-text {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	padding: 0.2rem 0.35rem;
+	background: transparent !important;
+	color: var(--pixel-gold) !important;
+	font-family: var(--pixel-display) !important;
+	line-height: 1.2;
+	text-align: center !important;
+	text-shadow: 2px 2px 0 var(--pixel-ink) !important;
+	animation: none !important;
+}
+
+/* --- 3. Interlocking Asymmetric Bento Quest Board (.hero-quests, .quest-grid) ---
+   Code (left top) + Community (left bottom) flank Music (right full-height span) */
+
+html[data-skin="eight-bit-overworld"] .hero-quests {
+	margin: 1.65rem 0 0;
+	padding: 1.5rem 0 0;
+	border-top: 4px dashed #3b2b7d !important;
+}
+
+html[data-skin="eight-bit-overworld"] .quest-grid {
+	display: grid !important;
+	grid-template-columns: minmax(0, 5fr) minmax(0, 7fr) !important;
+	grid-auto-rows: auto;
+	gap: 1.15rem !important;
+	align-items: stretch;
+}
+
+html[data-skin="eight-bit-overworld"] .quest-card:nth-child(1) {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+html[data-skin="eight-bit-overworld"] .quest-card:nth-child(2) {
+	grid-column: 2;
+	grid-row: 1 / span 2;
+}
+
+html[data-skin="eight-bit-overworld"] .quest-card:nth-child(3) {
+	grid-column: 1;
+	grid-row: 2;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.panel-card, .quest-card) {
+	display: flex !important;
+	flex-direction: column;
+	position: relative;
+	min-width: 0;
+	margin: 0 !important;
+	padding: 1.15rem !important;
+	border: 3px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	background: #0c0822 !important;
+	box-shadow:
+		inset 0 0 0 3px #241954,
+		6px 6px 0 var(--pixel-ink) !important;
+	transform: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .quest-card:nth-child(2) {
+	border-color: var(--pixel-gold) !important;
+	background: #140e36 !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.panel-card:hover, .quest-card:hover) {
+	border-color: var(--pixel-cyan) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .panel-card h3 {
+	margin: -1.15rem -1.15rem 0.9rem !important;
+	padding: 0.5rem 0.85rem;
+	border-bottom: 3px solid var(--text-1);
+	background: #241954;
+	color: var(--pixel-gold) !important;
+	font: 400 0.88rem/1.25 var(--pixel-display) !important;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] .quest-card:nth-child(1) h3::before { content: "\2694 QUEST I // "; color: var(--pixel-cyan); }
+html[data-skin="eight-bit-overworld"] .quest-card:nth-child(2) h3::before { content: "\266B GRAND QUEST II // "; color: var(--pixel-emerald); }
+html[data-skin="eight-bit-overworld"] .quest-card:nth-child(3) h3::before { content: "\2665 QUEST III // "; color: var(--pixel-ruby); }
+
+html[data-skin="eight-bit-overworld"] .panel-card p {
+	margin: 0 0 0.75rem;
+	color: var(--text-2) !important;
+	font-size: 0.92rem;
+	line-height: 1.55;
+}
+
+html[data-skin="eight-bit-overworld"] .quest-link {
+	display: inline-flex;
+	align-items: center;
+	align-self: flex-start;
+	margin: auto 0 0 !important;
+	padding: 0.42rem 0.75rem !important;
+	border: 2px solid var(--pixel-ink) !important;
+	background: var(--pixel-gold) !important;
+	box-shadow: inset -2px -2px 0 var(--pixel-gold-shade), 3px 3px 0 var(--pixel-ink) !important;
+	color: var(--pixel-ink) !important;
+	font: 400 0.72rem/1.2 var(--pixel-display) !important;
+	letter-spacing: 0.05em;
+	text-decoration: none !important;
+	text-transform: uppercase;
+	text-shadow: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .quest-link::before {
+	content: "\25B6 ";
+}
+
+html[data-skin="eight-bit-overworld"] .quest-link span {
+	display: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.quest-link:hover, .quest-link:focus-visible) {
+	background: var(--pixel-cyan) !important;
+	box-shadow: inset -2px -2px 0 #1f8a94, 3px 3px 0 var(--pixel-ink) !important;
+	color: var(--pixel-ink) !important;
+}
+
+/* --- 4. Work Page: 6-Column Game Cartridge Rack (1 + 3 + 2) & 2-Column Manual --- */
+
+html[data-skin="eight-bit-overworld"] :is(.page-section, .section-soft, .section-portrait) {
+	padding: 2.15rem 0 !important;
+	border: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .page-section > .site-shell > h2::before {
+	content: "\25C6 STAGE SELECT // ";
+	color: var(--pixel-gold);
+}
+
+/* 6-Column Master Grid:
+   Row 1: Featured Cartridge (spans 6 cols, text LEFT, monitor RIGHT)
+   Row 2: Cartridges 2, 3, 4 (each spans 2 cols -> 3 across!)
+   Row 3: Cartridges 5, 6 (each spans 3 cols -> 2 across!) */
+html[data-skin="eight-bit-overworld"] :is(.features, .features--showcase) {
+	display: grid !important;
+	grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+	gap: 1.35rem !important;
+	align-items: stretch;
+}
+
+html[data-skin="eight-bit-overworld"] .features article {
+	grid-column: span 3;
+	display: flex !important;
+	flex-direction: column;
+	position: relative;
+	width: auto !important;
+	min-width: 0;
+	margin: 0 !important;
+	padding: 1.15rem !important;
+	border: 3px solid var(--text-1) !important;
+	border-top: 10px solid var(--pixel-gold) !important;
+	border-radius: 0 !important;
+	background: #120d2e !important;
+	box-shadow:
+		inset 0 0 0 3px #281d60,
+		6px 6px 0 var(--pixel-ink) !important;
+	transform: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(2),
+html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(3),
+html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(4) {
+	grid-column: span 2 !important;
+}
+
+html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(5),
+html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(6) {
+	grid-column: span 3 !important;
+}
+
+/* Reversed Featured Console Deck: Copy on LEFT, Monitor Screen on RIGHT */
+html[data-skin="eight-bit-overworld"] .features--showcase .featured-project {
+	grid-column: 1 / -1 !important;
+	display: grid !important;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr) !important;
+	gap: 1.65rem !important;
+	align-items: center;
+	border-top-color: var(--pixel-cyan) !important;
+	background: #161038 !important;
+}
+
+html[data-skin="eight-bit-overworld"] .features--showcase .featured-project .inner {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+html[data-skin="eight-bit-overworld"] .features--showcase .featured-project .image {
+	grid-column: 2;
+	grid-row: 1;
+	margin-bottom: 0 !important;
+}
+
+html[data-skin="eight-bit-overworld"] .features article:hover {
+	border-color: var(--pixel-cyan) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .features article .image {
+	--cart-label: "CARTRIDGE ROM // PRESS START";
+	display: block !important;
+	position: relative !important;
+	width: 100% !important;
+	height: auto !important;
+	margin: 0 0 0.95rem 0 !important;
+	padding: 0 !important;
+	border: 3px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	background: #090619 !important;
+	box-shadow: 4px 4px 0 var(--pixel-ink) !important;
+	color: var(--pixel-gold) !important;
+	font: 400 0.66rem/1.25 var(--pixel-display) !important;
+	text-decoration: none !important;
+	overflow: hidden;
+}
+
+html[data-skin="eight-bit-overworld"] .features article:nth-child(1) .image { --cart-label: "CART #01 // PROMPT PALETTE [64KB ROM]"; }
+html[data-skin="eight-bit-overworld"] .features article:nth-child(2) .image { --cart-label: "CART #02 // CHORD FUNCTION API"; }
+html[data-skin="eight-bit-overworld"] .features article:nth-child(3) .image { --cart-label: "CART #03 // PERSONAL SITE ENGINE"; }
+html[data-skin="eight-bit-overworld"] .features article:nth-child(4) .image { --cart-label: "CART #04 // SAGE & CEDAR"; }
+html[data-skin="eight-bit-overworld"] .features article:nth-child(5) .image { --cart-label: "CART #05 // FLOWERS BY LEANNE"; }
+html[data-skin="eight-bit-overworld"] .features article:nth-child(6) .image { --cart-label: "CART #06 // FRIDGE POETRY LAB"; }
+
+html[data-skin="eight-bit-overworld"] .features article .image::before {
+	content: var(--cart-label);
+	display: block;
+	padding: 0.3rem 0.6rem;
+	border-bottom: 2px solid var(--text-1);
+	background: #261b5c;
+	color: var(--pixel-gold);
+	letter-spacing: 0.05em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+html[data-skin="eight-bit-overworld"] .features article .image img {
+	display: block !important;
+	position: static !important;
+	width: 100% !important;
+	height: auto !important;
+	aspect-ratio: 16 / 10;
+	margin: 0 !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	filter: none !important;
+	object-fit: cover;
+	object-position: top center;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.features article .inner, .features--showcase .featured-project .inner) {
+	display: flex !important;
+	flex-direction: column;
+	flex: 1;
+	width: 100% !important;
+}
+
+html[data-skin="eight-bit-overworld"] .features article h3 {
+	margin: 0 0 0.55rem !important;
+	padding-bottom: 0.4rem;
+	border-bottom: 2px dashed #3b2b7d;
+	color: var(--pixel-gold) !important;
+	font-size: 1.05rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] .features--showcase .featured-project h3 {
+	font-size: clamp(1.25rem, 2vw, 1.65rem) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .features article p {
+	margin: 0 0 0.65rem;
+	color: var(--text-2) !important;
+	font-size: 0.9rem;
+	line-height: 1.5;
+}
+
+html[data-skin="eight-bit-overworld"] .project-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.45rem;
+	margin-top: auto;
+	padding-top: 0.55rem;
+}
+
+html[data-skin="eight-bit-overworld"] .features article .inner span a {
+	display: inline-flex !important;
+	align-items: center;
+	min-height: 2rem;
+	padding: 0.3rem 0.6rem !important;
+	border: 2px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	background: #261b5c !important;
+	box-shadow: inset -2px -2px 0 #090619, 3px 3px 0 var(--pixel-ink) !important;
+	color: var(--pixel-cyan) !important;
+	font: 400 0.68rem/1.2 var(--pixel-display) !important;
+	letter-spacing: 0.04em;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] .features article .inner span a::before {
+	content: "\25B8 ";
+	color: var(--pixel-gold);
+}
+
+html[data-skin="eight-bit-overworld"] :is(.features article .inner span a:hover, .features article .inner span a:focus-visible) {
+	border-color: var(--pixel-ink) !important;
+	background: var(--pixel-gold) !important;
+	color: var(--pixel-ink) !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.features article .inner span a:hover, .features article .inner span a:focus-visible)::before {
+	color: var(--pixel-ink) !important;
+}
+
+/* 2-Column RPG Strategy Guide / Instruction Booklet for .work-background */
+html[data-skin="eight-bit-overworld"] .section-soft > .site-shell {
+	padding: clamp(1.35rem, 3vw, 2rem);
+	border: 4px solid var(--text-1);
+	background: #120d2e;
+	box-shadow:
+		inset 0 0 0 3px #281d60,
+		6px 6px 0 var(--pixel-ink);
+}
+
+html[data-skin="eight-bit-overworld"] .work-background {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.85rem 1.25rem;
+	align-items: stretch;
+}
+
+html[data-skin="eight-bit-overworld"] .work-background > h2,
+html[data-skin="eight-bit-overworld"] .work-background > p:last-child {
+	grid-column: 1 / -1;
+}
+
+html[data-skin="eight-bit-overworld"] .work-background > p:not(:last-child) {
+	max-width: none;
+	margin: 0 !important;
+	padding: 0.8rem 0.95rem;
+	border: 2px solid #3b2b7d;
+	border-left: 4px solid var(--pixel-cyan);
+	background: #0b0720;
+	box-shadow: 3px 3px 0 var(--pixel-ink);
+	font-size: 0.9rem;
+	line-height: 1.5;
+}
+
+/* --- 5. Favorites Page: Treasure Vault & Warp Zone Index (.page-favorites) --- */
+
+html[data-skin="eight-bit-overworld"] .favorites-jump {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	margin-top: 0.45rem;
+	padding: 0.38rem 0.75rem !important;
+	border: 2px solid var(--pixel-ink) !important;
+	background: var(--pixel-gold) !important;
+	box-shadow: inset -2px -2px 0 var(--pixel-gold-shade), 3px 3px 0 var(--pixel-ink) !important;
+	color: var(--pixel-ink) !important;
+	font: 400 0.74rem/1.2 var(--pixel-display) !important;
+	text-decoration: none !important;
+	text-transform: uppercase;
+	text-shadow: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .favorites-toolbar {
+	margin: 0 0 0.85rem;
+	padding: 0.5rem 0.85rem;
+	border: 3px solid var(--text-1);
+	background: #120d2e;
+	box-shadow: 4px 4px 0 var(--pixel-ink);
+}
+
+html[data-skin="eight-bit-overworld"] .favorites-toolbar-label {
+	color: var(--pixel-gold) !important;
+	font: 400 0.72rem/1.2 var(--pixel-display) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .favorites-toolbar-label::before {
+	content: "\25C6 BAG VIEW: ";
+	color: var(--pixel-cyan);
+}
+
+html[data-skin="eight-bit-overworld"] .favorites-view-button {
+	min-height: 1.95rem;
+	padding: 0.25rem 0.65rem !important;
+	border: 2px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	background: #241954 !important;
+	box-shadow: 2px 2px 0 var(--pixel-ink) !important;
+	color: var(--text-1) !important;
+	font: 400 0.68rem/1.2 var(--pixel-display) !important;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.favorites-view-button[aria-pressed="true"], .favorites-view-button:hover, .favorites-view-button:focus-visible) {
+	border-color: var(--pixel-ink) !important;
+	background: var(--pixel-gold) !important;
+	color: var(--pixel-ink) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .favorites-index {
+	max-width: none;
+	margin-bottom: 1rem;
+	padding: 0.85rem 1.2rem;
+	border: 3px solid var(--text-1);
+	background: #120d2e;
+	box-shadow: 5px 5px 0 var(--pixel-ink);
+}
+
+html[data-skin="eight-bit-overworld"] .favorites-index h2 {
+	margin: 0 0 0.55rem;
+	padding-bottom: 0.35rem;
+	border-bottom: 2px dashed #3b2b7d;
+	color: var(--pixel-gold) !important;
+	font-size: 0.92rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] .favorites-index h2::before {
+	content: "\25B6 WARP ZONE // ";
+	color: var(--pixel-cyan);
+}
+
+html[data-skin="eight-bit-overworld"] .favorites-index-list li {
+	color: var(--pixel-gold) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .favorites-index-list a {
+	color: var(--pixel-cyan) !important;
+	text-decoration: none;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.favorites-index-list a:hover, .favorites-index-list a:focus-visible) {
+	background: var(--pixel-gold) !important;
+	color: var(--pixel-ink) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .favorite-card {
+	border: 3px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	background: #120d2e !important;
+	box-shadow:
+		inset 0 0 0 2px #281d60,
+		5px 5px 0 var(--pixel-ink) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .favorite-media {
+	border-bottom: 3px solid var(--text-1);
+	background: #090619;
+}
+
+html[data-skin="eight-bit-overworld"] .favorite-media--logo {
+	background: #f6f3ea;
+}
+
+html[data-skin="eight-bit-overworld"] .favorite-kind {
+	margin: 0 0 0.3rem;
+	padding: 0.1rem 0.42rem;
+	border: 1px solid var(--pixel-cyan);
+	background: #241954;
+	color: var(--pixel-gold) !important;
+	font: 400 0.62rem/1.2 var(--pixel-display) !important;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] .favorite-copy h2 {
+	margin: 0 0 0.38rem;
+	color: var(--text-1) !important;
+	font-size: 0.96rem !important;
+	line-height: 1.22 !important;
+}
+
+html[data-skin="eight-bit-overworld"] .favorite-copy p {
+	font-size: 0.86rem;
+	line-height: 1.42;
+}
+
+html[data-skin="eight-bit-overworld"] .favorite-link {
+	display: inline-flex;
+	align-items: center;
+	margin-top: auto;
+	padding: 0.3rem 0.6rem !important;
+	border: 2px solid var(--text-1) !important;
+	background: #241954 !important;
+	box-shadow: 2px 2px 0 var(--pixel-ink) !important;
+	color: var(--pixel-gold) !important;
+	font: 400 0.68rem/1.2 var(--pixel-display) !important;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.favorite-link:hover, .favorite-link:focus-visible) {
+	border-color: var(--pixel-ink) !important;
+	background: var(--pixel-gold) !important;
+	color: var(--pixel-ink) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .favorites-back-to-top {
+	border: 3px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	background: #241954 !important;
+	box-shadow: 4px 4px 0 var(--pixel-ink) !important;
+	color: var(--pixel-gold) !important;
+	font: 400 0.72rem/1.2 var(--pixel-display) !important;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+/* --- 6. Contact Page: Swapped Command Input Console (Left) & Innkeeper Card (Right) --- */
+
+html[data-skin="eight-bit-overworld"] :is(.contact-layout, .contact-hero .contact-layout) {
+	display: grid !important;
+	grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr) !important;
+	gap: 1.75rem !important;
+	align-items: start;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-form-grid {
+	grid-column: 1;
+	grid-row: 1;
+	position: relative;
+	width: 100% !important;
+	margin: 0 !important;
+	padding: 2.55rem 1.25rem 1.25rem !important;
+	border: 3px solid var(--pixel-gold) !important;
+	border-radius: 0 !important;
+	background: #0b0720 !important;
+	box-shadow:
+		inset 0 0 0 2px #281d60,
+		6px 6px 0 var(--pixel-ink) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-form-grid::before {
+	content: "\25B6 COMMAND INPUT // COMPOSE GUILD MESSAGE";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: 0.4rem 0.85rem;
+	border-bottom: 2px solid var(--pixel-gold);
+	background: #241954;
+	color: var(--pixel-gold);
+	font: 400 0.68rem/1.2 var(--pixel-display);
+	letter-spacing: 0.06em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-intro {
+	grid-column: 2;
+	grid-row: 1;
+	position: relative !important;
+	top: auto !important;
+	padding: 1.25rem;
+	border: 3px solid var(--text-1);
+	background: #140e36;
+	box-shadow:
+		inset 0 0 0 2px #281d60,
+		6px 6px 0 var(--pixel-ink);
+}
+
+html[data-skin="eight-bit-overworld"] .contact-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem;
+	margin-top: 1.1rem;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-links a {
+	display: inline-block;
+	padding: 0.35rem 0.65rem !important;
+	border: 2px solid var(--text-1) !important;
+	background: #241954 !important;
+	box-shadow: 3px 3px 0 var(--pixel-ink) !important;
+	color: var(--pixel-gold) !important;
+	font: 400 0.7rem/1.2 var(--pixel-display) !important;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] label {
+	color: var(--pixel-gold) !important;
+	font: 400 0.74rem/1.3 var(--pixel-display) !important;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] :is(input[type="text"], input[type="password"], input[type="email"], select, textarea) {
+	padding: 0.55rem 0.75rem !important;
+	border: 2px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	background: #140e36 !important;
+	box-shadow: inset 3px 3px 0 var(--pixel-ink) !important;
+	color: var(--text-1) !important;
+	font: 400 0.95rem/1.4 var(--pixel-body) !important;
+	caret-color: var(--pixel-gold);
+}
+
+html[data-skin="eight-bit-overworld"] :is(input:focus, select:focus, textarea:focus) {
+	border-color: var(--pixel-gold) !important;
+	background: #191240 !important;
+	box-shadow: inset 3px 3px 0 var(--pixel-ink), 0 0 0 2px var(--pixel-gold) !important;
+}
+
+/* --- 7. Arcade Buttons, Boss Stage CTA, Fridge Board & Footer HUD --- */
+
+html[data-skin="eight-bit-overworld"] :is(input[type="submit"], input[type="reset"], input[type="button"], button:not([class^="skin-picker"]):not(.personality-arrow):not(.favorites-view-button), .button) {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 0;
+	height: auto;
+	min-height: 2.55rem;
+	padding: 0.48rem 1.05rem !important;
+	border: 3px solid var(--pixel-ink) !important;
+	border-radius: 0 !important;
+	background: var(--pixel-gold) !important;
+	box-shadow:
+		inset -3px -3px 0 var(--pixel-gold-shade),
+		inset 2px 2px 0 #fff5b8,
+		4px 4px 0 var(--pixel-ink) !important;
+	color: var(--pixel-ink) !important;
+	font: 400 0.8rem/1.2 var(--pixel-display) !important;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	text-decoration: none !important;
+	text-shadow: none !important;
+	transform: none !important;
+	cursor: pointer;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.button, .contact-submit)::before {
+	content: "\2605 ";
+}
+
+html[data-skin="eight-bit-overworld"] :is(.button, .contact-submit)::after {
+	content: " \25B6";
+}
+
+html[data-skin="eight-bit-overworld"] :is(input[type="submit"]:hover, button:not([class^="skin-picker"]):not(.personality-arrow):not(.favorites-view-button):hover, .button:hover, .button:focus-visible) {
+	background: var(--pixel-cyan) !important;
+	box-shadow:
+		inset -3px -3px 0 #1f8a94,
+		inset 2px 2px 0 #d4fcff,
+		4px 4px 0 var(--pixel-ink) !important;
+	color: var(--pixel-ink) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .section-cta {
+	padding: 1.75rem 0 2.5rem !important;
+	border: 0 !important;
+	background: transparent !important;
+}
+
+html[data-skin="eight-bit-overworld"] .section-cta > .site-shell {
+	position: relative;
+	padding: 2.65rem 1.75rem 2.85rem;
+	border: 4px solid var(--pixel-gold);
+	background-color: #140e36 !important;
+	background-image:
+		var(--pixel-horizon-scene),
+		linear-gradient(180deg, #1d1549 0%, #120d2e 100%) !important;
+	background-position: center bottom, 0 0 !important;
+	background-size: 100% 44px, 100% 100% !important;
+	background-repeat: no-repeat !important;
+	box-shadow:
+		inset 0 0 0 3px #281d60,
+		8px 8px 0 var(--pixel-ink);
+	text-align: center;
+}
+
+html[data-skin="eight-bit-overworld"] .section-cta > .site-shell::before {
+	content: "\2605 CO-OP PARTY INVITE // PRESS START TO COLLABORATE \2605";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: 0.35rem 0.9rem;
+	border-bottom: 3px solid var(--pixel-gold);
+	background: #261b5c;
+	color: var(--pixel-gold);
+	font: 400 0.68rem/1.2 var(--pixel-display);
+	letter-spacing: 0.06em;
+}
+
+html[data-skin="eight-bit-overworld"] .section-cta h2 {
+	color: var(--pixel-gold) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .section-cta p {
+	max-width: 44rem;
+	margin-inline: auto;
+	color: var(--text-1) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .section-cta .actions {
+	display: flex;
+	justify-content: center;
+	margin-top: 1rem;
+}
+
+html[data-skin="eight-bit-overworld"] fridge-poetry-board {
+	--fp-focus: #ffd84d;
+}
+
+html[data-skin="eight-bit-overworld"] pre {
+	padding: 1rem;
+	border: 3px solid var(--text-1);
+	background: #0b0720;
+	box-shadow: 5px 5px 0 var(--pixel-ink);
+	color: var(--pixel-cyan);
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+	overflow-x: visible;
+}
+
+html[data-skin="eight-bit-overworld"] code {
+	border: 1px solid #3b2b7d;
+	border-radius: 0;
+	background: #0b0720;
+	color: var(--pixel-gold);
+	font-family: var(--pixel-body);
+}
+
+html[data-skin="eight-bit-overworld"] pre code {
+	border: 0;
+	background: transparent;
+	color: inherit;
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+	overflow-x: visible;
+}
+
+/* Footer Controller HUD */
+html[data-skin="eight-bit-overworld"] .site-footer {
+	margin-top: 1.5rem;
+	padding: 0;
+	border: 0 !important;
+	border-top: 4px solid var(--pixel-gold) !important;
+	background: #080516 !important;
+	color: var(--text-1) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .site-footer::before {
+	content: "[A] CONFIRM   [B] BACK   [SELECT] SWITCH THEME   [START] CONTACT   \2502   8-BIT OVERWORLD ENGINE";
+	display: block;
+	padding: 0.25rem 1rem;
+	border-bottom: 2px solid #281d60;
+	background: #140e36;
+	color: var(--pixel-cyan);
+	font: 400 0.64rem/1.3 var(--pixel-display);
+	letter-spacing: 0.06em;
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+html[data-skin="eight-bit-overworld"] .footer-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 0.75rem 1.5rem;
+	padding: 0.95rem 0;
+}
+
+html[data-skin="eight-bit-overworld"] .social-inline {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 0.75rem;
+	margin: 0;
+}
+
+html[data-skin="eight-bit-overworld"] .social-inline a {
+	display: inline-block;
+	padding: 0.25rem 0.55rem;
+	border: 2px solid var(--text-1) !important;
+	background: #1c1444 !important;
+	box-shadow: 2px 2px 0 var(--pixel-ink) !important;
+	color: var(--pixel-gold) !important;
+	font: 400 0.68rem/1.2 var(--pixel-display) !important;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+/* --- 8. Theme Picker & Contact Charm (.skin-picker, .skin-contact-charm) --- */
+
+html[data-skin="eight-bit-overworld"] .skin-picker {
+	--skin-ui-bg: #0b0720;
+	--skin-ui-panel: #161038;
+	--skin-ui-text: #fff9ec;
+	--skin-ui-muted: #e2dbf7;
+	--skin-ui-accent: #ffd84d;
+	--skin-ui-border: #fff9ec;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.skin-picker-controls, .skin-picker-toggle, .skin-picker-cycle, .skin-picker-panel, .skin-picker-option, .skin-picker-close) {
+	border-radius: 0 !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.skin-picker-toggle, .skin-picker-cycle) {
+	border: 2px solid var(--text-1) !important;
+	background: #161038 !important;
+	box-shadow: 4px 4px 0 var(--pixel-ink) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .skin-picker-panel {
+	border: 3px solid var(--text-1) !important;
+	background: #120d2e !important;
+	box-shadow: 6px 6px 0 var(--pixel-ink) !important;
+}
+
+html[data-skin-id="eight-bit-overworld"] .skin-contact-charm {
+	--skin-contact-rotate: 0deg;
+	position: absolute !important;
+	top: 0.65rem !important;
+	right: max(1.25rem, calc((100% - 1180px) / 2)) !important;
+	display: inline-flex !important;
+	align-items: center;
+	gap: 0.4ch;
+	width: auto;
+	max-width: calc(100% - 2rem);
+	min-height: 2.35rem;
+	margin: 0 !important;
+	padding: 0.38rem 0.8rem !important;
+	border: 3px solid var(--pixel-ink) !important;
+	border-radius: 0 !important;
+	background: var(--pixel-gold) !important;
+	box-shadow:
+		inset -2px -2px 0 var(--pixel-gold-shade),
+		inset 2px 2px 0 #fff5b8,
+		4px 4px 0 var(--pixel-ink) !important;
+	color: var(--pixel-ink) !important;
+	font: 400 0.72rem/1.15 var(--pixel-display) !important;
+	letter-spacing: 0.05em !important;
+	text-decoration: none !important;
+	text-transform: uppercase !important;
+	transform: none !important;
+}
+
+html[data-skin-id="eight-bit-overworld"] .skin-contact-charm::before {
+	content: "\2605";
+	color: var(--pixel-ink);
+}
+
+html[data-skin-id="eight-bit-overworld"] .skin-contact-charm:hover {
+	background: var(--pixel-cyan) !important;
+	box-shadow:
+		inset -2px -2px 0 #1f8a94,
+		inset 2px 2px 0 #d4fcff,
+		4px 4px 0 var(--pixel-ink) !important;
+	color: var(--pixel-ink) !important;
+	transform: translate(1px, 1px) !important;
+}
+
+/* --- 9. Responsive Breakpoints --- */
+
+@media (max-width: 980px) {
+	html[data-skin="eight-bit-overworld"] :is(.hero-copy, .hero-grid--with-portrait, .quest-grid, .features--showcase .featured-project, .work-background, .contact-layout, .contact-hero .contact-layout) {
+		grid-template-columns: 1fr !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] :is(.hero-copy > :not(.hero-media):not(.hero-quests), .hero-copy .hero-media, .quest-card:nth-child(1), .quest-card:nth-child(2), .quest-card:nth-child(3), .features--showcase .featured-project .inner, .features--showcase .featured-project .image, .contact-form-grid, .contact-intro, .hero-grid--with-portrait > :first-child, .hero-grid--with-portrait > .portrait-panel) {
+		grid-column: 1 !important;
+		grid-row: auto !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] .hero-copy .hero-media {
+		max-width: 340px;
+		margin-top: 0.35rem;
+	}
+
+	html[data-skin="eight-bit-overworld"] :is(.features, .features--showcase) {
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] .features--showcase > article:not(.featured-project) {
+		grid-column: span 1 !important;
+	}
+}
+
+@media (max-width: 736px) {
+	html[data-skin="eight-bit-overworld"] :is(.site-shell, body.page-fridge .page-hero > .site-shell) {
+		width: calc(100% - 1.5rem) !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] .site-header .site-shell {
+		gap: 0.45rem 0.75rem;
+		padding: 0.4rem 0;
+	}
+
+	/* 2x2 RPG Battle Command Menu for Mobile Navigation */
+	html[data-skin="eight-bit-overworld"] .site-nav {
+		width: 100% !important;
+		margin-left: 0 !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] .site-nav ul {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.35rem;
+	}
+
+	html[data-skin="eight-bit-overworld"] :is(.site-nav a, .site-nav .nav-cta) {
+		width: 100%;
+		justify-content: flex-start;
+		padding: 0.28rem 0.5rem !important;
+		font-size: 0.66rem !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] :is(.page-hero, body.page-home .page-hero) {
+		padding-top: 3.35rem !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] body.page-home .page-hero h1 {
+		grid-template-columns: 1fr;
+	}
+
+	html[data-skin-id="eight-bit-overworld"] .skin-contact-charm {
+		top: 0.5rem !important;
+		right: 0.75rem !important;
+		min-height: 2.05rem;
+		padding: 0.28rem 0.55rem !important;
+		font-size: 0.64rem !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] .page-hero > .site-shell {
+		padding: 2.85rem 1rem 2.5rem;
+		box-shadow:
+			inset 0 0 0 3px #281d60,
+			0 0 0 3px var(--pixel-ink),
+			5px 5px 0 var(--pixel-ink);
+	}
+
+	html[data-skin="eight-bit-overworld"] :is(.features, .features--showcase) {
+		grid-template-columns: 1fr !important;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-skin="eight-bit-overworld"] *,
+	html[data-skin="eight-bit-overworld"] *::before,
+	html[data-skin="eight-bit-overworld"] *::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}

@@ -151,7 +151,8 @@
 			'hello-kitty': 'Say hi to me!',
 			'forties-field-notes': 'Drop me a line',
 			'nutrition-facts': 'Contact Alec',
-			'pretty-calc': 'Get in touch'
+			'pretty-calc': 'Get in touch',
+			'eight-bit-overworld': 'PRESS START: TALK'
 		};
 		var randomOption = '<button type="button" class="skin-picker-option skin-picker-option-random" data-skin-random aria-pressed="false">' +
 			'<span class="skin-picker-option-mark" aria-hidden="true"></span>' +

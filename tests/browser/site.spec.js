@@ -580,6 +580,91 @@ test('MS-DOS Prompt renders multi-column TUI panes on desktop and stacks cleanly
   expect(mobileOverflow).toBeLessThanOrEqual(0);
 });
 
+test('8-Bit Overworld renders its bespoke reverse-split RPG hero, Bento quest map, and 6-column cartridge rack', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 860 });
+  await openSitePage(page, '/index.html?theme=eight-bit-overworld');
+
+  const homeLayout = await page.evaluate(() => {
+    const h1 = document.querySelector('.page-hero h1').getBoundingClientRect();
+    const media = document.querySelector('.hero-copy .hero-media').getBoundingClientRect();
+    const roles = Array.from(document.querySelectorAll('.page-hero h1 .hero-title-role')).map((el) =>
+      el.getBoundingClientRect()
+    );
+    const quests = Array.from(document.querySelectorAll('.quest-card')).map((el) =>
+      el.getBoundingClientRect()
+    );
+    return {
+      mediaLeftOfHeading: media.right <= h1.left + 4,
+      roleGridTwoByTwo:
+        Math.round(roles[0].top) === Math.round(roles[1].top) &&
+        roles[0].left < roles[1].left &&
+        Math.round(roles[2].top) === Math.round(roles[3].top) &&
+        roles[2].left < roles[3].left,
+      bentoLeftStacked:
+        Math.round(quests[0].left) === Math.round(quests[2].left) &&
+        quests[0].bottom <= quests[2].top + 4,
+      bentoRightSpanning:
+        quests[1].left >= quests[0].right - 4 &&
+        Math.round(quests[1].top) === Math.round(quests[0].top) &&
+        Math.round(quests[1].bottom) === Math.round(quests[2].bottom),
+      overflow: document.documentElement.scrollWidth - window.innerWidth,
+    };
+  });
+
+  expect(homeLayout.mediaLeftOfHeading).toBe(true);
+  expect(homeLayout.roleGridTwoByTwo).toBe(true);
+  expect(homeLayout.bentoLeftStacked).toBe(true);
+  expect(homeLayout.bentoRightSpanning).toBe(true);
+  expect(homeLayout.overflow).toBeLessThanOrEqual(0);
+
+  await openSitePage(page, '/work.html?theme=eight-bit-overworld');
+  const workLayout = await page.evaluate(() => {
+    const featured = document.querySelector('.features--showcase .featured-project');
+    const featuredImage = featured.querySelector('.image').getBoundingClientRect();
+    const featuredInner = featured.querySelector('.inner').getBoundingClientRect();
+    const cards = Array.from(document.querySelectorAll('.features--showcase > article:not(.featured-project)')).map(
+      (el) => el.getBoundingClientRect()
+    );
+    const manualNotes = Array.from(document.querySelectorAll('.work-background > p:not(:last-child)')).map(
+      (el) => el.getBoundingClientRect()
+    );
+    return {
+      featuredCopyLeftOfImage: featuredInner.right <= featuredImage.left + 4,
+      threeAcrossMiddleRow:
+        Math.round(cards[0].top) === Math.round(cards[1].top) &&
+        Math.round(cards[1].top) === Math.round(cards[2].top) &&
+        cards[0].left < cards[1].left &&
+        cards[1].left < cards[2].left,
+      twoAcrossBottomRow:
+        Math.round(cards[3].top) === Math.round(cards[4].top) &&
+        cards[3].left < cards[4].left,
+      twoColumnManual:
+        Math.round(manualNotes[0].top) === Math.round(manualNotes[1].top) &&
+        manualNotes[0].left < manualNotes[1].left,
+    };
+  });
+
+  expect(workLayout.featuredCopyLeftOfImage).toBe(true);
+  expect(workLayout.threeAcrossMiddleRow).toBe(true);
+  expect(workLayout.twoAcrossBottomRow).toBe(true);
+  expect(workLayout.twoColumnManual).toBe(true);
+
+  await openSitePage(page, '/contact.html?theme=eight-bit-overworld');
+  const contactSwapped = await page.evaluate(() => {
+    const form = document.querySelector('.contact-form-grid').getBoundingClientRect();
+    const intro = document.querySelector('.contact-intro').getBoundingClientRect();
+    return form.right <= intro.left + 4;
+  });
+  expect(contactSwapped).toBe(true);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await openSitePage(page, '/index.html?theme=eight-bit-overworld');
+  const mobileOverflow = await page.evaluate(
+    () => document.documentElement.scrollWidth - window.innerWidth
+  );
+  expect(mobileOverflow).toBeLessThanOrEqual(0);
+});
+
 test('keeps root scrolling, upfront paint, and eager image decoding across skins and pages', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await openSitePage(page, '/index.html?theme=portfolio-dark');
