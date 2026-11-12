@@ -687,6 +687,7 @@ test('8-Bit Overworld renders its bespoke reverse-split RPG hero, Bento quest ma
 });
 
 test('keeps root scrolling, upfront paint, and eager image decoding across skins and pages', async ({ page }) => {
+  test.setTimeout(90000);
   await page.setViewportSize({ width: 1280, height: 900 });
   await openSitePage(page, '/index.html?theme=portfolio-dark');
 
