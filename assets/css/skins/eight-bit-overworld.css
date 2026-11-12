@@ -108,6 +108,32 @@ html[data-skin="eight-bit-overworld"] {
 	/* 10. 8-Bit Game Cartridge Moulded Grip Pattern for Work Cards */
 	--pixel-cartridge-grip: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='12' viewBox='0 0 8 3' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='8' height='3' fill='%23243769'/%3E%3Crect x='1' y='0' width='5' height='1' fill='%235ce1e6'/%3E%3Crect x='1' y='2' width='5' height='1' fill='%23080c1a'/%3E%3C/svg%3E");
 
+	/* 11. Contact Page Tavern Architecture & Unfurled Parchment Scroll Assets:
+	   - --pixel-contact-outer-wall: Dimly-lit half-timbered tavern outer hall with warm wall sconces
+	   - --pixel-contact-wainscot: Warm vertical tongue-and-groove chestnut wainscoting with brass studs
+	   - --pixel-contact-ceiling: Overhead oak rafters, festive tavern bunting flags & hanging chandeliers
+	   - --pixel-contact-tavern-mural: Bespoke Messenger's Guildhall & Innkeeper's Reception scene
+	     (copper-hooded brick hearth + sleeping tabby cat, Innkeeper's desk + mail cubbies + messenger owl,
+	     stained-glass banquet booth with toasting adventurers, grandfather clock & inn staircase)
+	   - --pixel-scroll-spindle-left / right, --pixel-scroll-parchment, --pixel-sprite-wax-seal, --pixel-sprite-quill */
+	--pixel-contact-outer-wall: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='240' viewBox='0 0 120 60' shape-rendering='crispEdges'%3E%3Crect width='120' height='60' fill='%23160a04'/%3E%3Cpath fill='%23211007' d='M4 0h56v1H4V0zM64 0h56v1H64V0zM4 6h56v1H4V6zM64 6h56v1H64V6zM4 12h56v1H4v-1zM64 12h56v1H64v-1zM4 18h56v1H4v-1zM64 18h56v1H64v-1zM4 24h56v1H4v-1zM64 24h56v1H64v-1zM4 30h56v1H4v-1zM64 30h56v1H64v-1zM4 36h56v1H4v-1zM64 36h56v1H64v-1zM4 42h56v1H4v-1zM64 42h56v1H64v-1zM4 48h56v1H4v-1zM64 48h56v1H64v-1zM4 54h56v1H4v-1zM64 54h56v1H64v-1z'/%3E%3Cpath fill='%230b0401' d='M4 5h56v1H4V5zM64 5h56v1H64V5zM4 11h56v1H4v-1zM64 11h56v1H64v-1zM4 17h56v1H4v-1zM64 17h56v1H64v-1zM4 23h56v1H4v-1zM64 23h56v1H64v-1zM4 29h56v1H4v-1zM64 29h56v1H64v-1zM4 35h56v1H4v-1zM64 35h56v1H64v-1zM4 41h56v1H4v-1zM64 41h56v1H64v-1zM4 47h56v1H4v-1zM64 47h56v1H64v-1zM4 53h56v1H4v-1zM64 53h56v1H64v-1zM4 59h56v1H4v-1zM64 59h56v1H64v-1z'/%3E%3Cpath fill='%23291409' d='M0 0h4v60H0V0zM60 0h4v60h-4V0zM4 28h116v2H4v-2zM4 58h116v2H4v-2z'/%3E%3Cpath fill='%233d1e0e' d='M0 0h1v60H0V0zM60 0h1v60h-1V0zM4 28h116v1H4v-1zM4 58h116v1H4v-1z'/%3E%3Cpath fill='%2378350f' d='M2 4h1v1H2V4zM2 16h1v1H2v-1zM2 32h1v1H2v-1zM2 46h1v1H2v-1zM62 10h1v1h-1v-1zM62 22h1v1h-1v-1zM62 38h1v1h-1v-1zM62 52h1v1h-1v-1z'/%3E%3Cpath fill='%232e1508' d='M28 9h8v8h-8V9zM88 39h8v8h-8v-8z'/%3E%3Cpath fill='%234d240e' d='M29 10h6v6h-6v-6zM89 40h6v6h-6v-6z'/%3E%3Cpath fill='%23334155' d='M31 8h2v2h-2V8zM30 16h4v2h-4v-2zM91 38h2v2h-2v-2zM90 46h4v2h-4v-2z'/%3E%3Cpath fill='%23ea580c' d='M30 11h4v4h-4v-4zM90 41h4v4h-4v-4z'/%3E%3Cpath fill='%23ffd84d' d='M31 12h2v2h-2v-2zM91 42h2v2h-2v-2z'/%3E%3Cpath fill='%23fff9ec' d='M31 12h1v1h-1v-1zM91 42h1v1h-1v-1z'/%3E%3C/svg%3E");
+
+	--pixel-contact-wainscot: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='64' viewBox='0 0 32 16' shape-rendering='crispEdges'%3E%3Crect width='32' height='16' fill='%23381c0c'/%3E%3Cpath fill='%23472410' d='M1 2h5v6H1V2zM9 2h5v6H9V2zM17 2h5v6h-5V2zM25 2h5v6h-5V2zM1 10h5v6H1v-6zM9 10h5v6H9v-6zM17 10h5v6h-5v-6zM25 10h5v6h-5v-6z'/%3E%3Cpath fill='%235c3016' d='M1 2h1v5H1V2zM9 2h1v5H9V2zM17 2h1v5h-1V2zM25 2h1v5h-1V2zM1 10h1v5H1v-5zM9 10h1v5H9v-5zM17 10h1v5h-1v-5zM25 10h1v5h-1v-5z'/%3E%3Cpath fill='%234d2612' d='M0 0h32v1H0V0zM0 8h32v1H0V8z'/%3E%3Cpath fill='%231e0d05' d='M0 1h32v1H0V1zM0 9h32v1H0V9zM7 2h1v6H7V2zM15 2h1v6h-1V2zM23 2h1v6h-1V2zM31 2h1v6h-1V2zM7 10h1v6H7v-6zM15 10h1v6h-1v-6zM23 10h1v6h-1v-6zM31 10h1v6h-1v-6z'/%3E%3Cpath fill='%23d97706' d='M3 0h1v1H3V0zM11 0h1v1h-1V0zM19 0h1v1h-1V0zM27 0h1v1h-1V0zM3 8h1v1H3V8zM11 8h1v1h-1V8zM19 8h1v1h-1V8zM27 8h1v1h-1V8z'/%3E%3C/svg%3E");
+
+	--pixel-contact-ceiling: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='72' viewBox='0 0 320 18' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='320' height='3' fill='%23170a04'/%3E%3Crect x='0' y='3' width='320' height='2' fill='%235c2d14'/%3E%3Crect x='0' y='5' width='320' height='1' fill='%23291307'/%3E%3Cpath fill='%234d250e' d='M22 6h14v11H22V6zM100 6h16v11h-16V6zM204 6h16v11h-16V6zM284 6h14v11h-14V6z'/%3E%3Cpath fill='%2378350f' d='M24 7h10v9H24V7zM102 7h12v9h-12V7zM206 7h12v9h-12V7zM286 7h10v9h-10V7z'/%3E%3Cpath fill='%23334155' d='M28 3h2v5h-2V3zM107 3h2v6h-2V3zM103 9h10v2h-10V9zM211 3h2v6h-2V3zM207 9h10v2h-10V9zM290 3h2v5h-2V3z'/%3E%3Cpath fill='%23ff5c7c' d='M8 6h6v2H8V6zM9 8h4v2H9V8zM10 10h2v1h-2v-1zM72 6h6v2h-6V6zM73 8h4v2h-4V8zM74 10h2v1h-2v-1zM148 6h6v2h-6V6zM149 8h4v2h-4V8zM150 10h2v1h-2v-1zM240 6h6v2h-6V6zM241 8h4v2h-4V8zM242 10h2v1h-2v-1z'/%3E%3Cpath fill='%23ffd84d' d='M44 6h6v2h-6V6zM45 8h4v2h-4V8zM46 10h2v1h-2v-1zM126 6h6v2h-6V6zM127 8h4v2h-4V8zM128 10h2v1h-2v-1zM186 6h6v2h-6V6zM187 8h4v2h-4V8zM188 10h2v1h-2v-1zM268 6h6v2h-6V6zM269 8h4v2h-4V8zM270 10h2v1h-2v-1z'/%3E%3Cpath fill='%235ce1e6' d='M58 6h6v2h-6V6zM59 8h4v2h-4V8zM60 10h2v1h-2v-1zM160 6h6v2h-6V6zM161 8h4v2h-4V8zM162 10h2v1h-2v-1zM254 6h6v2h-6V6zM255 8h4v2h-4V8zM256 10h2v1h-2v-1z'/%3E%3Cpath fill='%234ade80' d='M86 6h6v2h-6V6zM87 8h4v2h-4V8zM88 10h2v1h-2v-1zM136 6h6v2h-6V6zM137 8h4v2h-4V8zM138 10h2v1h-2v-1zM172 6h6v2h-6V6zM173 8h4v2h-4V8zM174 10h2v1h-2v-1zM226 6h6v2h-6V6zM227 8h4v2h-4V8zM228 10h2v1h-2v-1zM306 6h6v2h-6V6zM307 8h4v2h-4V8zM308 10h2v1h-2v-1z'/%3E%3Cpath fill='%23ea580c' d='M26 8h6v6h-6V8zM103 11h10v4h-10v-4zM207 11h10v4h-10v-4zM288 8h6v6h-6V8z'/%3E%3Cpath fill='%23ffd84d' d='M27 9h4v4h-4V9zM104 7h2v2h-2V7zM107 6h2v3h-2V6zM110 7h2v2h-2V7zM104 11h8v3h-8v-3zM208 7h2v2h-2V7zM211 6h2v3h-2V6zM214 7h2v2h-2V7zM208 11h8v3h-8v-3zM289 9h4v4h-4V9z'/%3E%3Cpath fill='%23fff9ec' d='M28 10h2v2h-2v-2zM104 6h2v1h-2V6zM107 5h2v1h-2V5zM110 6h2v1h-2V6zM106 12h4v1h-4v-1zM208 6h2v1h-2V6zM211 5h2v1h-2V5zM214 6h2v1h-2V6zM210 12h4v1h-4v-1zM290 10h2v2h-2v-2z'/%3E%3C/svg%3E");
+
+	--pixel-contact-tavern-mural: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='192' viewBox='0 0 320 48' shape-rendering='crispEdges'%3E%3Crect x='0' y='6' width='320' height='1' fill='%23170a04'/%3E%3Crect x='0' y='7' width='320' height='2' fill='%235c2d14'/%3E%3Cpath fill='%234d250e' d='M90 13h12v10H90V13zM192 2h20v12h-20V2zM196 17h12v10h-12V17zM270 3h14v12h-14V3z'/%3E%3Cpath fill='%2378350f' d='M76 5h28v15H76V5zM74 23h78v18H74V23zM140 20h10v3h-10v-3zM144 17h2v3h-2v-3zM164 33h14v8h-14v-8zM178 27h48v3h-48v-3zM182 30h4v11h-4V30zM218 30h4v11h-4V30zM226 33h14v8h-14v-8zM250 6h12v35h-12V6zM268 33h46v8h-46v-8zM276 26h38v7h-38v-7zM284 19h30v7h-30v-7zM292 12h22v7h-22v-7zM272 5h10v8h-10V5z'/%3E%3Cpath fill='%23451a03' d='M78 7h7v5h-7V7zM87 7h7v5h-7V7zM96 7h6v5h-6V7zM78 13h7v5h-7v-5zM87 13h7v5h-7v-5zM96 13h6v5h-6v-5zM78 26h20v12H78V26zM102 26h22v12h-22V26zM128 26h20v12h-20V26zM252 8h8v9h-8V8zM252 19h8v18h-8V19zM270 35h42v6h-42v-6zM278 28h34v5h-34v-5zM286 21h26v5h-26v-5zM294 14h18v5h-18v-5z'/%3E%3Cpath fill='%239a3412' d='M22 0h12v8H22V0zM16 8h24v5H16V8zM14 13h28v28H14V13z'/%3E%3Cpath fill='%23b45309' d='M24 0h4v8h-4V0zM18 9h20v3H18V9zM16 14h6v4h-6v-4zM24 14h8v4h-8v-4zM34 14h6v4h-6v-4zM16 20h4v6h-4v-6zM36 20h4v6h-4v-6zM16 28h4v6h-4v-6zM36 28h4v6h-4v-6zM72 22h82v2H72v-2zM176 26h52v2h-52v-2zM248 5h16v2h-16V5zM268 32h8v2h-8v-2zM276 25h8v2h-8v-2zM284 18h8v2h-8v-2zM292 11h22v2h-22v-2z'/%3E%3Cpath fill='%23334155' d='M12 12h32v2H12v-2zM20 19h16v22H20V19zM201 0h2v4h-2V0zM194 4h16v2h-16V4zM276 12h2v4h-2v-4zM274 15h6v2h-6v-2z'/%3E%3Cpath fill='%23080c1a' d='M22 21h12v20H22V21zM115 14h1v1h-1v-1zM144 13h1v1h-1v-1zM147 13h1v1h-1v-1zM173 19h1v1h-1v-1zM172 33h3v8h-3v-8zM230 19h1v1h-1v-1zM229 33h3v8h-3v-8zM253 20h6v15h-6V20z'/%3E%3Cpath fill='%23991b1b' d='M46 39h22v2H46v-2z'/%3E%3Cpath fill='%23ea580c' d='M26 15h6v4h-6v-4zM23 29h10v10H23V29zM25 25h6v4h-6v-4zM50 35h10v4H50v-4zM58 33h4v3h-4v-3zM93 15h6v8h-6v-8zM199 20h6v6h-6v-6zM274 6h6v6h-6V6z'/%3E%3Cpath fill='%23ff5c7c' d='M25 28h6v11h-6V28zM26 25h4v3h-4v-3zM48 39h18v1H48v-1zM80 9h2v2h-2V9zM98 15h2v2h-2v-2zM148 14h2v2h-2v-2zM195 6h4v4h-4V6zM205 6h4v4h-4V6z'/%3E%3Cpath fill='%2310b981' d='M110 17h8v6h-8v-6z'/%3E%3Cpath fill='%235ce1e6' d='M89 9h2v2h-2V9zM80 15h2v2h-2v-2zM129 20h4v3h-4v-3zM200 6h4v4h-4V6zM229 22h8v11h-8V22zM224 23h5v3h-5v-3z'/%3E%3Cpath fill='%236d28d9' d='M166 12h10v2h-10v-2zM168 10h6v2h-6v-2zM170 8h2v2h-2V8zM167 22h8v11h-8V22zM175 23h5v3h-5v-3z'/%3E%3Cpath fill='%23ffedd5' d='M79 8h5v3h-5V8zM88 8h5v3h-5V8zM97 8h4v3h-4V8zM79 14h5v3h-5v-3zM88 14h5v3h-5v-3zM97 14h4v3h-4v-3zM111 12h6v5h-6v-5zM122 20h6v2h-6v-2zM142 11h7v9h-7v-9zM168 16h6v6h-6v-6zM230 16h6v6h-6v-6z'/%3E%3Cpath fill='%23ffd84d' d='M26 29h4v10h-4V29zM27 26h2v3h-2v-3zM52 36h4v2h-4v-2zM46 40h2v1h-2v-1zM66 40h2v1h-2v-1zM82 20h4v2h-4v-2zM83 19h2v1h-2v-1zM94 16h4v5h-4v-5zM110 10h8v2h-8v-2zM145 14h2v2h-2v-2zM168 12h6v1h-6v-1zM180 22h5v4h-5v-4zM191 24h6v2h-6v-2zM200 21h4v4h-4v-4zM219 22h5v4h-5v-4zM229 14h8v2h-8v-2zM253 9h6v7h-6V9zM255 20h2v8h-2v-8zM254 28h4v4h-4v-4zM275 7h4v4h-4V7z'/%3E%3Cpath fill='%23fff9ec' d='M28 11h1v2h-1v-2zM30 9h1v2h-1V9zM27 32h2v7h-2v-7zM59 34h2v1h-2v-1zM95 17h2v3h-2v-3zM109 18h2v4h-2v-4zM117 18h2v4h-2v-4zM130 16h2v4h-2v-4zM131 14h2v2h-2v-2zM143 12h5v6h-5v-6zM147 13h4v2h-4v-2zM180 21h5v1h-5v-1zM201 22h2v2h-2v-2zM219 21h5v1h-5v-1zM254 10h4v5h-4v-5zM276 8h2v2h-2V8z'/%3E%3Crect x='0' y='41' width='320' height='2' fill='%23d97706'/%3E%3Crect x='0' y='41' width='320' height='1' fill='%23ffd84d'/%3E%3Crect x='0' y='43' width='320' height='5' fill='%23451a03'/%3E%3Cpath fill='%2378350f' d='M0 43h12v2H0v-2zm16 0h12v2H16v-2zm16 0h12v2H32v-2zm16 0h12v2H48v-2zm16 0h12v2H64v-2zm16 0h12v2H80v-2zm16 0h12v2H96v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zM8 46h12v2H8v-2zm16 0h12v2H24v-2zm16 0h12v2H40v-2zm16 0h12v2H56v-2zm16 0h12v2H72v-2zm16 0h12v2H88v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h8v2h-8v-2z'/%3E%3C/svg%3E");
+
+	--pixel-scroll-spindle-left: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 6 6' shape-rendering='crispEdges'%3E%3Cpath fill='%231c0c04' d='M0 1h3v4H0V1zM3 0h3v6H3V0z'/%3E%3Cpath fill='%23b45309' d='M1 2h1v1H1V2z'/%3E%3Cpath fill='%2378350f' d='M1 3h2v1H1V3zM2 2h1v1H2V2z'/%3E%3Cpath fill='%23fff9ec' d='M3 1h3v1H3V1z'/%3E%3Cpath fill='%23ffd84d' d='M3 2h2v1H3V2z'/%3E%3Cpath fill='%23d97706' d='M3 3h2v1H3V3z'/%3E%3Cpath fill='%2392400e' d='M3 4h2v1H3V4z'/%3E%3Cpath fill='%23f5e4be' d='M5 2h1v1H5V2z'/%3E%3Cpath fill='%23e4c890' d='M5 3h1v1H5V3z'/%3E%3Cpath fill='%23c8a064' d='M5 4h1v1H5V4z'/%3E%3C/svg%3E");
+
+	--pixel-scroll-spindle-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 6 6' shape-rendering='crispEdges'%3E%3Cpath fill='%231c0c04' d='M0 0h3v6H0V0zM3 1h3v4H3V1z'/%3E%3Cpath fill='%23b45309' d='M4 2h1v1H4V2z'/%3E%3Cpath fill='%2378350f' d='M3 3h2v1H3V3zM3 2h1v1H3V2z'/%3E%3Cpath fill='%23fff9ec' d='M0 1h3v1H0V1z'/%3E%3Cpath fill='%23ffd84d' d='M1 2h2v1H1V2z'/%3E%3Cpath fill='%23d97706' d='M1 3h2v1H1V3z'/%3E%3Cpath fill='%2392400e' d='M1 4h2v1H1V4z'/%3E%3Cpath fill='%23f5e4be' d='M0 2h1v1H0V2z'/%3E%3Cpath fill='%23e4c890' d='M0 3h1v1H0V3z'/%3E%3Cpath fill='%23c8a064' d='M0 4h1v1H0V4z'/%3E%3C/svg%3E");
+
+	--pixel-scroll-parchment: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%23f5e4be'/%3E%3Cpath fill='%23eed8a8' d='M2 3h3v1H2V3zM10 7h4v1h-4V7zM5 12h3v1H5v-1zM12 14h2v1h-2v-1z'/%3E%3Cpath fill='%23fbf0d6' d='M6 2h2v1H6V2zM1 9h3v1H1V9zM9 11h3v1H9v-1z'/%3E%3C/svg%3E");
+
+	--pixel-sprite-wax-seal: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%231c0c04' d='M4 0h8v1h2v2h1v6h-1v2h-1v5h-3v-2H6v2H3v-5H2V9H1V3h1V1h2V0z'/%3E%3Cpath fill='%23991b1b' d='M4 1h8v1h2v6h-1v2H3V8H2V2h2V1zM4 11h2v4H4v-4zM10 11h2v4h-2v-4z'/%3E%3Cpath fill='%23ef4444' d='M4 2h8v6H4V2zM3 3h10v4H3V3z'/%3E%3Cpath fill='%23ffd84d' d='M7 3h2v4H7V3zM6 4h4v2H6V4zM4 13h1v1H4v-1zM11 13h1v1h-1v-1z'/%3E%3Cpath fill='%23fff9ec' d='M4 2h3v1H4V2zM7 4h1v1H7V4z'/%3E%3C/svg%3E");
+
+	--pixel-sprite-quill: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%231c0c04' d='M11 0h4v4h-1v2h-1v2h-2v2H9v1h2v5H2v-5h2V9h1V7h1V5h1V3h2V1h2V0z'/%3E%3Cpath fill='%235ce1e6' d='M11 1h3v2h-3V1zM9 3h4v2H9V3z'/%3E%3Cpath fill='%23fff9ec' d='M12 1h2v1h-2V1zM8 5h4v2H8V5zM7 7h3v2H7V7z'/%3E%3Cpath fill='%23ffd84d' d='M7 9h2v2H7V9zM4 11h5v1H4v-1zM3 14h7v1H3v-1z'/%3E%3Cpath fill='%231e293b' d='M3 12h7v2H3v-2z'/%3E%3C/svg%3E");
+
 	color-scheme: dark;
 	overflow-x: clip;
 }
@@ -1204,32 +1230,109 @@ html[data-skin="eight-bit-overworld"] .favorites-back-to-top {
 	text-transform: uppercase;
 }
 
-/* --- 6. Contact Page: Swapped Command Input Console (Left) & Innkeeper Card (Right) --- */
+/* --- 6. Contact Page: Full-Page Tavern Guildhall & Unfurled Parchment Scrolls --- */
+
+html[data-skin="eight-bit-overworld"] body.page-contact {
+	background-color: #160a04 !important;
+	background-image:
+		var(--pixel-contact-outer-wall),
+		linear-gradient(180deg, #120803 0%, #1a0c05 55%, #241107 100%) !important;
+	background-size: 480px 240px, 100% 100% !important;
+	background-repeat: repeat, no-repeat !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact .site-header {
+	background: #170a04 !important;
+	border-bottom: 4px solid var(--pixel-gold) !important;
+	box-shadow: 0 4px 0 #090301 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact :is(.site-nav a, .site-nav .nav-cta) {
+	background: #2e1508 !important;
+	box-shadow: inset -2px -2px 0 #160903, 3px 3px 0 #090301 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact :is(.site-nav a:hover, .site-nav a:focus-visible, .site-nav a[aria-current="page"]) {
+	background: var(--pixel-gold) !important;
+	box-shadow: inset -2px -2px 0 var(--pixel-gold-shade), 3px 3px 0 #090301 !important;
+	color: var(--pixel-ink) !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact .page-hero > .site-shell {
+	padding: 4.5rem clamp(1.75rem, 3.2vw, 2.5rem) 13rem !important;
+	border: 4px solid var(--pixel-gold) !important;
+	background-color: #381c0c !important;
+	background-image:
+		var(--pixel-contact-ceiling),
+		var(--pixel-contact-tavern-mural),
+		var(--pixel-contact-wainscot) !important;
+	background-position: center top, center bottom, left top !important;
+	background-size: 1280px 72px, 1280px 192px, 128px 64px !important;
+	background-repeat: no-repeat, no-repeat, repeat !important;
+	box-shadow:
+		inset 0 0 0 4px #854d27,
+		0 0 0 4px #120702,
+		8px 8px 0 #120702 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact .site-footer {
+	background-color: #140803 !important;
+	background-image: var(--pixel-stage-floor) !important;
+	background-repeat: repeat-x !important;
+	background-position: left top !important;
+	background-size: 128px 28px !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact .social-inline a {
+	background: #2e1508 !important;
+	box-shadow: 2px 2px 0 #090301 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact .skin-picker {
+	--skin-ui-bg: #170a04;
+	--skin-ui-panel: #2b1407;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact :is(.skin-picker-toggle, .skin-picker-cycle) {
+	background: #2b1407 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact .skin-picker-panel {
+	background: #210f05 !important;
+}
 
 html[data-skin="eight-bit-overworld"] :is(.contact-layout, .contact-hero .contact-layout) {
 	display: grid !important;
 	grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr) !important;
-	gap: 1.75rem !important;
+	gap: 2.35rem !important;
 	align-items: start;
 }
 
+/* Unfurled 8-Bit Parchment Scrolls: Form Scroll (Left) & Contract Intro Scroll (Right) */
 html[data-skin="eight-bit-overworld"] .contact-form-grid {
 	grid-column: 1;
 	grid-row: 1;
 	position: relative;
 	width: 100% !important;
-	margin: 0 !important;
-	padding: 1.35rem !important;
-	border: 3px solid var(--pixel-gold) !important;
+	margin: 18px 0 !important;
+	padding: 1.55rem 1.5rem 1.65rem !important;
+	border: 3px solid #1c0c04 !important;
 	border-radius: 0 !important;
-	background: #080c1a !important;
+	background-color: #f5e4be !important;
+	background-image:
+		var(--pixel-sprite-quill),
+		var(--pixel-scroll-parchment) !important;
+	background-position: right 1rem bottom 0.85rem, left top !important;
+	background-size: 48px 48px, 64px 64px !important;
+	background-repeat: no-repeat, repeat !important;
 	box-shadow:
-		inset 0 0 0 2px #1e2d59,
-		6px 6px 0 var(--pixel-ink) !important;
-}
-
-html[data-skin="eight-bit-overworld"] .contact-form-grid::before {
-	content: none !important;
+		inset 6px 0 0 #e4c890,
+		inset -6px 0 0 #e4c890,
+		inset 0 5px 0 #dec084,
+		inset 0 -5px 0 #dec084,
+		inset 0 0 0 2px #b88a44,
+		6px 8px 0 #120702 !important;
+	color: #2b1406 !important;
 }
 
 html[data-skin="eight-bit-overworld"] .contact-intro {
@@ -1237,12 +1340,91 @@ html[data-skin="eight-bit-overworld"] .contact-intro {
 	grid-row: 1;
 	position: relative !important;
 	top: auto !important;
-	padding: 1.25rem;
-	border: 3px solid var(--text-1);
-	background: #080c1a;
+	margin: 18px 0 !important;
+	padding: 1.5rem 1.45rem 1.85rem !important;
+	border: 3px solid #1c0c04 !important;
+	border-radius: 0 !important;
+	background-color: #f5e4be !important;
+	background-image:
+		var(--pixel-sprite-wax-seal),
+		var(--pixel-scroll-parchment) !important;
+	background-position: right 0.95rem bottom 0.75rem, left top !important;
+	background-size: 48px 48px, 64px 64px !important;
+	background-repeat: no-repeat, repeat !important;
 	box-shadow:
-		inset 0 0 0 2px #1e2d59,
-		6px 6px 0 var(--pixel-ink);
+		inset 6px 0 0 #e4c890,
+		inset -6px 0 0 #e4c890,
+		inset 0 5px 0 #dec084,
+		inset 0 -5px 0 #dec084,
+		inset 0 0 0 2px #b88a44,
+		6px 8px 0 #120702 !important;
+	color: #2b1406 !important;
+}
+
+/* Carved Oak & Brass Scroll Rollers (Top ::before & Bottom ::after) */
+html[data-skin="eight-bit-overworld"] :is(.contact-form-grid, .contact-intro)::before,
+html[data-skin="eight-bit-overworld"] :is(.contact-form-grid, .contact-intro)::after {
+	content: "" !important;
+	display: block !important;
+	position: absolute !important;
+	left: -14px !important;
+	right: -14px !important;
+	height: 24px !important;
+	background-image:
+		var(--pixel-scroll-spindle-left),
+		var(--pixel-scroll-spindle-right),
+		linear-gradient(
+			180deg,
+			#1c0c04 0px, #1c0c04 4px,
+			#fff9ec 4px, #fff9ec 8px,
+			#f5e4be 8px, #f5e4be 12px,
+			#e4c890 12px, #e4c890 16px,
+			#c8a064 16px, #c8a064 20px,
+			#1c0c04 20px, #1c0c04 24px
+		) !important;
+	background-position: left center, right center, center center !important;
+	background-size: 24px 24px, 24px 24px, calc(100% - 44px) 24px !important;
+	background-repeat: no-repeat, no-repeat, no-repeat !important;
+	filter: drop-shadow(0 4px 0 #120702);
+	pointer-events: none;
+	z-index: 2;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.contact-form-grid, .contact-intro)::before {
+	top: -21px !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.contact-form-grid, .contact-intro)::after {
+	bottom: -21px !important;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-intro .eyebrow {
+	border-color: #1c0c04 !important;
+	background: #450a0a !important;
+	box-shadow: 3px 3px 0 #1c0c04 !important;
+	color: var(--pixel-gold) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-intro :is(h1, h2, h3, strong) {
+	color: #1c0c04 !important;
+	text-shadow: 2px 2px 0 #e4c890 !important;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-intro :is(p:not(.eyebrow), .lead, li) {
+	color: #2b1406 !important;
+	text-shadow: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-intro .lead {
+	margin: 0 0 1rem !important;
+	padding: 0.7rem 0.95rem !important;
+	border: 2px solid #2b1406 !important;
+	border-left: 5px solid #991b1b !important;
+	background: #fffaf0 !important;
+	box-shadow:
+		inset 2px 2px 0 #dec084,
+		3px 3px 0 #c8a064 !important;
+	color: #1c0c04 !important;
 }
 
 html[data-skin="eight-bit-overworld"] .contact-links {
@@ -1250,18 +1432,25 @@ html[data-skin="eight-bit-overworld"] .contact-links {
 	flex-wrap: wrap;
 	gap: 0.6rem;
 	margin-top: 1.1rem;
+	padding-right: 3.25rem;
 }
 
 html[data-skin="eight-bit-overworld"] .contact-links a {
 	display: inline-block;
 	padding: 0.35rem 0.65rem !important;
-	border: 2px solid var(--text-1) !important;
-	background: #162244 !important;
-	box-shadow: 3px 3px 0 var(--pixel-ink) !important;
+	border: 2px solid #1c0c04 !important;
+	background: #2b1406 !important;
+	box-shadow: 3px 3px 0 #1c0c04 !important;
 	color: var(--pixel-gold) !important;
 	font: 400 0.7rem/1.2 var(--pixel-display) !important;
 	text-decoration: none !important;
 	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-links a:hover,
+html[data-skin="eight-bit-overworld"] .contact-links a:focus-visible {
+	background: #450a0a !important;
+	color: #fff9ec !important;
 }
 
 html[data-skin="eight-bit-overworld"] label {
@@ -1269,6 +1458,11 @@ html[data-skin="eight-bit-overworld"] label {
 	font: 400 0.74rem/1.3 var(--pixel-display) !important;
 	letter-spacing: 0.05em;
 	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-form-grid label {
+	color: #2b1406 !important;
+	text-shadow: 1px 1px 0 #fff9ec !important;
 }
 
 html[data-skin="eight-bit-overworld"] :is(input[type="text"], input[type="password"], input[type="email"], select, textarea) {
@@ -1282,10 +1476,24 @@ html[data-skin="eight-bit-overworld"] :is(input[type="text"], input[type="passwo
 	caret-color: var(--pixel-gold);
 }
 
+html[data-skin="eight-bit-overworld"] .contact-form-grid :is(input[type="text"], input[type="password"], input[type="email"], select, textarea) {
+	border: 2px solid #2b1406 !important;
+	background: #fffaf0 !important;
+	box-shadow: inset 3px 3px 0 #dec084 !important;
+	color: #1c0c04 !important;
+	caret-color: #991b1b;
+}
+
 html[data-skin="eight-bit-overworld"] :is(input:focus, select:focus, textarea:focus) {
 	border-color: var(--pixel-gold) !important;
 	background: #162244 !important;
 	box-shadow: inset 3px 3px 0 var(--pixel-ink), 0 0 0 2px var(--pixel-gold) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-form-grid :is(input:focus, select:focus, textarea:focus) {
+	border-color: #991b1b !important;
+	background: #ffffff !important;
+	box-shadow: inset 3px 3px 0 #e4c890, 0 0 0 2px #b45309 !important;
 }
 
 /* --- 7. Arcade Buttons, Overworld Stage CTA, Fridge Board & Pixel Ground Footer --- */
@@ -1611,6 +1819,21 @@ html[data-skin-id="eight-bit-overworld"] .skin-contact-charm:hover {
 	html[data-skin="eight-bit-overworld"] .section-cta > .site-shell {
 		padding: 1.5rem 1rem 7.5rem;
 		background-size: 960px 285px, 96px 21px, 128px 64px !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] body.page-contact .page-hero > .site-shell {
+		padding: 3.8rem 1.15rem 10.5rem !important;
+		background-size: 960px 54px, 960px 144px, 128px 64px !important;
+		box-shadow:
+			inset 0 0 0 3px #854d27,
+			0 0 0 3px #120702,
+			5px 5px 0 #120702 !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] :is(.contact-form-grid, .contact-intro)::before,
+	html[data-skin="eight-bit-overworld"] :is(.contact-form-grid, .contact-intro)::after {
+		left: -10px !important;
+		right: -10px !important;
 	}
 
 	html[data-skin="eight-bit-overworld"] :is(.features, .features--showcase) {
