@@ -35,10 +35,10 @@ html[data-skin="split-duality"] {
 }
 
 html[data-skin="split-duality"] body {
-	background: linear-gradient(90deg, #ffef3d 0 50%, #111111 50%) fixed !important;
+	background: linear-gradient(90deg, #ffef3d 0 50%, #111111 50%) !important;
 	color: #ffffff !important;
 	font-family: Arial, Helvetica, sans-serif !important;
-	overflow-x: hidden;
+	overflow-x: clip;
 }
 
 html[data-skin="split-duality"] body,
@@ -530,7 +530,7 @@ html[data-skin="split-duality"] body.page-work .page-hero,
 html[data-skin="split-duality"] body.page-connect .page-hero,
 html[data-skin="split-duality"] body.page-about .page-hero,
 html[data-skin="split-duality"] body.page-contact .page-hero {
-	background: var(--split-page) fixed !important;
+	background: var(--split-page) !important;
 }
 
 html[data-skin="split-duality"] .page-hero h1,
@@ -538,7 +538,7 @@ html[data-skin="split-duality"] body.page-home .page-hero h1,
 html[data-skin="split-duality"] .page-hero h1 .hero-title-role,
 html[data-skin="split-duality"] .page-hero h1 .hero-title-initial,
 html[data-skin="split-duality"] .page-hero h1 .metallic-pearl-text {
-	background: var(--split-ink) fixed !important;
+	background: var(--split-ink) !important;
 	background-clip: text !important;
 	-webkit-background-clip: text !important;
 	color: transparent !important;
@@ -547,7 +547,7 @@ html[data-skin="split-duality"] .page-hero h1 .metallic-pearl-text {
 
 html[data-skin="split-duality"] .page-hero .hero-quests > h2,
 html[data-skin="split-duality"] .site-nav a:not([aria-current="page"]):not(.nav-cta) {
-	background: var(--split-ink) fixed !important;
+	background: var(--split-ink) !important;
 	background-clip: text !important;
 	-webkit-background-clip: text !important;
 	color: transparent !important;
@@ -555,7 +555,7 @@ html[data-skin="split-duality"] .site-nav a:not([aria-current="page"]):not(.nav-
 }
 
 html[data-skin="split-duality"] .page-hero::before {
-	background: var(--split-accent) fixed !important;
+	background: var(--split-accent) !important;
 }
 
 html[data-skin="split-duality"] .page-hero::after {
@@ -571,28 +571,28 @@ html[data-skin="split-duality"] .page-hero .lead,
 html[data-skin="split-duality"] .hero-splash .hero-splash-text,
 html[data-skin="split-duality"] .tag-list li,
 html[data-skin="split-duality"] .profile-chip {
-	background: var(--split-surface) fixed !important;
+	background: var(--split-surface) !important;
 	box-shadow: 5px 5px 0 var(--split-violet) !important;
 	color: var(--split-ink-left) !important;
 }
 
 html[data-skin="split-duality"] .eyebrow {
-	background: var(--split-accent) fixed !important;
+	background: var(--split-accent) !important;
 	box-shadow: 4px 4px 0 var(--split-violet) !important;
 	color: var(--split-ink-left) !important;
 }
 
 html[data-skin="split-duality"] .page-section {
-	background: linear-gradient(90deg, var(--split-cream) 0 50%, var(--split-mint) 50% 100%) fixed !important;
+	background: linear-gradient(90deg, var(--split-cream) 0 50%, var(--split-mint) 50% 100%) !important;
 }
 
 html[data-theme][data-skin="split-duality"] .page-section:not(.section-cta):not(.section-soft):not(.section-portrait) {
-	background: linear-gradient(90deg, var(--split-cream) 0 50%, var(--split-mint) 50% 100%) fixed !important;
+	background: linear-gradient(90deg, var(--split-cream) 0 50%, var(--split-mint) 50% 100%) !important;
 }
 
 html[data-skin="split-duality"] .section-soft,
 html[data-skin="split-duality"] .section-portrait {
-	background: linear-gradient(90deg, var(--split-violet) 0 50%, var(--split-cream) 50% 100%) fixed !important;
+	background: linear-gradient(90deg, var(--split-violet) 0 50%, var(--split-cream) 50% 100%) !important;
 }
 
 html[data-skin="split-duality"] .panel-card,
@@ -602,7 +602,7 @@ html[data-skin="split-duality"] ul.feature-icons li,
 html[data-skin="split-duality"] .work-overview,
 html[data-skin="split-duality"] .work-tech-item,
 html[data-skin="split-duality"] .profile-chip {
-	background: var(--split-surface) fixed !important;
+	background: var(--split-surface) !important;
 	box-shadow: 7px 7px 0 var(--split-right) !important;
 	color: var(--split-ink-left) !important;
 }
@@ -611,7 +611,7 @@ html[data-skin="split-duality"] .panel-card:nth-child(even),
 html[data-skin="split-duality"] .features article:nth-child(even),
 html[data-skin="split-duality"] ul.feature-icons li:nth-child(even),
 html[data-skin="split-duality"] .work-tech-item:nth-child(even) {
-	background: var(--split-surface-alt) fixed !important;
+	background: var(--split-surface-alt) !important;
 	box-shadow: 7px 7px 0 var(--split-coral) !important;
 }
 
@@ -619,7 +619,7 @@ html[data-skin="split-duality"] .panel-card:nth-child(3n),
 html[data-skin="split-duality"] .features article:nth-child(3n),
 html[data-skin="split-duality"] ul.feature-icons li:nth-child(3n),
 html[data-skin="split-duality"] .work-tech-item:nth-child(3n) {
-	background: var(--split-surface-third) fixed !important;
+	background: var(--split-surface-third) !important;
 	box-shadow: 7px 7px 0 var(--split-coral) !important;
 }
 
@@ -655,7 +655,7 @@ html[data-skin="split-duality"] input[type="reset"],
 html[data-skin="split-duality"] input[type="button"],
 html[data-skin="split-duality"] button:not([class^="skin-picker"]),
 html[data-skin="split-duality"] .button {
-	background: var(--split-surface) fixed !important;
+	background: var(--split-surface) !important;
 	color: var(--split-ink-left) !important;
 }
 
@@ -665,20 +665,20 @@ html[data-skin="split-duality"] button.primary,
 html[data-skin="split-duality"] .button.primary,
 html[data-skin="split-duality"] .contact-submit,
 html[data-skin="split-duality"] .features article .inner span a {
-	background: var(--split-surface-alt) fixed !important;
+	background: var(--split-surface-alt) !important;
 	box-shadow: 5px 5px 0 var(--split-coral) !important;
 }
 
 html[data-skin="split-duality"] .section-cta {
-	background: linear-gradient(90deg, var(--split-left) 0 50%, var(--split-coral) 50% 100%) fixed !important;
+	background: linear-gradient(90deg, var(--split-left) 0 50%, var(--split-coral) 50% 100%) !important;
 }
 
 html[data-skin="split-duality"] .site-footer {
-	background: linear-gradient(90deg, var(--split-right) 0 50%, #4a315f 50% 100%) fixed !important;
+	background: linear-gradient(90deg, var(--split-right) 0 50%, #4a315f 50% 100%) !important;
 }
 
 html[data-skin="split-duality"] .brand-mark {
-	background: var(--split-accent) fixed !important;
+	background: var(--split-accent) !important;
 	box-shadow: 4px 4px 0 var(--split-right);
 }
 

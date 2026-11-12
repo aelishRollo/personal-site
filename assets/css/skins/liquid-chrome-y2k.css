@@ -35,7 +35,7 @@ html[data-skin="liquid-chrome-y2k"] {
 
 html[data-skin="liquid-chrome-y2k"] body {
 	position: relative;
-	overflow-x: hidden;
+	overflow-x: clip;
 	background-color: #eef5ff !important;
 	background-image:
 		radial-gradient(circle at 8% 18%, rgba(143, 242, 239, 0.34), transparent 24rem),
@@ -240,7 +240,6 @@ html[data-skin="liquid-chrome-y2k"] .profile-chip {
 	box-shadow:
 		inset 0 1px 0 rgba(255, 255, 255, 0.94),
 		0 30px 60px rgba(86, 99, 160, 0.12) !important;
-	contain: paint;
 }
 
 html[data-skin="liquid-chrome-y2k"] .panel-card:first-child::after,
@@ -417,7 +416,7 @@ html[data-skin="liquid-chrome-y2k"] .skin-picker {
 
 html[data-skin="liquid-chrome-y2k"] .skin-picker-panel {
 	box-shadow: 0 24px 60px rgba(68, 80, 137, 0.23);
-	backdrop-filter: blur(22px) saturate(1.2);
+	backdrop-filter: none !important;
 }
 
 html[data-skin="liquid-chrome-y2k"] .skin-picker-toggle {

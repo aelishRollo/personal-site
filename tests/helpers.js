@@ -24,7 +24,10 @@ function watchRuntimeFailures(page) {
     const url = new URL(request.url());
     if (LOCAL_HOSTS.has(url.hostname)) {
       const detail = request.failure() ? request.failure().errorText : 'unknown error';
-      if (request.resourceType() === 'media' && /ERR_ABORTED|NS_BINDING_ABORTED/.test(detail)) {
+      if (
+        (request.resourceType() === 'media' || request.resourceType() === 'image') &&
+        /ERR_ABORTED|NS_BINDING_ABORTED/.test(detail)
+      ) {
         return;
       }
       failures.push(`request failed: ${request.method()} ${url.pathname} (${detail})`);

@@ -1,5 +1,10 @@
 /* Runtime skin picker. Source-skin rules live in assets/css/skins/. */
 
+html[data-skin],
+html[data-skin] body {
+	overflow-x: clip;
+}
+
 html[data-skin-loading] body {
 	visibility: hidden;
 }
@@ -20,6 +25,8 @@ html[data-skin-loading] body {
 	font-size: 16px;
 	line-height: 1.35;
 	color: var(--skin-ui-text);
+	contain: layout;
+	transform: translateZ(0);
 }
 
 .skin-picker,
@@ -741,15 +748,12 @@ html[data-skin-id="forties-field-notes"] .skin-contact-charm:hover::before {
 
 @keyframes skin-picker-spark {
 	0% {
-		box-shadow: 0 0 0 0 rgba(158, 223, 209, 0.5);
 		transform: rotate(0deg) scale(1);
 	}
 	55% {
-		box-shadow: 0 0 0 0.55rem rgba(158, 223, 209, 0);
 		transform: rotate(16deg) scale(1.08);
 	}
 	100% {
-		box-shadow: 0 0 0 0 rgba(158, 223, 209, 0);
 		transform: rotate(0deg) scale(1);
 	}
 }
@@ -1134,6 +1138,26 @@ html[data-skin-id="forties-field-notes"] .skin-contact-charm:hover::before {
 /* Keep the live controls interactive while transition snapshots animate above them. */
 ::view-transition {
 	pointer-events: none;
+}
+
+html[data-skin-transitioning]:not([data-skin-transition-lite]) .site-header {
+	view-transition-name: skin-header;
+}
+
+html[data-skin-transitioning]:not([data-skin-transition-lite]) .page-hero {
+	view-transition-name: skin-hero;
+}
+
+html[data-skin-transitioning]:not([data-skin-transition-lite]) .site-footer {
+	view-transition-name: skin-footer;
+}
+
+html[data-skin-transitioning]:not([data-skin-transition-lite]) .skin-contact-charm {
+	view-transition-name: skin-contact-charm;
+}
+
+html[data-skin-transitioning]:not([data-skin-transition-lite]) .skin-picker {
+	view-transition-name: skin-picker;
 }
 
 /*

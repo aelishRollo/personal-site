@@ -390,14 +390,14 @@ html[data-skin="pretty-calc"] .page-section > .site-shell {
 	html[data-skin="pretty-calc"] .site-main > .page-section > .site-shell {
 		width: auto;
 		max-width: 1120px;
-		margin-left: max(18.25rem, calc((100% - 1120px) / 2));
+		margin-left: max(18.75rem, calc((100% - 1120px) / 2));
 		margin-right: max(1.75rem, calc((100% - 1120px) / 2));
 	}
 
 	html[data-skin="pretty-calc"] body.page-fridge .site-main .site-shell {
 		width: auto;
 		max-width: none;
-		margin-left: 18.25rem;
+		margin-left: 18.75rem;
 		margin-right: 1rem;
 	}
 }

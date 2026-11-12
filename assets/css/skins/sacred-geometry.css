@@ -35,7 +35,7 @@ html[data-skin="sacred-geometry"] {
 
 html[data-skin="sacred-geometry"] body {
 	position: relative;
-	overflow-x: hidden;
+	overflow-x: clip;
 	background-color: var(--background) !important;
 	background-image:
 		radial-gradient(circle at 50% 3%, rgba(120, 86, 255, 0.12), transparent 31%),
@@ -86,7 +86,7 @@ html[data-skin="sacred-geometry"] a:hover {
 html[data-skin="sacred-geometry"] .site-header {
 	border-bottom: 1px solid #282535 !important;
 	background: rgba(10, 9, 16, 0.88) !important;
-	backdrop-filter: blur(12px);
+	backdrop-filter: none !important;
 }
 
 html[data-skin="sacred-geometry"] .brand-mark {

@@ -520,6 +520,264 @@ test('Photo Carousel preloads photos upon site load, shows one immediately on vi
   await expect(page.locator('.pretty-calc-stage, .pretty-calc-controls, .pretty-calc-credit')).toHaveCount(0);
 });
 
+test('MS-DOS Prompt renders multi-column TUI panes on desktop and stacks cleanly on mobile', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 860 });
+  await openSitePage(page, '/index.html?theme=ms-dos-prompt');
+
+  const homeLayout = await page.evaluate(() => {
+    const shell = document.querySelector('.page-hero > .site-shell').getBoundingClientRect();
+    const h1 = document.querySelector('.page-hero h1').getBoundingClientRect();
+    const media = document.querySelector('.hero-copy .hero-media').getBoundingClientRect();
+    const quests = Array.from(document.querySelectorAll('.quest-card')).map((el) =>
+      el.getBoundingClientRect()
+    );
+    return {
+      shellWidth: shell.width,
+      shellLeft: shell.left,
+      shellRightGap: window.innerWidth - shell.right,
+      mediaBesideHeading: media.left >= h1.right - 4,
+      questTops: quests.map((q) => Math.round(q.top)),
+      questLefts: quests.map((q) => Math.round(q.left)),
+      overflow: document.documentElement.scrollWidth - window.innerWidth,
+    };
+  });
+
+  expect(homeLayout.shellWidth).toBeGreaterThan(1000);
+  expect(Math.abs(homeLayout.shellLeft - homeLayout.shellRightGap)).toBeLessThanOrEqual(2);
+  expect(homeLayout.mediaBesideHeading).toBe(true);
+  expect(homeLayout.questTops[0]).toBe(homeLayout.questTops[1]);
+  expect(homeLayout.questTops[1]).toBe(homeLayout.questTops[2]);
+  expect(homeLayout.questLefts[0]).toBeLessThan(homeLayout.questLefts[1]);
+  expect(homeLayout.questLefts[1]).toBeLessThan(homeLayout.questLefts[2]);
+  expect(homeLayout.overflow).toBeLessThanOrEqual(0);
+
+  await openSitePage(page, '/work.html?theme=ms-dos-prompt');
+  const workLayout = await page.evaluate(() => {
+    const featured = document.querySelector('.features--showcase .featured-project');
+    const featuredImage = featured.querySelector('.image').getBoundingClientRect();
+    const featuredInner = featured.querySelector('.inner').getBoundingClientRect();
+    const cards = Array.from(document.querySelectorAll('.features--showcase > article:not(.featured-project)')).map(
+      (el) => el.getBoundingClientRect()
+    );
+    return {
+      featuredImageHeight: featuredImage.height,
+      featuredTwoCol: featuredInner.left >= featuredImage.right - 4,
+      rowAligned: Math.round(cards[0].top) === Math.round(cards[1].top),
+      twoColCards: cards[0].left < cards[1].left,
+    };
+  });
+
+  expect(workLayout.featuredImageHeight).toBeGreaterThan(180);
+  expect(workLayout.featuredTwoCol).toBe(true);
+  expect(workLayout.rowAligned).toBe(true);
+  expect(workLayout.twoColCards).toBe(true);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await openSitePage(page, '/index.html?theme=ms-dos-prompt');
+  const mobileOverflow = await page.evaluate(
+    () => document.documentElement.scrollWidth - window.innerWidth
+  );
+  expect(mobileOverflow).toBeLessThanOrEqual(0);
+});
+
+test('8-Bit Overworld renders its bespoke reverse-split RPG hero, Bento quest map, and 6-column cartridge rack', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 860 });
+  await openSitePage(page, '/index.html?theme=eight-bit-overworld');
+
+  const homeLayout = await page.evaluate(() => {
+    const h1 = document.querySelector('.page-hero h1').getBoundingClientRect();
+    const media = document.querySelector('.hero-copy .hero-media').getBoundingClientRect();
+    const roles = Array.from(document.querySelectorAll('.page-hero h1 .hero-title-role')).map((el) =>
+      el.getBoundingClientRect()
+    );
+    const roleSprites = Array.from(document.querySelectorAll('.page-hero h1 .hero-title-role')).map(
+      (el) => window.getComputedStyle(el).backgroundImage
+    );
+    const quests = Array.from(document.querySelectorAll('.quest-card')).map((el) =>
+      el.getBoundingClientRect()
+    );
+    const brandHearts = window.getComputedStyle(document.querySelector('.brand'), '::after').backgroundImage;
+    const bodyBg = window.getComputedStyle(document.body).backgroundImage;
+    const heroShellStyle = window.getComputedStyle(document.querySelector('.page-hero > .site-shell'));
+    const cardStyle = window.getComputedStyle(document.querySelector('.panel-card'));
+    const sillyStyle = window.getComputedStyle(document.getElementById('hero-silly-title'));
+    const roleBeforeContent = window.getComputedStyle(document.querySelector('.hero-title-role'), '::before').content;
+    return {
+      mediaLeftOfHeading: media.right <= h1.left + 4,
+      roleGridTwoByTwo:
+        Math.round(roles[0].top) === Math.round(roles[1].top) &&
+        roles[0].left < roles[1].left &&
+        Math.round(roles[2].top) === Math.round(roles[3].top) &&
+        roles[2].left < roles[3].left,
+      hasDistinctRoleSprites: new Set(roleSprites).size === 4 && roleSprites.every((bg) => bg.includes('data:image/svg+xml')),
+      sillyTitleIconUnclipped: sillyStyle.backgroundClip === 'border-box',
+      hasHudHeartsAndOverworldMural:
+        brandHearts.includes('data:image/svg+xml') && heroShellStyle.backgroundImage.includes('data:image/svg+xml'),
+      distinctBackgroundAndContainers:
+        bodyBg !== heroShellStyle.backgroundImage && heroShellStyle.backgroundColor !== cardStyle.backgroundColor,
+      noExtraneousRoleBanner: roleBeforeContent === 'none',
+      bentoLeftStacked:
+        Math.round(quests[0].left) === Math.round(quests[2].left) &&
+        quests[0].bottom <= quests[2].top + 4,
+      bentoRightSpanning:
+        quests[1].left >= quests[0].right - 4 &&
+        Math.round(quests[1].top) === Math.round(quests[0].top) &&
+        Math.round(quests[1].bottom) === Math.round(quests[2].bottom),
+      overflow: document.documentElement.scrollWidth - window.innerWidth,
+    };
+  });
+
+  expect(homeLayout.mediaLeftOfHeading).toBe(true);
+  expect(homeLayout.roleGridTwoByTwo).toBe(true);
+  expect(homeLayout.hasDistinctRoleSprites).toBe(true);
+  expect(homeLayout.sillyTitleIconUnclipped).toBe(true);
+  expect(homeLayout.hasHudHeartsAndOverworldMural).toBe(true);
+  expect(homeLayout.distinctBackgroundAndContainers).toBe(true);
+  expect(homeLayout.noExtraneousRoleBanner).toBe(true);
+  expect(homeLayout.bentoLeftStacked).toBe(true);
+  expect(homeLayout.bentoRightSpanning).toBe(true);
+  expect(homeLayout.overflow).toBeLessThanOrEqual(0);
+
+  await openSitePage(page, '/work.html?theme=eight-bit-overworld');
+  const workLayout = await page.evaluate(() => {
+    const featured = document.querySelector('.features--showcase .featured-project');
+    const featuredImage = featured.querySelector('.image').getBoundingClientRect();
+    const featuredInner = featured.querySelector('.inner').getBoundingClientRect();
+    const cards = Array.from(document.querySelectorAll('.features--showcase > article:not(.featured-project)')).map(
+      (el) => el.getBoundingClientRect()
+    );
+    const manualNotes = Array.from(document.querySelectorAll('.work-background > p:not(:last-child)')).map(
+      (el) => el.getBoundingClientRect()
+    );
+    return {
+      featuredCopyLeftOfImage: featuredInner.right <= featuredImage.left + 4,
+      threeAcrossMiddleRow:
+        Math.round(cards[0].top) === Math.round(cards[1].top) &&
+        Math.round(cards[1].top) === Math.round(cards[2].top) &&
+        cards[0].left < cards[1].left &&
+        cards[1].left < cards[2].left,
+      twoAcrossBottomRow:
+        Math.round(cards[3].top) === Math.round(cards[4].top) &&
+        cards[3].left < cards[4].left,
+      twoColumnManual:
+        Math.round(manualNotes[0].top) === Math.round(manualNotes[1].top) &&
+        manualNotes[0].left < manualNotes[1].left,
+    };
+  });
+
+  expect(workLayout.featuredCopyLeftOfImage).toBe(true);
+  expect(workLayout.threeAcrossMiddleRow).toBe(true);
+  expect(workLayout.twoAcrossBottomRow).toBe(true);
+  expect(workLayout.twoColumnManual).toBe(true);
+
+  await openSitePage(page, '/contact.html?theme=eight-bit-overworld');
+  const contactSwapped = await page.evaluate(() => {
+    const form = document.querySelector('.contact-form-grid').getBoundingClientRect();
+    const intro = document.querySelector('.contact-intro').getBoundingClientRect();
+    return form.right <= intro.left + 4;
+  });
+  expect(contactSwapped).toBe(true);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await openSitePage(page, '/index.html?theme=eight-bit-overworld');
+  const mobileOverflow = await page.evaluate(
+    () => document.documentElement.scrollWidth - window.innerWidth
+  );
+  expect(mobileOverflow).toBeLessThanOrEqual(0);
+});
+
+test('keeps root scrolling, upfront paint, and eager image decoding across skins and pages', async ({ page }) => {
+  test.setTimeout(90000);
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await openSitePage(page, '/index.html?theme=portfolio-dark');
+
+  const skinIds = await page.evaluate(() => window.SiteSkins.all.map((skin) => skin.id));
+  for (const id of skinIds) {
+    const metrics = await page.evaluate(async (skinId) => {
+      window.SiteSkins.preview(skinId);
+      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      const link = document.getElementById('active-skin-stylesheet');
+      if (link && !link.sheet) {
+        await new Promise((resolve) => {
+          link.addEventListener('load', resolve, { once: true });
+          link.addEventListener('error', resolve, { once: true });
+          setTimeout(resolve, 1000);
+        });
+      }
+      const bodyStyle = window.getComputedStyle(document.body);
+      const headerStyle = window.getComputedStyle(document.querySelector('.site-header'));
+      const cardStyle = window.getComputedStyle(document.querySelector('.panel-card'));
+      return {
+        skinId,
+        bodyOverflowY: bodyStyle.overflowY,
+        bodyBgAttachment: bodyStyle.backgroundAttachment,
+        headerBackdropFilter: headerStyle.backdropFilter || headerStyle.webkitBackdropFilter || 'none',
+        cardContain: cardStyle.contain,
+        cardContentVisibility: cardStyle.contentVisibility,
+      };
+    }, id);
+
+    expect(metrics.bodyOverflowY, `${id} should keep root scrolling on html`).toBe('visible');
+    expect(metrics.bodyBgAttachment, `${id} should avoid fixed body backgrounds`).not.toContain('fixed');
+    expect(metrics.headerBackdropFilter, `${id} should avoid sticky header backdrop blur`).toBe('none');
+    expect(metrics.cardContain, `${id} should not defer off-screen card paint`).not.toContain('paint');
+    expect(metrics.cardContentVisibility, `${id} should not defer off-screen card layout`).not.toBe('auto');
+  }
+
+  for (const pagePath of ['/index.html', '/work.html', '/favorites.html', '/fridge-poetry.html', '/thanks.html']) {
+    await page.goto(`${pagePath}?theme=ms-dos-prompt`, { waitUntil: 'load' });
+    const images = await page.evaluate(() =>
+      Array.from(document.querySelectorAll('main img')).map((img) => ({
+        src: img.getAttribute('src'),
+        loading: img.loading,
+        decoding: img.decoding,
+        complete: img.complete,
+        naturalWidth: img.naturalWidth,
+      }))
+    );
+
+    expect(images.length).toBeGreaterThan(0);
+    for (const img of images) {
+      expect(img.loading, `${pagePath} ${img.src} should load eagerly`).toBe('eager');
+      expect(img.decoding, `${pagePath} ${img.src} should decode synchronously`).toBe('sync');
+      expect(img.complete, `${pagePath} ${img.src} should be loaded before scrolling`).toBe(true);
+      expect(img.naturalWidth, `${pagePath} ${img.src} should be decoded before scrolling`).toBeGreaterThan(0);
+    }
+
+    if (pagePath === '/favorites.html') {
+      await expect(page.locator('body')).toHaveAttribute('data-favorites-view', 'compact');
+      await expect(page.locator('[data-favorites-view-choice="compact"]')).toHaveAttribute(
+        'aria-pressed',
+        'true'
+      );
+      const compactHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+      expect(compactHeight).toBeLessThan(3800);
+
+      await page.locator('[data-favorites-view-choice="two-column"]').click();
+      await expect(page.locator('body')).toHaveAttribute('data-favorites-view', 'two-column');
+      await expect(page.locator('[data-favorites-view-choice="two-column"]')).toHaveAttribute(
+        'aria-pressed',
+        'true'
+      );
+      const twoColumnHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+      expect(twoColumnHeight).toBeLessThan(3800);
+
+      await page.locator('[data-favorites-view-choice="compact"]').click();
+      await expect(page.locator('body')).toHaveAttribute('data-favorites-view', 'compact');
+      await expect(page.locator('#favorites-fixed-bg')).toHaveCount(1);
+
+      const parkedWithinRetinaBudget = await page.evaluate(() => {
+        const vh = window.innerHeight;
+        return Array.from(document.querySelectorAll('.favorite-card')).every((card) => {
+          const rect = card.getBoundingClientRect();
+          return rect.top >= -1560 && rect.bottom <= vh + 1560;
+        });
+      });
+      expect(parkedWithinRetinaBudget).toBe(true);
+    }
+  }
+});
+
 test('fridge board reserves its layout before the component upgrades', async ({ page }) => {
   await page.route('**/assets/js/fridge-poetry.js*', (route) => route.abort('blockedbyclient'));
   await page.goto('/fridge-poetry.html?theme=portfolio-dark', { waitUntil: 'domcontentloaded' });

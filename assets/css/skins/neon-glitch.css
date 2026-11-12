@@ -82,7 +82,7 @@ html[data-skin="neon-glitch"] a:hover {
 html[data-skin="neon-glitch"] .site-header {
 	border-bottom: 1px solid var(--border) !important;
 	background: rgba(5, 5, 9, 0.88) !important;
-	backdrop-filter: blur(12px);
+	backdrop-filter: none !important;
 }
 
 html[data-skin="neon-glitch"] .brand-mark {
@@ -166,20 +166,18 @@ html[data-skin="neon-glitch"] .page-hero::after {
 }
 
 @keyframes neon-glitch-float {
-	to { transform: translate(44px, 26px) scale(0.83); }
+	to { transform: translate(44px, 26px); }
 }
 
 @keyframes neon-glitch-signal {
 	0%, 88%, 100% {
-		text-shadow: -2px 0 var(--secondary), 2px 0 var(--primary), 0 0 26px rgba(70, 55, 255, 0.5);
-		filter: none;
+		opacity: 1;
 	}
 	90% {
-		text-shadow: 7px 0 var(--secondary), -7px 0 var(--primary), 0 0 36px var(--accent);
-		filter: contrast(1.25);
+		opacity: 0.88;
 	}
 	93% {
-		text-shadow: -5px 0 var(--secondary), 4px 0 var(--primary), 0 0 22px var(--accent);
+		opacity: 0.94;
 	}
 }
 

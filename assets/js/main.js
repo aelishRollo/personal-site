@@ -7,12 +7,9 @@
 	var $window = $(window);
 	var $body = $('body');
 
-	// Play initial animations on page load.
-	$window.on('load', function() {
-		window.setTimeout(function() {
-			$body.removeClass('is-preload');
-		}, 100);
-	});
+	// Clear preload state immediately so deferred window.load timers never
+	// trigger a full-document style recalculation after the user starts scrolling.
+	$body.removeClass('is-preload');
 
 	// Pre-decode page images upfront so below-the-fold cards never pop in late
 	// or stall tile rasterization while scrolling.
@@ -53,24 +50,9 @@
 		}
 	});
 
-	// Blend only the largest stable regions independently. Nested hero elements
-	// and off-screen sections stay in the root snapshot to avoid creating a large
-	// stack of compositor surfaces for every theme change.
-	if ('startViewTransition' in document) {
-		var skinTransitionRegions = [
-			{ selector: '.site-header', name: 'skin-header' },
-			{ selector: '.page-hero', name: 'skin-hero' },
-			{ selector: '.site-footer', name: 'skin-footer' }
-		];
-
-		skinTransitionRegions.forEach(function(region) {
-			var element = document.querySelector(region.selector);
-
-			if (element) {
-				element.style.viewTransitionName = region.name;
-			}
-		});
-	}
+	// View-transition region names are scoped to html[data-skin-transitioning]
+	// in skin-system.css so normal scrolling never pays for permanent
+	// view-transition stacking contexts or effect groups.
 
 	// Mount media only while Starlight is active; other skins never fetch the video.
 	var starlightVideo;
@@ -169,7 +151,8 @@
 			'hello-kitty': 'Say hi to me!',
 			'forties-field-notes': 'Drop me a line',
 			'nutrition-facts': 'Contact Alec',
-			'pretty-calc': 'Get in touch'
+			'pretty-calc': 'Get in touch',
+			'eight-bit-overworld': 'PRESS START: TALK'
 		};
 		var randomOption = '<button type="button" class="skin-picker-option skin-picker-option-random" data-skin-random aria-pressed="false">' +
 			'<span class="skin-picker-option-mark" aria-hidden="true"></span>' +
@@ -412,10 +395,6 @@
 		} else {
 			$('.page-hero').first().append($skinContactCharm);
 			$body.append($skinPicker);
-		}
-		if ('startViewTransition' in document) {
-			$skinContactCharm[0].style.viewTransitionName = 'skin-contact-charm';
-			$skinPicker[0].style.viewTransitionName = 'skin-picker';
 		}
 		syncSkinPicker();
 

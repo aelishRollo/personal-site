@@ -42,7 +42,7 @@ html[data-skin="psychedelic-scrapbook"] body {
 	background-size: 720px 720px !important;
 	color: var(--foreground) !important;
 	font-family: Arial, Helvetica, sans-serif !important;
-	overflow-x: hidden;
+	overflow-x: clip;
 }
 
 html[data-skin="psychedelic-scrapbook"] body,

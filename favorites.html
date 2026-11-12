@@ -13,7 +13,7 @@
 		<!-- shared:head-assets:end -->
 		<link rel="stylesheet" href="assets/css/favorites.css" />
 	</head>
-	<body class="is-preload page-favorites" id="page-top">
+	<body class="is-preload page-favorites" id="page-top" data-favorites-view="compact">
 		<!-- shared:header:start -->
 		<header class="site-header" role="banner">
 			<div class="site-shell">
@@ -45,6 +45,13 @@
 				</section>
 				<section class="page-section favorites-section" id="the-list" aria-label="A Few Of My Favorite Things">
 					<div class="site-shell">
+						<div class="favorites-toolbar">
+							<span class="favorites-toolbar-label" id="favorites-view-label">Layout</span>
+							<div class="favorites-view-switch" role="group" aria-labelledby="favorites-view-label">
+								<button type="button" class="favorites-view-button" data-favorites-view-choice="compact" aria-pressed="true">Compact grid</button>
+								<button type="button" class="favorites-view-button" data-favorites-view-choice="two-column" aria-pressed="false">Two-column</button>
+							</div>
+						</div>
 						<nav class="favorites-index" aria-labelledby="favorites-contents-title">
 							<h2 id="favorites-contents-title">Contents</h2>
 							<ol class="favorites-index-list">
@@ -72,7 +79,7 @@
 						<div class="favorites-grid">
 							<article class="favorite-card" id="favorite-waking-up">
 								<div class="favorite-media">
-									<img src="assets/images/favorites/waking-up.jpg" alt="Waking Up app on a blue promotional image" width="1200" height="630" loading="eager" decoding="sync" />
+									<img src="assets/images/favorites/waking-up.jpg" alt="Waking Up app on a blue promotional image" width="640" height="336" loading="eager" decoding="sync" fetchpriority="high" />
 								</div>
 								<div class="favorite-copy">
 									<p class="favorite-kind">Mindfulness</p>
@@ -84,7 +91,7 @@
 							</article>
 							<article class="favorite-card" id="favorite-north-mass-boulder">
 								<div class="favorite-media">
-									<img src="assets/images/favorites/north-mass-boulder.jpg" alt="North Mass Boulder climbing gym, shown on its website" width="840" height="440" loading="eager" decoding="sync" />
+									<img src="assets/images/favorites/north-mass-boulder.jpg" alt="North Mass Boulder climbing gym, shown on its website" width="640" height="335" loading="eager" decoding="sync" fetchpriority="high" />
 								</div>
 								<div class="favorite-copy">
 									<p class="favorite-kind">Place · Indianapolis</p>
@@ -95,7 +102,7 @@
 							</article>
 							<article class="favorite-card" id="favorite-derek-sivers">
 								<div class="favorite-media">
-									<img src="assets/images/favorites/derek-sivers.jpg" alt="Derek Sivers’s personal website" width="840" height="440" loading="eager" decoding="sync" />
+									<img src="assets/images/favorites/derek-sivers.jpg" alt="Derek Sivers’s personal website" width="840" height="440" loading="eager" decoding="sync" fetchpriority="high" />
 								</div>
 								<div class="favorite-copy">
 									<p class="favorite-kind">Writing &amp; web</p>
@@ -106,7 +113,7 @@
 							</article>
 							<article class="favorite-card" id="favorite-songdrive">
 								<div class="favorite-media">
-									<img src="assets/images/favorites/songdrive.jpg" alt="SongDrive homepage, with a guitar and music software on a laptop" width="840" height="440" loading="eager" decoding="sync" />
+									<img src="assets/images/favorites/songdrive.jpg" alt="SongDrive homepage, with a guitar and music software on a laptop" width="840" height="440" loading="eager" decoding="sync" fetchpriority="high" />
 								</div>
 								<div class="favorite-copy">
 									<p class="favorite-kind">Music software</p>
@@ -117,7 +124,7 @@
 							</article>
 							<article class="favorite-card" id="favorite-wikipedia">
 								<div class="favorite-media">
-									<img src="assets/images/favorites/wikipedia.jpg" alt="Wikipedia homepage and globe logo" width="840" height="440" loading="eager" decoding="sync" />
+									<img src="assets/images/favorites/wikipedia.jpg" alt="Wikipedia homepage and globe logo" width="840" height="440" loading="eager" decoding="sync" fetchpriority="high" />
 								</div>
 								<div class="favorite-copy">
 									<p class="favorite-kind">Open knowledge</p>
@@ -128,7 +135,7 @@
 							</article>
 							<article class="favorite-card" id="favorite-free-software-foundation">
 								<div class="favorite-media favorite-media--logo favorite-media--fsf">
-									<img src="assets/images/favorites/free-software-foundation.png" alt="Free Software Foundation logo" width="283" height="33" loading="eager" decoding="sync" />
+									<img src="assets/images/favorites/free-software-foundation.png" alt="Free Software Foundation logo" width="283" height="33" loading="eager" decoding="sync" fetchpriority="high" />
 								</div>
 								<div class="favorite-copy">
 									<p class="favorite-kind">Digital freedom</p>
@@ -139,7 +146,7 @@
 							</article>
 							<article class="favorite-card" id="favorite-oasis">
 								<div class="favorite-media favorite-media--oasis">
-									<img src="assets/images/favorites/oasis.png" alt="Minecraft-like landscape from Decart’s Oasis project" width="480" height="480" loading="lazy" decoding="async" />
+									<img src="assets/images/favorites/oasis.png" alt="Minecraft-like landscape from Decart’s Oasis project" width="360" height="360" loading="eager" decoding="sync" fetchpriority="high" />
 								</div>
 								<div class="favorite-copy">
 									<p class="favorite-kind">Creative experiment</p>
@@ -150,7 +157,7 @@
 							</article>
 							<article class="favorite-card" id="favorite-anki">
 								<div class="favorite-media">
-									<img src="assets/images/favorites/anki.jpg" alt="Anki website homepage" width="840" height="440" loading="lazy" decoding="async" />
+									<img src="assets/images/favorites/anki.jpg" alt="Anki website homepage" width="840" height="440" loading="eager" decoding="sync" fetchpriority="high" />
 								</div>
 								<div class="favorite-copy">
 									<p class="favorite-kind">Learning tool</p>
@@ -161,7 +168,7 @@
 							</article>
 							<article class="favorite-card" id="favorite-gnu">
 								<div class="favorite-media favorite-media--logo">
-									<img src="assets/images/favorites/gnu.png" alt="Illustration of the GNU head" width="276" height="256" loading="lazy" decoding="async" />
+									<img src="assets/images/favorites/gnu.png" alt="Illustration of the GNU head" width="276" height="256" loading="eager" decoding="sync" fetchpriority="high" />
 								</div>
 								<div class="favorite-copy">
 									<p class="favorite-kind">Free software</p>
@@ -172,7 +179,7 @@
 							</article>
 							<article class="favorite-card" id="favorite-browser-javascript">
 								<div class="favorite-media">
-									<img src="assets/images/favorites/browser-javascript.jpg" alt="MDN’s guide to JavaScript in the browser" width="840" height="440" loading="lazy" decoding="async" />
+									<img src="assets/images/favorites/browser-javascript.jpg" alt="MDN’s guide to JavaScript in the browser" width="840" height="440" loading="eager" decoding="sync" fetchpriority="high" />
 								</div>
 								<div class="favorite-copy">
 									<p class="favorite-kind">The open web</p>
@@ -183,7 +190,7 @@
 							</article>
 							<article class="favorite-card" id="favorite-learning-how-to-learn">
 								<div class="favorite-media">
-									<img src="assets/images/favorites/learning-how-to-learn.jpg" alt="Coursera course graphic for Learning How to Learn" width="1772" height="928" loading="lazy" decoding="async" />
+									<img src="assets/images/favorites/learning-how-to-learn.jpg" alt="Coursera course graphic for Learning How to Learn" width="640" height="335" loading="eager" decoding="sync" fetchpriority="high" />
 								</div>
 								<div class="favorite-copy">
 									<p class="favorite-kind">Course · Free access</p>
@@ -195,7 +202,7 @@
 							</article>
 							<article class="favorite-card" id="favorite-crawler-zoo">
 								<div class="favorite-media">
-									<img src="assets/images/favorites/crawler-zoo.jpg" alt="The Crawler Zoo website showing a live count of visiting bots" width="840" height="440" loading="lazy" decoding="async" />
+									<img src="assets/images/favorites/crawler-zoo.jpg" alt="The Crawler Zoo website showing a live count of visiting bots" width="840" height="440" loading="eager" decoding="sync" fetchpriority="high" />
 								</div>
 								<div class="favorite-copy">
 									<p class="favorite-kind">The weird web</p>
@@ -206,7 +213,7 @@
 							</article>
 							<article class="favorite-card" id="favorite-camping-with-steve">
 								<div class="favorite-media">
-									<img src="assets/images/favorites/camping-with-steve.jpg" alt="Camping With Steve banner showing Steve outdoors" width="1600" height="900" loading="lazy" decoding="async" />
+									<img src="assets/images/favorites/camping-with-steve.jpg" alt="Camping With Steve banner showing Steve outdoors" width="640" height="359" loading="eager" decoding="sync" fetchpriority="high" />
 								</div>
 								<div class="favorite-copy">
 									<p class="favorite-kind">YouTube · Outdoors</p>
@@ -217,7 +224,7 @@
 							</article>
 							<article class="favorite-card" id="favorite-high-agency">
 								<div class="favorite-media">
-									<img src="assets/images/favorites/high-agency.jpg" alt="George Mack's High Agency essay on its website" width="1000" height="525" loading="lazy" decoding="async" />
+									<img src="assets/images/favorites/high-agency.jpg" alt="George Mack's High Agency essay on its website" width="640" height="336" loading="eager" decoding="sync" fetchpriority="high" />
 								</div>
 								<div class="favorite-copy">
 									<p class="favorite-kind">Essay</p>
@@ -228,7 +235,7 @@
 							</article>
 							<article class="favorite-card" id="favorite-undertale">
 								<div class="favorite-media">
-									<img src="assets/images/favorites/undertale.jpg" alt="Toby Fox's Undertale soundtrack cover" width="700" height="700" loading="lazy" decoding="async" />
+									<img src="assets/images/favorites/undertale.jpg" alt="Toby Fox's Undertale soundtrack cover" width="700" height="700" loading="eager" decoding="sync" fetchpriority="high" />
 								</div>
 								<div class="favorite-copy">
 									<p class="favorite-kind">Game &amp; music</p>
@@ -239,7 +246,7 @@
 							</article>
 							<article class="favorite-card" id="favorite-fourier-transforms">
 								<div class="favorite-media">
-									<img src="assets/images/favorites/fourier-transform.jpg" alt="3Blue1Brown's diagram of a signal, winding patterns, and its frequency peaks" width="1280" height="720" loading="lazy" decoding="async" />
+									<img src="assets/images/favorites/fourier-transform.jpg" alt="3Blue1Brown's diagram of a signal, winding patterns, and its frequency peaks" width="640" height="359" loading="eager" decoding="sync" fetchpriority="high" />
 								</div>
 								<div class="favorite-copy">
 									<p class="favorite-kind">Math video</p>
@@ -250,7 +257,7 @@
 							</article>
 							<article class="favorite-card" id="favorite-which-way-is-down">
 								<div class="favorite-media">
-									<img src="assets/images/favorites/which-way-is-down.jpg" alt="A curved cone diagram from Vsauce's Which Way Is Down? video" width="1280" height="720" loading="lazy" decoding="async" />
+									<img src="assets/images/favorites/which-way-is-down.jpg" alt="A curved cone diagram from Vsauce's Which Way Is Down? video" width="640" height="359" loading="eager" decoding="sync" fetchpriority="high" />
 								</div>
 								<div class="favorite-copy">
 									<p class="favorite-kind">Science video</p>
@@ -261,7 +268,7 @@
 							</article>
 							<article class="favorite-card" id="favorite-boreal-forest">
 								<div class="favorite-media">
-									<img src="assets/images/favorites/boreal-forest.jpg" alt="Snow-covered spruce trees in Denali's boreal forest" width="960" height="638" loading="lazy" decoding="async" />
+									<img src="assets/images/favorites/boreal-forest.jpg" alt="Snow-covered spruce trees in Denali's boreal forest" width="640" height="425" loading="eager" decoding="sync" fetchpriority="high" />
 								</div>
 								<div class="favorite-copy">
 									<p class="favorite-kind">The natural world</p>
@@ -272,7 +279,7 @@
 							</article>
 							<article class="favorite-card" id="favorite-whiskers-on-kittens">
 								<div class="favorite-media favorite-media--kitten">
-									<img src="assets/images/favorites/whiskers-on-kittens.jpg" alt="An orange kitten with long white whiskers" width="960" height="1280" loading="lazy" decoding="async" />
+									<img src="assets/images/favorites/whiskers-on-kittens.jpg" alt="An orange kitten with long white whiskers" width="480" height="639" loading="eager" decoding="sync" fetchpriority="high" />
 								</div>
 								<div class="favorite-copy">
 									<p class="favorite-kind">Self-explanatory</p>

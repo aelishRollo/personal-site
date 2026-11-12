@@ -27,27 +27,102 @@
 	scroll-margin-top: 5rem;
 }
 
+.page-favorites .favorites-section > .site-shell {
+	width: min(1280px, calc(100% - 3rem));
+	max-width: 1280px;
+}
+
+.page-favorites[data-favorites-view="two-column"] .favorites-section > .site-shell {
+	width: min(1180px, calc(100% - 3rem));
+	max-width: 1180px;
+}
+
+.favorites-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem 1rem;
+	margin: 0 0 1rem;
+}
+
+.favorites-toolbar-label {
+	color: var(--text-1);
+	font-size: 0.78rem;
+	font-weight: 800;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.favorites-view-switch {
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.45rem;
+}
+
+.favorites-view-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: auto;
+	min-height: 2.15rem;
+	padding: 0.35rem 0.8rem;
+	border: 1px solid var(--line-1);
+	border-radius: 999px;
+	background: var(--surface-1);
+	color: var(--text-1) !important;
+	font: inherit;
+	font-size: 0.8rem;
+	font-weight: 600;
+	line-height: 1.2;
+	cursor: pointer;
+}
+
+.favorites-view-button[aria-pressed="true"] {
+	border-color: var(--accent-1);
+	background: var(--surface-2);
+	box-shadow: inset 0 0 0 1px var(--accent-1);
+	color: var(--text-1) !important;
+	font-weight: 800;
+}
+
+.favorites-view-button:hover {
+	border-color: var(--accent-1);
+	background: var(--surface-2);
+	color: var(--text-1) !important;
+}
+
+.favorites-view-button:focus-visible {
+	outline: 2px solid var(--accent-1);
+	outline-offset: 2px;
+}
+
 .favorites-index {
-	max-width: 56rem;
-	margin-bottom: clamp(2rem, 4vw, 3rem);
+	max-width: none;
+	margin-bottom: clamp(1.35rem, 2.6vw, 1.9rem);
 }
 
 .favorites-index h2 {
-	margin: 0 0 0.75rem;
-	font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+	margin: 0 0 0.6rem;
+	font-size: clamp(1.25rem, 2vw, 1.55rem);
 }
 
 .favorites-index-list {
-	columns: 2;
-	column-gap: clamp(2rem, 5vw, 4rem);
+	columns: 3;
+	column-gap: clamp(1.5rem, 3.5vw, 2.75rem);
 	margin: 0;
 	padding-left: 1.5rem;
 }
 
+.page-favorites[data-favorites-view="two-column"] .favorites-index-list {
+	columns: 2;
+}
+
 .favorites-index-list li {
 	break-inside: avoid;
-	margin-bottom: 0.35rem;
-	line-height: 1.5;
+	margin-bottom: 0.25rem;
+	line-height: 1.42;
 }
 
 .favorites-index-list a {
@@ -61,8 +136,19 @@
 
 .favorites-grid {
 	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: 1.4rem;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1.1rem;
+}
+
+@media screen and (min-width: 1180px) {
+	.favorites-grid {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
+
+.page-favorites[data-favorites-view="two-column"] .favorites-grid {
+	grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+	gap: 1rem !important;
 }
 
 .favorite-card {
@@ -73,15 +159,22 @@
 	border: 1px solid var(--line-1);
 	border-radius: 1rem;
 	background: var(--surface-1);
-	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+	box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
 	scroll-margin-top: 6rem;
 }
 
 .favorite-media {
 	position: relative;
 	width: 100%;
-	aspect-ratio: 420 / 220;
+	min-height: 0;
+	overflow: hidden;
+	aspect-ratio: 16 / 8.5;
 	background: #f5f3ed;
+}
+
+.page-favorites[data-favorites-view="two-column"] .favorite-media {
+	height: 7.5rem !important;
+	aspect-ratio: auto !important;
 }
 
 .favorite-media img {
@@ -120,35 +213,60 @@
 	flex: 1;
 	flex-direction: column;
 	align-items: flex-start;
-	padding: clamp(1.3rem, 3vw, 1.8rem);
+	padding: clamp(0.95rem, 1.8vw, 1.2rem);
+}
+
+.page-favorites[data-favorites-view="two-column"] .favorite-copy {
+	padding: 0.78rem 1rem !important;
 }
 
 .favorite-kind {
-	margin: 0 0 0.55rem;
+	margin: 0 0 0.35rem;
 	color: var(--accent-1);
-	font-size: 0.76rem;
+	font-size: 0.72rem;
 	font-weight: 800;
 	letter-spacing: 0.09em;
 	text-transform: uppercase;
 }
 
+.page-favorites[data-favorites-view="two-column"] .favorite-kind {
+	margin-bottom: 0.22rem !important;
+}
+
 .favorite-copy h2 {
-	margin: 0 0 0.8rem;
-	font-size: clamp(1.3rem, 2vw, 1.65rem);
+	margin: 0 0 0.45rem;
+	font-size: clamp(1.12rem, 1.45vw, 1.32rem);
 	line-height: 1.2;
 }
 
+.page-favorites[data-favorites-view="two-column"] .favorite-copy h2 {
+	margin-bottom: 0.3rem !important;
+	font-size: 1.15rem !important;
+}
+
 .favorite-copy p {
-	margin: 0 0 0.8rem;
-	line-height: 1.6;
+	margin: 0 0 0.5rem;
+	font-size: 0.92rem;
+	line-height: 1.48;
+}
+
+.page-favorites[data-favorites-view="two-column"] .favorite-copy p {
+	margin-bottom: 0.35rem !important;
+	font-size: 0.88rem !important;
+	line-height: 1.4 !important;
 }
 
 .favorite-copy > p:last-of-type {
-	margin-bottom: 1.3rem;
+	margin-bottom: 0.85rem;
+}
+
+.page-favorites[data-favorites-view="two-column"] .favorite-copy > p:last-of-type {
+	margin-bottom: 0.5rem !important;
 }
 
 .favorite-link {
 	margin-top: auto;
+	font-size: 0.92rem;
 	font-weight: 700;
 }
 
@@ -157,7 +275,7 @@
 }
 
 .favorites-image-credits {
-	margin: 1.5rem 0 0;
+	margin: 1.25rem 0 0;
 	font-size: 0.78rem;
 	line-height: 1.5;
 }
@@ -182,6 +300,8 @@
 	font-weight: 700;
 	line-height: 1.2;
 	text-decoration: none;
+	contain: layout paint;
+	transform: translateZ(0);
 }
 
 .favorites-back-to-top[hidden] {
@@ -198,13 +318,203 @@
 	outline-offset: 3px;
 }
 
-@media screen and (max-width: 700px) {
-	.favorites-index-list {
-		columns: 1;
+/* Promote each self-contained favorites block onto its own GPU layer and
+   suppress mid-scroll hover/animation repaints so 100% of page content stays
+   pre-rasterized in GPU memory across all 31 skins (even at 2x Retina DPR). */
+html body.page-favorites#page-top {
+	position: static !important;
+	isolation: auto !important;
+}
+
+html body.page-favorites#page-top,
+html body.page-favorites#page-top::before,
+html body.page-favorites#page-top::after,
+html body.page-favorites#page-top *,
+html body.page-favorites#page-top *::before,
+html body.page-favorites#page-top *::after {
+	animation: none !important;
+	transition: none !important;
+}
+
+html body.page-favorites#page-top .page-hero::before,
+html body.page-favorites#page-top .page-hero::after,
+html body.page-favorites#page-top .favorites-hero::before,
+html body.page-favorites#page-top .favorites-hero::after,
+html body.page-favorites#page-top .favorites-section::before,
+html body.page-favorites#page-top .favorites-section::after {
+	transform: none !important;
+	filter: none !important;
+	backdrop-filter: none !important;
+	-webkit-backdrop-filter: none !important;
+}
+
+html[data-skin="hyperspace"] body.page-favorites#page-top::before,
+html[data-skin="hyperspace"] body.page-favorites#page-top::after {
+	inset: 0 !important;
+	width: 100vw !important;
+	height: 100vh !important;
+	transform: none !important;
+	mix-blend-mode: normal !important;
+	-webkit-mask-image: none !important;
+	mask-image: none !important;
+}
+
+html body.page-favorites#page-top .favorites-hero,
+html body.page-favorites#page-top .favorites-toolbar,
+html body.page-favorites#page-top .favorites-index,
+html body.page-favorites#page-top .favorite-card,
+html body.page-favorites#page-top .favorites-image-credits,
+html body.page-favorites#page-top .site-footer {
+	position: relative;
+	z-index: 1;
+	will-change: transform !important;
+	backface-visibility: hidden !important;
+	transform: translate3d(0px, 0px, 0px);
+	opacity: 0.999;
+}
+
+html body.page-favorites#page-top .favorite-media img,
+html body.page-favorites#page-top .favorite-card:hover .favorite-media img {
+	transition: none !important;
+	transform: none !important;
+}
+
+/* Keep total document height within Chromium's 3,120px EVENTUALLY_BIN tile
+   retention window across all 31 skins in both compact and two-column views. */
+html[data-skin] body.page-favorites#page-top .favorites-hero {
+	padding-top: 1.5rem !important;
+	padding-bottom: 1.35rem !important;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+}
+
+html[data-skin] body.page-favorites#page-top .favorites-hero > .site-shell {
+	padding-top: 1.25rem !important;
+	padding-bottom: 1.25rem !important;
+}
+
+html[data-skin="ms-dos-prompt"] body.page-favorites#page-top .favorites-hero > .site-shell {
+	padding-top: 2.6rem !important;
+	padding-bottom: 1.15rem !important;
+}
+
+html[data-skin] body.page-favorites#page-top .favorites-section {
+	padding-top: 1.15rem !important;
+	padding-bottom: 1.5rem !important;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+}
+
+html[data-skin] body.page-favorites#page-top .favorites-section > .site-shell {
+	padding-top: 1rem !important;
+	padding-bottom: 1.1rem !important;
+}
+
+html[data-skin] body.page-favorites#page-top .favorites-index {
+	margin-bottom: 1rem !important;
+	padding: 0.85rem 1.2rem !important;
+}
+
+html[data-skin="ms-dos-prompt"] body.page-favorites#page-top .favorites-index h2 {
+	margin: -0.85rem -1.2rem 0.65rem !important;
+}
+
+html[data-skin] body.page-favorites#page-top .favorites-index-list {
+	columns: 3 !important;
+}
+
+html[data-skin] body.page-favorites#page-top .favorites-index-list li {
+	margin-bottom: 0.16rem !important;
+	line-height: 1.34 !important;
+}
+
+html[data-skin="nutrition-facts"] body.page-favorites#page-top .favorite-copy h2 {
+	font-size: 1.15rem !important;
+	margin-bottom: 0.35rem !important;
+	padding-bottom: 0.18rem !important;
+	border-bottom-width: 2px !important;
+}
+
+html[data-skin="pretty-calc"] body.page-favorites#page-top .site-main > :is(.page-hero, .page-section) > .site-shell {
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+html[data-skin="pretty-calc"] body.page-favorites#page-top .pretty-calc-credit {
+	contain: layout paint;
+	min-height: 2.25rem;
+}
+
+html body.page-favorites#page-top[data-favorites-view="two-column"] .favorites-grid {
+	grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+	gap: 0.8rem !important;
+}
+
+html body.page-favorites#page-top[data-favorites-view="two-column"] .favorite-card {
+	padding: 0 !important;
+}
+
+html body.page-favorites#page-top[data-favorites-view="two-column"] .favorite-media {
+	height: 5.75rem !important;
+	aspect-ratio: auto !important;
+	margin: 0 !important;
+}
+
+html body.page-favorites#page-top[data-favorites-view="two-column"] .favorite-copy {
+	padding: 0.6rem 0.9rem !important;
+}
+
+html body.page-favorites#page-top[data-favorites-view="two-column"] .favorite-kind {
+	margin: 0 0 0.18rem !important;
+	padding-top: 0.06rem !important;
+	padding-bottom: 0.06rem !important;
+	font-size: 0.68rem !important;
+	line-height: 1.15 !important;
+}
+
+html body.page-favorites#page-top[data-favorites-view="two-column"] .favorite-copy h2 {
+	margin: 0 0 0.22rem !important;
+	padding-bottom: 0.1rem !important;
+	font-size: 1.02rem !important;
+	line-height: 1.16 !important;
+}
+
+html body.page-favorites#page-top[data-favorites-view="two-column"] .favorite-copy p {
+	margin: 0 0 0.24rem !important;
+	font-size: 0.82rem !important;
+	line-height: 1.32 !important;
+}
+
+html body.page-favorites#page-top[data-favorites-view="two-column"] .favorite-copy > p:last-of-type {
+	margin-bottom: 0.35rem !important;
+}
+
+html body.page-favorites#page-top[data-favorites-view="two-column"] .favorite-link {
+	min-height: 0 !important;
+	padding: 0.18rem 0.45rem !important;
+	font-size: 0.78rem !important;
+	line-height: 1.2 !important;
+}
+
+@media screen and (max-width: 960px) {
+	html[data-skin] body.page-favorites#page-top .favorites-index-list {
+		columns: 2 !important;
 	}
 
 	.favorites-grid {
-		grid-template-columns: 1fr;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media screen and (max-width: 700px) {
+	html[data-skin] body.page-favorites#page-top .favorites-index-list,
+	html body.page-favorites#page-top[data-favorites-view="two-column"] .favorites-index-list {
+		columns: 1 !important;
+	}
+
+	.favorites-grid,
+	html body.page-favorites#page-top[data-favorites-view="two-column"] .favorites-grid {
+		grid-template-columns: 1fr !important;
 		gap: 1rem;
 	}
 }

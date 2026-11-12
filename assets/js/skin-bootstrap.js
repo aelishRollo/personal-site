@@ -44,7 +44,8 @@
 		{ id: 'hello-kitty', name: 'Hello Kitty', scheme: 'light', css: 'assets/css/skins/hello-kitty.css' },
 		{ id: 'forties-field-notes', name: '1940s Field Notes', scheme: 'light', css: 'assets/css/skins/forties-field-notes.css' },
 		{ id: 'nutrition-facts', name: 'Nutrition Facts', scheme: 'light', css: 'assets/css/skins/nutrition-facts.css' },
-		{ id: 'pretty-calc', name: 'Photo Carousel', scheme: 'dark', css: 'assets/css/skins/pretty-calc.css' }
+		{ id: 'pretty-calc', name: 'Photo Carousel', scheme: 'dark', css: 'assets/css/skins/pretty-calc.css' },
+		{ id: 'eight-bit-overworld', name: '8-Bit Overworld', scheme: 'dark', css: 'assets/css/skins/eight-bit-overworld.css' }
 	];
 	var skinById = {};
 	var activeId = '';
@@ -402,6 +403,8 @@
 		}
 
 		activateStylesheet(skin);
+		preloadAssets(sharedAssets);
+		preloadAssets(assetsBySkin[id] || []);
 		appliedId = id;
 
 		if (id === 'pretty-calc' && previousAppliedId !== id) {
@@ -467,6 +470,7 @@
 				activeTransition.skipTransition();
 			}
 			activeTransition = null;
+			root.removeAttribute('data-skin-transitioning');
 			waitForStylesheet(id).then(function() {
 				if (request === transitionRequest) {
 					applyNow(id, activeMode);
@@ -485,6 +489,7 @@
 			}
 
 			activeTransition = null;
+			root.removeAttribute('data-skin-transitioning');
 			waitForStylesheet(id).then(function() {
 				if (request === transitionRequest) {
 					applyNow(id, activeMode);
@@ -497,6 +502,7 @@
 		if (useLightweightSnapshot) {
 			root.setAttribute('data-skin-transition-lite', '');
 		}
+		root.setAttribute('data-skin-transitioning', '');
 
 		activeTransition = document.startViewTransition(function() {
 			return waitForStylesheet(id).then(function() {
@@ -523,11 +529,13 @@
 			clearLightweightSnapshot();
 			if (activeTransition === transition) {
 				activeTransition = null;
+				root.removeAttribute('data-skin-transitioning');
 			}
 		}, function() {
 			clearLightweightSnapshot();
 			if (activeTransition === transition) {
 				activeTransition = null;
+				root.removeAttribute('data-skin-transitioning');
 			}
 		});
 
@@ -597,38 +605,13 @@
 			});
 		});
 
-		var lazyImages = Array.prototype.slice.call(document.querySelectorAll('img[loading="lazy"]'));
-
-		function nextLazyImage() {
-			var img = lazyImages.shift();
-			if (!img) {
-				loadPrettyCalc(false);
-				return;
-			}
-			if (img.complete) {
-				nextLazyImage();
-				return;
-			}
-			var done = false;
-			function finish() {
-				if (done) {
-					return;
-				}
-				done = true;
-				img.removeEventListener('load', finish);
-				img.removeEventListener('error', finish);
-				nextLazyImage();
-			}
-			img.addEventListener('load', finish);
-			img.addEventListener('error', finish);
-			window.setTimeout(finish, 800);
-			img.loading = 'eager';
-		}
+		var pageImages = Array.prototype.slice.call(document.querySelectorAll('img'));
 
 		function nextAsset() {
 			var resource = assetQueue.shift();
 			if (!resource) {
-				nextLazyImage();
+				loadPrettyCalc(false);
+				document.dispatchEvent(new CustomEvent('site-skins-prepared'));
 				return;
 			}
 			preloadAsset(resource).then(nextAsset);
@@ -644,7 +627,14 @@
 			waitForStylesheet(skin.id).then(nextSkin);
 		}
 
-		nextSkin();
+		Promise.all(pageImages.map(function(img) {
+			img.loading = 'eager';
+			img.decoding = 'sync';
+			if (typeof img.decode === 'function') {
+				return img.decode().catch(function() {});
+			}
+			return Promise.resolve();
+		})).then(nextSkin);
 	}
 
 	if (document.readyState === 'complete') {

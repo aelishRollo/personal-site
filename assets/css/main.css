@@ -3619,10 +3619,9 @@ body {
 	background-image:
 		radial-gradient(circle at 12% 9%, rgba(158, 223, 209, 0.34), transparent 34%),
 		radial-gradient(circle at 88% 6%, rgba(255, 107, 74, 0.11), transparent 28%),
-		repeating-radial-gradient(ellipse at 8% 12%, rgba(18, 59, 93, 0.055) 0 1px, transparent 1px 14px),
 		url("../../images/paper-texture-tile.webp");
-	background-repeat: no-repeat, no-repeat, repeat, repeat;
-	background-size: auto, auto, auto, 250px 250px;
+	background-repeat: no-repeat, no-repeat, repeat;
+	background-size: auto, auto, 250px 250px;
 	color: var(--ink);
 	line-height: 1.8;
 }
@@ -4380,7 +4379,6 @@ fridge-poetry-board:not(:defined) {
 	z-index: 10010;
 	border-bottom: 1px solid var(--border);
 	background: var(--header-bg);
-	backdrop-filter: blur(8px);
 }
 
 .site-header .site-shell {
@@ -5361,7 +5359,6 @@ a:hover {
 .site-header {
 	border-bottom: 1px solid var(--line-1);
 	background: var(--header-bg);
-	backdrop-filter: blur(10px);
 }
 
 .brand-mark {
@@ -5906,7 +5903,6 @@ html:not([data-theme]) body {
 	background-image:
 		radial-gradient(circle at 15% 10%, rgba(158, 223, 209, 0.12), transparent 38%),
 		radial-gradient(circle at 88% 0%, rgba(255, 107, 74, 0.08), transparent 30%),
-		repeating-radial-gradient(ellipse at 8% 12%, rgba(158, 223, 209, 0.055) 0 1px, transparent 1px 15px),
 		url("../../images/paper-texture-tile.webp") !important;
 }
 
@@ -5915,7 +5911,6 @@ html[data-theme="light"] body {
 	background-image:
 		radial-gradient(circle at 15% 10%, rgba(158, 223, 209, 0.34), transparent 40%),
 		radial-gradient(circle at 90% 0%, rgba(255, 107, 74, 0.11), transparent 32%),
-		repeating-radial-gradient(ellipse at 8% 12%, rgba(18, 59, 93, 0.055) 0 1px, transparent 1px 14px),
 		url("../../images/paper-texture-tile.webp") !important;
 }
 

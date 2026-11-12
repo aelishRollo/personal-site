@@ -1,0 +1,2480 @@
+/*
+	8-Bit Overworld
+	An artistic Famicom / 8-bit RPG cartridge & twilight overworld theme.
+	Built around authentic square-pixel SVG sprites and multi-layer 8-bit
+	overworld dioramas (shape-rendering="crispEdges") with clean typography:
+	- Seamless pixel starfield, crescent moon, and dithered night clouds
+	- Full-width 8-bit overworld stage panorama (mountains, castle keep,
+	  pine forest, floating [?] blocks, coins, hero sprite, campfire & brick turf)
+	- Reverse-split Hero on Home with 16x16 pixel item sprites in a 2x2 role grid
+	- Interlocking Bento Quest Map with pixel-art emblems
+	- 6-Column Game Cartridge Rack (1 + 3 + 2) & 2-Column Manual on Work
+	- Swapped Command Console & Innkeeper layout on Contact
+*/
+
+html[data-skin="eight-bit-overworld"] {
+	--background: #0d0922;
+	--foreground: #fff9ec;
+	--muted-bg: #161038;
+	--card-bg: #120d2e;
+	--border: #fff9ec;
+	--primary: #ffd84d;
+	--primary-fg: #0d0922;
+	--secondary: #261b5c;
+	--secondary-fg: #fff9ec;
+	--accent: #5ce1e6;
+	--accent-fg: #0d0922;
+	--link: #5ce1e6;
+	--warning: #ff5c7c;
+	--header-bg: #090619;
+	--header-fg: #fff9ec;
+	--footer-bg: #080516;
+	--footer-fg: #fff9ec;
+	--bg: #0d0922;
+	--surface-1: #120d2e;
+	--surface-2: #1c1444;
+	--surface-3: #281d60;
+	--text-1: #fff9ec;
+	--text-2: #e2dbf7;
+	--line-1: #fff9ec;
+	--accent-1: #ffd84d;
+	--accent-2: #5ce1e6;
+	--pixel-ink: #070412;
+	--pixel-gold: #ffd84d;
+	--pixel-gold-shade: #b87d00;
+	--pixel-cyan: #5ce1e6;
+	--pixel-emerald: #4ade80;
+	--pixel-ruby: #ff5c7c;
+	--pixel-violet: #b589ff;
+	--pixel-display: "Minecraft", "Press Start 2P", "Silkscreen", "VT323", ui-monospace, monospace;
+	--pixel-body: ui-monospace, "Cascadia Mono", "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+
+	/* 1. Seamless 8-Bit Night Sky Tile (120x60 grid -> rendered at 480x240px = 4px square pixels):
+	   Features pixel crescent moon, stepped night clouds, and cross-shaped twinkling stars */
+	--pixel-sky-scene: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='240' viewBox='0 0 120 60' shape-rendering='crispEdges'%3E%3Cg fill='%23fff9ec'%3E%3Crect x='8' y='7' width='1' height='1'/%3E%3Crect x='34' y='14' width='1' height='1'/%3E%3Crect x='67' y='6' width='1' height='1'/%3E%3Crect x='52' y='28' width='1' height='1'/%3E%3Crect x='19' y='44' width='1' height='1'/%3E%3Crect x='83' y='38' width='1' height='1'/%3E%3Crect x='110' y='48' width='1' height='1'/%3E%3C/g%3E%3Cg fill='%23ffd84d'%3E%3Crect x='22' y='9' width='1' height='3'/%3E%3Crect x='21' y='10' width='3' height='1'/%3E%3Crect x='76' y='21' width='1' height='3'/%3E%3Crect x='75' y='22' width='3' height='1'/%3E%3Crect x='43' y='49' width='1' height='3'/%3E%3Crect x='42' y='50' width='3' height='1'/%3E%3C/g%3E%3Cg fill='%235ce1e6'%3E%3Crect x='54' y='10' width='1' height='3'/%3E%3Crect x='53' y='11' width='3' height='1'/%3E%3Crect x='12' y='29' width='1' height='3'/%3E%3Crect x='11' y='30' width='3' height='1'/%3E%3Crect x='98' y='29' width='1' height='3'/%3E%3Crect x='97' y='30' width='3' height='1'/%3E%3C/g%3E%3Cpath fill='%23ffd84d' d='M96 6h5v1h2v2h1v5h-1v2h-2v1h-5v-1h2v-1h2v-2h1V9h-1V7h-2V6z'/%3E%3Cpath fill='%23fff9ec' d='M98 7h3v1h1v2h-1V8h-3V7zm2 7h2v1h-2v-1z'/%3E%3Cpath fill='%231b1345' d='M14 20h14v2H14zm-2-2h18v2H12zm2-2h12v2H14zm3-2h6v2h-6zM70 44h18v2H70zm-2-2h22v2H68zm3-2h14v2H71zm3-2h8v2h-8z'/%3E%3Cpath fill='%232f2269' d='M17 14h6v1h-6zm-3 2h12v1H14zm60 22h8v1h-8zm-3 2h14v1H71z'/%3E%3C/svg%3E");
+
+	/* 2. Full-Width Non-Repeating 8-Bit Overworld Panorama (320x36 grid -> 1280x144px = 4px square pixels):
+	   A single continuous left-to-right journey across the entire stage:
+	   Zone 1 (x=0..58): Snow-capped peaks, pine forest & classic green Warp Pipe with sprouting Fire Flower
+	   Zone 2 (x=60..124): Floating [?] blocks with spinning coins, Super Star platform, Hero Knight & Treasure Chest
+	   Zone 3 (x=126..188): Shimmering cyan pixel river spanned by an arched stone bridge + tall purple Wizard Observatory Tower
+	   Zone 4 (x=190..256): Grand multi-turreted Royal Fortress Keep with arched gate, lit windows & fluttering banners
+	   Zone 5 (x=258..320): Eastern pine woods & tall Level-Clear Goal Flagpole with waving emerald pennon */
+	--pixel-overworld-mural: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='144' viewBox='0 0 320 36' shape-rendering='crispEdges'%3E%3Cpath fill='%231d1447' d='M0 28V21h8v-3h8v-3h4v-3h8v3h4v3h8v3h28v-2h8v-3h6v-3h4v-3h8v3h4v3h6v3h8v2h44v-3h8v-3h6v-3h8v3h6v3h8v3h34v-2h8v-3h6v-3h4v-3h8v3h4v3h6v3h28v8H0z'/%3E%3Cpath fill='%232b1f66' d='M20 12h8v3h4v3h-4v-3h-8V12zm66-2h8v3h4v3h-4v-3h-8v-3zm84 2h8v3h6v3h-6v-3h-8v-3zm74-2h8v3h4v3h-4v-3h-8v-3z'/%3E%3Cpath fill='%235ce1e6' d='M20 12h8v2h-8v-2zm2 2h4v1h-4v-1zM86 10h8v2h-8v-2zm2 2h4v2h-4v-2zm82 0h8v2h-8v-2zm2 2h4v1h-4v-1zm72-4h8v2h-8v-2zm2 2h4v2h-4v-2z'/%3E%3Cpath fill='%23fff9ec' d='M20 12h6v1h-6v-1zM86 10h6v1h-6v-1zm84 2h6v1h-6v-1zm74-2h6v1h-6v-1z'/%3E%3Cpath fill='%236d28d9' d='M162 12h12v2h-12v-2zm2-2h8v2h-8v-2zm2-2h4v2h-4V8zm1-2h2v2h-2V6z'/%3E%3Cpath fill='%23261b5c' d='M164 14h8v14h-8V14zM200 18h8v10h-8V18zm0-2h2v2h-2v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2zM210 14h24v14h-24V14zm0-2h3v2h-3v-2zm5 0h3v2h-3v-2zm5 0h4v2h-4v-2zm6 0h3v2h-3v-2zm5 0h3v2h-3v-2zM236 18h8v10h-8V18zm0-2h2v2h-2v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2z'/%3E%3Cpath fill='%233b2b7d' d='M164 14h2v14h-2V14zm6 0h2v14h-2V14zM200 18h2v10h-2V18zm10-4h3v14h-3V14zm21 0h3v14h-3V14zm11 4h2v10h-2V18z'/%3E%3Cpath fill='%230f3d3e' d='M8 22h6v2H8v-2zm2-2h2v2h-2v-2zM46 22h6v2h-6v-2zm2-2h2v2h-2v-2zM114 22h6v2h-6v-2zm2-2h2v2h-2v-2zM258 22h6v2h-6v-2zm2-2h2v2h-2v-2zM276 22h6v2h-6v-2zm2-2h2v2h-2v-2z'/%3E%3Cpath fill='%23065f46' d='M24 19h12v2H24v-2zm1 2h10v7H25v-7z'/%3E%3Cpath fill='%2310b981' d='M6 25h10v3H6v-3zm2-2h6v2H8v-2zM44 25h10v3H44v-3zm2-2h6v2h-6v-2zM112 25h10v3h-10v-3zm2-2h6v2h-6v-2zM256 25h10v3h-10v-3zm2-2h6v2h-6v-2zM274 25h10v3h-10v-3zm2-2h6v2h-6v-2zM24 19h10v2H24v-2zm1 2h8v7h-8v-7zM29 17h2v2h-2v-2zM297 5h10v4h-10V5z'/%3E%3Cpath fill='%234ade80' d='M10 20h2v1h-2v-1zM8 23h4v1H8v-1zM48 20h2v1h-2v-1zm-2 3h4v1h-4v-1zM116 20h2v1h-2v-1zm-2 3h4v1h-4v-1zM260 20h2v1h-2v-1zm-2 3h4v1h-4v-1zM278 20h2v1h-2v-1zm-2 3h4v1h-4v-1zM25 19h3v2h-3v-2zm1 2h2v7h-2v-7zM298 6h6v2h-6V6z'/%3E%3Cpath fill='%23ff5c7c' d='M27 14h6v3h-6v-3zm1-1h4v1h-4v-1zM86 22h2v3h-2v-3zM102 24h6v4h-6v-4zM203 13h4v2h-4v-2zM216 10h12v2h-12v-2zm2-2h8v2h-8V8zm2-2h4v2h-4V6zM239 13h4v2h-4v-2z'/%3E%3Cpath fill='%23b87d00' d='M64 12h18v6H64v-6zM96 9h16v4H96V9z'/%3E%3Cpath fill='%23ffd84d' d='M29 14h2v2h-2v-2zM65 13h4v4h-4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4zM66 7h2v4h-2V7zm6-2h2v4h-2V5zm6 2h2v4h-2V7zM97 10h3v2h-3v-2zm5 0h4v2h-4v-2zm6 0h3v2h-3v-2zM102 5h4v3h-4V5zm1-1h2v5h-2V4zM88 20h4v3h-4v-3zm4 3h4v1h-4v-1zm-4 3h1v2h-1v-2zm3 0h1v2h-1v-2zM102 23h6v1h-6v-1zm2 2h2v2h-2v-2zM167 3h2v3h-2V3zm-1 1h4v1h-4V4zm1 19h2v5h-2v-5zM203 20h2v3h-2v-3zM214 16h3v3h-3v-3zm13 0h3v3h-3v-3zM222 4h5v2h-5V4zm-2 17h4v7h-4v-7zM239 20h2v3h-2v-3zM294 2h4v3h-4V2zm13 4h2v2h-2V6z'/%3E%3Cpath fill='%23070412' d='M72 14h2v1h-1v1h-1v-2zm0 2h1v1h-1v-1zM90 21h2v1h-2v-1z'/%3E%3Cpath fill='%235ce1e6' d='M88 23h4v3h-4v-3zm5-6h2v6h-2v-6zM167 16h2v3h-2v-3z'/%3E%3Cpath fill='%23475569' d='M126 26h4v2h-4v-2zm4-2h24v2h-24v-2zm24 2h4v2h-4v-2zM292 26h8v2h-8v-2z'/%3E%3Cpath fill='%2394a3b8' d='M128 24h2v4h-2v-4zm6-1h2v3h-2v-3zm8 0h2v3h-2v-3zm8 0h2v3h-2v-3zm6 1h2v4h-2v-4zm-26 1h24v1h-24v-1zM295 5h2v19h-2V5zm-2 19h6v2h-6v-2z'/%3E%3Crect x='0' y='28' width='320' height='2' fill='%234ade80'/%3E%3Cpath fill='%2310b981' d='M0 30h320v1H0z'/%3E%3Crect x='0' y='31' width='320' height='5' fill='%2378350f'/%3E%3Cpath fill='%23b45309' d='M0 31h7v2H0zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm64 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zM8 34h7v2H8zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm64 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7z'/%3E%3Crect x='130' y='28' width='24' height='8' fill='%230284c7'/%3E%3Cpath fill='%235ce1e6' d='M130 28h24v2h-24v-2zm2 4h6v1h-6v-1zm10 1h8v1h-8v-1zm-8 2h5v1h-5v-1z'/%3E%3Cpath fill='%23fff9ec' d='M66 7h1v3h-1V7zm6-2h1v3h-1V5zm6 2h1v3h-1V7zM93 17h1v5h-1v-5zm11 8h1v1h-1v-1zm28 5h6v1h-6v-1zm10 0h6v1h-6v-1zm4 3h4v1h-4v-1zM295 2h1v1h-1V2z'/%3E%3C/svg%3E");
+
+	/* 2b. Full-Panel 8-Bit Wooden Tavern Interior Panorama
+	   (320x95 grid -> 1280x380px = 4px square pixels, non-repeating):
+	   - Top ceiling beam with hanging wrought-iron & brass tavern lanterns
+	   - Left & right wooden walls with glowing wall sconce lamps, arched leaded-glass night windows,
+	     and oak shelves stocked with potion bottles, ale steins, casks, candlesticks & songbooks
+	   - Bottom tavern floor with stacked oak ale barrels, polished bar counter with frothy mugs,
+	     grand stone & timber hearth fireplace with mantelpiece candlesticks, acoustic guitar bard &
+	     toasting friend at candlelit tables, quest notice board, and iron-strapped arched oak tavern door */
+	--pixel-bottom-mural: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='380' viewBox='0 0 320 95' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='320' height='3' fill='%23170a04'/%3E%3Crect x='0' y='3' width='320' height='2' fill='%234d2612'/%3E%3Crect x='0' y='60' width='320' height='1' fill='%23170a04'/%3E%3Crect x='0' y='61' width='320' height='2' fill='%234d2612'/%3E%3Cpath fill='%234d250e' d='M12 18h14v14H12V18zM294 18h14v14h-14V18zM22 5h12v10H22V5zM62 5h12v10H62V5zM246 5h12v10h-12V5zM286 5h12v10h-12V5z'/%3E%3Cpath fill='%2378350f' d='M14 20h10v10H14V20zM296 20h10v10h-10V20zM24 6h8v8h-8V6zM64 6h8v8h-8V6zM248 6h8v8h-8V6zM288 6h8v8h-8V6zM34 15h20v24H34V15zM266 15h20v24h-20V15zM12 51h56v2H12v-2zM16 53h3v3h-3v-3zM61 53h3v3h-3v-3zM252 51h56v2h-56v-2zM256 53h3v3h-3v-3zM301 53h3v3h-3v-3zM256 45h9v6h-9v-6zM10 76h11v12H10V76zM23 76h11v12H23V76zM16 65h12v11H16V65zM40 74h62v14H40V74zM44 63h52v9H44v-9zM112 83h14v5h-14v-5zM138 56h44v3h-44v-3zM194 78h22v2h-22v-2zM197 80h2v8h-2v-8zM213 80h2v8h-2v-8zM186 84h10v4h-10v-4zM224 60h28v20h-28V60zM258 78h20v2h-20v-2zM261 80h2v8h-2v-8zM275 80h2v8h-2v-8zM288 60h22v28h-22V60z'/%3E%3Cpath fill='%23451a03' d='M36 17h16v20H36V17zM268 17h16v20h-16V17zM42 76h16v10H42V76zM62 76h16v10H62V76zM82 76h18v10H82V76zM226 62h24v16h-24V62zM290 62h18v26h-18V62z'/%3E%3Cpath fill='%230f172a' d='M38 19h12v16H38V19zM270 19h12v16h-12V19z'/%3E%3Cpath fill='%23334155' d='M27 3h2v4h-2V3zM67 3h2v4h-2V3zM251 3h2v4h-2V3zM291 3h2v4h-2V3zM18 30h2v5h-2v-5zM16 34h6v2h-6v-2zM300 30h2v5h-2v-5zM298 34h6v2h-6v-2zM43 19h2v16h-2V19zM38 26h12v2H38v-2zM275 19h2v16h-2V19zM270 26h12v2h-12v-2zM10 79h11v2H10v-2zM10 84h11v2H10v-2zM23 79h11v2H23v-2zM23 84h11v2H23v-2zM16 68h12v2H16v-2zM16 73h12v2H16v-2zM142 59h36v29h-36V59zM288 65h5v2h-5v-2zM288 79h5v2h-5v-2z'/%3E%3Cpath fill='%23475569' d='M144 60h8v4h-8v-4zM154 60h12v4h-12v-4zM168 60h8v4h-8v-4zM144 66h4v6h-4v-6zM172 66h4v6h-4v-6zM144 74h4v6h-4v-6zM172 74h4v6h-4v-6zM144 82h4v6h-4v-6zM172 82h4v6h-4v-6z'/%3E%3Cpath fill='%23080c1a' d='M46 64h48v7H46v-7zM148 64h24v24h-24V64zM117 72h1v1h-1v-1zM123 83h2v5h-2v-5zM189 72h1v1h-1v-1zM187 83h2v5h-2v-5z'/%3E%3Cpath fill='%23b45309' d='M12 51h56v1H12v-1zM252 51h56v1h-56v-1zM34 38h20v2H34v-2zM266 38h20v2h-20v-2zM257 46h7v4h-7v-4zM38 73h66v2H38v-2zM138 56h44v2h-44v-2zM194 78h22v1h-22v-1zM258 78h20v1h-20v-1z'/%3E%3Cpath fill='%23ea580c' d='M25 7h6v6h-6V7zM65 7h6v6h-6V7zM249 7h6v6h-6V7zM289 7h6v6h-6V7zM16 22h6v7h-6v-7zM298 22h6v7h-6v-7zM42 45h4v6h-4v-6zM47 67h4v6h-4v-6zM119 76h6v3h-6v-3zM152 74h16v12h-16V74zM155 70h10v4h-10v-4zM204 72h4v6h-4v-6zM266 72h4v6h-4v-6zM278 62h4v6h-4v-6z'/%3E%3Cpath fill='%23ff5c7c' d='M18 45h4v6h-4v-6zM294 45h5v6h-5v-6zM50 65h3v6h-3v-6zM78 65h3v6h-3v-6zM155 73h10v13h-10V73zM157 70h6v3h-6v-3zM186 68h5v1h-5v-1zM232 66h2v2h-2v-2zM244 72h2v2h-2v-2z'/%3E%3Cpath fill='%2310b981' d='M25 44h3v7h-3v-7zM56 65h3v6h-3v-6zM84 65h3v6h-3v-6zM185 75h6v8h-6v-8z'/%3E%3Cpath fill='%234ade80' d='M26 45h1v5h-1v-5zM57 66h1v4h-1v-4zM85 66h1v4h-1v-4zM182 74h3v3h-3v-3z'/%3E%3Cpath fill='%235ce1e6' d='M58 46h4v5h-4v-5zM270 45h4v6h-4v-6zM64 65h3v6h-3v-6zM114 75h6v8h-6v-8zM236 66h6v4h-6v-4z'/%3E%3Cpath fill='%236d28d9' d='M50 47h6v4h-6v-4zM277 45h4v6h-4v-6zM71 65h3v6h-3v-6z'/%3E%3Cpath fill='%23a78bfa' d='M278 46h2v4h-2v-4z'/%3E%3Cpath fill='%23ffedd5' d='M114 70h5v4h-5v-4zM185 70h5v4h-5v-4zM228 65h6v6h-6v-6zM238 71h6v5h-6v-5z'/%3E%3Cpath fill='%23ffd84d' d='M26 8h4v4h-4V8zM66 8h4v4h-4V8zM250 8h4v4h-4V8zM290 8h4v4h-4V8zM17 23h4v5h-4v-5zM299 23h4v5h-4v-5zM40 21h2v2h-2v-2zM272 21h2v2h-2v-2zM32 46h5v5h-5v-5zM43 46h2v4h-2v-4zM259 47h4v2h-4v-2zM287 45h2v6h-2v-6zM20 71h2v2h-2v-2zM14 82h2v2h-2v-2zM27 82h2v2h-2v-2zM48 68h2v4h-2v-4zM60 69h4v4h-4v-4zM72 69h4v4h-4v-4zM88 69h4v4h-4v-4zM114 60h3v2h-3v-2zM116 58h1v3h-1v-3zM126 62h4v1h-4v-1zM125 63h1v3h-1v-3zM128 63h1v3h-1v-3zM114 68h5v2h-5v-2zM120 77h3v1h-3v-1zM141 50h2v6h-2v-6zM156 50h8v5h-8v-5zM177 50h2v6h-2v-6zM157 74h6v12h-6V74zM158 72h4v2h-4v-2zM179 72h3v4h-3v-4zM205 73h2v4h-2v-4zM267 73h2v4h-2v-4zM279 63h2v4h-2v-4zM303 75h3v3h-3v-3z'/%3E%3Cpath fill='%23fff9ec' d='M27 9h2v2h-2V9zM67 9h2v2h-2V9zM251 9h2v2h-2V9zM291 9h2v2h-2V9zM18 24h2v3h-2v-3zM300 24h2v3h-2v-3zM47 21h2v2h-2v-2zM279 21h2v2h-2v-2zM19 44h2v1h-2v-1zM32 45h5v1h-5v-1zM43 47h1v2h-1v-2zM271 44h2v1h-2v-1zM287 43h2v2h-2v-2zM60 68h4v1h-4v-1zM72 68h4v1h-4v-1zM88 68h4v1h-4v-1zM124 75h3v1h-3v-1zM141 48h2v2h-2v-2zM177 48h2v2h-2v-2zM158 77h4v9h-4v-9zM159 75h2v2h-2v-2zM179 71h3v1h-3v-1zM205 74h1v2h-1v-2zM267 74h1v2h-1v-2zM279 64h1v2h-1v-2z'/%3E%3Crect x='0' y='88' width='320' height='2' fill='%23d97706'/%3E%3Crect x='0' y='88' width='320' height='1' fill='%23ffd84d'/%3E%3Crect x='0' y='90' width='320' height='5' fill='%23451a03'/%3E%3Cpath fill='%2378350f' d='M0 90h12v2H0zm16 0h12v2H16zm16 0h12v2H32zm16 0h12v2H48zm16 0h12v2H64zm16 0h12v2H80zm16 0h12v2H96zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zM8 93h12v2H8zm16 0h12v2H24zm16 0h12v2H40zm16 0h12v2H56zm16 0h12v2H72zm16 0h12v2H88zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h8v2h-8z'/%3E%3C/svg%3E");
+
+	/* 2c. Cozy 8-Bit Rooftop Music & Maker Loft (Hero Intro Above Dashed Line) & Warm Wooden Tavern Planks (Bottom CTA Panel):
+	   - --pixel-cozy-loft-wall: Calm, low-contrast warm cocoa-mahogany wall with occasional subtle weathered brick clusters
+	   - --pixel-cozy-loft-ceiling: Overhead redwood studio rafters with hanging rattan/brass dome lamps,
+	     draped golden fairy string lights, hanging terracotta pothos planters, and unclipped wall decor
+	     (warm brass wall sconce & floating mini succulent/book shelf in the upper right wall space)
+	   - --pixel-cozy-loft-mural: Full-width Cozy Music & Maker Studio Loft panorama above the gold dashed line,
+	     including wall-mounted studio decor (floating plant/book shelves, framed gold vinyl record plaque,
+	     brass wall sconce, and framed pixel sunset print) above the turntable, amp, guitars, desk & loveseat */
+	--pixel-cozy-loft-wall: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='128' viewBox='0 0 64 32' shape-rendering='crispEdges'%3E%3Crect width='64' height='32' fill='%23331812'/%3E%3Cpath fill='%232b130e' d='M0 7h64v1H0V7zM0 15h64v1H0v-1zM0 23h64v1H0v-1zM0 31h64v1H0v-1zM8 2h10v3H8V2zM14 5h8v2h-8V5zM42 10h10v3H42v-3zM36 13h9v2h-9v-2zM18 18h11v3H18v-3zM25 21h9v2h-9v-2zM48 26h10v3H48v-3zM42 29h9v2h-9v-2z'/%3E%3Cpath fill='%233d1e17' d='M9 2h8v2H9V2zM15 5h6v1h-6V5zM43 10h8v2h-8v-2zM37 13h7v1h-7v-1zM19 18h9v2h-9v-2zM26 21h7v1h-7v-1zM49 26h8v2h-8v-2zM43 29h7v1h-7v-1z'/%3E%3Cpath fill='%234a251c' d='M9 2h7v1H9V2zM43 10h7v1h-7v-1zM19 18h8v1h-8v-1zM49 26h7v1h-7v-1z'/%3E%3C/svg%3E");
+	--pixel-cozy-loft-ceiling: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='304' viewBox='0 0 320 76' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='320' height='2' fill='%231c0b07'/%3E%3Crect x='0' y='2' width='320' height='2' fill='%236b2f1a'/%3E%3Crect x='0' y='4' width='320' height='1' fill='%239a4726'/%3E%3Cpath fill='%2329120c' d='M0 5h320v1H0V5zM32 6h22v1H32V6zM74 6h16v1H74V6zM110 6h82v1h-82V6zM214 6h40v1h-40V6z'/%3E%3Cpath fill='%23334155' d='M63 4h2v3h-2V4zM201 4h2v3h-2V4zM263 4h2v3h-2V4zM174 19h2v3h-2v-3zM173 21h4v1h-4v-1z'/%3E%3Cpath fill='%2378350f' d='M60 7h8v2h-8V7zM58 9h12v2H58V9zM198 7h8v2h-8V7zM196 9h12v2h-12V9zM260 7h8v2h-8V7zM258 9h12v2h-12V9zM173 13h4v7h-4v-7zM226 20h16v1h-16v-1zM228 21h2v2h-2v-2zM238 21h2v2h-2v-2zM182 70h16v1h-16v-1zM184 71h2v2h-2v-2zM194 71h2v2h-2v-2z'/%3E%3Cpath fill='%23b45309' d='M226 19h16v1h-16v-1zM182 69h16v1h-16v-1z'/%3E%3Cpath fill='%23d97706' d='M19 4h1v3h-1V4zM24 4h1v3h-1V4zM95 4h1v3h-1V4zM100 4h1v3h-1V4zM295 4h1v3h-1V4zM300 4h1v3h-1V4zM61 8h6v1h-6V8zM59 9h10v1H59V9zM199 8h6v1h-6V8zM197 9h10v1h-10V9zM261 8h6v1h-6V8zM259 9h10v1h-10V9z'/%3E%3Cpath fill='%23c2410c' d='M18 7h8v2h-8V7zM94 7h8v2h-8V7zM294 7h8v2h-8V7zM228 17h4v2h-4v-2zM192 67h4v2h-4v-2z'/%3E%3Cpath fill='%239a3412' d='M19 9h6v3h-6V9zM95 9h6v3h-6V9zM295 9h6v3h-6V9z'/%3E%3Cpath fill='%23065f46' d='M16 6h12v2H16V6zM15 8h3v5h-3V8zM26 8h3v6h-3V8zM92 6h12v2H92V6zM91 8h3v6h-3V8zM102 8h3v5h-3V8zM292 6h12v2h-12V6zM291 8h3v5h-3V8zM302 8h3v6h-3V8z'/%3E%3Cpath fill='%2310b981' d='M17 6h10v1H17V6zM16 8h2v4h-2V8zM27 8h2v5h-2V8zM21 11h2v4h-2v-4zM93 6h10v1H93V6zM92 8h2v5h-2V8zM103 8h2v4h-2V8zM97 11h2v4h-2v-4zM293 6h10v1h-10V6zM292 8h2v4h-2V8zM303 8h2v5h-2V8zM297 11h2v4h-2v-4zM228 15h4v2h-4v-2zM192 65h4v2h-4v-2z'/%3E%3Cpath fill='%234ade80' d='M18 6h3v1h-3V6zM16 9h1v2h-1V9zM27 10h1v2h-1v-2zM94 6h3v1h-3V6zM92 10h1v2h-1v-2zM103 9h1v2h-1V9zM294 6h3v1h-3V6zM292 9h1v2h-1V9zM303 10h1v2h-1v-2zM229 14h2v2h-2v-2zM193 64h2v2h-2v-2z'/%3E%3Cpath fill='%235ce1e6' d='M234 15h2v4h-2v-4zM184 65h2v4h-2v-4z'/%3E%3Cpath fill='%23ff5c7c' d='M236 14h2v5h-2v-5zM186 64h2v5h-2v-5z'/%3E%3Cpath fill='%23ea580c' d='M61 11h6v3h-6v-3zM199 11h6v3h-6v-3zM261 11h6v3h-6v-3zM172 12h6v5h-6v-5z'/%3E%3Cpath fill='%23ffd84d' d='M8 6h2v2H8V6zM38 7h2v2h-2V7zM48 7h2v2h-2V7zM62 11h4v2h-4v-2zM80 7h2v2h-2V7zM118 7h2v2h-2V7zM136 7h2v2h-2V7zM154 7h2v2h-2V7zM172 7h2v2h-2V7zM186 7h2v2h-2V7zM200 11h4v2h-4v-2zM222 7h2v2h-2V7zM242 7h2v2h-2V7zM262 11h4v2h-4v-2zM280 6h2v2h-2V6zM312 6h2v2h-2V6zM173 13h4v3h-4v-3zM238 16h2v3h-2v-3zM188 66h2v3h-2v-3z'/%3E%3Cpath fill='%23fff9ec' d='M8 6h1v1H8V6zM38 7h1v1h-1V7zM63 11h2v1h-2v-1zM80 7h1v1h-1V7zM118 7h1v1h-1V7zM154 7h1v1h-1V7zM186 7h1v1h-1V7zM201 11h2v1h-2v-1zM222 7h1v1h-1V7zM263 11h2v1h-2v-1zM280 6h1v1h-1V6zM174 14h2v1h-2v-1z'/%3E%3C/svg%3E");
+	--pixel-cozy-loft-mural: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='152' viewBox='0 0 320 38' shape-rendering='crispEdges'%3E%3Crect x='0' y='30' width='320' height='1' fill='%231c0b07'/%3E%3Crect x='0' y='31' width='320' height='2' fill='%23b45309'/%3E%3Crect x='0' y='31' width='320' height='1' fill='%23ffd84d'/%3E%3Crect x='0' y='33' width='320' height='5' fill='%23451a03'/%3E%3Cpath fill='%2378350f' d='M0 33h12v2H0v-2zm16 0h12v2H16v-2zm16 0h12v2H32v-2zm16 0h12v2H48v-2zm16 0h12v2H64v-2zm16 0h12v2H80v-2zm16 0h12v2H96v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zM8 36h12v2H8v-2zm16 0h12v2H24v-2zm16 0h12v2H40v-2zm16 0h12v2H56v-2zm16 0h12v2H72v-2zm16 0h12v2H88v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h8v2h-8v-2z'/%3E%3Crect x='60' y='31' width='202' height='3' fill='%23991b1b'/%3E%3Cpath fill='%231c0b07' d='M77 3h10v10H77V3zM201 3h10v9h-10V3z'/%3E%3Cpath fill='%23451a03' d='M28 19h16v9H28v-9zM46 19h16v9H46v-9zM72 20h20v8H72v-8zM212 28h4v2h-4v-2zM250 28h4v2h-4v-2zM274 2h36v20h-36V2z'/%3E%3Cpath fill='%2378350f' d='M8 8h16v1H8V8zM10 9h2v2h-2V9zM20 9h2v2h-2V9zM78 4h8v8h-8V4zM102 4h4v7h-4V4zM202 4h8v7h-8V4zM226 9h16v1h-16V9zM228 10h2v2h-2v-2zM238 10h2v2h-2v-2zM10 23h10v7H10v-7zM26 17h38v2H26v-2zM26 28h38v1H26v-1zM28 29h3v1h-3v-1zM59 29h3v1h-3v-1zM70 16h24v4H70v-4zM70 28h24v2H70v-2zM74 21h16v6H74v-6zM142 19h62v2h-62v-2zM144 21h12v9h-12v-9zM192 21h10v9h-10v-9zM262 13h2v17h-2V13zM259 25h3v5h-3v-5zM264 25h3v5h-3v-5zM278 23h28v7h-28v-7z'/%3E%3Cpath fill='%23b45309' d='M8 7h16v1H8V7zM78 4h8v1h-8V4zM202 4h8v1h-8V4zM226 8h16v1h-16V8zM10 23h10v2H10v-2zM26 17h38v1H26v-1zM52 15h6v2h-6v-2zM53 8h4v2h-4V8zM70 16h24v1H70v-1zM72 17h20v2H72v-2zM118 8h2v10h-2V8zM142 19h62v1h-62v-1zM146 22h8v3h-8v-3zM146 26h8v3h-8v-3zM194 22h6v7h-6v-7zM272 21h40v2h-40v-2z'/%3E%3Cpath fill='%239a3412' d='M210 15h46v13h-46V15zM208 19h4v9h-4v-9zM254 19h4v9h-4v-9z'/%3E%3Cpath fill='%23c2410c' d='M10 5h4v2h-4V5zM228 6h4v2h-4V6zM213 16h19v7h-19v-7zM234 16h19v7h-19v-7zM212 24h42v4h-42v-4z'/%3E%3Cpath fill='%23ea580c' d='M101 3h6v5h-6V3zM53 12h4v3h-4v-3zM116 17h6v3h-6v-3zM117 20h4v2h-4v-2zM114 22h10v5h-10v-5zM115 27h8v1h-8v-1zM213 24h20v1h-20v-1zM235 24h18v1h-18v-1zM258 6h10v7h-10V6z'/%3E%3Cpath fill='%230f172a' d='M276 4h32v17h-32V4z'/%3E%3Cpath fill='%231e293b' d='M203 5h6v5h-6V5zM96 28h16v2H96v-2zM166 15h12v4h-12v-4zM168 21h8v6h-8v-6zM276 15h8v6h-8v-6zM286 12h8v9h-8v-9zM296 14h12v7h-12v-7z'/%3E%3Cpath fill='%23334155' d='M103 10h2v3h-2v-3zM102 12h4v1h-4v-1zM29 15h16v2H29v-2zM146 6h22v11h-22V6zM155 17h4v2h-4v-2zM170 8h20v9h-20V8zM178 17h4v2h-4v-2zM171 27h2v3h-2v-3zM280 24h24v5h-24v-5zM285 4h2v17h-2V4zM297 4h2v17h-2V4zM276 11h32v2h-32v-2z'/%3E%3Cpath fill='%2394a3b8' d='M281 24h7v5h-7v-5zM296 24h7v5h-7v-5z'/%3E%3Cpath fill='%23080c1a' d='M79 5h6v6h-6V5zM31 13h10v2H31v-2zM118 20h2v2h-2v-2zM117 25h4v1h-4v-1zM114 28h2v2h-2v-2zM122 28h2v2h-2v-2zM118 28h2v2h-2v-2zM126 28h2v2h-2v-2zM134 28h2v2h-2v-2zM130 28h2v2h-2v-2zM148 8h18v7h-18V8zM172 10h16v5h-16v-5zM153 18h2v1h-2v-1zM157 18h2v1h-2v-1zM161 18h2v1h-2v-1zM165 18h2v1h-2v-1zM169 18h2v1h-2v-1zM228 21h2v1h-2v-1zM225 22h1v1h-1v-1zM283 26h3v2h-3v-2zM298 26h3v2h-3v-2z'/%3E%3Cpath fill='%23065f46' d='M8 14h14v9H8v-9zM6 17h4v4H6v-4zM20 16h4v5h-4v-5z'/%3E%3Cpath fill='%2310b981' d='M10 3h4v2h-4V3zM228 4h4v2h-4V4zM9 12h12v9H9v-9zM7 16h4v3H7v-3zM19 15h4v4h-4v-4zM68 32h4v1h-4v-1zM108 32h4v1h-4v-1zM148 32h4v1h-4v-1zM188 32h4v1h-4v-1zM228 32h4v1h-4v-1zM279 18h4v3h-4v-3zM299 18h4v3h-4v-3z'/%3E%3Cpath fill='%234ade80' d='M11 2h2v2h-2V2zM229 3h2v2h-2V3zM11 12h4v3h-4v-3zM16 14h4v3h-4v-3zM9 17h3v2H9v-2zM38 20h2v7h-2v-7zM54 20h2v7h-2v-7zM103 27h3v2h-3v-2zM150 9h6v1h-6V9zM152 13h8v1h-8v-1zM174 11h12v1h-12v-1zM280 18h2v2h-2v-2zM300 18h2v2h-2v-2z'/%3E%3Cpath fill='%23ff5c7c' d='M18 2h2v5h-2V2zM203 8h6v2h-6V8zM236 3h2v5h-2V3zM35 14h2v1h-2v-1zM52 10h6v5h-6v-5zM29 20h3v7h-3v-7zM47 20h3v7h-3v-7zM74 17h2v2h-2v-2zM97 27h3v2h-3v-2zM150 11h4v1h-4v-1zM174 13h8v1h-8v-1zM194 15h5v4h-5v-4zM289 19h4v2h-4v-2z'/%3E%3Cpath fill='%236d28d9' d='M204 9h5v1h-5V9z'/%3E%3Cpath fill='%235ce1e6' d='M16 3h2v4h-2V3zM234 4h2v4h-2V4zM36 5h4v1h-4V5zM36 6h1v3h-1V6zM39 6h1v3h-1V6zM34 8h2v2h-2V8zM37 8h2v2h-2V8zM35 20h3v7h-3v-7zM51 20h3v7h-3v-7zM100 27h3v2h-3v-2zM128 17h2v3h-2v-3zM132 18h2v2h-2v-2zM129 20h4v2h-4v-2zM126 22h10v5h-10v-5zM127 27h8v1h-8v-1zM156 11h8v1h-8v-1zM174 12h10v1h-10v-1zM214 18h7v5h-7v-5zM78 32h4v1h-4v-1zM118 32h4v1h-4v-1zM158 32h4v1h-4v-1zM198 32h4v1h-4v-1zM238 32h4v1h-4v-1z'/%3E%3Cpath fill='%23a78bfa' d='M41 20h3v7h-3v-7zM57 20h3v7h-3v-7zM150 12h5v1h-5v-1z'/%3E%3Cpath fill='%23d97706' d='M230 19h3v3h-3v-3zM240 19h3v4h-3v-4z'/%3E%3Cpath fill='%23ffedd5' d='M225 21h4v3h-4v-3zM232 23h6v1h-6v-1z'/%3E%3Cpath fill='%23ffd84d' d='M20 4h2v3h-2V4zM81 7h2v2h-2V7zM102 4h4v3h-4V4zM205 6h2v2h-2V6zM238 5h2v3h-2V5zM45 3h3v1h-3V3zM45 4h1v3h-1V4zM43 6h2v2h-2V6zM54 10h2v2h-2v-2zM32 20h3v7h-3v-7zM50 20h1v7h-1v-7zM106 27h3v2h-3v-2zM117 18h4v2h-4v-2zM115 23h8v3h-8v-3zM130 8h2v12h-2V8zM158 9h5v1h-5V9zM161 13h4v1h-4v-1zM174 14h6v1h-6v-1zM227 19h5v4h-5v-4zM231 20h10v4h-10v-4zM245 18h7v5h-7v-5zM259 7h8v5h-8V7zM280 6h2v2h-2V6zM291 5h3v3h-3V5zM302 7h2v2h-2V7zM63 32h3v1h-3v-1zM88 32h4v1h-4v-1zM98 32h4v1h-4v-1zM128 32h4v1h-4v-1zM138 32h4v1h-4v-1zM168 32h4v1h-4v-1zM178 32h4v1h-4v-1zM208 32h4v1h-4v-1zM218 32h4v1h-4v-1zM248 32h4v1h-4v-1zM256 32h4v1h-4v-1z'/%3E%3Cpath fill='%23fff9ec' d='M80 6h1v1h-1V6zM103 5h2v1h-2V5zM41 13h3v2h-3v-2zM59 20h2v7h-2v-7zM78 17h2v1h-2v-1zM82 17h2v1h-2v-1zM86 17h2v1h-2v-1zM117 9h4v2h-4V9zM129 9h4v2h-4V9zM128 22h6v4h-6v-4zM152 18h22v1h-22v-1zM195 11h1v2h-1v-2zM197 9h1v3h-1V9zM199 16h2v2h-2v-2zM261 8h4v3h-4V8zM280 6h1v1h-1V6zM292 6h1v1h-1V6zM302 7h1v1h-1V7zM58 31h2v3h-2v-3zM262 31h2v3h-2v-3z'/%3E%3C/svg%3E");
+	--pixel-tavern-brick: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='64' viewBox='0 0 32 16' shape-rendering='crispEdges'%3E%3Crect width='32' height='16' fill='%232c1609'/%3E%3Cpath fill='%233d1f0e' d='M0 0h15v1H0zm16 0h15v1H16zM3 2h6v1H3zm18 0h8v1h-8zM0 4h7v1H0zm8 0h15v1H8zm16 0h8v1h-8zM11 6h8v1h-8zm16 0h4v1h-4zM0 8h15v1H0zm16 0h15v1H16zM5 10h9v1H5zm17 0h6v1h-6zM0 12h11v1H0zm12 0h15v1H12zm16 0h4v1h-4zM2 14h6v1H2zm14 0h9v1h-9z'/%3E%3Cpath fill='%234d2813' d='M4 1h4v1H4zm19 1h5v1h-5zm-11 3h6v1h-6zm-9 4h5v1H3zm17 1h4v1h-4zm-5 3h6v1h-6z'/%3E%3Cpath fill='%23170a04' d='M0 3h32v1H0zm0 4h32v1H0zm0 4h32v1H0zm0 4h32v1H0zM15 0h1v3h-1zM7 4h1v3H7zm16 0h1v3h-1zm-8 4h1v3h-1zm-4 4h1v3h-1zm16 0h1v3h-1z'/%3E%3Cpath fill='%2378350f' d='M13 1h1v1h-1zm3 0h1v1h-1zM5 5h1v1H5zm4 0h1v1H9zm12 0h1v1h-1zm4 0h1v1h-1zM13 9h1v1h-1zm3 0h1v1h-1zM9 13h1v1H9zm4 0h1v1h-1zm12 0h1v1h-1zm4 0h1v1h-1z'/%3E%3C/svg%3E");
+	--pixel-stage-floor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='28' viewBox='0 0 32 7' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='32' height='2' fill='%23d97706'/%3E%3Crect x='0' y='0' width='32' height='1' fill='%23ffd84d'/%3E%3Crect x='0' y='2' width='32' height='5' fill='%23451a03'/%3E%3Cpath fill='%2378350f' d='M0 2h12v2H0zm16 0h12v2H16zM8 5h12v2H8zm16 0h8v2h-8z'/%3E%3C/svg%3E");
+
+	/* 3. 8-Bit Ground Strip for Footer & Dividers (32x8 grid -> rendered at 128x32px = 4px square pixels) */
+	--pixel-ground-strip: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='32' viewBox='0 0 32 8' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='32' height='2' fill='%234ade80'/%3E%3Cpath fill='%2310b981' d='M0 2h32v1H0zm3-1h4v1H3zm10 0h5v1h-5zm11 0h4v1h-4z'/%3E%3Crect x='0' y='3' width='32' height='5' fill='%2378350f'/%3E%3Cpath fill='%23b45309' d='M0 3h7v2H0zm8 0h7v2H8zm8 0h7v2h-7zm8 0h7v2h-7zM4 6h7v2H4zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h4v2h-4z'/%3E%3C/svg%3E");
+
+	/* 4. 8-Bit HUD Three Ruby Hearts Sprite (29x8 grid -> rendered at 87x24px = 3px square pixels) */
+	--pixel-hud-hearts: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='87' height='24' viewBox='0 0 29 8' shape-rendering='crispEdges'%3E%3Cg%3E%3Cpath fill='%23070412' d='M1 0h2v1h2V0h2v1h1v3H7v1H6v1H5v1H3V6H2V5H1V4H0V1h1V0zm10 0h2v1h2V0h2v1h1v3h-1v1h-1v1h-1v1h-2V6h-1V5h-1V4h-1V1h1V0zm10 0h2v1h2V0h2v1h1v3h-1v1h-1v1h-1v1h-2V6h-1V5h-1V4h-1V1h1V0z'/%3E%3Cpath fill='%23ff3b6b' d='M1 1h2v1h2V1h2v3H6v1H5v1H3V5H2V4H1V1zm10 0h2v1h2V1h2v3h-1v1h-1v1h-2V5h-1V4h-1V1zm10 0h2v1h2V1h2v3h-1v1h-1v1h-2V5h-1V4h-1V1z'/%3E%3Cpath fill='%23fff9ec' d='M1 1h1v2H1V1zm10 0h1v2h-1V1zm10 0h1v2h-1V1z'/%3E%3C/g%3E%3C/svg%3E");
+
+	/* 5. 16x16 8-Bit Wizard Hat Sprite (Developer / Code):
+	   Pointed arcane hat with curled tip, gold star emblem, cyan gem buckle, and wide brim */
+	--pixel-sprite-wizard-hat: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M8 1h5v3h-2v1h1v2h1v2h1v3h2v2H0v-2h2V9h1V7h1V5h1V3h2V2h1V1z'/%3E%3Cpath fill='%236d28d9' d='M8 2h4v1H9v1h1v2h1v2h1v2H4V8h1V6h1V4h2V2zM1 12h14v1H1v-1z'/%3E%3Cpath fill='%23a78bfa' d='M8 2h2v1H8V2zM6 4h2v2H6V4zM5 6h2v2H5V6zM4 8h2v2H4V8zM2 12h5v1H2v-1z'/%3E%3Cpath fill='%23ffd84d' d='M12 2h1v1h-1V2zM8 6h1v2H8V6zM7 7h3v1H7V7zM3 10h10v2H3v-2z'/%3E%3Cpath fill='%235ce1e6' d='M7 10h2v2H7v-2z'/%3E%3Cpath fill='%23fff9ec' d='M7 10h1v1H7v-1z'/%3E%3C/svg%3E");
+
+	/* 6. 16x16 8-Bit Guitar Sprite (Musician / Music):
+	   Bilaterally symmetric 45-degree figure-8 guitar (upper shoulders, pinched waist, wide lower bout),
+	   central 2x2 soundhole, diagonal bridge saddle, fretted neck, and 4-peg headstock */
+	--pixel-sprite-guitar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M12 0h3v1h-3V0zm-1 1h5v1h-5V1zm-1 1h6v1h-6V2zM9 3h7v1H9V3zM5 4h2v1H5V4zm3 0h6v1H8V4zM4 5h9v1H4V5zm0 1h8v2H4V6zM1 8h11v1H1V8zm-1 1h12v2H0V9zm0 2h8v3H0v-3zm9 0h2v1H9v-1zM1 14h7v1H1v-1zm1 1h5v1H2v-1z'/%3E%3Cpath fill='%235ce1e6' d='M12 0h1v1h-1V0zm-1 1h1v1h-1V1zm4 2h1v1h-1V3zm-1 1h1v1h-1V4z'/%3E%3Cpath fill='%23ff5c7c' d='M13 1h2v2h-2V1z'/%3E%3Cpath fill='%23ea580c' d='M5 5h2v1H5V5zm0 1h3v1H5V6zm0 1h4v1H5V7zM4 8h6v1H4V8zM1 9h10v2H1V9zm0 2h7v1H1v-1zm0 1h6v2H1v-2zm1 2h4v1H2v-1z'/%3E%3Cpath fill='%23ffd84d' d='M6 6h1v1H6V6zm0 1h2v1H6V7zM5 8h4v1H5V8zM2 9h8v1H2V9zm0 1h7v1H2v-1zm0 1h5v1H2v-1zm0 1h4v1H2v-1zm1 1h3v1H3v-1z'/%3E%3Cpath fill='%23b45309' d='M13 3h1v1h-1V3zm-1 1h1v1h-1V4zm-1 1h1v1h-1V5zm-1 1h1v1h-1V6zM9 7h1v1H9V7zM8 8h1v1H8V8z'/%3E%3Cpath fill='%23070412' d='M5 8h2v2H5V8z'/%3E%3Cpath fill='%23fff9ec' d='M12 2h1v1h-1V2zm-1 1h1v1h-1V3zm-1 1h1v1h-1V4zM9 5h1v1H9V5zM8 6h1v1H8V6zM7 7h1v1H7V7zM2 11h1v1H2v-1zm1 1h1v1H3v-1zm1 1h1v1H4v-1z'/%3E%3C/svg%3E");
+
+	/* 7. 16x16 8-Bit Two Happy People Sprite (Collaborator / Community):
+	   Two distinct, cheerful 8-bit characters side-by-side with clear eyes, rosy cheeks,
+	   big U-shaped smiles, separate heads, and friendly cyan & emerald shirts */
+	--pixel-sprite-people: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M2 0h4v1h1v6H6v1h1v1h2V8h1V7H9V1h1V0h4v1h1v6h-1v1h1v1h1v6H9v-4H7v4H0V9h1V8h1V7H1V1h1V0z'/%3E%3Cpath fill='%23ffd84d' d='M2 1h4v1H2V1zM1 2h2v1H1V2zm4 0h2v1H5V2z'/%3E%3Cpath fill='%23ff5c7c' d='M10 1h4v1h-4V1zM9 2h2v1H9V2zm4 0h2v1h-2V2z'/%3E%3Cpath fill='%23ffedd5' d='M3 2h2v1H3V2zM1 3h6v4H1V3zm1 4h4v1H2V7zm9-5h2v1h-2V2zM9 3h6v4H9V3zm1 4h4v1h-4V7z'/%3E%3Cpath fill='%23fb7185' d='M1 4h1v1H1V4zm5 0h1v1H6V4zm3 0h1v1H9V4zm5 0h1v1h-1V4z'/%3E%3Cpath fill='%23070412' d='M2 3h1v1H2V3zm3 0h1v1H5V3zm5 0h1v1h-1V3zm3 0h1v1h-1V3zM2 5h1v1H2V5zm3 0h1v1H5V5zM3 6h2v1H3V6zm7-1h1v1h-1V5zm3 0h1v1h-1V5zm-2 1h2v1h-2V6z'/%3E%3Cpath fill='%235ce1e6' d='M1 9h6v5H1V9zm6 0h1v2H7V9z'/%3E%3Cpath fill='%234ade80' d='M9 9h6v5H9V9zM8 9h1v2H8V9z'/%3E%3Cpath fill='%23fff9ec' d='M3 8h2v1H3V8zm8 0h2v1h-2V8z'/%3E%3C/svg%3E");
+
+	/* 8. 16x16 8-Bit Bold Question Mark Sprite (Hero Quotes / Silly Titles):
+	   Full-height, ultra-prominent solid gold 3D question mark with cream highlight and ruby shadow */
+	--pixel-sprite-question: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M4 0h8v1H4V0zM3 1h10v1H3V1zM2 2h5v3H2V2zm7 0h5v4H9V2zM7 5h6v2H7V5zM6 7h5v1H6V7zm0 1h4v2H6V8zm0 3h4v5H6v-5z'/%3E%3Cpath fill='%23ff5c7c' d='M5 3h1v2H5V3zm7-1h1v4h-1V2zm-2 4h2v1h-2V6zM9 7h1v1H9V7zM8 8h1v2H8V8zm0 4h1v3H8v-3z'/%3E%3Cpath fill='%23ffd84d' d='M4 1h7v1H4V1zM3 2h9v1H3V2zm0 1h2v2H3V3zm7 0h2v2h-2V3zM8 5h4v1H8V5zM7 6h3v1H7V6zm0 1h2v2H7V7zm0 5h2v2H7v-2z'/%3E%3Cpath fill='%23fff9ec' d='M4 1h5v1H4V1zM3 2h1v2H3V2zm5 3h1v1H8V5zM7 6h1v2H7V6zm0 6h1v1H7v-1z'/%3E%3C/svg%3E");
+
+	/* 9. 8-Bit Castle Stone Brickwork Tile for Main Containers (16x8 grid -> rendered at 64x32px = 4px square pixels):
+	   Gives main containers a distinct Royal Cobalt castle-wall texture separate from the night-sky body background */
+	--pixel-castle-stone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='32' viewBox='0 0 16 8' shape-rendering='crispEdges'%3E%3Crect width='16' height='8' fill='%231b2a52'/%3E%3Cpath fill='%23243769' d='M0 0h7v1H0zm8 0h7v1H8zM0 1h1v2H0zm8 0h1v2H8zM4 4h7v1H4zm8 4h4v-4h-4v1h3v3zM0 4h3v1H0zm12 0h4v1h-4zM4 5h1v2H4zm8 0h1v2h-1z'/%3E%3Cpath fill='%23101935' d='M7 0h1v3H7zm8 0h1v3h-1zM0 3h16v1H0zm3 1h1v3H3zm8 0h1v3h-1zM0 7h16v1H0z'/%3E%3C/svg%3E");
+
+	/* 10. Work Page Assets:
+	   - 6 Bespoke Top Frieze Patterns & 16x16 Pixel Sprites Tailored to Each Project's Domain:
+	     1) Prompt Palette: Arcane Command Grimoire & Tag Keycaps (--pixel-frieze-prompt, --pixel-work-sprite-prompt)
+	     2) Chord Function API: Piano Keyboard Roll & Musical Notes (--pixel-frieze-chord, --pixel-work-sprite-chord)
+	     3) This Site: Multi-Theme Swatch Strip & Golden Master Cartridge (--pixel-frieze-site, --pixel-work-sprite-site)
+	     4) Sage & Cedar: Cedar Wood Grain, Sage Leaves & Spa Apothecary (--pixel-frieze-sage, --pixel-work-sprite-sage)
+	     5) Flowers by Leanne: Pixel Rose Garland & Hand-Tied Bouquet (--pixel-frieze-flowers, --pixel-work-sprite-flowers)
+	     6) Fridge Poetry Lab: 3D Magnet Word Tiles & Horseshoe Magnet (--pixel-frieze-poetry, --pixel-work-sprite-poetry)
+	   - Cozy Tinkerer's & Craftsman's Workshop for "A Little Background":
+	     (--pixel-work-study-wall, --pixel-work-study-ceiling, --pixel-work-study-mural, --pixel-sprite-gear-pin) */
+	--pixel-cartridge-grip: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='12' viewBox='0 0 8 3' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='8' height='3' fill='%23243769'/%3E%3Crect x='1' y='0' width='5' height='1' fill='%235ce1e6'/%3E%3Crect x='1' y='2' width='5' height='1' fill='%23080c1a'/%3E%3C/svg%3E");
+	--pixel-frieze-prompt: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='16' viewBox='0 0 24 4' shape-rendering='crispEdges'%3E%3Crect width='24' height='4' fill='%23120921'/%3E%3Crect x='1' y='1' width='4' height='2' fill='%235ce1e6'/%3E%3Crect x='7' y='1' width='4' height='2' fill='%23ff5c7c'/%3E%3Crect x='13' y='1' width='4' height='2' fill='%23ffd84d'/%3E%3Crect x='19' y='1' width='4' height='2' fill='%23a78bfa'/%3E%3Cpath fill='%23fff9ec' d='M1 1h3v1H1V1zM7 1h3v1H7V1zM13 1h3v1h-3V1zM19 1h3v1h-3V1z'/%3E%3C/svg%3E");
+	--pixel-frieze-chord: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='16' viewBox='0 0 24 4' shape-rendering='crispEdges'%3E%3Crect width='24' height='4' fill='%231c0b07'/%3E%3Cpath fill='%23fff9ec' d='M0 0h3v4H0V0zM4 0h3v4H4V0zM8 0h3v4H8V0zM12 0h3v4h-3V0zM16 0h3v4h-3V0zM20 0h3v4h-3V0z'/%3E%3Cpath fill='%23080c1a' d='M2 0h2v2H2V0zM6 0h2v2H6V0zM14 0h2v2h-2V0zM18 0h2v2h-2V0zM22 0h2v2h-2V0z'/%3E%3C/svg%3E");
+	--pixel-frieze-site: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='16' viewBox='0 0 24 4' shape-rendering='crispEdges'%3E%3Crect width='24' height='4' fill='%231a0812'/%3E%3Crect x='0' y='1' width='4' height='2' fill='%23ffd84d'/%3E%3Crect x='4' y='1' width='4' height='2' fill='%235ce1e6'/%3E%3Crect x='8' y='1' width='4' height='2' fill='%23ff5c7c'/%3E%3Crect x='12' y='1' width='4' height='2' fill='%234ade80'/%3E%3Crect x='16' y='1' width='4' height='2' fill='%23a78bfa'/%3E%3Crect x='20' y='1' width='4' height='2' fill='%23fb923c'/%3E%3C/svg%3E");
+	--pixel-frieze-sage: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='16' viewBox='0 0 24 4' shape-rendering='crispEdges'%3E%3Crect width='24' height='4' fill='%230d1c14'/%3E%3Crect x='0' y='3' width='24' height='1' fill='%2378350f'/%3E%3Cpath fill='%2310b981' d='M1 1h3v2H1V1zM7 1h3v2H7V1zM13 1h3v2h-3V1zM19 1h3v2h-3V1z'/%3E%3Cpath fill='%2386efac' d='M2 1h2v1H2V1zM8 1h2v1H8V1zM14 1h2v1h-2V1zM20 1h2v1h-2V1z'/%3E%3Cpath fill='%23d97706' d='M5 1h1v1H5V1zM11 1h1v1h-1V1zM17 1h1v1h-1V1zM23 1h1v1h-1V1z'/%3E%3C/svg%3E");
+	--pixel-frieze-flowers: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='16' viewBox='0 0 24 4' shape-rendering='crispEdges'%3E%3Crect width='24' height='4' fill='%231f0b16'/%3E%3Cpath fill='%2310b981' d='M0 2h24v1H0V2z'/%3E%3Cpath fill='%23ff5c7c' d='M2 1h2v2H2V1zM14 1h2v2h-2V1z'/%3E%3Cpath fill='%23ffd84d' d='M8 1h2v2H8V1zM20 1h2v2h-2V1z'/%3E%3Cpath fill='%23fff9ec' d='M2 1h1v1H2V1zM8 1h1v1H8V1zM14 1h1v1h-1V1zM20 1h1v1h-1V1z'/%3E%3C/svg%3E");
+	--pixel-frieze-poetry: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='16' viewBox='0 0 24 4' shape-rendering='crispEdges'%3E%3Crect width='24' height='4' fill='%23111522'/%3E%3Cpath fill='%23fff9ec' d='M1 1h5v2H1V1zM8 1h4v2H8V1zM14 1h6v2h-6V1z'/%3E%3Cpath fill='%23080c1a' d='M2 2h3v1H2V2zM9 2h2v1H9V2zM15 2h4v1h-4V2z'/%3E%3Crect x='21' y='1' width='2' height='2' fill='%23ff5c7c'/%3E%3C/svg%3E");
+
+	--pixel-work-sprite-prompt: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M1 3h14v11H1V3zm2-2h4v2H3V1zm6 0h4v2H9V1z'/%3E%3Cpath fill='%236d28d9' d='M2 4h12v9H2V4z'/%3E%3Cpath fill='%23fff9ec' d='M3 5h4v6H3V5zm6 0h4v6H9V5z'/%3E%3Cpath fill='%23ffd84d' d='M7 4h2v9H7V4zM4 1h2v2H4V1z'/%3E%3Cpath fill='%235ce1e6' d='M10 1h2v2h-2V1zM4 6h2v1H4V6zm6 2h2v1h-2V8z'/%3E%3Cpath fill='%23ff5c7c' d='M4 8h2v1H4V8zm6-2h2v1h-2V6z'/%3E%3Cpath fill='%234ade80' d='M4 10h2v1H4v-1zm6 0h2v1h-2v-1z'/%3E%3C/svg%3E");
+	--pixel-work-sprite-chord: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M5 0h9v7h-4V3H7v5H3V5h2V0zM1 9h14v7H1V9z'/%3E%3Cpath fill='%23ffd84d' d='M6 1h7v2H6V1zM6 3h1v4H6V3zm6 0h1v3h-1V3zM4 6h3v2H4V6zm6-1h3v2h-3V5z'/%3E%3Cpath fill='%23ea580c' d='M2 9h12v1H2V9z'/%3E%3Cpath fill='%23fff9ec' d='M2 10h2v5H2v-5zm3 0h2v5H5v-5zm3 0h2v5H8v-5zm3 0h3v5h-3v-5z'/%3E%3Cpath fill='%23070412' d='M3 10h2v3H3v-3zm3 0h2v3H6v-3zm4 0h2v3h-2v-3z'/%3E%3C/svg%3E");
+	--pixel-work-sprite-site: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M2 0h10v2h2v14H2V0z'/%3E%3Cpath fill='%23ffd84d' d='M3 1h8v2h2v12H3V1z'/%3E%3Cpath fill='%23d97706' d='M4 2h5v1H4V2zM4 13h8v2H4v-2z'/%3E%3Cpath fill='%231e293b' d='M4 4h8v8H4V4z'/%3E%3Cpath fill='%23ff5c7c' d='M5 5h3v3H5V5z'/%3E%3Cpath fill='%235ce1e6' d='M8 5h3v3H8V5z'/%3E%3Cpath fill='%23a78bfa' d='M5 8h3v3H5V8z'/%3E%3Cpath fill='%234ade80' d='M8 8h3v3H8V8z'/%3E%3Cpath fill='%23fff9ec' d='M9 9h2v1H9V9z'/%3E%3C/svg%3E");
+	--pixel-work-sprite-sage: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M9 1h6v5h-2v2h2v5H9v2H5v-2H1V8h3V6H2V2h6v2h1V1z'/%3E%3Cpath fill='%2310b981' d='M10 2h4v3h-4V2zM3 3h4v3H3V3zm7 6h4v3h-4V9zM2 9h4v3H2V9z'/%3E%3Cpath fill='%2386efac' d='M11 2h2v1h-2V2zM4 3h2v1H4V3zm7 6h2v1h-2V9zM3 9h2v1H3V9z'/%3E%3Cpath fill='%23b45309' d='M7 5h2v9H7V5z'/%3E%3Cpath fill='%23ffd84d' d='M6 13h4v1H6v-1z'/%3E%3C/svg%3E");
+	--pixel-work-sprite-flowers: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M5 0h6v2h4v5h-2v3h-2v6H5v-6H3V7H1V2h4V0z'/%3E%3Cpath fill='%23ff5c7c' d='M6 1h4v4H6V1zM2 3h4v4H2V3z'/%3E%3Cpath fill='%23ffd84d' d='M10 3h4v4h-4V3zM7 2h2v2H7V2zM3 4h2v2H3V4z'/%3E%3Cpath fill='%23fff9ec' d='M11 4h2v2h-2V4z'/%3E%3Cpath fill='%2310b981' d='M4 7h8v3H4V7z'/%3E%3Cpath fill='%234ade80' d='M5 7h2v2H5V7zm4 0h2v2H9V7z'/%3E%3Cpath fill='%23d97706' d='M6 10h4v5H6v-5z'/%3E%3Cpath fill='%23fda4af' d='M6 11h4v1H6v-1z'/%3E%3C/svg%3E");
+	--pixel-work-sprite-poetry: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M2 0h12v9h-4V4H6v5H2V0zm-1 10h6v5H1v-5zm8 0h6v5H9v-5z'/%3E%3Cpath fill='%23ef4444' d='M3 1h10v5h-2V3H5v3H3V1z'/%3E%3Cpath fill='%23cbd5e1' d='M3 6h2v2H3V6zm8 0h2v2h-2V6z'/%3E%3Cpath fill='%23fff9ec' d='M2 11h4v3H2v-3zm8 0h4v3h-4v-3z'/%3E%3Cpath fill='%23070412' d='M3 12h2v1H3v-1zm8 0h2v1h-2v-1z'/%3E%3Cpath fill='%23ffd84d' d='M7 8h2v2H7V8z'/%3E%3C/svg%3E");
+	--pixel-sprite-gear-pin: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 10 10' shape-rendering='crispEdges'%3E%3Cpath fill='%231c0b07' d='M3 0h4v1h2v2h1v4H9v2H7v1H3V9H1V7H0V3h1V1h2V0z'/%3E%3Cpath fill='%23d97706' d='M3 1h4v1h1v1h1v4H8v1H7v1H3V8H2V7H1V3h1V2h1V1z'/%3E%3Cpath fill='%23ffd84d' d='M3 2h4v2H3V2zM2 3h2v3H2V3z'/%3E%3Cpath fill='%231c0b07' d='M4 4h2v2H4V4z'/%3E%3C/svg%3E");
+	--pixel-sprite-trophy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M3 1h10v2h2v5h-2v2h-3v2h2v3H4v-3h2v-2H3V8H1V3h2V1z'/%3E%3Cpath fill='%23ffd84d' d='M4 2h8v6H4V2zM2 4h2v3H2V4zm10 0h2v3h-2V4zM7 9h2v3H7V9zM5 13h6v1H5v-1z'/%3E%3Cpath fill='%23fff9ec' d='M5 3h2v4H5V3z'/%3E%3Cpath fill='%23d97706' d='M9 3h2v5H9V3zM5 8h6v1H5V8zM5 12h6v1H5v-1z'/%3E%3C/svg%3E");
+
+	--pixel-work-study-wall: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='128' viewBox='0 0 64 32' shape-rendering='crispEdges'%3E%3Crect width='64' height='32' fill='%232c160e'/%3E%3Cpath fill='%23221009' d='M0 7h64v1H0V7zM0 15h64v1H0v-1zM0 23h64v1H0v-1zM0 31h64v1H0v-1zM10 2h9v3h-9V2zM44 10h9v3h-9v-3zM20 18h10v3H20v-3zM48 26h9v3h-9v-3z'/%3E%3Cpath fill='%23381d13' d='M11 2h7v2h-7V2zM45 10h7v2h-7v-2zM21 18h8v2h-8v-2zM49 26h7v2h-7v-2z'/%3E%3Cpath fill='%23472518' d='M11 2h6v1h-6V2zM45 10h6v1h-6v-1zM21 18h7v1h-7v-1zM49 26h6v1h-6v-1z'/%3E%3C/svg%3E");
+	--pixel-work-study-ceiling: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='80' viewBox='0 0 320 20' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='320' height='2' fill='%23170904'/%3E%3Crect x='0' y='2' width='320' height='2' fill='%235c2c16'/%3E%3Crect x='0' y='4' width='320' height='1' fill='%238c4622'/%3E%3Cpath fill='%23241008' d='M0 5h320v1H0V5zM34 6h26v1H34V6zM104 6h46v1h-46V6zM176 6h48v1h-48V6zM250 6h34v1h-34V6z'/%3E%3Cpath fill='%23334155' d='M75 4h2v3h-2V4zM161 4h2v3h-2V4zM237 4h2v3h-2V4z'/%3E%3Cpath fill='%2378350f' d='M72 7h8v2h-8V7zM70 9h12v2H70V9zM158 7h8v2h-8V7zM156 9h12v2h-12V9zM234 7h8v2h-8V7zM232 9h12v2h-12V9zM196 8h18v10h-18V8zM264 14h16v1h-16v-1zM266 15h2v2h-2v-2zM276 15h2v2h-2v-2z'/%3E%3Cpath fill='%23b45309' d='M73 8h6v1h-6V8zM71 9h10v1H71V9zM159 8h6v1h-6V8zM157 9h10v1h-10V9zM235 8h6v1h-6V8zM233 9h10v1h-10V9zM197 9h16v1h-16V9zM264 13h16v1h-16v-1z'/%3E%3Cpath fill='%230284c7' d='M198 10h14v7h-14v-7z'/%3E%3Cpath fill='%235ce1e6' d='M200 11h10v1h-10v-1zM200 15h10v1h-10v-1zM200 12h1v3h-1v-3zM209 12h1v3h-1v-3zM272 9h2v4h-2V9z'/%3E%3Cpath fill='%23c2410c' d='M16 7h8v2h-8V7zM296 7h8v2h-8V7zM266 11h4v2h-4v-2z'/%3E%3Cpath fill='%239a3412' d='M17 9h6v3h-6V9zM297 9h6v3h-6V9z'/%3E%3Cpath fill='%23065f46' d='M14 6h12v2H14V6zM13 8h3v5h-3V8zM24 8h3v6h-3V8zM294 6h12v2h-12V6zM293 8h3v5h-3V8zM304 8h3v6h-3V8z'/%3E%3Cpath fill='%2310b981' d='M15 6h10v1H15V6zM14 8h2v4h-2V8zM25 8h2v5h-2V8zM295 6h10v1h-10V6zM294 8h2v4h-2V8zM305 8h2v5h-2V8zM266 9h4v2h-4V9z'/%3E%3Cpath fill='%234ade80' d='M16 6h3v1h-3V6zM296 6h3v1h-3V6zM267 8h2v2h-2V8z'/%3E%3Cpath fill='%23ff5c7c' d='M274 8h2v5h-2V8z'/%3E%3Cpath fill='%23ea580c' d='M73 11h6v3h-6v-3zM159 11h6v3h-6v-3zM235 11h6v3h-6v-3z'/%3E%3Cpath fill='%23ffd84d' d='M40 7h2v2h-2V7zM52 7h2v2h-2V7zM74 11h4v2h-4v-2zM114 7h2v2h-2V7zM138 7h2v2h-2V7zM160 11h4v2h-4v-2zM184 7h2v2h-2V7zM218 7h2v2h-2V7zM236 11h4v2h-4v-2zM258 7h2v2h-2V7zM276 10h2v3h-2v-3z'/%3E%3Cpath fill='%23fff9ec' d='M40 7h1v1h-1V7zM75 11h2v1h-2v-1zM114 7h1v1h-1V7zM161 11h2v1h-2v-1zM203 13h4v1h-4v-1zM237 11h2v1h-2v-1zM258 7h1v1h-1V7z'/%3E%3C/svg%3E");
+	--pixel-work-study-mural: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='152' viewBox='0 0 320 38' shape-rendering='crispEdges'%3E%3Crect x='0' y='30' width='320' height='1' fill='%23170904'/%3E%3Crect x='0' y='31' width='320' height='2' fill='%23b45309'/%3E%3Crect x='0' y='31' width='320' height='1' fill='%23ffd84d'/%3E%3Crect x='0' y='33' width='320' height='5' fill='%23451a03'/%3E%3Cpath fill='%2378350f' d='M0 33h12v2H0v-2zm16 0h12v2H16v-2zm16 0h12v2H32v-2zm16 0h12v2H48v-2zm16 0h12v2H64v-2zm16 0h12v2H80v-2zm16 0h12v2H96v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zM8 36h12v2H8v-2zm16 0h12v2H24v-2zm16 0h12v2H40v-2zm16 0h12v2H56v-2zm16 0h12v2H72v-2zm16 0h12v2H88v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h8v2h-8v-2z'/%3E%3Crect x='14' y='31' width='64' height='3' fill='%23991b1b'/%3E%3Crect x='146' y='31' width='80' height='3' fill='%230f3d3e'/%3E%3Cpath fill='%23451a03' d='M10 8h34v22H10V8zM86 5h30v9H86V5zM236 4h36v26h-36V4zM278 15h30v15h-30V15z'/%3E%3Cpath fill='%2378350f' d='M84 4h34v11H84V4zM82 19h42v2H82v-2zM86 21h4v9h-4v-9zM116 21h4v9h-4v-9zM126 20h12v10h-12V20zM148 19h76v2h-76v-2zM150 21h14v9h-14v-9zM208 21h14v9h-14v-9zM234 3h40v27h-40V3zM276 14h34v16h-34V14z'/%3E%3Cpath fill='%23b45309' d='M12 10h8v4h-8v-4zM22 10h8v4h-8v-4zM32 10h10v4H32v-4zM12 16h10v4H12v-4zM34 16h8v4h-8v-4zM46 24h10v6H46v-6zM82 18h42v1H82v-1zM148 19h76v1h-76v-1zM152 22h10v3h-10v-3zM152 26h10v3h-10v-3zM210 22h10v3h-10v-3zM210 26h10v3h-10v-3zM236 11h36v2h-36v-2zM236 19h36v2h-36v-2zM236 27h36v2h-36v-2zM276 14h34v1h-34v-1zM280 17h12v5h-12v-5zM294 17h12v5h-12v-5zM280 24h12v5h-12v-5zM294 24h12v5h-12v-5z'/%3E%3Cpath fill='%231e293b' d='M25 0h4v14h-4V0zM18 14h18v14H18V14zM20 28h3v2h-3v-2zM31 28h3v2h-3v-2z'/%3E%3Cpath fill='%23334155' d='M19 15h16v2H19v-2zM90 6h2v7h-2V6zM88 6h6v2h-6V6zM98 7h6v2h-6V7zM100 9h2v4h-2V9zM152 6h22v11h-22V6zM161 17h4v2h-4v-2zM178 6h22v11h-22V6zM187 17h4v2h-4v-2z'/%3E%3Cpath fill='%23080c1a' d='M21 18h12v8H21v-8zM62 27h1v1h-1v-1zM59 28h1v1h-1v-1zM154 8h18v7h-18V8zM180 8h18v7h-18V8zM238 5h32v6h-32V5zM238 13h32v6h-32v-6zM238 21h32v6h-32v-6z'/%3E%3Cpath fill='%230284c7' d='M86 15h32v3H86v-3z'/%3E%3Cpath fill='%235ce1e6' d='M88 16h28v1H88v-1zM128 15h3v5h-3v-5zM133 16h3v4h-3v-4zM156 11h10v1h-10v-1zM244 6h3v5h-3V6zM260 6h4v5h-4V6zM250 14h4v5h-4v-5zM242 22h4v5h-4v-5zM298 6h6v5h-6V6z'/%3E%3Cpath fill='%2310b981' d='M182 9h14v1h-14V9zM182 11h14v1h-14v-1zM182 13h14v1h-14v-1zM203 10h8v3h-8v-3zM250 6h3v5h-3V6zM265 14h3v5h-3v-5zM256 22h4v5h-4v-5zM280 5h12v9h-12V5z'/%3E%3Cpath fill='%234ade80' d='M182 9h4v1h-4V9zM182 11h4v1h-4v-1zM182 13h4v1h-4v-1zM204 10h6v2h-6v-2zM282 5h4v3h-4V5zM287 7h4v3h-4V7zM160 32h4v1h-4v-1zM180 32h4v1h-4v-1zM200 32h4v1h-4v-1z'/%3E%3Cpath fill='%23ea580c' d='M30 10h5v4h-5v-4zM22 19h10v7H22v-7zM60 25h12v5H60v-5z'/%3E%3Cpath fill='%23ff5c7c' d='M156 9h6v1h-6V9zM214 14h5v5h-5v-5zM239 6h4v5h-4V6zM244 14h5v5h-5v-5zM262 22h5v5h-5v-5z'/%3E%3Cpath fill='%23a78bfa' d='M156 13h8v1h-8v-1zM254 6h5v5h-5V6zM256 14h4v5h-4v-5zM248 22h6v5h-6v-5z'/%3E%3Cpath fill='%23ffedd5' d='M59 27h5v3h-5v-3zM66 29h6v1h-6v-1z'/%3E%3Cpath fill='%23ffd84d' d='M108 7h5v5h-5V7zM24 20h6v6h-6v-6zM48 25h2v2h-2v-2zM52 26h2v2h-2v-2zM62 25h4v4h-4v-4zM164 9h6v1h-6V9zM206 13h2v6h-2v-6zM204 18h6v1h-6v-1zM239 14h4v5h-4v-5zM261 14h3v5h-3v-5zM239 22h3v5h-3v-5zM284 19h4v1h-4v-1zM298 19h4v1h-4v-1zM284 26h4v1h-4v-1zM298 26h4v1h-4v-1zM300 11h2v3h-2v-3zM298 13h6v1h-6v-1zM24 32h4v1h-4v-1zM44 32h4v1h-4v-1zM64 32h4v1h-4v-1zM150 32h4v1h-4v-1zM170 32h4v1h-4v-1zM190 32h4v1h-4v-1zM210 32h4v1h-4v-1z'/%3E%3Cpath fill='%23fff9ec' d='M32 7h1v2h-1V7zM34 5h1v3h-1V5zM25 22h4v4h-4v-4zM92 16h12v1H92v-1zM129 16h1v3h-1v-3zM134 17h1v2h-1v-2zM164 18h18v1h-18v-1zM215 11h1v2h-1v-2zM217 9h1v3h-1V9zM219 15h2v3h-2v-3zM14 31h2v3h-2v-3zM76 31h2v3h-2v-3zM146 31h2v3h-2v-3zM224 31h2v3h-2v-3z'/%3E%3C/svg%3E");
+
+	/* 11. Contact Page Tavern Architecture & Unfurled Parchment Scroll Assets:
+	   - --pixel-contact-outer-wall: Dimly-lit half-timbered tavern outer hall with warm wall sconces
+	   - --pixel-contact-wainscot: Warm vertical tongue-and-groove chestnut wainscoting with brass studs
+	   - --pixel-contact-ceiling: Overhead oak rafters, festive tavern bunting flags & hanging chandeliers
+	   - --pixel-contact-tavern-mural: Bespoke Messenger's Guildhall & Innkeeper's Reception scene
+	     (copper-hooded brick hearth + sleeping tabby cat, Innkeeper's desk + mail cubbies + messenger owl,
+	     stained-glass banquet booth with toasting adventurers, grandfather clock & inn staircase)
+	   - --pixel-scroll-spindle-left / right, --pixel-scroll-parchment, --pixel-sprite-wax-seal, --pixel-sprite-quill */
+	--pixel-contact-outer-wall: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='240' viewBox='0 0 120 60' shape-rendering='crispEdges'%3E%3Crect width='120' height='60' fill='%23160a04'/%3E%3Cpath fill='%23211007' d='M4 0h56v1H4V0zM64 0h56v1H64V0zM4 6h56v1H4V6zM64 6h56v1H64V6zM4 12h56v1H4v-1zM64 12h56v1H64v-1zM4 18h56v1H4v-1zM64 18h56v1H64v-1zM4 24h56v1H4v-1zM64 24h56v1H64v-1zM4 30h56v1H4v-1zM64 30h56v1H64v-1zM4 36h56v1H4v-1zM64 36h56v1H64v-1zM4 42h56v1H4v-1zM64 42h56v1H64v-1zM4 48h56v1H4v-1zM64 48h56v1H64v-1zM4 54h56v1H4v-1zM64 54h56v1H64v-1z'/%3E%3Cpath fill='%230b0401' d='M4 5h56v1H4V5zM64 5h56v1H64V5zM4 11h56v1H4v-1zM64 11h56v1H64v-1zM4 17h56v1H4v-1zM64 17h56v1H64v-1zM4 23h56v1H4v-1zM64 23h56v1H64v-1zM4 29h56v1H4v-1zM64 29h56v1H64v-1zM4 35h56v1H4v-1zM64 35h56v1H64v-1zM4 41h56v1H4v-1zM64 41h56v1H64v-1zM4 47h56v1H4v-1zM64 47h56v1H64v-1zM4 53h56v1H4v-1zM64 53h56v1H64v-1zM4 59h56v1H4v-1zM64 59h56v1H64v-1z'/%3E%3Cpath fill='%23291409' d='M0 0h4v60H0V0zM60 0h4v60h-4V0zM4 28h116v2H4v-2zM4 58h116v2H4v-2z'/%3E%3Cpath fill='%233d1e0e' d='M0 0h1v60H0V0zM60 0h1v60h-1V0zM4 28h116v1H4v-1zM4 58h116v1H4v-1z'/%3E%3Cpath fill='%2378350f' d='M2 4h1v1H2V4zM2 16h1v1H2v-1zM2 32h1v1H2v-1zM2 46h1v1H2v-1zM62 10h1v1h-1v-1zM62 22h1v1h-1v-1zM62 38h1v1h-1v-1zM62 52h1v1h-1v-1z'/%3E%3Cpath fill='%232e1508' d='M28 9h8v8h-8V9zM88 39h8v8h-8v-8z'/%3E%3Cpath fill='%234d240e' d='M29 10h6v6h-6v-6zM89 40h6v6h-6v-6z'/%3E%3Cpath fill='%23334155' d='M31 8h2v2h-2V8zM30 16h4v2h-4v-2zM91 38h2v2h-2v-2zM90 46h4v2h-4v-2z'/%3E%3Cpath fill='%23ea580c' d='M30 11h4v4h-4v-4zM90 41h4v4h-4v-4z'/%3E%3Cpath fill='%23ffd84d' d='M31 12h2v2h-2v-2zM91 42h2v2h-2v-2z'/%3E%3Cpath fill='%23fff9ec' d='M31 12h1v1h-1v-1zM91 42h1v1h-1v-1z'/%3E%3C/svg%3E");
+
+	--pixel-contact-wainscot: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='64' viewBox='0 0 32 16' shape-rendering='crispEdges'%3E%3Crect width='32' height='16' fill='%23381c0c'/%3E%3Cpath fill='%23472410' d='M1 2h5v6H1V2zM9 2h5v6H9V2zM17 2h5v6h-5V2zM25 2h5v6h-5V2zM1 10h5v6H1v-6zM9 10h5v6H9v-6zM17 10h5v6h-5v-6zM25 10h5v6h-5v-6z'/%3E%3Cpath fill='%235c3016' d='M1 2h1v5H1V2zM9 2h1v5H9V2zM17 2h1v5h-1V2zM25 2h1v5h-1V2zM1 10h1v5H1v-5zM9 10h1v5H9v-5zM17 10h1v5h-1v-5zM25 10h1v5h-1v-5z'/%3E%3Cpath fill='%234d2612' d='M0 0h32v1H0V0zM0 8h32v1H0V8z'/%3E%3Cpath fill='%231e0d05' d='M0 1h32v1H0V1zM0 9h32v1H0V9zM7 2h1v6H7V2zM15 2h1v6h-1V2zM23 2h1v6h-1V2zM31 2h1v6h-1V2zM7 10h1v6H7v-6zM15 10h1v6h-1v-6zM23 10h1v6h-1v-6zM31 10h1v6h-1v-6z'/%3E%3Cpath fill='%23d97706' d='M3 0h1v1H3V0zM11 0h1v1h-1V0zM19 0h1v1h-1V0zM27 0h1v1h-1V0zM3 8h1v1H3V8zM11 8h1v1h-1V8zM19 8h1v1h-1V8zM27 8h1v1h-1V8z'/%3E%3C/svg%3E");
+
+	--pixel-contact-ceiling: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='72' viewBox='0 0 320 18' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='320' height='3' fill='%23170a04'/%3E%3Crect x='0' y='3' width='320' height='2' fill='%235c2d14'/%3E%3Crect x='0' y='5' width='320' height='1' fill='%23291307'/%3E%3Cpath fill='%234d250e' d='M22 6h14v11H22V6zM100 6h16v11h-16V6zM204 6h16v11h-16V6zM284 6h14v11h-14V6z'/%3E%3Cpath fill='%2378350f' d='M24 7h10v9H24V7zM102 7h12v9h-12V7zM206 7h12v9h-12V7zM286 7h10v9h-10V7z'/%3E%3Cpath fill='%23334155' d='M28 3h2v5h-2V3zM107 3h2v6h-2V3zM103 9h10v2h-10V9zM211 3h2v6h-2V3zM207 9h10v2h-10V9zM290 3h2v5h-2V3z'/%3E%3Cpath fill='%23ff5c7c' d='M8 6h6v2H8V6zM9 8h4v2H9V8zM10 10h2v1h-2v-1zM72 6h6v2h-6V6zM73 8h4v2h-4V8zM74 10h2v1h-2v-1zM148 6h6v2h-6V6zM149 8h4v2h-4V8zM150 10h2v1h-2v-1zM240 6h6v2h-6V6zM241 8h4v2h-4V8zM242 10h2v1h-2v-1z'/%3E%3Cpath fill='%23ffd84d' d='M44 6h6v2h-6V6zM45 8h4v2h-4V8zM46 10h2v1h-2v-1zM126 6h6v2h-6V6zM127 8h4v2h-4V8zM128 10h2v1h-2v-1zM186 6h6v2h-6V6zM187 8h4v2h-4V8zM188 10h2v1h-2v-1zM268 6h6v2h-6V6zM269 8h4v2h-4V8zM270 10h2v1h-2v-1z'/%3E%3Cpath fill='%235ce1e6' d='M58 6h6v2h-6V6zM59 8h4v2h-4V8zM60 10h2v1h-2v-1zM160 6h6v2h-6V6zM161 8h4v2h-4V8zM162 10h2v1h-2v-1zM254 6h6v2h-6V6zM255 8h4v2h-4V8zM256 10h2v1h-2v-1z'/%3E%3Cpath fill='%234ade80' d='M86 6h6v2h-6V6zM87 8h4v2h-4V8zM88 10h2v1h-2v-1zM136 6h6v2h-6V6zM137 8h4v2h-4V8zM138 10h2v1h-2v-1zM172 6h6v2h-6V6zM173 8h4v2h-4V8zM174 10h2v1h-2v-1zM226 6h6v2h-6V6zM227 8h4v2h-4V8zM228 10h2v1h-2v-1zM306 6h6v2h-6V6zM307 8h4v2h-4V8zM308 10h2v1h-2v-1z'/%3E%3Cpath fill='%23ea580c' d='M26 8h6v6h-6V8zM103 11h10v4h-10v-4zM207 11h10v4h-10v-4zM288 8h6v6h-6V8z'/%3E%3Cpath fill='%23ffd84d' d='M27 9h4v4h-4V9zM104 7h2v2h-2V7zM107 6h2v3h-2V6zM110 7h2v2h-2V7zM104 11h8v3h-8v-3zM208 7h2v2h-2V7zM211 6h2v3h-2V6zM214 7h2v2h-2V7zM208 11h8v3h-8v-3zM289 9h4v4h-4V9z'/%3E%3Cpath fill='%23fff9ec' d='M28 10h2v2h-2v-2zM104 6h2v1h-2V6zM107 5h2v1h-2V5zM110 6h2v1h-2V6zM106 12h4v1h-4v-1zM208 6h2v1h-2V6zM211 5h2v1h-2V5zM214 6h2v1h-2V6zM210 12h4v1h-4v-1zM290 10h2v2h-2v-2z'/%3E%3C/svg%3E");
+
+	--pixel-contact-tavern-mural: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='192' viewBox='0 0 320 48' shape-rendering='crispEdges'%3E%3Crect x='0' y='6' width='320' height='1' fill='%23170a04'/%3E%3Crect x='0' y='7' width='320' height='2' fill='%235c2d14'/%3E%3Cpath fill='%234d250e' d='M90 13h12v10H90V13zM192 2h20v12h-20V2zM196 17h12v10h-12V17zM270 3h14v12h-14V3z'/%3E%3Cpath fill='%2378350f' d='M76 5h28v15H76V5zM74 23h78v18H74V23zM140 20h10v3h-10v-3zM144 17h2v3h-2v-3zM164 33h14v8h-14v-8zM178 27h48v3h-48v-3zM182 30h4v11h-4V30zM218 30h4v11h-4V30zM226 33h14v8h-14v-8zM250 6h12v35h-12V6zM268 33h46v8h-46v-8zM276 26h38v7h-38v-7zM284 19h30v7h-30v-7zM292 12h22v7h-22v-7zM272 5h10v8h-10V5z'/%3E%3Cpath fill='%23451a03' d='M78 7h7v5h-7V7zM87 7h7v5h-7V7zM96 7h6v5h-6V7zM78 13h7v5h-7v-5zM87 13h7v5h-7v-5zM96 13h6v5h-6v-5zM78 26h20v12H78V26zM102 26h22v12h-22V26zM128 26h20v12h-20V26zM252 8h8v9h-8V8zM252 19h8v18h-8V19zM270 35h42v6h-42v-6zM278 28h34v5h-34v-5zM286 21h26v5h-26v-5zM294 14h18v5h-18v-5z'/%3E%3Cpath fill='%239a3412' d='M22 0h12v8H22V0zM16 8h24v5H16V8zM14 13h28v28H14V13z'/%3E%3Cpath fill='%23b45309' d='M24 0h4v8h-4V0zM18 9h20v3H18V9zM16 14h6v4h-6v-4zM24 14h8v4h-8v-4zM34 14h6v4h-6v-4zM16 20h4v6h-4v-6zM36 20h4v6h-4v-6zM16 28h4v6h-4v-6zM36 28h4v6h-4v-6zM72 22h82v2H72v-2zM176 26h52v2h-52v-2zM248 5h16v2h-16V5zM268 32h8v2h-8v-2zM276 25h8v2h-8v-2zM284 18h8v2h-8v-2zM292 11h22v2h-22v-2z'/%3E%3Cpath fill='%23334155' d='M12 12h32v2H12v-2zM20 19h16v22H20V19zM201 0h2v4h-2V0zM194 4h16v2h-16V4zM276 12h2v4h-2v-4zM274 15h6v2h-6v-2z'/%3E%3Cpath fill='%23080c1a' d='M22 21h12v20H22V21zM115 14h1v1h-1v-1zM144 13h1v1h-1v-1zM147 13h1v1h-1v-1zM173 19h1v1h-1v-1zM172 33h3v8h-3v-8zM230 19h1v1h-1v-1zM229 33h3v8h-3v-8zM253 20h6v15h-6V20z'/%3E%3Cpath fill='%23991b1b' d='M46 39h22v2H46v-2z'/%3E%3Cpath fill='%23ea580c' d='M26 15h6v4h-6v-4zM23 29h10v10H23V29zM25 25h6v4h-6v-4zM50 35h10v4H50v-4zM58 33h4v3h-4v-3zM93 15h6v8h-6v-8zM199 20h6v6h-6v-6zM274 6h6v6h-6V6z'/%3E%3Cpath fill='%23ff5c7c' d='M25 28h6v11h-6V28zM26 25h4v3h-4v-3zM48 39h18v1H48v-1zM80 9h2v2h-2V9zM98 15h2v2h-2v-2zM148 14h2v2h-2v-2zM195 6h4v4h-4V6zM205 6h4v4h-4V6z'/%3E%3Cpath fill='%2310b981' d='M110 17h8v6h-8v-6z'/%3E%3Cpath fill='%235ce1e6' d='M89 9h2v2h-2V9zM80 15h2v2h-2v-2zM129 20h4v3h-4v-3zM200 6h4v4h-4V6zM229 22h8v11h-8V22zM224 23h5v3h-5v-3z'/%3E%3Cpath fill='%236d28d9' d='M166 12h10v2h-10v-2zM168 10h6v2h-6v-2zM170 8h2v2h-2V8zM167 22h8v11h-8V22zM175 23h5v3h-5v-3z'/%3E%3Cpath fill='%23ffedd5' d='M79 8h5v3h-5V8zM88 8h5v3h-5V8zM97 8h4v3h-4V8zM79 14h5v3h-5v-3zM88 14h5v3h-5v-3zM97 14h4v3h-4v-3zM111 12h6v5h-6v-5zM122 20h6v2h-6v-2zM142 11h7v9h-7v-9zM168 16h6v6h-6v-6zM230 16h6v6h-6v-6z'/%3E%3Cpath fill='%23ffd84d' d='M26 29h4v10h-4V29zM27 26h2v3h-2v-3zM52 36h4v2h-4v-2zM46 40h2v1h-2v-1zM66 40h2v1h-2v-1zM82 20h4v2h-4v-2zM83 19h2v1h-2v-1zM94 16h4v5h-4v-5zM110 10h8v2h-8v-2zM145 14h2v2h-2v-2zM168 12h6v1h-6v-1zM180 22h5v4h-5v-4zM191 24h6v2h-6v-2zM200 21h4v4h-4v-4zM219 22h5v4h-5v-4zM229 14h8v2h-8v-2zM253 9h6v7h-6V9zM255 20h2v8h-2v-8zM254 28h4v4h-4v-4zM275 7h4v4h-4V7z'/%3E%3Cpath fill='%23fff9ec' d='M28 11h1v2h-1v-2zM30 9h1v2h-1V9zM27 32h2v7h-2v-7zM59 34h2v1h-2v-1zM95 17h2v3h-2v-3zM109 18h2v4h-2v-4zM117 18h2v4h-2v-4zM130 16h2v4h-2v-4zM131 14h2v2h-2v-2zM143 12h5v6h-5v-6zM147 13h4v2h-4v-2zM180 21h5v1h-5v-1zM201 22h2v2h-2v-2zM219 21h5v1h-5v-1zM254 10h4v5h-4v-5zM276 8h2v2h-2V8z'/%3E%3Crect x='0' y='41' width='320' height='2' fill='%23d97706'/%3E%3Crect x='0' y='41' width='320' height='1' fill='%23ffd84d'/%3E%3Crect x='0' y='43' width='320' height='5' fill='%23451a03'/%3E%3Cpath fill='%2378350f' d='M0 43h12v2H0v-2zm16 0h12v2H16v-2zm16 0h12v2H32v-2zm16 0h12v2H48v-2zm16 0h12v2H64v-2zm16 0h12v2H80v-2zm16 0h12v2H96v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zM8 46h12v2H8v-2zm16 0h12v2H24v-2zm16 0h12v2H40v-2zm16 0h12v2H56v-2zm16 0h12v2H72v-2zm16 0h12v2H88v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h8v2h-8v-2z'/%3E%3C/svg%3E");
+
+	--pixel-scroll-spindle-left: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 6 6' shape-rendering='crispEdges'%3E%3Cpath fill='%231c0c04' d='M0 1h3v4H0V1zM3 0h3v6H3V0z'/%3E%3Cpath fill='%23b45309' d='M1 2h1v1H1V2z'/%3E%3Cpath fill='%2378350f' d='M1 3h2v1H1V3zM2 2h1v1H2V2z'/%3E%3Cpath fill='%23fff9ec' d='M3 1h3v1H3V1z'/%3E%3Cpath fill='%23ffd84d' d='M3 2h2v1H3V2z'/%3E%3Cpath fill='%23d97706' d='M3 3h2v1H3V3z'/%3E%3Cpath fill='%2392400e' d='M3 4h2v1H3V4z'/%3E%3Cpath fill='%23f5e4be' d='M5 2h1v1H5V2z'/%3E%3Cpath fill='%23e4c890' d='M5 3h1v1H5V3z'/%3E%3Cpath fill='%23c8a064' d='M5 4h1v1H5V4z'/%3E%3C/svg%3E");
+
+	--pixel-scroll-spindle-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 6 6' shape-rendering='crispEdges'%3E%3Cpath fill='%231c0c04' d='M0 0h3v6H0V0zM3 1h3v4H3V1z'/%3E%3Cpath fill='%23b45309' d='M4 2h1v1H4V2z'/%3E%3Cpath fill='%2378350f' d='M3 3h2v1H3V3zM3 2h1v1H3V2z'/%3E%3Cpath fill='%23fff9ec' d='M0 1h3v1H0V1z'/%3E%3Cpath fill='%23ffd84d' d='M1 2h2v1H1V2z'/%3E%3Cpath fill='%23d97706' d='M1 3h2v1H1V3z'/%3E%3Cpath fill='%2392400e' d='M1 4h2v1H1V4z'/%3E%3Cpath fill='%23f5e4be' d='M0 2h1v1H0V2z'/%3E%3Cpath fill='%23e4c890' d='M0 3h1v1H0V3z'/%3E%3Cpath fill='%23c8a064' d='M0 4h1v1H0V4z'/%3E%3C/svg%3E");
+
+	--pixel-scroll-parchment: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%23f5e4be'/%3E%3Cpath fill='%23eed8a8' d='M2 3h3v1H2V3zM10 7h4v1h-4V7zM5 12h3v1H5v-1zM12 14h2v1h-2v-1z'/%3E%3Cpath fill='%23fbf0d6' d='M6 2h2v1H6V2zM1 9h3v1H1V9zM9 11h3v1H9v-1z'/%3E%3C/svg%3E");
+
+	--pixel-sprite-wax-seal: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%231c0c04' d='M4 0h8v1h2v2h1v6h-1v2h-1v5h-3v-2H6v2H3v-5H2V9H1V3h1V1h2V0z'/%3E%3Cpath fill='%23991b1b' d='M4 1h8v1h2v6h-1v2H3V8H2V2h2V1zM4 11h2v4H4v-4zM10 11h2v4h-2v-4z'/%3E%3Cpath fill='%23ef4444' d='M4 2h8v6H4V2zM3 3h10v4H3V3z'/%3E%3Cpath fill='%23ffd84d' d='M7 3h2v4H7V3zM6 4h4v2H6V4zM4 13h1v1H4v-1zM11 13h1v1h-1v-1z'/%3E%3Cpath fill='%23fff9ec' d='M4 2h3v1H4V2zM7 4h1v1H7V4z'/%3E%3C/svg%3E");
+
+	--pixel-sprite-quill: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%231c0c04' d='M11 0h4v4h-1v2h-1v2h-2v2H9v1h2v5H2v-5h2V9h1V7h1V5h1V3h2V1h2V0z'/%3E%3Cpath fill='%235ce1e6' d='M11 1h3v2h-3V1zM9 3h4v2H9V3z'/%3E%3Cpath fill='%23fff9ec' d='M12 1h2v1h-2V1zM8 5h4v2H8V5zM7 7h3v2H7V7z'/%3E%3Cpath fill='%23ffd84d' d='M7 9h2v2H7V9zM4 11h5v1H4v-1zM3 14h7v1H3v-1z'/%3E%3Cpath fill='%231e293b' d='M3 12h7v2H3v-2z'/%3E%3C/svg%3E");
+
+	/* 12. Favorites Page: Cozy Cabin Study & Collector's Curio Library Assets:
+	   - --pixel-cozy-cabin-wall: Warm plum-cocoa quilted cabin wallpaper with cedar rails & strung fairy-bulb lights
+	   - --pixel-cozy-wood-wall: Honey-cinnamon cedar shiplap & bookcase backing
+	   - --pixel-cozy-study-mural: Full-width Cozy Cabin Study panorama (tall cedar bookshelves with trailing ivy & globe,
+	     plush wingback reading chair with floor lamp & steaming mug of cocoa, crackling river-stone hearth with Boreal Forest
+	     painting & sleeping long-whiskered orange kitten on a braided rug, snowy spruce window with tent, guitar & desk) */
+	--pixel-cozy-cabin-wall: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='160' viewBox='0 0 80 40' shape-rendering='crispEdges'%3E%3Crect width='80' height='40' fill='%231c0f16'/%3E%3Cpath fill='%2326141e' d='M4 8h2v2H4V8zM14 12h2v2h-2v-2zM24 8h2v2h-2V8zM34 12h2v2h-2v-2zM44 8h2v2h-2V8zM54 12h2v2h-2v-2zM64 8h2v2h-2V8zM74 12h2v2h-2v-2zM9 28h2v2H9v-2zM19 32h2v2h-2v-2zM29 28h2v2h-2v-2zM39 32h2v2h-2v-2zM49 28h2v2h-2v-2zM59 32h2v2h-2v-2zM69 28h2v2h-2v-2z'/%3E%3Cpath fill='%233b1d0e' d='M0 0h80v2H0V0zM0 20h80v2H0v-2z'/%3E%3Cpath fill='%23522914' d='M0 0h80v1H0V0zM0 20h80v1H0v-1z'/%3E%3Cpath fill='%23110704' d='M0 2h80v1H0V2zM0 22h80v1H0v-1zM0 3h6v1H0V3zM6 4h8v1H6V4zM14 3h12v1H14V3zM26 4h8v1h-8V4zM34 3h12v1H34V3zM46 4h8v1h-8V4zM54 3h12v1H54V3zM66 4h8v1h-8V4zM74 3h6v1h-6V3zM0 23h6v1H0v-1zM6 24h8v1H6v-1zM14 23h12v1H14v-1zM26 24h8v1h-8v-1zM34 23h12v1H34v-1zM46 24h8v1h-8v-1zM54 23h12v1H54v-1zM66 24h8v1h-8v-1zM74 23h6v1h-6v-1z'/%3E%3Cpath fill='%234d240e' d='M8 4h4v4H8V4zM28 4h4v4h-4V4zM48 4h4v4h-4V4zM68 4h4v4h-4V4zM18 24h4v4h-4v-4zM38 24h4v4h-4v-4zM58 24h4v4h-4v-4zM76 24h4v4h-4v-4z'/%3E%3Cpath fill='%23ffd84d' d='M9 5h2v2H9V5zM29 5h2v2h-2V5zM49 5h2v2h-2V5zM69 5h2v2h-2V5zM19 25h2v2h-2v-2zM39 25h2v2h-2v-2zM59 25h2v2h-2v-2zM77 25h2v2h-2v-2z'/%3E%3Cpath fill='%23fff9ec' d='M9 5h1v1H9V5zM29 5h1v1h-1V5zM49 5h1v1h-1V5zM69 5h1v1h-1V5zM19 25h1v1h-1v-1zM39 25h1v1h-1v-1zM59 25h1v1h-1v-1zM77 25h1v1h-1v-1z'/%3E%3C/svg%3E");
+
+	--pixel-cozy-wood-wall: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='64' viewBox='0 0 32 16' shape-rendering='crispEdges'%3E%3Crect width='32' height='16' fill='%2333190e'/%3E%3Cpath fill='%23452314' d='M0 0h32v1H0V0zM0 4h32v1H0V4zM0 8h32v1H0V8zM0 12h32v1H0v-1z'/%3E%3Cpath fill='%23592e1a' d='M2 1h8v1H2V1zM18 1h10v1H18V1zM7 5h11v1H7V5zM23 5h7v1h-7V5zM1 9h9v1H1V9zM15 9h12v1H15V9zM5 13h10v1H5v-1zM20 13h9v1h-9v-1z'/%3E%3Cpath fill='%231c0c06' d='M0 3h32v1H0V3zM0 7h32v1H0V7zM0 11h32v1H0v-1zM0 15h32v1H0v-1zM14 0h1v3h-1V0zM6 4h1v3H6V4zM22 4h1v3h-1V4zM12 8h1v3h-1V8zM28 8h1v3h-1V8zM18 12h1v3h-1v-3z'/%3E%3C/svg%3E");
+
+	--pixel-cozy-study-mural: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='176' viewBox='0 0 320 44' shape-rendering='crispEdges'%3E%3Crect x='0' y='4' width='320' height='1' fill='%231c0c06'/%3E%3Crect x='0' y='5' width='320' height='1' fill='%23592e1a'/%3E%3Cpath fill='%234d240e' d='M78 6h14v11H78V6zM144 4h6v8h-6V4zM186 4h6v8h-6V4zM299 12h10v8h-10v-8z'/%3E%3Cpath fill='%2378350f' d='M10 4h28v33H10V4zM40 4h28v33H40V4zM84 15h2v20h-2V15zM80 35h10v2H80v-2zM122 27h14v2h-14v-2zM124 29h2v8h-2v-8zM132 29h2v8h-2v-8zM154 0h28v11h-28V0zM142 12h52v3h-52v-3zM222 4h40v23h-40V4zM268 33h10v4h-10v-4zM272 20h2v13h-2V20zM282 25h30v2h-30v-2zM284 27h3v10h-3V27zM307 27h3v10h-3V27z'/%3E%3Cpath fill='%23451a03' d='M12 6h24v8H12V6zM12 16h24v8H12v-8zM12 26h24v8H12v-8zM42 6h24v8H42V6zM42 16h24v8H42v-8zM42 26h24v8H42v-8zM98 34h3v3h-3v-3zM113 34h3v3h-3v-3z'/%3E%3Cpath fill='%230f172a' d='M156 2h24v7h-24V2zM225 6h34v18h-34V6zM286 16h12v7h-12v-7z'/%3E%3Cpath fill='%23475569' d='M146 15h44v22h-44V15z'/%3E%3Cpath fill='%2364748b' d='M148 16h8v4h-8v-4zM158 16h10v4h-10v-4zM170 16h8v4h-8v-4zM180 16h8v4h-8v-4zM148 22h6v6h-6v-6zM182 22h6v6h-6v-6zM148 30h6v6h-6v-6zM182 30h6v6h-6v-6z'/%3E%3Cpath fill='%23080c1a' d='M156 21h24v16h-24V21z'/%3E%3Cpath fill='%23881337' d='M96 17h20v17H96V17zM94 23h24v8H94v-8zM225 6h5v18h-5V6zM254 6h5v18h-5V6z'/%3E%3Cpath fill='%23be123c' d='M98 18h16v14H98V18zM95 24h4v5h-4v-5zM115 24h4v5h-4v-5zM192 35h24v2h-24v-2z'/%3E%3Cpath fill='%23ff5c7c' d='M14 8h3v6h-3V8zM22 18h4v6h-4v-6zM44 8h4v6h-4V8zM54 28h4v6h-4v-6zM130 22h4v5h-4v-5zM195 34h18v1h-18v-1z'/%3E%3Cpath fill='%2310b981' d='M60 4h4v3h-4V4zM62 7h3v5h-3V7zM65 10h3v6h-3v-6zM63 15h2v4h-2v-4zM18 8h3v6h-3V8zM49 18h4v6h-4v-6zM166 9h4v3h-4V9zM233 14h6v7h-6v-7zM245 13h7v8h-7v-8z'/%3E%3Cpath fill='%234ade80' d='M61 4h2v2h-2V4zM63 8h1v3h-1V8zM66 11h1v4h-1v-4zM29 18h3v6h-3v-6zM160 4h8v2h-8V4zM168 3h8v2h-8V3zM235 12h2v2h-2v-2zM247 11h3v2h-3v-2z'/%3E%3Cpath fill='%235ce1e6' d='M28 8h5v5h-5V8zM15 28h4v6h-4v-6zM44 18h4v6h-4v-6zM164 5h8v1h-8V5zM287 17h10v5h-10v-5z'/%3E%3Cpath fill='%23a78bfa' d='M14 18h6v6h-6v-6zM56 18h5v6h-5v-6zM26 28h5v6h-5v-6z'/%3E%3Cpath fill='%23ea580c' d='M58 1h6v3h-6V1zM160 27h16v10h-16V27zM163 23h10v4h-10v-4zM198 31h10v4h-10v-4zM200 29h5v3h-5v-3zM239 18h6v4h-6v-4zM270 24h6v8h-6v-8zM301 14h6v5h-6v-5z'/%3E%3Cpath fill='%23ffd84d' d='M29 13h3v1h-3v-1zM50 8h4v6h-4V8zM44 28h8v6h-8v-6zM80 8h10v6H80V8zM102 23h8v5h-8v-5zM146 7h2v5h-2V7zM188 7h2v5h-2V7zM164 27h8v10h-8V27zM165 24h6v3h-6v-3zM194 36h20v1h-20v-1zM201 30h1v1h-1v-1zM203 30h1v1h-1v-1zM241 19h2v3h-2v-3zM264 14h3v2h-3v-2zM266 12h1v3h-1v-3zM271 26h4v5h-4v-5zM272 18h2v6h-2v-6zM302 15h4v4h-4v-4zM303 19h2v6h-2v-6z'/%3E%3Cpath fill='%23fff9ec' d='M29 9h2v2h-2V9zM33 28h2v6h-2v-6zM59 8h2v6h-2V8zM83 10h4v3h-4v-3zM123 25h5v2h-5v-2zM131 19h1v2h-1v-2zM133 17h1v2h-1v-2zM146 5h2v2h-2V5zM188 5h2v2h-2V5zM166 30h4v7h-4v-7zM197 31h3v1h-3v-1zM197 33h3v1h-3v-1zM205 31h3v1h-3v-1zM205 33h3v1h-3v-1zM201 32h3v2h-3v-2zM230 21h29v3h-29v-3zM236 8h1v1h-1V8zM243 9h1v1h-1V9zM251 8h1v1h-1V8zM288 18h6v1h-6v-1zM284 23h16v2h-16v-2z'/%3E%3Crect x='0' y='37' width='320' height='2' fill='%23991b1b'/%3E%3Cpath fill='%23ffd84d' d='M0 37h8v1H0v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1z'/%3E%3Crect x='0' y='39' width='320' height='5' fill='%233b1d0e'/%3E%3Cpath fill='%23592e1a' d='M0 39h12v2H0v-2zm16 0h12v2H16v-2zm16 0h12v2H32v-2zm16 0h12v2H48v-2zm16 0h12v2H64v-2zm16 0h12v2H80v-2zm16 0h12v2H96v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zM8 42h12v2H8v-2zm16 0h12v2H24v-2zm16 0h12v2H40v-2zm16 0h12v2H56v-2zm16 0h12v2H72v-2zm16 0h12v2H88v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h8v2h-8v-2z'/%3E%3C/svg%3E");
+
+	color-scheme: dark;
+	overflow-x: clip;
+}
+
+html[data-skin="eight-bit-overworld"] body {
+	position: relative;
+	background-color: #060410 !important;
+	background-image:
+		var(--pixel-sky-scene),
+		linear-gradient(180deg, #05030d 0%, #090619 55%, #110b29 100%) !important;
+	background-size: 480px 240px, 100% 100% !important;
+	background-repeat: repeat, no-repeat !important;
+	color: var(--text-1) !important;
+	font-family: var(--pixel-body) !important;
+	font-size: 16px;
+	font-weight: 400;
+	font-synthesis: none;
+	line-height: 1.55;
+	overflow-x: clip;
+}
+
+html[data-skin="eight-bit-overworld"] :is(body::before, body::after) {
+	content: none !important;
+	display: none !important;
+}
+
+/* Generous 8-bit console arena width */
+html[data-skin="eight-bit-overworld"] .site-shell {
+	width: min(1180px, calc(100% - 2.5rem)) !important;
+	max-width: 1180px !important;
+	margin-inline: auto !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(body.page-fridge .site-main .site-shell, body.page-fridge .page-section .site-shell, body.page-favorites .favorites-section > .site-shell) {
+	width: min(1340px, calc(100% - 2rem)) !important;
+	max-width: none !important;
+	margin-inline: auto !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-fridge .page-hero > .site-shell {
+	width: min(1180px, calc(100% - 2.5rem)) !important;
+	max-width: 1180px !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(p, li, label, .lead, .note, .footer-inner p, dd) {
+	color: var(--text-2) !important;
+	font-family: var(--pixel-body) !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(h1, h2, h3, h4, h5, h6, strong, dt) {
+	color: var(--text-1) !important;
+	font-family: var(--pixel-display) !important;
+	font-weight: 400;
+	letter-spacing: 0.04em;
+	line-height: 1.25;
+	text-transform: uppercase;
+	text-shadow: 2px 2px 0 var(--pixel-ink) !important;
+}
+
+html[data-skin="eight-bit-overworld"] h2 {
+	font-size: clamp(1.25rem, 2vw, 1.65rem);
+	margin-bottom: 1rem;
+}
+
+html[data-skin="eight-bit-overworld"] h3 {
+	font-size: clamp(1rem, 1.35vw, 1.2rem);
+	margin-bottom: 0.55rem;
+}
+
+html[data-skin="eight-bit-overworld"] a {
+	border: 0 !important;
+	border-radius: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	color: var(--pixel-cyan) !important;
+	text-decoration: underline;
+	text-decoration-color: rgba(92, 225, 230, 0.6);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.22em;
+}
+
+html[data-skin="eight-bit-overworld"] :is(a:hover, a:focus-visible) {
+	background: var(--pixel-gold) !important;
+	color: var(--pixel-ink) !important;
+	text-decoration: none !important;
+	text-shadow: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] :focus-visible {
+	outline: 3px solid var(--pixel-gold) !important;
+	outline-offset: 2px !important;
+}
+
+/* --- 1. Top Arcade HUD Bar with 8-Bit Pixel Hearts (.site-header) --- */
+
+html[data-skin="eight-bit-overworld"] .site-header {
+	position: sticky;
+	top: 0;
+	z-index: 10010;
+	padding: 0;
+	border: 0 !important;
+	border-bottom: 4px solid var(--pixel-gold) !important;
+	background: #090619 !important;
+	box-shadow: 0 4px 0 var(--pixel-ink) !important;
+	backdrop-filter: none !important;
+	-webkit-backdrop-filter: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .site-header::before {
+	content: none !important;
+	display: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .site-header .site-shell {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 0.65rem 1rem;
+	min-height: 3.7rem;
+	padding: 0.5rem 0;
+}
+
+html[data-skin="eight-bit-overworld"] .brand {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.65rem;
+	margin: 0;
+	padding: 0.15rem 0.35rem 0.15rem 0;
+	text-decoration: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.brand:hover, .brand:focus-visible) {
+	background: transparent !important;
+	color: var(--pixel-gold) !important;
+}
+
+/* 8-Bit Three Ruby Hearts Sprite next to Brand */
+html[data-skin="eight-bit-overworld"] .brand::after {
+	content: "";
+	display: inline-block;
+	width: 87px;
+	height: 24px;
+	margin-left: 0.25rem;
+	background: var(--pixel-hud-hearts) no-repeat center / 87px 24px;
+	flex-shrink: 0;
+}
+
+html[data-skin="eight-bit-overworld"] .brand-mark {
+	display: inline-grid !important;
+	place-items: center;
+	width: auto;
+	height: auto;
+	min-width: 2.35rem;
+	padding: 0.28rem 0.48rem;
+	border: 2px solid var(--text-1);
+	border-radius: 0 !important;
+	background: var(--pixel-ruby) !important;
+	box-shadow: 3px 3px 0 var(--pixel-ink);
+	color: #ffffff !important;
+	font: 400 0.78rem/1 var(--pixel-display) !important;
+	text-shadow: 1px 1px 0 var(--pixel-ink);
+}
+
+html[data-skin="eight-bit-overworld"] .brand-text {
+	color: var(--text-1) !important;
+	font: 400 0.9rem/1.2 var(--pixel-display) !important;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	text-shadow: 2px 2px 0 var(--pixel-ink);
+}
+
+html[data-skin="eight-bit-overworld"] .site-nav {
+	display: block !important;
+	position: static !important;
+	width: auto !important;
+	margin: 0 0 0 auto !important;
+	padding: 0 !important;
+	border: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	transform: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .site-nav ul {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.45rem;
+	margin: 0;
+	padding: 0;
+}
+
+html[data-skin="eight-bit-overworld"] .site-nav li {
+	margin: 0;
+	padding: 0;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.site-nav a, .site-nav .nav-cta) {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35ch;
+	padding: 0.38rem 0.72rem !important;
+	border: 2px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	background: #1a1242 !important;
+	box-shadow: inset -2px -2px 0 #0b0720, 3px 3px 0 var(--pixel-ink) !important;
+	color: var(--text-1) !important;
+	font: 400 0.74rem/1.2 var(--pixel-display) !important;
+	letter-spacing: 0.05em;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.site-nav a:hover, .site-nav a:focus-visible, .site-nav a[aria-current="page"]) {
+	border-color: var(--pixel-ink) !important;
+	background: var(--pixel-gold) !important;
+	box-shadow: inset -2px -2px 0 var(--pixel-gold-shade), 3px 3px 0 var(--pixel-ink) !important;
+	color: var(--pixel-ink) !important;
+	text-shadow: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .nav-toggle {
+	display: none !important;
+}
+
+/* --- 2. Overworld Stage Frame & Reverse-Split Hero Arena (.page-hero) --- */
+
+html[data-skin="eight-bit-overworld"] :is(.page-hero, body.page-home .page-hero, body.page-services .page-hero, body.page-work .page-hero, body.page-connect .page-hero, body.page-about .page-hero, body.page-contact .page-hero, body.page-favorites .page-hero) {
+	position: relative;
+	overflow: visible;
+	width: 100%;
+	max-width: none;
+	margin: 0;
+	padding: 3.4rem 0 1.85rem !important;
+	border: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact .page-hero {
+	padding-top: 1.85rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.page-hero::before, .page-hero::after) {
+	content: none !important;
+	display: none !important;
+}
+
+/* Stepped 8-bit Castle Stone Stage with Unobstructed 144px Non-Repeating Pixel Overworld Panorama at Bottom */
+html[data-skin="eight-bit-overworld"] .page-hero > .site-shell {
+	position: relative;
+	padding: clamp(1.6rem, 3vw, 2.25rem) clamp(1.35rem, 3vw, 2.25rem) 9.6rem;
+	border: 4px solid var(--pixel-gold);
+	background-color: #1b2a52 !important;
+	background-image:
+		var(--pixel-overworld-mural),
+		var(--pixel-ground-strip),
+		var(--pixel-castle-stone) !important;
+	background-position: center bottom, left bottom, left top !important;
+	background-size: 1280px 144px, 128px 32px, 64px 32px !important;
+	background-repeat: no-repeat, repeat-x, repeat !important;
+	box-shadow:
+		inset 0 0 0 4px #354d8c,
+		0 0 0 4px var(--pixel-ink),
+		8px 8px 0 var(--pixel-ink);
+}
+
+/* Home Hero Upper Zone (Above the Gold Dashed Line): Cozy 8-Bit Rooftop Music & Maker Loft */
+html[data-skin="eight-bit-overworld"] body.page-home .page-hero > .site-shell {
+	padding-top: 3.85rem !important;
+	background-color: #331812 !important;
+	background-image:
+		var(--pixel-cozy-loft-ceiling),
+		var(--pixel-cozy-loft-wall) !important;
+	background-position: center top, left top !important;
+	background-size: 1280px 304px, 256px 128px !important;
+	background-repeat: no-repeat, repeat !important;
+	box-shadow:
+		inset 0 0 0 4px #9a4726,
+		0 0 0 4px var(--pixel-ink),
+		8px 8px 0 var(--pixel-ink);
+}
+
+html[data-skin="eight-bit-overworld"] .page-hero > .site-shell::before {
+	content: none !important;
+	display: none !important;
+}
+
+/* Bespoke Reverse-Split Hero Layout on Home:
+   Column 1 (Left): Character Portrait & Splash Scroll (.hero-media)
+   Column 2 (Right): 2x2 RPG Sprite Matrix (h1) + Dialogue Windows (.hero-summary, .lead) */
+html[data-skin="eight-bit-overworld"] .hero-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 1.75rem;
+	align-items: start;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-grid--with-portrait {
+	grid-template-columns: minmax(250px, 340px) minmax(0, 1fr);
+	align-items: center;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-grid--with-portrait > :first-child {
+	grid-column: 2;
+	grid-row: 1;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-grid--with-portrait > .portrait-panel {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-copy {
+	display: grid;
+	grid-column: 1 / -1;
+	grid-template-columns: minmax(280px, 330px) minmax(0, 1fr);
+	column-gap: clamp(1.5rem, 3vw, 2.35rem);
+	row-gap: 0.85rem;
+	align-items: start;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-copy > :not(.hero-media):not(.hero-quests) {
+	grid-column: 2;
+}
+
+/* Left-hand Character Portrait & Splash Frame (Warm Walnut & Espresso Studio Frame) */
+html[data-skin="eight-bit-overworld"] .hero-copy .hero-media {
+	grid-column: 1;
+	grid-row: 1 / span 5;
+	align-self: start;
+	justify-self: stretch;
+	width: 100%;
+	max-width: none;
+	margin: 0;
+	padding: 0.9rem;
+	border: 3px solid var(--text-1);
+	background: #1c0c08;
+	box-shadow:
+		inset 0 0 0 3px #78350f,
+		6px 6px 0 #120604;
+	transform: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-copy .hero-quests {
+	grid-column: 1 / -1;
+}
+
+html[data-skin="eight-bit-overworld"] .eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.45rem;
+	width: fit-content;
+	margin: 0 0 0.45rem;
+	padding: 0.26rem 0.65rem;
+	border: 2px solid var(--pixel-gold) !important;
+	border-radius: 0 !important;
+	background: #080c1a !important;
+	box-shadow: 3px 3px 0 var(--pixel-ink) !important;
+	color: var(--pixel-gold) !important;
+	font: 400 0.72rem/1.2 var(--pixel-display) !important;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-copy > .eyebrow {
+	background: #1c0c08 !important;
+	box-shadow: 3px 3px 0 #120604 !important;
+}
+
+html[data-skin="eight-bit-overworld"] .eyebrow::before {
+	content: none !important;
+}
+
+/* Non-home page hero h1 */
+html[data-skin="eight-bit-overworld"] .page-hero h1 {
+	max-width: 100%;
+	margin: 0 0 0.85rem;
+	color: var(--text-1) !important;
+	font: 400 clamp(1.75rem, 3.3vw, 2.65rem)/1.18 var(--pixel-display) !important;
+	letter-spacing: 0.03em;
+	text-shadow: 3px 3px 0 var(--pixel-ink), 5px 5px 0 #080c1a !important;
+}
+
+/* Home page h1: 2x2 RPG Item Slot Matrix with Real 16x16 Pixel Art Sprites */
+html[data-skin="eight-bit-overworld"] body.page-home .page-hero h1 {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.65rem;
+	max-width: 100%;
+	margin: 0 0 0.9rem;
+	padding: 0;
+	font-size: clamp(1.05rem, 1.6vw, 1.32rem) !important;
+	line-height: 1.2 !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.hero-title-role, .hero-title-role:nth-of-type(2n), .metallic-pearl-text) {
+	position: relative;
+	display: block !important;
+	align-content: center;
+	min-width: 0;
+	min-height: 3.35rem;
+	margin: 0 !important;
+	padding: 0.65rem 0.8rem 0.65rem 3.35rem !important;
+	border: 3px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	background-color: #1c0c08 !important;
+	background-image: var(--pixel-sprite-wizard-hat) !important;
+	background-repeat: no-repeat !important;
+	background-position: 0.7rem center !important;
+	background-size: 32px 32px !important;
+	background-clip: border-box !important;
+	-webkit-background-clip: border-box !important;
+	box-shadow: inset -2px -2px 0 #78350f, 4px 4px 0 #120604 !important;
+	color: var(--text-1) !important;
+	-webkit-text-fill-color: var(--text-1) !important;
+	-webkit-text-stroke: 0 !important;
+	filter: none !important;
+	font: 400 clamp(0.98rem, 1.45vw, 1.24rem)/1.2 var(--pixel-display) !important;
+	text-shadow: 2px 2px 0 #120604 !important;
+	transform: none !important;
+	animation: none !important;
+	overflow-wrap: anywhere;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.hero-title-role, #hero-silly-title)::before {
+	content: none !important;
+	display: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-title-role:nth-of-type(2) {
+	background-image: var(--pixel-sprite-guitar) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-title-role:nth-of-type(3) {
+	background-image: var(--pixel-sprite-people) !important;
+}
+
+html[data-skin="eight-bit-overworld"] #hero-silly-title {
+	border-color: var(--pixel-gold) !important;
+	background-color: #29120b !important;
+	background-image: var(--pixel-sprite-question) !important;
+	background-clip: border-box !important;
+	-webkit-background-clip: border-box !important;
+	color: var(--pixel-gold) !important;
+	-webkit-text-fill-color: var(--pixel-gold) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-title-initial {
+	display: inline !important;
+	color: var(--pixel-gold) !important;
+	-webkit-text-fill-color: var(--pixel-gold) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-title-controls {
+	grid-column: 1 / -1;
+	display: inline-flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 0.35rem;
+	margin: 0.1rem 0 0;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-title-controls::before {
+	content: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-home .personality-arrow {
+	width: 1.85rem !important;
+	height: 1.85rem !important;
+	min-width: 1.85rem !important;
+	min-height: 1.85rem !important;
+	border: 2px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	background: #1c0c08 !important;
+	box-shadow: 2px 2px 0 #120604 !important;
+	color: var(--pixel-gold) !important;
+	opacity: 1 !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(body.page-home .personality-arrow:hover, body.page-home .personality-arrow:focus-visible) {
+	border-color: var(--pixel-ink) !important;
+	background: var(--pixel-gold) !important;
+	color: var(--pixel-ink) !important;
+	transform: translate(1px, 1px) !important;
+}
+
+/* Clean High-Contrast NES Dialogue Windows for Hero Copy */
+html[data-skin="eight-bit-overworld"] .hero-summary {
+	position: relative;
+	max-width: none;
+	margin: 0 0 0.75rem;
+	padding: 0.9rem 1.05rem;
+	border: 3px solid var(--text-1);
+	background: #1c0c08 !important;
+	box-shadow: inset 0 0 0 2px #78350f, 4px 4px 0 #120604;
+	color: var(--text-1) !important;
+	font: 400 0.96rem/1.55 var(--pixel-body) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-summary::before {
+	content: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .page-hero .lead {
+	position: relative;
+	max-width: none;
+	margin: 0;
+	padding: 0.75rem 1.05rem;
+	border: 2px solid var(--pixel-gold);
+	border-left: 5px solid var(--pixel-gold);
+	background: #0b1124 !important;
+	box-shadow: 4px 4px 0 var(--pixel-ink);
+	color: var(--text-1) !important;
+	font: 400 0.94rem/1.5 var(--pixel-body) !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-home .page-hero .lead {
+	background: #29120b !important;
+	box-shadow: 4px 4px 0 #120604 !important;
+}
+
+/* Character Portrait & Splash Quote Box */
+html[data-skin="eight-bit-overworld"] :is(.hero-media::before, .portrait-panel::before) {
+	content: none !important;
+	display: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .msdos-page-image {
+	display: block !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.hero-media img, .portrait-panel img) {
+	display: block !important;
+	width: 100% !important;
+	max-width: 240px !important;
+	height: auto !important;
+	margin: 0 auto !important;
+	border: 3px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	box-shadow: 4px 4px 0 var(--pixel-ink) !important;
+	filter: none !important;
+	object-fit: cover;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.portrait-panel, .portrait-panel-compact) {
+	display: block !important;
+	width: 100% !important;
+	max-width: 340px !important;
+	margin: 0 !important;
+	padding: 0.85rem !important;
+	border: 3px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	background: #080c1a !important;
+	box-shadow: 5px 5px 0 var(--pixel-ink) !important;
+	transform: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .portrait-panel-compact img {
+	max-width: 280px !important;
+	aspect-ratio: 16 / 10 !important;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-splash {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 124px;
+	margin: 0.8rem auto 1.95rem;
+	padding: 0.55rem 0.55rem 0.55rem 3rem;
+	border: 2px solid var(--pixel-gold) !important;
+	border-radius: 0 !important;
+	background-color: #29120b !important;
+	background-image: var(--pixel-sprite-question) !important;
+	background-repeat: no-repeat !important;
+	background-position: 0.55rem center !important;
+	background-size: 32px 32px !important;
+	box-shadow: inset 0 0 0 2px #120604 !important;
+	color: var(--pixel-gold) !important;
+	transform: none;
+	pointer-events: auto;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-splash::before {
+	content: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-splash .hero-splash-text {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	padding: 0.2rem 0.35rem;
+	background: transparent !important;
+	color: var(--pixel-gold) !important;
+	font-family: var(--pixel-display) !important;
+	line-height: 1.2;
+	text-align: center !important;
+	text-shadow: 2px 2px 0 var(--pixel-ink) !important;
+	animation: none !important;
+}
+
+/* --- 3. Interlocking Asymmetric Bento Quest Board (.hero-quests, .quest-grid) ---
+   Code (left top) + Community (left bottom) flank Music (right full-height span) */
+
+/* Home Hero Lower Zone (Below the Gold Dashed Line): Royal Cobalt Blue Brick + Overworld Panorama */
+html[data-skin="eight-bit-overworld"] .hero-quests {
+	position: relative !important;
+	margin: 10rem calc(-1 * clamp(1.35rem, 3vw, 2.25rem)) -9.6rem !important;
+	padding: 1.35rem clamp(1.35rem, 3vw, 2.25rem) 9.6rem !important;
+	border-top: 3px dashed var(--pixel-gold) !important;
+	background-color: #1b2a52 !important;
+	background-image:
+		var(--pixel-overworld-mural),
+		var(--pixel-ground-strip),
+		var(--pixel-castle-stone) !important;
+	background-position: center bottom, left bottom, left top !important;
+	background-size: 1280px 144px, 128px 32px, 64px 32px !important;
+	background-repeat: no-repeat, repeat-x, repeat !important;
+	box-shadow:
+		inset 4px 0 0 #354d8c,
+		inset -4px -4px 0 #354d8c;
+}
+
+/* Cozy 8-Bit Rooftop Music & Maker Studio Loft Panorama sitting directly above the Gold Dashed Line */
+html[data-skin="eight-bit-overworld"] .hero-quests::before {
+	content: "" !important;
+	display: block !important;
+	position: absolute !important;
+	left: 4px !important;
+	right: 4px !important;
+	bottom: 100% !important;
+	height: 152px !important;
+	margin-bottom: 0 !important;
+	background-image: var(--pixel-cozy-loft-mural) !important;
+	background-position: center bottom !important;
+	background-size: 1280px 152px !important;
+	background-repeat: no-repeat !important;
+	pointer-events: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .quest-grid {
+	display: grid !important;
+	grid-template-columns: minmax(0, 5fr) minmax(0, 7fr) !important;
+	grid-auto-rows: auto;
+	gap: 1.15rem !important;
+	align-items: stretch;
+}
+
+html[data-skin="eight-bit-overworld"] .quest-card:nth-child(1) {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+html[data-skin="eight-bit-overworld"] .quest-card:nth-child(2) {
+	grid-column: 2;
+	grid-row: 1 / span 2;
+}
+
+html[data-skin="eight-bit-overworld"] .quest-card:nth-child(3) {
+	grid-column: 1;
+	grid-row: 2;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.panel-card, .quest-card) {
+	display: flex !important;
+	flex-direction: column;
+	position: relative;
+	min-width: 0;
+	margin: 0 !important;
+	padding: 1.15rem !important;
+	border: 3px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	background: #080c1a !important;
+	box-shadow:
+		inset 0 0 0 3px #1e2d59,
+		6px 6px 0 var(--pixel-ink) !important;
+	transform: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .quest-card:nth-child(2) {
+	border-color: var(--pixel-gold) !important;
+	background: #0b1124 !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.panel-card:hover, .quest-card:hover) {
+	border-color: var(--pixel-cyan) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .panel-card h3 {
+	display: flex;
+	align-items: center;
+	min-height: 2.75rem;
+	margin: -1.15rem -1.15rem 0.9rem !important;
+	padding: 0.45rem 0.85rem 0.45rem 3.25rem;
+	border-bottom: 3px solid var(--text-1);
+	background-color: #162244;
+	background-image: var(--pixel-sprite-wizard-hat);
+	background-repeat: no-repeat;
+	background-position: 0.65rem center;
+	background-size: 32px 32px;
+	color: var(--pixel-gold) !important;
+	font: 400 0.94rem/1.25 var(--pixel-display) !important;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] .quest-card:nth-child(2) h3 {
+	background-image: var(--pixel-sprite-guitar);
+}
+
+html[data-skin="eight-bit-overworld"] .quest-card:nth-child(3) h3 {
+	background-image: var(--pixel-sprite-people);
+}
+
+html[data-skin="eight-bit-overworld"] .quest-card h3::before {
+	content: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .panel-card p {
+	margin: 0 0 0.75rem;
+	color: var(--text-2) !important;
+	font-size: 0.92rem;
+	line-height: 1.55;
+}
+
+html[data-skin="eight-bit-overworld"] .quest-link {
+	display: inline-flex;
+	align-items: center;
+	align-self: flex-start;
+	margin: auto 0 0 !important;
+	padding: 0.42rem 0.75rem !important;
+	border: 2px solid var(--pixel-ink) !important;
+	background: var(--pixel-gold) !important;
+	box-shadow: inset -2px -2px 0 var(--pixel-gold-shade), 3px 3px 0 var(--pixel-ink) !important;
+	color: var(--pixel-ink) !important;
+	font: 400 0.72rem/1.2 var(--pixel-display) !important;
+	letter-spacing: 0.05em;
+	text-decoration: none !important;
+	text-transform: uppercase;
+	text-shadow: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .quest-link span {
+	display: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.quest-link:hover, .quest-link:focus-visible) {
+	background: var(--pixel-cyan) !important;
+	box-shadow: inset -2px -2px 0 #1f8a94, 3px 3px 0 var(--pixel-ink) !important;
+	color: var(--pixel-ink) !important;
+}
+
+/* --- 4. Work Page: Guild Hall of Completed Quests (1 + 3 + 2) & Cozy Tinkerer's Workshop Study --- */
+
+html[data-skin="eight-bit-overworld"] :is(.page-section, .section-soft, .section-portrait) {
+	padding: 2.15rem 0 !important;
+	border: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+/* Warm Cozy Guild Hall Showcase Frame for Selected Projects */
+html[data-skin="eight-bit-overworld"] body.page-work .page-section:not(.section-soft):not(.section-cta) > .site-shell {
+	padding: clamp(1.35rem, 3vw, 2rem);
+	border: 4px solid var(--pixel-gold);
+	background-color: #24130c !important;
+	background-image: var(--pixel-work-study-wall) !important;
+	background-size: 256px 128px !important;
+	background-repeat: repeat !important;
+	box-shadow:
+		inset 0 0 0 3px #854d27,
+		0 0 0 4px var(--pixel-ink),
+		8px 8px 0 var(--pixel-ink);
+}
+
+html[data-skin="eight-bit-overworld"] body.page-work .page-section:not(.section-soft):not(.section-cta) > .site-shell > h2 {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.65rem;
+	margin-bottom: 1.25rem !important;
+	padding: 0.5rem 0.95rem 0.5rem 2.4rem;
+	border: 3px solid var(--pixel-gold);
+	background-color: #160a05;
+	background-image: var(--pixel-sprite-trophy);
+	background-repeat: no-repeat;
+	background-position: 0.65rem center;
+	background-size: 20px 20px;
+	box-shadow:
+		inset 0 0 0 2px #7c3a1d,
+		4px 4px 0 var(--pixel-ink);
+	color: var(--pixel-gold) !important;
+}
+
+/* 6-Column Master Grid:
+   Row 1: Featured Cartridge (spans 6 cols, text LEFT, monitor RIGHT)
+   Row 2: Cartridges 2, 3, 4 (each spans 2 cols -> 3 across!)
+   Row 3: Cartridges 5, 6 (each spans 3 cols -> 2 across!) */
+html[data-skin="eight-bit-overworld"] :is(.features, .features--showcase) {
+	display: grid !important;
+	grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+	gap: 1.35rem !important;
+	align-items: stretch;
+}
+
+/* Completed Quest / Commission Work Shell with Project-Specific Top Frieze & Status Ribbon */
+html[data-skin="eight-bit-overworld"] .features article {
+	--work-frieze: var(--pixel-cartridge-grip);
+	--work-sprite: var(--pixel-work-sprite-site);
+	--work-status: "★ QUEST COMPLETE // SHIPPED BUILD";
+	--work-bg: #181124;
+	--work-inset: #4c2882;
+	--work-top-border: var(--pixel-gold);
+	--work-title: var(--pixel-gold);
+	--work-rule: #4c2882;
+	--work-badge-bg: #102a1b;
+	--work-badge-border: #4cd964;
+	--work-badge-text: #bbf7d0;
+	--work-btn-bg: #27173d;
+	--work-btn-text: var(--pixel-cyan);
+	grid-column: span 3;
+	display: flex !important;
+	flex-direction: column;
+	position: relative;
+	width: auto !important;
+	min-width: 0;
+	margin: 0 !important;
+	padding: 1.6rem 1.15rem 1.15rem !important;
+	border: 3px solid var(--text-1) !important;
+	border-top: 6px solid var(--work-top-border) !important;
+	border-radius: 0 !important;
+	background-color: var(--work-bg) !important;
+	background-image: var(--work-frieze) !important;
+	background-repeat: repeat-x !important;
+	background-position: left top !important;
+	background-size: 64px 14px !important;
+	box-shadow:
+		inset 0 0 0 3px var(--work-inset),
+		6px 6px 0 var(--pixel-ink) !important;
+	transform: none !important;
+}
+
+/* Completed Work Status Seal at top of each project card */
+html[data-skin="eight-bit-overworld"] .features article::before {
+	content: var(--work-status);
+	display: inline-flex;
+	align-items: center;
+	align-self: flex-start;
+	margin: 0 0 0.7rem;
+	padding: 0.24rem 0.55rem;
+	border: 2px solid var(--work-badge-border);
+	background: var(--work-badge-bg);
+	box-shadow: 2px 2px 0 var(--pixel-ink);
+	color: var(--work-badge-text);
+	font: 400 0.54rem/1.35 var(--pixel-display);
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+/* 1. Prompt Palette — Arcane Command Grimoire & Tag Keycaps (TypeScript Extension) */
+html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(1) {
+	--work-frieze: var(--pixel-frieze-prompt);
+	--work-sprite: var(--pixel-work-sprite-prompt);
+	--work-status: "★ QUEST COMPLETE // TYPESCRIPT BROWSER EXTENSION";
+	--work-bg: #19112b;
+	--work-inset: #4c2882;
+	--work-top-border: #c084fc;
+	--work-title: #ffd166;
+	--work-rule: #5b3299;
+	--work-badge-bg: #261447;
+	--work-badge-border: #c084fc;
+	--work-badge-text: #f3e8ff;
+	--work-btn-bg: #2d1952;
+	--work-btn-text: #70e4ef;
+}
+
+/* 2. Chord Function API — Chiptune Conservatory & Piano-Roll Synthesizer */
+html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(2) {
+	--work-frieze: var(--pixel-frieze-chord);
+	--work-sprite: var(--pixel-work-sprite-chord);
+	--work-status: "★ QUEST COMPLETE // MUSIC THEORY API & NPM PKG";
+	--work-bg: #241219;
+	--work-inset: #702446;
+	--work-top-border: #ffd166;
+	--work-title: #ffd166;
+	--work-rule: #872d56;
+	--work-badge-bg: #3b1728;
+	--work-badge-border: #ffd166;
+	--work-badge-text: #fef3c7;
+	--work-btn-bg: #3d192b;
+	--work-btn-text: #70e4ef;
+	grid-column: span 2 !important;
+}
+
+/* 3. This Site — Master Cartridge Console & 32-Skin Chameleon Deck */
+html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(3) {
+	--work-frieze: var(--pixel-frieze-site);
+	--work-sprite: var(--pixel-work-sprite-site);
+	--work-status: "★ QUEST COMPLETE // 32-THEME ENGINE & TEST SUITE";
+	--work-bg: #251311;
+	--work-inset: #7c3523;
+	--work-top-border: #4cd964;
+	--work-title: #ffd166;
+	--work-rule: #94402b;
+	--work-badge-bg: #112d1d;
+	--work-badge-border: #4cd964;
+	--work-badge-text: #bbf7d0;
+	--work-btn-bg: #3d1e18;
+	--work-btn-text: #86efac;
+	grid-column: span 2 !important;
+}
+
+/* 4. Sage & Cedar — Cozy Herbal Apothecary & Botanical Spa Menu */
+html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(4) {
+	--work-frieze: var(--pixel-frieze-sage);
+	--work-sprite: var(--pixel-work-sprite-sage);
+	--work-status: "★ COMMISSION COMPLETE // SALON MENU & MOBILE UI";
+	--work-bg: #112219;
+	--work-inset: #27573c;
+	--work-top-border: #86efac;
+	--work-title: #bbf7d0;
+	--work-rule: #326e4c;
+	--work-badge-bg: #183626;
+	--work-badge-border: #86efac;
+	--work-badge-text: #dcfce7;
+	--work-btn-bg: #1b3828;
+	--work-btn-text: #fde68a;
+	grid-column: span 2 !important;
+}
+
+/* 5. Flowers by Leanne — Blooming Greenhouse & Florist Photo Showcase */
+html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(5) {
+	--work-frieze: var(--pixel-frieze-flowers);
+	--work-sprite: var(--pixel-work-sprite-flowers);
+	--work-status: "★ COMMISSION COMPLETE // FLORIST PHOTO SHOWCASE";
+	--work-bg: #26111c;
+	--work-inset: #6e2546;
+	--work-top-border: #fda4af;
+	--work-title: #fecdd3;
+	--work-rule: #852d55;
+	--work-badge-bg: #3d1729;
+	--work-badge-border: #fda4af;
+	--work-badge-text: #ffe4e6;
+	--work-btn-bg: #3d192b;
+	--work-btn-text: #fde68a;
+	grid-column: span 3 !important;
+}
+
+/* 6. Fridge Poetry Lab — Cozy Kitchen Board & 3D Magnet Word Tiles */
+html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(6) {
+	--work-frieze: var(--pixel-frieze-poetry);
+	--work-sprite: var(--pixel-work-sprite-poetry);
+	--work-status: "★ QUEST COMPLETE // WEB COMPONENT & MAGNET LAB";
+	--work-bg: #151d2e;
+	--work-inset: #33486e;
+	--work-top-border: #ff5c7c;
+	--work-title: #fef3c7;
+	--work-rule: #415b8a;
+	--work-badge-bg: #22304d;
+	--work-badge-border: #70e4ef;
+	--work-badge-text: #e0f2fe;
+	--work-btn-bg: #21304d;
+	--work-btn-text: #70e4ef;
+	grid-column: span 3 !important;
+}
+
+/* Reversed Featured Console Deck: Status Ribbon on Row 1, Copy on LEFT, Monitor Screen on RIGHT */
+html[data-skin="eight-bit-overworld"] .features--showcase .featured-project {
+	grid-column: 1 / -1 !important;
+	display: grid !important;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr) !important;
+	gap: 0.85rem 1.65rem !important;
+	align-items: center;
+}
+
+html[data-skin="eight-bit-overworld"] .features--showcase .featured-project::before {
+	grid-column: 1 / -1;
+	grid-row: 1;
+	justify-self: start;
+	margin-bottom: 0;
+}
+
+html[data-skin="eight-bit-overworld"] .features--showcase .featured-project .inner {
+	grid-column: 1;
+	grid-row: 2;
+}
+
+html[data-skin="eight-bit-overworld"] .features--showcase .featured-project .image {
+	grid-column: 2;
+	grid-row: 2;
+	margin-bottom: 0 !important;
+}
+
+html[data-skin="eight-bit-overworld"] .features article:hover {
+	border-color: var(--pixel-cyan) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .features article .image {
+	display: block !important;
+	position: relative !important;
+	width: 100% !important;
+	height: auto !important;
+	margin: 0 0 0.95rem 0 !important;
+	padding: 0 !important;
+	border: 3px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	background: #050811 !important;
+	box-shadow: 4px 4px 0 var(--pixel-ink) !important;
+	text-decoration: none !important;
+	overflow: hidden;
+}
+
+html[data-skin="eight-bit-overworld"] .features article .image::before {
+	content: none !important;
+	display: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .features article .image img {
+	display: block !important;
+	position: static !important;
+	width: 100% !important;
+	height: auto !important;
+	aspect-ratio: 16 / 10;
+	margin: 0 !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	filter: none !important;
+	object-fit: cover;
+	object-position: top center;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.features article .inner, .features--showcase .featured-project .inner) {
+	display: flex !important;
+	flex-direction: column;
+	flex: 1;
+	width: 100% !important;
+}
+
+html[data-skin="eight-bit-overworld"] .features article h3 {
+	display: flex;
+	align-items: center;
+	min-height: 1.75rem;
+	margin: 0 0 0.55rem !important;
+	padding: 0.1rem 0 0.45rem 2.1rem;
+	border-bottom: 2px dashed var(--work-rule, #2b3f78);
+	background-image: var(--work-sprite);
+	background-repeat: no-repeat;
+	background-position: left 0.12rem;
+	background-size: 22px 22px;
+	color: var(--work-title, var(--pixel-gold)) !important;
+	font-size: 1.02rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] .features--showcase .featured-project h3 {
+	padding-left: 2.35rem;
+	background-size: 26px 26px;
+	background-position: left 0.15rem;
+	font-size: clamp(1.2rem, 2vw, 1.55rem) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .features article p {
+	margin: 0 0 0.65rem;
+	color: var(--text-2) !important;
+	font-size: 0.9rem;
+	line-height: 1.5;
+}
+
+html[data-skin="eight-bit-overworld"] .project-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.45rem;
+	margin-top: auto;
+	padding-top: 0.55rem;
+}
+
+html[data-skin="eight-bit-overworld"] .features article .inner span a {
+	display: inline-flex !important;
+	align-items: center;
+	min-height: 2rem;
+	padding: 0.3rem 0.6rem !important;
+	border: 2px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	background: var(--work-btn-bg, #162244) !important;
+	box-shadow: inset -2px -2px 0 #050811, 3px 3px 0 var(--pixel-ink) !important;
+	color: var(--work-btn-text, var(--pixel-cyan)) !important;
+	font: 400 0.68rem/1.2 var(--pixel-display) !important;
+	letter-spacing: 0.04em;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.features article .inner span a:hover, .features article .inner span a:focus-visible) {
+	border-color: var(--pixel-ink) !important;
+	background: var(--pixel-gold) !important;
+	color: var(--pixel-ink) !important;
+}
+
+/* Cozy 8-Bit Tinkerer's & Craftsman's Workshop Study for "A little background" (.work-background) */
+html[data-skin="eight-bit-overworld"] .section-soft > .site-shell {
+	padding: 3.6rem clamp(1.35rem, 3vw, 2rem) 10.6rem !important;
+	border: 4px solid var(--pixel-gold);
+	background-color: #2e1810 !important;
+	background-image:
+		var(--pixel-work-study-ceiling),
+		var(--pixel-work-study-mural),
+		var(--pixel-work-study-wall) !important;
+	background-size:
+		1280px 80px,
+		1280px 152px,
+		256px 128px !important;
+	background-position:
+		center top,
+		center bottom,
+		left top !important;
+	background-repeat:
+		no-repeat,
+		no-repeat,
+		repeat !important;
+	box-shadow:
+		inset 0 0 0 3px #8c4522,
+		0 0 0 4px var(--pixel-ink),
+		8px 8px 0 var(--pixel-ink);
+}
+
+html[data-skin="eight-bit-overworld"] .work-background {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.95rem 1.25rem;
+	align-items: stretch;
+}
+
+html[data-skin="eight-bit-overworld"] .work-background > h2 {
+	grid-column: 1 / -1;
+	display: inline-flex;
+	align-items: center;
+	justify-self: start;
+	margin: 0 0 0.35rem !important;
+	padding: 0.5rem 0.95rem 0.5rem 2.4rem;
+	border: 3px solid var(--pixel-gold);
+	background-color: #160a05;
+	background-image: var(--pixel-sprite-gear-pin);
+	background-repeat: no-repeat;
+	background-position: 0.65rem center;
+	background-size: 20px 20px;
+	box-shadow:
+		inset 0 0 0 2px #7c3a1d,
+		4px 4px 0 var(--pixel-ink);
+	color: var(--pixel-gold) !important;
+}
+
+/* Warm Parchment Craftsman's Field-Note Logbook Cards */
+html[data-skin="eight-bit-overworld"] .work-background > p:not(:last-child) {
+	max-width: none;
+	margin: 0 !important;
+	padding: 0.95rem 1.05rem 0.95rem 2.5rem;
+	border: 3px solid #231109;
+	border-left: 6px solid #c2410c;
+	background-color: #f6e7c8 !important;
+	background-image: var(--pixel-sprite-gear-pin);
+	background-repeat: no-repeat;
+	background-position: 0.65rem 0.95rem;
+	background-size: 18px 18px;
+	box-shadow:
+		inset 0 0 0 2px #e5cfa3,
+		5px 5px 0 #120804;
+	color: #231109 !important;
+	font-size: 0.92rem;
+	line-height: 1.55;
+}
+
+html[data-skin="eight-bit-overworld"] .work-background > p:not(:last-child):nth-of-type(even) {
+	border-left-color: #0f766e;
+}
+
+/* 8th Grid Slot: Workshop Blueprint Ledger Card for "More projects on GitHub ->" */
+html[data-skin="eight-bit-overworld"] .work-background > p:last-child {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 0.55rem;
+	max-width: none;
+	margin: 0 !important;
+	padding: 0.95rem 1.15rem;
+	border: 3px solid var(--pixel-gold);
+	background-color: #1a0c06 !important;
+	box-shadow:
+		inset 0 0 0 2px #7c3a1d,
+		5px 5px 0 #120804;
+}
+
+html[data-skin="eight-bit-overworld"] .work-background > p:last-child::before {
+	content: "★ WORKSHOP ARCHIVES // SOURCE REPOSITORIES";
+	color: #fde68a;
+	font: 400 0.56rem/1.3 var(--pixel-display);
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] .work-background > p:last-child a {
+	display: inline-flex !important;
+	align-items: center;
+	gap: 0.45rem;
+	min-height: 2.4rem;
+	padding: 0.5rem 1rem !important;
+	border: 3px solid var(--pixel-ink) !important;
+	background: var(--pixel-gold) !important;
+	box-shadow:
+		inset -3px -3px 0 #c88a14,
+		inset 3px 3px 0 #fff3b0,
+		4px 4px 0 var(--pixel-ink) !important;
+	color: var(--pixel-ink) !important;
+	font: 400 0.72rem/1.3 var(--pixel-display) !important;
+	letter-spacing: 0.04em;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] .work-background > p:last-child a:hover,
+html[data-skin="eight-bit-overworld"] .work-background > p:last-child a:focus-visible {
+	background: var(--pixel-cyan) !important;
+	box-shadow:
+		inset -3px -3px 0 #1f8a94,
+		inset 3px 3px 0 #d4fcff,
+		4px 4px 0 var(--pixel-ink) !important;
+	color: var(--pixel-ink) !important;
+}
+
+/* --- 5. Favorites Page: Cozy Cabin Study & Collector's Curio Keepsakes (.page-favorites) --- */
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top {
+	background-color: #1c0f16 !important;
+	background-image:
+		var(--pixel-cozy-cabin-wall),
+		linear-gradient(180deg, #160b11 0%, #21111a 55%, #2b1620 100%) !important;
+	background-size: 320px 160px, 100% 100% !important;
+	background-repeat: repeat, no-repeat !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .site-header {
+	background: #1b0d14 !important;
+	border-bottom: 4px solid var(--pixel-gold) !important;
+	box-shadow: 0 4px 0 #0d0508 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top :is(.site-nav a, .site-nav .nav-cta) {
+	background: #381a24 !important;
+	box-shadow: inset -2px -2px 0 #1a0b10, 3px 3px 0 #0d0508 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top :is(.site-nav a:hover, .site-nav a:focus-visible, .site-nav a[aria-current="page"]) {
+	background: var(--pixel-gold) !important;
+	box-shadow: inset -2px -2px 0 var(--pixel-gold-shade), 3px 3px 0 #0d0508 !important;
+	color: var(--pixel-ink) !important;
+}
+
+/* Cozy Cabin Study Hero with Bookshelves, Wingback Chair, Stone Hearth, Whiskered Kitten & Boreal Window */
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-hero {
+	padding-top: 3.1rem !important;
+	padding-bottom: 1.5rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-hero > .site-shell {
+	width: min(1280px, calc(100% - 2.5rem)) !important;
+	max-width: 1280px !important;
+	padding: 2.1rem clamp(1.6rem, 3vw, 2.4rem) 12.2rem !important;
+	border: 4px solid var(--pixel-gold) !important;
+	background-color: #33190e !important;
+	background-image:
+		var(--pixel-cozy-study-mural),
+		var(--pixel-cozy-wood-wall) !important;
+	background-position: center bottom, left top !important;
+	background-size: 1280px 176px, 128px 64px !important;
+	background-repeat: no-repeat, repeat !important;
+	box-shadow:
+		inset 0 0 0 4px #78350f,
+		0 0 0 4px #120703,
+		8px 8px 0 #120703 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-hero .eyebrow {
+	padding: 0.28rem 0.7rem !important;
+	border: 2px solid var(--pixel-gold) !important;
+	background: #581c28 !important;
+	box-shadow: 3px 3px 0 #120703 !important;
+	color: var(--pixel-gold) !important;
+	font-size: 0.76rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-hero h1 {
+	max-width: none !important;
+	margin: 0.25rem 0 0.75rem !important;
+	font-size: clamp(1.85rem, 3.1vw, 2.55rem) !important;
+	line-height: 1.18 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-hero .lead {
+	max-width: 50rem !important;
+	margin: 0 0 0.85rem !important;
+	padding: 0.85rem 1.15rem !important;
+	border: 3px solid #1e0e06 !important;
+	border-left: 6px solid #991b1b !important;
+	background: #faf0dc !important;
+	box-shadow:
+		inset 2px 2px 0 #dec084,
+		4px 4px 0 #120703 !important;
+	color: #1e0e06 !important;
+	font-size: 1.06rem !important;
+	line-height: 1.62 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-jump {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.45rem;
+	margin-top: 0.25rem;
+	padding: 0.48rem 0.95rem !important;
+	border: 2px solid #1e0e06 !important;
+	background: var(--pixel-gold) !important;
+	box-shadow:
+		inset -2px -2px 0 var(--pixel-gold-shade),
+		inset 2px 2px 0 #fff7cc,
+		3px 3px 0 #120703 !important;
+	color: #1e0e06 !important;
+	font: 400 0.8rem/1.2 var(--pixel-display) !important;
+	text-decoration: none !important;
+	text-transform: uppercase;
+	text-shadow: none !important;
+}
+
+/* Warm Cedar Bookcase Cabinet Housing the Toolbar, Contents Journal & Curio Cards */
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-section {
+	padding-top: 0.75rem !important;
+	padding-bottom: 2.25rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-section > .site-shell {
+	width: min(1280px, calc(100% - 2.5rem)) !important;
+	max-width: 1280px !important;
+	padding: clamp(1.35rem, 2.6vw, 2rem) !important;
+	border: 4px solid var(--pixel-gold) !important;
+	background-color: #33190e !important;
+	background-image: var(--pixel-cozy-wood-wall) !important;
+	background-size: 128px 64px !important;
+	background-repeat: repeat !important;
+	box-shadow:
+		inset 0 0 0 4px #78350f,
+		0 0 0 4px #120703,
+		8px 8px 0 #120703 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-toolbar {
+	margin: 0 0 1.25rem !important;
+	padding: 0.65rem 1.05rem !important;
+	border: 3px solid var(--pixel-gold);
+	background: #220f07 !important;
+	box-shadow: 4px 4px 0 #120703;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-toolbar-label {
+	color: var(--pixel-gold) !important;
+	font: 400 0.8rem/1.2 var(--pixel-display) !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-view-button {
+	min-height: 2.2rem !important;
+	padding: 0.35rem 0.85rem !important;
+	border: 2px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	background: #381a24 !important;
+	box-shadow: 2px 2px 0 #120703 !important;
+	color: var(--text-1) !important;
+	font: 400 0.76rem/1.2 var(--pixel-display) !important;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top :is(.favorites-view-button[aria-pressed="true"], .favorites-view-button:hover, .favorites-view-button:focus-visible) {
+	border-color: #1e0e06 !important;
+	background: var(--pixel-gold) !important;
+	color: #1e0e06 !important;
+}
+
+/* Open Collector's Journal for Contents Index */
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-index {
+	max-width: none;
+	margin-bottom: 1.65rem !important;
+	padding: 1.25rem 1.5rem !important;
+	border: 3px solid #1e0e06 !important;
+	background-color: #faf0dc !important;
+	background-image: var(--pixel-scroll-parchment) !important;
+	background-size: 64px 64px !important;
+	background-repeat: repeat !important;
+	box-shadow:
+		inset 0 0 0 3px #d6b47c,
+		6px 6px 0 #120703 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-index h2 {
+	margin: 0 0 0.85rem !important;
+	padding-bottom: 0.45rem !important;
+	border-bottom: 2px dashed #854d27 !important;
+	color: #1e0e06 !important;
+	font-size: 1.18rem !important;
+	text-shadow: 2px 2px 0 #e4c890 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-index-list {
+	columns: 3 !important;
+	column-gap: clamp(1.75rem, 3.2vw, 2.6rem) !important;
+	padding-left: 1.85rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-index-list li {
+	margin-bottom: 0.42rem !important;
+	color: #7c2d12 !important;
+	font-size: 0.98rem !important;
+	font-weight: 700 !important;
+	line-height: 1.48 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-index-list a {
+	display: inline;
+	padding: 0.08rem 0.25rem !important;
+	color: #1e0e06 !important;
+	font-size: 0.98rem !important;
+	font-weight: 700 !important;
+	text-decoration: underline !important;
+	text-decoration-color: rgba(153, 27, 27, 0.45) !important;
+	text-decoration-thickness: 2px !important;
+	text-underline-offset: 0.2em !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top :is(.favorites-index-list a:hover, .favorites-index-list a:focus-visible) {
+	background: var(--pixel-gold) !important;
+	color: #1e0e06 !important;
+	text-decoration: none !important;
+}
+
+/* Spacious 3-Column (Compact) & 2-Column (Showcase) Cozy Keepsake Cards */
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-grid {
+	grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+	gap: 1.45rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top[data-favorites-view="two-column"] .favorites-grid {
+	grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+	gap: 1.65rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-card {
+	border: 3px solid #1e0e06 !important;
+	border-radius: 0 !important;
+	background-color: #faf0dc !important;
+	background-image: var(--pixel-scroll-parchment) !important;
+	background-size: 64px 64px !important;
+	background-repeat: repeat !important;
+	box-shadow:
+		inset 0 0 0 2px #d6b47c,
+		0 5px 0 #592e1a,
+		6px 8px 0 #120703 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-media,
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top[data-favorites-view="two-column"] .favorite-media {
+	height: auto !important;
+	aspect-ratio: 16 / 9.2 !important;
+	border-bottom: 3px solid #1e0e06 !important;
+	background: #221008 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-media--logo {
+	background: #fdf9f0 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-copy {
+	padding: 1.25rem 1.3rem 1.35rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top[data-favorites-view="two-column"] .favorite-copy {
+	padding: 1.45rem 1.55rem 1.55rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-copy p.favorite-kind,
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top[data-favorites-view="two-column"] .favorite-copy p.favorite-kind {
+	margin: 0 0 0.55rem !important;
+	padding: 0.22rem 0.58rem !important;
+	border: 2px solid #1e0e06 !important;
+	background: #4a1924 !important;
+	box-shadow: 2px 2px 0 #d6b47c !important;
+	color: var(--pixel-gold) !important;
+	font: 400 0.74rem/1.25 var(--pixel-display) !important;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-copy h2 {
+	margin: 0 0 0.6rem !important;
+	color: #1e0e06 !important;
+	font-size: clamp(1.16rem, 1.45vw, 1.34rem) !important;
+	line-height: 1.28 !important;
+	text-shadow: 2px 2px 0 #e4c890 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top[data-favorites-view="two-column"] .favorite-copy h2 {
+	margin: 0 0 0.65rem !important;
+	font-size: clamp(1.28rem, 1.7vw, 1.5rem) !important;
+	line-height: 1.26 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-copy p:not(.favorite-kind) {
+	margin: 0 0 0.75rem !important;
+	color: #2b1406 !important;
+	font-size: 1.01rem !important;
+	line-height: 1.62 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top[data-favorites-view="two-column"] .favorite-copy p:not(.favorite-kind) {
+	margin: 0 0 0.8rem !important;
+	font-size: 1.06rem !important;
+	line-height: 1.66 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-copy > p:last-of-type,
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top[data-favorites-view="two-column"] .favorite-copy > p:last-of-type {
+	margin-bottom: 1rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-copy p a {
+	color: #7f1d1d !important;
+	font-weight: 700 !important;
+	text-decoration: underline !important;
+	text-decoration-color: #991b1b !important;
+	text-decoration-thickness: 2px !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-copy p a:hover,
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-copy p a:focus-visible {
+	background: var(--pixel-gold) !important;
+	color: #1e0e06 !important;
+	text-decoration: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-link,
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top[data-favorites-view="two-column"] .favorite-link {
+	display: inline-flex;
+	align-items: center;
+	margin-top: auto !important;
+	min-height: 2.35rem !important;
+	padding: 0.45rem 0.85rem !important;
+	border: 2px solid #1e0e06 !important;
+	background: var(--pixel-gold) !important;
+	box-shadow:
+		inset -2px -2px 0 var(--pixel-gold-shade),
+		inset 2px 2px 0 #fff7cc,
+		3px 3px 0 #1e0e06 !important;
+	color: #1e0e06 !important;
+	font: 400 0.78rem/1.2 var(--pixel-display) !important;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top :is(.favorite-link:hover, .favorite-link:focus-visible) {
+	border-color: #1e0e06 !important;
+	background: var(--pixel-cyan) !important;
+	box-shadow:
+		inset -2px -2px 0 #1f8a94,
+		inset 2px 2px 0 #d4fcff,
+		3px 3px 0 #1e0e06 !important;
+	color: #1e0e06 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-image-credits {
+	margin-top: 1.5rem !important;
+	padding: 0.75rem 1rem !important;
+	border: 2px solid var(--pixel-gold);
+	background: #220f07 !important;
+	color: var(--text-1) !important;
+	font-size: 0.9rem !important;
+	line-height: 1.55 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-image-credits a {
+	color: var(--pixel-gold) !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-back-to-top {
+	border: 3px solid var(--pixel-gold) !important;
+	border-radius: 0 !important;
+	background: #381a24 !important;
+	box-shadow: 4px 4px 0 #0d0508 !important;
+	color: var(--pixel-gold) !important;
+	font: 400 0.76rem/1.2 var(--pixel-display) !important;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .site-footer {
+	background-color: #140803 !important;
+	background-image: var(--pixel-stage-floor) !important;
+	background-repeat: repeat-x !important;
+	background-position: left top !important;
+	background-size: 128px 28px !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .social-inline a {
+	background: #381a24 !important;
+	box-shadow: 2px 2px 0 #0d0508 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .skin-picker {
+	--skin-ui-bg: #1b0d14;
+	--skin-ui-panel: #381a24;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top :is(.skin-picker-toggle, .skin-picker-cycle) {
+	background: #381a24 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .skin-picker-panel {
+	background: #26121a !important;
+}
+
+/* --- 6. Contact Page: Full-Page Tavern Guildhall & Unfurled Parchment Scrolls --- */
+
+html[data-skin="eight-bit-overworld"] body.page-contact {
+	background-color: #160a04 !important;
+	background-image:
+		var(--pixel-contact-outer-wall),
+		linear-gradient(180deg, #120803 0%, #1a0c05 55%, #241107 100%) !important;
+	background-size: 480px 240px, 100% 100% !important;
+	background-repeat: repeat, no-repeat !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact .site-header {
+	background: #170a04 !important;
+	border-bottom: 4px solid var(--pixel-gold) !important;
+	box-shadow: 0 4px 0 #090301 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact :is(.site-nav a, .site-nav .nav-cta) {
+	background: #2e1508 !important;
+	box-shadow: inset -2px -2px 0 #160903, 3px 3px 0 #090301 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact :is(.site-nav a:hover, .site-nav a:focus-visible, .site-nav a[aria-current="page"]) {
+	background: var(--pixel-gold) !important;
+	box-shadow: inset -2px -2px 0 var(--pixel-gold-shade), 3px 3px 0 #090301 !important;
+	color: var(--pixel-ink) !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact .page-hero > .site-shell {
+	padding: 4.5rem clamp(1.75rem, 3.2vw, 2.5rem) 13rem !important;
+	border: 4px solid var(--pixel-gold) !important;
+	background-color: #381c0c !important;
+	background-image:
+		var(--pixel-contact-ceiling),
+		var(--pixel-contact-tavern-mural),
+		var(--pixel-contact-wainscot) !important;
+	background-position: center top, center bottom, left top !important;
+	background-size: 1280px 72px, 1280px 192px, 128px 64px !important;
+	background-repeat: no-repeat, no-repeat, repeat !important;
+	box-shadow:
+		inset 0 0 0 4px #854d27,
+		0 0 0 4px #120702,
+		8px 8px 0 #120702 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact .site-footer {
+	background-color: #140803 !important;
+	background-image: var(--pixel-stage-floor) !important;
+	background-repeat: repeat-x !important;
+	background-position: left top !important;
+	background-size: 128px 28px !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact .social-inline a {
+	background: #2e1508 !important;
+	box-shadow: 2px 2px 0 #090301 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact .skin-picker {
+	--skin-ui-bg: #170a04;
+	--skin-ui-panel: #2b1407;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact :is(.skin-picker-toggle, .skin-picker-cycle) {
+	background: #2b1407 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-contact .skin-picker-panel {
+	background: #210f05 !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.contact-layout, .contact-hero .contact-layout) {
+	display: grid !important;
+	grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr) !important;
+	gap: 2.35rem !important;
+	align-items: start;
+}
+
+/* Unfurled 8-Bit Parchment Scrolls: Form Scroll (Left) & Contract Intro Scroll (Right) */
+html[data-skin="eight-bit-overworld"] .contact-form-grid {
+	grid-column: 1;
+	grid-row: 1;
+	position: relative;
+	width: 100% !important;
+	margin: 18px 0 !important;
+	padding: 1.55rem 1.5rem 1.65rem !important;
+	border: 3px solid #1c0c04 !important;
+	border-radius: 0 !important;
+	background-color: #f5e4be !important;
+	background-image:
+		var(--pixel-sprite-quill),
+		var(--pixel-scroll-parchment) !important;
+	background-position: right 1rem bottom 0.85rem, left top !important;
+	background-size: 48px 48px, 64px 64px !important;
+	background-repeat: no-repeat, repeat !important;
+	box-shadow:
+		inset 6px 0 0 #e4c890,
+		inset -6px 0 0 #e4c890,
+		inset 0 5px 0 #dec084,
+		inset 0 -5px 0 #dec084,
+		inset 0 0 0 2px #b88a44,
+		6px 8px 0 #120702 !important;
+	color: #2b1406 !important;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-intro {
+	grid-column: 2;
+	grid-row: 1;
+	position: relative !important;
+	top: auto !important;
+	margin: 18px 0 !important;
+	padding: 1.5rem 1.45rem 1.85rem !important;
+	border: 3px solid #1c0c04 !important;
+	border-radius: 0 !important;
+	background-color: #f5e4be !important;
+	background-image:
+		var(--pixel-sprite-wax-seal),
+		var(--pixel-scroll-parchment) !important;
+	background-position: right 0.95rem bottom 0.75rem, left top !important;
+	background-size: 48px 48px, 64px 64px !important;
+	background-repeat: no-repeat, repeat !important;
+	box-shadow:
+		inset 6px 0 0 #e4c890,
+		inset -6px 0 0 #e4c890,
+		inset 0 5px 0 #dec084,
+		inset 0 -5px 0 #dec084,
+		inset 0 0 0 2px #b88a44,
+		6px 8px 0 #120702 !important;
+	color: #2b1406 !important;
+}
+
+/* Carved Oak & Brass Scroll Rollers (Top ::before & Bottom ::after) */
+html[data-skin="eight-bit-overworld"] :is(.contact-form-grid, .contact-intro)::before,
+html[data-skin="eight-bit-overworld"] :is(.contact-form-grid, .contact-intro)::after {
+	content: "" !important;
+	display: block !important;
+	position: absolute !important;
+	left: -14px !important;
+	right: -14px !important;
+	height: 24px !important;
+	background-image:
+		var(--pixel-scroll-spindle-left),
+		var(--pixel-scroll-spindle-right),
+		linear-gradient(
+			180deg,
+			#1c0c04 0px, #1c0c04 4px,
+			#fff9ec 4px, #fff9ec 8px,
+			#f5e4be 8px, #f5e4be 12px,
+			#e4c890 12px, #e4c890 16px,
+			#c8a064 16px, #c8a064 20px,
+			#1c0c04 20px, #1c0c04 24px
+		) !important;
+	background-position: left center, right center, center center !important;
+	background-size: 24px 24px, 24px 24px, calc(100% - 44px) 24px !important;
+	background-repeat: no-repeat, no-repeat, no-repeat !important;
+	filter: drop-shadow(0 4px 0 #120702);
+	pointer-events: none;
+	z-index: 2;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.contact-form-grid, .contact-intro)::before {
+	top: -21px !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.contact-form-grid, .contact-intro)::after {
+	bottom: -21px !important;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-intro .eyebrow {
+	border-color: #1c0c04 !important;
+	background: #450a0a !important;
+	box-shadow: 3px 3px 0 #1c0c04 !important;
+	color: var(--pixel-gold) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-intro :is(h1, h2, h3, strong) {
+	color: #1c0c04 !important;
+	text-shadow: 2px 2px 0 #e4c890 !important;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-intro :is(p:not(.eyebrow), .lead, li) {
+	color: #2b1406 !important;
+	text-shadow: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-intro .lead {
+	margin: 0 0 1rem !important;
+	padding: 0.7rem 0.95rem !important;
+	border: 2px solid #2b1406 !important;
+	border-left: 5px solid #991b1b !important;
+	background: #fffaf0 !important;
+	box-shadow:
+		inset 2px 2px 0 #dec084,
+		3px 3px 0 #c8a064 !important;
+	color: #1c0c04 !important;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem;
+	margin-top: 1.1rem;
+	padding-right: 3.25rem;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-links a {
+	display: inline-block;
+	padding: 0.35rem 0.65rem !important;
+	border: 2px solid #1c0c04 !important;
+	background: #2b1406 !important;
+	box-shadow: 3px 3px 0 #1c0c04 !important;
+	color: var(--pixel-gold) !important;
+	font: 400 0.7rem/1.2 var(--pixel-display) !important;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-links a:hover,
+html[data-skin="eight-bit-overworld"] .contact-links a:focus-visible {
+	background: #450a0a !important;
+	color: #fff9ec !important;
+}
+
+html[data-skin="eight-bit-overworld"] label {
+	color: var(--pixel-gold) !important;
+	font: 400 0.74rem/1.3 var(--pixel-display) !important;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-form-grid label {
+	color: #2b1406 !important;
+	text-shadow: 1px 1px 0 #fff9ec !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(input[type="text"], input[type="password"], input[type="email"], select, textarea) {
+	padding: 0.55rem 0.75rem !important;
+	border: 2px solid var(--text-1) !important;
+	border-radius: 0 !important;
+	background: #101730 !important;
+	box-shadow: inset 3px 3px 0 var(--pixel-ink) !important;
+	color: var(--text-1) !important;
+	font: 400 0.95rem/1.4 var(--pixel-body) !important;
+	caret-color: var(--pixel-gold);
+}
+
+html[data-skin="eight-bit-overworld"] .contact-form-grid :is(input[type="text"], input[type="password"], input[type="email"], select, textarea) {
+	border: 2px solid #2b1406 !important;
+	background: #fffaf0 !important;
+	box-shadow: inset 3px 3px 0 #dec084 !important;
+	color: #1c0c04 !important;
+	caret-color: #991b1b;
+}
+
+html[data-skin="eight-bit-overworld"] :is(input:focus, select:focus, textarea:focus) {
+	border-color: var(--pixel-gold) !important;
+	background: #162244 !important;
+	box-shadow: inset 3px 3px 0 var(--pixel-ink), 0 0 0 2px var(--pixel-gold) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .contact-form-grid :is(input:focus, select:focus, textarea:focus) {
+	border-color: #991b1b !important;
+	background: #ffffff !important;
+	box-shadow: inset 3px 3px 0 #e4c890, 0 0 0 2px #b45309 !important;
+}
+
+/* --- 7. Arcade Buttons, Overworld Stage CTA, Fridge Board & Pixel Ground Footer --- */
+
+html[data-skin="eight-bit-overworld"] :is(input[type="submit"], input[type="reset"], input[type="button"], button:not([class^="skin-picker"]):not(.personality-arrow):not(.favorites-view-button), .button) {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 0;
+	height: auto;
+	min-height: 2.55rem;
+	padding: 0.48rem 1.05rem !important;
+	border: 3px solid var(--pixel-ink) !important;
+	border-radius: 0 !important;
+	background: var(--pixel-gold) !important;
+	box-shadow:
+		inset -3px -3px 0 var(--pixel-gold-shade),
+		inset 2px 2px 0 #fff5b8,
+		4px 4px 0 var(--pixel-ink) !important;
+	color: var(--pixel-ink) !important;
+	font: 400 0.8rem/1.2 var(--pixel-display) !important;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	text-decoration: none !important;
+	text-shadow: none !important;
+	transform: none !important;
+	cursor: pointer;
+}
+
+html[data-skin="eight-bit-overworld"] :is(input[type="submit"]:hover, button:not([class^="skin-picker"]):not(.personality-arrow):not(.favorites-view-button):hover, .button:hover, .button:focus-visible) {
+	background: var(--pixel-cyan) !important;
+	box-shadow:
+		inset -3px -3px 0 #1f8a94,
+		inset 2px 2px 0 #d4fcff,
+		4px 4px 0 var(--pixel-ink) !important;
+	color: var(--pixel-ink) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .section-cta {
+	padding: 1.75rem 0 2.5rem !important;
+	border: 0 !important;
+	background: transparent !important;
+}
+
+html[data-skin="eight-bit-overworld"] .section-cta > .site-shell {
+	position: relative;
+	padding: 2.1rem 1.75rem 9.5rem;
+	border: 4px solid var(--pixel-gold);
+	background-color: #2c1609 !important;
+	background-image:
+		var(--pixel-bottom-mural),
+		var(--pixel-stage-floor),
+		var(--pixel-tavern-brick) !important;
+	background-position: center bottom, left bottom, left top !important;
+	background-size: 1280px 380px, 128px 28px, 128px 64px !important;
+	background-repeat: no-repeat, repeat-x, repeat !important;
+	box-shadow:
+		inset 0 0 0 3px #854d27,
+		0 0 0 4px var(--pixel-ink),
+		8px 8px 0 var(--pixel-ink);
+	text-align: center;
+}
+
+html[data-skin="eight-bit-overworld"] .section-cta > .site-shell::before {
+	content: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .section-cta h2 {
+	color: var(--pixel-gold) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .section-cta p {
+	max-width: 44rem;
+	margin-inline: auto;
+	color: var(--text-1) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .section-cta .actions {
+	display: flex;
+	justify-content: center;
+	margin-top: 1rem;
+}
+
+html[data-skin="eight-bit-overworld"] fridge-poetry-board {
+	--fp-focus: #ffd84d;
+}
+
+html[data-skin="eight-bit-overworld"] pre {
+	padding: 1rem;
+	border: 3px solid var(--text-1);
+	background: #0b0720;
+	box-shadow: 5px 5px 0 var(--pixel-ink);
+	color: var(--pixel-cyan);
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+	overflow-x: visible;
+}
+
+html[data-skin="eight-bit-overworld"] code {
+	border: 1px solid #3b2b7d;
+	border-radius: 0;
+	background: #0b0720;
+	color: var(--pixel-gold);
+	font-family: var(--pixel-body);
+}
+
+html[data-skin="eight-bit-overworld"] pre code {
+	border: 0;
+	background: transparent;
+	color: inherit;
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+	overflow-x: visible;
+}
+
+/* Footer with 8-Bit Grass & Checkered Brick Ground Platform */
+html[data-skin="eight-bit-overworld"] .site-footer {
+	margin-top: 1.5rem;
+	padding: 2rem 0 0;
+	border: 0 !important;
+	background-color: #080516 !important;
+	background-image: var(--pixel-ground-strip) !important;
+	background-repeat: repeat-x !important;
+	background-position: left top !important;
+	background-size: 128px 32px !important;
+	color: var(--text-1) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .site-footer::before {
+	content: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] .footer-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 0.75rem 1.5rem;
+	padding: 0.95rem 0;
+}
+
+html[data-skin="eight-bit-overworld"] .social-inline {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 0.75rem;
+	margin: 0;
+}
+
+html[data-skin="eight-bit-overworld"] .social-inline a {
+	display: inline-block;
+	padding: 0.25rem 0.55rem;
+	border: 2px solid var(--text-1) !important;
+	background: #1c1444 !important;
+	box-shadow: 2px 2px 0 var(--pixel-ink) !important;
+	color: var(--pixel-gold) !important;
+	font: 400 0.68rem/1.2 var(--pixel-display) !important;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+/* --- 8. Theme Picker & Contact Charm (.skin-picker, .skin-contact-charm) --- */
+
+html[data-skin="eight-bit-overworld"] .skin-picker {
+	--skin-ui-bg: #0b0720;
+	--skin-ui-panel: #161038;
+	--skin-ui-text: #fff9ec;
+	--skin-ui-muted: #e2dbf7;
+	--skin-ui-accent: #ffd84d;
+	--skin-ui-border: #fff9ec;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.skin-picker-controls, .skin-picker-toggle, .skin-picker-cycle, .skin-picker-panel, .skin-picker-option, .skin-picker-close) {
+	border-radius: 0 !important;
+}
+
+html[data-skin="eight-bit-overworld"] :is(.skin-picker-toggle, .skin-picker-cycle) {
+	border: 2px solid var(--text-1) !important;
+	background: #161038 !important;
+	box-shadow: 4px 4px 0 var(--pixel-ink) !important;
+}
+
+html[data-skin="eight-bit-overworld"] .skin-picker-panel {
+	border: 3px solid var(--text-1) !important;
+	background: #120d2e !important;
+	box-shadow: 6px 6px 0 var(--pixel-ink) !important;
+}
+
+html[data-skin-id="eight-bit-overworld"] .skin-contact-charm {
+	--skin-contact-rotate: 0deg;
+	position: absolute !important;
+	top: 0.65rem !important;
+	right: max(1.25rem, calc((100% - 1180px) / 2)) !important;
+	display: inline-flex !important;
+	align-items: center;
+	gap: 0.4ch;
+	width: auto;
+	max-width: calc(100% - 2rem);
+	min-height: 2.35rem;
+	margin: 0 !important;
+	padding: 0.38rem 0.8rem !important;
+	border: 3px solid var(--pixel-ink) !important;
+	border-radius: 0 !important;
+	background: var(--pixel-gold) !important;
+	box-shadow:
+		inset -2px -2px 0 var(--pixel-gold-shade),
+		inset 2px 2px 0 #fff5b8,
+		4px 4px 0 var(--pixel-ink) !important;
+	color: var(--pixel-ink) !important;
+	font: 400 0.72rem/1.15 var(--pixel-display) !important;
+	letter-spacing: 0.05em !important;
+	text-decoration: none !important;
+	text-transform: uppercase !important;
+	transform: none !important;
+}
+
+html[data-skin-id="eight-bit-overworld"] .skin-contact-charm:hover {
+	background: var(--pixel-cyan) !important;
+	box-shadow:
+		inset -2px -2px 0 #1f8a94,
+		inset 2px 2px 0 #d4fcff,
+		4px 4px 0 var(--pixel-ink) !important;
+	color: var(--pixel-ink) !important;
+	transform: translate(1px, 1px) !important;
+}
+
+/* --- 9. Responsive Breakpoints --- */
+
+@media (max-width: 980px) {
+	html[data-skin="eight-bit-overworld"] :is(.hero-copy, .hero-grid--with-portrait, .quest-grid, .features--showcase .featured-project, .work-background, .contact-layout, .contact-hero .contact-layout) {
+		grid-template-columns: 1fr !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] :is(.hero-copy > :not(.hero-media):not(.hero-quests), .hero-copy .hero-media, .quest-card:nth-child(1), .quest-card:nth-child(2), .quest-card:nth-child(3), .features--showcase .featured-project::before, .features--showcase .featured-project .inner, .features--showcase .featured-project .image, .contact-form-grid, .contact-intro, .hero-grid--with-portrait > :first-child, .hero-grid--with-portrait > .portrait-panel) {
+		grid-column: 1 !important;
+		grid-row: auto !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] .hero-copy .hero-media {
+		max-width: 340px;
+		margin-top: 0.35rem;
+	}
+
+	html[data-skin="eight-bit-overworld"] :is(.features, .features--showcase) {
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] .features--showcase > article:not(.featured-project) {
+		grid-column: span 1 !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-index-list {
+		columns: 2 !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+	}
+}
+
+@media (max-width: 736px) {
+	html[data-skin="eight-bit-overworld"] :is(.site-shell, body.page-fridge .page-hero > .site-shell) {
+		width: calc(100% - 1.5rem) !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] .site-header .site-shell {
+		gap: 0.45rem 0.75rem;
+		padding: 0.4rem 0;
+	}
+
+	/* 2x2 RPG Battle Command Menu for Mobile Navigation */
+	html[data-skin="eight-bit-overworld"] .site-nav {
+		width: 100% !important;
+		margin-left: 0 !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] .site-nav ul {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.35rem;
+	}
+
+	html[data-skin="eight-bit-overworld"] :is(.site-nav a, .site-nav .nav-cta) {
+		width: 100%;
+		justify-content: flex-start;
+		padding: 0.28rem 0.5rem !important;
+		font-size: 0.66rem !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] :is(.page-hero, body.page-home .page-hero) {
+		padding-top: 3.35rem !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] body.page-home .page-hero h1 {
+		grid-template-columns: 1fr;
+	}
+
+	html[data-skin-id="eight-bit-overworld"] .skin-contact-charm {
+		top: 0.5rem !important;
+		right: 0.75rem !important;
+		min-height: 2.05rem;
+		padding: 0.28rem 0.55rem !important;
+		font-size: 0.64rem !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] .page-hero > .site-shell {
+		padding: 1.35rem 1rem 7.8rem;
+		background-size: 960px 108px, 96px 24px, 64px 32px !important;
+		box-shadow:
+			inset 0 0 0 3px #354d8c,
+			0 0 0 3px var(--pixel-ink),
+			5px 5px 0 var(--pixel-ink);
+	}
+
+	html[data-skin="eight-bit-overworld"] body.page-home .page-hero > .site-shell {
+		padding-top: 3.35rem !important;
+		background-size: 960px 228px, 256px 128px !important;
+		box-shadow:
+			inset 0 0 0 3px #9a4726,
+			0 0 0 3px var(--pixel-ink),
+			5px 5px 0 var(--pixel-ink);
+	}
+
+	html[data-skin="eight-bit-overworld"] .hero-quests {
+		margin: 8.1rem -1rem -7.8rem !important;
+		padding: 1.2rem 1rem 7.8rem !important;
+		background-size: 960px 108px, 96px 24px, 64px 32px !important;
+		box-shadow:
+			inset 3px 0 0 #354d8c,
+			inset -3px -3px 0 #354d8c;
+	}
+
+	html[data-skin="eight-bit-overworld"] .hero-quests::before {
+		left: 3px !important;
+		right: 3px !important;
+		height: 114px !important;
+		background-size: 960px 114px !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] .section-cta > .site-shell {
+		padding: 1.5rem 1rem 7.5rem;
+		background-size: 960px 285px, 96px 21px, 128px 64px !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] body.page-contact .page-hero > .site-shell {
+		padding: 3.8rem 1.15rem 10.5rem !important;
+		background-size: 960px 54px, 960px 144px, 128px 64px !important;
+		box-shadow:
+			inset 0 0 0 3px #854d27,
+			0 0 0 3px #120702,
+			5px 5px 0 #120702 !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] :is(.contact-form-grid, .contact-intro)::before,
+	html[data-skin="eight-bit-overworld"] :is(.contact-form-grid, .contact-intro)::after {
+		left: -10px !important;
+		right: -10px !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] :is(.features, .features--showcase) {
+		grid-template-columns: 1fr !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] .section-soft > .site-shell {
+		padding: 3.1rem 1rem 8.4rem !important;
+		background-size:
+			960px 60px,
+			960px 114px,
+			256px 128px !important;
+		box-shadow:
+			inset 0 0 0 3px #8c4522,
+			0 0 0 3px var(--pixel-ink),
+			5px 5px 0 var(--pixel-ink);
+	}
+
+	html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-hero > .site-shell {
+		padding: 1.5rem 1.05rem 9.2rem !important;
+		background-size: 960px 132px, 128px 64px !important;
+		box-shadow:
+			inset 0 0 0 3px #78350f,
+			0 0 0 3px #120703,
+			5px 5px 0 #120703 !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-section > .site-shell {
+		padding: 1.15rem 1rem !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-index-list {
+		columns: 1 !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-grid,
+	html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top[data-favorites-view="two-column"] .favorites-grid {
+		grid-template-columns: 1fr !important;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-skin="eight-bit-overworld"] *,
+	html[data-skin="eight-bit-overworld"] *::before,
+	html[data-skin="eight-bit-overworld"] *::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}
