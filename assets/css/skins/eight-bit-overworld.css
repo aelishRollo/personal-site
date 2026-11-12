@@ -72,8 +72,18 @@ html[data-skin="eight-bit-overworld"] {
 	     toasting friend at candlelit tables, quest notice board, and iron-strapped arched oak tavern door */
 	--pixel-bottom-mural: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='380' viewBox='0 0 320 95' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='320' height='3' fill='%23170a04'/%3E%3Crect x='0' y='3' width='320' height='2' fill='%234d2612'/%3E%3Crect x='0' y='60' width='320' height='1' fill='%23170a04'/%3E%3Crect x='0' y='61' width='320' height='2' fill='%234d2612'/%3E%3Cpath fill='%234d250e' d='M12 18h14v14H12V18zM294 18h14v14h-14V18zM22 5h12v10H22V5zM62 5h12v10H62V5zM246 5h12v10h-12V5zM286 5h12v10h-12V5z'/%3E%3Cpath fill='%2378350f' d='M14 20h10v10H14V20zM296 20h10v10h-10V20zM24 6h8v8h-8V6zM64 6h8v8h-8V6zM248 6h8v8h-8V6zM288 6h8v8h-8V6zM34 15h20v24H34V15zM266 15h20v24h-20V15zM12 51h56v2H12v-2zM16 53h3v3h-3v-3zM61 53h3v3h-3v-3zM252 51h56v2h-56v-2zM256 53h3v3h-3v-3zM301 53h3v3h-3v-3zM256 45h9v6h-9v-6zM10 76h11v12H10V76zM23 76h11v12H23V76zM16 65h12v11H16V65zM40 74h62v14H40V74zM44 63h52v9H44v-9zM112 83h14v5h-14v-5zM138 56h44v3h-44v-3zM194 78h22v2h-22v-2zM197 80h2v8h-2v-8zM213 80h2v8h-2v-8zM186 84h10v4h-10v-4zM224 60h28v20h-28V60zM258 78h20v2h-20v-2zM261 80h2v8h-2v-8zM275 80h2v8h-2v-8zM288 60h22v28h-22V60z'/%3E%3Cpath fill='%23451a03' d='M36 17h16v20H36V17zM268 17h16v20h-16V17zM42 76h16v10H42V76zM62 76h16v10H62V76zM82 76h18v10H82V76zM226 62h24v16h-24V62zM290 62h18v26h-18V62z'/%3E%3Cpath fill='%230f172a' d='M38 19h12v16H38V19zM270 19h12v16h-12V19z'/%3E%3Cpath fill='%23334155' d='M27 3h2v4h-2V3zM67 3h2v4h-2V3zM251 3h2v4h-2V3zM291 3h2v4h-2V3zM18 30h2v5h-2v-5zM16 34h6v2h-6v-2zM300 30h2v5h-2v-5zM298 34h6v2h-6v-2zM43 19h2v16h-2V19zM38 26h12v2H38v-2zM275 19h2v16h-2V19zM270 26h12v2h-12v-2zM10 79h11v2H10v-2zM10 84h11v2H10v-2zM23 79h11v2H23v-2zM23 84h11v2H23v-2zM16 68h12v2H16v-2zM16 73h12v2H16v-2zM142 59h36v29h-36V59zM288 65h5v2h-5v-2zM288 79h5v2h-5v-2z'/%3E%3Cpath fill='%23475569' d='M144 60h8v4h-8v-4zM154 60h12v4h-12v-4zM168 60h8v4h-8v-4zM144 66h4v6h-4v-6zM172 66h4v6h-4v-6zM144 74h4v6h-4v-6zM172 74h4v6h-4v-6zM144 82h4v6h-4v-6zM172 82h4v6h-4v-6z'/%3E%3Cpath fill='%23080c1a' d='M46 64h48v7H46v-7zM148 64h24v24h-24V64zM117 72h1v1h-1v-1zM123 83h2v5h-2v-5zM189 72h1v1h-1v-1zM187 83h2v5h-2v-5z'/%3E%3Cpath fill='%23b45309' d='M12 51h56v1H12v-1zM252 51h56v1h-56v-1zM34 38h20v2H34v-2zM266 38h20v2h-20v-2zM257 46h7v4h-7v-4zM38 73h66v2H38v-2zM138 56h44v2h-44v-2zM194 78h22v1h-22v-1zM258 78h20v1h-20v-1z'/%3E%3Cpath fill='%23ea580c' d='M25 7h6v6h-6V7zM65 7h6v6h-6V7zM249 7h6v6h-6V7zM289 7h6v6h-6V7zM16 22h6v7h-6v-7zM298 22h6v7h-6v-7zM42 45h4v6h-4v-6zM47 67h4v6h-4v-6zM119 76h6v3h-6v-3zM152 74h16v12h-16V74zM155 70h10v4h-10v-4zM204 72h4v6h-4v-6zM266 72h4v6h-4v-6zM278 62h4v6h-4v-6z'/%3E%3Cpath fill='%23ff5c7c' d='M18 45h4v6h-4v-6zM294 45h5v6h-5v-6zM50 65h3v6h-3v-6zM78 65h3v6h-3v-6zM155 73h10v13h-10V73zM157 70h6v3h-6v-3zM186 68h5v1h-5v-1zM232 66h2v2h-2v-2zM244 72h2v2h-2v-2z'/%3E%3Cpath fill='%2310b981' d='M25 44h3v7h-3v-7zM56 65h3v6h-3v-6zM84 65h3v6h-3v-6zM185 75h6v8h-6v-8z'/%3E%3Cpath fill='%234ade80' d='M26 45h1v5h-1v-5zM57 66h1v4h-1v-4zM85 66h1v4h-1v-4zM182 74h3v3h-3v-3z'/%3E%3Cpath fill='%235ce1e6' d='M58 46h4v5h-4v-5zM270 45h4v6h-4v-6zM64 65h3v6h-3v-6zM114 75h6v8h-6v-8zM236 66h6v4h-6v-4z'/%3E%3Cpath fill='%236d28d9' d='M50 47h6v4h-6v-4zM277 45h4v6h-4v-6zM71 65h3v6h-3v-6z'/%3E%3Cpath fill='%23a78bfa' d='M278 46h2v4h-2v-4z'/%3E%3Cpath fill='%23ffedd5' d='M114 70h5v4h-5v-4zM185 70h5v4h-5v-4zM228 65h6v6h-6v-6zM238 71h6v5h-6v-5z'/%3E%3Cpath fill='%23ffd84d' d='M26 8h4v4h-4V8zM66 8h4v4h-4V8zM250 8h4v4h-4V8zM290 8h4v4h-4V8zM17 23h4v5h-4v-5zM299 23h4v5h-4v-5zM40 21h2v2h-2v-2zM272 21h2v2h-2v-2zM32 46h5v5h-5v-5zM43 46h2v4h-2v-4zM259 47h4v2h-4v-2zM287 45h2v6h-2v-6zM20 71h2v2h-2v-2zM14 82h2v2h-2v-2zM27 82h2v2h-2v-2zM48 68h2v4h-2v-4zM60 69h4v4h-4v-4zM72 69h4v4h-4v-4zM88 69h4v4h-4v-4zM114 60h3v2h-3v-2zM116 58h1v3h-1v-3zM126 62h4v1h-4v-1zM125 63h1v3h-1v-3zM128 63h1v3h-1v-3zM114 68h5v2h-5v-2zM120 77h3v1h-3v-1zM141 50h2v6h-2v-6zM156 50h8v5h-8v-5zM177 50h2v6h-2v-6zM157 74h6v12h-6V74zM158 72h4v2h-4v-2zM179 72h3v4h-3v-4zM205 73h2v4h-2v-4zM267 73h2v4h-2v-4zM279 63h2v4h-2v-4zM303 75h3v3h-3v-3z'/%3E%3Cpath fill='%23fff9ec' d='M27 9h2v2h-2V9zM67 9h2v2h-2V9zM251 9h2v2h-2V9zM291 9h2v2h-2V9zM18 24h2v3h-2v-3zM300 24h2v3h-2v-3zM47 21h2v2h-2v-2zM279 21h2v2h-2v-2zM19 44h2v1h-2v-1zM32 45h5v1h-5v-1zM43 47h1v2h-1v-2zM271 44h2v1h-2v-1zM287 43h2v2h-2v-2zM60 68h4v1h-4v-1zM72 68h4v1h-4v-1zM88 68h4v1h-4v-1zM124 75h3v1h-3v-1zM141 48h2v2h-2v-2zM177 48h2v2h-2v-2zM158 77h4v9h-4v-9zM159 75h2v2h-2v-2zM179 71h3v1h-3v-1zM205 74h1v2h-1v-2zM267 74h1v2h-1v-2zM279 64h1v2h-1v-2z'/%3E%3Crect x='0' y='88' width='320' height='2' fill='%23d97706'/%3E%3Crect x='0' y='88' width='320' height='1' fill='%23ffd84d'/%3E%3Crect x='0' y='90' width='320' height='5' fill='%23451a03'/%3E%3Cpath fill='%2378350f' d='M0 90h12v2H0zm16 0h12v2H16zm16 0h12v2H32zm16 0h12v2H48zm16 0h12v2H64zm16 0h12v2H80zm16 0h12v2H96zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zM8 93h12v2H8zm16 0h12v2H24zm16 0h12v2H40zm16 0h12v2H56zm16 0h12v2H72zm16 0h12v2H88zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h8v2h-8z'/%3E%3C/svg%3E");
 
-	/* 2c. Twilight Amethyst Brick (Hero Intro Above Dashed Line) & Warm Wooden Tavern Planks (Bottom CTA Panel) */
-	--pixel-cavern-stone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='32' viewBox='0 0 16 8' shape-rendering='crispEdges'%3E%3Crect width='16' height='8' fill='%23231542'/%3E%3Cpath fill='%23311e5c' d='M0 0h7v1H0zm8 0h7v1H8zM0 1h1v2H0zm8 0h1v2H8zM4 4h7v1H4zm8 4h4v-4h-4v1h3v3zM0 4h3v1H0zm12 0h4v1h-4zM4 5h1v2H4zm8 0h1v2h-1z'/%3E%3Cpath fill='%23120924' d='M7 0h1v3H7zm8 0h1v3h-1zM0 3h16v1H0zm3 1h1v3H3zm8 0h1v3h-1zM0 7h16v1H0z'/%3E%3C/svg%3E");
+	/* 2c. Cozy 8-Bit Rooftop Music & Maker Loft (Hero Intro Above Dashed Line) & Warm Wooden Tavern Planks (Bottom CTA Panel):
+	   - --pixel-cozy-loft-wall: Warm kiln-fired terracotta-sienna brick & honey-cedar acoustic studio wall
+	   - --pixel-cozy-loft-ceiling: Overhead redwood studio rafters with hanging rattan/brass dome lamps,
+	     draped golden fairy string lights, and hanging terracotta planters with trailing pothos vines
+	   - --pixel-cozy-loft-mural: Full-width Cozy Music & Maker Studio Loft panorama above the gold dashed line
+	     (potted monstera, mid-century vinyl record console + turntable + lava lamp + floating music notes,
+	     tweed tube amp + stompbox pedalboard + acoustic & electric guitars on stands, walnut maker desk with
+	     dual code/DAW monitors + MIDI synth + steaming coffee, plush velvet studio loveseat with sleeping
+	     golden studio pup + tripod floor lamp, and arched twilight loft window + reel-to-reel tape deck) */
+	--pixel-cozy-loft-wall: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='64' viewBox='0 0 32 16' shape-rendering='crispEdges'%3E%3Crect width='32' height='16' fill='%23381a14'/%3E%3Cpath fill='%234c251c' d='M1 1h13v2H1V1zM17 1h13v2H17V1zM1 5h6v2H1V5zM9 5h14v2H9V5zM25 5h6v2h-6V5zM1 9h13v2H1V9zM17 9h13v2H17V9zM1 13h6v2H1v-2zM9 13h14v2H9v-2zM25 13h6v2h-6v-2z'/%3E%3Cpath fill='%23663326' d='M1 1h12v1H1V1zM17 1h12v1H17V1zM1 5h5v1H1V5zM9 5h13v1H9V5zM25 5h5v1h-5V5zM1 9h12v1H1V9zM17 9h12v1H17V9zM1 13h5v1H1v-1zM9 13h13v1H9v-1zM25 13h5v1h-5v-1z'/%3E%3Cpath fill='%23854230' d='M4 2h3v1H4V2zM21 2h4v1h-4V2zM13 6h5v1h-5V6zM6 10h4v1H6v-1zM23 10h3v1h-3v-1zM14 14h4v1h-4v-1z'/%3E%3Cpath fill='%23210d09' d='M0 3h32v1H0V3zM0 7h32v1H0V7zM0 11h32v1H0v-1zM0 15h32v1H0v-1zM15 0h1v3h-1V0zM31 0h1v3h-1V0zM7 4h1v3H7V4zM23 4h1v3h-1V4zM15 8h1v3h-1V8zM31 8h1v3h-1V8zM7 12h1v3H7v-3zM23 12h1v3h-1v-3z'/%3E%3Cpath fill='%23d97706' d='M15 4h1v1h-1V4zM31 4h1v1h-1V4zM7 8h1v1H7V8zM23 8h1v1h-1V8zM15 12h1v1h-1v-1zM31 12h1v1h-1v-1z'/%3E%3C/svg%3E");
+	--pixel-cozy-loft-ceiling: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='64' viewBox='0 0 320 16' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='320' height='2' fill='%231c0b07'/%3E%3Crect x='0' y='2' width='320' height='2' fill='%236b2f1a'/%3E%3Crect x='0' y='4' width='320' height='1' fill='%239a4726'/%3E%3Cpath fill='%2329120c' d='M0 5h320v1H0V5zM32 6h22v1H32V6zM74 6h16v1H74V6zM110 6h82v1h-82V6zM214 6h40v1h-40V6z'/%3E%3Cpath fill='%23334155' d='M63 4h2v3h-2V4zM201 4h2v3h-2V4zM263 4h2v3h-2V4z'/%3E%3Cpath fill='%2378350f' d='M60 7h8v2h-8V7zM58 9h12v2H58V9zM198 7h8v2h-8V7zM196 9h12v2h-12V9zM260 7h8v2h-8V7zM258 9h12v2h-12V9z'/%3E%3Cpath fill='%23d97706' d='M19 4h1v3h-1V4zM24 4h1v3h-1V4zM95 4h1v3h-1V4zM100 4h1v3h-1V4zM295 4h1v3h-1V4zM300 4h1v3h-1V4zM61 8h6v1h-6V8zM59 9h10v1H59V9zM199 8h6v1h-6V8zM197 9h10v1h-10V9zM261 8h6v1h-6V8zM259 9h10v1h-10V9z'/%3E%3Cpath fill='%23c2410c' d='M18 7h8v2h-8V7zM94 7h8v2h-8V7zM294 7h8v2h-8V7z'/%3E%3Cpath fill='%239a3412' d='M19 9h6v3h-6V9zM95 9h6v3h-6V9zM295 9h6v3h-6V9z'/%3E%3Cpath fill='%23065f46' d='M16 6h12v2H16V6zM15 8h3v5h-3V8zM26 8h3v6h-3V8zM92 6h12v2H92V6zM91 8h3v6h-3V8zM102 8h3v5h-3V8zM292 6h12v2h-12V6zM291 8h3v5h-3V8zM302 8h3v6h-3V8z'/%3E%3Cpath fill='%2310b981' d='M17 6h10v1H17V6zM16 8h2v4h-2V8zM27 8h2v5h-2V8zM21 11h2v4h-2v-4zM93 6h10v1H93V6zM92 8h2v5h-2V8zM103 8h2v4h-2V8zM97 11h2v4h-2v-4zM293 6h10v1h-10V6zM292 8h2v4h-2V8zM303 8h2v5h-2V8zM297 11h2v4h-2v-4z'/%3E%3Cpath fill='%234ade80' d='M18 6h3v1h-3V6zM16 9h1v2h-1V9zM27 10h1v2h-1v-2zM94 6h3v1h-3V6zM92 10h1v2h-1v-2zM103 9h1v2h-1V9zM294 6h3v1h-3V6zM292 9h1v2h-1V9zM303 10h1v2h-1v-2z'/%3E%3Cpath fill='%23ea580c' d='M61 11h6v3h-6v-3zM199 11h6v3h-6v-3zM261 11h6v3h-6v-3z'/%3E%3Cpath fill='%23ffd84d' d='M8 6h2v2H8V6zM38 7h2v2h-2V7zM48 7h2v2h-2V7zM62 11h4v2h-4v-2zM80 7h2v2h-2V7zM118 7h2v2h-2V7zM136 7h2v2h-2V7zM154 7h2v2h-2V7zM172 7h2v2h-2V7zM186 7h2v2h-2V7zM200 11h4v2h-4v-2zM222 7h2v2h-2V7zM242 7h2v2h-2V7zM262 11h4v2h-4v-2zM280 6h2v2h-2V6zM312 6h2v2h-2V6z'/%3E%3Cpath fill='%23fff9ec' d='M8 6h1v1H8V6zM38 7h1v1h-1V7zM63 11h2v1h-2v-1zM80 7h1v1h-1V7zM118 7h1v1h-1V7zM154 7h1v1h-1V7zM186 7h1v1h-1V7zM201 11h2v1h-2v-1zM222 7h1v1h-1V7zM263 11h2v1h-2v-1zM280 6h1v1h-1V6z'/%3E%3C/svg%3E");
+	--pixel-cozy-loft-mural: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='152' viewBox='0 0 320 38' shape-rendering='crispEdges'%3E%3Crect x='0' y='30' width='320' height='1' fill='%231c0b07'/%3E%3Crect x='0' y='31' width='320' height='2' fill='%23b45309'/%3E%3Crect x='0' y='31' width='320' height='1' fill='%23ffd84d'/%3E%3Crect x='0' y='33' width='320' height='5' fill='%23451a03'/%3E%3Cpath fill='%2378350f' d='M0 33h12v2H0v-2zm16 0h12v2H16v-2zm16 0h12v2H32v-2zm16 0h12v2H48v-2zm16 0h12v2H64v-2zm16 0h12v2H80v-2zm16 0h12v2H96v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zM8 36h12v2H8v-2zm16 0h12v2H24v-2zm16 0h12v2H40v-2zm16 0h12v2H56v-2zm16 0h12v2H72v-2zm16 0h12v2H88v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h8v2h-8v-2z'/%3E%3Crect x='60' y='31' width='202' height='3' fill='%23991b1b'/%3E%3Cpath fill='%23451a03' d='M28 19h16v9H28v-9zM46 19h16v9H46v-9zM72 20h20v8H72v-8zM212 28h4v2h-4v-2zM250 28h4v2h-4v-2zM274 2h36v20h-36V2z'/%3E%3Cpath fill='%2378350f' d='M10 23h10v7H10v-7zM26 17h38v2H26v-2zM26 28h38v1H26v-1zM28 29h3v1h-3v-1zM59 29h3v1h-3v-1zM70 16h24v4H70v-4zM70 28h24v2H70v-2zM74 21h16v6H74v-6zM142 19h62v2h-62v-2zM144 21h12v9h-12v-9zM192 21h10v9h-10v-9zM262 13h2v17h-2V13zM259 25h3v5h-3v-5zM264 25h3v5h-3v-5zM278 23h28v7h-28v-7z'/%3E%3Cpath fill='%23b45309' d='M10 23h10v2H10v-2zM26 17h38v1H26v-1zM52 15h6v2h-6v-2zM53 8h4v2h-4V8zM70 16h24v1H70v-1zM72 17h20v2H72v-2zM118 8h2v10h-2V8zM142 19h62v1h-62v-1zM146 22h8v3h-8v-3zM146 26h8v3h-8v-3zM194 22h6v7h-6v-7zM272 21h40v2h-40v-2z'/%3E%3Cpath fill='%239a3412' d='M210 15h46v13h-46V15zM208 19h4v9h-4v-9zM254 19h4v9h-4v-9z'/%3E%3Cpath fill='%23c2410c' d='M213 16h19v7h-19v-7zM234 16h19v7h-19v-7zM212 24h42v4h-42v-4z'/%3E%3Cpath fill='%23ea580c' d='M53 12h4v3h-4v-3zM116 17h6v3h-6v-3zM117 20h4v2h-4v-2zM114 22h10v5h-10v-5zM115 27h8v1h-8v-1zM213 24h20v1h-20v-1zM235 24h18v1h-18v-1zM258 6h10v7h-10V6z'/%3E%3Cpath fill='%230f172a' d='M276 4h32v17h-32V4z'/%3E%3Cpath fill='%231e293b' d='M96 28h16v2H96v-2zM166 15h12v4h-12v-4zM168 21h8v6h-8v-6zM276 15h8v6h-8v-6zM286 12h8v9h-8v-9zM296 14h12v7h-12v-7z'/%3E%3Cpath fill='%23334155' d='M29 15h16v2H29v-2zM146 6h22v11h-22V6zM155 17h4v2h-4v-2zM170 8h20v9h-20V8zM178 17h4v2h-4v-2zM171 27h2v3h-2v-3zM280 24h24v5h-24v-5zM285 4h2v17h-2V4zM297 4h2v17h-2V4zM276 11h32v2h-32v-2z'/%3E%3Cpath fill='%2394a3b8' d='M281 24h7v5h-7v-5zM296 24h7v5h-7v-5z'/%3E%3Cpath fill='%23080c1a' d='M31 13h10v2H31v-2zM118 20h2v2h-2v-2zM117 25h4v1h-4v-1zM114 28h2v2h-2v-2zM122 28h2v2h-2v-2zM118 28h2v2h-2v-2zM126 28h2v2h-2v-2zM134 28h2v2h-2v-2zM130 28h2v2h-2v-2zM148 8h18v7h-18V8zM172 10h16v5h-16v-5zM153 18h2v1h-2v-1zM157 18h2v1h-2v-1zM161 18h2v1h-2v-1zM165 18h2v1h-2v-1zM169 18h2v1h-2v-1zM228 21h2v1h-2v-1zM225 22h1v1h-1v-1zM283 26h3v2h-3v-2zM298 26h3v2h-3v-2z'/%3E%3Cpath fill='%23065f46' d='M8 14h14v9H8v-9zM6 17h4v4H6v-4zM20 16h4v5h-4v-5z'/%3E%3Cpath fill='%2310b981' d='M9 12h12v9H9v-9zM7 16h4v3H7v-3zM19 15h4v4h-4v-4zM68 32h4v1h-4v-1zM108 32h4v1h-4v-1zM148 32h4v1h-4v-1zM188 32h4v1h-4v-1zM228 32h4v1h-4v-1zM279 18h4v3h-4v-3zM299 18h4v3h-4v-3z'/%3E%3Cpath fill='%234ade80' d='M11 12h4v3h-4v-3zM16 14h4v3h-4v-3zM9 17h3v2H9v-2zM38 20h2v7h-2v-7zM54 20h2v7h-2v-7zM103 27h3v2h-3v-2zM150 9h6v1h-6V9zM152 13h8v1h-8v-1zM174 11h12v1h-12v-1zM280 18h2v2h-2v-2zM300 18h2v2h-2v-2z'/%3E%3Cpath fill='%23ff5c7c' d='M35 14h2v1h-2v-1zM52 10h6v5h-6v-5zM29 20h3v7h-3v-7zM47 20h3v7h-3v-7zM74 17h2v2h-2v-2zM97 27h3v2h-3v-2zM150 11h4v1h-4v-1zM174 13h8v1h-8v-1zM194 15h5v4h-5v-4zM289 19h4v2h-4v-2z'/%3E%3Cpath fill='%235ce1e6' d='M36 5h4v1h-4V5zM36 6h1v3h-1V6zM39 6h1v3h-1V6zM34 8h2v2h-2V8zM37 8h2v2h-2V8zM35 20h3v7h-3v-7zM51 20h3v7h-3v-7zM100 27h3v2h-3v-2zM128 17h2v3h-2v-3zM132 18h2v2h-2v-2zM129 20h4v2h-4v-2zM126 22h10v5h-10v-5zM127 27h8v1h-8v-1zM156 11h8v1h-8v-1zM174 12h10v1h-10v-1zM214 18h7v5h-7v-5zM78 32h4v1h-4v-1zM118 32h4v1h-4v-1zM158 32h4v1h-4v-1zM198 32h4v1h-4v-1zM238 32h4v1h-4v-1z'/%3E%3Cpath fill='%23a78bfa' d='M41 20h3v7h-3v-7zM57 20h3v7h-3v-7zM150 12h5v1h-5v-1z'/%3E%3Cpath fill='%23d97706' d='M230 19h3v3h-3v-3zM240 19h3v4h-3v-4z'/%3E%3Cpath fill='%23ffedd5' d='M225 21h4v3h-4v-3zM232 23h6v1h-6v-1z'/%3E%3Cpath fill='%23ffd84d' d='M45 3h3v1h-3V3zM45 4h1v3h-1V4zM43 6h2v2h-2V6zM54 10h2v2h-2v-2zM32 20h3v7h-3v-7zM50 20h1v7h-1v-7zM106 27h3v2h-3v-2zM117 18h4v2h-4v-2zM115 23h8v3h-8v-3zM130 8h2v12h-2V8zM158 9h5v1h-5V9zM161 13h4v1h-4v-1zM174 14h6v1h-6v-1zM227 19h5v4h-5v-4zM231 20h10v4h-10v-4zM245 18h7v5h-7v-5zM259 7h8v5h-8V7zM280 6h2v2h-2V6zM291 5h3v3h-3V5zM302 7h2v2h-2V7zM63 32h3v1h-3v-1zM88 32h4v1h-4v-1zM98 32h4v1h-4v-1zM128 32h4v1h-4v-1zM138 32h4v1h-4v-1zM168 32h4v1h-4v-1zM178 32h4v1h-4v-1zM208 32h4v1h-4v-1zM218 32h4v1h-4v-1zM248 32h4v1h-4v-1zM256 32h4v1h-4v-1z'/%3E%3Cpath fill='%23fff9ec' d='M41 13h3v2h-3v-2zM59 20h2v7h-2v-7zM78 17h2v1h-2v-1zM82 17h2v1h-2v-1zM86 17h2v1h-2v-1zM117 9h4v2h-4V9zM129 9h4v2h-4V9zM128 22h6v4h-6v-4zM152 18h22v1h-22v-1zM195 11h1v2h-1v-2zM197 9h1v3h-1V9zM199 16h2v2h-2v-2zM261 8h4v3h-4V8zM280 6h1v1h-1V6zM292 6h1v1h-1V6zM302 7h1v1h-1V7zM58 31h2v3h-2v-3zM262 31h2v3h-2v-3z'/%3E%3C/svg%3E");
 	--pixel-tavern-brick: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='64' viewBox='0 0 32 16' shape-rendering='crispEdges'%3E%3Crect width='32' height='16' fill='%232c1609'/%3E%3Cpath fill='%233d1f0e' d='M0 0h15v1H0zm16 0h15v1H16zM3 2h6v1H3zm18 0h8v1h-8zM0 4h7v1H0zm8 0h15v1H8zm16 0h8v1h-8zM11 6h8v1h-8zm16 0h4v1h-4zM0 8h15v1H0zm16 0h15v1H16zM5 10h9v1H5zm17 0h6v1h-6zM0 12h11v1H0zm12 0h15v1H12zm16 0h4v1h-4zM2 14h6v1H2zm14 0h9v1h-9z'/%3E%3Cpath fill='%234d2813' d='M4 1h4v1H4zm19 1h5v1h-5zm-11 3h6v1h-6zm-9 4h5v1H3zm17 1h4v1h-4zm-5 3h6v1h-6z'/%3E%3Cpath fill='%23170a04' d='M0 3h32v1H0zm0 4h32v1H0zm0 4h32v1H0zm0 4h32v1H0zM15 0h1v3h-1zM7 4h1v3H7zm16 0h1v3h-1zm-8 4h1v3h-1zm-4 4h1v3h-1zm16 0h1v3h-1z'/%3E%3Cpath fill='%2378350f' d='M13 1h1v1h-1zm3 0h1v1h-1zM5 5h1v1H5zm4 0h1v1H9zm12 0h1v1h-1zm4 0h1v1h-1zM13 9h1v1h-1zm3 0h1v1h-1zM9 13h1v1H9zm4 0h1v1h-1zm12 0h1v1h-1zm4 0h1v1h-1z'/%3E%3C/svg%3E");
 	--pixel-stage-floor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='28' viewBox='0 0 32 7' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='32' height='2' fill='%23d97706'/%3E%3Crect x='0' y='0' width='32' height='1' fill='%23ffd84d'/%3E%3Crect x='0' y='2' width='32' height='5' fill='%23451a03'/%3E%3Cpath fill='%2378350f' d='M0 2h12v2H0zm16 0h12v2H16zM8 5h12v2H8zm16 0h8v2h-8z'/%3E%3C/svg%3E");
 
@@ -414,15 +424,18 @@ html[data-skin="eight-bit-overworld"] .page-hero > .site-shell {
 		8px 8px 0 var(--pixel-ink);
 }
 
-/* Home Hero Upper Zone (Above the Gold Dashed Line): Twilight Amethyst Purple Brick */
+/* Home Hero Upper Zone (Above the Gold Dashed Line): Cozy 8-Bit Rooftop Music & Maker Loft */
 html[data-skin="eight-bit-overworld"] body.page-home .page-hero > .site-shell {
-	background-color: #231542 !important;
-	background-image: var(--pixel-cavern-stone) !important;
-	background-position: left top !important;
-	background-size: 64px 32px !important;
-	background-repeat: repeat !important;
+	padding-top: 3.85rem !important;
+	background-color: #381a14 !important;
+	background-image:
+		var(--pixel-cozy-loft-ceiling),
+		var(--pixel-cozy-loft-wall) !important;
+	background-position: center top, left top !important;
+	background-size: 1280px 64px, 128px 64px !important;
+	background-repeat: no-repeat, repeat !important;
 	box-shadow:
-		inset 0 0 0 4px #4c2d85,
+		inset 0 0 0 4px #9a4726,
 		0 0 0 4px var(--pixel-ink),
 		8px 8px 0 var(--pixel-ink);
 }
@@ -470,7 +483,7 @@ html[data-skin="eight-bit-overworld"] .hero-copy > :not(.hero-media):not(.hero-q
 	grid-column: 2;
 }
 
-/* Left-hand Character Portrait & Splash Frame */
+/* Left-hand Character Portrait & Splash Frame (Warm Walnut & Espresso Studio Frame) */
 html[data-skin="eight-bit-overworld"] .hero-copy .hero-media {
 	grid-column: 1;
 	grid-row: 1 / span 5;
@@ -481,10 +494,10 @@ html[data-skin="eight-bit-overworld"] .hero-copy .hero-media {
 	margin: 0;
 	padding: 0.9rem;
 	border: 3px solid var(--text-1);
-	background: #080c1a;
+	background: #1c0c08;
 	box-shadow:
-		inset 0 0 0 3px #1e2d59,
-		6px 6px 0 var(--pixel-ink);
+		inset 0 0 0 3px #78350f,
+		6px 6px 0 #120604;
 	transform: none !important;
 }
 
@@ -507,6 +520,11 @@ html[data-skin="eight-bit-overworld"] .eyebrow {
 	font: 400 0.72rem/1.2 var(--pixel-display) !important;
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] .hero-copy > .eyebrow {
+	background: #1c0c08 !important;
+	box-shadow: 3px 3px 0 #120604 !important;
 }
 
 html[data-skin="eight-bit-overworld"] .eyebrow::before {
@@ -545,20 +563,20 @@ html[data-skin="eight-bit-overworld"] :is(.hero-title-role, .hero-title-role:nth
 	padding: 0.65rem 0.8rem 0.65rem 3.35rem !important;
 	border: 3px solid var(--text-1) !important;
 	border-radius: 0 !important;
-	background-color: #080c1a !important;
+	background-color: #1c0c08 !important;
 	background-image: var(--pixel-sprite-wizard-hat) !important;
 	background-repeat: no-repeat !important;
 	background-position: 0.7rem center !important;
 	background-size: 32px 32px !important;
 	background-clip: border-box !important;
 	-webkit-background-clip: border-box !important;
-	box-shadow: inset -2px -2px 0 #1e2d59, 4px 4px 0 var(--pixel-ink) !important;
+	box-shadow: inset -2px -2px 0 #78350f, 4px 4px 0 #120604 !important;
 	color: var(--text-1) !important;
 	-webkit-text-fill-color: var(--text-1) !important;
 	-webkit-text-stroke: 0 !important;
 	filter: none !important;
 	font: 400 clamp(0.98rem, 1.45vw, 1.24rem)/1.2 var(--pixel-display) !important;
-	text-shadow: 2px 2px 0 var(--pixel-ink) !important;
+	text-shadow: 2px 2px 0 #120604 !important;
 	transform: none !important;
 	animation: none !important;
 	overflow-wrap: anywhere;
@@ -579,7 +597,7 @@ html[data-skin="eight-bit-overworld"] .hero-title-role:nth-of-type(3) {
 
 html[data-skin="eight-bit-overworld"] #hero-silly-title {
 	border-color: var(--pixel-gold) !important;
-	background-color: #101730 !important;
+	background-color: #29120b !important;
 	background-image: var(--pixel-sprite-question) !important;
 	background-clip: border-box !important;
 	-webkit-background-clip: border-box !important;
@@ -613,8 +631,8 @@ html[data-skin="eight-bit-overworld"] body.page-home .personality-arrow {
 	min-height: 1.85rem !important;
 	border: 2px solid var(--text-1) !important;
 	border-radius: 0 !important;
-	background: #080c1a !important;
-	box-shadow: 2px 2px 0 var(--pixel-ink) !important;
+	background: #1c0c08 !important;
+	box-shadow: 2px 2px 0 #120604 !important;
 	color: var(--pixel-gold) !important;
 	opacity: 1 !important;
 }
@@ -633,8 +651,8 @@ html[data-skin="eight-bit-overworld"] .hero-summary {
 	margin: 0 0 0.75rem;
 	padding: 0.9rem 1.05rem;
 	border: 3px solid var(--text-1);
-	background: #080c1a !important;
-	box-shadow: inset 0 0 0 2px #1e2d59, 4px 4px 0 var(--pixel-ink);
+	background: #1c0c08 !important;
+	box-shadow: inset 0 0 0 2px #78350f, 4px 4px 0 #120604;
 	color: var(--text-1) !important;
 	font: 400 0.96rem/1.55 var(--pixel-body) !important;
 }
@@ -654,6 +672,11 @@ html[data-skin="eight-bit-overworld"] .page-hero .lead {
 	box-shadow: 4px 4px 0 var(--pixel-ink);
 	color: var(--text-1) !important;
 	font: 400 0.94rem/1.5 var(--pixel-body) !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-home .page-hero .lead {
+	background: #29120b !important;
+	box-shadow: 4px 4px 0 #120604 !important;
 }
 
 /* Character Portrait & Splash Quote Box */
@@ -704,14 +727,14 @@ html[data-skin="eight-bit-overworld"] .hero-splash {
 	height: 124px;
 	margin: 0.8rem auto 1.95rem;
 	padding: 0.55rem 0.55rem 0.55rem 3rem;
-	border: 2px solid var(--pixel-cyan) !important;
+	border: 2px solid var(--pixel-gold) !important;
 	border-radius: 0 !important;
-	background-color: #101730 !important;
+	background-color: #29120b !important;
 	background-image: var(--pixel-sprite-question) !important;
 	background-repeat: no-repeat !important;
 	background-position: 0.55rem center !important;
 	background-size: 32px 32px !important;
-	box-shadow: inset 0 0 0 2px #050811 !important;
+	box-shadow: inset 0 0 0 2px #120604 !important;
 	color: var(--pixel-gold) !important;
 	transform: none;
 	pointer-events: auto;
@@ -742,7 +765,8 @@ html[data-skin="eight-bit-overworld"] .hero-splash .hero-splash-text {
 
 /* Home Hero Lower Zone (Below the Gold Dashed Line): Royal Cobalt Blue Brick + Overworld Panorama */
 html[data-skin="eight-bit-overworld"] .hero-quests {
-	margin: 1.5rem calc(-1 * clamp(1.35rem, 3vw, 2.25rem)) -9.6rem !important;
+	position: relative !important;
+	margin: 10rem calc(-1 * clamp(1.35rem, 3vw, 2.25rem)) -9.6rem !important;
 	padding: 1.35rem clamp(1.35rem, 3vw, 2.25rem) 9.6rem !important;
 	border-top: 3px dashed var(--pixel-gold) !important;
 	background-color: #1b2a52 !important;
@@ -756,6 +780,23 @@ html[data-skin="eight-bit-overworld"] .hero-quests {
 	box-shadow:
 		inset 4px 0 0 #354d8c,
 		inset -4px -4px 0 #354d8c;
+}
+
+/* Cozy 8-Bit Rooftop Music & Maker Studio Loft Panorama sitting directly above the Gold Dashed Line */
+html[data-skin="eight-bit-overworld"] .hero-quests::before {
+	content: "" !important;
+	display: block !important;
+	position: absolute !important;
+	left: 4px !important;
+	right: 4px !important;
+	bottom: 100% !important;
+	height: 152px !important;
+	margin-bottom: 0 !important;
+	background-image: var(--pixel-cozy-loft-mural) !important;
+	background-position: center bottom !important;
+	background-size: 1280px 152px !important;
+	background-repeat: no-repeat !important;
+	pointer-events: none !important;
 }
 
 html[data-skin="eight-bit-overworld"] .quest-grid {
@@ -2051,20 +2092,28 @@ html[data-skin-id="eight-bit-overworld"] .skin-contact-charm:hover {
 	}
 
 	html[data-skin="eight-bit-overworld"] body.page-home .page-hero > .site-shell {
-		background-size: 64px 32px !important;
+		padding-top: 3.35rem !important;
+		background-size: 960px 48px, 128px 64px !important;
 		box-shadow:
-			inset 0 0 0 3px #4c2d85,
+			inset 0 0 0 3px #9a4726,
 			0 0 0 3px var(--pixel-ink),
 			5px 5px 0 var(--pixel-ink);
 	}
 
 	html[data-skin="eight-bit-overworld"] .hero-quests {
-		margin: 1.25rem -1rem -7.8rem !important;
+		margin: 8.1rem -1rem -7.8rem !important;
 		padding: 1.2rem 1rem 7.8rem !important;
 		background-size: 960px 108px, 96px 24px, 64px 32px !important;
 		box-shadow:
 			inset 3px 0 0 #354d8c,
 			inset -3px -3px 0 #354d8c;
+	}
+
+	html[data-skin="eight-bit-overworld"] .hero-quests::before {
+		left: 3px !important;
+		right: 3px !important;
+		height: 114px !important;
+		background-size: 960px 114px !important;
 	}
 
 	html[data-skin="eight-bit-overworld"] .section-cta > .site-shell {
