@@ -239,6 +239,14 @@ html[data-skin="nutrition-facts"] body.page-home .page-hero h1::before {
 	text-transform: none;
 }
 
+html[data-skin="nutrition-facts"] body.page-home .hero-title-intro {
+	margin: 0;
+	padding: 0.18em 0 0.14em;
+	border-bottom: 1px solid #050505;
+	font-size: 0.56em;
+	line-height: 1.05;
+}
+
 html[data-skin="nutrition-facts"] body.page-home .hero-title-role {
 	display: flex;
 	align-items: baseline;

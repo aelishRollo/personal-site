@@ -266,6 +266,7 @@ html[data-skin="starlight"] body.page-home .page-hero h1 {
 	text-shadow: 0 12px 48px rgba(46, 89, 170, 0.26);
 }
 
+html[data-skin="starlight"] .page-hero h1 .hero-title-intro,
 html[data-skin="starlight"] .page-hero h1 .hero-title-role,
 html[data-skin="starlight"] .page-hero h1 .hero-title-initial,
 html[data-skin="starlight"] .metallic-pearl-text {

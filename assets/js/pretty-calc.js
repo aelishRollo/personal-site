@@ -504,12 +504,19 @@
 		syncControls();
 	}
 
-	function commitStep(entry) {
+	function commitStep(entry, direction) {
 		applyPalette(entry.palette);
 		show(entry.photo);
 		syncControls();
 		writeHistory();
 		scheduleCycle();
+		if (direction === -1 || direction === 1) {
+			document.dispatchEvent(new CustomEvent('pretty-calc-photo-change', {
+				detail: {
+					direction: direction
+				}
+			}));
+		}
 	}
 
 	function pushAndShow(photo, isInitial) {
@@ -524,7 +531,7 @@
 			}
 		}
 		historyIndex = history.length - 1;
-		commitStep(entry);
+		commitStep(entry, isInitial ? 0 : 1);
 	}
 
 	function advanceToNewPhoto(isInitial) {
@@ -568,7 +575,7 @@
 			return;
 		}
 		historyIndex -= 1;
-		commitStep(history[historyIndex]);
+		commitStep(history[historyIndex], -1);
 	}
 
 	function next() {
@@ -577,7 +584,7 @@
 		}
 		if (historyIndex < history.length - 1) {
 			historyIndex += 1;
-			commitStep(history[historyIndex]);
+			commitStep(history[historyIndex], 1);
 			topUp();
 			return;
 		}

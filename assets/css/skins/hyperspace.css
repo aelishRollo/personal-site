@@ -312,6 +312,7 @@ html[data-skin="hyperspace"] body.page-home .page-hero h1 {
 	text-shadow: 0 12px 45px rgba(166, 77, 255, 0.24);
 }
 
+html[data-skin="hyperspace"] .page-hero h1 .hero-title-intro,
 html[data-skin="hyperspace"] .page-hero h1 .hero-title-role,
 html[data-skin="hyperspace"] .page-hero h1 .hero-title-initial,
 html[data-skin="hyperspace"] .metallic-pearl-text {

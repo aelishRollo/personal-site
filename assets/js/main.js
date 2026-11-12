@@ -622,16 +622,22 @@
 		scheduleSplashFit();
 	}
 
-	function refreshHomePersonality() {
+	function navigateHomePersonality(direction) {
 		if (!isHome) {
 			return;
 		}
 
-		if (typeof window.refreshAlecSillyTitle === 'function') {
-			window.refreshAlecSillyTitle(sillyTitle);
+		var step = direction === -1 ? -1 : 1;
+
+		if (typeof window.navigateAlecSillyTitle === 'function') {
+			window.navigateAlecSillyTitle(sillyTitle, step);
 		}
 
-		navigateSplashQuote(1);
+		navigateSplashQuote(step);
+	}
+
+	function refreshHomePersonality() {
+		navigateHomePersonality(1);
 	}
 
 	if (isHome) {
@@ -648,6 +654,10 @@
 			});
 		});
 		document.addEventListener('site-skin-change', refreshHomePersonality);
+		document.addEventListener('pretty-calc-photo-change', function(event) {
+			var direction = event && event.detail && event.detail.direction === -1 ? -1 : 1;
+			navigateHomePersonality(direction);
+		});
 	}
 
 	if (isHome && splash && splashText) {
