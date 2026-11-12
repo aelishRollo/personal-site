@@ -32,7 +32,7 @@ for (const sitePage of pages) {
 
 test('hero title and Jeff Dean quote arrows browse independently', async ({ page }) => {
   await openSitePage(page, '/index.html?theme=browser-archaeology');
-  await expect(page.locator('.hero-title-intro')).toHaveText(/^(I am a:|I am:|A:)$/);
+  await expect(page.locator('.hero-title-intro')).toHaveText('Who I am:');
   await expect(page.locator('.page-hero h1 .hero-title-role').nth(0)).toHaveText('Software Engineer.');
   await expect(page.locator('.page-hero h1 .hero-title-role').nth(1)).toHaveText('Musician.');
   await expect(page.locator('.page-hero h1 .hero-title-role').nth(2)).toHaveText('Collaborator.');
@@ -50,22 +50,12 @@ test('hero title and Jeff Dean quote arrows browse independently', async ({ page
   await expect(title).toHaveText(initialTitle);
 
   const seenTitles = new Set([initialTitle]);
-  const seenIntros = new Set([await page.locator('.hero-title-intro').textContent()]);
   for (let step = 0; step < 65; step += 1) {
-    const stepResult = await page.evaluate(() => {
-      const nextTitle = window.navigateAlecSillyTitle(document.getElementById('hero-silly-title'), 1);
-      return {
-        nextTitle,
-        intro: document.querySelector('.hero-title-intro').textContent,
-        expectedIntro: window.getAlecHeroIntro(nextTitle),
-      };
-    });
-    expect(stepResult.intro).toBe(stepResult.expectedIntro);
-    seenTitles.add(stepResult.nextTitle);
-    seenIntros.add(stepResult.intro);
+    seenTitles.add(await page.evaluate(() =>
+      window.navigateAlecSillyTitle(document.getElementById('hero-silly-title'), 1)
+    ));
   }
   expect(seenTitles.has('Has never went to Ovoo Javer')).toBe(true);
-  expect(Array.from(seenIntros).sort()).toEqual(['A:', 'I am a:', 'I am:']);
   await page.evaluate((target) => {
     const el = document.getElementById('hero-silly-title');
     while (el.textContent !== target) {

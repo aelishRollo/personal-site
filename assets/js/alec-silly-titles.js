@@ -67,60 +67,6 @@
 		'Has never went to Ovoo Javer'
 	];
 
-	var thirdPersonTitles = {
-		'Lives In Your Attic': true,
-		'Traded His House For A Magic Bean': true,
-		'Opens Pickle Jars Effortlessly': true,
-		'Has never went to Ovoo Javer': true
-	};
-
-	var directIdentityTitles = {
-		'Lisan Al Gaib': true,
-		"World's Best Scrum Master": true,
-		'The Chosen One': true,
-		'Actually Just Two Children In A Trenchcoat': true,
-		'Olympic Pickleball Gold Medalist': true,
-		'Your Best Friend': true,
-		'D.B. Cooper': true,
-		'Original Nuttah': true,
-		'The 0th Horseman': true,
-		'Last Person To Climb Everest': true,
-		'Oil Painter': true,
-		'Eucalyptus Scented': true,
-		'Your Dad': true,
-		'Hardest Working Programmer Alive': true,
-		'Pine-Scented': true,
-		'Assistant to the Regional Manager': true,
-		'Industry Plant': true,
-		'Your Father': true,
-		'Organ Donor (Brain)': true,
-		'100% Organic': true
-	};
-
-	function getHeroIntro(title) {
-		if (thirdPersonTitles[title]) {
-			return 'A:';
-		}
-
-		if (directIdentityTitles[title]) {
-			return 'I am:';
-		}
-
-		return 'I am a:';
-	}
-
-	function syncHeroIntro(title) {
-		if (!window.document) {
-			return;
-		}
-
-		var intro = window.document.querySelector('.hero-title-intro');
-
-		if (intro) {
-			intro.textContent = getHeroIntro(title);
-		}
-	}
-
 	function pickRandom(items, currentItem) {
 		var index;
 		var choices = items.filter(function(item) {
@@ -158,15 +104,11 @@
 	var selectedTitle = pickRandom(titles);
 	var selectedTitleIndex = titles.indexOf(selectedTitle);
 
-	window.getAlecHeroIntro = getHeroIntro;
-
 	window.renderAlecSillyTitle = function() {
 		var title = selectedTitle;
 		var classes = 'hero-title-role metallic-pearl-text' + (wordCount(title) > 4 ? ' silly-title-long' : '');
 		var initial = escapeHtml(title.charAt(0));
 		var remainder = escapeHtml(title.slice(1));
-
-		syncHeroIntro(title);
 
 		return '<span class="' + classes + '" id="hero-silly-title"><span class="hero-title-initial">' + initial + '</span>' + remainder + '.</span>';
 	};
@@ -180,7 +122,6 @@
 		selectedTitle = titles[selectedTitleIndex];
 		element.classList.toggle('silly-title-long', wordCount(selectedTitle) > 4);
 		element.innerHTML = '<span class="hero-title-initial">' + escapeHtml(selectedTitle.charAt(0)) + '</span>' + escapeHtml(selectedTitle.slice(1)) + '.';
-		syncHeroIntro(selectedTitle);
 
 		return selectedTitle;
 	};
