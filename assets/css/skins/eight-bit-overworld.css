@@ -114,8 +114,36 @@ html[data-skin="eight-bit-overworld"] {
 	   Gives main containers a distinct Royal Cobalt castle-wall texture separate from the night-sky body background */
 	--pixel-castle-stone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='32' viewBox='0 0 16 8' shape-rendering='crispEdges'%3E%3Crect width='16' height='8' fill='%231b2a52'/%3E%3Cpath fill='%23243769' d='M0 0h7v1H0zm8 0h7v1H8zM0 1h1v2H0zm8 0h1v2H8zM4 4h7v1H4zm8 4h4v-4h-4v1h3v3zM0 4h3v1H0zm12 0h4v1h-4zM4 5h1v2H4zm8 0h1v2h-1z'/%3E%3Cpath fill='%23101935' d='M7 0h1v3H7zm8 0h1v3h-1zM0 3h16v1H0zm3 1h1v3H3zm8 0h1v3h-1zM0 7h16v1H0z'/%3E%3C/svg%3E");
 
-	/* 10. 8-Bit Game Cartridge Moulded Grip Pattern for Work Cards */
+	/* 10. Work Page Assets:
+	   - 6 Bespoke Top Frieze Patterns & 16x16 Pixel Sprites Tailored to Each Project's Domain:
+	     1) Prompt Palette: Arcane Command Grimoire & Tag Keycaps (--pixel-frieze-prompt, --pixel-work-sprite-prompt)
+	     2) Chord Function API: Piano Keyboard Roll & Musical Notes (--pixel-frieze-chord, --pixel-work-sprite-chord)
+	     3) This Site: Multi-Theme Swatch Strip & Golden Master Cartridge (--pixel-frieze-site, --pixel-work-sprite-site)
+	     4) Sage & Cedar: Cedar Wood Grain, Sage Leaves & Spa Apothecary (--pixel-frieze-sage, --pixel-work-sprite-sage)
+	     5) Flowers by Leanne: Pixel Rose Garland & Hand-Tied Bouquet (--pixel-frieze-flowers, --pixel-work-sprite-flowers)
+	     6) Fridge Poetry Lab: 3D Magnet Word Tiles & Horseshoe Magnet (--pixel-frieze-poetry, --pixel-work-sprite-poetry)
+	   - Cozy Tinkerer's & Craftsman's Workshop for "A Little Background":
+	     (--pixel-work-study-wall, --pixel-work-study-ceiling, --pixel-work-study-mural, --pixel-sprite-gear-pin) */
 	--pixel-cartridge-grip: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='12' viewBox='0 0 8 3' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='8' height='3' fill='%23243769'/%3E%3Crect x='1' y='0' width='5' height='1' fill='%235ce1e6'/%3E%3Crect x='1' y='2' width='5' height='1' fill='%23080c1a'/%3E%3C/svg%3E");
+	--pixel-frieze-prompt: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='16' viewBox='0 0 24 4' shape-rendering='crispEdges'%3E%3Crect width='24' height='4' fill='%23120921'/%3E%3Crect x='1' y='1' width='4' height='2' fill='%235ce1e6'/%3E%3Crect x='7' y='1' width='4' height='2' fill='%23ff5c7c'/%3E%3Crect x='13' y='1' width='4' height='2' fill='%23ffd84d'/%3E%3Crect x='19' y='1' width='4' height='2' fill='%23a78bfa'/%3E%3Cpath fill='%23fff9ec' d='M1 1h3v1H1V1zM7 1h3v1H7V1zM13 1h3v1h-3V1zM19 1h3v1h-3V1z'/%3E%3C/svg%3E");
+	--pixel-frieze-chord: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='16' viewBox='0 0 24 4' shape-rendering='crispEdges'%3E%3Crect width='24' height='4' fill='%231c0b07'/%3E%3Cpath fill='%23fff9ec' d='M0 0h3v4H0V0zM4 0h3v4H4V0zM8 0h3v4H8V0zM12 0h3v4h-3V0zM16 0h3v4h-3V0zM20 0h3v4h-3V0z'/%3E%3Cpath fill='%23080c1a' d='M2 0h2v2H2V0zM6 0h2v2H6V0zM14 0h2v2h-2V0zM18 0h2v2h-2V0zM22 0h2v2h-2V0z'/%3E%3C/svg%3E");
+	--pixel-frieze-site: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='16' viewBox='0 0 24 4' shape-rendering='crispEdges'%3E%3Crect width='24' height='4' fill='%231a0812'/%3E%3Crect x='0' y='1' width='4' height='2' fill='%23ffd84d'/%3E%3Crect x='4' y='1' width='4' height='2' fill='%235ce1e6'/%3E%3Crect x='8' y='1' width='4' height='2' fill='%23ff5c7c'/%3E%3Crect x='12' y='1' width='4' height='2' fill='%234ade80'/%3E%3Crect x='16' y='1' width='4' height='2' fill='%23a78bfa'/%3E%3Crect x='20' y='1' width='4' height='2' fill='%23fb923c'/%3E%3C/svg%3E");
+	--pixel-frieze-sage: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='16' viewBox='0 0 24 4' shape-rendering='crispEdges'%3E%3Crect width='24' height='4' fill='%230d1c14'/%3E%3Crect x='0' y='3' width='24' height='1' fill='%2378350f'/%3E%3Cpath fill='%2310b981' d='M1 1h3v2H1V1zM7 1h3v2H7V1zM13 1h3v2h-3V1zM19 1h3v2h-3V1z'/%3E%3Cpath fill='%2386efac' d='M2 1h2v1H2V1zM8 1h2v1H8V1zM14 1h2v1h-2V1zM20 1h2v1h-2V1z'/%3E%3Cpath fill='%23d97706' d='M5 1h1v1H5V1zM11 1h1v1h-1V1zM17 1h1v1h-1V1zM23 1h1v1h-1V1z'/%3E%3C/svg%3E");
+	--pixel-frieze-flowers: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='16' viewBox='0 0 24 4' shape-rendering='crispEdges'%3E%3Crect width='24' height='4' fill='%231f0b16'/%3E%3Cpath fill='%2310b981' d='M0 2h24v1H0V2z'/%3E%3Cpath fill='%23ff5c7c' d='M2 1h2v2H2V1zM14 1h2v2h-2V1z'/%3E%3Cpath fill='%23ffd84d' d='M8 1h2v2H8V1zM20 1h2v2h-2V1z'/%3E%3Cpath fill='%23fff9ec' d='M2 1h1v1H2V1zM8 1h1v1H8V1zM14 1h1v1h-1V1zM20 1h1v1h-1V1z'/%3E%3C/svg%3E");
+	--pixel-frieze-poetry: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='16' viewBox='0 0 24 4' shape-rendering='crispEdges'%3E%3Crect width='24' height='4' fill='%23111522'/%3E%3Cpath fill='%23fff9ec' d='M1 1h5v2H1V1zM8 1h4v2H8V1zM14 1h6v2h-6V1z'/%3E%3Cpath fill='%23080c1a' d='M2 2h3v1H2V2zM9 2h2v1H9V2zM15 2h4v1h-4V2z'/%3E%3Crect x='21' y='1' width='2' height='2' fill='%23ff5c7c'/%3E%3C/svg%3E");
+
+	--pixel-work-sprite-prompt: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M1 3h14v11H1V3zm2-2h4v2H3V1zm6 0h4v2H9V1z'/%3E%3Cpath fill='%236d28d9' d='M2 4h12v9H2V4z'/%3E%3Cpath fill='%23fff9ec' d='M3 5h4v6H3V5zm6 0h4v6H9V5z'/%3E%3Cpath fill='%23ffd84d' d='M7 4h2v9H7V4zM4 1h2v2H4V1z'/%3E%3Cpath fill='%235ce1e6' d='M10 1h2v2h-2V1zM4 6h2v1H4V6zm6 2h2v1h-2V8z'/%3E%3Cpath fill='%23ff5c7c' d='M4 8h2v1H4V8zm6-2h2v1h-2V6z'/%3E%3Cpath fill='%234ade80' d='M4 10h2v1H4v-1zm6 0h2v1h-2v-1z'/%3E%3C/svg%3E");
+	--pixel-work-sprite-chord: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M5 0h9v7h-4V3H7v5H3V5h2V0zM1 9h14v7H1V9z'/%3E%3Cpath fill='%23ffd84d' d='M6 1h7v2H6V1zM6 3h1v4H6V3zm6 0h1v3h-1V3zM4 6h3v2H4V6zm6-1h3v2h-3V5z'/%3E%3Cpath fill='%23ea580c' d='M2 9h12v1H2V9z'/%3E%3Cpath fill='%23fff9ec' d='M2 10h2v5H2v-5zm3 0h2v5H5v-5zm3 0h2v5H8v-5zm3 0h3v5h-3v-5z'/%3E%3Cpath fill='%23070412' d='M3 10h2v3H3v-3zm3 0h2v3H6v-3zm4 0h2v3h-2v-3z'/%3E%3C/svg%3E");
+	--pixel-work-sprite-site: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M2 0h10v2h2v14H2V0z'/%3E%3Cpath fill='%23ffd84d' d='M3 1h8v2h2v12H3V1z'/%3E%3Cpath fill='%23d97706' d='M4 2h5v1H4V2zM4 13h8v2H4v-2z'/%3E%3Cpath fill='%231e293b' d='M4 4h8v8H4V4z'/%3E%3Cpath fill='%23ff5c7c' d='M5 5h3v3H5V5z'/%3E%3Cpath fill='%235ce1e6' d='M8 5h3v3H8V5z'/%3E%3Cpath fill='%23a78bfa' d='M5 8h3v3H5V8z'/%3E%3Cpath fill='%234ade80' d='M8 8h3v3H8V8z'/%3E%3Cpath fill='%23fff9ec' d='M9 9h2v1H9V9z'/%3E%3C/svg%3E");
+	--pixel-work-sprite-sage: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M9 1h6v5h-2v2h2v5H9v2H5v-2H1V8h3V6H2V2h6v2h1V1z'/%3E%3Cpath fill='%2310b981' d='M10 2h4v3h-4V2zM3 3h4v3H3V3zm7 6h4v3h-4V9zM2 9h4v3H2V9z'/%3E%3Cpath fill='%2386efac' d='M11 2h2v1h-2V2zM4 3h2v1H4V3zm7 6h2v1h-2V9zM3 9h2v1H3V9z'/%3E%3Cpath fill='%23b45309' d='M7 5h2v9H7V5z'/%3E%3Cpath fill='%23ffd84d' d='M6 13h4v1H6v-1z'/%3E%3C/svg%3E");
+	--pixel-work-sprite-flowers: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M5 0h6v2h4v5h-2v3h-2v6H5v-6H3V7H1V2h4V0z'/%3E%3Cpath fill='%23ff5c7c' d='M6 1h4v4H6V1zM2 3h4v4H2V3z'/%3E%3Cpath fill='%23ffd84d' d='M10 3h4v4h-4V3zM7 2h2v2H7V2zM3 4h2v2H3V4z'/%3E%3Cpath fill='%23fff9ec' d='M11 4h2v2h-2V4z'/%3E%3Cpath fill='%2310b981' d='M4 7h8v3H4V7z'/%3E%3Cpath fill='%234ade80' d='M5 7h2v2H5V7zm4 0h2v2H9V7z'/%3E%3Cpath fill='%23d97706' d='M6 10h4v5H6v-5z'/%3E%3Cpath fill='%23fda4af' d='M6 11h4v1H6v-1z'/%3E%3C/svg%3E");
+	--pixel-work-sprite-poetry: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M2 0h12v9h-4V4H6v5H2V0zm-1 10h6v5H1v-5zm8 0h6v5H9v-5z'/%3E%3Cpath fill='%23ef4444' d='M3 1h10v5h-2V3H5v3H3V1z'/%3E%3Cpath fill='%23cbd5e1' d='M3 6h2v2H3V6zm8 0h2v2h-2V6z'/%3E%3Cpath fill='%23fff9ec' d='M2 11h4v3H2v-3zm8 0h4v3h-4v-3z'/%3E%3Cpath fill='%23070412' d='M3 12h2v1H3v-1zm8 0h2v1h-2v-1z'/%3E%3Cpath fill='%23ffd84d' d='M7 8h2v2H7V8z'/%3E%3C/svg%3E");
+	--pixel-sprite-gear-pin: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 10 10' shape-rendering='crispEdges'%3E%3Cpath fill='%231c0b07' d='M3 0h4v1h2v2h1v4H9v2H7v1H3V9H1V7H0V3h1V1h2V0z'/%3E%3Cpath fill='%23d97706' d='M3 1h4v1h1v1h1v4H8v1H7v1H3V8H2V7H1V3h1V2h1V1z'/%3E%3Cpath fill='%23ffd84d' d='M3 2h4v2H3V2zM2 3h2v3H2V3z'/%3E%3Cpath fill='%231c0b07' d='M4 4h2v2H4V4z'/%3E%3C/svg%3E");
+	--pixel-sprite-trophy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M3 1h10v2h2v5h-2v2h-3v2h2v3H4v-3h2v-2H3V8H1V3h2V1z'/%3E%3Cpath fill='%23ffd84d' d='M4 2h8v6H4V2zM2 4h2v3H2V4zm10 0h2v3h-2V4zM7 9h2v3H7V9zM5 13h6v1H5v-1z'/%3E%3Cpath fill='%23fff9ec' d='M5 3h2v4H5V3z'/%3E%3Cpath fill='%23d97706' d='M9 3h2v5H9V3zM5 8h6v1H5V8zM5 12h6v1H5v-1z'/%3E%3C/svg%3E");
+
+	--pixel-work-study-wall: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='128' viewBox='0 0 64 32' shape-rendering='crispEdges'%3E%3Crect width='64' height='32' fill='%232c160e'/%3E%3Cpath fill='%23221009' d='M0 7h64v1H0V7zM0 15h64v1H0v-1zM0 23h64v1H0v-1zM0 31h64v1H0v-1zM10 2h9v3h-9V2zM44 10h9v3h-9v-3zM20 18h10v3H20v-3zM48 26h9v3h-9v-3z'/%3E%3Cpath fill='%23381d13' d='M11 2h7v2h-7V2zM45 10h7v2h-7v-2zM21 18h8v2h-8v-2zM49 26h7v2h-7v-2z'/%3E%3Cpath fill='%23472518' d='M11 2h6v1h-6V2zM45 10h6v1h-6v-1zM21 18h7v1h-7v-1zM49 26h6v1h-6v-1z'/%3E%3C/svg%3E");
+	--pixel-work-study-ceiling: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='80' viewBox='0 0 320 20' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='320' height='2' fill='%23170904'/%3E%3Crect x='0' y='2' width='320' height='2' fill='%235c2c16'/%3E%3Crect x='0' y='4' width='320' height='1' fill='%238c4622'/%3E%3Cpath fill='%23241008' d='M0 5h320v1H0V5zM34 6h26v1H34V6zM104 6h46v1h-46V6zM176 6h48v1h-48V6zM250 6h34v1h-34V6z'/%3E%3Cpath fill='%23334155' d='M75 4h2v3h-2V4zM161 4h2v3h-2V4zM237 4h2v3h-2V4z'/%3E%3Cpath fill='%2378350f' d='M72 7h8v2h-8V7zM70 9h12v2H70V9zM158 7h8v2h-8V7zM156 9h12v2h-12V9zM234 7h8v2h-8V7zM232 9h12v2h-12V9zM196 8h18v10h-18V8zM264 14h16v1h-16v-1zM266 15h2v2h-2v-2zM276 15h2v2h-2v-2z'/%3E%3Cpath fill='%23b45309' d='M73 8h6v1h-6V8zM71 9h10v1H71V9zM159 8h6v1h-6V8zM157 9h10v1h-10V9zM235 8h6v1h-6V8zM233 9h10v1h-10V9zM197 9h16v1h-16V9zM264 13h16v1h-16v-1z'/%3E%3Cpath fill='%230284c7' d='M198 10h14v7h-14v-7z'/%3E%3Cpath fill='%235ce1e6' d='M200 11h10v1h-10v-1zM200 15h10v1h-10v-1zM200 12h1v3h-1v-3zM209 12h1v3h-1v-3zM272 9h2v4h-2V9z'/%3E%3Cpath fill='%23c2410c' d='M16 7h8v2h-8V7zM296 7h8v2h-8V7zM266 11h4v2h-4v-2z'/%3E%3Cpath fill='%239a3412' d='M17 9h6v3h-6V9zM297 9h6v3h-6V9z'/%3E%3Cpath fill='%23065f46' d='M14 6h12v2H14V6zM13 8h3v5h-3V8zM24 8h3v6h-3V8zM294 6h12v2h-12V6zM293 8h3v5h-3V8zM304 8h3v6h-3V8z'/%3E%3Cpath fill='%2310b981' d='M15 6h10v1H15V6zM14 8h2v4h-2V8zM25 8h2v5h-2V8zM295 6h10v1h-10V6zM294 8h2v4h-2V8zM305 8h2v5h-2V8zM266 9h4v2h-4V9z'/%3E%3Cpath fill='%234ade80' d='M16 6h3v1h-3V6zM296 6h3v1h-3V6zM267 8h2v2h-2V8z'/%3E%3Cpath fill='%23ff5c7c' d='M274 8h2v5h-2V8z'/%3E%3Cpath fill='%23ea580c' d='M73 11h6v3h-6v-3zM159 11h6v3h-6v-3zM235 11h6v3h-6v-3z'/%3E%3Cpath fill='%23ffd84d' d='M40 7h2v2h-2V7zM52 7h2v2h-2V7zM74 11h4v2h-4v-2zM114 7h2v2h-2V7zM138 7h2v2h-2V7zM160 11h4v2h-4v-2zM184 7h2v2h-2V7zM218 7h2v2h-2V7zM236 11h4v2h-4v-2zM258 7h2v2h-2V7zM276 10h2v3h-2v-3z'/%3E%3Cpath fill='%23fff9ec' d='M40 7h1v1h-1V7zM75 11h2v1h-2v-1zM114 7h1v1h-1V7zM161 11h2v1h-2v-1zM203 13h4v1h-4v-1zM237 11h2v1h-2v-1zM258 7h1v1h-1V7z'/%3E%3C/svg%3E");
+	--pixel-work-study-mural: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='152' viewBox='0 0 320 38' shape-rendering='crispEdges'%3E%3Crect x='0' y='30' width='320' height='1' fill='%23170904'/%3E%3Crect x='0' y='31' width='320' height='2' fill='%23b45309'/%3E%3Crect x='0' y='31' width='320' height='1' fill='%23ffd84d'/%3E%3Crect x='0' y='33' width='320' height='5' fill='%23451a03'/%3E%3Cpath fill='%2378350f' d='M0 33h12v2H0v-2zm16 0h12v2H16v-2zm16 0h12v2H32v-2zm16 0h12v2H48v-2zm16 0h12v2H64v-2zm16 0h12v2H80v-2zm16 0h12v2H96v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zM8 36h12v2H8v-2zm16 0h12v2H24v-2zm16 0h12v2H40v-2zm16 0h12v2H56v-2zm16 0h12v2H72v-2zm16 0h12v2H88v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h8v2h-8v-2z'/%3E%3Crect x='14' y='31' width='64' height='3' fill='%23991b1b'/%3E%3Crect x='146' y='31' width='80' height='3' fill='%230f3d3e'/%3E%3Cpath fill='%23451a03' d='M10 8h34v22H10V8zM86 5h30v9H86V5zM236 4h36v26h-36V4zM278 15h30v15h-30V15z'/%3E%3Cpath fill='%2378350f' d='M84 4h34v11H84V4zM82 19h42v2H82v-2zM86 21h4v9h-4v-9zM116 21h4v9h-4v-9zM126 20h12v10h-12V20zM148 19h76v2h-76v-2zM150 21h14v9h-14v-9zM208 21h14v9h-14v-9zM234 3h40v27h-40V3zM276 14h34v16h-34V14z'/%3E%3Cpath fill='%23b45309' d='M12 10h8v4h-8v-4zM22 10h8v4h-8v-4zM32 10h10v4H32v-4zM12 16h10v4H12v-4zM34 16h8v4h-8v-4zM46 24h10v6H46v-6zM82 18h42v1H82v-1zM148 19h76v1h-76v-1zM152 22h10v3h-10v-3zM152 26h10v3h-10v-3zM210 22h10v3h-10v-3zM210 26h10v3h-10v-3zM236 11h36v2h-36v-2zM236 19h36v2h-36v-2zM236 27h36v2h-36v-2zM276 14h34v1h-34v-1zM280 17h12v5h-12v-5zM294 17h12v5h-12v-5zM280 24h12v5h-12v-5zM294 24h12v5h-12v-5z'/%3E%3Cpath fill='%231e293b' d='M25 0h4v14h-4V0zM18 14h18v14H18V14zM20 28h3v2h-3v-2zM31 28h3v2h-3v-2z'/%3E%3Cpath fill='%23334155' d='M19 15h16v2H19v-2zM90 6h2v7h-2V6zM88 6h6v2h-6V6zM98 7h6v2h-6V7zM100 9h2v4h-2V9zM152 6h22v11h-22V6zM161 17h4v2h-4v-2zM178 6h22v11h-22V6zM187 17h4v2h-4v-2z'/%3E%3Cpath fill='%23080c1a' d='M21 18h12v8H21v-8zM62 27h1v1h-1v-1zM59 28h1v1h-1v-1zM154 8h18v7h-18V8zM180 8h18v7h-18V8zM238 5h32v6h-32V5zM238 13h32v6h-32v-6zM238 21h32v6h-32v-6z'/%3E%3Cpath fill='%230284c7' d='M86 15h32v3H86v-3z'/%3E%3Cpath fill='%235ce1e6' d='M88 16h28v1H88v-1zM128 15h3v5h-3v-5zM133 16h3v4h-3v-4zM156 11h10v1h-10v-1zM244 6h3v5h-3V6zM260 6h4v5h-4V6zM250 14h4v5h-4v-5zM242 22h4v5h-4v-5zM298 6h6v5h-6V6z'/%3E%3Cpath fill='%2310b981' d='M182 9h14v1h-14V9zM182 11h14v1h-14v-1zM182 13h14v1h-14v-1zM203 10h8v3h-8v-3zM250 6h3v5h-3V6zM265 14h3v5h-3v-5zM256 22h4v5h-4v-5zM280 5h12v9h-12V5z'/%3E%3Cpath fill='%234ade80' d='M182 9h4v1h-4V9zM182 11h4v1h-4v-1zM182 13h4v1h-4v-1zM204 10h6v2h-6v-2zM282 5h4v3h-4V5zM287 7h4v3h-4V7zM160 32h4v1h-4v-1zM180 32h4v1h-4v-1zM200 32h4v1h-4v-1z'/%3E%3Cpath fill='%23ea580c' d='M30 10h5v4h-5v-4zM22 19h10v7H22v-7zM60 25h12v5H60v-5z'/%3E%3Cpath fill='%23ff5c7c' d='M156 9h6v1h-6V9zM214 14h5v5h-5v-5zM239 6h4v5h-4V6zM244 14h5v5h-5v-5zM262 22h5v5h-5v-5z'/%3E%3Cpath fill='%23a78bfa' d='M156 13h8v1h-8v-1zM254 6h5v5h-5V6zM256 14h4v5h-4v-5zM248 22h6v5h-6v-5z'/%3E%3Cpath fill='%23ffedd5' d='M59 27h5v3h-5v-3zM66 29h6v1h-6v-1z'/%3E%3Cpath fill='%23ffd84d' d='M108 7h5v5h-5V7zM24 20h6v6h-6v-6zM48 25h2v2h-2v-2zM52 26h2v2h-2v-2zM62 25h4v4h-4v-4zM164 9h6v1h-6V9zM206 13h2v6h-2v-6zM204 18h6v1h-6v-1zM239 14h4v5h-4v-5zM261 14h3v5h-3v-5zM239 22h3v5h-3v-5zM284 19h4v1h-4v-1zM298 19h4v1h-4v-1zM284 26h4v1h-4v-1zM298 26h4v1h-4v-1zM300 11h2v3h-2v-3zM298 13h6v1h-6v-1zM24 32h4v1h-4v-1zM44 32h4v1h-4v-1zM64 32h4v1h-4v-1zM150 32h4v1h-4v-1zM170 32h4v1h-4v-1zM190 32h4v1h-4v-1zM210 32h4v1h-4v-1z'/%3E%3Cpath fill='%23fff9ec' d='M32 7h1v2h-1V7zM34 5h1v3h-1V5zM25 22h4v4h-4v-4zM92 16h12v1H92v-1zM129 16h1v3h-1v-3zM134 17h1v2h-1v-2zM164 18h18v1h-18v-1zM215 11h1v2h-1v-2zM217 9h1v3h-1V9zM219 15h2v3h-2v-3zM14 31h2v3h-2v-3zM76 31h2v3h-2v-3zM146 31h2v3h-2v-3zM224 31h2v3h-2v-3z'/%3E%3C/svg%3E");
 
 	/* 11. Contact Page Tavern Architecture & Unfurled Parchment Scroll Assets:
 	   - --pixel-contact-outer-wall: Dimly-lit half-timbered tavern outer hall with warm wall sconces
@@ -910,13 +938,45 @@ html[data-skin="eight-bit-overworld"] :is(.quest-link:hover, .quest-link:focus-v
 	color: var(--pixel-ink) !important;
 }
 
-/* --- 4. Work Page: 6-Column Game Cartridge Rack (1 + 3 + 2) & 2-Column Manual --- */
+/* --- 4. Work Page: Guild Hall of Completed Quests (1 + 3 + 2) & Cozy Tinkerer's Workshop Study --- */
 
 html[data-skin="eight-bit-overworld"] :is(.page-section, .section-soft, .section-portrait) {
 	padding: 2.15rem 0 !important;
 	border: 0 !important;
 	background: transparent !important;
 	box-shadow: none !important;
+}
+
+/* Warm Cozy Guild Hall Showcase Frame for Selected Projects */
+html[data-skin="eight-bit-overworld"] body.page-work .page-section:not(.section-soft):not(.section-cta) > .site-shell {
+	padding: clamp(1.35rem, 3vw, 2rem);
+	border: 4px solid var(--pixel-gold);
+	background-color: #24130c !important;
+	background-image: var(--pixel-work-study-wall) !important;
+	background-size: 256px 128px !important;
+	background-repeat: repeat !important;
+	box-shadow:
+		inset 0 0 0 3px #854d27,
+		0 0 0 4px var(--pixel-ink),
+		8px 8px 0 var(--pixel-ink);
+}
+
+html[data-skin="eight-bit-overworld"] body.page-work .page-section:not(.section-soft):not(.section-cta) > .site-shell > h2 {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.65rem;
+	margin-bottom: 1.25rem !important;
+	padding: 0.5rem 0.95rem 0.5rem 2.4rem;
+	border: 3px solid var(--pixel-gold);
+	background-color: #160a05;
+	background-image: var(--pixel-sprite-trophy);
+	background-repeat: no-repeat;
+	background-position: 0.65rem center;
+	background-size: 20px 20px;
+	box-shadow:
+		inset 0 0 0 2px #7c3a1d,
+		4px 4px 0 var(--pixel-ink);
+	color: var(--pixel-gold) !important;
 }
 
 /* 6-Column Master Grid:
@@ -930,8 +990,21 @@ html[data-skin="eight-bit-overworld"] :is(.features, .features--showcase) {
 	align-items: stretch;
 }
 
-/* Moulded 8-Bit ROM Cartridge Shell with Top Grip Ridges */
+/* Completed Quest / Commission Work Shell with Project-Specific Top Frieze & Status Ribbon */
 html[data-skin="eight-bit-overworld"] .features article {
+	--work-frieze: var(--pixel-cartridge-grip);
+	--work-sprite: var(--pixel-work-sprite-site);
+	--work-status: "★ QUEST COMPLETE // SHIPPED BUILD";
+	--work-bg: #181124;
+	--work-inset: #4c2882;
+	--work-top-border: var(--pixel-gold);
+	--work-title: var(--pixel-gold);
+	--work-rule: #4c2882;
+	--work-badge-bg: #102a1b;
+	--work-badge-border: #4cd964;
+	--work-badge-text: #bbf7d0;
+	--work-btn-bg: #27173d;
+	--work-btn-text: var(--pixel-cyan);
 	grid-column: span 3;
 	display: flex !important;
 	flex-direction: column;
@@ -939,51 +1012,169 @@ html[data-skin="eight-bit-overworld"] .features article {
 	width: auto !important;
 	min-width: 0;
 	margin: 0 !important;
-	padding: 1.55rem 1.15rem 1.15rem !important;
+	padding: 1.6rem 1.15rem 1.15rem !important;
 	border: 3px solid var(--text-1) !important;
-	border-top: 6px solid var(--pixel-gold) !important;
+	border-top: 6px solid var(--work-top-border) !important;
 	border-radius: 0 !important;
-	background-color: #080c1a !important;
-	background-image: var(--pixel-cartridge-grip) !important;
+	background-color: var(--work-bg) !important;
+	background-image: var(--work-frieze) !important;
 	background-repeat: repeat-x !important;
 	background-position: left top !important;
-	background-size: 32px 12px !important;
+	background-size: 64px 14px !important;
 	box-shadow:
-		inset 0 0 0 3px #1e2d59,
+		inset 0 0 0 3px var(--work-inset),
 		6px 6px 0 var(--pixel-ink) !important;
 	transform: none !important;
 }
 
-html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(2),
-html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(3),
-html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(4) {
+/* Completed Work Status Seal at top of each project card */
+html[data-skin="eight-bit-overworld"] .features article::before {
+	content: var(--work-status);
+	display: inline-flex;
+	align-items: center;
+	align-self: flex-start;
+	margin: 0 0 0.7rem;
+	padding: 0.24rem 0.55rem;
+	border: 2px solid var(--work-badge-border);
+	background: var(--work-badge-bg);
+	box-shadow: 2px 2px 0 var(--pixel-ink);
+	color: var(--work-badge-text);
+	font: 400 0.54rem/1.35 var(--pixel-display);
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+/* 1. Prompt Palette — Arcane Command Grimoire & Tag Keycaps (TypeScript Extension) */
+html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(1) {
+	--work-frieze: var(--pixel-frieze-prompt);
+	--work-sprite: var(--pixel-work-sprite-prompt);
+	--work-status: "★ QUEST COMPLETE // TYPESCRIPT BROWSER EXTENSION";
+	--work-bg: #19112b;
+	--work-inset: #4c2882;
+	--work-top-border: #c084fc;
+	--work-title: #ffd166;
+	--work-rule: #5b3299;
+	--work-badge-bg: #261447;
+	--work-badge-border: #c084fc;
+	--work-badge-text: #f3e8ff;
+	--work-btn-bg: #2d1952;
+	--work-btn-text: #70e4ef;
+}
+
+/* 2. Chord Function API — Chiptune Conservatory & Piano-Roll Synthesizer */
+html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(2) {
+	--work-frieze: var(--pixel-frieze-chord);
+	--work-sprite: var(--pixel-work-sprite-chord);
+	--work-status: "★ QUEST COMPLETE // MUSIC THEORY API & NPM PKG";
+	--work-bg: #241219;
+	--work-inset: #702446;
+	--work-top-border: #ffd166;
+	--work-title: #ffd166;
+	--work-rule: #872d56;
+	--work-badge-bg: #3b1728;
+	--work-badge-border: #ffd166;
+	--work-badge-text: #fef3c7;
+	--work-btn-bg: #3d192b;
+	--work-btn-text: #70e4ef;
 	grid-column: span 2 !important;
 }
 
-html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(5),
-html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(6) {
+/* 3. This Site — Master Cartridge Console & 32-Skin Chameleon Deck */
+html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(3) {
+	--work-frieze: var(--pixel-frieze-site);
+	--work-sprite: var(--pixel-work-sprite-site);
+	--work-status: "★ QUEST COMPLETE // 32-THEME ENGINE & TEST SUITE";
+	--work-bg: #251311;
+	--work-inset: #7c3523;
+	--work-top-border: #4cd964;
+	--work-title: #ffd166;
+	--work-rule: #94402b;
+	--work-badge-bg: #112d1d;
+	--work-badge-border: #4cd964;
+	--work-badge-text: #bbf7d0;
+	--work-btn-bg: #3d1e18;
+	--work-btn-text: #86efac;
+	grid-column: span 2 !important;
+}
+
+/* 4. Sage & Cedar — Cozy Herbal Apothecary & Botanical Spa Menu */
+html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(4) {
+	--work-frieze: var(--pixel-frieze-sage);
+	--work-sprite: var(--pixel-work-sprite-sage);
+	--work-status: "★ COMMISSION COMPLETE // SALON MENU & MOBILE UI";
+	--work-bg: #112219;
+	--work-inset: #27573c;
+	--work-top-border: #86efac;
+	--work-title: #bbf7d0;
+	--work-rule: #326e4c;
+	--work-badge-bg: #183626;
+	--work-badge-border: #86efac;
+	--work-badge-text: #dcfce7;
+	--work-btn-bg: #1b3828;
+	--work-btn-text: #fde68a;
+	grid-column: span 2 !important;
+}
+
+/* 5. Flowers by Leanne — Blooming Greenhouse & Florist Photo Showcase */
+html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(5) {
+	--work-frieze: var(--pixel-frieze-flowers);
+	--work-sprite: var(--pixel-work-sprite-flowers);
+	--work-status: "★ COMMISSION COMPLETE // FLORIST PHOTO SHOWCASE";
+	--work-bg: #26111c;
+	--work-inset: #6e2546;
+	--work-top-border: #fda4af;
+	--work-title: #fecdd3;
+	--work-rule: #852d55;
+	--work-badge-bg: #3d1729;
+	--work-badge-border: #fda4af;
+	--work-badge-text: #ffe4e6;
+	--work-btn-bg: #3d192b;
+	--work-btn-text: #fde68a;
 	grid-column: span 3 !important;
 }
 
-/* Reversed Featured Console Deck: Copy on LEFT, Monitor Screen on RIGHT */
+/* 6. Fridge Poetry Lab — Cozy Kitchen Board & 3D Magnet Word Tiles */
+html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(6) {
+	--work-frieze: var(--pixel-frieze-poetry);
+	--work-sprite: var(--pixel-work-sprite-poetry);
+	--work-status: "★ QUEST COMPLETE // WEB COMPONENT & MAGNET LAB";
+	--work-bg: #151d2e;
+	--work-inset: #33486e;
+	--work-top-border: #ff5c7c;
+	--work-title: #fef3c7;
+	--work-rule: #415b8a;
+	--work-badge-bg: #22304d;
+	--work-badge-border: #70e4ef;
+	--work-badge-text: #e0f2fe;
+	--work-btn-bg: #21304d;
+	--work-btn-text: #70e4ef;
+	grid-column: span 3 !important;
+}
+
+/* Reversed Featured Console Deck: Status Ribbon on Row 1, Copy on LEFT, Monitor Screen on RIGHT */
 html[data-skin="eight-bit-overworld"] .features--showcase .featured-project {
 	grid-column: 1 / -1 !important;
 	display: grid !important;
 	grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr) !important;
-	gap: 1.65rem !important;
+	gap: 0.85rem 1.65rem !important;
 	align-items: center;
-	border-top-color: var(--pixel-cyan) !important;
-	background-color: #0d142b !important;
+}
+
+html[data-skin="eight-bit-overworld"] .features--showcase .featured-project::before {
+	grid-column: 1 / -1;
+	grid-row: 1;
+	justify-self: start;
+	margin-bottom: 0;
 }
 
 html[data-skin="eight-bit-overworld"] .features--showcase .featured-project .inner {
 	grid-column: 1;
-	grid-row: 1;
+	grid-row: 2;
 }
 
 html[data-skin="eight-bit-overworld"] .features--showcase .featured-project .image {
 	grid-column: 2;
-	grid-row: 1;
+	grid-row: 2;
 	margin-bottom: 0 !important;
 }
 
@@ -1034,15 +1225,25 @@ html[data-skin="eight-bit-overworld"] :is(.features article .inner, .features--s
 }
 
 html[data-skin="eight-bit-overworld"] .features article h3 {
+	display: flex;
+	align-items: center;
+	min-height: 1.75rem;
 	margin: 0 0 0.55rem !important;
-	padding-bottom: 0.4rem;
-	border-bottom: 2px dashed #2b3f78;
-	color: var(--pixel-gold) !important;
-	font-size: 1.05rem !important;
+	padding: 0.1rem 0 0.45rem 2.1rem;
+	border-bottom: 2px dashed var(--work-rule, #2b3f78);
+	background-image: var(--work-sprite);
+	background-repeat: no-repeat;
+	background-position: left 0.12rem;
+	background-size: 22px 22px;
+	color: var(--work-title, var(--pixel-gold)) !important;
+	font-size: 1.02rem !important;
 }
 
 html[data-skin="eight-bit-overworld"] .features--showcase .featured-project h3 {
-	font-size: clamp(1.25rem, 2vw, 1.65rem) !important;
+	padding-left: 2.35rem;
+	background-size: 26px 26px;
+	background-position: left 0.15rem;
+	font-size: clamp(1.2rem, 2vw, 1.55rem) !important;
 }
 
 html[data-skin="eight-bit-overworld"] .features article p {
@@ -1067,9 +1268,9 @@ html[data-skin="eight-bit-overworld"] .features article .inner span a {
 	padding: 0.3rem 0.6rem !important;
 	border: 2px solid var(--text-1) !important;
 	border-radius: 0 !important;
-	background: #162244 !important;
+	background: var(--work-btn-bg, #162244) !important;
 	box-shadow: inset -2px -2px 0 #050811, 3px 3px 0 var(--pixel-ink) !important;
-	color: var(--pixel-cyan) !important;
+	color: var(--work-btn-text, var(--pixel-cyan)) !important;
 	font: 400 0.68rem/1.2 var(--pixel-display) !important;
 	letter-spacing: 0.04em;
 	text-decoration: none !important;
@@ -1082,41 +1283,135 @@ html[data-skin="eight-bit-overworld"] :is(.features article .inner span a:hover,
 	color: var(--pixel-ink) !important;
 }
 
-/* 2-Column RPG Instruction Booklet for .work-background */
+/* Cozy 8-Bit Tinkerer's & Craftsman's Workshop Study for "A little background" (.work-background) */
 html[data-skin="eight-bit-overworld"] .section-soft > .site-shell {
-	padding: clamp(1.35rem, 3vw, 2rem);
+	padding: 3.6rem clamp(1.35rem, 3vw, 2rem) 10.6rem !important;
 	border: 4px solid var(--pixel-gold);
-	background-color: #1b2a52 !important;
-	background-image: var(--pixel-castle-stone) !important;
-	background-size: 64px 32px !important;
-	background-repeat: repeat !important;
+	background-color: #2e1810 !important;
+	background-image:
+		var(--pixel-work-study-ceiling),
+		var(--pixel-work-study-mural),
+		var(--pixel-work-study-wall) !important;
+	background-size:
+		1280px 80px,
+		1280px 152px,
+		256px 128px !important;
+	background-position:
+		center top,
+		center bottom,
+		left top !important;
+	background-repeat:
+		no-repeat,
+		no-repeat,
+		repeat !important;
 	box-shadow:
-		inset 0 0 0 3px #354d8c,
-		6px 6px 0 var(--pixel-ink);
+		inset 0 0 0 3px #8c4522,
+		0 0 0 4px var(--pixel-ink),
+		8px 8px 0 var(--pixel-ink);
 }
 
 html[data-skin="eight-bit-overworld"] .work-background {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: 0.85rem 1.25rem;
+	gap: 0.95rem 1.25rem;
 	align-items: stretch;
 }
 
-html[data-skin="eight-bit-overworld"] .work-background > h2,
-html[data-skin="eight-bit-overworld"] .work-background > p:last-child {
+html[data-skin="eight-bit-overworld"] .work-background > h2 {
 	grid-column: 1 / -1;
+	display: inline-flex;
+	align-items: center;
+	justify-self: start;
+	margin: 0 0 0.35rem !important;
+	padding: 0.5rem 0.95rem 0.5rem 2.4rem;
+	border: 3px solid var(--pixel-gold);
+	background-color: #160a05;
+	background-image: var(--pixel-sprite-gear-pin);
+	background-repeat: no-repeat;
+	background-position: 0.65rem center;
+	background-size: 20px 20px;
+	box-shadow:
+		inset 0 0 0 2px #7c3a1d,
+		4px 4px 0 var(--pixel-ink);
+	color: var(--pixel-gold) !important;
 }
 
+/* Warm Parchment Craftsman's Field-Note Logbook Cards */
 html[data-skin="eight-bit-overworld"] .work-background > p:not(:last-child) {
 	max-width: none;
 	margin: 0 !important;
-	padding: 0.8rem 0.95rem;
-	border: 2px solid var(--text-1);
-	border-left: 4px solid var(--pixel-cyan);
-	background: #080c1a;
-	box-shadow: 3px 3px 0 var(--pixel-ink);
-	font-size: 0.9rem;
-	line-height: 1.5;
+	padding: 0.95rem 1.05rem 0.95rem 2.5rem;
+	border: 3px solid #231109;
+	border-left: 6px solid #c2410c;
+	background-color: #f6e7c8 !important;
+	background-image: var(--pixel-sprite-gear-pin);
+	background-repeat: no-repeat;
+	background-position: 0.65rem 0.95rem;
+	background-size: 18px 18px;
+	box-shadow:
+		inset 0 0 0 2px #e5cfa3,
+		5px 5px 0 #120804;
+	color: #231109 !important;
+	font-size: 0.92rem;
+	line-height: 1.55;
+}
+
+html[data-skin="eight-bit-overworld"] .work-background > p:not(:last-child):nth-of-type(even) {
+	border-left-color: #0f766e;
+}
+
+/* 8th Grid Slot: Workshop Blueprint Ledger Card for "More projects on GitHub ->" */
+html[data-skin="eight-bit-overworld"] .work-background > p:last-child {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 0.55rem;
+	max-width: none;
+	margin: 0 !important;
+	padding: 0.95rem 1.15rem;
+	border: 3px solid var(--pixel-gold);
+	background-color: #1a0c06 !important;
+	box-shadow:
+		inset 0 0 0 2px #7c3a1d,
+		5px 5px 0 #120804;
+}
+
+html[data-skin="eight-bit-overworld"] .work-background > p:last-child::before {
+	content: "★ WORKSHOP ARCHIVES // SOURCE REPOSITORIES";
+	color: #fde68a;
+	font: 400 0.56rem/1.3 var(--pixel-display);
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] .work-background > p:last-child a {
+	display: inline-flex !important;
+	align-items: center;
+	gap: 0.45rem;
+	min-height: 2.4rem;
+	padding: 0.5rem 1rem !important;
+	border: 3px solid var(--pixel-ink) !important;
+	background: var(--pixel-gold) !important;
+	box-shadow:
+		inset -3px -3px 0 #c88a14,
+		inset 3px 3px 0 #fff3b0,
+		4px 4px 0 var(--pixel-ink) !important;
+	color: var(--pixel-ink) !important;
+	font: 400 0.72rem/1.3 var(--pixel-display) !important;
+	letter-spacing: 0.04em;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] .work-background > p:last-child a:hover,
+html[data-skin="eight-bit-overworld"] .work-background > p:last-child a:focus-visible {
+	background: var(--pixel-cyan) !important;
+	box-shadow:
+		inset -3px -3px 0 #1f8a94,
+		inset 3px 3px 0 #d4fcff,
+		4px 4px 0 var(--pixel-ink) !important;
+	color: var(--pixel-ink) !important;
 }
 
 /* --- 5. Favorites Page: Cozy Cabin Study & Collector's Curio Keepsakes (.page-favorites) --- */
@@ -2009,7 +2304,7 @@ html[data-skin-id="eight-bit-overworld"] .skin-contact-charm:hover {
 		grid-template-columns: 1fr !important;
 	}
 
-	html[data-skin="eight-bit-overworld"] :is(.hero-copy > :not(.hero-media):not(.hero-quests), .hero-copy .hero-media, .quest-card:nth-child(1), .quest-card:nth-child(2), .quest-card:nth-child(3), .features--showcase .featured-project .inner, .features--showcase .featured-project .image, .contact-form-grid, .contact-intro, .hero-grid--with-portrait > :first-child, .hero-grid--with-portrait > .portrait-panel) {
+	html[data-skin="eight-bit-overworld"] :is(.hero-copy > :not(.hero-media):not(.hero-quests), .hero-copy .hero-media, .quest-card:nth-child(1), .quest-card:nth-child(2), .quest-card:nth-child(3), .features--showcase .featured-project::before, .features--showcase .featured-project .inner, .features--showcase .featured-project .image, .contact-form-grid, .contact-intro, .hero-grid--with-portrait > :first-child, .hero-grid--with-portrait > .portrait-panel) {
 		grid-column: 1 !important;
 		grid-row: auto !important;
 	}
@@ -2137,6 +2432,18 @@ html[data-skin-id="eight-bit-overworld"] .skin-contact-charm:hover {
 
 	html[data-skin="eight-bit-overworld"] :is(.features, .features--showcase) {
 		grid-template-columns: 1fr !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] .section-soft > .site-shell {
+		padding: 3.1rem 1rem 8.4rem !important;
+		background-size:
+			960px 60px,
+			960px 114px,
+			256px 128px !important;
+		box-shadow:
+			inset 0 0 0 3px #8c4522,
+			0 0 0 3px var(--pixel-ink),
+			5px 5px 0 var(--pixel-ink);
 	}
 
 	html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-hero > .site-shell {
