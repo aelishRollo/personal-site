@@ -70,16 +70,18 @@ html[data-skin="eight-bit-overworld"] {
 	--pixel-sprite-wizard-hat: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M8 1h5v3h-2v1h1v2h1v2h1v3h2v2H0v-2h2V9h1V7h1V5h1V3h2V2h1V1z'/%3E%3Cpath fill='%236d28d9' d='M8 2h4v1H9v1h1v2h1v2h1v2H4V8h1V6h1V4h2V2zM1 12h14v1H1v-1z'/%3E%3Cpath fill='%23a78bfa' d='M8 2h2v1H8V2zM6 4h2v2H6V4zM5 6h2v2H5V6zM4 8h2v2H4V8zM2 12h5v1H2v-1z'/%3E%3Cpath fill='%23ffd84d' d='M12 2h1v1h-1V2zM8 6h1v2H8V6zM7 7h3v1H7V7zM3 10h10v2H3v-2z'/%3E%3Cpath fill='%235ce1e6' d='M7 10h2v2H7v-2z'/%3E%3Cpath fill='%23fff9ec' d='M7 10h1v1H7v-1z'/%3E%3C/svg%3E");
 
 	/* 6. 16x16 8-Bit Guitar Sprite (Musician / Music):
-	   Diagonal electric/acoustic guitar with cherry-red body, gold pickguard, neck & headstock */
-	--pixel-sprite-guitar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M12 1h3v3h-1v1h-1v1h-1v1h-1v1h-1v3H9v2H8v1H6v1H2v-1H1v-4h1V9h2V8h2V7h1V6h1V5h1V4h1V3h1V2h1V1z'/%3E%3Cpath fill='%23ffd84d' d='M13 1h2v2h-2V1zM8 7h1v1H8V7zM9 6h1v1H9V6zm1-1h1v1h-1V5zm1-1h1v1h-1V4zm1-1h1v1h-1V3z'/%3E%3Cpath fill='%23ff5c7c' d='M6 7h2v1H6V7zM4 8h5v3H4V8zm-2 2h6v3H2v-3zm1 3h3v1H3v-1z'/%3E%3Cpath fill='%23fff9ec' d='M4 8h2v1H4V8zm-2 2h2v1H2v-1zm3 1h2v1H5v-1z'/%3E%3Cpath fill='%23070412' d='M6 9h2v2H6V9zm-2 3h2v1H4v-1z'/%3E%3C/svg%3E");
+	   Bilaterally symmetric 45-degree figure-8 guitar (upper shoulders, pinched waist, wide lower bout),
+	   central 2x2 soundhole, diagonal bridge saddle, fretted neck, and 4-peg headstock */
+	--pixel-sprite-guitar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M12 0h3v1h-3V0zm-1 1h5v1h-5V1zm-1 1h6v1h-6V2zM9 3h7v1H9V3zM5 4h2v1H5V4zm3 0h6v1H8V4zM4 5h9v1H4V5zm0 1h8v2H4V6zM1 8h11v1H1V8zm-1 1h12v2H0V9zm0 2h8v3H0v-3zm9 0h2v1H9v-1zM1 14h7v1H1v-1zm1 1h5v1H2v-1z'/%3E%3Cpath fill='%235ce1e6' d='M12 0h1v1h-1V0zm-1 1h1v1h-1V1zm4 2h1v1h-1V3zm-1 1h1v1h-1V4z'/%3E%3Cpath fill='%23ff5c7c' d='M13 1h2v2h-2V1z'/%3E%3Cpath fill='%23ea580c' d='M5 5h2v1H5V5zm0 1h3v1H5V6zm0 1h4v1H5V7zM4 8h6v1H4V8zM1 9h10v2H1V9zm0 2h7v1H1v-1zm0 1h6v2H1v-2zm1 2h4v1H2v-1z'/%3E%3Cpath fill='%23ffd84d' d='M6 6h1v1H6V6zm0 1h2v1H6V7zM5 8h4v1H5V8zM2 9h8v1H2V9zm0 1h7v1H2v-1zm0 1h5v1H2v-1zm0 1h4v1H2v-1zm1 1h3v1H3v-1z'/%3E%3Cpath fill='%23b45309' d='M13 3h1v1h-1V3zm-1 1h1v1h-1V4zm-1 1h1v1h-1V5zm-1 1h1v1h-1V6zM9 7h1v1H9V7zM8 8h1v1H8V8z'/%3E%3Cpath fill='%23070412' d='M5 8h2v2H5V8z'/%3E%3Cpath fill='%23fff9ec' d='M12 2h1v1h-1V2zm-1 1h1v1h-1V3zm-1 1h1v1h-1V4zM9 5h1v1H9V5zM8 6h1v1H8V6zM7 7h1v1H7V7zM2 11h1v1H2v-1zm1 1h1v1H3v-1zm1 1h1v1H4v-1z'/%3E%3C/svg%3E");
 
 	/* 7. 16x16 8-Bit Two Happy People Sprite (Collaborator / Community):
-	   Two smiling side-by-side RPG characters high-fiving with cheerful pixel grins */
-	--pixel-sprite-people: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M1 2h6v6H6v1h4V8H9V2h6v6h-1v1h1v6H9v-3H7v3H1V9h1V8H1V2z'/%3E%3Cpath fill='%23ffd84d' d='M2 2h4v1H2V2zm5-1h2v2H7V1z'/%3E%3Cpath fill='%23ff5c7c' d='M10 2h4v1h-4V2z'/%3E%3Cpath fill='%23fff9ec' d='M2 3h4v5H2V3zm8 0h4v5h-4V3z'/%3E%3Cpath fill='%23070412' d='M2 4h1v1H2V4zm3 0h1v1H5V4zM2 6h1v1H2V6zm3 0h1v1H5V6zM3 7h2v1H3V7zm7-3h1v1h-1V4zm3 0h1v1h-1V4zm-3 2h1v1h-1V6zm3 0h1v1h-1V6zm-2 1h2v1h-2V7z'/%3E%3Cpath fill='%235ce1e6' d='M2 9h5v5H2V9zm5 0h1v2H7V9z'/%3E%3Cpath fill='%234ade80' d='M9 9h5v5H9V9zM8 9h1v2H8V9z'/%3E%3C/svg%3E");
+	   Two distinct, cheerful 8-bit characters side-by-side with clear eyes, rosy cheeks,
+	   big U-shaped smiles, separate heads, and friendly cyan & emerald shirts */
+	--pixel-sprite-people: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M2 0h4v1h1v6H6v1h1v1h2V8h1V7H9V1h1V0h4v1h1v6h-1v1h1v1h1v6H9v-4H7v4H0V9h1V8h1V7H1V1h1V0z'/%3E%3Cpath fill='%23ffd84d' d='M2 1h4v1H2V1zM1 2h2v1H1V2zm4 0h2v1H5V2z'/%3E%3Cpath fill='%23ff5c7c' d='M10 1h4v1h-4V1zM9 2h2v1H9V2zm4 0h2v1h-2V2z'/%3E%3Cpath fill='%23ffedd5' d='M3 2h2v1H3V2zM1 3h6v4H1V3zm1 4h4v1H2V7zm9-5h2v1h-2V2zM9 3h6v4H9V3zm1 4h4v1h-4V7z'/%3E%3Cpath fill='%23fb7185' d='M1 4h1v1H1V4zm5 0h1v1H6V4zm3 0h1v1H9V4zm5 0h1v1h-1V4z'/%3E%3Cpath fill='%23070412' d='M2 3h1v1H2V3zm3 0h1v1H5V3zm5 0h1v1h-1V3zm3 0h1v1h-1V3zM2 5h1v1H2V5zm3 0h1v1H5V5zM3 6h2v1H3V6zm7-1h1v1h-1V5zm3 0h1v1h-1V5zm-2 1h2v1h-2V6z'/%3E%3Cpath fill='%235ce1e6' d='M1 9h6v5H1V9zm6 0h1v2H7V9z'/%3E%3Cpath fill='%234ade80' d='M9 9h6v5H9V9zM8 9h1v2H8V9z'/%3E%3Cpath fill='%23fff9ec' d='M3 8h2v1H3V8zm8 0h2v1h-2V8z'/%3E%3C/svg%3E");
 
-	/* 8. 16x16 8-Bit Question Mark Block Sprite (Hero Quotes / Silly Titles):
-	   Classic gold mystery block with corner rivets and bold pixel question mark */
-	--pixel-sprite-question: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M2 1h12v1H15v12h-1v1H2v-1H1V2h1V1z'/%3E%3Cpath fill='%23d97706' d='M2 2h12v12H2V2z'/%3E%3Cpath fill='%23ffd84d' d='M2 2h11v11H2V2z'/%3E%3Cpath fill='%2378350f' d='M3 3h1v1H3V3zm9 0h1v1h-1V3zM3 12h1v1H3v-1zm9 0h1v1h-1v-1z'/%3E%3Cpath fill='%23070412' d='M6 4h5v4H9v2H7V7h2V5H6V4zm1 7h2v2H7v-2z'/%3E%3Cpath fill='%23fff9ec' d='M5 3h5v4H8v2H6V6h2V4H5V3zm1 7h2v2H6v-2z'/%3E%3C/svg%3E");
+	/* 8. 16x16 8-Bit Bold Question Mark Sprite (Hero Quotes / Silly Titles):
+	   Full-height, ultra-prominent solid gold 3D question mark with cream highlight and ruby shadow */
+	--pixel-sprite-question: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23070412' d='M4 0h8v1H4V0zM3 1h10v1H3V1zM2 2h5v3H2V2zm7 0h5v4H9V2zM7 5h6v2H7V5zM6 7h5v1H6V7zm0 1h4v2H6V8zm0 3h4v5H6v-5z'/%3E%3Cpath fill='%23ff5c7c' d='M5 3h1v2H5V3zm7-1h1v4h-1V2zm-2 4h2v1h-2V6zM9 7h1v1H9V7zM8 8h1v2H8V8zm0 4h1v3H8v-3z'/%3E%3Cpath fill='%23ffd84d' d='M4 1h7v1H4V1zM3 2h9v1H3V2zm0 1h2v2H3V3zm7 0h2v2h-2V3zM8 5h4v1H8V5zM7 6h3v1H7V6zm0 1h2v2H7V7zm0 5h2v2H7v-2z'/%3E%3Cpath fill='%23fff9ec' d='M4 1h5v1H4V1zM3 2h1v2H3V2zm5 3h1v1H8V5zM7 6h1v2H7V6zm0 6h1v1H7v-1z'/%3E%3C/svg%3E");
 
 	/* 9. 8-Bit Castle Stone Brickwork Tile for Main Containers (16x8 grid -> rendered at 64x32px = 4px square pixels):
 	   Gives main containers a distinct Royal Cobalt castle-wall texture separate from the night-sky body background */
@@ -472,9 +474,8 @@ html[data-skin="eight-bit-overworld"] body.page-home .page-hero h1 {
 
 html[data-skin="eight-bit-overworld"] :is(.hero-title-role, .hero-title-role:nth-of-type(2n), .metallic-pearl-text) {
 	position: relative;
-	display: flex !important;
-	flex-direction: row;
-	align-items: center;
+	display: block !important;
+	align-content: center;
 	min-width: 0;
 	min-height: 3.35rem;
 	margin: 0 !important;
@@ -639,14 +640,14 @@ html[data-skin="eight-bit-overworld"] .hero-splash {
 	width: 100%;
 	height: 124px;
 	margin: 0.8rem auto 1.95rem;
-	padding: 0.55rem 0.55rem 0.55rem 2.85rem;
+	padding: 0.55rem 0.55rem 0.55rem 3rem;
 	border: 2px solid var(--pixel-cyan) !important;
 	border-radius: 0 !important;
 	background-color: #101730 !important;
 	background-image: var(--pixel-sprite-question) !important;
 	background-repeat: no-repeat !important;
 	background-position: 0.55rem center !important;
-	background-size: 28px 28px !important;
+	background-size: 32px 32px !important;
 	box-shadow: inset 0 0 0 2px #050811 !important;
 	color: var(--pixel-gold) !important;
 	transform: none;
@@ -733,15 +734,15 @@ html[data-skin="eight-bit-overworld"] :is(.panel-card:hover, .quest-card:hover) 
 html[data-skin="eight-bit-overworld"] .panel-card h3 {
 	display: flex;
 	align-items: center;
-	min-height: 2.6rem;
+	min-height: 2.75rem;
 	margin: -1.15rem -1.15rem 0.9rem !important;
-	padding: 0.45rem 0.85rem 0.45rem 3.1rem;
+	padding: 0.45rem 0.85rem 0.45rem 3.25rem;
 	border-bottom: 3px solid var(--text-1);
 	background-color: #162244;
 	background-image: var(--pixel-sprite-wizard-hat);
 	background-repeat: no-repeat;
 	background-position: 0.65rem center;
-	background-size: 28px 28px;
+	background-size: 32px 32px;
 	color: var(--pixel-gold) !important;
 	font: 400 0.94rem/1.25 var(--pixel-display) !important;
 	letter-spacing: 0.06em;
