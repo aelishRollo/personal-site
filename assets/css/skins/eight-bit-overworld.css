@@ -53,11 +53,24 @@ html[data-skin="eight-bit-overworld"] {
 	   Features pixel crescent moon, stepped night clouds, and cross-shaped twinkling stars */
 	--pixel-sky-scene: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='240' viewBox='0 0 120 60' shape-rendering='crispEdges'%3E%3Cg fill='%23fff9ec'%3E%3Crect x='8' y='7' width='1' height='1'/%3E%3Crect x='34' y='14' width='1' height='1'/%3E%3Crect x='67' y='6' width='1' height='1'/%3E%3Crect x='52' y='28' width='1' height='1'/%3E%3Crect x='19' y='44' width='1' height='1'/%3E%3Crect x='83' y='38' width='1' height='1'/%3E%3Crect x='110' y='48' width='1' height='1'/%3E%3C/g%3E%3Cg fill='%23ffd84d'%3E%3Crect x='22' y='9' width='1' height='3'/%3E%3Crect x='21' y='10' width='3' height='1'/%3E%3Crect x='76' y='21' width='1' height='3'/%3E%3Crect x='75' y='22' width='3' height='1'/%3E%3Crect x='43' y='49' width='1' height='3'/%3E%3Crect x='42' y='50' width='3' height='1'/%3E%3C/g%3E%3Cg fill='%235ce1e6'%3E%3Crect x='54' y='10' width='1' height='3'/%3E%3Crect x='53' y='11' width='3' height='1'/%3E%3Crect x='12' y='29' width='1' height='3'/%3E%3Crect x='11' y='30' width='3' height='1'/%3E%3Crect x='98' y='29' width='1' height='3'/%3E%3Crect x='97' y='30' width='3' height='1'/%3E%3C/g%3E%3Cpath fill='%23ffd84d' d='M96 6h5v1h2v2h1v5h-1v2h-2v1h-5v-1h2v-1h2v-2h1V9h-1V7h-2V6z'/%3E%3Cpath fill='%23fff9ec' d='M98 7h3v1h1v2h-1V8h-3V7zm2 7h2v1h-2v-1z'/%3E%3Cpath fill='%231b1345' d='M14 20h14v2H14zm-2-2h18v2H12zm2-2h12v2H14zm3-2h6v2h-6zM70 44h18v2H70zm-2-2h22v2H68zm3-2h14v2H71zm3-2h8v2h-8z'/%3E%3Cpath fill='%232f2269' d='M17 14h6v1h-6zm-3 2h12v1H14zm60 22h8v1h-8zm-3 2h14v1H71z'/%3E%3C/svg%3E");
 
-	/* 2. Full 8-Bit Overworld Panorama (160x36 grid -> rendered at 640x144px = 4px square pixels):
-	   Features distant snow-capped pixel mountains, crenellated castle & wizard tower,
-	   layered pine forest, floating NES [?] blocks & coins, pixel hero with cyan sword,
-	   flickering campfire, treasure chest, emerald turf, and checkered NES brick ground */
-	--pixel-overworld-mural: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='144' viewBox='0 0 160 36' shape-rendering='crispEdges'%3E%3Cpath fill='%231d1447' d='M0 28V20h6v-3h6v-3h6v-3h6v3h6v3h6v3h8v-2h6v-3h6v-3h6v-3h6v3h6v3h6v3h6v2h14v-3h6v-3h6v-3h6v3h6v3h6v3h18v8H0z'/%3E%3Cpath fill='%232b1f66' d='M18 11h6v3h6v3h-6v-3h-6zm54-3h6v3h6v3h-6v-3h-6zm56 6h6v3h6v3h-6v-3h-6z'/%3E%3Cpath fill='%235ce1e6' d='M18 11h6v2h-2v1h-4v-3zm54-3h6v2h-2v2h-4V8zm56 6h6v2h-4v-2z'/%3E%3Cpath fill='%23fff9ec' d='M18 11h4v1h-4zm54-3h4v1h-4zm56 6h4v1h-4z'/%3E%3Cpath fill='%23261b5c' d='M98 14h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v14H98V14zm-6 6h6v8h-6v-8zm20 0h6v8h-6v-8z'/%3E%3Cpath fill='%233b2b7d' d='M98 14h2v14h-2V14zm6 0h2v2h-2v-2zm6 0h2v2h-2v-2zm-18 6h2v8h-2v-8zm24 0h2v8h-2v-8z'/%3E%3Cpath fill='%23ff5c7c' d='M102 10h6v2h-6v-2zm1-2h4v2h-4V8zm1-2h2v2h-2V6z'/%3E%3Cpath fill='%23ffd84d' d='M105 4h4v2h-4V4zm-3 14h2v3h-2v-3zm4 0h2v3h-2v-3zm-2 5h2v5h-2v-5zm-9-1h2v2h-2v-2zm20 0h2v2h-2v-2z'/%3E%3Cpath fill='%230f3d3e' d='M6 22h6v2H6zm2-2h2v2H8zm18 2h6v2h-6zm2-2h2v2h-2zm56 2h6v2h-6zm2-2h2v2h-2zm56 2h6v2h-6zm2-2h2v2h-2z'/%3E%3Cpath fill='%2310b981' d='M4 25h10v3H4zm2-2h6v2H6zm16 2h10v3H22zm2-2h6v2h-6zm54 2h10v3H78zm2-2h6v2h-6zm54 2h10v3h-10zm2-2h6v2h-6z'/%3E%3Cpath fill='%234ade80' d='M8 20h2v1H8zm-2 3h4v1H6zm20-3h2v1h-2zm-2 3h4v1h-4zm56-3h2v1h-2zm-2 3h4v1h-4zm56-3h2v1h-2zm-2 3h4v1h-4z'/%3E%3Cpath fill='%23b87d00' d='M42 12h18v6H42v-6z'/%3E%3Cpath fill='%23ffd84d' d='M43 13h4v4h-4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4z'/%3E%3Cpath fill='%23070412' d='M50 14h2v1h-1v1h-1v-2zm0 2h1v1h-1v-1z'/%3E%3Cpath fill='%23ffd84d' d='M44 7h2v4h-2V7zm6-2h2v4h-2V5zm6 2h2v4h-2V7z'/%3E%3Cpath fill='%23fff9ec' d='M44 7h1v3h-1V7zm6-2h1v3h-1V5zm6 2h1v3h-1V7z'/%3E%3Cpath fill='%23ffd84d' d='M64 21h3v2h-3v-2z'/%3E%3Cpath fill='%235ce1e6' d='M64 23h3v3h-3v-3zm5-3h1v5h-1v-5z'/%3E%3Cpath fill='%23ff5c7c' d='M63 23h1v2h-1v-2zm10 3h4v2h-4v-2z'/%3E%3Cpath fill='%23ffd84d' d='M74 24h2v2h-2v-2zm-10 2h1v2h-1v-2zm2 0h1v2h-1v-2z'/%3E%3Cpath fill='%23fff9ec' d='M69 19h1v1h-1v-1zm5 6h1v1h-1v-1z'/%3E%3Crect x='0' y='28' width='160' height='2' fill='%234ade80'/%3E%3Cpath fill='%2310b981' d='M0 30h160v1H0zm4-1h4v1H4zm14 0h6v1h-6zm16 0h4v1h-4zm16 0h6v1h-6zm18 0h4v1h-4zm16 0h6v1h-6zm18 0h4v1h-4zm16 0h6v1h-6zm18 0h4v1h-4zm14 0h6v1h-6z'/%3E%3Crect x='0' y='31' width='160' height='5' fill='%2378350f'/%3E%3Cpath fill='%23b45309' d='M0 31h7v2H0zm8 0h7v2H8zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zM4 34h7v2H4zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h4v2h-4z'/%3E%3C/svg%3E");
+	/* 2. Full-Width Non-Repeating 8-Bit Overworld Panorama (320x36 grid -> 1280x144px = 4px square pixels):
+	   A single continuous left-to-right journey across the entire stage:
+	   Zone 1 (x=0..58): Snow-capped peaks, pine forest & classic green Warp Pipe with sprouting Fire Flower
+	   Zone 2 (x=60..124): Floating [?] blocks with spinning coins, Super Star platform, Hero Knight & Treasure Chest
+	   Zone 3 (x=126..188): Shimmering cyan pixel river spanned by an arched stone bridge + tall purple Wizard Observatory Tower
+	   Zone 4 (x=190..256): Grand multi-turreted Royal Fortress Keep with arched gate, lit windows & fluttering banners
+	   Zone 5 (x=258..320): Eastern pine woods & tall Level-Clear Goal Flagpole with waving emerald pennon */
+	--pixel-overworld-mural: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='144' viewBox='0 0 320 36' shape-rendering='crispEdges'%3E%3Cpath fill='%231d1447' d='M0 28V21h8v-3h8v-3h4v-3h8v3h4v3h8v3h28v-2h8v-3h6v-3h4v-3h8v3h4v3h6v3h8v2h44v-3h8v-3h6v-3h8v3h6v3h8v3h34v-2h8v-3h6v-3h4v-3h8v3h4v3h6v3h28v8H0z'/%3E%3Cpath fill='%232b1f66' d='M20 12h8v3h4v3h-4v-3h-8V12zm66-2h8v3h4v3h-4v-3h-8v-3zm84 2h8v3h6v3h-6v-3h-8v-3zm74-2h8v3h4v3h-4v-3h-8v-3z'/%3E%3Cpath fill='%235ce1e6' d='M20 12h8v2h-8v-2zm2 2h4v1h-4v-1zM86 10h8v2h-8v-2zm2 2h4v2h-4v-2zm82 0h8v2h-8v-2zm2 2h4v1h-4v-1zm72-4h8v2h-8v-2zm2 2h4v2h-4v-2z'/%3E%3Cpath fill='%23fff9ec' d='M20 12h6v1h-6v-1zM86 10h6v1h-6v-1zm84 2h6v1h-6v-1zm74-2h6v1h-6v-1z'/%3E%3Cpath fill='%236d28d9' d='M162 12h12v2h-12v-2zm2-2h8v2h-8v-2zm2-2h4v2h-4V8zm1-2h2v2h-2V6z'/%3E%3Cpath fill='%23261b5c' d='M164 14h8v14h-8V14zM200 18h8v10h-8V18zm0-2h2v2h-2v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2zM210 14h24v14h-24V14zm0-2h3v2h-3v-2zm5 0h3v2h-3v-2zm5 0h4v2h-4v-2zm6 0h3v2h-3v-2zm5 0h3v2h-3v-2zM236 18h8v10h-8V18zm0-2h2v2h-2v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2z'/%3E%3Cpath fill='%233b2b7d' d='M164 14h2v14h-2V14zm6 0h2v14h-2V14zM200 18h2v10h-2V18zm10-4h3v14h-3V14zm21 0h3v14h-3V14zm11 4h2v10h-2V18z'/%3E%3Cpath fill='%230f3d3e' d='M8 22h6v2H8v-2zm2-2h2v2h-2v-2zM46 22h6v2h-6v-2zm2-2h2v2h-2v-2zM114 22h6v2h-6v-2zm2-2h2v2h-2v-2zM258 22h6v2h-6v-2zm2-2h2v2h-2v-2zM276 22h6v2h-6v-2zm2-2h2v2h-2v-2z'/%3E%3Cpath fill='%23065f46' d='M24 19h12v2H24v-2zm1 2h10v7H25v-7z'/%3E%3Cpath fill='%2310b981' d='M6 25h10v3H6v-3zm2-2h6v2H8v-2zM44 25h10v3H44v-3zm2-2h6v2h-6v-2zM112 25h10v3h-10v-3zm2-2h6v2h-6v-2zM256 25h10v3h-10v-3zm2-2h6v2h-6v-2zM274 25h10v3h-10v-3zm2-2h6v2h-6v-2zM24 19h10v2H24v-2zm1 2h8v7h-8v-7zM29 17h2v2h-2v-2zM297 5h10v4h-10V5z'/%3E%3Cpath fill='%234ade80' d='M10 20h2v1h-2v-1zM8 23h4v1H8v-1zM48 20h2v1h-2v-1zm-2 3h4v1h-4v-1zM116 20h2v1h-2v-1zm-2 3h4v1h-4v-1zM260 20h2v1h-2v-1zm-2 3h4v1h-4v-1zM278 20h2v1h-2v-1zm-2 3h4v1h-4v-1zM25 19h3v2h-3v-2zm1 2h2v7h-2v-7zM298 6h6v2h-6V6z'/%3E%3Cpath fill='%23ff5c7c' d='M27 14h6v3h-6v-3zm1-1h4v1h-4v-1zM86 22h2v3h-2v-3zM102 24h6v4h-6v-4zM203 13h4v2h-4v-2zM216 10h12v2h-12v-2zm2-2h8v2h-8V8zm2-2h4v2h-4V6zM239 13h4v2h-4v-2z'/%3E%3Cpath fill='%23b87d00' d='M64 12h18v6H64v-6zM96 9h16v4H96V9z'/%3E%3Cpath fill='%23ffd84d' d='M29 14h2v2h-2v-2zM65 13h4v4h-4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4zM66 7h2v4h-2V7zm6-2h2v4h-2V5zm6 2h2v4h-2V7zM97 10h3v2h-3v-2zm5 0h4v2h-4v-2zm6 0h3v2h-3v-2zM102 5h4v3h-4V5zm1-1h2v5h-2V4zM88 20h4v3h-4v-3zm4 3h4v1h-4v-1zm-4 3h1v2h-1v-2zm3 0h1v2h-1v-2zM102 23h6v1h-6v-1zm2 2h2v2h-2v-2zM167 3h2v3h-2V3zm-1 1h4v1h-4V4zm1 19h2v5h-2v-5zM203 20h2v3h-2v-3zM214 16h3v3h-3v-3zm13 0h3v3h-3v-3zM222 4h5v2h-5V4zm-2 17h4v7h-4v-7zM239 20h2v3h-2v-3zM294 2h4v3h-4V2zm13 4h2v2h-2V6z'/%3E%3Cpath fill='%23070412' d='M72 14h2v1h-1v1h-1v-2zm0 2h1v1h-1v-1zM90 21h2v1h-2v-1z'/%3E%3Cpath fill='%235ce1e6' d='M88 23h4v3h-4v-3zm5-6h2v6h-2v-6zM167 16h2v3h-2v-3z'/%3E%3Cpath fill='%23475569' d='M126 26h4v2h-4v-2zm4-2h24v2h-24v-2zm24 2h4v2h-4v-2zM292 26h8v2h-8v-2z'/%3E%3Cpath fill='%2394a3b8' d='M128 24h2v4h-2v-4zm6-1h2v3h-2v-3zm8 0h2v3h-2v-3zm8 0h2v3h-2v-3zm6 1h2v4h-2v-4zm-26 1h24v1h-24v-1zM295 5h2v19h-2V5zm-2 19h6v2h-6v-2z'/%3E%3Crect x='0' y='28' width='320' height='2' fill='%234ade80'/%3E%3Cpath fill='%2310b981' d='M0 30h320v1H0z'/%3E%3Crect x='0' y='31' width='320' height='5' fill='%2378350f'/%3E%3Cpath fill='%23b45309' d='M0 31h7v2H0zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm64 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zM8 34h7v2H8zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm64 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7zm16 0h7v2h-7z'/%3E%3Crect x='130' y='28' width='24' height='8' fill='%230284c7'/%3E%3Cpath fill='%235ce1e6' d='M130 28h24v2h-24v-2zm2 4h6v1h-6v-1zm10 1h8v1h-8v-1zm-8 2h5v1h-5v-1z'/%3E%3Cpath fill='%23fff9ec' d='M66 7h1v3h-1V7zm6-2h1v3h-1V5zm6 2h1v3h-1V7zM93 17h1v5h-1v-5zm11 8h1v1h-1v-1zm28 5h6v1h-6v-1zm10 0h6v1h-6v-1zm4 3h4v1h-4v-1zM295 2h1v1h-1V2z'/%3E%3C/svg%3E");
+
+	/* 2b. Distinct Bottom-Panel Art: 8-Bit Campfire Jam, Synth Studio & Crystal Warp Scene
+	   (320x32 grid -> 1280x128px = 4px square pixels, non-repeating):
+	   Overhead festival lantern garland, retro coding CRT desk, dual concert speaker stacks & equalizer,
+	   central roaring campfire with two jamming/cheering pixel friends, glowing crystal geodes & warp portal */
+	--pixel-bottom-mural: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='128' viewBox='0 0 320 32' shape-rendering='crispEdges'%3E%3Cpath fill='%23120924' d='M12 1h296v1H12V1zM29 2h2v1h-2V2zm28 0h2v2h-2V2zm28 0h2v1h-2V2zm28 0h2v2h-2V2zm28 0h2v1h-2V2zm38 0h2v2h-2V2zm28 0h2v1h-2V2zm28 0h2v2h-2V2zm28 0h2v1h-2V2zm28 0h2v2h-2V2z'/%3E%3Cpath fill='%23475569' d='M14 21h32v2H14v-2zm2 2h3v3h-3v-3zm25 0h3v3h-3v-3zM25 20h4v1h-4v-1zM54 12h14v14H54V12zm16 2h18v12H70V14zm19-2h14v14H89V12zM278 10h24v16h-24V10zm2-2h20v2h-20V8z'/%3E%3Cpath fill='%2394a3b8' d='M20 13h14v7H20v-7z'/%3E%3Cpath fill='%23080c1a' d='M22 14h10v5H22v-5zm34 0h10v10H56V14zm16 2h14v8H72v-8zm19-2h10v10H91V14z'/%3E%3Cpath fill='%2378350f' d='M124 23h14v3h-14v-3zm26 1h20v2h-20v-2zm32-1h14v3h-14v-3zm76-2h12v5h-12v-5z'/%3E%3Cpath fill='%23b45309' d='M125 23h12v1h-12v-1zm27 0h16v1h-16v-1zm31 0h12v1h-12v-1zm75-4h12v2h-12v-2z'/%3E%3Cpath fill='%236d28d9' d='M228 14h5v12h-5V14zm7-3h6v15h-6V11zm8 5h5v10h-5V16zm40-5h14v15h-14V11z'/%3E%3Cpath fill='%23a78bfa' d='M229 14h2v12h-2V14zm7-3h3v15h-3V11zm8 5h2v10h-2V16zm41-3h10v13h-10V13z'/%3E%3Cpath fill='%23ea580c' d='M153 18h14v5h-14v-5zm2-3h10v3h-10v-3zm2-2h6v2h-6v-2z'/%3E%3Cpath fill='%234ade80' d='M23 15h5v1h-5v-1zm0 2h4v1h-4v-1zm50 3h2v4h-2v-4zm3-3h2v7h-2v-7zm109 1h6v5h-6v-5zm-3-1h3v3h-3v-3z'/%3E%3Cpath fill='%235ce1e6' d='M24 16h6v1h-6v-1zm34-1h6v3h-6v-3zm0 5h6v3h-6v-3zm35-5h6v3h-6v-3zm0 5h6v3h-6v-3zM78 6h3v2h-3V6zm2-2h1v3h-1V4zm49 14h6v5h-6v-5zm93 0h4v8h-4v-8zm22-1h4v9h-4v-9zm18 2h4v1h-4v-1zm25-4h6v9h-6v-9z'/%3E%3Cpath fill='%23ffedd5' d='M130 15h5v3h-5v-3zm55 0h5v3h-5v-3z'/%3E%3Cpath fill='%23ea580c' d='M133 19h5v3h-5v-3z'/%3E%3Cpath fill='%23ff5c7c' d='M28 3h4v4h-4V3zm56 0h4v4h-4V3zm56 0h4v4h-4V3zm66 0h4v4h-4V3zm56 0h4v4h-4V3zM38 18h4v3h-4v-3zm44-2h2v8h-2v-8zm73 1h10v6h-10v-6zm2-3h6v3h-6v-3zm9-4h2v2h-2v-2zm19 4h5v1h-5v-1z'/%3E%3Cpath fill='%23ffd84d' d='M56 4h4v4h-4V4zm56 0h4v4h-4V4zm66 0h4v4h-4V4zm56 0h4v4h-4V4zm56 0h4v4h-4V4zM60 16h2v1h-2v-1zm0 5h2v1h-2v-1zm19-3h2v6h-2v-6zm16-2h2v1h-2v-1zm0 5h2v1h-2v-1zM70 9h3v2h-3V9zm2-2h1v3h-1V7zm12 1h4v1h-4V8zm-1 1h1v3h-1V9zm3 0h1v3h-1V9zm44 5h5v1h-5v-1zm4 6h3v1h-3v-1zm23-3h6v6h-6v-6zm1-2h4v2h-4v-2zm-4-4h2v2h-2v-2zm5-3h2v2h-2V8zm20 7h3v3h-3v-3zm81 5h8v2h-8v-2zm20-10h3v2h-3v-2zm17 0h3v2h-3v-2zm-18 6h2v3h-2v-3zm20 0h2v3h-2v-3z'/%3E%3Cpath fill='%23070412' d='M133 16h1v1h-1v-1zm1 7h2v3h-2v-3zm52-7h1v1h-1v-1zm-2 7h2v3h-2v-3z'/%3E%3Cpath fill='%23fff9ec' d='M29 4h2v2h-2V4zm28 1h2v2h-2V5zm28-1h2v2h-2V4zm28 1h2v2h-2V5zm28-1h2v2h-2V4zm38 1h2v2h-2V5zm28-1h2v2h-2V4zm28 1h2v2h-2V5zm28-1h2v2h-2V4zm28 1h2v2h-2V5zM39 16h1v1h-1v-1zm1-1h1v1h-1v-1zm98 3h3v1h-3v-1zm20 1h4v4h-4v-4zm1-2h2v2h-2v-2zm20-3h3v1h-3v-1zm58-7h1v3h-1V7zm-1 1h3v1h-3V8zm52 9h2v5h-2v-5z'/%3E%3Crect x='0' y='26' width='320' height='2' fill='%235ce1e6'/%3E%3Crect x='0' y='28' width='320' height='4' fill='%231e143b'/%3E%3Cpath fill='%233b2b7d' d='M0 28h12v2H0zm16 0h12v2H16zm16 0h12v2H32zm16 0h12v2H48zm16 0h12v2H64zm16 0h12v2H80zm16 0h12v2H96zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zM8 30h12v2H8zm16 0h12v2H24zm16 0h12v2H40zm16 0h12v2H56zm16 0h12v2H72zm16 0h12v2H88zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h12v2h-12zm16 0h8v2h-8z'/%3E%3C/svg%3E");
+
+	/* 2c. Distinct Twilight Amethyst Stone Tile & Stage Floor Fallback for Bottom CTA Panel */
+	--pixel-cavern-stone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='32' viewBox='0 0 16 8' shape-rendering='crispEdges'%3E%3Crect width='16' height='8' fill='%23231542'/%3E%3Cpath fill='%23311e5c' d='M0 0h7v1H0zm8 0h7v1H8zM0 1h1v2H0zm8 0h1v2H8zM4 4h7v1H4zm8 4h4v-4h-4v1h3v3zM0 4h3v1H0zm12 0h4v1h-4zM4 5h1v2H4zm8 0h1v2h-1z'/%3E%3Cpath fill='%23120924' d='M7 0h1v3H7zm8 0h1v3h-1zM0 3h16v1H0zm3 1h1v3H3zm8 0h1v3h-1zM0 7h16v1H0z'/%3E%3C/svg%3E");
+	--pixel-stage-floor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='24' viewBox='0 0 32 6' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='32' height='2' fill='%235ce1e6'/%3E%3Crect x='0' y='2' width='32' height='4' fill='%231e143b'/%3E%3Cpath fill='%233b2b7d' d='M0 2h12v2H0zm16 0h12v2H16zM8 4h12v2H8zm16 0h8v2h-8z'/%3E%3C/svg%3E");
 
 	/* 3. 8-Bit Ground Strip for Footer & Dividers (32x8 grid -> rendered at 128x32px = 4px square pixels) */
 	--pixel-ground-strip: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='32' viewBox='0 0 32 8' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='32' height='2' fill='%234ade80'/%3E%3Cpath fill='%2310b981' d='M0 2h32v1H0zm3-1h4v1H3zm10 0h5v1h-5zm11 0h4v1h-4z'/%3E%3Crect x='0' y='3' width='32' height='5' fill='%2378350f'/%3E%3Cpath fill='%23b45309' d='M0 3h7v2H0zm8 0h7v2H8zm8 0h7v2h-7zm8 0h7v2h-7zM4 6h7v2H4zm8 0h7v2h-7zm8 0h7v2h-7zm8 0h4v2h-4z'/%3E%3C/svg%3E");
@@ -339,7 +352,7 @@ html[data-skin="eight-bit-overworld"] :is(.page-hero::before, .page-hero::after)
 	display: none !important;
 }
 
-/* Stepped 8-bit Castle Stone Stage with Unobstructed 144px Pixel Overworld Panorama at Bottom */
+/* Stepped 8-bit Castle Stone Stage with Unobstructed 144px Non-Repeating Pixel Overworld Panorama at Bottom */
 html[data-skin="eight-bit-overworld"] .page-hero > .site-shell {
 	position: relative;
 	padding: clamp(1.6rem, 3vw, 2.25rem) clamp(1.35rem, 3vw, 2.25rem) 9.6rem;
@@ -347,10 +360,11 @@ html[data-skin="eight-bit-overworld"] .page-hero > .site-shell {
 	background-color: #1b2a52 !important;
 	background-image:
 		var(--pixel-overworld-mural),
+		var(--pixel-ground-strip),
 		var(--pixel-castle-stone) !important;
-	background-position: left bottom, left top !important;
-	background-size: 640px 144px, 64px 32px !important;
-	background-repeat: repeat-x, repeat !important;
+	background-position: center bottom, left bottom, left top !important;
+	background-size: 1280px 144px, 128px 32px, 64px 32px !important;
+	background-repeat: no-repeat, repeat-x, repeat !important;
 	box-shadow:
 		inset 0 0 0 4px #354d8c,
 		0 0 0 4px var(--pixel-ink),
@@ -366,7 +380,7 @@ html[data-skin="eight-bit-overworld"] .page-hero > .site-shell::before {
 html[data-skin="eight-bit-overworld"] body.page-favorites#page-top .favorites-hero > .site-shell {
 	padding-top: 1.5rem !important;
 	padding-bottom: 4.5rem !important;
-	background-size: 320px 72px, 64px 32px !important;
+	background-size: 640px 72px, 64px 16px, 64px 32px !important;
 }
 
 /* Bespoke Reverse-Split Hero Layout on Home:
@@ -1288,17 +1302,19 @@ html[data-skin="eight-bit-overworld"] .section-cta {
 
 html[data-skin="eight-bit-overworld"] .section-cta > .site-shell {
 	position: relative;
-	padding: 1.85rem 1.75rem 3.85rem;
-	border: 4px solid var(--pixel-gold);
-	background-color: #1b2a52 !important;
+	padding: 1.85rem 1.75rem 8.8rem;
+	border: 4px solid var(--pixel-cyan);
+	background-color: #231542 !important;
 	background-image:
-		var(--pixel-ground-strip),
-		var(--pixel-castle-stone) !important;
-	background-position: left bottom, left top !important;
-	background-size: 128px 32px, 64px 32px !important;
-	background-repeat: repeat-x, repeat !important;
+		var(--pixel-bottom-mural),
+		var(--pixel-stage-floor),
+		var(--pixel-cavern-stone) !important;
+	background-position: center bottom, left bottom, left top !important;
+	background-size: 1280px 128px, 128px 24px, 64px 32px !important;
+	background-repeat: no-repeat, repeat-x, repeat !important;
 	box-shadow:
-		inset 0 0 0 3px #354d8c,
+		inset 0 0 0 3px #4c2d85,
+		0 0 0 4px var(--pixel-ink),
 		8px 8px 0 var(--pixel-ink);
 	text-align: center;
 }
@@ -1538,11 +1554,16 @@ html[data-skin-id="eight-bit-overworld"] .skin-contact-charm:hover {
 
 	html[data-skin="eight-bit-overworld"] .page-hero > .site-shell {
 		padding: 1.35rem 1rem 7.8rem;
-		background-size: 480px 108px, 64px 32px !important;
+		background-size: 960px 108px, 96px 24px, 64px 32px !important;
 		box-shadow:
 			inset 0 0 0 3px #354d8c,
 			0 0 0 3px var(--pixel-ink),
 			5px 5px 0 var(--pixel-ink);
+	}
+
+	html[data-skin="eight-bit-overworld"] .section-cta > .site-shell {
+		padding: 1.5rem 1rem 6.8rem;
+		background-size: 960px 96px, 96px 18px, 64px 32px !important;
 	}
 
 	html[data-skin="eight-bit-overworld"] :is(.features, .features--showcase) {
