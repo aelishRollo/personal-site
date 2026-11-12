@@ -134,6 +134,18 @@ html[data-skin="eight-bit-overworld"] {
 
 	--pixel-sprite-quill: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%231c0c04' d='M11 0h4v4h-1v2h-1v2h-2v2H9v1h2v5H2v-5h2V9h1V7h1V5h1V3h2V1h2V0z'/%3E%3Cpath fill='%235ce1e6' d='M11 1h3v2h-3V1zM9 3h4v2H9V3z'/%3E%3Cpath fill='%23fff9ec' d='M12 1h2v1h-2V1zM8 5h4v2H8V5zM7 7h3v2H7V7z'/%3E%3Cpath fill='%23ffd84d' d='M7 9h2v2H7V9zM4 11h5v1H4v-1zM3 14h7v1H3v-1z'/%3E%3Cpath fill='%231e293b' d='M3 12h7v2H3v-2z'/%3E%3C/svg%3E");
 
+	/* 12. Favorites Page: Cozy Cabin Study & Collector's Curio Library Assets:
+	   - --pixel-cozy-cabin-wall: Warm plum-cocoa quilted cabin wallpaper with cedar rails & strung fairy-bulb lights
+	   - --pixel-cozy-wood-wall: Honey-cinnamon cedar shiplap & bookcase backing
+	   - --pixel-cozy-study-mural: Full-width Cozy Cabin Study panorama (tall cedar bookshelves with trailing ivy & globe,
+	     plush wingback reading chair with floor lamp & steaming mug of cocoa, crackling river-stone hearth with Boreal Forest
+	     painting & sleeping long-whiskered orange kitten on a braided rug, snowy spruce window with tent, guitar & desk) */
+	--pixel-cozy-cabin-wall: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='160' viewBox='0 0 80 40' shape-rendering='crispEdges'%3E%3Crect width='80' height='40' fill='%231c0f16'/%3E%3Cpath fill='%2326141e' d='M4 8h2v2H4V8zM14 12h2v2h-2v-2zM24 8h2v2h-2V8zM34 12h2v2h-2v-2zM44 8h2v2h-2V8zM54 12h2v2h-2v-2zM64 8h2v2h-2V8zM74 12h2v2h-2v-2zM9 28h2v2H9v-2zM19 32h2v2h-2v-2zM29 28h2v2h-2v-2zM39 32h2v2h-2v-2zM49 28h2v2h-2v-2zM59 32h2v2h-2v-2zM69 28h2v2h-2v-2z'/%3E%3Cpath fill='%233b1d0e' d='M0 0h80v2H0V0zM0 20h80v2H0v-2z'/%3E%3Cpath fill='%23522914' d='M0 0h80v1H0V0zM0 20h80v1H0v-1z'/%3E%3Cpath fill='%23110704' d='M0 2h80v1H0V2zM0 22h80v1H0v-1zM0 3h6v1H0V3zM6 4h8v1H6V4zM14 3h12v1H14V3zM26 4h8v1h-8V4zM34 3h12v1H34V3zM46 4h8v1h-8V4zM54 3h12v1H54V3zM66 4h8v1h-8V4zM74 3h6v1h-6V3zM0 23h6v1H0v-1zM6 24h8v1H6v-1zM14 23h12v1H14v-1zM26 24h8v1h-8v-1zM34 23h12v1H34v-1zM46 24h8v1h-8v-1zM54 23h12v1H54v-1zM66 24h8v1h-8v-1zM74 23h6v1h-6v-1z'/%3E%3Cpath fill='%234d240e' d='M8 4h4v4H8V4zM28 4h4v4h-4V4zM48 4h4v4h-4V4zM68 4h4v4h-4V4zM18 24h4v4h-4v-4zM38 24h4v4h-4v-4zM58 24h4v4h-4v-4zM76 24h4v4h-4v-4z'/%3E%3Cpath fill='%23ffd84d' d='M9 5h2v2H9V5zM29 5h2v2h-2V5zM49 5h2v2h-2V5zM69 5h2v2h-2V5zM19 25h2v2h-2v-2zM39 25h2v2h-2v-2zM59 25h2v2h-2v-2zM77 25h2v2h-2v-2z'/%3E%3Cpath fill='%23fff9ec' d='M9 5h1v1H9V5zM29 5h1v1h-1V5zM49 5h1v1h-1V5zM69 5h1v1h-1V5zM19 25h1v1h-1v-1zM39 25h1v1h-1v-1zM59 25h1v1h-1v-1zM77 25h1v1h-1v-1z'/%3E%3C/svg%3E");
+
+	--pixel-cozy-wood-wall: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='64' viewBox='0 0 32 16' shape-rendering='crispEdges'%3E%3Crect width='32' height='16' fill='%2333190e'/%3E%3Cpath fill='%23452314' d='M0 0h32v1H0V0zM0 4h32v1H0V4zM0 8h32v1H0V8zM0 12h32v1H0v-1z'/%3E%3Cpath fill='%23592e1a' d='M2 1h8v1H2V1zM18 1h10v1H18V1zM7 5h11v1H7V5zM23 5h7v1h-7V5zM1 9h9v1H1V9zM15 9h12v1H15V9zM5 13h10v1H5v-1zM20 13h9v1h-9v-1z'/%3E%3Cpath fill='%231c0c06' d='M0 3h32v1H0V3zM0 7h32v1H0V7zM0 11h32v1H0v-1zM0 15h32v1H0v-1zM14 0h1v3h-1V0zM6 4h1v3H6V4zM22 4h1v3h-1V4zM12 8h1v3h-1V8zM28 8h1v3h-1V8zM18 12h1v3h-1v-3z'/%3E%3C/svg%3E");
+
+	--pixel-cozy-study-mural: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='176' viewBox='0 0 320 44' shape-rendering='crispEdges'%3E%3Crect x='0' y='4' width='320' height='1' fill='%231c0c06'/%3E%3Crect x='0' y='5' width='320' height='1' fill='%23592e1a'/%3E%3Cpath fill='%234d240e' d='M78 6h14v11H78V6zM144 4h6v8h-6V4zM186 4h6v8h-6V4zM299 12h10v8h-10v-8z'/%3E%3Cpath fill='%2378350f' d='M10 4h28v33H10V4zM40 4h28v33H40V4zM84 15h2v20h-2V15zM80 35h10v2H80v-2zM122 27h14v2h-14v-2zM124 29h2v8h-2v-8zM132 29h2v8h-2v-8zM154 0h28v11h-28V0zM142 12h52v3h-52v-3zM222 4h40v23h-40V4zM268 33h10v4h-10v-4zM272 20h2v13h-2V20zM282 25h30v2h-30v-2zM284 27h3v10h-3V27zM307 27h3v10h-3V27z'/%3E%3Cpath fill='%23451a03' d='M12 6h24v8H12V6zM12 16h24v8H12v-8zM12 26h24v8H12v-8zM42 6h24v8H42V6zM42 16h24v8H42v-8zM42 26h24v8H42v-8zM98 34h3v3h-3v-3zM113 34h3v3h-3v-3z'/%3E%3Cpath fill='%230f172a' d='M156 2h24v7h-24V2zM225 6h34v18h-34V6zM286 16h12v7h-12v-7z'/%3E%3Cpath fill='%23475569' d='M146 15h44v22h-44V15z'/%3E%3Cpath fill='%2364748b' d='M148 16h8v4h-8v-4zM158 16h10v4h-10v-4zM170 16h8v4h-8v-4zM180 16h8v4h-8v-4zM148 22h6v6h-6v-6zM182 22h6v6h-6v-6zM148 30h6v6h-6v-6zM182 30h6v6h-6v-6z'/%3E%3Cpath fill='%23080c1a' d='M156 21h24v16h-24V21z'/%3E%3Cpath fill='%23881337' d='M96 17h20v17H96V17zM94 23h24v8H94v-8zM225 6h5v18h-5V6zM254 6h5v18h-5V6z'/%3E%3Cpath fill='%23be123c' d='M98 18h16v14H98V18zM95 24h4v5h-4v-5zM115 24h4v5h-4v-5zM192 35h24v2h-24v-2z'/%3E%3Cpath fill='%23ff5c7c' d='M14 8h3v6h-3V8zM22 18h4v6h-4v-6zM44 8h4v6h-4V8zM54 28h4v6h-4v-6zM130 22h4v5h-4v-5zM195 34h18v1h-18v-1z'/%3E%3Cpath fill='%2310b981' d='M60 4h4v3h-4V4zM62 7h3v5h-3V7zM65 10h3v6h-3v-6zM63 15h2v4h-2v-4zM18 8h3v6h-3V8zM49 18h4v6h-4v-6zM166 9h4v3h-4V9zM233 14h6v7h-6v-7zM245 13h7v8h-7v-8z'/%3E%3Cpath fill='%234ade80' d='M61 4h2v2h-2V4zM63 8h1v3h-1V8zM66 11h1v4h-1v-4zM29 18h3v6h-3v-6zM160 4h8v2h-8V4zM168 3h8v2h-8V3zM235 12h2v2h-2v-2zM247 11h3v2h-3v-2z'/%3E%3Cpath fill='%235ce1e6' d='M28 8h5v5h-5V8zM15 28h4v6h-4v-6zM44 18h4v6h-4v-6zM164 5h8v1h-8V5zM287 17h10v5h-10v-5z'/%3E%3Cpath fill='%23a78bfa' d='M14 18h6v6h-6v-6zM56 18h5v6h-5v-6zM26 28h5v6h-5v-6z'/%3E%3Cpath fill='%23ea580c' d='M58 1h6v3h-6V1zM160 27h16v10h-16V27zM163 23h10v4h-10v-4zM198 31h10v4h-10v-4zM200 29h5v3h-5v-3zM239 18h6v4h-6v-4zM270 24h6v8h-6v-8zM301 14h6v5h-6v-5z'/%3E%3Cpath fill='%23ffd84d' d='M29 13h3v1h-3v-1zM50 8h4v6h-4V8zM44 28h8v6h-8v-6zM80 8h10v6H80V8zM102 23h8v5h-8v-5zM146 7h2v5h-2V7zM188 7h2v5h-2V7zM164 27h8v10h-8V27zM165 24h6v3h-6v-3zM194 36h20v1h-20v-1zM201 30h1v1h-1v-1zM203 30h1v1h-1v-1zM241 19h2v3h-2v-3zM264 14h3v2h-3v-2zM266 12h1v3h-1v-3zM271 26h4v5h-4v-5zM272 18h2v6h-2v-6zM302 15h4v4h-4v-4zM303 19h2v6h-2v-6z'/%3E%3Cpath fill='%23fff9ec' d='M29 9h2v2h-2V9zM33 28h2v6h-2v-6zM59 8h2v6h-2V8zM83 10h4v3h-4v-3zM123 25h5v2h-5v-2zM131 19h1v2h-1v-2zM133 17h1v2h-1v-2zM146 5h2v2h-2V5zM188 5h2v2h-2V5zM166 30h4v7h-4v-7zM197 31h3v1h-3v-1zM197 33h3v1h-3v-1zM205 31h3v1h-3v-1zM205 33h3v1h-3v-1zM201 32h3v2h-3v-2zM230 21h29v3h-29v-3zM236 8h1v1h-1V8zM243 9h1v1h-1V9zM251 8h1v1h-1V8zM288 18h6v1h-6v-1zM284 23h16v2h-16v-2z'/%3E%3Crect x='0' y='37' width='320' height='2' fill='%23991b1b'/%3E%3Cpath fill='%23ffd84d' d='M0 37h8v1H0v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1z'/%3E%3Crect x='0' y='39' width='320' height='5' fill='%233b1d0e'/%3E%3Cpath fill='%23592e1a' d='M0 39h12v2H0v-2zm16 0h12v2H16v-2zm16 0h12v2H32v-2zm16 0h12v2H48v-2zm16 0h12v2H64v-2zm16 0h12v2H80v-2zm16 0h12v2H96v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zM8 42h12v2H8v-2zm16 0h12v2H24v-2zm16 0h12v2H40v-2zm16 0h12v2H56v-2zm16 0h12v2H72v-2zm16 0h12v2H88v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h8v2h-8v-2z'/%3E%3C/svg%3E");
+
 	color-scheme: dark;
 	overflow-x: clip;
 }
@@ -418,13 +430,6 @@ html[data-skin="eight-bit-overworld"] body.page-home .page-hero > .site-shell {
 html[data-skin="eight-bit-overworld"] .page-hero > .site-shell::before {
 	content: none !important;
 	display: none !important;
-}
-
-/* Keep favorites hero compact so the page stays well under the 3800px 2x Retina tile budget */
-html[data-skin="eight-bit-overworld"] body.page-favorites#page-top .favorites-hero > .site-shell {
-	padding-top: 1.5rem !important;
-	padding-bottom: 4.5rem !important;
-	background-size: 640px 72px, 64px 16px, 64px 32px !important;
 }
 
 /* Bespoke Reverse-Split Hero Layout on Home:
@@ -1074,160 +1079,398 @@ html[data-skin="eight-bit-overworld"] .work-background > p:not(:last-child) {
 	line-height: 1.5;
 }
 
-/* --- 5. Favorites Page: Treasure Vault & Warp Zone Index (.page-favorites) --- */
+/* --- 5. Favorites Page: Cozy Cabin Study & Collector's Curio Keepsakes (.page-favorites) --- */
 
-html[data-skin="eight-bit-overworld"] .favorites-jump {
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top {
+	background-color: #1c0f16 !important;
+	background-image:
+		var(--pixel-cozy-cabin-wall),
+		linear-gradient(180deg, #160b11 0%, #21111a 55%, #2b1620 100%) !important;
+	background-size: 320px 160px, 100% 100% !important;
+	background-repeat: repeat, no-repeat !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .site-header {
+	background: #1b0d14 !important;
+	border-bottom: 4px solid var(--pixel-gold) !important;
+	box-shadow: 0 4px 0 #0d0508 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top :is(.site-nav a, .site-nav .nav-cta) {
+	background: #381a24 !important;
+	box-shadow: inset -2px -2px 0 #1a0b10, 3px 3px 0 #0d0508 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top :is(.site-nav a:hover, .site-nav a:focus-visible, .site-nav a[aria-current="page"]) {
+	background: var(--pixel-gold) !important;
+	box-shadow: inset -2px -2px 0 var(--pixel-gold-shade), 3px 3px 0 #0d0508 !important;
+	color: var(--pixel-ink) !important;
+}
+
+/* Cozy Cabin Study Hero with Bookshelves, Wingback Chair, Stone Hearth, Whiskered Kitten & Boreal Window */
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-hero {
+	padding-top: 3.1rem !important;
+	padding-bottom: 1.5rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-hero > .site-shell {
+	width: min(1280px, calc(100% - 2.5rem)) !important;
+	max-width: 1280px !important;
+	padding: 2.1rem clamp(1.6rem, 3vw, 2.4rem) 12.2rem !important;
+	border: 4px solid var(--pixel-gold) !important;
+	background-color: #33190e !important;
+	background-image:
+		var(--pixel-cozy-study-mural),
+		var(--pixel-cozy-wood-wall) !important;
+	background-position: center bottom, left top !important;
+	background-size: 1280px 176px, 128px 64px !important;
+	background-repeat: no-repeat, repeat !important;
+	box-shadow:
+		inset 0 0 0 4px #78350f,
+		0 0 0 4px #120703,
+		8px 8px 0 #120703 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-hero .eyebrow {
+	padding: 0.28rem 0.7rem !important;
+	border: 2px solid var(--pixel-gold) !important;
+	background: #581c28 !important;
+	box-shadow: 3px 3px 0 #120703 !important;
+	color: var(--pixel-gold) !important;
+	font-size: 0.76rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-hero h1 {
+	max-width: none !important;
+	margin: 0.25rem 0 0.75rem !important;
+	font-size: clamp(1.85rem, 3.1vw, 2.55rem) !important;
+	line-height: 1.18 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-hero .lead {
+	max-width: 50rem !important;
+	margin: 0 0 0.85rem !important;
+	padding: 0.85rem 1.15rem !important;
+	border: 3px solid #1e0e06 !important;
+	border-left: 6px solid #991b1b !important;
+	background: #faf0dc !important;
+	box-shadow:
+		inset 2px 2px 0 #dec084,
+		4px 4px 0 #120703 !important;
+	color: #1e0e06 !important;
+	font-size: 1.06rem !important;
+	line-height: 1.62 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-jump {
 	display: inline-flex;
 	align-items: center;
-	gap: 0.4rem;
-	margin-top: 0.45rem;
-	padding: 0.38rem 0.75rem !important;
-	border: 2px solid var(--pixel-ink) !important;
+	gap: 0.45rem;
+	margin-top: 0.25rem;
+	padding: 0.48rem 0.95rem !important;
+	border: 2px solid #1e0e06 !important;
 	background: var(--pixel-gold) !important;
-	box-shadow: inset -2px -2px 0 var(--pixel-gold-shade), 3px 3px 0 var(--pixel-ink) !important;
-	color: var(--pixel-ink) !important;
-	font: 400 0.74rem/1.2 var(--pixel-display) !important;
+	box-shadow:
+		inset -2px -2px 0 var(--pixel-gold-shade),
+		inset 2px 2px 0 #fff7cc,
+		3px 3px 0 #120703 !important;
+	color: #1e0e06 !important;
+	font: 400 0.8rem/1.2 var(--pixel-display) !important;
 	text-decoration: none !important;
 	text-transform: uppercase;
 	text-shadow: none !important;
 }
 
-html[data-skin="eight-bit-overworld"] .favorites-toolbar {
-	margin: 0 0 0.85rem;
-	padding: 0.5rem 0.85rem;
+/* Warm Cedar Bookcase Cabinet Housing the Toolbar, Contents Journal & Curio Cards */
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-section {
+	padding-top: 0.75rem !important;
+	padding-bottom: 2.25rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-section > .site-shell {
+	width: min(1280px, calc(100% - 2.5rem)) !important;
+	max-width: 1280px !important;
+	padding: clamp(1.35rem, 2.6vw, 2rem) !important;
+	border: 4px solid var(--pixel-gold) !important;
+	background-color: #33190e !important;
+	background-image: var(--pixel-cozy-wood-wall) !important;
+	background-size: 128px 64px !important;
+	background-repeat: repeat !important;
+	box-shadow:
+		inset 0 0 0 4px #78350f,
+		0 0 0 4px #120703,
+		8px 8px 0 #120703 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-toolbar {
+	margin: 0 0 1.25rem !important;
+	padding: 0.65rem 1.05rem !important;
 	border: 3px solid var(--pixel-gold);
-	background-color: #1b2a52;
-	background-image: var(--pixel-castle-stone);
-	background-size: 64px 32px;
-	box-shadow: 4px 4px 0 var(--pixel-ink);
+	background: #220f07 !important;
+	box-shadow: 4px 4px 0 #120703;
 }
 
-html[data-skin="eight-bit-overworld"] .favorites-toolbar-label {
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-toolbar-label {
 	color: var(--pixel-gold) !important;
-	font: 400 0.72rem/1.2 var(--pixel-display) !important;
+	font: 400 0.8rem/1.2 var(--pixel-display) !important;
 }
 
-html[data-skin="eight-bit-overworld"] .favorites-view-button {
-	min-height: 1.95rem;
-	padding: 0.25rem 0.65rem !important;
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-view-button {
+	min-height: 2.2rem !important;
+	padding: 0.35rem 0.85rem !important;
 	border: 2px solid var(--text-1) !important;
 	border-radius: 0 !important;
-	background: #080c1a !important;
-	box-shadow: 2px 2px 0 var(--pixel-ink) !important;
+	background: #381a24 !important;
+	box-shadow: 2px 2px 0 #120703 !important;
 	color: var(--text-1) !important;
-	font: 400 0.68rem/1.2 var(--pixel-display) !important;
+	font: 400 0.76rem/1.2 var(--pixel-display) !important;
 	text-transform: uppercase;
 }
 
-html[data-skin="eight-bit-overworld"] :is(.favorites-view-button[aria-pressed="true"], .favorites-view-button:hover, .favorites-view-button:focus-visible) {
-	border-color: var(--pixel-ink) !important;
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top :is(.favorites-view-button[aria-pressed="true"], .favorites-view-button:hover, .favorites-view-button:focus-visible) {
+	border-color: #1e0e06 !important;
 	background: var(--pixel-gold) !important;
-	color: var(--pixel-ink) !important;
+	color: #1e0e06 !important;
 }
 
-html[data-skin="eight-bit-overworld"] .favorites-index {
+/* Open Collector's Journal for Contents Index */
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-index {
 	max-width: none;
-	margin-bottom: 1rem;
-	padding: 0.85rem 1.2rem;
-	border: 3px solid var(--pixel-gold);
-	background-color: #1b2a52;
-	background-image: var(--pixel-castle-stone);
-	background-size: 64px 32px;
-	box-shadow: 5px 5px 0 var(--pixel-ink);
-}
-
-html[data-skin="eight-bit-overworld"] .favorites-index h2 {
-	margin: 0 0 0.55rem;
-	padding-bottom: 0.35rem;
-	border-bottom: 2px dashed var(--pixel-gold);
-	color: var(--pixel-gold) !important;
-	font-size: 0.92rem !important;
-}
-
-html[data-skin="eight-bit-overworld"] .favorites-index-list li {
-	color: var(--pixel-gold) !important;
-}
-
-html[data-skin="eight-bit-overworld"] .favorites-index-list a {
-	color: var(--pixel-cyan) !important;
-	text-decoration: none;
-}
-
-html[data-skin="eight-bit-overworld"] :is(.favorites-index-list a:hover, .favorites-index-list a:focus-visible) {
-	background: var(--pixel-gold) !important;
-	color: var(--pixel-ink) !important;
-}
-
-html[data-skin="eight-bit-overworld"] .favorite-card {
-	border: 3px solid var(--text-1) !important;
-	border-radius: 0 !important;
-	background: #080c1a !important;
+	margin-bottom: 1.65rem !important;
+	padding: 1.25rem 1.5rem !important;
+	border: 3px solid #1e0e06 !important;
+	background-color: #faf0dc !important;
+	background-image: var(--pixel-scroll-parchment) !important;
+	background-size: 64px 64px !important;
+	background-repeat: repeat !important;
 	box-shadow:
-		inset 0 0 0 2px #1e2d59,
-		5px 5px 0 var(--pixel-ink) !important;
+		inset 0 0 0 3px #d6b47c,
+		6px 6px 0 #120703 !important;
 }
 
-html[data-skin="eight-bit-overworld"] .favorite-media {
-	border-bottom: 3px solid var(--text-1);
-	background: #050811;
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-index h2 {
+	margin: 0 0 0.85rem !important;
+	padding-bottom: 0.45rem !important;
+	border-bottom: 2px dashed #854d27 !important;
+	color: #1e0e06 !important;
+	font-size: 1.18rem !important;
+	text-shadow: 2px 2px 0 #e4c890 !important;
 }
 
-html[data-skin="eight-bit-overworld"] .favorite-media--logo {
-	background: #f6f3ea;
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-index-list {
+	columns: 3 !important;
+	column-gap: clamp(1.75rem, 3.2vw, 2.6rem) !important;
+	padding-left: 1.85rem !important;
 }
 
-html[data-skin="eight-bit-overworld"] .favorite-kind {
-	margin: 0 0 0.3rem;
-	padding: 0.1rem 0.42rem;
-	border: 1px solid var(--pixel-cyan);
-	background: #162244;
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-index-list li {
+	margin-bottom: 0.42rem !important;
+	color: #7c2d12 !important;
+	font-size: 0.98rem !important;
+	font-weight: 700 !important;
+	line-height: 1.48 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-index-list a {
+	display: inline;
+	padding: 0.08rem 0.25rem !important;
+	color: #1e0e06 !important;
+	font-size: 0.98rem !important;
+	font-weight: 700 !important;
+	text-decoration: underline !important;
+	text-decoration-color: rgba(153, 27, 27, 0.45) !important;
+	text-decoration-thickness: 2px !important;
+	text-underline-offset: 0.2em !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top :is(.favorites-index-list a:hover, .favorites-index-list a:focus-visible) {
+	background: var(--pixel-gold) !important;
+	color: #1e0e06 !important;
+	text-decoration: none !important;
+}
+
+/* Spacious 3-Column (Compact) & 2-Column (Showcase) Cozy Keepsake Cards */
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-grid {
+	grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+	gap: 1.45rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top[data-favorites-view="two-column"] .favorites-grid {
+	grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+	gap: 1.65rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-card {
+	border: 3px solid #1e0e06 !important;
+	border-radius: 0 !important;
+	background-color: #faf0dc !important;
+	background-image: var(--pixel-scroll-parchment) !important;
+	background-size: 64px 64px !important;
+	background-repeat: repeat !important;
+	box-shadow:
+		inset 0 0 0 2px #d6b47c,
+		0 5px 0 #592e1a,
+		6px 8px 0 #120703 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-media,
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top[data-favorites-view="two-column"] .favorite-media {
+	height: auto !important;
+	aspect-ratio: 16 / 9.2 !important;
+	border-bottom: 3px solid #1e0e06 !important;
+	background: #221008 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-media--logo {
+	background: #fdf9f0 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-copy {
+	padding: 1.25rem 1.3rem 1.35rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top[data-favorites-view="two-column"] .favorite-copy {
+	padding: 1.45rem 1.55rem 1.55rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-copy p.favorite-kind,
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top[data-favorites-view="two-column"] .favorite-copy p.favorite-kind {
+	margin: 0 0 0.55rem !important;
+	padding: 0.22rem 0.58rem !important;
+	border: 2px solid #1e0e06 !important;
+	background: #4a1924 !important;
+	box-shadow: 2px 2px 0 #d6b47c !important;
 	color: var(--pixel-gold) !important;
-	font: 400 0.62rem/1.2 var(--pixel-display) !important;
-	letter-spacing: 0.06em;
+	font: 400 0.74rem/1.25 var(--pixel-display) !important;
+	letter-spacing: 0.05em;
 	text-transform: uppercase;
 }
 
-html[data-skin="eight-bit-overworld"] .favorite-copy h2 {
-	margin: 0 0 0.38rem;
-	color: var(--text-1) !important;
-	font-size: 0.96rem !important;
-	line-height: 1.22 !important;
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-copy h2 {
+	margin: 0 0 0.6rem !important;
+	color: #1e0e06 !important;
+	font-size: clamp(1.16rem, 1.45vw, 1.34rem) !important;
+	line-height: 1.28 !important;
+	text-shadow: 2px 2px 0 #e4c890 !important;
 }
 
-html[data-skin="eight-bit-overworld"] .favorite-copy p {
-	font-size: 0.86rem;
-	line-height: 1.42;
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top[data-favorites-view="two-column"] .favorite-copy h2 {
+	margin: 0 0 0.65rem !important;
+	font-size: clamp(1.28rem, 1.7vw, 1.5rem) !important;
+	line-height: 1.26 !important;
 }
 
-html[data-skin="eight-bit-overworld"] .favorite-link {
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-copy p:not(.favorite-kind) {
+	margin: 0 0 0.75rem !important;
+	color: #2b1406 !important;
+	font-size: 1.01rem !important;
+	line-height: 1.62 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top[data-favorites-view="two-column"] .favorite-copy p:not(.favorite-kind) {
+	margin: 0 0 0.8rem !important;
+	font-size: 1.06rem !important;
+	line-height: 1.66 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-copy > p:last-of-type,
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top[data-favorites-view="two-column"] .favorite-copy > p:last-of-type {
+	margin-bottom: 1rem !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-copy p a {
+	color: #7f1d1d !important;
+	font-weight: 700 !important;
+	text-decoration: underline !important;
+	text-decoration-color: #991b1b !important;
+	text-decoration-thickness: 2px !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-copy p a:hover,
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-copy p a:focus-visible {
+	background: var(--pixel-gold) !important;
+	color: #1e0e06 !important;
+	text-decoration: none !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorite-link,
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top[data-favorites-view="two-column"] .favorite-link {
 	display: inline-flex;
 	align-items: center;
-	margin-top: auto;
-	padding: 0.3rem 0.6rem !important;
-	border: 2px solid var(--text-1) !important;
-	background: #162244 !important;
-	box-shadow: 2px 2px 0 var(--pixel-ink) !important;
-	color: var(--pixel-gold) !important;
-	font: 400 0.68rem/1.2 var(--pixel-display) !important;
-	text-decoration: none !important;
-	text-transform: uppercase;
-}
-
-html[data-skin="eight-bit-overworld"] :is(.favorite-link:hover, .favorite-link:focus-visible) {
-	border-color: var(--pixel-ink) !important;
+	margin-top: auto !important;
+	min-height: 2.35rem !important;
+	padding: 0.45rem 0.85rem !important;
+	border: 2px solid #1e0e06 !important;
 	background: var(--pixel-gold) !important;
-	color: var(--pixel-ink) !important;
-}
-
-html[data-skin="eight-bit-overworld"] .favorites-back-to-top {
-	border: 3px solid var(--text-1) !important;
-	border-radius: 0 !important;
-	background: #162244 !important;
-	box-shadow: 4px 4px 0 var(--pixel-ink) !important;
-	color: var(--pixel-gold) !important;
-	font: 400 0.72rem/1.2 var(--pixel-display) !important;
+	box-shadow:
+		inset -2px -2px 0 var(--pixel-gold-shade),
+		inset 2px 2px 0 #fff7cc,
+		3px 3px 0 #1e0e06 !important;
+	color: #1e0e06 !important;
+	font: 400 0.78rem/1.2 var(--pixel-display) !important;
 	text-decoration: none !important;
 	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top :is(.favorite-link:hover, .favorite-link:focus-visible) {
+	border-color: #1e0e06 !important;
+	background: var(--pixel-cyan) !important;
+	box-shadow:
+		inset -2px -2px 0 #1f8a94,
+		inset 2px 2px 0 #d4fcff,
+		3px 3px 0 #1e0e06 !important;
+	color: #1e0e06 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-image-credits {
+	margin-top: 1.5rem !important;
+	padding: 0.75rem 1rem !important;
+	border: 2px solid var(--pixel-gold);
+	background: #220f07 !important;
+	color: var(--text-1) !important;
+	font-size: 0.9rem !important;
+	line-height: 1.55 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-image-credits a {
+	color: var(--pixel-gold) !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-back-to-top {
+	border: 3px solid var(--pixel-gold) !important;
+	border-radius: 0 !important;
+	background: #381a24 !important;
+	box-shadow: 4px 4px 0 #0d0508 !important;
+	color: var(--pixel-gold) !important;
+	font: 400 0.76rem/1.2 var(--pixel-display) !important;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .site-footer {
+	background-color: #140803 !important;
+	background-image: var(--pixel-stage-floor) !important;
+	background-repeat: repeat-x !important;
+	background-position: left top !important;
+	background-size: 128px 28px !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .social-inline a {
+	background: #381a24 !important;
+	box-shadow: 2px 2px 0 #0d0508 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .skin-picker {
+	--skin-ui-bg: #1b0d14;
+	--skin-ui-panel: #381a24;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top :is(.skin-picker-toggle, .skin-picker-cycle) {
+	background: #381a24 !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .skin-picker-panel {
+	background: #26121a !important;
 }
 
 /* --- 6. Contact Page: Full-Page Tavern Guildhall & Unfurled Parchment Scrolls --- */
@@ -1743,6 +1986,14 @@ html[data-skin-id="eight-bit-overworld"] .skin-contact-charm:hover {
 	html[data-skin="eight-bit-overworld"] .features--showcase > article:not(.featured-project) {
 		grid-column: span 1 !important;
 	}
+
+	html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-index-list {
+		columns: 2 !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+	}
 }
 
 @media (max-width: 736px) {
@@ -1837,6 +2088,28 @@ html[data-skin-id="eight-bit-overworld"] .skin-contact-charm:hover {
 	}
 
 	html[data-skin="eight-bit-overworld"] :is(.features, .features--showcase) {
+		grid-template-columns: 1fr !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-hero > .site-shell {
+		padding: 1.5rem 1.05rem 9.2rem !important;
+		background-size: 960px 132px, 128px 64px !important;
+		box-shadow:
+			inset 0 0 0 3px #78350f,
+			0 0 0 3px #120703,
+			5px 5px 0 #120703 !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-section > .site-shell {
+		padding: 1.15rem 1rem !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-index-list {
+		columns: 1 !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-grid,
+	html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top[data-favorites-view="two-column"] .favorites-grid {
 		grid-template-columns: 1fr !important;
 	}
 }
