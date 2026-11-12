@@ -580,6 +580,14 @@ html[data-skin="eight-bit-overworld"] body.page-home .page-hero h1 {
 	line-height: 1.2 !important;
 }
 
+html[data-skin="eight-bit-overworld"] .hero-title-intro {
+	grid-column: 1 / -1;
+	margin: 0 0 0.1rem !important;
+	color: var(--text-1) !important;
+	font: 400 clamp(0.98rem, 1.45vw, 1.24rem)/1.2 var(--pixel-display) !important;
+	text-shadow: 2px 2px 0 #120604 !important;
+}
+
 html[data-skin="eight-bit-overworld"] :is(.hero-title-role, .hero-title-role:nth-of-type(2n), .metallic-pearl-text) {
 	position: relative;
 	display: block !important;

@@ -535,6 +535,7 @@ html[data-skin="split-duality"] body.page-contact .page-hero {
 
 html[data-skin="split-duality"] .page-hero h1,
 html[data-skin="split-duality"] body.page-home .page-hero h1,
+html[data-skin="split-duality"] .page-hero h1 .hero-title-intro,
 html[data-skin="split-duality"] .page-hero h1 .hero-title-role,
 html[data-skin="split-duality"] .page-hero h1 .hero-title-initial,
 html[data-skin="split-duality"] .page-hero h1 .metallic-pearl-text {

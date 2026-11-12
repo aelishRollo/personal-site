@@ -183,7 +183,7 @@ html[data-skin="hello-kitty"] .hero-title-role {
 	color: inherit !important;
 }
 
-html[data-skin="hello-kitty"] .hero-title-role:nth-child(2n),
+html[data-skin="hello-kitty"] .hero-title-role:nth-of-type(2n),
 html[data-skin="hello-kitty"] .metallic-pearl-text,
 html[data-skin="hello-kitty"] #hero-silly-title {
 	color: var(--kitty-hot) !important;

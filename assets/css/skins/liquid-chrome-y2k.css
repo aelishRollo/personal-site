@@ -198,6 +198,8 @@ html[data-skin="liquid-chrome-y2k"] .hero-media {
 
 html[data-skin="liquid-chrome-y2k"] .page-hero h1,
 html[data-skin="liquid-chrome-y2k"] body.page-home .page-hero h1,
+html[data-skin="liquid-chrome-y2k"] .page-hero h1 .hero-title-intro,
+html[data-skin="liquid-chrome-y2k"] .page-hero h1 .hero-title-role,
 html[data-skin="liquid-chrome-y2k"] .metallic-pearl-text {
 	background: linear-gradient(180deg, #ffffff 0%, #c8d8ff 22%, #7385ce 46%, #f8c3ec 72%, #ffffff 100%);
 	-webkit-background-clip: text;

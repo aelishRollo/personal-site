@@ -262,6 +262,7 @@ html[data-skin="acid-editorial"] body.page-home .page-hero h1 {
 }
 
 html[data-skin="acid-editorial"] .page-hero h1,
+html[data-skin="acid-editorial"] .hero-title-intro,
 html[data-skin="acid-editorial"] .hero-title-role {
 	background: linear-gradient(90deg, #ff2b8b, #ffe23b, #29e6ff, #734bff, #ff2b8b);
 	background-size: 300% 100%;

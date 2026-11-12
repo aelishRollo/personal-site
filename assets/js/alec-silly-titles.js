@@ -63,7 +63,8 @@
 		'Triangle Player',
 		'Bob-It Champion',
 		'Organ Donor (Brain)',
-		'100% Organic'
+		'100% Organic',
+		'Has never went to Ovoo Javer'
 	];
 
 	function pickRandom(items, currentItem) {

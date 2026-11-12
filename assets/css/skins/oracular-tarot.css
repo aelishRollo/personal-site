@@ -193,7 +193,7 @@ html[data-skin="oracular-tarot"] .hero-title-role {
 	color: inherit !important;
 }
 
-html[data-skin="oracular-tarot"] .hero-title-role:nth-child(2n),
+html[data-skin="oracular-tarot"] .hero-title-role:nth-of-type(2n),
 html[data-skin="oracular-tarot"] .metallic-pearl-text,
 html[data-skin="oracular-tarot"] #hero-silly-title {
 	color: var(--oracle-pink) !important;

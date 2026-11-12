@@ -414,6 +414,7 @@ html[data-skin="pretty-calc"] .page-hero h1 {
 	letter-spacing: 0.01em;
 }
 
+html[data-skin="pretty-calc"] .page-hero h1 .hero-title-intro,
 html[data-skin="pretty-calc"] .page-hero h1 .hero-title-role,
 html[data-skin="pretty-calc"] .page-hero h1 .hero-title-initial,
 html[data-skin="pretty-calc"] .metallic-pearl-text {

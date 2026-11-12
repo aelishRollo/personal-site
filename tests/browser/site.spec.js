@@ -32,6 +32,10 @@ for (const sitePage of pages) {
 
 test('hero title and Jeff Dean quote arrows browse independently', async ({ page }) => {
   await openSitePage(page, '/index.html?theme=browser-archaeology');
+  await expect(page.locator('.hero-title-intro')).toHaveText('Who I am:');
+  await expect(page.locator('.page-hero h1 .hero-title-role').nth(0)).toHaveText('Software Engineer.');
+  await expect(page.locator('.page-hero h1 .hero-title-role').nth(1)).toHaveText('Musician.');
+  await expect(page.locator('.page-hero h1 .hero-title-role').nth(2)).toHaveText('Collaborator.');
   const title = page.locator('#hero-silly-title');
   const quote = page.locator('#hero-splash-text');
   await expect(quote).not.toHaveText('Alec Rollison can get 1s out of `/dev/zero`.');
@@ -44,6 +48,20 @@ test('hero title and Jeff Dean quote arrows browse independently', async ({ page
   await expect(quote).toHaveText(initialQuote);
   await page.getByRole('button', { name: 'Previous hero title' }).click();
   await expect(title).toHaveText(initialTitle);
+
+  const seenTitles = new Set([initialTitle]);
+  for (let step = 0; step < 65; step += 1) {
+    seenTitles.add(await page.evaluate(() =>
+      window.navigateAlecSillyTitle(document.getElementById('hero-silly-title'), 1)
+    ));
+  }
+  expect(seenTitles.has('Has never went to Ovoo Javer')).toBe(true);
+  await page.evaluate((target) => {
+    const el = document.getElementById('hero-silly-title');
+    while (el.textContent !== target) {
+      window.navigateAlecSillyTitle(el, 1);
+    }
+  }, initialTitle);
 
   await page.getByRole('button', { name: 'Next Jeff Dean quote' }).click();
   await expect(quote).not.toHaveText(initialQuote);
@@ -400,6 +418,21 @@ test('Photo Carousel preloads photos upon site load, shows one immediately on vi
     document.documentElement.style.getPropertyValue('--pc-h')
   );
   expect(initialHue).not.toBe('');
+
+  // Changing the photo on the home page also changes the hero title and Jeff Dean quote.
+  const homeTitle = page.locator('#hero-silly-title');
+  const homeQuote = page.locator('#hero-splash-text');
+  await expect(homeQuote).not.toHaveText('Alec Rollison can get 1s out of `/dev/zero`.');
+  const firstHomeTitle = await homeTitle.textContent();
+  const firstHomeQuote = await homeQuote.textContent();
+  await nextButton.click();
+  await expect(prevButton).toBeEnabled();
+  await expect(homeTitle).not.toHaveText(firstHomeTitle);
+  await expect(homeQuote).not.toHaveText(firstHomeQuote);
+  await prevButton.click();
+  await expect(prevButton).toBeDisabled();
+  await expect(homeTitle).toHaveText(firstHomeTitle);
+  await expect(homeQuote).toHaveText(firstHomeQuote);
 
   // Navigating to another page should keep the exact same photo, palette, and disabled Previous state.
   await page.locator('#site-nav a[href="work.html"]').click();

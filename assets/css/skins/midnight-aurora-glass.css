@@ -223,6 +223,7 @@ html[data-skin="midnight-aurora-glass"] body.page-home .page-hero h1 {
 	background-position: 50% 50%;
 }
 
+html[data-skin="midnight-aurora-glass"] .page-hero h1 .hero-title-intro,
 html[data-skin="midnight-aurora-glass"] .page-hero h1 .hero-title-role,
 html[data-skin="midnight-aurora-glass"] .page-hero h1 .hero-title-initial,
 html[data-skin="midnight-aurora-glass"] .metallic-pearl-text {
