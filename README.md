@@ -48,6 +48,7 @@ The project is no longer a stock HTML5 UP template. It has been reshaped into a 
 - The Sass sources remain in `assets/sass/`, but the current workflow edits the compiled CSS directly.
 - Shared head assets, navigation, footer, and common scripts are authored in `shared/` and synchronized into the committed HTML pages with `npm run site:sync`.
 - Asset URLs are stable and use explicit revalidation headers in `netlify.toml`; Netlify's atomic deploy invalidation replaces manual cache-version query strings.
+- Neighboring themes are warmed after page load and each selection for smooth arrow navigation; other themes prepare on hover or focus. Carousel photos warm during idle time after page load. Automatic warming respects data-saver and slow connections, and avoids downloading the entire theme catalog.
 - The saved theme preference is stored in `localStorage` under `site-skin-v2`. The head bootstrap applies it before first paint and waits for its stylesheet when navigating between pages.
 - The contact form posts to `thanks.html`.
 - Legacy page redirects are configured in `netlify.toml`, with small HTML fallbacks for local static previews. Redirect documents are excluded from shared HTML synchronization.

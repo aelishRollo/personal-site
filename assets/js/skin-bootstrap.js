@@ -3,7 +3,7 @@
 
 	This file intentionally runs in the document head. It resolves the active skin
 	before first paint, exposes the small runtime API used by main.js, and prepares
-	the inactive skin stylesheets for instant runtime switching.
+	requested skin stylesheets ahead of runtime switching.
 */
 (function() {
 	'use strict';
@@ -89,6 +89,7 @@
 	};
 	var preloadedAssets = {};
 	var prettyCalcLoaded = false;
+	var neighborWarmTimer = 0;
 
 	skins.forEach(function(skin) {
 		skinById[skin.id] = skin;
@@ -96,7 +97,7 @@
 
 	function read(storage, key) {
 		try {
-			return storage.getItem(key) || '';
+			return window[storage].getItem(key) || '';
 		} catch (error) {
 			return '';
 		}
@@ -104,7 +105,7 @@
 
 	function write(storage, key, value) {
 		try {
-			storage.setItem(key, value);
+			window[storage].setItem(key, value);
 		} catch (error) {
 			// Storage can be unavailable in private or locked-down browsing modes.
 		}
@@ -112,7 +113,7 @@
 
 	function remove(storage, key) {
 		try {
-			storage.removeItem(key);
+			window[storage].removeItem(key);
 		} catch (error) {
 			// Keep the in-memory selection usable even when storage is unavailable.
 		}
@@ -255,7 +256,7 @@
 		root.style.setProperty('--pc-l', palette.l);
 		root.style.setProperty('--pc-op-h', palette.opH);
 		root.style.setProperty('--pc-eq-h', palette.eqH);
-		write(window.sessionStorage, prettyCalcPaletteKey, JSON.stringify(palette));
+		write('sessionStorage', prettyCalcPaletteKey, JSON.stringify(palette));
 		return palette;
 	}
 
@@ -280,7 +281,7 @@
 
 	function ensurePrettyCalcPalette() {
 		try {
-			var saved = JSON.parse(read(window.sessionStorage, prettyCalcPaletteKey) || 'null');
+			var saved = JSON.parse(read('sessionStorage', prettyCalcPaletteKey) || 'null');
 			if (saved && saved.h && saved.s && saved.l && saved.opH && saved.eqH) {
 				return applyPrettyCalcPalette(saved);
 			}
@@ -290,8 +291,7 @@
 		return randomizePrettyCalcPalette();
 	}
 
-	// Preload Pretty Calc's photo engine and several random Picsum photos so
-	// visiting the theme displays a decoded photo immediately without delay.
+	// Warm the photo buffer after page load or explicit picker intent.
 	function loadPrettyCalc(ensurePaletteNow) {
 		if (ensurePaletteNow) {
 			ensurePrettyCalcPalette();
@@ -323,6 +323,9 @@
 			return Promise.resolve();
 		}
 
+		if (id === 'pretty-calc') {
+			loadPrettyCalc(false);
+		}
 		ensureSkinStylesheet(skin, id === appliedId);
 		preloadAssets(assetsBySkin[id] || []);
 
@@ -406,6 +409,9 @@
 		preloadAssets(sharedAssets);
 		preloadAssets(assetsBySkin[id] || []);
 		appliedId = id;
+		if (document.readyState === 'complete') {
+			scheduleNeighborWarm();
+		}
 
 		if (id === 'pretty-calc' && previousAppliedId !== id) {
 			loadPrettyCalc(true);
@@ -438,7 +444,7 @@
 		preloadAssets(assetsBySkin[id] || []);
 
 		if (id === previousId) {
-			if (activeTransition) {
+			if (activeTransition || appliedId !== id) {
 				root.setAttribute('data-skin-mode', activeMode);
 				return id;
 			}
@@ -464,7 +470,7 @@
 
 		// Live video should not be captured into full-page transition textures.
 		// Apply Starlight switches directly, including an interrupted transition.
-		var involvesVideo = previousId === 'starlight' || id === 'starlight';
+		var involvesVideo = appliedId === 'starlight' || id === 'starlight';
 		if (typeof document.startViewTransition !== 'function' || reduceMotion || involvesVideo) {
 			if (activeTransition && typeof activeTransition.skipTransition === 'function') {
 				activeTransition.skipTransition();
@@ -542,17 +548,17 @@
 		return id;
 	}
 
-	persistedId = read(window.localStorage, preferenceKey);
+	persistedId = read('localStorage', preferenceKey);
 	if (persistedId && !isValid(persistedId)) {
-		remove(window.localStorage, preferenceKey);
+		remove('localStorage', preferenceKey);
 		persistedId = '';
 	}
 
-	var previousSessionId = read(window.sessionStorage, sessionKey);
-	var previousSessionMode = read(window.sessionStorage, sessionModeKey);
+	var previousSessionId = read('sessionStorage', sessionKey);
+	var previousSessionMode = read('sessionStorage', sessionModeKey);
 	if (previousSessionId && !isValid(previousSessionId)) {
-		remove(window.sessionStorage, sessionKey);
-		remove(window.sessionStorage, sessionModeKey);
+		remove('sessionStorage', sessionKey);
+		remove('sessionStorage', sessionModeKey);
 		previousSessionId = '';
 		previousSessionMode = '';
 	}
@@ -587,60 +593,43 @@
 		initialMode = 'random';
 	}
 
-	write(window.sessionStorage, sessionKey, initialId);
-	write(window.sessionStorage, sessionModeKey, initialMode);
+	write('sessionStorage', sessionKey, initialId);
+	write('sessionStorage', sessionModeKey, initialMode);
 	preloadAssets(sharedAssets);
 	apply(initialId, initialMode);
 
-	// Fetch inactive themes after the initial page load. Nonmatching media keeps
-	// their CSS from applying or blocking render, and warming one resource at a
-	// time avoids saturating per-origin sockets or single-threaded dev servers.
-	function prepareAllSkins() {
-		var skinQueue = skins.slice();
-		var assetQueue = [];
-
-		skins.forEach(function(skin) {
-			(assetsBySkin[skin.id] || []).forEach(function(resource) {
-				assetQueue.push(resource);
-			});
-		});
-
-		var pageImages = Array.prototype.slice.call(document.querySelectorAll('img'));
-
-		function nextAsset() {
-			var resource = assetQueue.shift();
-			if (!resource) {
-				loadPrettyCalc(false);
-				document.dispatchEvent(new CustomEvent('site-skins-prepared'));
-				return;
-			}
-			preloadAsset(resource).then(nextAsset);
-		}
-
-		function nextSkin() {
-			var skin = skinQueue.shift();
-			if (!skin) {
-				nextAsset();
-				return;
-			}
-			ensureSkinStylesheet(skin, skin.id === appliedId);
-			waitForStylesheet(skin.id).then(nextSkin);
-		}
-
-		Promise.all(pageImages.map(function(img) {
-			img.loading = 'eager';
-			img.decoding = 'sync';
-			if (typeof img.decode === 'function') {
-				return img.decode().catch(function() {});
-			}
-			return Promise.resolve();
-		})).then(nextSkin);
+	function allowsBackgroundWarmup() {
+		var connection = navigator.connection;
+		return !connection || (!connection.saveData && !/^(slow-)?2g$/.test(connection.effectiveType));
 	}
 
+	function scheduleNeighborWarm() {
+		window.clearTimeout(neighborWarmTimer);
+		if (!allowsBackgroundWarmup()) return;
+		neighborWarmTimer = window.setTimeout(function() {
+			var index = skins.indexOf(skinById[activeId]);
+			[-1, 1].forEach(function(direction) {
+				prepareSkin(skins[(index + direction + skins.length) % skins.length].id);
+			});
+		}, 0);
+	}
+
+	// Keep arrow navigation and carousel photos ready without downloading the
+	// whole catalog. Explicit hover/focus intent still works on slow connections.
+	function warmLikelySelections() {
+		scheduleNeighborWarm();
+		if (!allowsBackgroundWarmup()) return;
+		function warmPhotos() { loadPrettyCalc(false); }
+		if (window.requestIdleCallback) {
+			window.requestIdleCallback(warmPhotos, { timeout: 1500 });
+		} else {
+			window.setTimeout(warmPhotos, 200);
+		}
+	}
 	if (document.readyState === 'complete') {
-		prepareAllSkins();
+		warmLikelySelections();
 	} else {
-		window.addEventListener('load', prepareAllSkins, { once: true });
+		window.addEventListener('load', warmLikelySelections, { once: true });
 	}
 
 	window.SiteSkins = {
@@ -664,8 +653,8 @@
 			if (!isValid(id)) {
 				return activeId;
 			}
-			write(window.sessionStorage, sessionKey, id);
-			write(window.sessionStorage, sessionModeKey, 'preview');
+			write('sessionStorage', sessionKey, id);
+			write('sessionStorage', sessionModeKey, 'preview');
 			return apply(id, persistedId === id ? 'saved' : 'preview');
 		},
 		save: function(id) {
@@ -673,31 +662,31 @@
 				return activeId;
 			}
 			persistedId = id;
-			write(window.localStorage, preferenceKey, id);
-			write(window.sessionStorage, sessionKey, id);
-			write(window.sessionStorage, sessionModeKey, 'saved');
+			write('localStorage', preferenceKey, id);
+			write('sessionStorage', sessionKey, id);
+			write('sessionStorage', sessionModeKey, 'saved');
 			return apply(id, 'saved');
 		},
 		surprise: function() {
 			var id = randomId(activeId);
-			write(window.sessionStorage, sessionKey, id);
-			write(window.sessionStorage, sessionModeKey, persistedId ? 'preview' : 'random');
+			write('sessionStorage', sessionKey, id);
+			write('sessionStorage', sessionModeKey, persistedId ? 'preview' : 'random');
 			return apply(id, persistedId ? 'preview' : 'random');
 		},
 		useRandomDefault: function() {
 			persistedId = '';
-			remove(window.localStorage, preferenceKey);
+			remove('localStorage', preferenceKey);
 			var id = randomId(activeId);
-			write(window.sessionStorage, sessionKey, id);
-			write(window.sessionStorage, sessionModeKey, 'random');
+			write('sessionStorage', sessionKey, id);
+			write('sessionStorage', sessionModeKey, 'random');
 			return apply(id, 'random');
 		},
 		clearSaved: function() {
 			persistedId = '';
-			remove(window.localStorage, preferenceKey);
+			remove('localStorage', preferenceKey);
 			var id = randomId(activeId);
-			write(window.sessionStorage, sessionKey, id);
-			write(window.sessionStorage, sessionModeKey, 'random');
+			write('sessionStorage', sessionKey, id);
+			write('sessionStorage', sessionModeKey, 'random');
 			return apply(id, 'random');
 		}
 	};
