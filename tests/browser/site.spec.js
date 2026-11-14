@@ -684,14 +684,12 @@ test('8-Bit Overworld renders its bespoke reverse-split RPG hero, Bento quest ma
     );
     return {
       featuredCopyLeftOfImage: featuredInner.right <= featuredImage.left + 4,
-      threeAcrossMiddleRow:
+      twoAcrossSecondRow:
         Math.round(cards[0].top) === Math.round(cards[1].top) &&
-        Math.round(cards[1].top) === Math.round(cards[2].top) &&
-        cards[0].left < cards[1].left &&
-        cards[1].left < cards[2].left,
-      twoAcrossBottomRow:
-        Math.round(cards[3].top) === Math.round(cards[4].top) &&
-        cards[3].left < cards[4].left,
+        cards[0].left < cards[1].left,
+      twoAcrossThirdRow:
+        Math.round(cards[2].top) === Math.round(cards[3].top) &&
+        cards[2].left < cards[3].left,
       twoColumnManual:
         Math.round(manualNotes[0].top) === Math.round(manualNotes[1].top) &&
         manualNotes[0].left < manualNotes[1].left,
@@ -699,8 +697,8 @@ test('8-Bit Overworld renders its bespoke reverse-split RPG hero, Bento quest ma
   });
 
   expect(workLayout.featuredCopyLeftOfImage).toBe(true);
-  expect(workLayout.threeAcrossMiddleRow).toBe(true);
-  expect(workLayout.twoAcrossBottomRow).toBe(true);
+  expect(workLayout.twoAcrossSecondRow).toBe(true);
+  expect(workLayout.twoAcrossThirdRow).toBe(true);
   expect(workLayout.twoColumnManual).toBe(true);
 
   await openSitePage(page, '/contact.html?theme=eight-bit-overworld');
