@@ -981,7 +981,9 @@ html[data-skin="eight-bit-overworld"] :is(.page-section, .section-soft, .section
 
 /* Warm Cozy Guild Hall Showcase Frame for Selected Projects */
 html[data-skin="eight-bit-overworld"] body.page-work .page-section:not(.section-soft):not(.section-cta) > .site-shell {
-	padding: clamp(1.35rem, 3vw, 2rem);
+	width: min(1320px, calc(100% - 2rem)) !important;
+	max-width: 1320px !important;
+	padding: clamp(1.5rem, 3vw, 2.25rem);
 	border: 4px solid var(--pixel-gold);
 	background-color: #24130c !important;
 	background-image: var(--pixel-work-study-wall) !important;
@@ -997,8 +999,8 @@ html[data-skin="eight-bit-overworld"] body.page-work .page-section:not(.section-
 	display: inline-flex;
 	align-items: center;
 	gap: 0.65rem;
-	margin-bottom: 1.25rem !important;
-	padding: 0.5rem 0.95rem 0.5rem 2.4rem;
+	margin-bottom: 1.4rem !important;
+	padding: 0.55rem 1.05rem 0.55rem 2.5rem;
 	border: 3px solid var(--pixel-gold);
 	background-color: #160a05;
 	background-image: var(--pixel-sprite-trophy);
@@ -1012,67 +1014,73 @@ html[data-skin="eight-bit-overworld"] body.page-work .page-section:not(.section-
 }
 
 /* 6-Column Master Grid:
-   Row 1: Featured Cartridge (spans 6 cols, text LEFT, monitor RIGHT)
-   Row 2: Cartridges 2, 3, 4 (each spans 2 cols -> 3 across!)
-   Row 3: Cartridges 5, 6 (each spans 3 cols -> 2 across!) */
+   Row 1: Featured Cartridge #1 (spans 6 cols, text LEFT, monitor RIGHT)
+   Row 2: Cartridges #2 & #3 (each spans 3 cols -> 2 large cards across)
+   Row 3: Cartridges #4 & #5 (each spans 3 cols -> 2 large cards across)
+   Row 4: Featured Cartridge #6 (spans 6 cols, text LEFT, monitor RIGHT) */
 html[data-skin="eight-bit-overworld"] :is(.features, .features--showcase) {
 	display: grid !important;
 	grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
-	gap: 1.35rem !important;
+	gap: 1.65rem !important;
 	align-items: stretch;
 }
 
-/* Completed Quest / Commission Work Shell with Project-Specific Top Frieze & Status Ribbon */
+/* Cozy Parchment Keepsake / Commission Ledger Shell (matching .favorite-copy on Favorites) */
 html[data-skin="eight-bit-overworld"] .features article {
 	--work-frieze: var(--pixel-cartridge-grip);
 	--work-sprite: var(--pixel-work-sprite-site);
 	--work-status: "★ QUEST COMPLETE // SHIPPED BUILD";
-	--work-bg: #181124;
-	--work-inset: #4c2882;
+	--work-inset: #d6b47c;
 	--work-top-border: var(--pixel-gold);
-	--work-title: var(--pixel-gold);
-	--work-rule: #4c2882;
-	--work-badge-bg: #102a1b;
-	--work-badge-border: #4cd964;
-	--work-badge-text: #bbf7d0;
-	--work-btn-bg: #27173d;
-	--work-btn-text: var(--pixel-cyan);
-	grid-column: span 3;
+	--work-rule: #854d27;
+	--work-badge-bg: #4a1924;
+	--work-badge-border: #1e0e06;
+	--work-badge-text: var(--pixel-gold);
+	grid-column: span 3 !important;
 	display: flex !important;
 	flex-direction: column;
 	position: relative;
 	width: auto !important;
 	min-width: 0;
 	margin: 0 !important;
-	padding: 1.6rem 1.15rem 1.15rem !important;
-	border: 3px solid var(--text-1) !important;
+	padding: 2.05rem 1.6rem 1.6rem !important;
+	border: 3px solid #1e0e06 !important;
 	border-top: 6px solid var(--work-top-border) !important;
 	border-radius: 0 !important;
-	background-color: var(--work-bg) !important;
-	background-image: var(--work-frieze) !important;
-	background-repeat: repeat-x !important;
-	background-position: left top !important;
-	background-size: 64px 14px !important;
+	background-color: #faf0dc !important;
+	background-image:
+		var(--work-frieze),
+		var(--pixel-scroll-parchment) !important;
+	background-repeat:
+		repeat-x,
+		repeat !important;
+	background-position:
+		left top,
+		left top !important;
+	background-size:
+		64px 14px,
+		64px 64px !important;
 	box-shadow:
-		inset 0 0 0 3px var(--work-inset),
-		6px 6px 0 var(--pixel-ink) !important;
+		inset 0 0 0 2px var(--work-inset),
+		0 5px 0 #592e1a,
+		6px 8px 0 #120703 !important;
 	transform: none !important;
 }
 
-/* Completed Work Status Seal at top of each project card */
+/* Completed Work Status Seal at top of each project card (matching .favorite-kind) */
 html[data-skin="eight-bit-overworld"] .features article::before {
 	content: var(--work-status);
 	display: inline-flex;
 	align-items: center;
 	align-self: flex-start;
-	margin: 0 0 0.7rem;
-	padding: 0.24rem 0.55rem;
+	margin: 0 0 0.85rem;
+	padding: 0.25rem 0.62rem;
 	border: 2px solid var(--work-badge-border);
 	background: var(--work-badge-bg);
-	box-shadow: 2px 2px 0 var(--pixel-ink);
+	box-shadow: 2px 2px 0 #d6b47c;
 	color: var(--work-badge-text);
-	font: 400 0.54rem/1.35 var(--pixel-display);
-	letter-spacing: 0.04em;
+	font: 400 0.72rem/1.3 var(--pixel-display);
+	letter-spacing: 0.05em;
 	text-transform: uppercase;
 }
 
@@ -1081,16 +1089,10 @@ html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(1)
 	--work-frieze: var(--pixel-frieze-prompt);
 	--work-sprite: var(--pixel-work-sprite-prompt);
 	--work-status: "★ QUEST COMPLETE // TYPESCRIPT BROWSER EXTENSION";
-	--work-bg: #19112b;
-	--work-inset: #4c2882;
 	--work-top-border: #c084fc;
-	--work-title: #ffd166;
-	--work-rule: #5b3299;
-	--work-badge-bg: #261447;
-	--work-badge-border: #c084fc;
+	--work-rule: #6b21a8;
+	--work-badge-bg: #3b175e;
 	--work-badge-text: #f3e8ff;
-	--work-btn-bg: #2d1952;
-	--work-btn-text: #70e4ef;
 }
 
 /* 2. Chord Function API — Chiptune Conservatory & Piano-Roll Synthesizer */
@@ -1098,17 +1100,11 @@ html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(2)
 	--work-frieze: var(--pixel-frieze-chord);
 	--work-sprite: var(--pixel-work-sprite-chord);
 	--work-status: "★ QUEST COMPLETE // MUSIC THEORY API & NPM PKG";
-	--work-bg: #241219;
-	--work-inset: #702446;
 	--work-top-border: #ffd166;
-	--work-title: #ffd166;
-	--work-rule: #872d56;
-	--work-badge-bg: #3b1728;
-	--work-badge-border: #ffd166;
-	--work-badge-text: #fef3c7;
-	--work-btn-bg: #3d192b;
-	--work-btn-text: #70e4ef;
-	grid-column: span 2 !important;
+	--work-rule: #9f1239;
+	--work-badge-bg: #4a1924;
+	--work-badge-text: #ffd84d;
+	grid-column: span 3 !important;
 }
 
 /* 3. This Site — Master Cartridge Console & 32-Skin Chameleon Deck */
@@ -1116,17 +1112,11 @@ html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(3)
 	--work-frieze: var(--pixel-frieze-site);
 	--work-sprite: var(--pixel-work-sprite-site);
 	--work-status: "★ QUEST COMPLETE // 32-THEME ENGINE & TEST SUITE";
-	--work-bg: #251311;
-	--work-inset: #7c3523;
 	--work-top-border: #4cd964;
-	--work-title: #ffd166;
-	--work-rule: #94402b;
-	--work-badge-bg: #112d1d;
-	--work-badge-border: #4cd964;
+	--work-rule: #166534;
+	--work-badge-bg: #143622;
 	--work-badge-text: #bbf7d0;
-	--work-btn-bg: #3d1e18;
-	--work-btn-text: #86efac;
-	grid-column: span 2 !important;
+	grid-column: span 3 !important;
 }
 
 /* 4. Sage & Cedar — Cozy Herbal Apothecary & Botanical Spa Menu */
@@ -1134,17 +1124,11 @@ html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(4)
 	--work-frieze: var(--pixel-frieze-sage);
 	--work-sprite: var(--pixel-work-sprite-sage);
 	--work-status: "★ COMMISSION COMPLETE // SALON MENU & MOBILE UI";
-	--work-bg: #112219;
-	--work-inset: #27573c;
 	--work-top-border: #86efac;
-	--work-title: #bbf7d0;
-	--work-rule: #326e4c;
+	--work-rule: #115e59;
 	--work-badge-bg: #183626;
-	--work-badge-border: #86efac;
 	--work-badge-text: #dcfce7;
-	--work-btn-bg: #1b3828;
-	--work-btn-text: #fde68a;
-	grid-column: span 2 !important;
+	grid-column: span 3 !important;
 }
 
 /* 5. Flowers by Leanne — Blooming Greenhouse & Florist Photo Showcase */
@@ -1152,16 +1136,10 @@ html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(5)
 	--work-frieze: var(--pixel-frieze-flowers);
 	--work-sprite: var(--pixel-work-sprite-flowers);
 	--work-status: "★ COMMISSION COMPLETE // FLORIST PHOTO SHOWCASE";
-	--work-bg: #26111c;
-	--work-inset: #6e2546;
 	--work-top-border: #fda4af;
-	--work-title: #fecdd3;
-	--work-rule: #852d55;
-	--work-badge-bg: #3d1729;
-	--work-badge-border: #fda4af;
+	--work-rule: #9d174d;
+	--work-badge-bg: #4a1530;
 	--work-badge-text: #ffe4e6;
-	--work-btn-bg: #3d192b;
-	--work-btn-text: #fde68a;
 	grid-column: span 3 !important;
 }
 
@@ -1170,48 +1148,43 @@ html[data-skin="eight-bit-overworld"] .features--showcase > article:nth-child(6)
 	--work-frieze: var(--pixel-frieze-poetry);
 	--work-sprite: var(--pixel-work-sprite-poetry);
 	--work-status: "★ QUEST COMPLETE // WEB COMPONENT & MAGNET LAB";
-	--work-bg: #151d2e;
-	--work-inset: #33486e;
 	--work-top-border: #ff5c7c;
-	--work-title: #fef3c7;
-	--work-rule: #415b8a;
-	--work-badge-bg: #22304d;
-	--work-badge-border: #70e4ef;
+	--work-rule: #1e40af;
+	--work-badge-bg: #1b2e52;
 	--work-badge-text: #e0f2fe;
-	--work-btn-bg: #21304d;
-	--work-btn-text: #70e4ef;
-	grid-column: span 3 !important;
+	grid-column: 1 / -1 !important;
 }
 
 /* Reversed Featured Console Deck: Status Ribbon on Row 1, Copy on LEFT, Monitor Screen on RIGHT */
-html[data-skin="eight-bit-overworld"] .features--showcase .featured-project {
+html[data-skin="eight-bit-overworld"] :is(.features--showcase .featured-project, .features--showcase > article:nth-child(6)) {
 	grid-column: 1 / -1 !important;
 	display: grid !important;
-	grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr) !important;
-	gap: 0.85rem 1.65rem !important;
+	grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.08fr) !important;
+	gap: 0.95rem 1.85rem !important;
 	align-items: center;
+	padding: 2.15rem 1.85rem 1.8rem !important;
 }
 
-html[data-skin="eight-bit-overworld"] .features--showcase .featured-project::before {
+html[data-skin="eight-bit-overworld"] :is(.features--showcase .featured-project, .features--showcase > article:nth-child(6))::before {
 	grid-column: 1 / -1;
 	grid-row: 1;
 	justify-self: start;
 	margin-bottom: 0;
 }
 
-html[data-skin="eight-bit-overworld"] .features--showcase .featured-project .inner {
+html[data-skin="eight-bit-overworld"] :is(.features--showcase .featured-project, .features--showcase > article:nth-child(6)) .inner {
 	grid-column: 1;
 	grid-row: 2;
 }
 
-html[data-skin="eight-bit-overworld"] .features--showcase .featured-project .image {
+html[data-skin="eight-bit-overworld"] :is(.features--showcase .featured-project, .features--showcase > article:nth-child(6)) .image {
 	grid-column: 2;
 	grid-row: 2;
 	margin-bottom: 0 !important;
 }
 
 html[data-skin="eight-bit-overworld"] .features article:hover {
-	border-color: var(--pixel-cyan) !important;
+	border-color: #7c2d12 !important;
 }
 
 html[data-skin="eight-bit-overworld"] .features article .image {
@@ -1219,12 +1192,12 @@ html[data-skin="eight-bit-overworld"] .features article .image {
 	position: relative !important;
 	width: 100% !important;
 	height: auto !important;
-	margin: 0 0 0.95rem 0 !important;
+	margin: 0 0 1.2rem 0 !important;
 	padding: 0 !important;
-	border: 3px solid var(--text-1) !important;
+	border: 3px solid #1e0e06 !important;
 	border-radius: 0 !important;
-	background: #050811 !important;
-	box-shadow: 4px 4px 0 var(--pixel-ink) !important;
+	background: #221008 !important;
+	box-shadow: 4px 4px 0 #592e1a !important;
 	text-decoration: none !important;
 	overflow: hidden;
 }
@@ -1239,7 +1212,7 @@ html[data-skin="eight-bit-overworld"] .features article .image img {
 	position: static !important;
 	width: 100% !important;
 	height: auto !important;
-	aspect-ratio: 16 / 10;
+	aspect-ratio: 16 / 9.6;
 	margin: 0 !important;
 	border: 0 !important;
 	border-radius: 0 !important;
@@ -1259,60 +1232,69 @@ html[data-skin="eight-bit-overworld"] :is(.features article .inner, .features--s
 html[data-skin="eight-bit-overworld"] .features article h3 {
 	display: flex;
 	align-items: center;
-	min-height: 1.75rem;
-	margin: 0 0 0.55rem !important;
-	padding: 0.1rem 0 0.45rem 2.1rem;
-	border-bottom: 2px dashed var(--work-rule, #2b3f78);
+	min-height: 2rem;
+	margin: 0 0 0.7rem !important;
+	padding: 0.12rem 0 0.52rem 2.4rem;
+	border-bottom: 2px dashed var(--work-rule, #854d27);
 	background-image: var(--work-sprite);
 	background-repeat: no-repeat;
-	background-position: left 0.12rem;
-	background-size: 22px 22px;
-	color: var(--work-title, var(--pixel-gold)) !important;
-	font-size: 1.02rem !important;
+	background-position: left 0.14rem;
+	background-size: 26px 26px;
+	color: #1e0e06 !important;
+	font-size: clamp(1.24rem, 1.65vw, 1.46rem) !important;
+	line-height: 1.26 !important;
+	text-shadow: 2px 2px 0 #e4c890 !important;
 }
 
-html[data-skin="eight-bit-overworld"] .features--showcase .featured-project h3 {
-	padding-left: 2.35rem;
-	background-size: 26px 26px;
+html[data-skin="eight-bit-overworld"] :is(.features--showcase .featured-project, .features--showcase > article:nth-child(6)) h3 {
+	padding-left: 2.65rem;
+	background-size: 28px 28px;
 	background-position: left 0.15rem;
-	font-size: clamp(1.2rem, 2vw, 1.55rem) !important;
+	font-size: clamp(1.36rem, 2vw, 1.66rem) !important;
 }
 
 html[data-skin="eight-bit-overworld"] .features article p {
-	margin: 0 0 0.65rem;
-	color: var(--text-2) !important;
-	font-size: 0.9rem;
-	line-height: 1.5;
+	margin: 0 0 0.82rem !important;
+	color: #2b1406 !important;
+	font-size: 1.05rem !important;
+	line-height: 1.64 !important;
 }
 
 html[data-skin="eight-bit-overworld"] .project-links {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.45rem;
+	gap: 0.55rem;
 	margin-top: auto;
-	padding-top: 0.55rem;
+	padding-top: 0.7rem;
 }
 
 html[data-skin="eight-bit-overworld"] .features article .inner span a {
 	display: inline-flex !important;
 	align-items: center;
-	min-height: 2rem;
-	padding: 0.3rem 0.6rem !important;
-	border: 2px solid var(--text-1) !important;
+	min-height: 2.38rem;
+	padding: 0.45rem 0.85rem !important;
+	border: 2px solid #1e0e06 !important;
 	border-radius: 0 !important;
-	background: var(--work-btn-bg, #162244) !important;
-	box-shadow: inset -2px -2px 0 #050811, 3px 3px 0 var(--pixel-ink) !important;
-	color: var(--work-btn-text, var(--pixel-cyan)) !important;
-	font: 400 0.68rem/1.2 var(--pixel-display) !important;
+	background: var(--pixel-gold) !important;
+	box-shadow:
+		inset -2px -2px 0 var(--pixel-gold-shade),
+		inset 2px 2px 0 #fff7cc,
+		3px 3px 0 #1e0e06 !important;
+	color: #1e0e06 !important;
+	font: 400 0.78rem/1.2 var(--pixel-display) !important;
 	letter-spacing: 0.04em;
 	text-decoration: none !important;
 	text-transform: uppercase;
 }
 
 html[data-skin="eight-bit-overworld"] :is(.features article .inner span a:hover, .features article .inner span a:focus-visible) {
-	border-color: var(--pixel-ink) !important;
-	background: var(--pixel-gold) !important;
-	color: var(--pixel-ink) !important;
+	border-color: #1e0e06 !important;
+	background: var(--pixel-cyan) !important;
+	box-shadow:
+		inset -2px -2px 0 #1f8a94,
+		inset 2px 2px 0 #d4fcff,
+		3px 3px 0 #1e0e06 !important;
+	color: #1e0e06 !important;
 }
 
 /* Cozy 8-Bit Tinkerer's & Craftsman's Workshop Study for "A little background" (.work-background) */
@@ -2332,11 +2314,11 @@ html[data-skin-id="eight-bit-overworld"] .skin-contact-charm:hover {
 /* --- 9. Responsive Breakpoints --- */
 
 @media (max-width: 980px) {
-	html[data-skin="eight-bit-overworld"] :is(.hero-copy, .hero-grid--with-portrait, .quest-grid, .features--showcase .featured-project, .work-background, .contact-layout, .contact-hero .contact-layout) {
+	html[data-skin="eight-bit-overworld"] :is(.hero-copy, .hero-grid--with-portrait, .quest-grid, .features--showcase .featured-project, .features--showcase > article:nth-child(6), .work-background, .contact-layout, .contact-hero .contact-layout) {
 		grid-template-columns: 1fr !important;
 	}
 
-	html[data-skin="eight-bit-overworld"] :is(.hero-copy > :not(.hero-media):not(.hero-quests), .hero-copy .hero-media, .quest-card:nth-child(1), .quest-card:nth-child(2), .quest-card:nth-child(3), .features--showcase .featured-project::before, .features--showcase .featured-project .inner, .features--showcase .featured-project .image, .contact-form-grid, .contact-intro, .hero-grid--with-portrait > :first-child, .hero-grid--with-portrait > .portrait-panel) {
+	html[data-skin="eight-bit-overworld"] :is(.hero-copy > :not(.hero-media):not(.hero-quests), .hero-copy .hero-media, .quest-card:nth-child(1), .quest-card:nth-child(2), .quest-card:nth-child(3), .features--showcase .featured-project::before, .features--showcase .featured-project .inner, .features--showcase .featured-project .image, .features--showcase > article:nth-child(6)::before, .features--showcase > article:nth-child(6) .inner, .features--showcase > article:nth-child(6) .image, .contact-form-grid, .contact-intro, .hero-grid--with-portrait > :first-child, .hero-grid--with-portrait > .portrait-panel) {
 		grid-column: 1 !important;
 		grid-row: auto !important;
 	}
@@ -2350,7 +2332,7 @@ html[data-skin-id="eight-bit-overworld"] .skin-contact-charm:hover {
 		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
 	}
 
-	html[data-skin="eight-bit-overworld"] .features--showcase > article:not(.featured-project) {
+	html[data-skin="eight-bit-overworld"] .features--showcase > article:not(.featured-project):not(:nth-child(6)) {
 		grid-column: span 1 !important;
 	}
 
