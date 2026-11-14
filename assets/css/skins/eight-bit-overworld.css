@@ -193,21 +193,28 @@ html[data-skin="eight-bit-overworld"] {
 
 	--pixel-scroll-spindle-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 6 6' shape-rendering='crispEdges'%3E%3Cpath fill='%231c0c04' d='M0 0h3v6H0V0zM3 1h3v4H3V1z'/%3E%3Cpath fill='%23b45309' d='M4 2h1v1H4V2z'/%3E%3Cpath fill='%2378350f' d='M3 3h2v1H3V3zM3 2h1v1H3V2z'/%3E%3Cpath fill='%23fff9ec' d='M0 1h3v1H0V1z'/%3E%3Cpath fill='%23ffd84d' d='M1 2h2v1H1V2z'/%3E%3Cpath fill='%23d97706' d='M1 3h2v1H1V3z'/%3E%3Cpath fill='%2392400e' d='M1 4h2v1H1V4z'/%3E%3Cpath fill='%23f5e4be' d='M0 2h1v1H0V2z'/%3E%3Cpath fill='%23e4c890' d='M0 3h1v1H0V3z'/%3E%3Cpath fill='%23c8a064' d='M0 4h1v1H0V4z'/%3E%3C/svg%3E");
 
-	--pixel-scroll-parchment: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%23f5e4be'/%3E%3Cpath fill='%23eed8a8' d='M2 3h3v1H2V3zM10 7h4v1h-4V7zM5 12h3v1H5v-1zM12 14h2v1h-2v-1z'/%3E%3Cpath fill='%23fbf0d6' d='M6 2h2v1H6V2zM1 9h3v1H1V9zM9 11h3v1H9v-1z'/%3E%3C/svg%3E");
+	--pixel-scroll-parchment: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='192' viewBox='0 0 64 48' shape-rendering='crispEdges'%3E%3Crect width='64' height='48' fill='%23f5e4be'/%3E%3Cpath fill='%23eed8a8' d='M3 2h4v1H3V2zm19 1h2v1h-2V3zm23 2h5v1h-5V5zM9 8h3v1H9V8zm29 1h6v1h-6V9zm17 2h3v1h-3v-1zM4 14h5v1H4v-1zm21 1h3v1h-3v-1zm24 2h4v1h-4v-1zM13 20h4v1h-4v-1zm28 1h2v1h-2v-1zm14 2h5v1h-5v-1zM6 26h3v1H6v-1zm19 2h6v1h-6v-1zm25 1h3v1h-3v-1zM11 33h5v1h-5v-1zm24 1h3v1h-3v-1zm19 2h4v1h-4v-1zM3 39h4v1H3v-1zm26 2h5v1h-5v-1zm18 1h2v1h-2v-1zM14 45h6v1h-6v-1zm31 1h4v1h-4v-1z'/%3E%3Cpath fill='%23e6cb92' d='M14 4h2v1h-2V4zm41 3h2v1h-2V7zM21 11h3v1h-3v-1zm36 4h1v1h-1v-1zM7 18h2v1H7v-1zm26 3h3v1h-3v-1zM17 25h1v1h-1v-1zm41 3h2v1h-2v-1zM5 31h2v1H5v-1zm37 3h2v1h-2v-1zM20 38h3v1h-3v-1zm38 3h1v1h-1v-1zM8 44h2v1H8v-1zm29 2h2v1h-2v-1z'/%3E%3Cpath fill='%23fbf0d6' d='M10 1h3v1h-3V1zm25 2h4v1h-4V3zm19 1h2v1h-2V4zM2 7h2v1H2V7zm16 2h5v1h-5V9zm31 1h3v1h-3v-1zM12 13h3v1h-3v-1zm25 2h5v1h-5v-1zm19 1h3v1h-3v-1zM3 19h4v1H3v-1zm19 2h3v1h-3v-1zm26 1h4v1h-4v-1zM11 24h4v1h-4v-1zm28 2h3v1h-3v-1zm18 2h3v1h-3v-1zM2 30h3v1H2v-1zm21 1h5v1h-5v-1zm24 2h3v1h-3v-1zM9 36h4v1H9v-1zm29 2h4v1h-4v-1zm16 1h3v1h-3v-1zM6 42h3v1H6v-1zm19 1h4v1h-4v-1zm27 2h5v1h-5v-1z'/%3E%3Cpath fill='%23fff9ec' d='M36 6h2v1h-2V6zM8 11h1v1H8v-1zm44 2h2v1h-2v-1zM31 18h2v1h-2v-1zM15 28h2v1h-2v-1zm39 3h1v1h-1v-1zM27 35h2v1h-2v-1zM50 40h2v1h-2v-1zM12 46h1v1h-1v-1z'/%3E%3C/svg%3E");
 
 	--pixel-sprite-wax-seal: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%231c0c04' d='M4 0h8v1h2v2h1v6h-1v2h-1v5h-3v-2H6v2H3v-5H2V9H1V3h1V1h2V0z'/%3E%3Cpath fill='%23991b1b' d='M4 1h8v1h2v6h-1v2H3V8H2V2h2V1zM4 11h2v4H4v-4zM10 11h2v4h-2v-4z'/%3E%3Cpath fill='%23ef4444' d='M4 2h8v6H4V2zM3 3h10v4H3V3z'/%3E%3Cpath fill='%23ffd84d' d='M7 3h2v4H7V3zM6 4h4v2H6V4zM4 13h1v1H4v-1zM11 13h1v1h-1v-1z'/%3E%3Cpath fill='%23fff9ec' d='M4 2h3v1H4V2zM7 4h1v1H7V4z'/%3E%3C/svg%3E");
 
 	--pixel-sprite-quill: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%231c0c04' d='M11 0h4v4h-1v2h-1v2h-2v2H9v1h2v5H2v-5h2V9h1V7h1V5h1V3h2V1h2V0z'/%3E%3Cpath fill='%235ce1e6' d='M11 1h3v2h-3V1zM9 3h4v2H9V3z'/%3E%3Cpath fill='%23fff9ec' d='M12 1h2v1h-2V1zM8 5h4v2H8V5zM7 7h3v2H7V7z'/%3E%3Cpath fill='%23ffd84d' d='M7 9h2v2H7V9zM4 11h5v1H4v-1zM3 14h7v1H3v-1z'/%3E%3Cpath fill='%231e293b' d='M3 12h7v2H3v-2z'/%3E%3C/svg%3E");
 
 	/* 12. Favorites Page: Cozy Cabin Study & Collector's Curio Library Assets:
-	   - --pixel-cozy-cabin-wall: Warm plum-cocoa quilted cabin wallpaper with cedar rails & strung fairy-bulb lights
-	   - --pixel-cozy-wood-wall: Honey-cinnamon cedar shiplap & bookcase backing
+	   - --pixel-cozy-cabin-wall (1600x640px / 400x160 grid at 4px square pixels, center top):
+	     Multi-bay timber & plum-mahogany cabin wall aligned with the 1280px .site-shell (x=40..360) and
+	     sticky .site-header (y=0..16), featuring an unclipped top cedar beam (y=16..18) with multi-color
+	     catenary festoon lights (y=18..25), varied cedar wainscot courses (y=58, 102, 148), staggered
+	     timber posts, woven diamond/rosette wallpaper inlays, and unclipped outer-margin candle sconces,
+	     lanterns, and framed mini-prints (x=23..35 and x=365..377)
+	   - --pixel-cozy-wood-wall (512x256px / 128x64 grid at 4px square pixels):
+	     Hand-crafted multi-tone cedar, walnut, chestnut & redwood boards of varied course heights (4px-7px),
+	     staggered plank lengths, wavy heartwood grain, wood-knot whorls, and brass dowel pins
 	   - --pixel-cozy-study-mural: Full-width Cozy Cabin Study panorama (tall cedar bookshelves with trailing ivy & globe,
 	     plush wingback reading chair with floor lamp & steaming mug of cocoa, crackling river-stone hearth with Boreal Forest
 	     painting & sleeping long-whiskered orange kitten on a braided rug, snowy spruce window with tent, guitar & desk) */
-	--pixel-cozy-cabin-wall: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='160' viewBox='0 0 80 40' shape-rendering='crispEdges'%3E%3Crect width='80' height='40' fill='%231c0f16'/%3E%3Cpath fill='%2326141e' d='M4 8h2v2H4V8zM14 12h2v2h-2v-2zM24 8h2v2h-2V8zM34 12h2v2h-2v-2zM44 8h2v2h-2V8zM54 12h2v2h-2v-2zM64 8h2v2h-2V8zM74 12h2v2h-2v-2zM9 28h2v2H9v-2zM19 32h2v2h-2v-2zM29 28h2v2h-2v-2zM39 32h2v2h-2v-2zM49 28h2v2h-2v-2zM59 32h2v2h-2v-2zM69 28h2v2h-2v-2z'/%3E%3Cpath fill='%233b1d0e' d='M0 0h80v2H0V0zM0 20h80v2H0v-2z'/%3E%3Cpath fill='%23522914' d='M0 0h80v1H0V0zM0 20h80v1H0v-1z'/%3E%3Cpath fill='%23110704' d='M0 2h80v1H0V2zM0 22h80v1H0v-1zM0 3h6v1H0V3zM6 4h8v1H6V4zM14 3h12v1H14V3zM26 4h8v1h-8V4zM34 3h12v1H34V3zM46 4h8v1h-8V4zM54 3h12v1H54V3zM66 4h8v1h-8V4zM74 3h6v1h-6V3zM0 23h6v1H0v-1zM6 24h8v1H6v-1zM14 23h12v1H14v-1zM26 24h8v1h-8v-1zM34 23h12v1H34v-1zM46 24h8v1h-8v-1zM54 23h12v1H54v-1zM66 24h8v1h-8v-1zM74 23h6v1h-6v-1z'/%3E%3Cpath fill='%234d240e' d='M8 4h4v4H8V4zM28 4h4v4h-4V4zM48 4h4v4h-4V4zM68 4h4v4h-4V4zM18 24h4v4h-4v-4zM38 24h4v4h-4v-4zM58 24h4v4h-4v-4zM76 24h4v4h-4v-4z'/%3E%3Cpath fill='%23ffd84d' d='M9 5h2v2H9V5zM29 5h2v2h-2V5zM49 5h2v2h-2V5zM69 5h2v2h-2V5zM19 25h2v2h-2v-2zM39 25h2v2h-2v-2zM59 25h2v2h-2v-2zM77 25h2v2h-2v-2z'/%3E%3Cpath fill='%23fff9ec' d='M9 5h1v1H9V5zM29 5h1v1h-1V5zM49 5h1v1h-1V5zM69 5h1v1h-1V5zM19 25h1v1h-1v-1zM39 25h1v1h-1v-1zM59 25h1v1h-1v-1zM77 25h1v1h-1v-1z'/%3E%3C/svg%3E");
+	--pixel-cozy-cabin-wall: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='640' viewBox='0 0 400 160' shape-rendering='crispEdges'%3E%3Crect width='400' height='160' fill='%23180c12'/%3E%3Cpath fill='%2322111a' d='M8 30h3v1H8v-1zm1-1h1v3H9v-3zm19 14h2v2h-2v-2zm28-10h3v3h-3v-3zm36 8h2v2h-2v-2zm34-12h3v1h-3v-1zm1-1h1v3h-1v-3zm38 10h2v2h-2v-2zm36-8h3v3h-3v-3zm38 10h2v2h-2v-2zm34-12h3v1h-3v-1zm1-1h1v3h-1v-3zm36 10h2v2h-2v-2zm36-8h3v3h-3v-3zm37 12h2v2h-2v-2zm10-10h3v1h-3v-1zm1-1h1v3h-1v-3zM10 74h2v2h-2v-2zm17 12h3v1h-3v-1zm1-1h1v3h-1v-3zm34-8h2v2h-2v-2zm38 10h3v3h-3v-3zm36-12h2v2h-2v-2zm38 8h3v1h-3v-1zm1-1h1v3h-1v-3zm36 10h2v2h-2v-2zm38-12h3v3h-3v-3zm36 10h2v2h-2v-2zm38-8h3v1h-3v-1zm1-1h1v3h-1v-3zm31 12h2v2h-2v-2zm16-10h2v2h-2v-2zM8 120h3v3h-3v-3zm20 14h2v2h-2v-2zm30-10h3v1h-3v-1zm1-1h1v3h-1v-3zm36 8h2v2h-2v-2zm38-12h3v3h-3v-3zm36 10h2v2h-2v-2zm38-8h3v1h-3v-1zm1-1h1v3h-1v-3zm36 10h2v2h-2v-2zm38-12h3v3h-3v-3zm36 8h2v2h-2v-2zm40-6h3v1h-3v-1zm1-1h1v3h-1v-3zm24 12h2v2h-2v-2z'/%3E%3Cpath fill='%232e1723' d='M57 35h1v1h-1v-1zm144-4h1v1h-1v-1zm145 0h1v1h-1v-1zM28 50h2v1h-2v-1zm94-2h2v1h-2v-1zm112 2h2v1h-2v-1zm136 0h2v1h-2v-1zM101 88h1v1h-1v-1zm148-4h1v1h-1v-1zM27 96h2v1h-2v-1zm132-2h2v1h-2v-1zm142 2h2v1h-2v-1zm70 0h2v1h-2v-1zM9 121h1v1H9v-1zm125 9h1v1h-1v-1zm148-4h1v1h-1v-1zM28 140h2v1h-2v-1zm148-2h2v1h-2v-1zm194 2h2v1h-2v-1z'/%3E%3Cpath fill='%232b1409' d='M18 0h3v160h-3V0zm361 0h3v160h-3V0zM96 18h3v40h-3V18zm112 0h3v40h-3V18zm104 0h3v40h-3V18zM68 60h3v42h-3V60zm104 0h3v42h-3V60zm108 0h3v42h-3V60zM108 104h3v44h-3v-44zm108 0h3v44h-3v-44zm104 0h3v44h-3v-44z'/%3E%3Cpath fill='%233b1d0e' d='M0 16h400v2H0v-2zm0 42h400v2H0v-2zm0 44h400v2H0v-2zm0 46h400v2H0v-2zM18 0h1v160h-1V0zm361 0h1v160h-1V0zM96 18h1v40h-1V18zm112 0h1v40h-1V18zm104 0h1v40h-1V18zM68 60h1v42h-1V60zm104 0h1v42h-1V60zm108 0h1v42h-1V60zM108 104h1v44h-1v-44zm108 0h1v44h-1v-44zm104 0h1v44h-1v-44z'/%3E%3Cpath fill='%23592e1a' d='M0 16h400v1H0v-1zm0 42h400v1H0v-1zm0 44h400v1H0v-1zm0 46h400v1H0v-1z'/%3E%3Cpath fill='%23100603' d='M0 18h400v1H0v-1zm0 42h400v1H0v-1zm0 44h400v1H0v-1zm0 46h400v1H0v-1zM21 19h14v1H21v-1zm14 1h18v1H35v-1zm18 1h20v1H53v-1zm20-1h16v1H73v-1zm16-1h10v1H89v-1zm10 1h18v1H99v-1zm18 1h22v1h-22v-1zm22-1h18v1h-18v-1zm18-1h16v1h-16v-1zm16 1h18v1h-18v-1zm18 1h22v1h-22v-1zm22-1h18v1h-18v-1zm18-1h14v1h-14v-1zm14 1h18v1h-18v-1zm18 1h20v1h-20v-1zm20-1h18v1h-18v-1zm18-1h14v1h-14v-1zm14 1h16v1h-16v-1zm16 1h18v1h-18v-1zm18-1h13v1h-13v-1zM21 61h16v1H21v-1zm343 0h15v1h-15v-1zM21 105h16v1H21v-1zm343 0h15v1h-15v-1z'/%3E%3Cpath fill='%234d240e' d='M33 21h3v3h-3v-3zm28 1h3v3h-3v-3zm26-1h3v3h-3v-3zm39 1h3v3h-3v-3zm30-1h3v3h-3v-3zm30 0h3v3h-3v-3zm28 1h3v3h-3v-3zm30-1h3v3h-3v-3zm34 1h3v3h-3v-3zm28-1h3v3h-3v-3zm30 0h3v3h-3v-3zm27 1h3v3h-3v-3zM28 62h3v3h-3v-3zm342 0h3v3h-3v-3zM28 106h3v3h-3v-3zm342 0h3v3h-3v-3zM26 34h6v8h-6v-8zm342-2h8v10h-8V32zM25 74h8v10h-8V74zm342 2h6v8h-6v-8zM26 118h6v8h-6v-8zm341-2h8v10h-8v-10z'/%3E%3Cpath fill='%2378350f' d='M369 33h6v8h-6v-8zM26 75h6v8h-6v-8zM368 117h6v8h-6v-8z'/%3E%3Cpath fill='%230f172a' d='M370 34h4v6h-4v-6zM27 76h4v6h-4v-6zm341 42h4v6h-4v-6z'/%3E%3Cpath fill='%23334155' d='M28 41h2v3h-2v-3zm-1 2h4v1h-4v-1zm342 40h2v3h-2v-3zm-1 2h4v1h-4v-1zM28 125h2v3h-2v-3zm-1 2h4v1h-4v-1z'/%3E%3Cpath fill='%23ea580c' d='M27 35h4v5h-4v-5zm341 42h4v5h-4v-5zM27 119h4v5h-4v-5z'/%3E%3Cpath fill='%2310b981' d='M371 36h2v3h-2v-3zM28 78h2v3h-2v-3z'/%3E%3Cpath fill='%234ade80' d='M87 22h1v2h-1v-2zm158 0h1v2h-1v-2zm92 0h1v2h-1v-2zM371 36h1v2h-1v-2z'/%3E%3Cpath fill='%23ff5c7c' d='M62 23h1v2h-1v-2zm125-1h1v2h-1v-2zm120 0h1v2h-1v-2zM29 63h1v2h-1v-2zM371 107h1v2h-1v-2z'/%3E%3Cpath fill='%235ce1e6' d='M157 22h1v2h-1v-2zm122 1h1v2h-1v-2zM371 63h1v2h-1v-2zM369 119h2v2h-2v-2z'/%3E%3Cpath fill='%23d97706' d='M19 24h1v1h-1v-1zm0 28h1v1h-1v-1zm0 14h1v1h-1v-1zm0 30h1v1h-1v-1zm0 14h1v1h-1v-1zm0 32h1v1h-1v-1zM380 24h1v1h-1v-1zm0 28h1v1h-1v-1zm0 14h1v1h-1v-1zm0 30h1v1h-1v-1zm0 14h1v1h-1v-1zm0 32h1v1h-1v-1zM97 24h1v1h-1v-1zm0 28h1v1h-1v-1zm112-28h1v1h-1v-1zm0 28h1v1h-1v-1zm104-28h1v1h-1v-1zm0 28h1v1h-1v-1z'/%3E%3Cpath fill='%23ffd84d' d='M34 22h1v2h-1v-2zm93 1h1v2h-1v-2zm88 0h1v2h-1v-2zm159 0h1v2h-1v-2zM28 36h2v3h-2v-3zm341 42h2v3h-2v-3zM29 107h1v2h-1v-2zm-1 13h2v3h-2v-3z'/%3E%3Cpath fill='%23fff9ec' d='M34 22h1v1h-1v-1zm93 1h1v1h-1v-1zm88 0h1v1h-1v-1zm159 0h1v1h-1v-1zM28 36h1v1h-1v-1zm341 42h1v1h-1v-1zM29 107h1v1h-1v-1zm-1 13h1v1h-1v-1zm340 2h4v1h-4v-1z'/%3E%3C/svg%3E");
 
-	--pixel-cozy-wood-wall: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='64' viewBox='0 0 32 16' shape-rendering='crispEdges'%3E%3Crect width='32' height='16' fill='%2333190e'/%3E%3Cpath fill='%23452314' d='M0 0h32v1H0V0zM0 4h32v1H0V4zM0 8h32v1H0V8zM0 12h32v1H0v-1z'/%3E%3Cpath fill='%23592e1a' d='M2 1h8v1H2V1zM18 1h10v1H18V1zM7 5h11v1H7V5zM23 5h7v1h-7V5zM1 9h9v1H1V9zM15 9h12v1H15V9zM5 13h10v1H5v-1zM20 13h9v1h-9v-1z'/%3E%3Cpath fill='%231c0c06' d='M0 3h32v1H0V3zM0 7h32v1H0V7zM0 11h32v1H0v-1zM0 15h32v1H0v-1zM14 0h1v3h-1V0zM6 4h1v3H6V4zM22 4h1v3h-1V4zM12 8h1v3h-1V8zM28 8h1v3h-1V8zM18 12h1v3h-1v-3z'/%3E%3C/svg%3E");
+	--pixel-cozy-wood-wall: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='256' viewBox='0 0 128 64' shape-rendering='crispEdges'%3E%3Crect width='128' height='64' fill='%2333190e'/%3E%3Cpath fill='%23281209' d='M0 0h34v5H0V0zm76 0h52v5H76V0zM22 11h38v5H22v-5zm74 0h32v5H96v-5zM0 22h44v7H0v-7zm84 0h44v7H84v-7zM30 34h42v6H30v-6zM0 46h36v5H0v-5zm78 0h50v5H78v-5zM18 58h46v5H18v-5z'/%3E%3Cpath fill='%233f2012' d='M35 0h40v5H35V0zM0 6h28v5H0V6zm64 0h38v5H64V6zM61 11h34v5H61v-5zM14 17h42v5H14v-5zm76 0h38v5H90v-5zM45 22h38v7H45v-7zM0 30h36v4H0v-4zm72 0h40v4H72v-4zM73 34h36v6H73v-6zM12 41h44v5H12v-5zm82 0h34v5H94v-5zM37 46h40v5H37v-5zM0 52h48v6H0v-6zm86 0h42v6H86v-6zM65 58h38v5H65v-5z'/%3E%3Cpath fill='%23472414' d='M29 6h34v5H29V6zM0 11h21v5H0v-5zM57 17h32v5H57v-5zM37 30h34v4H37v-4zM0 34h29v6H0v-6zM57 41h36v5H57v-5zM49 52h36v6H49v-6zM104 58h24v5h-24v-5z'/%3E%3Cpath fill='%234d2716' d='M0 0h128v1H0V0zm0 6h128v1H0V6zm0 6h128v1H0v-1zm0 5h128v1H0v-1zm0 6h128v1H0v-1zm0 7h128v1H0v-1zm0 5h128v1H0v-1zm0 6h128v1H0v-1zm0 6h128v1H0v-1zm0 5h128v1H0v-1zm0 6h128v1H0v-1z'/%3E%3Cpath fill='%235c301b' d='M4 1h18v1H4V1zm42 0h22v1H46V1zm44 0h26v1H90V1zM8 7h14v1H8V7zm26 0h20v1H34V7zm38 0h22v1H72V7zm36 0h14v1h-14V7zM3 12h12v1H3v-1zm26 0h24v1H29v-1zm38 0h20v1H67v-1zm34 0h20v1h-20v-1zM18 18h28v1H18v-1zm44 0h20v1H62v-1zm34 0h24v1H96v-1zM6 23h26v1H6v-1zm44 0h28v1H50v-1zm40 0h28v1H90v-1zM22 26h14v1H22v-1zm40 1h16v1H62v-1zm38-1h18v1h-18v-1zM8 31h20v1H8v-1zm34 0h22v1H42v-1zm36 0h26v1H78v-1zM4 35h18v1H4v-1zm32 0h26v1H36v-1zm42 0h24v1H78v-1zm34 0h12v1h-12v-1zM16 42h28v1H16v-1zm46 0h24v1H62v-1zm36 0h22v1H98v-1zM6 47h22v1H6v-1zm36 0h26v1H42v-1zm42 0h30v1H84v-1zM8 53h28v1H8v-1zm46 0h24v1H54v-1zm38 0h26v1H92v-1zM24 55h16v1H24v-1zm42 1h14v1H66v-1zm38-1h16v1h-16v-1zM2 59h12v1H2v-1zm22 0h30v1H24v-1zm46 0h26v1H70v-1zm38 0h16v1h-16v-1z'/%3E%3Cpath fill='%23220e06' d='M12 3h14v1H12V3zm72 0h18v1H84V3zM42 9h16v1H42V9zm68 0h12v1h-12V9zM30 14h20v1H30v-1zm74 0h16v1h-16v-1zM4 20h6v1H4v-1zm62 0h18v1H66v-1zM10 25h18v1H10v-1zm48 2h16v1H58v-1zm36-2h20v1H94v-1zM14 32h16v1H14v-1zm70 0h18v1H84v-1zM8 38h14v1H8v-1zm40 0h18v1H48v-1zm66 0h10v1h-10v-1zM24 44h20v1H24v-1zm76 0h18v1h-18v-1zM14 49h16v1H14v-1zm72 0h22v1H86v-1zM12 56h20v1H12v-1zm48 0h18v1H60v-1zm38 0h20v1H98v-1zM30 61h22v1H30v-1zm78 0h14v1h-14v-1z'/%3E%3Cpath fill='%231c0c06' d='M0 5h128v1H0V5zm0 6h128v1H0v-1zm0 5h128v1H0v-1zm0 6h128v1H0v-1zm0 7h128v1H0v-1zm0 5h128v1H0v-1zm0 6h128v1H0v-1zm0 6h128v1H0v-1zm0 5h128v1H0v-1zm0 6h128v1H0v-1zm0 6h128v1H0v-1zM34 0h1v5h-1V0zm41 0h1v5h-1V0zM28 6h1v5h-1V6zm35 0h1v5h-1V6zm39 0h1v5h-1V6zM21 11h1v5h-1v-5zm39 0h1v5h-1v-5zm35 0h1v5h-1v-5zM13 17h1v5h-1v-5zm43 0h1v5h-1v-5zm33 0h1v5h-1v-5zM44 22h1v7h-1v-7zm39 0h1v7h-1v-7zM36 30h1v4h-1v-4zm35 0h1v4h-1v-4zm41 0h1v4h-1v-4zM29 34h1v6h-1v-6zm43 0h1v6h-1v-6zm37 0h1v6h-1v-6zM11 41h1v5h-1v-5zm45 0h1v5h-1v-5zm37 0h1v5h-1v-5zM36 46h1v5h-1v-5zm41 0h1v5h-1v-5zM48 52h1v6h-1v-6zm37 0h1v6h-1v-6zM17 58h1v5h-1v-5zm47 0h1v5h-1v-5zm39 0h1v5h-1v-5zM52 2h3v2h-3V2zM18 8h3v2h-3V8zm62 0h3v2h-3V8zM74 13h3v2h-3v-2zM32 19h3v2h-3v-2zm76 0h3v2h-3v-2zM18 25h4v3h-4v-3zm54 0h4v3h-4v-3zm34 1h3v2h-3v-2zM86 36h4v3h-4v-3zM68 43h3v2h-3v-2zM52 48h3v2h-3v-2zM28 54h4v3h-4v-3zm76 0h4v3h-4v-3zM80 60h3v2h-3v-2z'/%3E%3Cpath fill='%236b3820' d='M53 2h1v1h-1V2zM19 8h1v1h-1V8zm63 0h1v1h-1V8zM75 13h1v1h-1v-1zM33 19h1v1h-1v-1zm77 0h1v1h-1v-1zM19 26h2v1h-2v-1zm55 0h2v1h-2v-1zm35 0h1v1h-1v-1zM87 37h2v1h-2v-1zM69 43h1v1h-1v-1zM53 48h1v1h-1v-1zM29 55h2v1h-2v-1zm77 0h2v1h-2v-1zM81 60h1v1h-1v-1z'/%3E%3Cpath fill='%2392400e' d='M32 2h1v1h-1V2zm3 0h1v1h-1V2zm38 0h1v1h-1V2zm3 0h1v1h-1V2zM26 8h1v1h-1V8zm3 0h1v1h-1V8zm32 0h1v1h-1V8zm3 0h1v1h-1V8zM42 25h1v1h-1v-1zm3 0h1v1h-1v-1zm36 0h1v1h-1v-1zm3 0h1v1h-1v-1zM27 36h1v1h-1v-1zm3 0h1v1h-1v-1zm40 0h1v1h-1v-1zm3 0h1v1h-1v-1zM46 54h1v1h-1v-1zm3 0h1v1h-1v-1zm34 0h1v1h-1v-1zm3 0h1v1h-1v-1z'/%3E%3C/svg%3E");
 
 	--pixel-cozy-study-mural: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='176' viewBox='0 0 320 44' shape-rendering='crispEdges'%3E%3Crect x='0' y='4' width='320' height='1' fill='%231c0c06'/%3E%3Crect x='0' y='5' width='320' height='1' fill='%23592e1a'/%3E%3Cpath fill='%234d240e' d='M78 6h14v11H78V6zM144 4h6v8h-6V4zM186 4h6v8h-6V4zM299 12h10v8h-10v-8z'/%3E%3Cpath fill='%2378350f' d='M10 4h28v33H10V4zM40 4h28v33H40V4zM84 15h2v20h-2V15zM80 35h10v2H80v-2zM122 27h14v2h-14v-2zM124 29h2v8h-2v-8zM132 29h2v8h-2v-8zM154 0h28v11h-28V0zM142 12h52v3h-52v-3zM222 4h40v23h-40V4zM268 33h10v4h-10v-4zM272 20h2v13h-2V20zM282 25h30v2h-30v-2zM284 27h3v10h-3V27zM307 27h3v10h-3V27z'/%3E%3Cpath fill='%23451a03' d='M12 6h24v8H12V6zM12 16h24v8H12v-8zM12 26h24v8H12v-8zM42 6h24v8H42V6zM42 16h24v8H42v-8zM42 26h24v8H42v-8zM98 34h3v3h-3v-3zM113 34h3v3h-3v-3z'/%3E%3Cpath fill='%230f172a' d='M156 2h24v7h-24V2zM225 6h34v18h-34V6zM286 16h12v7h-12v-7z'/%3E%3Cpath fill='%23475569' d='M146 15h44v22h-44V15z'/%3E%3Cpath fill='%2364748b' d='M148 16h8v4h-8v-4zM158 16h10v4h-10v-4zM170 16h8v4h-8v-4zM180 16h8v4h-8v-4zM148 22h6v6h-6v-6zM182 22h6v6h-6v-6zM148 30h6v6h-6v-6zM182 30h6v6h-6v-6z'/%3E%3Cpath fill='%23080c1a' d='M156 21h24v16h-24V21z'/%3E%3Cpath fill='%23881337' d='M96 17h20v17H96V17zM94 23h24v8H94v-8zM225 6h5v18h-5V6zM254 6h5v18h-5V6z'/%3E%3Cpath fill='%23be123c' d='M98 18h16v14H98V18zM95 24h4v5h-4v-5zM115 24h4v5h-4v-5zM192 35h24v2h-24v-2z'/%3E%3Cpath fill='%23ff5c7c' d='M14 8h3v6h-3V8zM22 18h4v6h-4v-6zM44 8h4v6h-4V8zM54 28h4v6h-4v-6zM130 22h4v5h-4v-5zM195 34h18v1h-18v-1z'/%3E%3Cpath fill='%2310b981' d='M60 4h4v3h-4V4zM62 7h3v5h-3V7zM65 10h3v6h-3v-6zM63 15h2v4h-2v-4zM18 8h3v6h-3V8zM49 18h4v6h-4v-6zM166 9h4v3h-4V9zM233 14h6v7h-6v-7zM245 13h7v8h-7v-8z'/%3E%3Cpath fill='%234ade80' d='M61 4h2v2h-2V4zM63 8h1v3h-1V8zM66 11h1v4h-1v-4zM29 18h3v6h-3v-6zM160 4h8v2h-8V4zM168 3h8v2h-8V3zM235 12h2v2h-2v-2zM247 11h3v2h-3v-2z'/%3E%3Cpath fill='%235ce1e6' d='M28 8h5v5h-5V8zM15 28h4v6h-4v-6zM44 18h4v6h-4v-6zM164 5h8v1h-8V5zM287 17h10v5h-10v-5z'/%3E%3Cpath fill='%23a78bfa' d='M14 18h6v6h-6v-6zM56 18h5v6h-5v-6zM26 28h5v6h-5v-6z'/%3E%3Cpath fill='%23ea580c' d='M58 1h6v3h-6V1zM160 27h16v10h-16V27zM163 23h10v4h-10v-4zM198 31h10v4h-10v-4zM200 29h5v3h-5v-3zM239 18h6v4h-6v-4zM270 24h6v8h-6v-8zM301 14h6v5h-6v-5z'/%3E%3Cpath fill='%23ffd84d' d='M29 13h3v1h-3v-1zM50 8h4v6h-4V8zM44 28h8v6h-8v-6zM80 8h10v6H80V8zM102 23h8v5h-8v-5zM146 7h2v5h-2V7zM188 7h2v5h-2V7zM164 27h8v10h-8V27zM165 24h6v3h-6v-3zM194 36h20v1h-20v-1zM201 30h1v1h-1v-1zM203 30h1v1h-1v-1zM241 19h2v3h-2v-3zM264 14h3v2h-3v-2zM266 12h1v3h-1v-3zM271 26h4v5h-4v-5zM272 18h2v6h-2v-6zM302 15h4v4h-4v-4zM303 19h2v6h-2v-6z'/%3E%3Cpath fill='%23fff9ec' d='M29 9h2v2h-2V9zM33 28h2v6h-2v-6zM59 8h2v6h-2V8zM83 10h4v3h-4v-3zM123 25h5v2h-5v-2zM131 19h1v2h-1v-2zM133 17h1v2h-1v-2zM146 5h2v2h-2V5zM188 5h2v2h-2V5zM166 30h4v7h-4v-7zM197 31h3v1h-3v-1zM197 33h3v1h-3v-1zM205 31h3v1h-3v-1zM205 33h3v1h-3v-1zM201 32h3v2h-3v-2zM230 21h29v3h-29v-3zM236 8h1v1h-1V8zM243 9h1v1h-1V9zM251 8h1v1h-1V8zM288 18h6v1h-6v-1zM284 23h16v2h-16v-2z'/%3E%3Crect x='0' y='37' width='320' height='2' fill='%23991b1b'/%3E%3Cpath fill='%23ffd84d' d='M0 37h8v1H0v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1zm16 0h8v1h-8v-1z'/%3E%3Crect x='0' y='39' width='320' height='5' fill='%233b1d0e'/%3E%3Cpath fill='%23592e1a' d='M0 39h12v2H0v-2zm16 0h12v2H16v-2zm16 0h12v2H32v-2zm16 0h12v2H48v-2zm16 0h12v2H64v-2zm16 0h12v2H80v-2zm16 0h12v2H96v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zM8 42h12v2H8v-2zm16 0h12v2H24v-2zm16 0h12v2H40v-2zm16 0h12v2H56v-2zm16 0h12v2H72v-2zm16 0h12v2H88v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h12v2h-12v-2zm16 0h8v2h-8v-2z'/%3E%3C/svg%3E");
 
@@ -1071,7 +1078,7 @@ html[data-skin="eight-bit-overworld"] .features article {
 		left top !important;
 	background-size:
 		288px 24px,
-		64px 64px !important;
+		256px 192px !important;
 	box-shadow:
 		inset 2px 0 0 var(--work-inset),
 		inset -2px -2px 0 var(--work-inset),
@@ -1444,12 +1451,12 @@ html[data-skin="eight-bit-overworld"] .work-background > p:last-child a:focus-vi
 /* --- 5. Favorites Page: Cozy Cabin Study & Collector's Curio Keepsakes (.page-favorites) --- */
 
 html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top {
-	background-color: #1c0f16 !important;
+	background-color: #180c12 !important;
 	background-image:
 		var(--pixel-cozy-cabin-wall),
-		linear-gradient(180deg, #160b11 0%, #21111a 55%, #2b1620 100%) !important;
-	background-position: left top, left top !important;
-	background-size: 320px 160px, 100% 100% !important;
+		linear-gradient(180deg, #14090e 0%, #1d0e16 55%, #26131d 100%) !important;
+	background-position: center top, left top !important;
+	background-size: 1600px 640px, 100% 100% !important;
 	background-repeat: repeat, no-repeat !important;
 }
 
@@ -1486,7 +1493,7 @@ html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .fav
 		var(--pixel-cozy-study-mural),
 		var(--pixel-cozy-wood-wall) !important;
 	background-position: center bottom, left top !important;
-	background-size: 1280px 176px, 128px 64px !important;
+	background-size: 1280px 176px, 512px 256px !important;
 	background-repeat: no-repeat, repeat !important;
 	box-shadow:
 		inset 0 0 0 4px #78350f,
@@ -1557,7 +1564,7 @@ html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .fav
 	border: 4px solid var(--pixel-gold) !important;
 	background-color: #33190e !important;
 	background-image: var(--pixel-cozy-wood-wall) !important;
-	background-size: 128px 64px !important;
+	background-size: 512px 256px !important;
 	background-repeat: repeat !important;
 	box-shadow:
 		inset 0 0 0 4px #78350f,
@@ -1604,7 +1611,7 @@ html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .fav
 	border: 3px solid #1e0e06 !important;
 	background-color: #faf0dc !important;
 	background-image: var(--pixel-scroll-parchment) !important;
-	background-size: 64px 64px !important;
+	background-size: 256px 192px !important;
 	background-repeat: repeat !important;
 	box-shadow:
 		inset 0 0 0 3px #d6b47c,
@@ -1668,7 +1675,7 @@ html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .fav
 	border-radius: 0 !important;
 	background-color: #faf0dc !important;
 	background-image: var(--pixel-scroll-parchment) !important;
-	background-size: 64px 64px !important;
+	background-size: 256px 192px !important;
 	background-repeat: repeat !important;
 	box-shadow:
 		inset 0 0 0 2px #d6b47c,
@@ -1934,7 +1941,7 @@ html[data-skin="eight-bit-overworld"] .contact-form-grid {
 		var(--pixel-sprite-quill),
 		var(--pixel-scroll-parchment) !important;
 	background-position: right 1rem bottom 0.85rem, left top !important;
-	background-size: 48px 48px, 64px 64px !important;
+	background-size: 48px 48px, 256px 192px !important;
 	background-repeat: no-repeat, repeat !important;
 	box-shadow:
 		inset 6px 0 0 #e4c890,
@@ -1960,7 +1967,7 @@ html[data-skin="eight-bit-overworld"] .contact-intro {
 		var(--pixel-sprite-wax-seal),
 		var(--pixel-scroll-parchment) !important;
 	background-position: right 0.95rem bottom 0.75rem, left top !important;
-	background-size: 48px 48px, 64px 64px !important;
+	background-size: 48px 48px, 256px 192px !important;
 	background-repeat: no-repeat, repeat !important;
 	box-shadow:
 		inset 6px 0 0 #e4c890,
@@ -2503,7 +2510,7 @@ html[data-skin-id="eight-bit-overworld"] .skin-contact-charm:hover {
 
 	html[data-skin="eight-bit-overworld"] body.page-favorites#page-top#page-top .favorites-hero > .site-shell {
 		padding: 1.5rem 1.05rem 9.2rem !important;
-		background-size: 960px 132px, 128px 64px !important;
+		background-size: 960px 132px, 512px 256px !important;
 		box-shadow:
 			inset 0 0 0 3px #78350f,
 			0 0 0 3px #120703,

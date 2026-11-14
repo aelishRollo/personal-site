@@ -318,61 +318,7 @@
 	outline-offset: 3px;
 }
 
-/* Promote each self-contained favorites block onto its own GPU layer and
-   suppress mid-scroll hover/animation repaints so 100% of page content stays
-   pre-rasterized in GPU memory across all 31 skins (even at 2x Retina DPR). */
-html body.page-favorites#page-top {
-	position: static !important;
-	isolation: auto !important;
-}
-
-html body.page-favorites#page-top,
-html body.page-favorites#page-top::before,
-html body.page-favorites#page-top::after,
-html body.page-favorites#page-top *,
-html body.page-favorites#page-top *::before,
-html body.page-favorites#page-top *::after {
-	animation: none !important;
-	transition: none !important;
-}
-
-html body.page-favorites#page-top .page-hero::before,
-html body.page-favorites#page-top .page-hero::after,
-html body.page-favorites#page-top .favorites-hero::before,
-html body.page-favorites#page-top .favorites-hero::after,
-html body.page-favorites#page-top .favorites-section::before,
-html body.page-favorites#page-top .favorites-section::after {
-	transform: none !important;
-	filter: none !important;
-	backdrop-filter: none !important;
-	-webkit-backdrop-filter: none !important;
-}
-
-html[data-skin="hyperspace"] body.page-favorites#page-top::before,
-html[data-skin="hyperspace"] body.page-favorites#page-top::after {
-	inset: 0 !important;
-	width: 100vw !important;
-	height: 100vh !important;
-	transform: none !important;
-	mix-blend-mode: normal !important;
-	-webkit-mask-image: none !important;
-	mask-image: none !important;
-}
-
-html body.page-favorites#page-top .favorites-hero,
-html body.page-favorites#page-top .favorites-toolbar,
-html body.page-favorites#page-top .favorites-index,
-html body.page-favorites#page-top .favorite-card,
-html body.page-favorites#page-top .favorites-image-credits,
-html body.page-favorites#page-top .site-footer {
-	position: relative;
-	z-index: 1;
-	will-change: transform !important;
-	backface-visibility: hidden !important;
-	transform: translate3d(0px, 0px, 0px);
-	opacity: 0.999;
-}
-
+/* Suppress mid-scroll hover/animation repaints on favorites cards. */
 html body.page-favorites#page-top .favorite-media img,
 html body.page-favorites#page-top .favorite-card:hover .favorite-media img {
 	transition: none !important;
