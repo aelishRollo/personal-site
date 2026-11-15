@@ -287,7 +287,7 @@ test('saved theme is ready before the destination page paints', async ({ page, b
   expect(timing.firstContentfulPaint).toBeGreaterThanOrEqual(timing.stylesheetResponseEnd);
 });
 
-test('unseen themes warm automatically before their first selection', async ({ page, browserName }) => {
+test('themes warm on intent without fetching unrelated themes', async ({ page, browserName }) => {
   const themeRequests = [];
   page.on('request', (request) => {
     if (/assets\/css\/skins\/|assets\/images\//.test(request.url())) {
@@ -295,10 +295,13 @@ test('unseen themes warm automatically before their first selection', async ({ p
     }
   });
   await openSitePage(page, '/index.html?theme=portfolio-dark');
-  const themes = await page.evaluate(() => window.SiteSkins.all.filter((theme) => theme.css));
-  for (const theme of themes) {
-    await expect(page.locator(`[data-skin-stylesheet="${theme.id}"]`)).toHaveAttribute('data-skin-ready', '');
-  }
+  await page.waitForLoadState('networkidle');
+  // Only the previous arrow's theme needs CSS; the next is built into the base.
+  await expect(page.locator('[data-skin-stylesheet="eight-bit-overworld"]')).toHaveAttribute('data-skin-ready', '');
+  expect(themeRequests.every((url) => url.endsWith('/eight-bit-overworld.css'))).toBe(true);
+  await page.locator('.skin-picker-toggle').click();
+  await page.locator('[data-skin-choice="sea-glass-mosaic"]').focus();
+  await expect(page.locator('[data-skin-stylesheet="sea-glass-mosaic"]')).toHaveAttribute('data-skin-ready', '');
   await page.waitForLoadState('networkidle');
   await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'portfolio-dark');
   await expect(page.locator('[data-skin-stylesheet][media="all"]')).toHaveCount(0);
@@ -339,7 +342,7 @@ test('every registered theme stylesheet loads and can be applied', async ({ page
   expect(failures).toEqual([]);
 });
 
-test('Photo Carousel preloads photos upon site load, shows one immediately on visit, steps forward/back, and auto-cycles', async ({ page }) => {
+test('Photo Carousel warms photos after page load, steps forward/back, and auto-cycles', async ({ page }) => {
   const onePixelPng = Buffer.from(
     'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
     'base64'
@@ -375,7 +378,7 @@ test('Photo Carousel preloads photos upon site load, shows one immediately on vi
     });
   });
 
-  // Load on another theme first: several Pretty Calc photos should preload automatically.
+  // Warm photos after the page loads so selecting the carousel has a ready buffer.
   await openSitePage(page, '/index.html?theme=portfolio-dark');
   await expect.poll(() => photoCount).toBeGreaterThanOrEqual(5);
 
@@ -836,4 +839,52 @@ test.describe('mobile navigation', () => {
     await expect(page.locator('body')).not.toHaveClass(/nav-open/);
     await expect(toggle).toHaveAttribute('aria-expanded', 'false');
   });
+});
+
+test('theme controls work when browser storage getters are blocked', async ({ page }) => {
+  const failures = watchRuntimeFailures(page);
+  await page.addInitScript(() => {
+    for (const name of ['localStorage', 'sessionStorage']) {
+      Object.defineProperty(window, name, {
+        configurable: true,
+        get() { throw new DOMException('Storage blocked', 'SecurityError'); },
+      });
+    }
+  });
+  await openSitePage(page, '/index.html?theme=portfolio-dark');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.locator('.skin-picker-toggle').click();
+  await page.locator('[data-skin-choice="acid-editorial"]').click();
+  await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'acid-editorial');
+  await page.locator('label[for="skin-picker-keep"]').click();
+  await expect(page.locator('#skin-picker-keep')).toBeChecked();
+  expect(failures).toEqual([]);
+});
+
+test('saving a pending theme waits for CSS and rapid selection keeps the latest theme', async ({ page }) => {
+  await openSitePage(page, '/index.html?theme=portfolio-dark');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  let releaseStylesheet;
+  const stylesheetGate = new Promise((resolve) => { releaseStylesheet = resolve; });
+  await page.route('**/assets/css/skins/acid-editorial.css', async (route) => {
+    await stylesheetGate;
+    await route.continue();
+  });
+  const request = page.waitForRequest('**/assets/css/skins/acid-editorial.css');
+  await page.evaluate(() => window.SiteSkins.preview('acid-editorial'));
+  await request;
+  await page.evaluate(() => window.SiteSkins.save('acid-editorial'));
+  await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'portfolio-dark');
+  releaseStylesheet();
+  await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'acid-editorial');
+  await expect(page.locator('html')).toHaveAttribute('data-skin-mode', 'saved');
+  await page.evaluate(() => {
+    window.SiteSkins.preview('sea-glass-mosaic');
+    window.SiteSkins.preview('starlight');
+    window.SiteSkins.preview('portfolio-light');
+  });
+  await page.waitForLoadState('networkidle');
+  await expect(page.locator('html')).toHaveAttribute('data-skin-id', 'portfolio-light');
+  await expect(page.locator('[data-skin-stylesheet][media="all"]')).toHaveCount(0);
+  await expect(page.locator('.starlight-video')).toHaveCount(0);
 });
