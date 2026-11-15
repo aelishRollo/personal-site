@@ -54,6 +54,25 @@
 	// in skin-system.css so normal scrolling never pays for permanent
 	// view-transition stacking contexts or effect groups.
 
+	// Give the pixel-art home scenes independent frames, restoring the original
+	// nesting when switching to a theme that uses the shared hero layout.
+	var homeQuests = document.querySelector('body.page-home .hero-quests');
+	var homeQuestsParent = homeQuests && homeQuests.parentNode;
+	var homeHeroShell = document.querySelector('body.page-home .page-hero > .hero-grid');
+	function syncHomeScenes() {
+		if (!homeQuests || !homeHeroShell) return;
+		var separateScenes = document.documentElement.getAttribute('data-skin-id') === 'eight-bit-overworld';
+		if (separateScenes) {
+			homeQuests.classList.add('site-shell');
+			homeHeroShell.after(homeQuests);
+		} else {
+			homeQuests.classList.remove('site-shell');
+			homeQuestsParent.appendChild(homeQuests);
+		}
+	}
+	document.addEventListener('site-skin-change', syncHomeScenes);
+	syncHomeScenes();
+
 	// Mount media only while Starlight is active; other skins never fetch the video.
 	var starlightVideo;
 	var starlightTools;

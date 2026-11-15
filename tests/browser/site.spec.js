@@ -888,3 +888,23 @@ test('saving a pending theme waits for CSS and rapid selection keeps the latest 
   await expect(page.locator('[data-skin-stylesheet][media="all"]')).toHaveCount(0);
   await expect(page.locator('.starlight-video')).toHaveCount(0);
 });
+
+test('8-Bit home scenes have matching gaps and restore their nesting after switching themes', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  for (const width of [1280, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    await openSitePage(page, '/index.html?theme=eight-bit-overworld');
+    await expect(page.locator('.page-hero > .hero-quests')).toHaveCount(1);
+    const gaps = await page.evaluate(() => {
+      const loft = document.querySelector('.page-hero > .hero-grid').getBoundingClientRect();
+      const quests = document.querySelector('.hero-quests').getBoundingClientRect();
+      const cta = document.querySelector('.section-cta > .site-shell').getBoundingClientRect();
+      return { upper: quests.top - loft.bottom, lower: cta.top - quests.bottom };
+    });
+    expect(gaps.upper).toBeGreaterThan(40);
+    expect(Math.abs(gaps.upper - gaps.lower), JSON.stringify(gaps)).toBeLessThan(8);
+    await page.evaluate(() => window.SiteSkins.preview('portfolio-dark'));
+    await expect(page.locator('.hero-copy > .hero-quests')).toHaveCount(1);
+    await expect(page.locator('.hero-quests')).not.toHaveClass(/site-shell/);
+  }
+});

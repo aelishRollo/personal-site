@@ -2540,3 +2540,41 @@ html[data-skin-id="eight-bit-overworld"] .skin-contact-charm:hover {
 		scroll-behavior: auto !important;
 	}
 }
+
+/* Separate the home loft and quest map with the same 3.6rem space as the CTA. */
+html[data-skin="eight-bit-overworld"] body.page-home .page-hero > .hero-grid {
+	padding-bottom: calc(152px + 1.35rem);
+	background-image: var(--pixel-cozy-loft-mural), var(--pixel-cozy-loft-ceiling), var(--pixel-cozy-loft-wall) !important;
+	background-position: center bottom, center top, left top !important;
+	background-size: 1280px 152px, 1280px 304px, 256px 128px !important;
+	background-repeat: no-repeat, no-repeat, repeat !important;
+}
+
+html[data-skin="eight-bit-overworld"] body.page-home .page-hero > .hero-quests {
+	margin: 3.6rem auto 0 !important;
+	padding: 1.35rem clamp(1.35rem, 3vw, 2.25rem) 9.6rem !important;
+	border: 4px solid var(--pixel-gold) !important;
+	background-color: #1b2a52 !important;
+	background-image: var(--pixel-overworld-mural), var(--pixel-ground-strip), var(--pixel-castle-stone) !important;
+	background-position: center bottom, left bottom, left top !important;
+	background-size: 1280px 144px, 128px 32px, 64px 32px !important;
+	background-repeat: no-repeat, repeat-x, repeat !important;
+	box-shadow: inset 0 0 0 4px #354d8c, 0 0 0 4px var(--pixel-ink), 8px 8px 0 var(--pixel-ink);
+}
+
+html[data-skin="eight-bit-overworld"] body.page-home .page-hero > .hero-quests::before {
+	content: none !important;
+	display: none !important;
+}
+
+@media (max-width: 736px) {
+	html[data-skin="eight-bit-overworld"] body.page-home .page-hero > .hero-grid {
+		padding-bottom: calc(114px + 1.2rem);
+		background-size: 960px 114px, 960px 228px, 256px 128px !important;
+	}
+
+	html[data-skin="eight-bit-overworld"] body.page-home .page-hero > .hero-quests {
+		padding: 1.2rem 1rem 7.8rem !important;
+		background-size: 960px 108px, 96px 24px, 64px 32px !important;
+	}
+}
